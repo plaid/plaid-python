@@ -6,27 +6,16 @@ import requests
 # @todo Sandboxing?
 # @todo "Single Request Call"
 
-"""
-HTTP response codes
-200: Success
-400: Bad Request
-401: Unauthorized
-402: Request Failed
-404: Cannot be found 
-50X: Server error
-
-Maybe User/Transaction class?
-"""
-
 class Client(object):
     """
-    Python Plain API client https://plaid.io/
-    API version 2
+    Python Plain API v2 client https://plaid.io/
+
+    See official documentation at: https://plaid.io/v2/docs
     """
 
     url = 'https://tartan.plaid.com' # Base API URL
 
-    TYPES = (
+    ACCOUNT_TYPES = (
         ('amex', 'American Express',),
         ('bofa', 'Bank of America',),
         ('chase', 'Chase',),
@@ -34,9 +23,20 @@ class Client(object):
         ('wells', 'Wells Fargo',),
     )
 
+    CATEGORY_TYPES = [
+        'plaid',
+        'foursquare',
+        'factual',
+        'amex'
+    ]
+
     endpoints = {
         'connect': '/connect',
-        'step': '/connect/step'
+        'step': '/connect/step',
+        'entity': '/entity',
+        'categories': '/category',
+        'category': '/category/id/%s',
+        'categories_by_mapping': '/category/map'
     }
 
     def __init__(self, client_id, secret, access_token=None):
@@ -57,6 +57,9 @@ class Client(object):
     def get_access_token(self):
         return self.access_token
 
+    def get_account_types(self):
+        return self.ACCOUNT_TYPES
+
     # Endpoints
 
     def connect(self, account_type, username, password, email, options={}):
@@ -66,7 +69,7 @@ class Client(object):
         an MFA (Multi Factor Authentication) question(s) is returned
 
         `account_type`  str     The type of bank account you want to sign in to, must
-                                be one of the keys in `TYPES`
+                                be one of the keys in `ACCOUNT_TYPES`
         `username`      str     The username for the bank account you want to sign in to
         `password`      str     The password for the bank account you want to sign in to
         `email`         str     The email address associated with the bank account
@@ -167,14 +170,64 @@ class Client(object):
 
         return requests.get(url, data=data)
 
-    def entity(self, entity_id, pretty=False):
-        pass
+    def entity(self, entity_id, options={}):
+        """
+        Fetch a specific entity's data
+
+        `entity_id`     str     Entity id to fetch
+        `options`       dict
+            `pretty`    boolean Whether to return nicely formatted JSON or not
+        """
+        url = urljoin(self.url, self.endpoints['entity'])
+        data = {
+            'entity_id': entity_id
+        }
+
+        if options:
+            data['options'] = json.dumps(options)
+
+        return requests.get(url, data=data)
 
     def categories(self):
-        pass
+        """
+        Fetch all categories
+        """
+        url = urljoin(self.url, self.endpoints['categories'])
+        return requests.get(url)
 
-    def category(self, category_id, pretty=False):
-        pass
+    def category(self, category_id, options={}):
+        """
+        Fetch a specific category
 
-    def categories_by_mapping(self, mapping, type, pretty=False, full_match=True):
-        pass
+        `category_id`   str     Category id to fetch
+        `options`       dict
+            `pretty`    boolean Whether to return nicely formatted JSON or not
+        """
+        url = urljoin(self.url, self.endpoints['category']) % category_id
+        data = {}
+        if options:
+            data['options'] = json.dumps(options)
+        return requests.get(url, data=data)
+
+    def categories_by_mapping(self, mapping, category_type, options={}):
+        """
+        Fetch category data by category mapping and data source
+
+        `mapping`       str     The category mapping to explore, e.g. "Food > Spanish Restaurant",
+                                see all categories here: 
+                                https://github.com/plaid/Support/blob/master/categories.md
+        `category_type` str     The category data source, must be a value from `CATEGORY_TYPES`
+        `options`       dict
+            `pretty`        boolean     Whether to return nicely formatted JSON or not
+            `full_match`    boolean     Whether to try an exact match for `mapping`. Setting
+                                        to `False` will return best match.
+        """
+        url = urljoin(self.url, self.endpoints['categories_by_mapping'])
+        data = {
+            'mapping': mapping,
+            'type': category_type
+        }
+        if options:
+            data['options'] = json.dumps(options)
+        return requests.get(url, data=data)
+
