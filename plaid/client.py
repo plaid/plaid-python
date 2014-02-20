@@ -24,7 +24,7 @@ class Client(object):
     API version 2
     """
 
-    url = 'https://tartan.plaid.com'
+    url = 'https://tartan.plaid.com' # Base API URL
 
     TYPES = (
         ('amex', 'American Express',),
@@ -40,22 +40,40 @@ class Client(object):
     }
 
     def __init__(self, client_id, secret, access_token=None):
+        """
+        `client_id`     str     Your Plaid client ID
+        `secret`        str     Your Plaid secret
+        `access_token`  str     Access token if you already have one
+        """
         self.client_id = client_id
         self.secret = secret
+        self.access_token = None
         if access_token:
             self.set_access_token(access_token)
 
     def set_access_token(self, access_token):
         self.access_token = access_token
 
+    def get_access_token(self):
+        return self.access_token
+
     # Endpoints
 
-    def connect(self, account_type, username, password, email, \
-            pretty=False, webhook=None, mfa_list=False):
+    def connect(self, account_type, username, password, email, options={}):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case 
         an MFA (Multi Factor Authentication) question(s) is returned
+
+        `account_type`  str     The type of bank account you want to sign in to, must
+                                be one of the keys in `TYPES`
+        `username`      str     The username for the bank account you want to sign in to
+        `password`      str     The password for the bank account you want to sign in to
+        `email`         str     The email address associated with the bank account
+        `options`       dict
+            `pretty`    boolean     Whether to return nicely formatted JSON or not
+            `webhook`   str         URL to hit once the account's transactions have been processed
+            `mfa_list`  boolean     List all available MFA (Multi Factor Authentication) options
         """
         url = urljoin(self.url, self.endpoints['connect'])
 
@@ -64,22 +82,16 @@ class Client(object):
             'password': password
         }
 
-        options = {
-            'pretty': pretty,
-            'list': mfa_list
-        }
-
-        if webhook:
-            options['webhook'] = webhook
-
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
             'type': account_type,
             'credentials': json.dumps(credentials),
-            'email': email,
-            'options': json.dumps(options)
+            'email': email
         }
+
+        if options:
+            data['options'] = json.dumps(options)
 
         response = requests.post(url, data=data)
 
@@ -90,44 +102,58 @@ class Client(object):
 
         return response
 
-    def step(self, account_type, mfa, pretty=False, send_method_type=None):
+    def step(self, account_type, mfa, options={}):
         """
+        Perform a MFA (Multi Factor Authentication) step, requires `access_token`
+
+        `account_type`  str     The type of bank account you're performing MFA on,
+                                must match what you used in the `connect` call
+        `mfa`           str     The MFA answer, e.g. an answer to q security question or
+                                code sent to your phone, etc.
+        `options`       dict
+            `send_method`   dict    The send method your MFA answer is for, e.g. {'type': Phone'},
+                                    should come from the list from the `mfa_list` option in the 
+                                    `connect` call
         """
-        url = urljoin(self.url, '/connect/step')
-
-        options = {
-            'pretty': pretty
-        }
-
-        if send_method_type:
-            options['send_method'] = {'type': send_method_type}
+        url = urljoin(self.url, self.endpoints['step'])
 
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
             'type': account_type,
-            'mfa': mfa,
-            'options': json.dumps(options)
+            'mfa': mfa
         }
+
+        if options:
+            data['options'] = json.dumps(options)
 
         return requests.post(url, data=data)
 
     def delete_user(self):
-        pass
-
-    def transactions(self, last=None, pretty=False):
         """
-        Fetch a list of transactions
+        Delete user from Plaid, requires `access_token`
         """
-        url = urljoin(self.url, '/connect')
+        url = urljoin(self.url, self.endpoints['connect'])
 
-        options = {
-            'pretty': pretty
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token
         }
 
-        if last:
-            options['last'] = last
+        return requests.delete(url, data=data)
+        
+
+    def transactions(self, options={}):
+        """
+        Fetch a list of transactions, requires `access_token`
+
+        `options`   dict
+            `pretty`    boolean     Whether to return nicely formatted JSON or not
+            `last`      str         Collect all transactions since this transaction ID
+        """
+        url = urljoin(self.url, self.endpoints['connect'])
 
         data = {
             'client_id': self.client_id,
@@ -135,6 +161,9 @@ class Client(object):
             'access_token': self.access_token,
             'options': json.dumps(options)
         }
+
+        if options:
+            data['options'] = json.dumps(options)
 
         return requests.get(url, data=data)
 
