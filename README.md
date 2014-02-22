@@ -13,7 +13,7 @@ from plaid import Client
 
 
 client = Client(client_id='***', secret='***')
-connect = client.connect(accont_type='bofa', username='***', password='***', email='john@whatever.com')
+connect = client.connect(account_type='bofa', username='***', password='***', email='john@whatever.com')
 
 if connect.ok:
     json_response = json.loads(connect.content)

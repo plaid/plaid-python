@@ -1,1 +1,4 @@
+mock==1.0.1
+py==1.4.20
+pytest==2.5.2
 requests==2.2.1
