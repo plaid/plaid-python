@@ -48,6 +48,7 @@ class Client(object):
         self.client_id = client_id
         self.secret = secret
         self.access_token = None
+        
         if access_token:
             self.set_access_token(access_token)
 
