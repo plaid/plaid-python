@@ -6,6 +6,14 @@ import requests
 # @todo Sandboxing?
 # @todo "Single Request Call"
 
+def require_access_token(func):
+    def inner_func(self, *args, **kwargs):
+        if not self.access_token:
+            raise Exception('`%s` method requires `access_token`' % func.__name__)
+        func(self, *args, **kwargs)
+    return inner_func
+
+
 class Client(object):
     """
     Python Plain API v2 client https://plaid.io/
@@ -106,6 +114,7 @@ class Client(object):
 
         return response
 
+    @require_access_token
     def step(self, account_type, mfa, options={}):
         """
         Perform a MFA (Multi Factor Authentication) step, requires `access_token`
@@ -134,6 +143,7 @@ class Client(object):
 
         return requests.post(url, data=data)
 
+    @require_access_token
     def delete_user(self):
         """
         Delete user from Plaid, requires `access_token`
@@ -149,6 +159,7 @@ class Client(object):
         return requests.delete(url, data=data)
         
 
+    @require_access_token
     def transactions(self, options={}):
         """
         Fetch a list of transactions, requires `access_token`

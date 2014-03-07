@@ -1,2 +1,2 @@
 test:
-	py.test -s -rxs ./tests/
+	py.test --cov plaid -s -rxs ./tests/
