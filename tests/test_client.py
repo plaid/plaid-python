@@ -3,9 +3,10 @@ from mock import patch, Mock
 from plaid import Client
 
 
-def test_connect(self):
+def test_connect():
     with patch('requests.post') as mock_requests_post:
         mock_response = Mock()
+        mock_response.content = '{}'
         mock_requests_post.return_value = mock_response
 
         client = Client('myclientid', 'mysecret')

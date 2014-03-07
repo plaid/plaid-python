@@ -1,2 +1,2 @@
 test:
-	py.test -s -rxs ./test/
+	py.test -s -rxs ./tests/
