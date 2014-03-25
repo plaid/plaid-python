@@ -44,7 +44,8 @@ class Client(object):
         'entity': '/entity',
         'categories': '/category',
         'category': '/category/id/%s',
-        'categories_by_mapping': '/category/map'
+        'categories_by_mapping': '/category/map',
+        'balance': '/balance'
     }
 
     def __init__(self, client_id, secret, access_token=None):
@@ -241,5 +242,24 @@ class Client(object):
         }
         if options:
             data['options'] = json.dumps(options)
+        return requests.get(url, data=data)
+
+    @require_access_token
+    def balance(self, options = {}):
+        """
+        Fetch the real-time balance of the user's accounts
+
+        `options`       dict
+            `pretty`        boolean     Whether to return nicely formatted JSON or not
+        """
+        url = urljoin(self.url, self.endpoints['balance'])
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token
+        }
+        if options:
+            data['options'] = json.dumps(options)
+
         return requests.get(url, data=data)
 
