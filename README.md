@@ -1,6 +1,7 @@
 # Python Plaid
 
 Python Plaid API client https://plaid.io
+REST API is [here](https://plaid.io/docs)
 
 ## Usage
 
@@ -29,3 +30,6 @@ if connect.ok:
 ## Author
 
 [Chris Forrette](https://github.com/chrisforrette)
+
+### Contributors
+[PK](https://github.com/gae123)
