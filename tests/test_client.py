@@ -75,8 +75,9 @@ def test_delete_user_requires_access_token():
 def test_transactions():
     with patch('requests.get') as mock_requests_get:
         client = Client('myclientid', 'mysecret', 'token')
-        client.transactions()
+        ret = client.transactions()
         assert mock_requests_get.called
+        assert not ret is None
 
 
 def test_transactions_requires_access_token():

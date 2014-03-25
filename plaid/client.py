@@ -10,7 +10,7 @@ def require_access_token(func):
     def inner_func(self, *args, **kwargs):
         if not self.access_token:
             raise Exception('`%s` method requires `access_token`' % func.__name__)
-        func(self, *args, **kwargs)
+        return func(self, *args, **kwargs)
     return inner_func
 
 
