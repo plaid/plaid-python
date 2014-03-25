@@ -1,7 +1,7 @@
 # Python Plaid
 
-Python Plaid API client https://plaid.io
-REST API is [here](https://plaid.io/docs)
+Python Plaid API client https://plaid.io  
+REST API is [here](https://www.plaid.io/docs)
 
 ## Usage
 
@@ -11,7 +11,6 @@ REST API is [here](https://plaid.io/docs)
 import json
 
 from plaid import Client
-
 
 client = Client(client_id='***', secret='***')
 connect = client.connect(account_type='bofa', username='***', password='***', email='john@whatever.com')
