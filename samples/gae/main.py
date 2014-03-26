@@ -3,6 +3,10 @@ import webapp2
 
 import plaid
 
+# need to fill these first
+CLIENT = ""   # as given by Plaid
+SECRET = ""   # as given by Plaid
+ACCESS_TOKEN = ""  # I assume here that you have already created this
 
 class MainPage(webapp2.RequestHandler):
 
@@ -15,7 +19,7 @@ class MainPage(webapp2.RequestHandler):
         w("</head>")
         w("<body>")
         w("<pre>")
-        client = plaid.Client("53237a9b00cdb13908a873d3", "3411JxgdbhkAF_uI4mPikm", 'WyI1MzIzN2E5YjAwY2RiMTM5MDhhODczZDMiLCI1MzMxZTE0ZGJkZjZkOWYxMWExZTllMTIiLCI1MzMxZTE0ZmJkZjZkOWYxMWExZTllMTMiXQ==')
+        client = plaid.Client(CLIENT, SECRET, ACCESS_TOKEN)
         #res = client.transactions({'pretty': True})
         #print res.content
         w(client.balance({'pretty': True}).content)

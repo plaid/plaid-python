@@ -1,7 +1,11 @@
-
+##############################################################################
+# Helper module that encapsulates the HTTPS request so that it can be used
+# with multiple runtimes. PK Mar. 14
+##############################################################################
 import os
 import urllib
 
+# Command line
 def _requests_http_request(url, method, data):
     import requests
     if method.upper() == 'GET':
@@ -17,6 +21,7 @@ def _requests_http_request(url, method, data):
 
     assert False
 
+# Google App Engine
 def _urlfetch_http_request(url, method, data):
     from google.appengine.api import urlfetch
 
@@ -34,6 +39,7 @@ def _urlfetch_http_request(url, method, data):
         payload = payload
     )
 
+    response.ok = response.status_code >= 200 and response.status_code < 300
     return response
 
 _is_appengine = None
