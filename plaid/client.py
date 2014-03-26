@@ -1,7 +1,7 @@
 import json
 from urlparse import urljoin
 
-import requests
+from http import http_request
 
 # @todo Sandboxing?
 # @todo "Single Request Call"
@@ -12,7 +12,6 @@ def require_access_token(func):
             raise Exception('`%s` method requires `access_token`' % func.__name__)
         return func(self, *args, **kwargs)
     return inner_func
-
 
 class Client(object):
     """
@@ -106,7 +105,7 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        response = requests.post(url, data=data)
+        response = http_request(url, 'POST', data)
 
         if response.ok:
             json_data = json.loads(response.content)
@@ -142,7 +141,7 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return requests.post(url, data=data)
+        return http_request(url, 'POST', data)
 
     @require_access_token
     def delete_user(self):
@@ -157,8 +156,8 @@ class Client(object):
             'access_token': self.access_token
         }
 
-        return requests.delete(url, data=data)
-        
+        return http_request(url, 'DELETE', data)
+
 
     @require_access_token
     def transactions(self, options={}):
@@ -181,7 +180,7 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return requests.get(url, data=data)
+        return http_request(url, 'GET', data)
 
     def entity(self, entity_id, options={}):
         """
@@ -199,14 +198,14 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return requests.get(url, data=data)
+        return http_request(url, 'GET', data)
 
     def categories(self):
         """
         Fetch all categories
         """
         url = urljoin(self.url, self.endpoints['categories'])
-        return requests.get(url)
+        return http_request(url, 'GET')
 
     def category(self, category_id, options={}):
         """
@@ -220,7 +219,7 @@ class Client(object):
         data = {}
         if options:
             data['options'] = json.dumps(options)
-        return requests.get(url, data=data)
+        return http_request(url, 'GET', data)
 
     def categories_by_mapping(self, mapping, category_type, options={}):
         """
@@ -242,7 +241,7 @@ class Client(object):
         }
         if options:
             data['options'] = json.dumps(options)
-        return requests.get(url, data=data)
+        return http_request(url, 'GET', data)
 
     @require_access_token
     def balance(self, options = {}):
@@ -261,5 +260,5 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return requests.get(url, data=data)
+        return http_request(url, 'GET', data)
 
