@@ -1,6 +1,6 @@
 # Python Plaid
 
-Python Plaid API client https://plaid.io
+Python bindings for the [Plaid API](https://plaid.com).
 
 ## Usage
 
@@ -26,6 +26,6 @@ if connect.ok:
         # ...
 ```
 
-## Author
+## Attribution & Maintenance
 
-[Chris Forrette](https://github.com/chrisforrette)
+This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette), and will be monitored and maintained (though not currently expanded on) by the Plaid team Please email support@plaid.com with any questions.
