@@ -28,4 +28,4 @@ if connect.ok:
 
 ## Attribution & Maintenance
 
-This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette), and will be monitored and maintained (though not currently expanded on) by the Plaid team Please email support@plaid.com with any questions.
+This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette), and will be monitored and maintained (though not actively developed) by the Plaid team. Please email support@plaid.com with any questions.
