@@ -42,17 +42,21 @@ def _urlfetch_http_request(url, method, data):
     response.ok = response.status_code >= 200 and response.status_code < 300
     return response
 
-_is_appengine = None
-def http_request(url, method, data = {}):
-    global _is_appengine
-    if _is_appengine is None:
-        ss = os.environ.get('SERVER_SOFTWARE')
-        _is_appengine = (ss and (ss.startswith('Development/') or ss.startswith('Google App Engine/')))
 
-    if _is_appengine:
-        return _urlfetch_http_request(url, method, data)
-    else:
-        return _requests_http_request(url, method, data)
+def _outer_http_request():
+    # We use _is_appengine to cache the one time computation of os.environ.get()
+    # We do this closure so that _is_appengine is not a file scope variable
+    ss = os.environ.get('SERVER_SOFTWARE')
+    _is_appengine = (ss and (ss.startswith('Development/') or ss.startswith('Google App Engine/')))
+    def _inner_http_request(url, method, data = None):
+        if data is None:
+            data = {}
+        if _is_appengine:
+            return _urlfetch_http_request(url, method, data)
+        else:
+            return _requests_http_request(url, method, data)
+    return _inner_http_request
+http_request = _outer_http_request()
 
         
 
