@@ -90,7 +90,7 @@ def test_balance():
         client = Client('myclientid', 'mysecret', 'token')
         ret = client.balance()
         assert mock_requests_get.called
-        assert not ret is None
+        assert ret is not None
 
 
 def test_balance_requires_access_token():
