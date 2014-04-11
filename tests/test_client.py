@@ -77,7 +77,7 @@ def test_transactions():
         client = Client('myclientid', 'mysecret', 'token')
         ret = client.transactions()
         assert mock_requests_get.called
-        assert not ret is None
+        assert ret is not None
 
 
 def test_transactions_requires_access_token():
