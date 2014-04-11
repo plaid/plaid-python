@@ -46,7 +46,7 @@ _is_appengine = None
 def http_request(url, method, data = {}):
     global _is_appengine
     if _is_appengine is None:
-        ss = os.environ.get('SERVER_SOFTWARE', None)
+        ss = os.environ.get('SERVER_SOFTWARE')
         _is_appengine = (ss and (ss.startswith('Development/') or ss.startswith('Google App Engine/')))
 
     if _is_appengine:
