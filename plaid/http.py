@@ -49,8 +49,10 @@ def http_request(url, method, data = {}):
         ss = os.environ.get('SERVER_SOFTWARE', None)
         _is_appengine = (ss and (ss.startswith('Development/') or ss.startswith('Google App Engine/')))
 
-    if not _is_appengine:
-        return _requests_http_request(url, method, data)
-    else:
+    if _is_appengine:
         return _urlfetch_http_request(url, method, data)
+    else:
+        return _requests_http_request(url, method, data)
+
+        
 
