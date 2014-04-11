@@ -46,8 +46,10 @@ def _urlfetch_http_request(url, method, data):
 def _outer_http_request():
     # We use _is_appengine to cache the one time computation of os.environ.get()
     # We do this closure so that _is_appengine is not a file scope variable
-    ss = os.environ.get('SERVER_SOFTWARE')
-    _is_appengine = (ss and (ss.startswith('Development/') or ss.startswith('Google App Engine/')))
+    _is_appengine = os.environ.get('SERVER_SOFTWARE', '').split('/')[0] in (
+        'Development',
+        'Google App Engine',
+    )
     def _inner_http_request(url, method, data = None):
         if data is None:
             data = {}
