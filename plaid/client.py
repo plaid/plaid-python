@@ -248,8 +248,6 @@ class Client(object):
         """
         Fetch the real-time balance of the user's accounts
 
-        `options`       dict
-            `pretty`        boolean     Whether to return nicely formatted JSON or not
         """
         url = urljoin(self.url, self.endpoints['balance'])
         data = {
