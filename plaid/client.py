@@ -56,7 +56,7 @@ class Client(object):
         self.client_id = client_id
         self.secret = secret
         self.access_token = None
-        
+
         if access_token:
             self.set_access_token(access_token)
 
@@ -74,7 +74,7 @@ class Client(object):
     def connect(self, account_type, username, password, email, options={}):
         """
         Add a bank account user/login to Plaid and receive an access token
-        unless a 2nd level of authentication is required, in which case 
+        unless a 2nd level of authentication is required, in which case
         an MFA (Multi Factor Authentication) question(s) is returned
 
         `account_type`  str     The type of bank account you want to sign in to, must
@@ -125,7 +125,7 @@ class Client(object):
                                 code sent to your phone, etc.
         `options`       dict
             `send_method`   dict    The send method your MFA answer is for, e.g. {'type': Phone'},
-                                    should come from the list from the `mfa_list` option in the 
+                                    should come from the list from the `mfa_list` option in the
                                     `connect` call
         """
         url = urljoin(self.url, self.endpoints['step'])
@@ -226,7 +226,7 @@ class Client(object):
         Fetch category data by category mapping and data source
 
         `mapping`       str     The category mapping to explore, e.g. "Food > Spanish Restaurant",
-                                see all categories here: 
+                                see all categories here:
                                 https://github.com/plaid/Support/blob/master/categories.md
         `category_type` str     The category data source, must be a value from `CATEGORY_TYPES`
         `options`       dict
