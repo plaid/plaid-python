@@ -31,4 +31,4 @@ if connect.ok:
 [Chris Forrette](https://github.com/chrisforrette)
 
 ### Contributors
-[PK](https://github.com/gae123)
+- [PK](https://github.com/gae123)
