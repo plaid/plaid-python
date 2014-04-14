@@ -75,8 +75,9 @@ def test_delete_user_requires_access_token():
 def test_transactions():
     with patch('requests.get') as mock_requests_get:
         client = Client('myclientid', 'mysecret', 'token')
-        client.transactions()
+        ret = client.transactions()
         assert mock_requests_get.called
+        assert ret is not None
 
 
 def test_transactions_requires_access_token():
@@ -84,6 +85,18 @@ def test_transactions_requires_access_token():
     with pytest.raises(Exception):
         client.transactions()
 
+def test_balance():
+    with patch('requests.get') as mock_requests_get:
+        client = Client('myclientid', 'mysecret', 'token')
+        ret = client.balance()
+        assert mock_requests_get.called
+        assert ret is not None
+
+
+def test_balance_requires_access_token():
+    client = Client('myclientid', 'mysecret')
+    with pytest.raises(Exception):
+        client.balance()
 
 def test_entity():
     with patch('requests.get') as mock_requests_get:

@@ -11,7 +11,6 @@ import json
 
 from plaid import Client
 
-
 client = Client(client_id='***', secret='***')
 connect = client.connect(account_type='bofa', username='***', password='***', email='john@whatever.com')
 
@@ -29,3 +28,6 @@ if connect.ok:
 ## Attribution & Maintenance
 
 This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette), and will be monitored and maintained (though not actively developed) by the Plaid team. Please email support@plaid.com with any questions.
+
+### Other Contributors
+- [PK](https://github.com/gae123) - fixes and Google App Engine Support
