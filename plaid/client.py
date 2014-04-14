@@ -259,4 +259,3 @@ class Client(object):
             data['options'] = json.dumps(options)
 
         return http_request(url, 'GET', data)
-

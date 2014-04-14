@@ -57,6 +57,3 @@ def _outer_http_request():
             return _requests_http_request(url, method, data)
     return _inner_http_request
 http_request = _outer_http_request()
-
-        
-
