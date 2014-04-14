@@ -72,7 +72,7 @@ class Client(object):
 
     # Endpoints
 
-    def connect(self, account_type, username, password, email, options={}):
+    def connect(self, account_type, username, password, email, options=None):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case
@@ -93,6 +93,8 @@ class Client(object):
             `mfa_list`  boolean     List all available MFA (Multi Factor
                                     Authentication) options
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['connect'])
 
         credentials = {
@@ -121,7 +123,7 @@ class Client(object):
         return response
 
     @require_access_token
-    def step(self, account_type, mfa, options={}):
+    def step(self, account_type, mfa, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -137,6 +139,8 @@ class Client(object):
                                     the list from the `mfa_list` option in
                                     the `connect` call
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['step'])
 
         data = {
@@ -169,7 +173,7 @@ class Client(object):
 
 
     @require_access_token
-    def transactions(self, options={}):
+    def transactions(self, options=None):
         """
         Fetch a list of transactions, requires `access_token`
 
@@ -178,6 +182,8 @@ class Client(object):
             `last`      str         Collect all transactions since this
                                     transaction ID
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['connect'])
 
         data = {
@@ -192,7 +198,7 @@ class Client(object):
 
         return http_request(url, 'GET', data)
 
-    def entity(self, entity_id, options={}):
+    def entity(self, entity_id, options=None):
         """
         Fetch a specific entity's data
 
@@ -200,6 +206,8 @@ class Client(object):
         `options`       dict
             `pretty`    boolean Whether to return nicely formatted JSON or not
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['entity'])
         data = {
             'entity_id': entity_id
@@ -217,7 +225,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['categories'])
         return http_request(url, 'GET')
 
-    def category(self, category_id, options={}):
+    def category(self, category_id, options=None):
         """
         Fetch a specific category
 
@@ -225,13 +233,15 @@ class Client(object):
         `options`       dict
             `pretty`    boolean Whether to return nicely formatted JSON or not
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['category']) % category_id
         data = {}
         if options:
             data['options'] = json.dumps(options)
         return http_request(url, 'GET', data)
 
-    def categories_by_mapping(self, mapping, category_type, options={}):
+    def categories_by_mapping(self, mapping, category_type, options=None):
         """
         Fetch category data by category mapping and data source
 
@@ -247,6 +257,8 @@ class Client(object):
                                         `mapping`. Setting to `False` will
                                         return best match.
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['categories_by_mapping'])
         data = {
             'mapping': mapping,
@@ -257,11 +269,13 @@ class Client(object):
         return http_request(url, 'GET', data)
 
     @require_access_token
-    def balance(self, options = {}):
+    def balance(self, options=None):
         """
         Fetch the real-time balance of the user's accounts
 
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['balance'])
         data = {
             'client_id': self.client_id,
