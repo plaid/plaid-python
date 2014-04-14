@@ -9,7 +9,8 @@ from http import http_request
 def require_access_token(func):
     def inner_func(self, *args, **kwargs):
         if not self.access_token:
-            raise Exception('`%s` method requires `access_token`' % func.__name__)
+            raise Exception('`%s` method requires `access_token`' %
+                            func.__name__)
         return func(self, *args, **kwargs)
     return inner_func
 
@@ -56,7 +57,7 @@ class Client(object):
         self.client_id = client_id
         self.secret = secret
         self.access_token = None
-        
+
         if access_token:
             self.set_access_token(access_token)
 
@@ -71,22 +72,29 @@ class Client(object):
 
     # Endpoints
 
-    def connect(self, account_type, username, password, email, options={}):
+    def connect(self, account_type, username, password, email, options=None):
         """
         Add a bank account user/login to Plaid and receive an access token
-        unless a 2nd level of authentication is required, in which case 
+        unless a 2nd level of authentication is required, in which case
         an MFA (Multi Factor Authentication) question(s) is returned
 
-        `account_type`  str     The type of bank account you want to sign in to, must
-                                be one of the keys in `ACCOUNT_TYPES`
-        `username`      str     The username for the bank account you want to sign in to
-        `password`      str     The password for the bank account you want to sign in to
-        `email`         str     The email address associated with the bank account
+        `account_type`  str     The type of bank account you want to sign in
+                                to, must be one of the keys in `ACCOUNT_TYPES`
+        `username`      str     The username for the bank account you want to
+                                sign in to
+        `password`      str     The password for the bank account you want to
+                                sign in to
+        `email`         str     The email address associated with the bank
+                                account
         `options`       dict
-            `pretty`    boolean     Whether to return nicely formatted JSON or not
-            `webhook`   str         URL to hit once the account's transactions have been processed
-            `mfa_list`  boolean     List all available MFA (Multi Factor Authentication) options
+            `pretty`    boolean     Whether to return nicely formatted JSON
+            `webhook`   str         URL to hit once the account's transactions
+                                    have been processed
+            `mfa_list`  boolean     List all available MFA (Multi Factor
+                                    Authentication) options
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['connect'])
 
         credentials = {
@@ -115,19 +123,24 @@ class Client(object):
         return response
 
     @require_access_token
-    def step(self, account_type, mfa, options={}):
+    def step(self, account_type, mfa, options=None):
         """
-        Perform a MFA (Multi Factor Authentication) step, requires `access_token`
+        Perform a MFA (Multi Factor Authentication) step, requires
+        `access_token`
 
-        `account_type`  str     The type of bank account you're performing MFA on,
-                                must match what you used in the `connect` call
-        `mfa`           str     The MFA answer, e.g. an answer to q security question or
-                                code sent to your phone, etc.
+        `account_type`  str     The type of bank account you're performing MFA
+                                on, must match what you used in the `connect`
+                                call
+        `mfa`           str     The MFA answer, e.g. an answer to q security
+                                question or code sent to your phone, etc.
         `options`       dict
-            `send_method`   dict    The send method your MFA answer is for, e.g. {'type': Phone'},
-                                    should come from the list from the `mfa_list` option in the 
-                                    `connect` call
+            `send_method`   dict    The send method your MFA answer is for,
+                                    e.g. {'type': Phone'}, should come from
+                                    the list from the `mfa_list` option in
+                                    the `connect` call
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['step'])
 
         data = {
@@ -160,14 +173,17 @@ class Client(object):
 
 
     @require_access_token
-    def transactions(self, options={}):
+    def transactions(self, options=None):
         """
         Fetch a list of transactions, requires `access_token`
 
         `options`   dict
-            `pretty`    boolean     Whether to return nicely formatted JSON or not
-            `last`      str         Collect all transactions since this transaction ID
+            `pretty`    boolean     Whether to return nicely formatted JSON
+            `last`      str         Collect all transactions since this
+                                    transaction ID
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['connect'])
 
         data = {
@@ -182,7 +198,7 @@ class Client(object):
 
         return http_request(url, 'GET', data)
 
-    def entity(self, entity_id, options={}):
+    def entity(self, entity_id, options=None):
         """
         Fetch a specific entity's data
 
@@ -190,6 +206,8 @@ class Client(object):
         `options`       dict
             `pretty`    boolean Whether to return nicely formatted JSON or not
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['entity'])
         data = {
             'entity_id': entity_id
@@ -207,7 +225,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['categories'])
         return http_request(url, 'GET')
 
-    def category(self, category_id, options={}):
+    def category(self, category_id, options=None):
         """
         Fetch a specific category
 
@@ -215,25 +233,32 @@ class Client(object):
         `options`       dict
             `pretty`    boolean Whether to return nicely formatted JSON or not
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['category']) % category_id
         data = {}
         if options:
             data['options'] = json.dumps(options)
         return http_request(url, 'GET', data)
 
-    def categories_by_mapping(self, mapping, category_type, options={}):
+    def categories_by_mapping(self, mapping, category_type, options=None):
         """
         Fetch category data by category mapping and data source
 
-        `mapping`       str     The category mapping to explore, e.g. "Food > Spanish Restaurant",
-                                see all categories here: 
+        `mapping`       str     The category mapping to explore,
+                                e.g. "Food > Spanish Restaurant",
+                                see all categories here:
                                 https://github.com/plaid/Support/blob/master/categories.md
-        `category_type` str     The category data source, must be a value from `CATEGORY_TYPES`
+        `category_type` str     The category data source, must be a value from
+                                `CATEGORY_TYPES`
         `options`       dict
-            `pretty`        boolean     Whether to return nicely formatted JSON or not
-            `full_match`    boolean     Whether to try an exact match for `mapping`. Setting
-                                        to `False` will return best match.
+            `pretty`        boolean     Whether to return nicely formatted JSON
+            `full_match`    boolean     Whether to try an exact match for
+                                        `mapping`. Setting to `False` will
+                                        return best match.
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['categories_by_mapping'])
         data = {
             'mapping': mapping,
@@ -244,11 +269,13 @@ class Client(object):
         return http_request(url, 'GET', data)
 
     @require_access_token
-    def balance(self, options = {}):
+    def balance(self, options=None):
         """
         Fetch the real-time balance of the user's accounts
 
         """
+        if options is None:
+            options = {}
         url = urljoin(self.url, self.endpoints['balance'])
         data = {
             'client_id': self.client_id,
@@ -259,4 +286,3 @@ class Client(object):
             data['options'] = json.dumps(options)
 
         return http_request(url, 'GET', data)
-

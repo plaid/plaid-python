@@ -9,15 +9,15 @@ import urllib
 def _requests_http_request(url, method, data):
     import requests
     if method.upper() == 'GET':
-        return requests.get(url, data = data)
+        return requests.get(url, data=data)
     elif method.upper() == 'POST':
-        return requests.post(url, data = data)
+        return requests.post(url, data=data)
     elif method.upper() == 'PUT':
-        return requests.put(url, data = data)
+        return requests.put(url, data=data)
     elif method.upper() == 'DELETE':
-        return requests.delete(url, data = data)
+        return requests.delete(url, data=data)
     elif method.upper() == 'PATCH':
-        return requests.patch(url, data = data)
+        return requests.patch(url, data=data)
 
     assert False
 
@@ -33,12 +33,8 @@ def _urlfetch_http_request(url, method, data):
         payload = None
         url += '?' + qs
 
-    response = urlfetch.fetch(url,
-        follow_redirects = True,
-        method = method,
-        payload = payload
-    )
-
+    response = urlfetch.fetch(url, follow_redirects=True, method=method,
+                              payload=payload)
     response.ok = response.status_code >= 200 and response.status_code < 300
     return response
 
@@ -46,9 +42,11 @@ def _urlfetch_http_request(url, method, data):
 def _outer_http_request():
     # We use _is_appengine to cache the one time computation of os.environ.get()
     # We do this closure so that _is_appengine is not a file scope variable
-    ss = os.environ.get('SERVER_SOFTWARE')
-    _is_appengine = (ss and (ss.startswith('Development/') or ss.startswith('Google App Engine/')))
-    def _inner_http_request(url, method, data = None):
+    _is_appengine = os.environ.get('SERVER_SOFTWARE', '').split('/')[0] in (
+        'Development',
+        'Google App Engine',
+    )
+    def _inner_http_request(url, method, data=None):
         if data is None:
             data = {}
         if _is_appengine:
@@ -57,6 +55,3 @@ def _outer_http_request():
             return _requests_http_request(url, method, data)
     return _inner_http_request
 http_request = _outer_http_request()
-
-        
-
