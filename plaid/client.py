@@ -87,7 +87,6 @@ class Client(object):
         `email`         str     The email address associated with the bank
                                 account
         `options`       dict
-            `pretty`    boolean     Whether to return nicely formatted JSON
             `webhook`   str         URL to hit once the account's transactions
                                     have been processed
             `mfa_list`  boolean     List all available MFA (Multi Factor
@@ -178,7 +177,6 @@ class Client(object):
         Fetch a list of transactions, requires `access_token`
 
         `options`   dict
-            `pretty`    boolean     Whether to return nicely formatted JSON
             `last`      str         Collect all transactions since this
                                     transaction ID
         """
@@ -203,20 +201,9 @@ class Client(object):
         Fetch a specific entity's data
 
         `entity_id`     str     Entity id to fetch
-        `options`       dict
-            `pretty`    boolean Whether to return nicely formatted JSON or not
         """
-        if options is None:
-            options = {}
         url = urljoin(self.url, self.endpoints['entity'])
-        data = {
-            'entity_id': entity_id
-        }
-
-        if options:
-            data['options'] = json.dumps(options)
-
-        return http_request(url, 'GET', data)
+        return http_request(url, 'GET', {'entity_id': entity_id})
 
     def categories(self):
         """
@@ -230,16 +217,9 @@ class Client(object):
         Fetch a specific category
 
         `category_id`   str     Category id to fetch
-        `options`       dict
-            `pretty`    boolean Whether to return nicely formatted JSON or not
         """
-        if options is None:
-            options = {}
         url = urljoin(self.url, self.endpoints['category']) % category_id
-        data = {}
-        if options:
-            data['options'] = json.dumps(options)
-        return http_request(url, 'GET', data)
+        return http_request(url, 'GET')
 
     def categories_by_mapping(self, mapping, category_type, options=None):
         """
@@ -252,7 +232,6 @@ class Client(object):
         `category_type` str     The category data source, must be a value from
                                 `CATEGORY_TYPES`
         `options`       dict
-            `pretty`        boolean     Whether to return nicely formatted JSON
             `full_match`    boolean     Whether to try an exact match for
                                         `mapping`. Setting to `False` will
                                         return best match.

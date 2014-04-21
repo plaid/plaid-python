@@ -19,9 +19,9 @@ class MainPage(webapp2.RequestHandler):
         w("<body>")
         w("<pre>")
         client = plaid.Client(CLIENT, SECRET, ACCESS_TOKEN)
-        #res = client.transactions({'pretty': True})
+        #res = client.transactions()
         #print res.content
-        w(client.balance({'pretty': True}).content)
+        w(client.balance().content)
         w("</pre>")
         w("</body>")
         w("</html>")
