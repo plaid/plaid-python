@@ -21,7 +21,7 @@ class Client(object):
     See official documentation at: https://plaid.io/v2/docs
     """
 
-    url = 'https://tartan.plaid.com' # Base API URL
+    url = 'https://tartan.plaid.com'  # Base API URL
 
     ACCOUNT_TYPES = (
         ('amex', 'American Express',),
@@ -40,12 +40,17 @@ class Client(object):
 
     endpoints = {
         'connect': '/connect',
-        'step': '/connect/step',
+        'connect_step': '/connect/step',
         'entity': '/entity',
         'categories': '/category',
         'category': '/category/id/%s',
         'categories_by_mapping': '/category/map',
-        'balance': '/balance'
+        'balance': '/balance',
+        'auth': '/auth',
+        'auth_step': '/auth/step',
+        'numbers': '/auth/get',
+        'institutions': '/institutions',
+        'upgrade': '/upgrade'
     }
 
     def __init__(self, client_id, secret, access_token=None):
@@ -121,8 +126,54 @@ class Client(object):
 
         return response
 
+    def auth(self, account_type, username, password, options=None):
+        """
+        Add a bank account user/login to Plaid and receive an access token
+        unless a 2nd level of authentication is required, in which case
+        an MFA (Multi Factor Authentication) question(s) is returned
+
+        `account_type`  str     The type of bank account you want to sign in
+                                to, must be one of the keys in `ACCOUNT_TYPES`
+        `username`      str     The username for the bank account you want to
+                                sign in to
+        `password`      str     The password for the bank account you want to
+                                sign in to
+        `options`       dict
+            `webhook`   str         URL to hit once the account's transactions
+                                    have been processed
+            `mfa_list`  boolean     List all available MFA (Multi Factor
+                                    Authentication) options
+        """
+        if options is None:
+            options = {}
+        url = urljoin(self.url, self.endpoints['auth'])
+
+        credentials = {
+            'username': username,
+            'password': password
+        }
+
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'type': account_type,
+            'credentials': json.dumps(credentials)
+        }
+
+        if options:
+            data['options'] = json.dumps(options)
+
+        response = http_request(url, 'POST', data)
+
+        if response.ok:
+            json_data = json.loads(response.content)
+            if json_data.has_key('access_token'):
+                self.access_token = json_data['access_token']
+
+        return response
+
     @require_access_token
-    def step(self, account_type, mfa, options=None):
+    def connect_step(self, account_type, mfa, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -140,7 +191,7 @@ class Client(object):
         """
         if options is None:
             options = {}
-        url = urljoin(self.url, self.endpoints['step'])
+        url = urljoin(self.url, self.endpoints['connect_step'])
 
         data = {
             'client_id': self.client_id,
@@ -154,6 +205,58 @@ class Client(object):
             data['options'] = json.dumps(options)
 
         return http_request(url, 'POST', data)
+
+    @require_access_token
+    def auth_step(self, account_type, mfa, options=None):
+        """
+        Perform a MFA (Multi Factor Authentication) step, requires
+        `access_token`
+
+        `account_type`  str     The type of bank account you're performing MFA
+                                on, must match what you used in the `connect`
+                                call
+        `mfa`           str     The MFA answer, e.g. an answer to q security
+                                question or code sent to your phone, etc.
+        `options`       dict
+            `send_method`   dict    The send method your MFA answer is for,
+                                    e.g. {'type': Phone'}, should come from
+                                    the list from the `mfa_list` option in
+                                    the `connect` call
+        """
+        if options is None:
+            options = {}
+        url = urljoin(self.url, self.endpoints['auth_step'])
+
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token,
+            'type': account_type,
+            'mfa': mfa
+        }
+
+        if options:
+            data['options'] = json.dumps(options)
+
+        return http_request(url, 'POST', data)
+
+    @require_access_token
+    def upgrade(self, upgrade_to):
+        """
+        Upgrade account to another plaid type
+
+        """
+        url = urljoin(self.url, self.endpoints['upgrade'])
+
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token,
+            'upgrade_to': upgrade_to
+        }
+
+        return http_request(url, 'POST', data)
+
 
     @require_access_token
     def delete_user(self):
@@ -265,3 +368,25 @@ class Client(object):
             data['options'] = json.dumps(options)
 
         return http_request(url, 'GET', data)
+
+    @require_access_token
+    def numbers(self):
+        """
+        Fetch the account/routing numbers for this user
+
+        """
+        url = urljoin(self.url, self.endpoints['numbers'])
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token
+        }
+
+        return http_request(url, 'POST', data)
+
+    def institutions(self):
+        """
+        Fetch the available institutions
+        """
+        url = urljoin(self.url, self.endpoints['institutions'])
+        return http_request(url, 'GET')
