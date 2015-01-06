@@ -173,14 +173,11 @@ class Client(object):
         return response
 
     @require_access_token
-    def connect_step(self, account_type, mfa, options=None):
+    def connect_step(self, mfa, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
 
-        `account_type`  str     The type of bank account you're performing MFA
-                                on, must match what you used in the `connect`
-                                call
         `mfa`           str     The MFA answer, e.g. an answer to q security
                                 question or code sent to your phone, etc.
         `options`       dict
@@ -197,7 +194,6 @@ class Client(object):
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
-            'type': account_type,
             'mfa': mfa
         }
 
@@ -207,14 +203,11 @@ class Client(object):
         return http_request(url, 'POST', data)
 
     @require_access_token
-    def auth_step(self, account_type, mfa, options=None):
+    def auth_step(self, mfa, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
 
-        `account_type`  str     The type of bank account you're performing MFA
-                                on, must match what you used in the `connect`
-                                call
         `mfa`           str     The MFA answer, e.g. an answer to q security
                                 question or code sent to your phone, etc.
         `options`       dict
@@ -231,7 +224,6 @@ class Client(object):
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
-            'type': account_type,
             'mfa': mfa
         }
 
