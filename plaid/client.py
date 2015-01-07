@@ -14,6 +14,20 @@ def require_access_token(func):
         return func(self, *args, **kwargs)
     return inner_func
 
+def as_dictionary(action):
+    def decorator_func(func):
+        def wrapper_func(*args, **kwargs):
+            # Invoke the wrapped function first
+            retval = func(*args, **kwargs)
+            # Now do something here with retval and/or action
+            if retval.ok:
+                return json.loads(retval.content)
+            else:
+                raise PlaidError('Bad response')
+            return retval
+        return wrapper_func
+    return decorator_func    
+
 class Client(object):
     """
     Python Plain API v2 client https://plaid.io/
@@ -76,7 +90,7 @@ class Client(object):
         return self.ACCOUNT_TYPES
 
     # Endpoints
-
+    @as_dictionary
     def connect(self, account_type, username, password, email, options=None):
         """
         Add a bank account user/login to Plaid and receive an access token
@@ -126,6 +140,7 @@ class Client(object):
 
         return response
 
+    @as_dictionary
     def auth(self, account_type, username, password, options=None):
         """
         Add a bank account user/login to Plaid and receive an access token
@@ -173,7 +188,8 @@ class Client(object):
         return response
 
     @require_access_token
-    def connect_step(self, account_type=None, mfa, options=None):
+    @as_dictionary
+    def connect_step(self, mfa, account_type=None, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -207,7 +223,8 @@ class Client(object):
         return http_request(url, 'POST', data)
 
     @require_access_token
-    def auth_step(self, account_type=None, mfa, options=None):
+    @as_dictionary
+    def auth_step(self, mfa, account_type=None, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -241,6 +258,7 @@ class Client(object):
         return http_request(url, 'POST', data)
 
     @require_access_token
+    @as_dictionary
     def upgrade(self, upgrade_to):
         """
         Upgrade account to another plaid type
@@ -259,6 +277,7 @@ class Client(object):
 
 
     @require_access_token
+    @as_dictionary
     def delete_user(self):
         """
         Delete user from Plaid, requires `access_token`
@@ -275,6 +294,7 @@ class Client(object):
 
 
     @require_access_token
+    @as_dictionary
     def transactions(self, options=None):
         """
         Fetch a list of transactions, requires `access_token`
@@ -299,6 +319,7 @@ class Client(object):
 
         return http_request(url, 'GET', data)
 
+    @as_dictionary
     def entity(self, entity_id, options=None):
         """
         Fetch a specific entity's data
@@ -308,6 +329,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['entity'])
         return http_request(url, 'GET', {'entity_id': entity_id})
 
+    @as_dictionary
     def categories(self):
         """
         Fetch all categories
@@ -315,6 +337,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['categories'])
         return http_request(url, 'GET')
 
+    @as_dictionary
     def category(self, category_id, options=None):
         """
         Fetch a specific category
@@ -324,6 +347,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['category']) % category_id
         return http_request(url, 'GET')
 
+    @as_dictionary
     def categories_by_mapping(self, mapping, category_type, options=None):
         """
         Fetch category data by category mapping and data source
@@ -351,6 +375,7 @@ class Client(object):
         return http_request(url, 'GET', data)
 
     @require_access_token
+    @as_dictionary
     def balance(self, options=None):
         """
         Fetch the real-time balance of the user's accounts
@@ -370,6 +395,7 @@ class Client(object):
         return http_request(url, 'GET', data)
 
     @require_access_token
+    @as_dictionary
     def numbers(self):
         """
         Fetch the account/routing numbers for this user
@@ -384,9 +410,18 @@ class Client(object):
 
         return http_request(url, 'POST', data)
 
+    @as_dictionary
     def institutions(self):
         """
         Fetch the available institutions
         """
         url = urljoin(self.url, self.endpoints['institutions'])
+        return http_request(url, 'GET')
+
+    @as_dictionary
+    def institution(self, institution_id):
+        """
+        Get institution by id
+        """
+        url = urljoin(self.url, self.endpoints['institutions'], str(institution_id))
         return http_request(url, 'GET')
