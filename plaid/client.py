@@ -173,7 +173,7 @@ class Client(object):
         return response
 
     @require_access_token
-    def connect_step(self, account_type, mfa, options=None):
+    def connect_step(self, account_type=None, mfa, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -207,7 +207,7 @@ class Client(object):
         return http_request(url, 'POST', data)
 
     @require_access_token
-    def auth_step(self, account_type, mfa, options=None):
+    def auth_step(self, account_type=None, mfa, options=None):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
