@@ -1,5 +1,6 @@
 import json
 from urlparse import urljoin
+from PlaidError import PlaidError
 
 from http import http_request
 
@@ -14,19 +15,18 @@ def require_access_token(func):
         return func(self, *args, **kwargs)
     return inner_func
 
-def as_dictionary(action):
-    def decorator_func(func):
-        def wrapper_func(*args, **kwargs):
-            # Invoke the wrapped function first
-            retval = func(*args, **kwargs)
-            # Now do something here with retval and/or action
-            if retval.ok:
-                return json.loads(retval.content)
-            else:
-                raise PlaidError('Bad response')
-            return retval
-        return wrapper_func
-    return decorator_func    
+def as_dictionary(func):
+    def wrapper_func(*args, **kwargs):
+        # Invoke the wrapped function first
+        retval = func(*args, **kwargs)
+        print retval
+        # Now do something here with retval and/or action
+        if retval.ok:
+            return json.loads(retval.content)
+        else:
+            raise PlaidError('Bad response')
+        return retval
+    return wrapper_func
 
 class Client(object):
     """
@@ -423,5 +423,6 @@ class Client(object):
         """
         Get institution by id
         """
-        url = urljoin(self.url, self.endpoints['institutions'], str(institution_id))
+        url = urljoin(self.url, self.endpoints['institutions'] + '/' + institution_id)
+        print url
         return http_request(url, 'GET')
