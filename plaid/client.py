@@ -64,7 +64,8 @@ class Client(object):
         'auth_step': '/auth/step',
         'numbers': '/auth/get',
         'institutions': '/institutions',
-        'upgrade': '/upgrade'
+        'upgrade': '/upgrade',
+        'transactions': '/connect/get'
     }
 
     def __init__(self, client_id, secret, access_token=None):
@@ -305,7 +306,8 @@ class Client(object):
         """
         if options is None:
             options = {}
-        url = urljoin(self.url, self.endpoints['connect'])
+        url = urljoin(self.url, self.endpoints['transactions'])
+        print url
 
         data = {
             'client_id': self.client_id,
@@ -317,7 +319,7 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return http_request(url, 'GET', data)
+        return http_request(url, 'POST', data)
 
     @as_dictionary
     def entity(self, entity_id, options=None):
