@@ -19,12 +19,12 @@ def as_dictionary(func):
     def wrapper_func(*args, **kwargs):
         # Invoke the wrapped function first
         retval = func(*args, **kwargs)
-        print retval
+        print retval.text
         # Now do something here with retval and/or action
         if retval.ok:
             return json.loads(retval.content)
         else:
-            raise PlaidError('Bad response')
+            raise PlaidError(retval.json()['resolve'])
         return retval
     return wrapper_func
 
