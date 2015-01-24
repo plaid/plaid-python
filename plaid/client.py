@@ -306,7 +306,6 @@ class Client(object):
         if options is None:
             options = {}
         url = urljoin(self.url, self.endpoints['transactions'])
-        print url
 
         data = {
             'client_id': self.client_id,
@@ -425,5 +424,4 @@ class Client(object):
         Get institution by id
         """
         url = urljoin(self.url, self.endpoints['institutions'] + '/' + institution_id)
-        print url
         return http_request(url, 'GET')
