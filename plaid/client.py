@@ -349,7 +349,7 @@ class Client(object):
                     filtered_transactions.append(transaction)
 
             json_response['transactions'] = filtered_transactions
-            transactions_request.content = json.dumps(json_response)
+            transactions_request['content'] = json.dumps(json_response)
 
         return transactions_request
 
