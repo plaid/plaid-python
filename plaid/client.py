@@ -89,6 +89,10 @@ class Client(object):
     def get_account_types(self):
         return self.ACCOUNT_TYPES
 
+    @require_access_token
+    def sandboxed(self):
+        return self.access_token == 'test'
+
     # Endpoints
     @as_dictionary
     def connect(self, account_type, username, password, email, options=None):
@@ -303,21 +307,49 @@ class Client(object):
             `last`      str         Collect all transactions since this
                                     transaction ID
         """
-        if options is None:
-            options = {}
         url = urljoin(self.url, self.endpoints['transactions'])
 
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
-            'options': json.dumps(options)
         }
 
-        if options:
+        if options and not sandboxed:
+            # Options not supported in sandbox mode - handle manually below
             data['options'] = json.dumps(options)
 
-        return http_request(url, 'POST', data)
+        transactions_request = http_request(url, 'POST', data)
+
+        if sandboxed:
+            filtered_transactions = []
+
+            # We have to manually apply the specified options
+            json_response = json.loads(transactions_request.content)
+            transactions = json_response['transactions']
+
+            # Possible options:
+            # 1) filter by account_id ('account')
+            check_account = 'account' in options
+
+            # 2) filter by date greater than a given date ('gte')
+            check_date = 'gte' in options
+
+            correct_account = True
+            correct_date = True
+            for transaction in transactions:
+                if check_account:
+                    correct_account = transaction['_account'] == options['account']
+                if check_date:
+                    correct_date = # TODO
+
+                if correct_date and correct_account:
+                    filtered_transactions.append(transaction)
+
+            json_response['transactions'] = filtered_transactions
+            transactions_request.content = json.dumps(json_response)
+
+        return transactions_request
 
     @as_dictionary
     def entity(self, entity_id, options=None):
