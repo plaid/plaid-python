@@ -315,13 +315,13 @@ class Client(object):
             'access_token': self.access_token,
         }
 
-        if options and not sandboxed:
+        if options and not self.sandboxed:
             # Options not supported in sandbox mode - handle manually below
             data['options'] = json.dumps(options)
 
         transactions_request = http_request(url, 'POST', data)
 
-        if sandboxed:
+        if self.sandboxed:
             filtered_transactions = []
 
             # We have to manually apply the specified options
