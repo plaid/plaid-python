@@ -17,9 +17,7 @@ def require_access_token(func):
 
 def as_dictionary(func):
     def wrapper_func(*args, **kwargs):
-        # Invoke the wrapped function first
         retval = func(*args, **kwargs)
-        # Now do something here with retval and/or action
         if retval.ok:
             return json.loads(retval.content)
         else:
@@ -298,14 +296,12 @@ class Client(object):
 
 
     @require_access_token
-    @as_dictionary
     def transactions(self, options=None):
         """
         Fetch a list of transactions, requires `access_token`
+        !!! DOES NOT USE as_dictionary decorator due to sketchy sandbox handling code
 
         `options`   dict
-            `last`      str         Collect all transactions since this
-                                    transaction ID
         """
         url = urljoin(self.url, self.endpoints['transactions'])
 
@@ -319,13 +315,16 @@ class Client(object):
             # Options not supported in sandbox mode - handle manually below
             data['options'] = json.dumps(options)
 
+        # Make the request and raise exception if it's fucked up
         transactions_request = http_request(url, 'POST', data)
+        if transactions_request.ok:
+            json_response = json.loads(transactions_request.content)
+        else:
+            raise PlaidError(retval.json()['resolve'])
 
         if self.sandboxed:
-            filtered_transactions = []
-
             # We have to manually apply the specified options
-            json_response = json.loads(transactions_request.content)
+            filtered_transactions = []
             transactions = json_response['transactions']
 
             # Possible options:
@@ -349,9 +348,8 @@ class Client(object):
                     filtered_transactions.append(transaction)
 
             json_response['transactions'] = filtered_transactions
-            transactions_request['content'] = json.dumps(json_response)
 
-        return transactions_request
+        return json_response
 
     @as_dictionary
     def entity(self, entity_id, options=None):
