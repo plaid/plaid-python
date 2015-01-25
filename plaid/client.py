@@ -332,7 +332,7 @@ class Client(object):
             # 1) filter by account_id ('account')
             check_account = 'account' in options
 
-            # 2) filter by date greater than a given date ('gte')
+            # 2) filter by date greater than or equal to a given date ('gte')
             check_date = 'gte' in options
 
             correct_account = True
@@ -341,7 +341,9 @@ class Client(object):
                 if check_account:
                     correct_account = transaction['_account'] == options['account']
                 if check_date:
-                    correct_date = # TODO
+                    transaction_date = datetime.strptime(transaction['date'], "%Y-%m-%d").date()
+                    threshold_date = datetime.strptime(options['gte'], "%Y-%m-%d").date()
+                    correct_date = transaction_date >= threshold_date
 
                 if correct_date and correct_account:
                     filtered_transactions.append(transaction)
