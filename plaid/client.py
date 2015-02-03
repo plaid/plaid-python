@@ -65,15 +65,17 @@ class Client(object):
         'transactions': '/connect/get'
     }
 
-    def __init__(self, client_id, secret, access_token=None):
+    def __init__(self, client_id, secret, url, access_token=None):
         """
         `client_id`     str     Your Plaid client ID
         `secret`        str     Your Plaid secret
         `access_token`  str     Access token if you already have one
+        `url`           str     Url of the plaid endpoint to hit
         """
         self.client_id = client_id
         self.secret = secret
         self.access_token = None
+        self.url = url
 
         if access_token:
             self.set_access_token(access_token)
