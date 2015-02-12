@@ -322,7 +322,7 @@ class Client(object):
         if transactions_request.ok:
             json_response = json.loads(transactions_request.content)
         else:
-            raise PlaidError(retval.json()['resolve'])
+            raise PlaidError(transactions_request.json()['resolve'])
 
         if self.sandboxed:
             # We have to manually apply the specified options
