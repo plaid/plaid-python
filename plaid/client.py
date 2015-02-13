@@ -282,11 +282,28 @@ class Client(object):
 
     @require_access_token
     @as_dictionary
-    def delete_user(self):
+    def delete_connect_user(self):
         """
-        Delete user from Plaid, requires `access_token`
+        Delete user from Plaid connect, requires `access_token`
         """
         url = urljoin(self.url, self.endpoints['connect'])
+
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token
+        }
+
+        return http_request(url, 'DELETE', data)
+
+
+    @require_access_token
+    @as_dictionary
+    def delete_auth_user(self):
+        """
+        Delete user from Plaid auth, requires `access_token`
+        """
+        url = urljoin(self.url, self.endpoints['auth'])
 
         data = {
             'client_id': self.client_id,
