@@ -218,7 +218,7 @@ class Client(object):
             'secret': self.secret,
             'access_token': self.access_token,
             'type': account_type,
-            'mfa': mfa
+            'mfa': json.dumps(mfa)
         }
 
         if options:
@@ -253,7 +253,7 @@ class Client(object):
             'secret': self.secret,
             'access_token': self.access_token,
             'type': account_type,
-            'mfa': mfa
+            'mfa': json.dumps(mfa)
         }
 
         if options:
