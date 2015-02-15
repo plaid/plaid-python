@@ -330,7 +330,7 @@ class Client(object):
             'access_token': self.access_token,
         }
 
-        if options and not self.sandboxed:
+        if options and not self.sandboxed():
             # Options not supported in sandbox mode - handle manually below
             data['options'] = json.dumps(options)
 
@@ -341,7 +341,7 @@ class Client(object):
         else:
             raise PlaidError(transactions_request.json()['resolve'])
 
-        if self.sandboxed:
+        if self.sandboxed():
             # We have to manually apply the specified options
             filtered_transactions = []
             transactions = json_response['transactions']
