@@ -25,6 +25,13 @@ def as_dictionary(func):
         return retval
     return wrapper_func
 
+def is_json(myjson):
+    try:
+        json_object = json.loads(myjson)
+    except ValueError, e:
+        return False
+    return True
+
 class Client(object):
     """
     Python Plain API v2 client https://plaid.io/
@@ -213,12 +220,16 @@ class Client(object):
             options = {}
         url = urljoin(self.url, self.endpoints['connect_step'])
 
+        # Handle dictionary MFAs
+        if not is_json(mfa):
+            mfa = json.dumps(mfa)
+
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
             'type': account_type,
-            'mfa': json.dumps(mfa)
+            'mfa': mfa
         }
 
         if options:
@@ -248,12 +259,16 @@ class Client(object):
             options = {}
         url = urljoin(self.url, self.endpoints['auth_step'])
 
+        # Handle dictionary MFAs
+        if not is_json(mfa):
+            mfa = json.dumps(mfa)
+
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
             'type': account_type,
-            'mfa': json.dumps(mfa)
+            'mfa': mfa
         }
 
         if options:
