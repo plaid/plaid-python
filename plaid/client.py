@@ -221,7 +221,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['connect_step'])
 
         # Handle dictionary MFAs
-        if not is_json(mfa):
+        if isinstance(mfa, dict):
             mfa = json.dumps(mfa)
 
         data = {
@@ -260,7 +260,7 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['auth_step'])
 
         # Handle dictionary MFAs
-        if not is_json(mfa):
+        if isinstance(mfa, dict):
             mfa = json.dumps(mfa)
 
         data = {
