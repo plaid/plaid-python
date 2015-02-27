@@ -1,6 +1,7 @@
 import json
 from urlparse import urljoin
 from PlaidError import PlaidError
+from PlaidMfaResetError import PlaidMfaResetError
 from datetime import datetime
 from http import http_request
 
@@ -21,7 +22,11 @@ def as_dictionary(func):
         if retval.ok:
             return json.loads(retval.content)
         else:
-            raise PlaidError(retval.json()['resolve'])
+            # TODO handle these plaid errors better
+            if retval.json()['code'] == 1215:
+                raise PlaidMfaResetError(retval.json()['resolve'])
+            else:
+                raise PlaidError(retval.json()['resolve'])
         return retval
     return wrapper_func
 
