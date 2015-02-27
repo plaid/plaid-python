@@ -1,0 +1,2 @@
+class PlaidMfaResetError(Exception):
+    pass
