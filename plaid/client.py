@@ -2,6 +2,7 @@ import json
 from urlparse import urljoin
 from PlaidError import PlaidError
 from PlaidMfaResetError import PlaidMfaResetError
+from PlaidSafeError import PlaidSafeError
 from datetime import datetime
 from http import http_request
 
@@ -23,7 +24,16 @@ def as_dictionary(func):
             return json.loads(retval.content)
         else:
             # TODO handle these plaid errors better
-            if retval.json()['code'] == 1215:
+            code = retval.json()['code']
+            safe_codes = [1200, 1201, 1202, 1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
+
+            if code in safe_codes:
+                raise PlaidSafeError(retval.json()['resolve'])       
+            elif code == 1205:
+                raise PlaidSafeError('Your account is locked. Log into your bank\'s website to fix.')
+            elif code == 1206:
+                raise PlaidSafeError('Your account in not set up. Log into your bank\'s website to fix.')
+            if code == 1215:
                 raise PlaidMfaResetError(retval.json()['resolve'])
             else:
                 raise PlaidError(retval.json()['resolve'])
@@ -43,8 +53,6 @@ class Client(object):
 
     See official documentation at: https://plaid.io/v2/docs
     """
-
-    url = 'https://tartan.plaid.com'  # Base API URL
 
     ACCOUNT_TYPES = (
         ('amex', 'American Express',),
