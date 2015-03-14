@@ -3,6 +3,7 @@ from urlparse import urljoin
 from PlaidError import PlaidError
 from PlaidMfaResetError import PlaidMfaResetError
 from PlaidSafeError import PlaidSafeError
+from PlaidCredentialsError import PlaidCredentialsError
 from datetime import datetime
 from http import http_request
 
@@ -25,9 +26,12 @@ def as_dictionary(func):
         else:
             # TODO handle these plaid errors better
             code = retval.json()['code']
-            safe_codes = [1200, 1201, 1202, 1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
+            credentials_codes = [1200, 1201, 1202]
+            safe_codes = [1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
 
-            if code in safe_codes:
+            if code in credentials_codes:
+                raise PlaidCredentialsError(retval.json()['resolve'])
+            elif code in safe_codes:
                 raise PlaidSafeError(retval.json()['resolve'])       
             elif code == 1205:
                 raise PlaidSafeError('Your account is locked. Log into your bank\'s website to fix.')
