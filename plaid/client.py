@@ -26,6 +26,7 @@ def as_dictionary(func):
         else:
             # TODO handle these plaid errors better
             code = retval.json()['code']
+            print "received plaid error " + str(code)
             credentials_codes = [1200, 1201, 1202]
             safe_codes = [1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
 
