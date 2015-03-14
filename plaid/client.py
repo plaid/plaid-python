@@ -18,30 +18,33 @@ def require_access_token(func):
         return func(self, *args, **kwargs)
     return inner_func
 
+def parse_error(retval):
+    # TODO handle these plaid errors better
+    code = retval.json()['code']
+    print "received plaid error " + str(code)
+    credentials_codes = [1200, 1201, 1202]
+    safe_codes = [1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
+
+    if code in credentials_codes:
+        raise PlaidCredentialsError(retval.json()['resolve'])
+    elif code in safe_codes:
+        raise PlaidSafeError(retval.json()['resolve'])       
+    elif code == 1205:
+        raise PlaidSafeError('Your account is locked. Log into your bank\'s website to fix.')
+    elif code == 1206:
+        raise PlaidSafeError('Your account in not set up. Log into your bank\'s website to fix.')
+    if code == 1215:
+        raise PlaidMfaResetError(retval.json()['resolve'])
+    else:
+        raise PlaidError(retval.json()['resolve'])
+
 def as_dictionary(func):
     def wrapper_func(*args, **kwargs):
         retval = func(*args, **kwargs)
         if retval.ok:
             return json.loads(retval.content)
         else:
-            # TODO handle these plaid errors better
-            code = retval.json()['code']
-            print "received plaid error " + str(code)
-            credentials_codes = [1200, 1201, 1202]
-            safe_codes = [1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
-
-            if code in credentials_codes:
-                raise PlaidCredentialsError(retval.json()['resolve'])
-            elif code in safe_codes:
-                raise PlaidSafeError(retval.json()['resolve'])       
-            elif code == 1205:
-                raise PlaidSafeError('Your account is locked. Log into your bank\'s website to fix.')
-            elif code == 1206:
-                raise PlaidSafeError('Your account in not set up. Log into your bank\'s website to fix.')
-            if code == 1215:
-                raise PlaidMfaResetError(retval.json()['resolve'])
-            else:
-                raise PlaidError(retval.json()['resolve'])
+            parse_error(retval)
         return retval
     return wrapper_func
 
@@ -372,7 +375,7 @@ class Client(object):
         if transactions_request.ok:
             json_response = json.loads(transactions_request.content)
         else:
-            raise PlaidError(transactions_request.json()['resolve'])
+            parse_error(transactions_request)
 
         if self.sandboxed():
             # We have to manually apply the specified options
