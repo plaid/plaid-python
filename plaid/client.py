@@ -123,7 +123,7 @@ class Client(object):
 
     # Endpoints
     @as_dictionary
-    def connect(self, account_type, username, password, email, options=None):
+    def connect(self, account_type, username, password, email, options=None, patch=False):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case
@@ -163,7 +163,11 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        response = http_request(url, 'POST', data)
+        if patch:
+            data['access_token'] = self.access_token
+            response = http_request(url, 'PATCH', data)    
+        else:
+            response = http_request(url, 'POST', data)
 
         if response.ok:
             json_data = json.loads(response.content)
@@ -173,7 +177,7 @@ class Client(object):
         return response
 
     @as_dictionary
-    def auth(self, account_type, username, password, options=None):
+    def auth(self, account_type, username, password, options=None, patch=False):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case
@@ -210,7 +214,11 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        response = http_request(url, 'POST', data)
+        if patch:
+            data['access_token'] = self.access_token
+            response = http_request(url, 'PATCH', data)    
+        else:
+            response = http_request(url, 'POST', data)
 
         if response.ok:
             json_data = json.loads(response.content)
@@ -221,7 +229,7 @@ class Client(object):
 
     @require_access_token
     @as_dictionary
-    def connect_step(self, mfa, account_type=None, options=None):
+    def connect_step(self, mfa, account_type=None, options=None, patch=False):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -256,11 +264,14 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return http_request(url, 'POST', data)
+        if patch:
+            return http_request(url, 'PATCH', data)    
+        else:
+            return http_request(url, 'POST', data)
 
     @require_access_token
     @as_dictionary
-    def auth_step(self, mfa, account_type=None, options=None):
+    def auth_step(self, mfa, account_type=None, options=None, patch=False):
         """
         Perform a MFA (Multi Factor Authentication) step, requires
         `access_token`
@@ -295,7 +306,10 @@ class Client(object):
         if options:
             data['options'] = json.dumps(options)
 
-        return http_request(url, 'POST', data)
+        if patch:
+            return http_request(url, 'PATCH', data)    
+        else:
+            return http_request(url, 'POST', data)
 
     @require_access_token
     @as_dictionary
