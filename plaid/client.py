@@ -498,7 +498,7 @@ class Client(object):
 
     @require_access_token
     @as_dictionary
-    def numbers(self):
+    def numbers(self, account_type=None):
         """
         Fetch the account/routing numbers for this user
 
@@ -507,7 +507,8 @@ class Client(object):
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
-            'access_token': self.access_token
+            'access_token': self.access_token,
+            'type': account_type
         }
 
         return http_request(url, 'POST', data)
