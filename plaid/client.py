@@ -313,7 +313,7 @@ class Client(object):
 
     @require_access_token
     @as_dictionary
-    def upgrade(self, upgrade_to):
+    def upgrade(self, upgrade_to, account_type=None):
         """
         Upgrade account to another plaid type
 
@@ -324,7 +324,8 @@ class Client(object):
             'client_id': self.client_id,
             'secret': self.secret,
             'access_token': self.access_token,
-            'upgrade_to': upgrade_to
+            'upgrade_to': upgrade_to,
+            'type': account_type,
         }
 
         return http_request(url, 'POST', data)
