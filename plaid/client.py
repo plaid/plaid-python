@@ -32,7 +32,7 @@ def parse_error(retval):
     elif code == 1205:
         raise PlaidSafeError('Your account is locked. Log into your bank\'s website to fix.')
     elif code == 1206:
-        raise PlaidSafeError('Your account in not set up. Log into your bank\'s website to fix.')
+        raise PlaidSafeError('Your account is not set up. Log into your bank\'s website to fix.')
     if code == 1215:
         raise PlaidMfaResetError(retval.json()['resolve'])
     else:
