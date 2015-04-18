@@ -32,8 +32,7 @@ def build_api_error(retval):
         1206,  # account not set up
         1212,  # no accounts
         1210,  # account not supported
-        1211,  # account not supported (safepass)
-
+        1211   # account not supported (safepass)
     ]
 
     # Is this error built to have its message shown directly to a user?    
