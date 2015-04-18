@@ -67,7 +67,7 @@ def build_api_error(retval):
     if code == 1205:
         message = 'Your account is locked. Log into your bank\'s website to fix.'  
     elif code == 1206:
-        message = 'Your account is not set up. Log into your bank\'s website to fix.')
+        message = 'Your account is not set up. Log into your bank\'s website to fix.'
     else:
         message = retval.json()['resolve']
 
