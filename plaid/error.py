@@ -3,7 +3,6 @@ class PlaidError(Exception):
 	Base error class
 	"""
 	def __init__(self, message, properties):
-
         super(PlaidError, self).__init__(message)
 
         self.safe = properties['safe']
