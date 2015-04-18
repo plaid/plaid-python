@@ -1,2 +1,0 @@
-class PlaidError(Exception):
-    pass

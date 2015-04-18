@@ -1,9 +1,6 @@
 import json
 from urlparse import urljoin
-from PlaidError import PlaidError
-from PlaidMfaResetError import PlaidMfaResetError
-from PlaidSafeError import PlaidSafeError
-from PlaidCredentialsError import PlaidCredentialsError
+from error import *
 from datetime import datetime
 from http import http_request
 
@@ -19,24 +16,9 @@ def require_access_token(func):
     return inner_func
 
 def parse_error(retval):
-    # TODO handle these plaid errors better
     code = retval.json()['code']
-    print "received plaid error " + str(code)
-    credentials_codes = [1200, 1201, 1202]
-    safe_codes = [1203, 1212, 1207, 1208, 1209, 1210, 1211, 1302, 1303]
-
-    if code in credentials_codes:
-        raise PlaidCredentialsError(retval.json()['resolve'])
-    elif code in safe_codes:
-        raise PlaidSafeError(retval.json()['resolve'])       
-    elif code == 1205:
-        raise PlaidSafeError('Your account is locked. Log into your bank\'s website to fix.')
-    elif code == 1206:
-        raise PlaidSafeError('Your account is not set up. Log into your bank\'s website to fix.')
-    if code == 1215:
-        raise PlaidMfaResetError(retval.json()['resolve'])
-    else:
-        raise PlaidError(retval.json()['resolve'])
+    print "[ERROR][PLAIDAPI] Received plaid error " + str(code)
+    build_api_error(code)
 
 def as_dictionary(func):
     def wrapper_func(*args, **kwargs):
