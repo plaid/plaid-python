@@ -1,6 +1,6 @@
 import json
 from urlparse import urljoin
-from error import *
+from error import build_api_error
 from datetime import datetime
 from http import http_request
 
@@ -15,18 +15,13 @@ def require_access_token(func):
         return func(self, *args, **kwargs)
     return inner_func
 
-def parse_error(retval):
-    code = retval.json()['code']
-    print "[ERROR][PLAIDAPI] Received plaid error " + str(code)
-    build_api_error(code)
-
 def as_dictionary(func):
     def wrapper_func(*args, **kwargs):
         retval = func(*args, **kwargs)
         if retval.ok:
             return json.loads(retval.content)
         else:
-            parse_error(retval)
+            build_api_error(retval)
         return retval
     return wrapper_func
 
@@ -372,7 +367,7 @@ class Client(object):
         if transactions_request.ok:
             json_response = json.loads(transactions_request.content)
         else:
-            parse_error(transactions_request)
+            build_api_error(transactions_request)
 
         if self.sandboxed():
             # We have to manually apply the specified options
