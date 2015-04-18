@@ -53,7 +53,7 @@ def build_api_error(retval):
     ]
 
     properties = {
-        'safe': False
+        'safe': False,
         'reconnection': False
     }
 
