@@ -1,5 +1,8 @@
 import json
-from urlparse import urljoin
+try:
+    from urllib.parse import urljoin
+except ImportError:
+    from urlparse import urljoin
 
 from http import http_request
 

@@ -1,5 +1,9 @@
-import pytest
+try:
+    from urllib.parse import urljoin
+except ImportError:
+    from urlparse import urljoin
 
+import pytest
 from mock import patch, Mock
 
 from plaid import Client, require_access_token
