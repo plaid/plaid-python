@@ -124,7 +124,7 @@ class Client(object):
 
         if response.ok:
             json_data = json.loads(response.content)
-            if json_data.has_key('access_token'):
+            if 'access_token' in json_data:
                 self.access_token = json_data['access_token']
 
         return response
@@ -170,7 +170,7 @@ class Client(object):
 
         if response.ok:
             json_data = json.loads(response.content)
-            if json_data.has_key('access_token'):
+            if 'access_token' in json_data:
                 self.access_token = json_data['access_token']
 
         return response
