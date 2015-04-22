@@ -4,7 +4,7 @@ try:
 except ImportError:
     from urlparse import urljoin
 
-from http import http_request
+from plaid.http import http_request
 
 # @todo Sandboxing?
 # @todo "Single Request Call"
