@@ -1,7 +1,10 @@
 import json
-from urlparse import urljoin
+try:
+    from urllib.parse import urljoin
+except ImportError:
+    from urlparse import urljoin
 
-from http import http_request
+from plaid.http import http_request
 
 # @todo Sandboxing?
 # @todo "Single Request Call"
@@ -121,7 +124,7 @@ class Client(object):
 
         if response.ok:
             json_data = json.loads(response.content)
-            if json_data.has_key('access_token'):
+            if 'access_token' in json_data:
                 self.access_token = json_data['access_token']
 
         return response
@@ -167,7 +170,7 @@ class Client(object):
 
         if response.ok:
             json_data = json.loads(response.content)
-            if json_data.has_key('access_token'):
+            if 'access_token' in json_data:
                 self.access_token = json_data['access_token']
 
         return response

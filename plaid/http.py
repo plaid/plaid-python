@@ -3,7 +3,11 @@
 # with multiple runtimes. PK Mar. 14
 ##############################################################################
 import os
-import urllib
+try:
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
+
 
 # Command line
 def _requests_http_request(url, method, data):
@@ -26,7 +30,7 @@ def _urlfetch_http_request(url, method, data):
     from google.appengine.api import urlfetch
 
     method = method.upper()
-    qs = urllib.urlencode(data)
+    qs = urlencode(data)
     if method == 'POST':
         payload = qs
     else:
