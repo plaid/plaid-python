@@ -8,20 +8,29 @@ try:
 except ImportError:
     from urllib import urlencode
 
+from plaid import __version__
+
+PLAID_AGENT = 'Plaid Python v{}'.format(__version__)
+
 
 # Command line
 def _requests_http_request(url, method, data):
     import requests
+
+    headers = {
+        'User-Agent': PLAID_AGENT
+    }
+
     if method.upper() == 'GET':
-        return requests.get(url, data=data)
+        return requests.get(url, headers=headers, data=data)
     elif method.upper() == 'POST':
-        return requests.post(url, data=data)
+        return requests.post(url, headers=headers, data=data)
     elif method.upper() == 'PUT':
-        return requests.put(url, data=data)
+        return requests.put(url, headers=headers, data=data)
     elif method.upper() == 'DELETE':
-        return requests.delete(url, data=data)
+        return requests.delete(url, headers=headers, data=data)
     elif method.upper() == 'PATCH':
-        return requests.patch(url, data=data)
+        return requests.patch(url, headers=headers, data=data)
 
     assert False
 
@@ -38,7 +47,7 @@ def _urlfetch_http_request(url, method, data):
         url += '?' + qs
 
     response = urlfetch.fetch(url, follow_redirects=True, method=method,
-                              payload=payload)
+                              payload=payload, headers={'User-Agent': PLAID_AGENT})
     response.ok = response.status_code >= 200 and response.status_code < 300
     return response
 
