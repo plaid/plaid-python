@@ -100,7 +100,7 @@ class Client(object):
 
     # Endpoints
     @as_dictionary
-    def connect(self, account_type, username, password, email, options=None, patch=False):
+    def connect(self, account_type, username, password, email, pin=None, options=None, patch=False):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case
@@ -137,6 +137,9 @@ class Client(object):
             'email': email
         }
 
+        if pin:
+            data['pin'] = pin
+
         if options:
             data['options'] = json.dumps(options)
 
@@ -154,7 +157,7 @@ class Client(object):
         return response
 
     @as_dictionary
-    def auth(self, account_type, username, password, options=None, patch=False):
+    def auth(self, account_type, username, password, pin=None, options=None, patch=False):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case
@@ -187,6 +190,9 @@ class Client(object):
             'type': account_type,
             'credentials': json.dumps(credentials)
         }
+
+        if pin:
+            data['pin'] = pin
 
         if options:
             data['options'] = json.dumps(options)
