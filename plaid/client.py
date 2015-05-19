@@ -129,6 +129,9 @@ class Client(object):
             'password': password
         }
 
+        if pin:
+            credentials['pin'] = pin
+
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
@@ -136,9 +139,6 @@ class Client(object):
             'credentials': json.dumps(credentials),
             'email': email
         }
-
-        if pin:
-            data['pin'] = pin
 
         if options:
             data['options'] = json.dumps(options)
@@ -184,15 +184,15 @@ class Client(object):
             'password': password
         }
 
+        if pin:
+            credentials['pin'] = pin
+
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
             'type': account_type,
             'credentials': json.dumps(credentials)
         }
-
-        if pin:
-            data['pin'] = pin
 
         if options:
             data['options'] = json.dumps(options)
