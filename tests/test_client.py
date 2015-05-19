@@ -50,10 +50,17 @@ def test_connect():
         assert mock_response == response
 
 
-def test_step():
+def test_auth_step():
     with patch('requests.post') as mock_requests_post:
         client = Client('myclientid', 'mysecret', 'token')
-        client.step('bofa', 'foo')
+        client.auth_step('bofa', 'foo')
+        assert mock_requests_post.called
+
+
+def test_connect_step():
+    with patch('requests.post') as mock_requests_post:
+        client = Client('myclientid', 'mysecret', 'token')
+        client.connect_step('bofa', 'foo')
         assert mock_requests_post.called
 
 
