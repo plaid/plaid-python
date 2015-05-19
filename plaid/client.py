@@ -53,7 +53,8 @@ class Client(object):
         'auth_step': '/auth/step',
         'numbers': '/auth/get',
         'institutions': '/institutions',
-        'upgrade': '/upgrade'
+        'upgrade': '/upgrade',
+        'exchange_token': '/exchange_token'
     }
 
     def __init__(self, client_id, secret, access_token=None):
@@ -393,3 +394,17 @@ class Client(object):
         """
         url = urljoin(self.url, self.endpoints['institutions'])
         return http_request(url, 'GET')
+
+    def exchange_token(self, public_token):
+        """
+        Exchanges a public token with a secret token
+
+        """
+        url = urljoin(self.url, self.endpoints['exchange_token'])
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'public_token': public_token
+        }
+
+        return http_request(url, 'POST', data)
