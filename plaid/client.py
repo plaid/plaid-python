@@ -397,7 +397,7 @@ class Client(object):
 
     def exchange_token(self, public_token):
         """
-        Exchanges a public token with a secret token
+        Exchange a Link public_token for an API access_token
 
         """
         url = urljoin(self.url, self.endpoints['exchange_token'])
