@@ -128,3 +128,16 @@ def test_categories_by_mapping():
         client = Client('myclientid', 'mysecret')
         client.categories_by_mapping('Food > Spanish Restaurant', 'plaid')
         assert mock_requests_get.called
+
+
+def test_exchange_token():
+    with patch('requests.post') as mock_requests_post:
+        mock_response = Mock()
+        mock_response.content = '{}'
+        mock_requests_post.return_value = mock_response
+
+        client = Client('myclientid', 'mysecret')
+
+        response = client.exchange_token('public_token')
+
+        assert mock_response == response
