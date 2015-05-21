@@ -19,9 +19,9 @@ def require_access_token(func):
 
 class Client(object):
     """
-    Python Plain API v2 client https://plaid.io/
+    Python Plain API v2 client https://plaid.com/
 
-    See official documentation at: https://plaid.io/v2/docs
+    See official documentation at: https://plaid.com/docs
     """
 
     url = 'https://tartan.plaid.com'  # Base API URL
