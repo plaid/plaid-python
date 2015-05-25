@@ -1,2 +1,4 @@
-__version__ = '0.2.1'
+__all__ = ['Client', '__version__']
 
+from plaid.client import Client
+from plaid.version import __version__
