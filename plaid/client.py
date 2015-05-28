@@ -275,6 +275,9 @@ class Client(object):
         url = urljoin(self.url, self.endpoints['auth_step'])
 
         # Handle dictionary MFAs
+        print isinstance(mfa, list)
+        print isinstance(mfa, basestring)
+        print json.dumps(mfa)
         if isinstance(mfa, dict) or (isinstance(mfa, list) and not isinstance(mfa, basestring)):
             mfa = json.dumps(mfa)
 
