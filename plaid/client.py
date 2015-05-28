@@ -232,8 +232,8 @@ class Client(object):
             options = {}
         url = urljoin(self.url, self.endpoints['connect_step'])
 
-        # Handle dictionary MFAs
-        if isinstance(mfa, dict):
+        # Handle dictionary/list MFAs
+        if isinstance(mfa, dict) or (isinstance(mfa, list) and not isinstance(mfa, basestring)):
             mfa = json.dumps(mfa)
 
         data = {
