@@ -48,7 +48,12 @@ def build_api_error(retval):
         1200,  # invalid credentials
         1201,  # invalid username
         1202,  # invalid password
-        1303   # institution down
+        1303,  # institution down
+        1205,  # account locked
+        1206,  # account not set up
+        1212,  # no accounts
+        1210,  # account not supported
+        1211   # account not supported (safepass)
     ]
 
     properties = {
