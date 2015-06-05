@@ -1,5 +1,5 @@
 plaid-python
-==============
+============
 
 The official python client library for the [Plaid API][1].
 
@@ -259,7 +259,7 @@ client.auth_delete()  ## deletes Auth user
 
 ### Exchange
 
-Exchange a `public_token` from [Plaid Link][8] for a Plaid access token and then
+Exchange a `public_token` from [Plaid Link][4] for a Plaid access token and then
 retrieve account data:
 
 ```python
@@ -271,6 +271,7 @@ client.auth('chase', {
     'username': '***',
     'password': '***'
 })
+```
 
 ### Get Accounts
 
@@ -307,7 +308,7 @@ Version 1.0.0 was authored by [Ben Plesser](https://github.com/Bpless).
 
 ## Support
 
-Open an [issue][4]!
+Open an [issue][5]!
 
 ## Contribute
 
@@ -321,11 +322,11 @@ $ make test
 - [PK](https://github.com/gae123) - fixes and Google App Engine Support
 
 ## License
-[MIT][5]
-
+[MIT][6]
 
 [1]: https://plaid.com
 [2]: https://plaid.com/docs
 [3]: https://plaid.com/docs/#response-codes
-[4]: https://github.com/plaid/plaid-node/issues/new
-[5]: https://github.com/plaid/plaid-python/blob/master/LICENSE
+[4]: https://github.com/plaid/link
+[5]: https://github.com/plaid/plaid-python/issues/new
+[6]: https://github.com/plaid/plaid-python/blob/master/LICENSE
