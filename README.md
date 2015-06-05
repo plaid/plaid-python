@@ -24,7 +24,7 @@ This module was recently refactored and released with breaking changes as versio
 Via pip:
 
 ```console
-pip install plaid-python`
+pip install plaid-python
 ```
 
 Via source:
