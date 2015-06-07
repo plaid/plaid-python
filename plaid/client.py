@@ -100,7 +100,7 @@ class Client(object):
 
     # Endpoints
     @as_dictionary
-    def connect(self, account_type, username, password, email, pin=None, options=None, patch=False):
+    def connect(self, account_type, username, password, pin=None, options=None, patch=False):
         """
         Add a bank account user/login to Plaid and receive an access token
         unless a 2nd level of authentication is required, in which case
@@ -112,8 +112,6 @@ class Client(object):
                                 sign in to
         `password`      str     The password for the bank account you want to
                                 sign in to
-        `email`         str     The email address associated with the bank
-                                account
         `options`       dict
             `webhook`   str         URL to hit once the account's transactions
                                     have been processed
@@ -136,8 +134,7 @@ class Client(object):
             'client_id': self.client_id,
             'secret': self.secret,
             'type': account_type,
-            'credentials': json.dumps(credentials),
-            'email': email
+            'credentials': json.dumps(credentials)
         }
 
         if options:
