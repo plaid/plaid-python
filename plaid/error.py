@@ -35,6 +35,10 @@ def build_api_error(retval):
         1211   # account not supported (safepass)
     ]
 
+    locked_codes = [
+        1205   # account locked
+    ]
+
     # Is this error built to have its message shown directly to a user?    
     safe_codes = [
         1203,  # invalid mfa
@@ -58,7 +62,8 @@ def build_api_error(retval):
 
     properties = {
         'safe': False,
-        'reconnection': False
+        'reconnection': False,
+        'locked': False
     }
 
     if code in reconnection_codes:
@@ -66,6 +71,9 @@ def build_api_error(retval):
 
     if code in safe_codes:
         properties['safe'] = True
+
+    if code in locked_codes:
+        properties['locked'] = True
 
     # Custom messages
     if code == 1205:
