@@ -7,7 +7,8 @@ class PlaidError(Exception):
 
         self.safe = properties['safe']
         self.reconnection = properties['reconnection']
-        
+        self.locked = properties['locked']
+
 
 def build_api_error(retval):
     """
@@ -39,7 +40,7 @@ def build_api_error(retval):
         1205   # account locked
     ]
 
-    # Is this error built to have its message shown directly to a user?    
+    # Is this error built to have its message shown directly to a user?
     safe_codes = [
         1203,  # invalid mfa
         1212,  # no accounts
@@ -77,7 +78,7 @@ def build_api_error(retval):
 
     # Custom messages
     if code == 1205:
-        message = 'Your account is locked. Log into your bank\'s website to fix.'  
+        message = 'Your account is locked. Log into your bank\'s website to fix.'
     elif code == 1206:
         message = 'Your account is not set up. Log into your bank\'s website to fix.'
     else:
