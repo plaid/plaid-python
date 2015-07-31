@@ -64,6 +64,7 @@ class Client(object):
         'auth': '/auth',
         'auth_step': '/auth/step',
         'numbers': '/auth/get',
+        'get_info': '/info/get',
         'institutions': '/institutions',
         'upgrade': '/upgrade',
         'transactions': '/connect/get'
@@ -141,7 +142,7 @@ class Client(object):
 
         if patch:
             data['access_token'] = self.access_token
-            response = http_request(url, 'PATCH', data)    
+            response = http_request(url, 'PATCH', data)
         else:
             response = http_request(url, 'POST', data)
 
@@ -195,7 +196,7 @@ class Client(object):
 
         if patch:
             data['access_token'] = self.access_token
-            response = http_request(url, 'PATCH', data)    
+            response = http_request(url, 'PATCH', data)
         else:
             response = http_request(url, 'POST', data)
 
@@ -244,7 +245,7 @@ class Client(object):
             data['options'] = json.dumps(options)
 
         if patch:
-            return http_request(url, 'PATCH', data)    
+            return http_request(url, 'PATCH', data)
         else:
             return http_request(url, 'POST', data)
 
@@ -286,7 +287,7 @@ class Client(object):
             data['options'] = json.dumps(options)
 
         if patch:
-            return http_request(url, 'PATCH', data)    
+            return http_request(url, 'PATCH', data)
         else:
             return http_request(url, 'POST', data)
 
@@ -483,6 +484,23 @@ class Client(object):
 
         """
         url = urljoin(self.url, self.endpoints['numbers'])
+        data = {
+            'client_id': self.client_id,
+            'secret': self.secret,
+            'access_token': self.access_token,
+            'type': account_type
+        }
+
+        return http_request(url, 'POST', data)
+
+    @require_access_token
+    @as_dictionary
+    def get_info(self, account_type=None):
+        """
+        Fetch info about account holder
+
+        """
+        url = urljoin(self.url, self.endpoints['get_info'])
         data = {
             'client_id': self.client_id,
             'secret': self.secret,
