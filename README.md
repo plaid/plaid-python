@@ -79,8 +79,8 @@ import json
 from plaid import Client
 
 Client.config({
-    url: 'https://tartan.plaid.com',
-    suppress_http_errors: True,
+    'url': 'https://tartan.plaid.com',
+    'suppress_http_errors': True,
 })
 
 response = client.connect('bofa', {
