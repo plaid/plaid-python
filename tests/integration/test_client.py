@@ -159,6 +159,14 @@ def test_get_connect():
     assert response.status_code == 200
 
 
+def test_get_info():
+    client = Client('test_id', 'test_secret', access_token='test_bofa')
+    response = client.info_get()
+    assert response.status_code == 200
+    assert 'info' in to_json(response)
+    assert 'names' in to_json(response)['info']
+
+
 def test_categories():
     client = Client('test_idzz', 'test_secret')
     response = client.categories()
