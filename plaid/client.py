@@ -104,6 +104,7 @@ class Client(object):
         'connect_step': '/connect/step',
         'categories': '/categories',
         'category': '/categories/{}',
+        'info_get': '/info/get',
         'institutions': '/institutions',
         'institution': '/institutions/{}',
         'upgrade': '/upgrade',
@@ -416,6 +417,18 @@ class Client(object):
         '''
         return get_request(
             url.format(category_id),
+            suppress_errors=self.suppress_http_errors
+        )
+
+    @inject_credentials
+    @inject_url('info_get')
+    def info_get(self, url, credentials):
+        '''
+        Fetches info for a user
+        '''
+        return post_request(
+            url,
+            data=credentials,
             suppress_errors=self.suppress_http_errors
         )
 
