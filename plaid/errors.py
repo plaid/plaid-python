@@ -3,6 +3,7 @@ class PlaidError(Exception):
 
     def __init__(self, message=None, code=None):
         self.code = code
+        self.message = message
         super(PlaidError, self).__init__(message)
 
 

@@ -21,3 +21,7 @@ try:
 except ImportError:
     from urllib import urlencode
     from urlparse import urljoin
+
+
+def to_json(response):
+    return json.loads(response.text)

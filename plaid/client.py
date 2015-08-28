@@ -8,7 +8,7 @@ from plaid.requester import (
     patch_request,
     post_request
 )
-from plaid.utils import json, urljoin
+from plaid.utils import json, urljoin, to_json
 from plaid.errors import UnauthorizedError
 
 
@@ -61,7 +61,7 @@ def store_access_token(func):
     def inner_func(self, *args, **kwargs):
         response = func(self, *args, **kwargs)
         if response.ok:
-            json_data = json.loads(response.content)
+            json_data = to_json(response)
             self.access_token = json_data.get(
                 'access_token',
                 self.access_token
