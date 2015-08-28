@@ -4,13 +4,11 @@ import pytest
 from mock import patch, Mock
 
 from plaid import Client
-from plaid.utils import json
+from plaid.utils import json, to_json
 from plaid.errors import (
   ResourceNotFoundError,
   UnauthorizedError
 )
-
-to_json = lambda response: json.loads(response.content)
 
 no_mfa_credentials = {
   'username': 'plaid_test',
@@ -230,5 +228,5 @@ def test_ResourceNotFound_categories_with_suppressed_error():
     response = client.category('pnc')
     assert response.status_code == 404
     assert (
-      json.loads(response.content)['message'] == 'unable to find category'
+        to_json(response)['message'] == 'unable to find category'
     )

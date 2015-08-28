@@ -48,7 +48,7 @@ def test_failed_inject_credentials_decorator():
     obj = TestClass()
     try:
         creds, url = obj.some_func(plaid_url)
-    except UnauthorizedError, e:
+    except UnauthorizedError as e:
         assert(e.code == 1000)
         assert(e.message == 'some_func requires `access_token`')
     else:
@@ -75,7 +75,7 @@ def test_inject_url():
 def test_store_access_token():
     class Response(object):
         status_code = 200
-        content = '{"access_token": 5}'
+        text = '{"access_token": 5}'
         ok = True
 
     class TestClass(object):
@@ -88,14 +88,14 @@ def test_store_access_token():
 
     obj = TestClass()
     response = obj.some_func()
-    assert response.content == '{"access_token": 5}'
+    assert response.text == '{"access_token": 5}'
     assert obj.access_token == 5
 
 
 def test_store_access_token_sans_token():
     class Response(object):
         status_code = 200
-        content = '{"no_access_token": 5}'
+        text = '{"no_access_token": 5}'
         ok = True
 
     class TestClass(object):
@@ -114,7 +114,7 @@ def test_store_access_token_sans_token():
 def test_store_access_token_on_non_200():
     class Response(object):
         status_code = 201
-        content = '{"access_token": 5}'
+        text = '{"access_token": 5}'
         ok = True
 
     class TestClass(object):
