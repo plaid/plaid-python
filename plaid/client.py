@@ -66,6 +66,7 @@ class Client(object):
         'numbers': '/auth/get',
         'get_info': '/info/get',
         'institutions': '/institutions',
+        'search_institutions': '/institutions/search',
         'upgrade': '/upgrade',
         'transactions': '/connect/get'
     }
@@ -525,3 +526,18 @@ class Client(object):
         """
         url = urljoin(self.url, self.endpoints['institutions'] + '/' + institution_id)
         return http_request(url, 'GET')
+
+    @as_dictionary
+    def search_institutions(self, query=None, product=None):
+        """
+        Search the available institutions (incl. intuit)
+        """
+        url = urljoin(self.url, self.endpoints['search_institutions'])
+        data = {}
+
+        if query:
+            data['q'] = str(query)
+        if product:
+            data['p'] = str(product)
+
+        return http_request(url, 'GET', data)
