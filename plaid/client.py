@@ -1,4 +1,5 @@
 import json
+from urllib import urlencode
 from urlparse import urljoin
 from error import build_api_error
 from datetime import datetime
@@ -540,4 +541,7 @@ class Client(object):
         if product:
             data['p'] = str(product)
 
-        return http_request(url, 'GET', data)
+        params = urlencode(data)
+        url = url + '?' + params
+
+        return http_request(url, 'GET')
