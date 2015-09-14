@@ -69,7 +69,8 @@ def build_api_error(retval):
             1206,  # account not set up
             1212,  # no accounts
             1210,  # account not supported
-            1211   # account not supported (safepass)
+            1211,  # account not supported (safepass)
+            1005   # missing credentials
         ]
 
         if code in reconnection_codes:
@@ -86,6 +87,8 @@ def build_api_error(retval):
             message = 'Your account is locked. Log into your bank\'s website to fix.'
         elif code == 1206:
             message = 'Your account is not set up. Log into your bank\'s website to fix.'
+        elif code == 1005:
+            message = 'Fields cannot be blank'
         else:
             message = retval.json()['resolve']
 
