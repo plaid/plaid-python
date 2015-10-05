@@ -535,7 +535,7 @@ class Client(object):
         return http_request(url, 'GET')
 
     @as_dictionary
-    def search_institutions(self, query=None, product=None):
+    def search_institutions(self, query=None, product=None, institution_id=None):
         """
         Search the available institutions (incl. intuit)
         """
@@ -546,6 +546,8 @@ class Client(object):
             data['q'] = str(query)
         if product:
             data['p'] = str(product)
+        if institution_id:
+            data['id'] = str(institution_id)
 
         params = urlencode(data)
         url = url + '?' + params
