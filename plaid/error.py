@@ -70,7 +70,10 @@ def build_api_error(retval):
             1212,  # no accounts
             1210,  # account not supported
             1211,  # account not supported (safepass)
-            1005   # missing credentials
+            1005,  # missing credentials
+            1303,  # institution down
+            1302,  # institution failed to respond
+            1701  # plaid extractor fail
         ]
 
         if code in reconnection_codes:
