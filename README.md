@@ -106,7 +106,7 @@ from plaid.utils import json
 
 client = Client()
 institutions = json.loads(client.institutions().content)
-institutions = json.loads(client.categories().content)
+categories = json.loads(client.categories().content)
 ```
 
 ### Authenticated Endpoints
