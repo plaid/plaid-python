@@ -312,7 +312,7 @@ Open an [issue][5]!
 
 ## Contribute
 
-All pull requests should be linted with flakes8 and tested by running:
+All pull requests should be linted with flake8 and tested by running:
 
 ```console
 $ make test
