@@ -52,6 +52,7 @@ def _urlfetch_http_request(url, method, data):
 
     # Add consistent interface across requests library and urlfetch
     res.ok = res.status_code >= 200 and res.status_code < 300
+    res.text = res.content
     return res
 
 
