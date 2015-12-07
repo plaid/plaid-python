@@ -1,0 +1,11 @@
+dependencies:
+  override:
+    - make setup
+
+machine:
+  python:
+    version: pypy-2.2.1
+
+test:
+  override:
+    - make test
