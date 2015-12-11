@@ -47,7 +47,7 @@ The module supports all Plaid API endpoints.  For complete information about the
 from plaid import Client
 
 Client.config({
-    'url': 'https://tartan.plaid.com'
+    'url': 'https://tartan.plaid.com',
 })
 ```
 
