@@ -78,7 +78,7 @@ import json
 
 from plaid import Client
 
-Client.config({
+client = Client.config({
     'url': 'https://tartan.plaid.com',
     'suppress_http_errors': True,
 })

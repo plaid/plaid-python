@@ -323,20 +323,25 @@ class Client(object):
 
     @store_access_token
     @inject_url('exchange_token')
-    def exchange_token(self, url, public_token):
+    def exchange_token(self, url, public_token, account_id=None):
         '''
         Only applicable to apps using the Link front-end SDK
         Exchange a Link public_token for an API access_token
 
-        `public_token`     str    public_token returned by Link client
+        `public_token`  str    public_token returned by Link client
+        `account_id`    str    Plaid account ID
+                               used to create a bank account token
         '''
         return post_request(
             url,
-            data={
+            data=dict({
                 'client_id': self.client_id,
                 'secret': self.secret,
                 'public_token': public_token,
-            },
+            }, **(
+                {} if account_id is None
+                else {'account_id': account_id}
+            )),
             suppress_errors=self.suppress_http_errors
         )
 
