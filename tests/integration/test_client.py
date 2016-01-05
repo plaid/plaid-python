@@ -1,19 +1,17 @@
-from collections import defaultdict
-
 import pytest
-from mock import patch, Mock
 
 from plaid import Client
-from plaid.utils import json, to_json
+from plaid.utils import to_json
 from plaid.errors import (
-  ResourceNotFoundError,
-  UnauthorizedError
+    ResourceNotFoundError,
+    UnauthorizedError
 )
 
 no_mfa_credentials = {
-  'username': 'plaid_test',
-  'password': 'plaid_good',
+    'username': 'plaid_test',
+    'password': 'plaid_good',
 }
+
 
 def test_auth_no_mfa():
     client = Client('test_id', 'test_secret')
@@ -89,7 +87,7 @@ def test_connect_step_question_loop():
 def test_connect_step_device_email():
     client = Client('test_id', 'test_secret', access_token='test_chase')
     response = client.connect_step('chase', None, options={
-      'send_method': {'type': 'email'}
+        'send_method': {'type': 'email'}
     })
     assert response.status_code == 201
     assert to_json(response)['type'] == 'device'
@@ -99,7 +97,7 @@ def test_connect_step_device_email():
 def test_connect_step_device_phone():
     client = Client('test_id', 'test_secret', access_token='test_chase')
     response = client.connect_step('chase', None, options={
-      'send_method': {'type': 'phone'}
+        'send_method': {'type': 'phone'}
     })
     assert response.status_code == 201
     assert to_json(response)['type'] == 'device'
@@ -138,6 +136,7 @@ def test_exchange():
     assert response.status_code == 200
     assert to_json(response)['access_token'] == 'test_chase'
     assert client.access_token == 'test_chase'
+
 
 def test_balance():
     client = Client('test_id', 'test_secret', access_token='test_bofa')
@@ -186,16 +185,55 @@ def test_institutions():
 def test_institution():
     client = Client('test_id', 'test_secret')
     response = client.institution(
-      to_json(client.institutions())[0]['id']
+        to_json(client.institutions())[0]['id']
     )
 
     assert response.status_code == 200
 
 
+def test_institution_search():
+    client = Client('test_id', 'test_secret')
+    response = client.institution_search('wells', 'auth')
+    assert response.status_code == 200
+
+
+def test_institution_search_with_multi_tokens():
+    client = Client('test_id', 'test_secret')
+    response = client.institution_search('wells fargo', 'auth')
+    assert response.status_code == 200
+    assert to_json(response)[0]['name'] == 'Wells Fargo'
+
+
+def test_institution_search_with_bad_product():
+    client = Client('test_id', 'test_secret')
+    response = client.institution_search('wells fargo', 'bad')
+    assert response.status_code == 200
+    assert len(to_json(response)) == 0
+
+
+def test_institution_search_without_product():
+    client = Client('test_id', 'test_secret')
+    response = client.institution_search('wells')
+    assert response.status_code == 200
+
+
+def test_institution_search_with_bad_id():
+    client = Client('test_id', 'test_secret')
+    response = client.institution_search(institution_id='bad')
+    assert response.status_code == 200
+    assert len(to_json(response)) == 0
+
+
+def test_institution_search_requires_q_or_id():
+    client = Client('test_id', 'test_secret')
+    with pytest.raises(AssertionError):
+        client.institution_search(p='auth')
+
+
 def test_UnauthorizedError_bad_token():
     client = Client('test_id', 'test_secret', 'test_zoba')
     with pytest.raises(UnauthorizedError):
-      client.balance()
+        client.balance()
 
 
 def test_unauthorizedError_bad_username():
@@ -213,13 +251,13 @@ def test_unauthorizedError_bad_password():
 def test_ResourceNotFound_connect():
     client = Client('test_id', 'test_secret')
     with pytest.raises(ResourceNotFoundError):
-      client.connect('pnc', no_mfa_credentials)
+        client.connect('pnc', no_mfa_credentials)
 
 
 def test_ResourceNotFound_categories():
     client = Client('test_id', 'test_secret')
     with pytest.raises(ResourceNotFoundError):
-      client.category('pnc')
+        client.category('pnc')
 
 
 def test_ResourceNotFound_categories_with_suppressed_error():
