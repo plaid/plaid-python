@@ -8,7 +8,7 @@ from plaid.requester import (
     patch_request,
     post_request
 )
-from plaid.utils import json, urljoin, to_json
+from plaid.utils import json, urljoin, to_json, urlencode
 from plaid.errors import UnauthorizedError
 
 
@@ -107,6 +107,7 @@ class Client(object):
         'info_get': '/info/get',
         'institutions': '/institutions',
         'institution': '/institutions/{}',
+        'institution_search': '/institutions/search',
         'upgrade': '/upgrade',
         'exchange_token': '/exchange_token',
     }
@@ -453,5 +454,30 @@ class Client(object):
         '''
         return get_request(
             url.format(institution_id),
+            suppress_errors=self.suppress_http_errors
+        )
+
+    @inject_url('institution_search')
+    def institution_search(self, url, q=None, p=None, institution_id=None):
+        '''
+        Perform simple search query against Long Tail institutions.
+
+        `q`               str   Query against the full list of institutions.
+        `p`               str   Filter FIs by a single product (Optional).
+        `institution_id`  str   The id of a single institution
+                                for lookup (Optional).
+        '''
+
+        assert q is not None or institution_id is not None, (
+            'query or institution_id required'
+        )
+
+        params = dict([(key, value) for key, value in [
+            ('q', q),
+            ('p', p),
+            ('id', institution_id)
+        ] if value is not None])
+        return get_request(
+            '{}{}{}'.format(url, '?' if params else '', urlencode(params)),
             suppress_errors=self.suppress_http_errors
         )

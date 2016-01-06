@@ -1,8 +1,4 @@
-import pytest
-from mock import patch, Mock
-
 from plaid.client import (
-    Client,
     inject_credentials,
     inject_url,
     store_access_token
@@ -107,8 +103,8 @@ def test_store_access_token_sans_token():
             return Response()
 
     obj = TestClass()
-    response = obj.some_func()
-    assert obj.access_token == None
+    obj.some_func()
+    assert obj.access_token is None
 
 
 def test_store_access_token_on_non_200():
@@ -126,5 +122,5 @@ def test_store_access_token_on_non_200():
             return Response()
 
     obj = TestClass()
-    response = obj.some_func()
+    obj.some_func()
     assert obj.access_token == 5
