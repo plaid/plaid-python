@@ -78,10 +78,12 @@ import json
 
 from plaid import Client
 
-client = Client.config({
+Client.config({
     'url': 'https://tartan.plaid.com',
     'suppress_http_errors': True,
 })
+
+client = Client(client_id='***', secret='***')
 
 response = client.connect('bofa', {
     'username': '[something_invalid]',
