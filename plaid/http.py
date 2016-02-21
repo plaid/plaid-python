@@ -47,7 +47,8 @@ def _urlfetch_http_request(url, method, data):
         follow_redirects=True,
         method=method,
         payload=payload,
-        headers=headers
+        headers=headers,
+        deadline=60 # seconds
     )
 
     # Add consistent interface across requests library and urlfetch
