@@ -37,7 +37,7 @@ def test_auth_delete():
     client = Client('test_id', 'test_secret', access_token='test_chase')
     response = client.auth_delete()
     assert response.status_code == 200
-    assert to_json(response)['message'] == 'Successfully removed from system'
+    assert to_json(response)['message'] == 'Successfully removed from your account'
 
 
 def test_auth_update():
@@ -108,7 +108,7 @@ def test_connect_delete():
     client = Client('test_id', 'test_secret', access_token='test_chase')
     response = client.connect_delete()
     assert response.status_code == 200
-    assert to_json(response)['message'] == 'Successfully removed from system'
+    assert to_json(response)['message'] == 'Successfully removed from your account'
 
 
 def test_connect_update():
