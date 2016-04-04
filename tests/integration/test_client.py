@@ -123,6 +123,26 @@ def test_connect_step_update():
     assert response.status_code == 200
 
 
+def test_info_no_mfa():
+    client = Client('test_id', 'test_secret')
+    response = client.info('wells', no_mfa_credentials)
+    assert to_json(response)['access_token'] == 'test_wells'
+
+
+def test_info_mfa():
+    client = Client('test_id', 'test_secret')
+    response = client.info('pnc', no_mfa_credentials)
+    assert response.status_code == 201
+    assert to_json(response)['type'] == 'questions'
+
+
+def test_info_step():
+    client = Client('test_id', 'test_secret', access_token='test_pnc')
+    response = client.info_step('pnc', 'tomato')
+    assert response.status_code == 200
+    assert to_json(response)['access_token'] == 'test_pnc'
+
+
 def test_upgrade():
     client = Client('test_id', 'test_secret', access_token='test_bofa')
     response = client.upgrade('info')
