@@ -48,7 +48,7 @@ def _urlfetch_http_request(url, method, data):
         method=method,
         payload=payload,
         headers=headers,
-        deadline=60 # seconds
+        deadline=60  # seconds
     )
 
     # Add consistent interface across requests library and urlfetch

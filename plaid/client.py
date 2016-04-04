@@ -104,6 +104,8 @@ class Client(object):
         'connect_step': '/connect/step',
         'categories': '/categories',
         'category': '/categories/{}',
+        'info': '/info',
+        'info_step': '/info/step',
         'info_get': '/info/get',
         'institutions': '/institutions',
         'institution': '/institutions/{}',
@@ -345,6 +347,22 @@ class Client(object):
             )),
             suppress_errors=self.suppress_http_errors
         )
+
+    @inject_url('info')
+    def info(self, url, *args, **kwargs):
+        '''
+        Add an Info user to Plaid.
+        See _add docstring for input annotation
+        '''
+        return self._add(url, *args, **kwargs)
+
+    @inject_url('info_step')
+    def info_step(self, url, *args, **kwargs):
+        '''
+        MFA step associated with initially adding an Info user.
+        See _step docstring for input annotation
+        '''
+        return self._step(url, 'POST', *args, **kwargs)
 
     @store_access_token
     @inject_credentials
