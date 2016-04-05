@@ -91,7 +91,7 @@ response = client.connect('bofa', {
 })
 
 if response.ok:
-    content = json.loads(response.content)
+    user = response.json()
 else:
     # handle non-20x status codes
 ```
@@ -107,8 +107,8 @@ from plaid.utils import json
 
 
 client = Client()
-institutions = json.loads(client.institutions().content)
-categories = json.loads(client.categories().content)
+institutions = client.institutions().json()
+categories = client.categories().json()
 ```
 
 ### Authenticated Endpoints
@@ -134,7 +134,7 @@ try:
 except plaid_errors.PlaidError:
      pass
 else:
-    connect_data = json.loads(response.content)
+    connect_data = response.json()
 ```
 
 ### MFA add Connect User
@@ -158,11 +158,11 @@ except plaid_errors.PlaidError, e:
 else:
     if response.status_code == 200:
         # User connected
-        data = json.loads(response.content)
+        data = response.json()
     elif response.stat_code == 201:
         # MFA required
         try:
-            mfa_response = answer_mfa(json.loads(response.content))
+            mfa_response = answer_mfa(response.json())
         except plaid_errors.PlaidError, e:
             pass
         else:
@@ -281,7 +281,7 @@ User previously Auth-ed
 
 ```python
 client = Client(client_id='***', secret='***', access_token='usertoken')
-accounts = json.loads(client.auth_get().content)
+accounts = client.auth_get().json()
 ```
 
 ### Get Account Balances
@@ -295,14 +295,42 @@ response = client.balance()
 
 ### Get Transactions
 
-User previously Connected-ed
+User previously Connect-ed
 
 ```python
 client = Client(client_id='***', secret='***', access_token='usertoken')
 response = client.connect_get()
-json.loads(response.content)
+transactions = response.json()
 ```
 
+### Get Info
+
+User previously Info-ed
+
+```python
+client = Client(client_id='***', secret='***', access_token='usertoken')
+response = client.info_get()
+info = response.json()
+```
+
+### Get Income
+
+User previously Income-ed
+
+```python
+client = Client(client_id='***', secret='***', access_token='usertoken')
+response = client.income_get()
+income = response.json()
+```
+### Get Risk
+
+User previously Risk-ed
+
+```python
+client = Client(client_id='***', secret='***', access_token='usertoken')
+response = client.risk_get()
+risk = response.json()
+```
 ## Attribution & Maintenance
 
 This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette).
@@ -327,8 +355,8 @@ $ make test
 [MIT][6]
 
 [1]: https://plaid.com
-[2]: https://plaid.com/docs
-[3]: https://plaid.com/docs/#response-codes
+[2]: https://plaid.com/docs/api
+[3]: https://plaid.com/docs/api/#response-codes
 [4]: https://github.com/plaid/link
 [5]: https://github.com/plaid/plaid-python/issues/new
 [6]: https://github.com/plaid/plaid-python/blob/master/LICENSE
