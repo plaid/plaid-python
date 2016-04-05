@@ -106,7 +106,7 @@ from plaid import errors as plaid_errors
 from plaid.utils import json
 
 
-client = Client()
+client = Client(client_id='***', secret='***')
 institutions = client.institutions().json()
 categories = client.categories().json()
 ```
