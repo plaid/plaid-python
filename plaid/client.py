@@ -107,6 +107,12 @@ class Client(object):
         'info': '/info',
         'info_step': '/info/step',
         'info_get': '/info/get',
+        'income': '/income',
+        'income_step': '/income/step',
+        'income_get': '/income/get',
+        'risk': '/risk',
+        'risk_step': '/risk/step',
+        'risk_get': '/risk/get',
         'institutions': '/institutions',
         'institution': '/institutions/{}',
         'institution_search': '/institutions/search',
@@ -364,6 +370,38 @@ class Client(object):
         '''
         return self._step(url, 'POST', *args, **kwargs)
 
+    @inject_url('income')
+    def income(self, url, *args, **kwargs):
+        '''
+        Add an Income user to Plaid.
+        See _add docstring for input annotation
+        '''
+        return self._add(url, *args, **kwargs)
+
+    @inject_url('income_step')
+    def income_step(self, url, *args, **kwargs):
+        '''
+        MFA step associated with initially adding an Income user.
+        See _step docstring for input annotation
+        '''
+        return self._step(url, 'POST', *args, **kwargs)
+
+    @inject_url('risk')
+    def risk(self, url, *args, **kwargs):
+        '''
+        Add a Risk user to Plaid.
+        See _add docstring for input annotation
+        '''
+        return self._add(url, *args, **kwargs)
+
+    @inject_url('risk_step')
+    def risk_step(self, url, *args, **kwargs):
+        '''
+        MFA step associated with initially adding a Risk user.
+        See _step docstring for input annotation
+        '''
+        return self._step(url, 'POST', *args, **kwargs)
+
     @store_access_token
     @inject_credentials
     @inject_url('upgrade')
@@ -455,6 +493,28 @@ class Client(object):
             data=credentials,
             suppress_errors=self.suppress_http_errors
         )
+
+    @inject_credentials
+    @inject_url('income_get')
+    def income_get(self, url, credentials):
+        '''
+        Fetches income for a user
+        '''
+        return post_request(
+            url,
+            data=credentials,
+            suppress_errors=self.suppress_http_errors
+        )
+
+    @inject_credentials
+    @inject_url('risk_get')
+    def risk_get(self, url, credentials):
+        '''
+        Fetches income for a user
+        '''
+        return post_request(url,
+                            data=credentials,
+                            suppress_errors=self.suppress_http_errors)
 
     @inject_url('institutions')
     def institutions(self, url):

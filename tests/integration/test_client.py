@@ -143,6 +143,46 @@ def test_info_step():
     assert to_json(response)['access_token'] == 'test_pnc'
 
 
+def test_income_no_mfa():
+    client = Client('test_id', 'test_secret')
+    response = client.income('wells', no_mfa_credentials)
+    assert to_json(response)['access_token'] == 'test_wells'
+
+
+def test_income_mfa():
+    client = Client('test_id', 'test_secret')
+    response = client.income('bofa', no_mfa_credentials)
+    assert response.status_code == 201
+    assert to_json(response)['type'] == 'questions'
+
+
+def test_income_step():
+    client = Client('test_id', 'test_secret', access_token='test_chase')
+    response = client.income_step('chase', '1234')
+    assert response.status_code == 200
+    assert to_json(response)['access_token'] == 'test_chase'
+
+
+def test_risk_no_mfa():
+    client = Client('test_id', 'test_secret')
+    response = client.risk('wells', no_mfa_credentials)
+    assert to_json(response)['access_token'] == 'test_wells'
+
+
+def test_risk_mfa():
+    client = Client('test_id', 'test_secret')
+    response = client.risk('bofa', no_mfa_credentials)
+    assert response.status_code == 201
+    assert to_json(response)['type'] == 'questions'
+
+
+def test_risk_step():
+    client = Client('test_id', 'test_secret', access_token='test_chase')
+    response = client.risk_step('chase', '1234')
+    assert response.status_code == 200
+    assert to_json(response)['access_token'] == 'test_chase'
+
+
 def test_upgrade():
     client = Client('test_id', 'test_secret', access_token='test_bofa')
     response = client.upgrade('info')
