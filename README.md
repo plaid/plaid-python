@@ -349,7 +349,8 @@ $ make test
 ```
 
 ## Contributors
-- [PK](https://github.com/gae123) - fixes and Google App Engine Support
+- [@chrisforrette](https://github.com/chrisforrette) (Chris Forrette)
+- [@gae123](https://github.com/gae123)
 
 ## License
 [MIT][6]
