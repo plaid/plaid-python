@@ -14,6 +14,7 @@ This module was recently refactored and released with breaking changes as versio
     + [Public Endpoints](#public-endpoints)
     + [Authenticated Endpoints](#authenticated-endpoints)
   * [Support](#support)
+  * [Known Issues](#known-issues)
   * [Contribute](#contribute)
   * [Contributers](#contributers)
   * [License](#license)
@@ -339,6 +340,10 @@ Version 1.0.0 was authored by [Ben Plesser](https://github.com/Bpless).
 ## Support
 
 Open an [issue][5]!
+
+## Known Issues
+
+1. `SSLError: EOF occurred in violation of protocol (_ssl.c:581)`(https://github.com/plaid/plaid-python/issues/62) - Work around is installing `pyopenssl ndg-httpsclient pyasn1`
 
 ## Contribute
 
