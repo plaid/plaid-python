@@ -1,9 +1,10 @@
 class PlaidError(Exception):
     retry = False
 
-    def __init__(self, message=None, code=None):
+    def __init__(self, message=None, code=None, request_id=None):
         self.code = code
         self.message = message
+        self.request_id = request_id
         super(PlaidError, self).__init__(message)
 
 
