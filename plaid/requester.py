@@ -15,7 +15,14 @@ def http_request(url, method=None, data=None, suppress_errors=False):
     ERROR = PLAID_ERROR_MAP.get(response.status_code)
     if not suppress_errors and ERROR is not None:
         json_data = to_json(response)
-        raise ERROR(json_data['resolve'], json_data['code'])
+        json_data[unicode('request_id')] = unicode(
+            response.headers['x-request-id']
+        )
+        raise ERROR(
+            json_data['resolve'],
+            json_data['code'],
+            json_data['request_id']
+        )
     else:
         return response
 
