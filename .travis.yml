@@ -9,8 +9,8 @@ python:
   - "3.4"
   - "3.5"
 install:
-  - "pip install -r requirements.txt"
-  - "pip install flake8"
-
-becore_script: "flake8 plaid tests"
-script: nosetests
+  - "make setup"
+becore_script:
+  - "make lint"
+script:
+  - "make test"
