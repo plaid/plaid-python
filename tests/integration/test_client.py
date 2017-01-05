@@ -320,6 +320,15 @@ def test_ResourceNotFound_categories():
         client.category('pnc')
 
 
+def test_http_originating_exceptions_include_full_response_data():
+    client = Client('test_id', 'test_secret')
+    try:
+        client.category('pnc')
+    except ResourceNotFoundError as e:
+        assert 'resolve' in e.error_data
+        assert e.status_code == 404
+
+
 def test_ResourceNotFound_categories_with_suppressed_error():
     Client.config({'suppress_http_errors': True})
     client = Client('test_id', 'test_secret')
