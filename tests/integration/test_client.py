@@ -327,6 +327,8 @@ def test_http_originating_exceptions_include_full_response_data():
     except ResourceNotFoundError as e:
         assert 'resolve' in e.error_data
         assert e.status_code == 404
+        assert e.request_id
+        assert e.http_response is not None
 
 
 def test_ResourceNotFound_categories_with_suppressed_error():

@@ -1,12 +1,37 @@
+from plaid.utils import to_json
+
+
 class PlaidError(Exception):
     retry = False
     status_code = None
 
-    def __init__(self, message=None, code=None, error_data=None):
+    def __init__(self, message=None, code=None, http_response=None):
+        self._set_attributes_from_response(http_response)
+
         self.code = code
         self.message = message
-        self.error_data = error_data
+
         super(PlaidError, self).__init__(message)
+
+    def _set_attributes_from_response(self, http_response):
+        data = {}
+        headers = {}
+
+        if http_response is not None:
+            data = to_json(http_response)
+            headers = http_response.headers
+
+        self.http_response = http_response
+        self.message = data.get('resolve')
+        self.code = data.get('code')
+        self.error_data = data
+        self.request_id = headers.get('x-request-id')
+
+    @staticmethod
+    def from_http_response(response):
+        exc_class = PLAID_ERROR_MAP.get(response.status_code)
+
+        return exc_class(http_response=response) if exc_class else None
 
 
 class BadRequestError(PlaidError):
