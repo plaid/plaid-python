@@ -311,7 +311,7 @@ def test_unauthorizedError_bad_password():
 def test_ResourceNotFound_connect():
     client = Client('test_id', 'test_secret')
     with pytest.raises(ResourceNotFoundError):
-        client.connect('pnc', no_mfa_credentials)
+        client.connect('notpnc', no_mfa_credentials)
 
 
 def test_ResourceNotFound_categories():
