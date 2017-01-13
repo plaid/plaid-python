@@ -223,11 +223,12 @@ class Client(object):
         '''
         Similar to _add, save HTTP method, inclusion of access token.
         '''
+        data = dict(login, **credentials)
+        data['options'] = json.dumps(options if options is not None else {})
+
         return patch_request(
             url,
-            data=dict(
-                login, **credentials,
-                options=json.dumps(options if options is not None else {})),
+            data=data,
             suppress_errors=self.suppress_http_errors
         )
 
