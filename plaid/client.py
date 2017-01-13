@@ -126,9 +126,10 @@ class Client(object):
         Configure the Client Class (Client.config({}))
 
         `options`         dict
-            `url`          str     Fully qualified domain name (tartan or api)
-            `suppress_errors`   bool    Should Plaid Errors be suppressed
-            `suppress_warnings` bool    Should Plaid warnings be suppressed
+            `url`                   str     Fully qualified domain name
+                                            (tartan or api)
+            `suppress_http_errors`  bool    Should Plaid Errors be suppressed
+            `suppress_warnings`     bool    Should Plaid warnings be suppressed
         '''
         kls.base_url = options.get('url', kls.base_url)
         kls.suppress_http_errors = options.get('suppress_http_errors')
