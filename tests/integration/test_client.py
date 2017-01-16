@@ -251,6 +251,18 @@ def test_institution():
     assert response.status_code == 200
 
 
+def test_institutions_all():
+    client = Client('test_id', 'test_secret')
+    response = client.institutions_all(count=50, offset=0, products=["auth"])
+    assert response.status_code == 200
+
+
+def test_institution_all_search():
+    client = Client('test_id', 'test_secret')
+    response = client.institution_all_search('chase', 'connect')
+    assert response.status_code == 200
+
+
 def test_institution_search():
     client = Client('test_id', 'test_secret')
     response = client.institution_search('wells', 'auth')
