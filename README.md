@@ -99,7 +99,7 @@ else:
 
 ### Public Endpoints
 
-Public endpoints (category and institution information) require no authentication and can be accessed as follows:
+Public endpoints (category information) require no authentication and can be accessed as follows:
 
 ```python
 from plaid import Client
@@ -108,7 +108,6 @@ from plaid.utils import json
 
 
 client = Client(client_id='***', secret='***')
-institutions = client.institutions().json()
 categories = client.categories().json()
 ```
 
@@ -332,6 +331,31 @@ client = Client(client_id='***', secret='***', access_token='usertoken')
 response = client.risk_get()
 risk = response.json()
 ```
+
+### Institutions
+
+To search through or retrieve a list of all financial institutions supported by Plaid, use the `/institutions/all/search` and `/institutions/all` endpoints:
+
+```python
+client = Client(client_id='***', secret='***')
+
+# Search for an institution matching the name 'redwood credit' that supports Connect
+institutionSearchResults = client.institution_all_search('redwood credit', 'connect'):
+
+# Pull 200 institutions with, offseting 0 institutions
+institutions = client.institutions(count=200, offset=0).json()
+
+# Pull 50 institutions that support both Auth and Connect
+institutions = client.institutions(count=50, offset=0, products=["auth","connect"]).json()
+
+# Pull a single institution
+singleInstitution = client.institution('ins_100003').json()
+```
+
+For additional information, please see the [API Institutions docs](https://plaid.com/docs/api#institutions).
+
+**Note:** Use of the `institution_search()` and `institutions()` methods has been deprecated. Use `institution_all_search()` and `institutions_all()` methods instead.
+
 ## Attribution & Maintenance
 
 This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette).
