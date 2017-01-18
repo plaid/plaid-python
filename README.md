@@ -343,10 +343,10 @@ client = Client(client_id='***', secret='***')
 institutionSearchResults = client.institution_all_search('redwood credit', 'connect'):
 
 # Pull 200 institutions with, offseting 0 institutions
-institutions = client.institutions(count=200, offset=0).json()
+institutions = client.institutions_all(count=200, offset=0).json()
 
 # Pull 50 institutions that support both Auth and Connect
-institutions = client.institutions(count=50, offset=0, products=["auth","connect"]).json()
+institutions = client.institutions_all(count=50, offset=0, products=["auth","connect"]).json()
 
 # Pull a single institution
 singleInstitution = client.institution('ins_100003').json()
