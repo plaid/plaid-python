@@ -114,8 +114,10 @@ class Client(object):
         'risk_step': '/risk/step',
         'risk_get': '/risk/get',
         'institutions': '/institutions',
-        'institution': '/institutions/{}',
+        'institutions_all': '/institutions/all',
+        'institution': '/institutions/all/{}',
         'institution_search': '/institutions/search',
+        'institution_all_search': '/institutions/all/search',
         'upgrade': '/upgrade',
         'exchange_token': '/exchange_token',
     }
@@ -126,9 +128,10 @@ class Client(object):
         Configure the Client Class (Client.config({}))
 
         `options`         dict
-            `url`          str     Fully qualified domain name (tartan or api)
-            `suppress_errors`   bool    Should Plaid Errors be suppressed
-            `suppress_warnings` bool    Should Plaid warnings be suppressed
+            `url`                   str     Fully qualified domain name
+                                            (tartan or api)
+            `suppress_http_errors`  bool    Should Plaid Errors be suppressed
+            `suppress_warnings`     bool    Should Plaid warnings be suppressed
         '''
         kls.base_url = options.get('url', kls.base_url)
         kls.suppress_http_errors = options.get('suppress_http_errors')
@@ -523,19 +526,67 @@ class Client(object):
     @inject_url('institutions')
     def institutions(self, url):
         '''
-        Fetch all Plaid institutions
+        Fetch all Plaid institutions, using /institutions
         '''
         return get_request(url, suppress_errors=self.suppress_http_errors)
+
+    @inject_credentials
+    @inject_url('institutions_all')
+    def institutions_all(self, url, credentials, count=100, offset=0,
+                         products=None):
+        '''
+        Fetch all Plaid institutions, using /institutions/all
+        `count`               int   Number of Institutions to fetch. Optional.
+        `offset`              int   Number of Institutions to skip. Optional.
+        `products`            [str] Return only Institutions that support
+                                    the specified product(s). Optional.
+        '''
+        params = dict([(key, value) for key, value in [
+            ('count', count),
+            ('offset', offset),
+            ('products', products),
+            ('client_id', credentials['client_id']),
+            ('secret', credentials['secret'])
+        ] if value is not None])
+        return post_request(url,
+                            data=params,
+                            suppress_errors=self.suppress_http_errors)
 
     @inject_url('institution')
     def institution(self, url, institution_id):
         '''
         Fetch details for a single institution
 
-        `institution_id`   str     Category id to fetch
+        `institution_id`   str     Institution id to fetch
         '''
         return get_request(
             url.format(institution_id),
+            suppress_errors=self.suppress_http_errors
+        )
+
+    @inject_url('institution_all_search')
+    def institution_all_search(self, url, q=None, p=None, institution_id=None):
+        '''
+        Perform simple search query against all institutions
+
+        `q`               str   Query against the full list of institutions.
+                                Required if `institution_id` not present.
+        `p`               str   Filter FIs by a single product (Optional).
+        `institution_id`  str   The id of a single institution for lookup.
+                                Required if `q` not present.
+        '''
+
+        assert q is not None or institution_id is not None, (
+            'query or institution_id required'
+        )
+
+        params = dict([(key, value) for key, value in [
+            ('q', q),
+            ('p', p),
+            ('id', institution_id)
+        ] if value is not None])
+        return get_request(
+            '{}{}{}'.format(url, '?' if params else '', urlencode(params)),
             suppress_errors=self.suppress_http_errors
         )
 
