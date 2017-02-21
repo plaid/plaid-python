@@ -6,14 +6,6 @@ class PlaidError(Exception):
     status_code = None
 
     def __init__(self, message=None, code=None, http_response=None):
-        self._set_attributes_from_response(http_response)
-
-        self.code = code
-        self.message = message
-
-        super(PlaidError, self).__init__(message)
-
-    def _set_attributes_from_response(self, http_response):
         data = {}
         headers = {}
 
@@ -22,10 +14,12 @@ class PlaidError(Exception):
             headers = http_response.headers
 
         self.http_response = http_response
-        self.message = data.get('resolve')
-        self.code = data.get('code')
+        self.code = code or data.get('code')
+        self.message = message or data.get('resolve')
         self.error_data = data
         self.request_id = headers.get('x-request-id')
+
+        super(PlaidError, self).__init__(message)
 
     @staticmethod
     def from_http_response(response):
