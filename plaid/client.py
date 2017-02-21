@@ -321,8 +321,8 @@ class Client(object):
             `password`        str     The password for the bank account
             `pin`             int     (optional) pin for the bank account
         `options`       dict
-            `webhook_url`     str      URL to hit once the account's
-                                       transactions have been processed
+            `webhook_url`     str     URL to hit once the account's
+                                      transactions have been processed
         '''
         return self._update(url, login or {}, options)
 
