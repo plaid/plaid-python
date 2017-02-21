@@ -1,4 +1,5 @@
 from plaid.client import (
+    Client,
     inject_credentials,
     inject_url,
     store_access_token
@@ -124,3 +125,21 @@ def test_store_access_token_on_non_200():
     obj = TestClass()
     obj.some_func()
     assert obj.access_token == 5
+
+
+def test_connect_webhook_update_sends_encoded_options_param_upstream(mocker):
+    http_request_mock = mocker.Mock()
+    http_request_mock.return_value.text = '{}'
+    mocker.patch('plaid.client.patch_request', http_request_mock)
+
+    Client('test_id', 'test_secret', 'test_chase').connect_update(options={
+        'webhook': 'http://localhost:8000'
+    })
+
+    http_request_mock.assert_called_once_with(
+        mocker.ANY, data={
+            'access_token': 'test_chase',
+            'client_id': 'test_id',
+            'options': '{"webhook": "http://localhost:8000"}',
+            'secret': 'test_secret'
+        }, suppress_errors=mocker.ANY)

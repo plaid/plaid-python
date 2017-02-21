@@ -222,14 +222,16 @@ class Client(object):
 
     @store_access_token
     @inject_credentials
-    def _update(self, credentials, url, login):
+    def _update(self, credentials, url, login, options=None):
         '''
-        Similar to _add, save HTTP method, inclusion of access token,
-        and absence of options / account_type
+        Similar to _add, save HTTP method, inclusion of access token.
         '''
+        data = dict(login, **credentials)
+        data['options'] = json.dumps(options or {})
+
         return patch_request(
             url,
-            data=dict(login, **credentials),
+            data=data,
             suppress_errors=self.suppress_http_errors
         )
 
@@ -313,17 +315,19 @@ class Client(object):
         return self._step(url, 'POST', *args, **kwargs)
 
     @inject_url('connect')
-    def connect_update(self, url, login):
+    def connect_update(self, url, login=None, options=None):
         '''
-        Update a user who has already connected
+        Update a user who has already connected.
 
         `login`         dict
             `username`        str     username for the bank account
             `password`        str     The password for the bank account
             `pin`             int     (optional) pin for the bank account
-
+        `options`       dict
+            `webhook_url`     str     URL to hit once the account's
+                                      transactions have been processed
         '''
-        return self._update(url, login)
+        return self._update(url, login or {}, options)
 
     @inject_url('connect_step')
     def connect_update_step(self, url, *args, **kwargs):
