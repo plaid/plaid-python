@@ -1,0 +1,15 @@
+machine:
+  python:
+    version: 3.6.0
+  post:
+    - pyenv global 2.7.10 3.6.0
+
+dependencies:
+  override:
+    - pip install flake8 requests tox tox-pyenv
+    - pyenv local 2.7.10 3.6.0
+
+test:
+  override:
+    - make lint
+    - tox
