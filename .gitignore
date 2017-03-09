@@ -13,4 +13,5 @@ venv
 .tox/*
 
 docs/.*
+!docs/.nojekyll
 docs/objects.inv
