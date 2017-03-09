@@ -1,26 +1,41 @@
+import json
 from functools import partial
 
-from plaid.errors import PLAID_ERROR_MAP
+import requests
 
-from plaid.http import _outer_http_request
-from plaid.utils import to_json
-
-
-_base_http_request = _outer_http_request()
+from plaid.errors import PlaidError
+from plaid.version import __version__
 
 
-# method keyword arg to simplify partial function application
-def http_request(url, method=None, data=None, suppress_errors=False):
-    response = _base_http_request(url, method, data or {})
-    ERROR = PLAID_ERROR_MAP.get(response.status_code)
-    if not suppress_errors and ERROR is not None:
-        json_data = to_json(response)
-        raise ERROR(json_data['resolve'], json_data['code'])
+ALLOWED_METHODS = {'post'}
+TIMEOUT = 600  # 10 minutes
+
+
+def _requests_http_request(url, method, data):
+    normalized_method = method.lower()
+    if normalized_method in ALLOWED_METHODS:
+        return getattr(requests, normalized_method)(
+            url,
+            json=data,
+            headers={
+                'User-Agent': 'Plaid Python v{}'.format(__version__),
+            },
+            timeout=TIMEOUT,
+        )
     else:
-        return response
+        raise Exception(
+            'Invalid request method {}'.format(method)
+        )
 
 
-delete_request = partial(http_request, method='DELETE')
-get_request = partial(http_request, method='GET')
+def http_request(url, method=None, data=None):
+    response = _requests_http_request(url, method, data or {})
+    response_body = json.loads(response.text)
+    if response_body.get('error_type'):
+        raise PlaidError.from_response(response_body)
+    else:
+        return response_body
+
+
+# helpers to simplify partial function application
 post_request = partial(http_request, method='POST')
-patch_request = partial(http_request, method='PATCH')
