@@ -1,4 +1,4 @@
-plaid-python  [![Build Status](https://travis-ci.org/plaid/plaid-python.svg)](https://travis-ci.org/plaid/plaid-python)
+plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python)
 ============
 
 The official python client library for the [Plaid API][1].
