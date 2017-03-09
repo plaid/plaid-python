@@ -7,11 +7,11 @@ url = 'https://github.com/plaid/plaid-python'
 setup(
     name='plaid-python',
     version=plaid.__version__,
-    description='Simple Python API client for Plaid',
+    description='Python client library for the Plaid API and Link',
     long_description='',
     keywords='api, client, plaid',
-    author='Chris Forrette',
-    author_email='chris@chrisforrette.com',
+    author='Plaid Technologies',
+    author_email='developers@plaid.com',
     url=url,
     download_url='{}/tarball/v{}'.format(url, plaid.__version__),
     license='MIT',
@@ -27,6 +27,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Environment :: Web Environment",
     ]
