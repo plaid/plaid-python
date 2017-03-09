@@ -3,7 +3,7 @@ plaid-python  [![Build Status](https://travis-ci.org/plaid/plaid-python.svg)](ht
 
 The official python client library for the [Plaid API][1].
 
-This module was recently refactored and released with breaking changes as version `1.0.x`.
+This module was recently refactored and released with breaking changes as of version `2.0.x`.
 
 ## Table of Contents
 
@@ -11,373 +11,188 @@ This module was recently refactored and released with breaking changes as versio
   * [Install](#install)
   * [Documentation](#documentation)
   * [Getting Started](#getting-started)
-    + [Public Endpoints](#public-endpoints)
-    + [Authenticated Endpoints](#authenticated-endpoints)
-  * [Support](#support)
+    + [Calling Endpoints](#calling-endpoints)
+    + [Errors](#errors)
+  * [Examples](#examples)
   * [Known Issues](#known-issues)
-  * [Contribute](#contribute)
-  * [Contributers](#contributers)
+  * [Contributing](#contributing)
   * [License](#license)
 
 
 ## Install
 
-Via pip:
-
 ```console
-pip install plaid-python
-```
-
-Via source:
-
-```console
-git clone git@github.com:plaid/plaid-python.git
-python setup.py install
+$ pip install plaid-python
 ```
 
 ## Documentation
 
-The module supports all Plaid API endpoints.  For complete information about the API, head to the [docs][2].
+The module supports all Plaid API endpoints.  For complete information about
+the API, head to the [docs][2].
 
+For a full list of endpoints and arguments, see the [python docs][7].
 
 ## Getting Started
 
-### Configuration
+### Calling Endpoints
+
+To call an endpoint you must create a `Client` object.
 
 ```python
 from plaid import Client
 
-Client.config({
-    'url': 'https://tartan.plaid.com'
-})
+
+# Available environments are 'sandbox', 'development', and 'production'.
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
+client.Item.create(...)
 ```
 
-By default, all non-200 responses will throw an error.
+Each endpoint returns a dictionary which contains the parsed JSON from the
+HTTP response.
 
-For more information on Plaid response codes, head to [codes][3].
+### Errors
 
-```python
-from plaid import Client
-from plaid import errors as plaid_errors
-
-
-client = Client(client_id='***', secret='***')
-try:
-    response = client.connect('bofa', {
-        'username': '[something_invalid]',
-        'password': '***'
-    })
-except plaid_errors.UnauthorizedError:
-     # handle this
-```
-
-If you would prefer to handle non-20x status codes yourself,
-you can configure the client to suppress these exceptions
+All non-200 responses will throw a `plaid.errors.PlaidError`.
 
 ```python
-import json
-
+import requests
 from plaid import Client
+from plaid.errors import APIError, ItemError
 
-Client.config({
-    'url': 'https://tartan.plaid.com',
-    'suppress_http_errors': True,
-})
-
-client = Client(client_id='***', secret='***')
-
-response = client.connect('bofa', {
-    'username': '[something_invalid]',
-    'password': '***'
-})
-
-if response.ok:
-    user = response.json()
-else:
-    # handle non-20x status codes
-```
-
-### Public Endpoints
-
-Public endpoints (category information) require no authentication and can be accessed as follows:
-
-```python
-from plaid import Client
-from plaid import errors as plaid_errors
-from plaid.utils import json
-
-
-client = Client(client_id='***', secret='***')
-categories = client.categories().json()
-```
-
-### Authenticated Endpoints
-Authenticated endpoints require a valid `client_id` and `secret` to access.  You can use the sandbox client_id and secret for testing (`test_id` and `test_secret`) during development mode.
-
-
-### Add Connect user
-
-```python
-from plaid import Client
-from plaid import errors as plaid_errors
-from plaid.utils import json
-
-
-client = Client(client_id='***', secret='***')
-account_type = 'bofa'
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 
 try:
-    response = client.connect(account_type, {
-     'username': '***',
-     'password': '***'
-    })
-except plaid_errors.PlaidError:
-     pass
-else:
-    connect_data = response.json()
-```
-
-### MFA add Connect User
-
-```python
-from plaid import Client
-from plaid import errors as plaid_errors
-from plaid.utils import json
-
-
-client = Client(client_id='***', secret='***')
-account_type = 'bofa'
-
-try:
-    response = client.connect(account_type, {
-     'username': '***',
-     'password': '***'
-    })
-except plaid_errors.PlaidError, e:
-     pass
-else:
-    if response.status_code == 200:
-        # User connected
-        data = response.json()
-    elif response.stat_code == 201:
-        # MFA required
-        try:
-            mfa_response = answer_mfa(response.json())
-        except plaid_errors.PlaidError, e:
-            pass
-        else:
-            # check for 200 vs 201 responses
-            # 201 indicates that additional MFA steps required
-
-
-def answer_mfa(data):
-    if data['type'] == 'questions':
-        # Ask your user for the answer to the question[s].
-        # Although questions is a list, there is only ever a
-        # single element in this list, at present
-        return answer_question([q['question'] for q in data['mfa']])
-    elif data['type'] == 'list':
-        return answer_list(data['mfa'])
-    elif data['type'] == 'selection':
-        return answer_selections(data['mfa'])
+    client.Item.create(...)
+except ItemError as e:
+    # check the code attribute of the error to determine the specific error
+    if e.code == 'INVALID_CREDENTIALS':
+        # inform user about the invalid credentials
     else:
-        raise Exception('Unknown mfa type from Plaid')
-
-
-def answer_question(questions):
-    # We have magically inferred the answer
-    # so we respond immediately
-    # In the real world, we would present questions[0]
-    # to our user and submit their response
-    answer = 'dogs'
-    return client.connect_step(account_type, answer)
-
-
-def answer_list(devices):
-    # You should specify the device to which the passcode is sent.
-    # The available devices are present in the devices list
-    return client.connect_step('bofa', None, options={
-        'send_method': {'type': 'phone'}
-    })
-
-
-def answer_selections(selections):
-    # We have magically inferred the answers
-    # so we respond immediately
-    # In the real world, we would present the selection
-    # questions and choices to our user and submit their responses
-    # in a JSON-encoded array with answers provided
-    # in the same order as the given questions
-    answer = json.dumps(['Yes', 'No'])
-    return client.connect_step(account_type, answer)
+        ...
+except APIError as e:
+    if e.code == 'PLANNED_MAINTENANCE':
+        # inform user
+    else:
+        ...
+except requests.Timeout:
+    # retry request
 ```
 
-### Add Auth User
+For more information on Plaid response codes, head to the [docs][3].
 
-Effectively the same as Connect.
+
+## Examples
+
+### Create an Item using Link
+Exchange a `public_token` from [Plaid Link][4] for a Plaid access token:
+```python
+from plaid import Client
+
+
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
+
+# the public token is received from Plaid Link
+response = client.Item.public_token.exchange(public_token)
+access_token = response['access_token']
+```
+
+### Create a Stripe bank account token
+
+Exchange a Plaid Link `public_token` for an API `access_token` and a Stripe `bank_account_token`:
 
 ```python
-client = Client(client_id='***', secret='***')
-response = client.auth('bofa', {
-    'username': '***',
-    'password': '***'
-})
+from plaid import Client
+
+
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
+
+exchange_token_response = client.Item.public_token.exchange('[Plaid Link public_token]')
+access_token = exchange_token_response['access_token']
+
+stripe_response = client.Processor.stripeBankAccountTokenCreate(access_token, '[Account ID]'])
+bank_account_token = stripe_response['stripe_bank_account_token']
 ```
 
-### MFA add Auth User
-
-Effectively the same as Connect.
+### Delete Item
 
 ```python
-client = Client(client_id='***', secret='***')
-response = client.auth('bofa', {
-    'username': '***',
-    'password': '***'
-})
+from plaid import Client
 
-mfa_response = client.auth_step('bofa', 'my_answer')
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
+
+# Provide the access token for the Item you want to delete
+client.Item.delete(access_token)
 ```
 
-### Upgrade Account
+### Retrieve Transactions
+```python
+from plaid import Client
 
-Add a product (auth or connect to the user)
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
+
+response = client.Transactions.get(access_token, start_date='2016-07-12', end_date='2017-01-09')
+transactions = response['transactions']
+
+# the transactions in the response are paginated, so make multiple calls while increasing the offset to
+# retrieve all transactions
+while len(transactions) < response['total_transactions']:
+    response = client.Transactions.get(access_token, start_date='2016-07-12', end_date='2017-01-09',
+                                       offset=len(transactions)
+                                      )
+    transactions.extend(response['transactions'])
+```
+
+### Retrieve Other Data
+Most other item data can be retrieved by following this pattern:
+```python
+from plaid import Client
+
+client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
+
+response = client.Numbers.get(access_token)
+numbers = response['numbers']
+```
+
+### Authentication
+
+Public endpoints (category information) require no authentication and can be
+accessed as follows:
 
 ```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-response = client.upgrade('connect')
+import plaid
+
+client = plaid.Client(None, None, None)
+
+categories = client.Categories.get()
 ```
 
-### Delete User
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-
-client.connect_delete()  ## deletes Connect user
-
-# OR
-
-client.auth_delete()  ## deletes Auth user
-```
-
-### Exchange
-
-Exchange a `public_token` from [Plaid Link][4] for a Plaid access token and then
-retrieve account data:
-
-```python
-client = Client(client_id='***', secret='***')
-response = client.exchange_token('test,chase,connected')
-# client.access_token should now be populated with a
-# valid access_token;  we can make authenticated requests
-client.auth('chase', {
-    'username': '***',
-    'password': '***'
-})
-```
-
-### Get Accounts
-
-User previously Auth-ed
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-accounts = client.auth_get().json()
-```
-
-### Get Account Balances
-
-User previously added
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-response = client.balance()
-```
-
-### Get Transactions
-
-User previously Connect-ed
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-response = client.connect_get()
-transactions = response.json()
-```
-
-### Get Info
-
-User previously Info-ed
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-response = client.info_get()
-info = response.json()
-```
-
-### Get Income
-
-User previously Income-ed
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-response = client.income_get()
-income = response.json()
-```
-### Get Risk
-
-User previously Risk-ed
-
-```python
-client = Client(client_id='***', secret='***', access_token='usertoken')
-response = client.risk_get()
-risk = response.json()
-```
-
-### Institutions
-
-To search through or retrieve a list of all financial institutions supported by Plaid, use the `/institutions/all/search` and `/institutions/all` endpoints:
-
-```python
-client = Client(client_id='***', secret='***')
-
-# Search for an institution matching the name 'redwood credit' that supports Connect
-institutionSearchResults = client.institution_all_search('redwood credit', 'connect'):
-
-# Pull 200 institutions with, offseting 0 institutions
-institutions = client.institutions_all(count=200, offset=0).json()
-
-# Pull 50 institutions that support both Auth and Connect
-institutions = client.institutions_all(count=50, offset=0, products=["auth","connect"]).json()
-
-# Pull a single institution
-singleInstitution = client.institution('ins_100003').json()
-```
-
-For additional information, please see the [API Institutions docs](https://plaid.com/docs/api#institutions).
-
-**Note:** Use of the `institution_search()` and `institutions()` methods has been deprecated. Use `institution_all_search()` and `institutions_all()` methods instead.
-
-## Attribution & Maintenance
-
-This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette).
-Version 1.0.0 was authored by [Ben Plesser](https://github.com/Bpless).
-
-## Support
-
-Open an [issue][5]!
+Authenticated endpoints require either a `(client_id, secret)` pair or
+a `public_key` to access. You do not need to pass in authentication to
+individual endpoints once you have set it on the `plaid.Client` object.
 
 ## Known Issues
 
-1. `SSLError: EOF occurred in violation of protocol (_ssl.c:581)`(https://github.com/plaid/plaid-python/issues/62) - Work around is installing `pyopenssl ndg-httpsclient pyasn1`
+Please open an [issue][5] for anything not on this list!
 
-## Contribute
+1. `SSLError: EOF occurred in violation of protocol (_ssl.c:581)`
+(https://github.com/plaid/plaid-python/issues/62) -
+Work around is installing `pyopenssl ndg-httpsclient pyasn1` from pip.
 
-All pull requests should be linted with flake8 and tested by running:
+2. Requests are no longer made using `urlfetch.fetch` on Google App Engine. You will need to use the appengine requests 
+adapter to monkeypatch requests. See the [app engine documentation][8] for details.
+## Contributing
 
-```console
-$ make test
-```
+Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions
+for local development.
 
-## Contributors
+### Attribution & Maintenance
+
+This repository was originally authored by [Chris Forrette](https://github.com/chrisforrette).
+Version 1.0.0 was authored by [Ben Plesser](https://github.com/Bpless).
+Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
+[Rohan Shah](https://github.com/r-ohan).
+
+### Contributors
 - [@chrisforrette](https://github.com/chrisforrette) (Chris Forrette)
 - [@gae123](https://github.com/gae123)
 
@@ -386,7 +201,10 @@ $ make test
 
 [1]: https://plaid.com
 [2]: https://plaid.com/docs/api
-[3]: https://plaid.com/docs/api/#response-codes
+[3]: https://plaid.com/docs/api#errors
 [4]: https://github.com/plaid/link
 [5]: https://github.com/plaid/plaid-python/issues/new
 [6]: https://github.com/plaid/plaid-python/blob/master/LICENSE
+[7]: https://plaid.github.io/plaid-python/index.html
+[8]: https://cloud.google.com/appengine/docs/python/issue-requests
+
