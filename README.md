@@ -109,7 +109,7 @@ client = Client(client_id='***', secret='***', public_key='***', environment='sa
 exchange_token_response = client.Item.public_token.exchange('[Plaid Link public_token]')
 access_token = exchange_token_response['access_token']
 
-stripe_response = client.Processor.stripeBankAccountTokenCreate(access_token, '[Account ID]'])
+stripe_response = client.Processor.stripeBankAccountTokenCreate(access_token, '[Account ID]')
 bank_account_token = stripe_response['stripe_bank_account_token']
 ```
 
