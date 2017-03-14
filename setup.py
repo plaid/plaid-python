@@ -1,19 +1,25 @@
+import re
 from setuptools import setup, find_packages
-import plaid
 
+with open('plaid/version.py', 'r') as f:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                        f.read(), re.MULTILINE).group(1)
+
+if not version:
+    raise RuntimeError('Cannot find version information')
 
 url = 'https://github.com/plaid/plaid-python'
 
 setup(
     name='plaid-python',
-    version=plaid.__version__,
+    version=version,
     description='Python client library for the Plaid API and Link',
     long_description='',
     keywords='api, client, plaid',
     author='Plaid Technologies',
     author_email='developers@plaid.com',
     url=url,
-    download_url='{}/tarball/v{}'.format(url, plaid.__version__),
+    download_url='{}/tarball/v{}'.format(url, version),
     license='MIT',
     packages=find_packages(exclude='tests'),
     package_data={'README': ['README.md']},
