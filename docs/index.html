@@ -91,14 +91,14 @@ arguments where possible.</p>
 <span class="n">client</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">credentials</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;user_good&#39;</span><span class="p">,</span>
                                     <span class="n">password</span><span class="o">=</span><span class="s1">&#39;pass_good&#39;</span><span class="p">),</span>
                    <span class="n">institution_id</span><span class="o">=</span><span class="s1">&#39;ins_109508&#39;</span><span class="p">,</span>
-                   <span class="n">initial_products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;numbers&#39;</span><span class="p">],</span>
+                   <span class="n">initial_products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;auth&#39;</span><span class="p">],</span>
                    <span class="n">webhook</span><span class="o">=</span><span class="s1">&#39;https://example.com/webhook&#39;</span><span class="p">);</span>
 
 <span class="o">//</span> <span class="o">...</span> <span class="n">over</span> <span class="n">this</span><span class="o">.</span>
 <span class="n">client</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">credentials</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;user_good&#39;</span><span class="p">,</span>
                                     <span class="n">password</span><span class="o">=</span><span class="s1">&#39;pass_good&#39;</span><span class="p">),</span>
                    <span class="n">institution_id</span><span class="o">=</span><span class="s1">&#39;ins_109508&#39;</span><span class="p">,</span>
-                   <span class="n">initial_products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;numbers&#39;</span><span class="p">],</span>
+                   <span class="n">initial_products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;auth&#39;</span><span class="p">],</span>
                    <span class="n">_options</span><span class="o">=</span><span class="p">{</span>
                       <span class="s1">&#39;webhook&#39;</span><span class="p">:</span> <span class="s1">&#39;https://example.com/webhook&#39;</span><span class="p">,</span>
                    <span class="p">});</span>
@@ -645,7 +645,7 @@ the beginning of the fetch. Optional.</li>
 <dl class="exception">
 <dt id="plaid.errors.PlaidError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 <p>A Plaid API error.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
