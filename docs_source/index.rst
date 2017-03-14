@@ -31,14 +31,14 @@ For example:
   client.Item.create(credentials=dict(username='user_good',
                                       password='pass_good'),
                      institution_id='ins_109508',
-                     initial_products=['transactions', 'numbers'],
+                     initial_products=['transactions', 'auth'],
                      webhook='https://example.com/webhook');
 
   // ... over this.
   client.Item.create(credentials=dict(username='user_good',
                                       password='pass_good'),
                      institution_id='ins_109508',
-                     initial_products=['transactions', 'numbers'],
+                     initial_products=['transactions', 'auth'],
                      _options={
                      	'webhook': 'https://example.com/webhook',
                      });
