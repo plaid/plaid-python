@@ -13,7 +13,7 @@ from plaid.api import (
     Sandbox,
     Transactions,
 )
-from plaid.requester import post_request
+from plaid.requester import DEFAULT_TIMEOUT, post_request
 from plaid.utils import urljoin
 
 
@@ -32,7 +32,8 @@ class Client(object):
                  secret,
                  public_key,
                  environment,
-                 suppress_warnings=False):
+                 suppress_warnings=False,
+                 timeout=DEFAULT_TIMEOUT):
         '''
         Initialize a client with credentials.
 
@@ -42,12 +43,15 @@ class Client(object):
         :arg    str     environment:        One of ``sandbox``,
                                             ``development``, or ``production``.
         :arg    bool    suppress_warnings:  Suppress Plaid warnings.
+        :arg    int     timeout:            Timeout for API requests.
+
         '''
         self.client_id = client_id
         self.secret = secret
         self.public_key = public_key
         self.environment = environment
         self.suppress_warnings = suppress_warnings
+        self.timeout = timeout
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
@@ -93,5 +97,5 @@ class Client(object):
     def _post(self, path, data):
         return post_request(
             urljoin('https://' + self.environment + '.plaid.com', path),
-            data=data,
+            data=data, timeout=self.timeout
         )
