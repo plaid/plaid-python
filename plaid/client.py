@@ -97,5 +97,6 @@ class Client(object):
     def _post(self, path, data):
         return post_request(
             urljoin('https://' + self.environment + '.plaid.com', path),
-            data=data, timeout=self.timeout
+            data=data,
+            timeout=self.timeout
         )
