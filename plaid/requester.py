@@ -8,7 +8,7 @@ from plaid.version import __version__
 
 
 ALLOWED_METHODS = {'post'}
-DEFAULT_TIMEOUT = 600 # 10 minutes
+DEFAULT_TIMEOUT = 600  # 10 minutes
 
 
 def _requests_http_request(url, method, data, timeout=DEFAULT_TIMEOUT):
