@@ -134,7 +134,7 @@ class Item(API):
                                                         ``password``, and
                                                         (optionally) ``pin``.
         :param  str     institution_id:
-        :param  list    initial_products:               A list containing 
+        :param  list    initial_products:               A list containing
                                                         product names.
         :param  str     transactions__start_date:       The date to begin the
                                                         item's initial
