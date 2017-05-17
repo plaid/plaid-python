@@ -98,7 +98,9 @@ access_token = response['access_token']
 
 ### Create a Stripe bank account token
 
-Exchange a Plaid Link `public_token` for an API `access_token` and a Stripe `bank_account_token`:
+Exchange a Plaid Link `public_token` for an API `access_token`.  Then exchange
+that `access_token` and the Plaid Link `account_id` (received along with the
+public_token) for a Stripe `bank_account_token`:
 
 ```python
 from plaid import Client
