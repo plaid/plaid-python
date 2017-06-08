@@ -151,7 +151,7 @@ from plaid import Client
 
 client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 
-response = client.Numbers.get(access_token)
+response = client.Auth.get(access_token)
 numbers = response['numbers']
 ```
 
