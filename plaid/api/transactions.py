@@ -48,15 +48,3 @@ class Transactions(API):
             'end_date': end_date,
             'options': options,
         })
-
-    def deactivate(self,
-                   access_token):
-        '''
-        Deactivate the transactions product for an Item.
-        (`HTTP docs <https://plaid.com/docs/api/#deactivate-transactions>`__)
-
-        :param  str     access_token:
-        '''
-        return self.client.post('/transactions/deactivate', {
-            'access_token': access_token,
-        })

@@ -47,9 +47,3 @@ def test_get_with_options():
     response = client.Transactions.get(
         access_token, '2016-01-01', '2017-01-01', count=2, offset=1)
     assert len(response['transactions']) == 2
-
-
-def test_deactivate():
-    client = create_client()
-    client.Transactions.deactivate(access_token)
-    # Nothing to check, ok as long as there is no exception.
