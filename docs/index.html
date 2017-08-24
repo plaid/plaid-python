@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 2.0.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 2.0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.0.0',
+        VERSION:     '2.0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -49,14 +49,14 @@
 <h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="plaid.Client">
-<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Python Plaid API client.</p>
 <p>See official documentation at: <a class="reference external" href="https://plaid.com/docs">https://plaid.com/docs</a>.</p>
 <p>All of the endpoints documented under the <code class="docutils literal"><span class="pre">plaid.api</span></code>
 module may be called from a <code class="docutils literal"><span class="pre">plaid.Client</span></code> instance.</p>
 <dl class="method">
 <dt id="plaid.Client.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a client with credentials.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -69,6 +69,7 @@ module may be called from a <code class="docutils literal"><span class="pre">pla
 <li><strong>environment</strong> (<em>str</em>) &#8211; One of <code class="docutils literal"><span class="pre">sandbox</span></code>,
 <code class="docutils literal"><span class="pre">development</span></code>, or <code class="docutils literal"><span class="pre">production</span></code>.</li>
 <li><strong>suppress_warnings</strong> (<em>bool</em>) &#8211; Suppress Plaid warnings.</li>
+<li><strong>timeout</strong> (<em>int</em>) &#8211; Timeout for API requests.</li>
 </ul>
 </td>
 </tr>
@@ -458,6 +459,8 @@ the fields
 <code class="docutils literal"><span class="pre">password</span></code>, and
 (optionally) <code class="docutils literal"><span class="pre">pin</span></code>.</li>
 <li><strong>institution_id</strong> (<em>str</em>) &#8211; </li>
+<li><strong>initial_products</strong> (<em>list</em>) &#8211; A list containing
+product names.</li>
 <li><strong>transactions__start_date</strong> (<em>str</em>) &#8211; The date to begin the
 item&#8217;s initial
 transaction pull.</li>
@@ -487,8 +490,7 @@ item.</li>
 <code class="descclassname">Item.</code><code class="descname">delete</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete an item.
 (<a class="reference external" href="https://plaid.com/docs/api/#delete-an-item">HTTP docs</a>)</p>
-<p>This also deactivates the access_token. There are separate endpoints
-to deactivate individual products for an item.</p>
+<p>This also deactivates the access_token.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -592,21 +594,6 @@ to deactivate individual products for an item.</p>
 <dt id="plaid.api.Transactions">
 <em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Transactions</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Transactions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transactions endpoints.</p>
-<dl class="method">
-<dt id="plaid.api.Transactions.deactivate">
-<code class="descname">deactivate</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Transactions.deactivate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deactivate the transactions product for an Item.
-(<a class="reference external" href="https://plaid.com/docs/api/#deactivate-transactions">HTTP docs</a>)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>access_token</strong> (<em>str</em>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="plaid.api.Transactions.get">
 <code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>start_date</em>, <em>end_date</em>, <em>_options={}</em>, <em>account_ids=None</em>, <em>count=None</em>, <em>offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Transactions.get" title="Permalink to this definition">¶</a></dt>
