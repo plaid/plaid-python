@@ -64,7 +64,7 @@ class ItemError(PlaidError):
 PLAID_ERROR_TYPE_MAP = {
     'INVALID_REQUEST': InvalidRequestError,
     'INVALID_INPUT': InvalidInputError,
-    'RATE_LIMIT_EXCEEDED_ERROR': RateLimitExceededError,
+    'RATE_LIMIT_EXCEEDED': RateLimitExceededError,
     'API_ERROR': APIError,
     'ITEM_ERROR': ItemError,
 }
