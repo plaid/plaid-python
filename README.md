@@ -24,6 +24,10 @@ The official python client library for the [Plaid API][1].
 ```console
 $ pip install plaid-python
 ```
+if you want to use the optional async support, install with
+```console
+$ pip install plaid-python[async]
+```
 
 ## Documentation
 
@@ -45,6 +49,8 @@ from plaid import Client
 # Available environments are 'sandbox', 'development', and 'production'.
 client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 client.Item.create(...)
+# for async support, pass the `async` flag as true
+client_async = Client(client_id='***', secret='***', public_key='***', environment='sandbox', async=True)
 ```
 
 Each endpoint returns a dictionary which contains the parsed JSON from the

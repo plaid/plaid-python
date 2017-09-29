@@ -33,18 +33,22 @@ class Client(object):
                  public_key,
                  environment,
                  suppress_warnings=False,
-                 timeout=DEFAULT_TIMEOUT):
+                 timeout=DEFAULT_TIMEOUT,
+                 http_client=post_request,
+                 use_async=False):
         '''
         Initialize a client with credentials.
 
-        :param  str     client_id:          Your Plaid client ID
-        :arg    str     secret:             Your Plaid secret
-        :arg    str     public_key:         Your Plaid public key
-        :arg    str     environment:        One of ``sandbox``,
+        :param  str      client_id:          Your Plaid client ID
+        :arg    str      secret:             Your Plaid secret
+        :arg    str      public_key:         Your Plaid public key
+        :arg    str      environment:        One of ``sandbox``,
                                             ``development``, or ``production``.
-        :arg    bool    suppress_warnings:  Suppress Plaid warnings.
-        :arg    int     timeout:            Timeout for API requests.
-
+        :arg    bool     suppress_warnings:  Suppress Plaid warnings.
+        :arg    int      timeout:            Timeout for API requests.
+        :arg    callable http_client:        Request adaptor. sync or async
+        :arg    bool     use_async:          Whether or not to use
+                                             async for the request
         '''
         self.client_id = client_id
         self.secret = secret
@@ -52,6 +56,8 @@ class Client(object):
         self.environment = environment
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
+        self.http_client = http_client
+        self.use_async = use_async
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
@@ -59,6 +65,13 @@ class Client(object):
                 Swap out url for https://api.plaid.com
                 via Client.config before switching to production
             ''')
+
+        if not self.http_client:
+            if use_async:
+                from plaid.requester import post_request_async
+                self.http_client = post_request_async
+            else:
+                self.http_client = post_request
 
         # Mirror the HTTP API hierarchy
         self.Accounts = Accounts(self)
@@ -88,15 +101,12 @@ class Client(object):
 
     def post_public_key(self, path, data):
         '''Make a post request using a public key.'''
-        post_data = {
-            'public_key': self.public_key
-        }
+        post_data = {'public_key': self.public_key}
         post_data.update(data)
         return self._post(path, post_data)
 
     def _post(self, path, data):
-        return post_request(
+        return self.http_client(
             urljoin('https://' + self.environment + '.plaid.com', path),
             data=data,
-            timeout=self.timeout
-        )
+            timeout=self.timeout)

@@ -24,6 +24,7 @@ setup(
     packages=find_packages(exclude='tests'),
     package_data={'README': ['README.md']},
     install_requires=['requests>=2.7.0'],
+    extras_require={'async': ['aiohttp==2.2.5']},
     zip_safe=False,
     include_package_data=True,
     classifiers=[
@@ -36,5 +37,4 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Environment :: Web Environment",
-    ]
-)
+    ])
