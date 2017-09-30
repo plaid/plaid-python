@@ -68,11 +68,14 @@ from plaid.errors import APIError, ItemError
 client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 
 try:
-    client.Item.create(...)
+    client.Auth.get(access_token)
 except ItemError as e:
     # check the code attribute of the error to determine the specific error
-    if e.code == 'INVALID_CREDENTIALS':
-        # inform user about the invalid credentials
+    if e.code == 'ITEM_LOGIN_REQUIRED':
+        # the users' login information has changed, generate a public_token
+        # for the user and initialize Link in update mode to
+        # restore access to this user's data
+        # see https://plaid.com/docs/api/#updating-items-via-link
     else:
         ...
 except APIError as e:
@@ -157,7 +160,7 @@ from plaid import Client
 
 client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 
-response = client.Numbers.get(access_token)
+response = client.Auth.get(access_token)
 numbers = response['numbers']
 ```
 

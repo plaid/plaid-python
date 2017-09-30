@@ -209,8 +209,7 @@ class Item(API):
         Delete an item.
         (`HTTP docs <https://plaid.com/docs/api/#delete-an-item>`__)
 
-        This also deactivates the access_token. There are separate endpoints
-        to deactivate individual products for an item.
+        This also deactivates the access_token.
 
         :param  str     access_token:
         '''
