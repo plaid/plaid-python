@@ -7,11 +7,11 @@
 2. Publish to the test Pypi repository:
 
 ```bash
-python setup.py sdist upload -r pypitest
+python setup.py sdist upload -r https://test.pypi.org/legacy/
 ```
 
 3. Publish to the production Pypi repository:
 
 ```bash
-python setup.py sdist upload -r pypi
+python setup.py sdist upload -r https://upload.pypi.org/legacy/
 ```
