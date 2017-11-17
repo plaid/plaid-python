@@ -30,7 +30,15 @@ def _requests_http_request(url, method, data, timeout=DEFAULT_TIMEOUT):
 
 def http_request(url, method=None, data=None, timeout=DEFAULT_TIMEOUT):
     response = _requests_http_request(url, method, data or {}, timeout)
-    response_body = json.loads(response.text)
+    try:
+        response_body = json.loads(response.text)
+    except json.JSONDecodeError:
+        raise PlaidError.from_response({
+            'error_message': '',
+            'error_type': 'API_ERROR',
+            'error_code': 'INTERNAL_SERVER_ERROR',
+            'display_message': None,
+        })
     if response_body.get('error_type'):
         raise PlaidError.from_response(response_body)
     else:
