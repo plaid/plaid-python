@@ -23,7 +23,7 @@ def setup_module(module):
 
 def teardown_module(module):
     client = create_client()
-    client.Item.delete(access_token)
+    client.Item.remove(access_token)
 
 
 def test_get():

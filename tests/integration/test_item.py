@@ -24,13 +24,13 @@ from tests.integration.util import (
 )
 
 
-# Ensure that any items created are also deleted
+# Ensure that any items created are also removed
 @contextmanager
-def ensure_item_deleted(access_token):
+def ensure_item_removed(access_token):
     try:
         yield
     finally:
-        create_client().Item.delete(access_token)
+        create_client().Item.remove(access_token)
 
 
 def test_create():
@@ -38,7 +38,7 @@ def test_create():
     response = client.Item.create(
         CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(response['access_token']):
+    with ensure_item_removed(response['access_token']):
         assert response['access_token'] is not None
         assert response['item']['billed_products'] == ['transactions']
         assert response['item']['institution_id'] == SANDBOX_INSTITUTION
@@ -65,7 +65,7 @@ def test_create_with_options():
         webhook='https://plaid.com/webhook-test',
     )
 
-    with ensure_item_deleted(response['access_token']):
+    with ensure_item_removed(response['access_token']):
         assert response['access_token'] is not None
         assert response['item'] is not None
         assert response['item']['webhook'] == 'https://plaid.com/webhook-test'
@@ -76,7 +76,7 @@ def test_mfa_device():
     item_response = client.Item.create(
         MFA_DEVICE_CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(item_response['access_token']):
+    with ensure_item_removed(item_response['access_token']):
         assert item_response['mfa_type'] == 'device_list'
 
         # Send MFA indicating which device should receive the code
@@ -99,7 +99,7 @@ def test_mfa_questions():
     item_response = client.Item.create(
         MFA_QUESTIONS_CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(item_response['access_token']):
+    with ensure_item_removed(item_response['access_token']):
         assert item_response['mfa_type'] == 'questions'
 
         mfa_response = client.Item.mfa(
@@ -112,7 +112,7 @@ def test_mfa_selections():
     item_response = client.Item.create(
         MFA_SELECTIONS_CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(item_response['access_token']):
+    with ensure_item_removed(item_response['access_token']):
         assert item_response['mfa_type'] == 'selections'
 
         mfa_response = client.Item.mfa(
@@ -125,7 +125,7 @@ def test_credentials_update():
     create_response = client.Item.create(
         CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(create_response['access_token']):
+    with ensure_item_removed(create_response['access_token']):
         client.Sandbox.item.reset_login(create_response['access_token'])
 
         update_response = client.Item.credentials.update(
@@ -138,7 +138,7 @@ def test_get():
     create_response = client.Item.create(
         CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(create_response['access_token']):
+    with ensure_item_removed(create_response['access_token']):
         get_response = client.Item.get(create_response['access_token'])
         assert get_response['item'] is not None
 
@@ -151,13 +151,20 @@ def test_delete():
     delete_response = client.Item.delete(create_response['access_token'])
     assert delete_response['deleted']
 
+def test_remove():
+    client = create_client()
+    create_response = client.Item.create(
+        CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
+
+    remove_response = client.Item.remove(create_response['access_token'])
+    assert remove_response['removed']
 
 def test_public_token():
     client = create_client()
     item_response = client.Item.create(
         CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(item_response['access_token']):
+    with ensure_item_removed(item_response['access_token']):
         # access token -> public token
         create_response = client.Item.public_token.create(
             item_response['access_token'])
@@ -177,10 +184,10 @@ def test_access_token_invalidate():
     try:
         invalidate_response = client.Item.access_token.invalidate(
             create_response['access_token'])
-        with ensure_item_deleted(invalidate_response['new_access_token']):
+        with ensure_item_removed(invalidate_response['new_access_token']):
             assert invalidate_response['new_access_token'] is not None
     except Exception:
-        with ensure_item_deleted(create_response['access_token']):
+        with ensure_item_removed(create_response['access_token']):
             raise
 
 
@@ -189,7 +196,7 @@ def test_webhook_update():
     create_response = client.Item.create(
         CREDENTIALS, SANDBOX_INSTITUTION, ['transactions'])
 
-    with ensure_item_deleted(create_response['access_token']):
+    with ensure_item_removed(create_response['access_token']):
         webhook_response = client.Item.webhook.update(
             create_response['access_token'], 'https://plaid.com/webhook-test')
         assert (webhook_response['item']['webhook'] ==

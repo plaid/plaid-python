@@ -216,3 +216,16 @@ class Item(API):
         return self.client.post('/item/delete', {
             'access_token': access_token,
         })
+
+    def remove(self, access_token):
+        '''
+        Remove an item.
+        (`HTTP docs <https://plaid.com/docs/api/#remove-an-item>`__)
+
+        This also deactivates the access_token.
+
+        :param  str     access_token:
+        '''
+        return self.client.post('/item/remove', {
+            'access_token': access_token,
+        })
