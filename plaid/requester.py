@@ -34,7 +34,7 @@ def http_request(url, method=None, data=None, timeout=DEFAULT_TIMEOUT):
         response_body = json.loads(response.text)
     except json.JSONDecodeError:
         raise PlaidError.from_response({
-            'error_message': '',
+            'error_message': response.text,
             'error_type': 'API_ERROR',
             'error_code': 'INTERNAL_SERVER_ERROR',
             'display_message': None,
