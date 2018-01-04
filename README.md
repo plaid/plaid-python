@@ -1,4 +1,5 @@
 plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fplaid%2Fplaid-python.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fplaid%2Fplaid-python?ref=badge_shield)
 ============
 
 The official python client library for the [Plaid API][1].
@@ -18,6 +19,9 @@ The official python client library for the [Plaid API][1].
   * [Contributing](#contributing)
   * [License](#license)
 
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fplaid%2Fplaid-python.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fplaid%2Fplaid-python?ref=badge_large)
 
 ## Install
 
