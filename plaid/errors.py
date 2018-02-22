@@ -61,7 +61,14 @@ class ItemError(PlaidError):
     pass
 
 
+class InstitutionError(PlaidError):
+    '''There are errors for the requested financial institution.'''
+
+    pass
+
+
 PLAID_ERROR_TYPE_MAP = {
+    'INSTITUTION_ERROR': InstitutionError,
     'INVALID_REQUEST': InvalidRequestError,
     'INVALID_INPUT': InvalidInputError,
     'RATE_LIMIT_EXCEEDED': RateLimitExceededError,
