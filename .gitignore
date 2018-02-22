@@ -12,6 +12,8 @@ venv
 .coverage
 .tox/*
 
-docs/.*
-!docs/.nojekyll
+docs/.buildinfo
+docs/.doctrees
 docs/objects.inv
+
+dist
