@@ -56,7 +56,7 @@ class Client(object):
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
                 Development is not intended for production usage.
-                Swap out url for https://api.plaid.com
+                Swap out url for https://production.plaid.com
                 via Client.config before switching to production
             ''')
 
