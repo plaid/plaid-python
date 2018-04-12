@@ -10,6 +10,12 @@ from plaid.version import __version__
 ALLOWED_METHODS = {'post'}
 DEFAULT_TIMEOUT = 600  # 10 minutes
 
+try:
+    from json.decoder import JSONDecodeError
+except ImportError:
+    # json parsing throws a ValueError in python3
+    JSONDecodeError = ValueError
+
 
 def _requests_http_request(url, method, data, timeout=DEFAULT_TIMEOUT):
     normalized_method = method.lower()
@@ -32,7 +38,7 @@ def http_request(url, method=None, data=None, timeout=DEFAULT_TIMEOUT):
     response = _requests_http_request(url, method, data or {}, timeout)
     try:
         response_body = json.loads(response.text)
-    except json.JSONDecodeError:
+    except JSONDecodeError:
         raise PlaidError.from_response({
             'error_message': response.text,
             'error_type': 'API_ERROR',
