@@ -9,13 +9,16 @@ class PlaidError(Exception):
                                         safe for programmatic use.
     :ivar   str     display_message:    A user-friendly error message. Not safe
                                         for programmatic use. May be None.
+    :ivar   str     request_id:         A unique id returned for all server
+                                        responses.
     '''
 
-    def __init__(self, message, type, code, display_message):
+    def __init__(self, message, type, code, display_message, request_id):
         super(PlaidError, self).__init__(message)
         self.type = type
         self.code = code
         self.display_message = display_message
+        self.request_id = request_id
 
     @staticmethod
     def from_response(response):
@@ -28,7 +31,8 @@ class PlaidError(Exception):
         return cls(response['error_message'],
                    response['error_type'],
                    response['error_code'],
-                   response['display_message'])
+                   response['display_message'],
+                   response['request_id'])
 
 
 class InvalidRequestError(PlaidError):
