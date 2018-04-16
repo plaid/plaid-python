@@ -44,6 +44,7 @@ def http_request(url, method=None, data=None, timeout=DEFAULT_TIMEOUT):
             'error_type': 'API_ERROR',
             'error_code': 'INTERNAL_SERVER_ERROR',
             'display_message': None,
+            'request_id': '',
         })
     if response_body.get('error_type'):
         raise PlaidError.from_response(response_body)
