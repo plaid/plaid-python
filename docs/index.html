@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 2.2.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 2.2.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.2.0',
+        VERSION:     '2.2.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -647,7 +647,7 @@ the beginning of the fetch. Optional.</li>
 <span id="errors"></span><h2>Errors<a class="headerlink" href="#module-plaid.errors" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
 <dt id="plaid.errors.PlaidError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>A Plaid API error.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -662,6 +662,8 @@ corresponding to the error class.</li>
 safe for programmatic use.</li>
 <li><strong>display_message</strong> (<em>str</em>) &#8211; A user-friendly error message. Not safe
 for programmatic use. May be None.</li>
+<li><strong>request_id</strong> (<em>str</em>) &#8211; A unique id returned for all server
+responses.</li>
 </ul>
 </td>
 </tr>
@@ -678,42 +680,42 @@ for programmatic use. May be None.</li>
 
 <dl class="exception">
 <dt id="plaid.errors.InvalidRequestError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidRequestError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidRequestError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidRequestError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidRequestError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>The request is malformed and cannot be processed.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.InvalidInputError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidInputError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidInputError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidInputError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidInputError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>The request is correctly formatted, but the values are incorrect.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.RateLimitExceededError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">RateLimitExceededError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.RateLimitExceededError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">RateLimitExceededError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.RateLimitExceededError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>The request is valid but has exceeded established rate limits.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.APIError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">APIError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.APIError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">APIError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.APIError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>Planned maintenance or an API internal server error.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.ItemError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">ItemError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.ItemError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">ItemError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.ItemError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>There is invalid information about an item or it is not supported.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.InstitutionError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InstitutionError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InstitutionError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InstitutionError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InstitutionError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>There are errors for the requested financial institution.</p>
 </dd></dl>

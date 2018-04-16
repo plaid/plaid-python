@@ -17,3 +17,4 @@ setup:
 docs:
 	-rm -r docs/
 	sphinx-build docs_source/ docs/ -b html
+	touch docs/.nojekyll
