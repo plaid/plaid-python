@@ -13,7 +13,7 @@ DEFAULT_TIMEOUT = 600  # 10 minutes
 try:
     from json.decoder import JSONDecodeError
 except ImportError:
-    # json parsing throws a ValueError in python3
+    # json parsing throws a ValueError in python2
     JSONDecodeError = ValueError
 
 
