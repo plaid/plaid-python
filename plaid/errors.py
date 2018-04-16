@@ -13,7 +13,7 @@ class PlaidError(Exception):
                                         responses.
     '''
 
-    def __init__(self, message, type, code, display_message, request_id):
+    def __init__(self, message, type, code, display_message, request_id=""):
         super(PlaidError, self).__init__(message)
         self.type = type
         self.code = code
