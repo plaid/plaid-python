@@ -42,8 +42,8 @@ def http_request(
         url,
         method=None,
         data=None,
-        timeout=DEFAULT_TIMEOUT,
-        headers=None):
+        headers=None,
+        timeout=DEFAULT_TIMEOUT):
     response = _requests_http_request(
         url,
         method,
