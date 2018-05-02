@@ -33,7 +33,8 @@ class Client(object):
                  public_key,
                  environment,
                  suppress_warnings=False,
-                 timeout=DEFAULT_TIMEOUT):
+                 timeout=DEFAULT_TIMEOUT,
+                 api_version=None):
         '''
         Initialize a client with credentials.
 
@@ -52,6 +53,7 @@ class Client(object):
         self.environment = environment
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
+        self.api_version = api_version
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
@@ -95,8 +97,12 @@ class Client(object):
         return self._post(path, post_data)
 
     def _post(self, path, data):
+        headers = {}
+        if self.api_version is not None:
+            headers = {'Plaid-Version': self.api_version}
         return post_request(
             urljoin('https://' + self.environment + '.plaid.com', path),
             data=data,
-            timeout=self.timeout
+            timeout=self.timeout,
+            headers=headers,
         )
