@@ -3,8 +3,6 @@ plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style
 
 The official python client library for the [Plaid API][1].
 
-**Note:** This module was recently refactored and released as version `2.0.x` to support [Plaid's updated API][9]. The previous module version, 1.5.0, and API legacy documentation, is still available via pypi and mirrored as [`plaid-python-legacy`][10]. 
-
 ## Table of Contents
 
 - [plaid-python](#plaid-python)
@@ -16,8 +14,8 @@ The official python client library for the [Plaid API][1].
   * [Examples](#examples)
   * [Known Issues](#known-issues)
   * [Contributing](#contributing)
+  * [Legacy API](#legacy-api)
   * [License](#license)
-
 
 ## Install
 
@@ -199,6 +197,10 @@ Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
 ### Contributors
 - [@chrisforrette](https://github.com/chrisforrette) (Chris Forrette)
 - [@gae123](https://github.com/gae123)
+
+## Legacy API
+
+If you're looking for a Python client that works with the legacy Plaid API, use [`plaid-python-legacy`][10], available via pypi.
 
 ## License
 [MIT][6]
