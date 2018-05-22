@@ -175,6 +175,16 @@ def test_public_token():
             create_response['public_token'])
         assert exchange_response['access_token'] is not None
 
+def test_sandbox_public_token():
+    client = create_client()
+    create_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'])
+    assert create_response['public_token'] is not None
+
+    # public token -> access token
+    exchange_response = client.Item.public_token.exchange(
+        create_response['public_token'])
+    assert exchange_response['access_token'] is not None
 
 def test_access_token_invalidate():
     client = create_client()
