@@ -117,7 +117,6 @@ class Item(API):
                credentials,
                institution_id,
                initial_products,
-               _options={},
                transactions__start_date=None,
                transactions__end_date=None,
                transactions__await_results=None,
@@ -156,7 +155,6 @@ class Item(API):
         All dates should be formatted as ``YYYY-MM-DD``.
         '''
         transaction_options = {}
-        transaction_options.update(_options.get('transactions', {}))
         if transactions__start_date is not None:
             transaction_options['start_date'] = transactions__start_date
         if transactions__end_date is not None:
@@ -165,7 +163,6 @@ class Item(API):
             transaction_options['await_results'] = transactions__await_results
 
         options = {}
-        options.update(_options)
         if transaction_options:
             options['transactions'] = transaction_options
         if webhook is not None:
