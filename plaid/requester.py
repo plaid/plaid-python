@@ -34,22 +34,32 @@ def _requests_http_request(url, method, data, timeout=DEFAULT_TIMEOUT):
         )
 
 
-def http_request(url, method=None, data=None, timeout=DEFAULT_TIMEOUT):
+def http_request(
+    url,
+    method=None,
+    data=None,
+    timeout=DEFAULT_TIMEOUT,
+    is_json=True,
+):
     response = _requests_http_request(url, method, data or {}, timeout)
-    try:
-        response_body = json.loads(response.text)
-    except JSONDecodeError:
-        raise PlaidError.from_response({
-            'error_message': response.text,
-            'error_type': 'API_ERROR',
-            'error_code': 'INTERNAL_SERVER_ERROR',
-            'display_message': None,
-            'request_id': '',
-        })
-    if response_body.get('error_type'):
-        raise PlaidError.from_response(response_body)
+
+    if is_json:
+        try:
+            response_body = json.loads(response.text)
+        except JSONDecodeError:
+            raise PlaidError.from_response({
+                'error_message': response.text,
+                'error_type': 'API_ERROR',
+                'error_code': 'INTERNAL_SERVER_ERROR',
+                'display_message': None,
+                'request_id': '',
+            })
+        if response_body.get('error_type'):
+            raise PlaidError.from_response(response_body)
+        else:
+            return response_body
     else:
-        return response_body
+        return response.text
 
 
 # helpers to simplify partial function application
