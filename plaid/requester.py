@@ -17,15 +17,19 @@ except ImportError:
     JSONDecodeError = ValueError
 
 
-def _requests_http_request(url, method, data, timeout=DEFAULT_TIMEOUT):
+def _requests_http_request(
+        url,
+        method,
+        data,
+        headers,
+        timeout=DEFAULT_TIMEOUT):
     normalized_method = method.lower()
+    headers.update({'User-Agent': 'Plaid Python v{}'.format(__version__)})
     if normalized_method in ALLOWED_METHODS:
         return getattr(requests, normalized_method)(
             url,
             json=data,
-            headers={
-                'User-Agent': 'Plaid Python v{}'.format(__version__),
-            },
+            headers=headers,
             timeout=timeout,
         )
     else:
@@ -35,13 +39,18 @@ def _requests_http_request(url, method, data, timeout=DEFAULT_TIMEOUT):
 
 
 def http_request(
-    url,
-    method=None,
-    data=None,
-    timeout=DEFAULT_TIMEOUT,
-    is_json=True,
-):
-    response = _requests_http_request(url, method, data or {}, timeout)
+        url,
+        method=None,
+        data=None,
+        headers=None,
+        timeout=DEFAULT_TIMEOUT,
+        is_json=True):
+    response = _requests_http_request(
+        url,
+        method,
+        data or {},
+        headers or {},
+        timeout)
 
     if is_json:
         try:

@@ -10,7 +10,8 @@ def create_client():
     return Client(os.environ['CLIENT_ID'],
                   os.environ['SECRET'],
                   os.environ['PUBLIC_KEY'],
-                  'sandbox')
+                  'sandbox',
+                  api_version="2017-03-08")
 
 CREDENTIALS = {
     'username': 'user_good',
