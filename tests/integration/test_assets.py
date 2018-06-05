@@ -20,7 +20,7 @@ def teardown_module(module):
     client = create_client()
     client.Item.remove(access_token)
 
-def test_create():
+def test_full_flow():
     client = create_client()
 
     # create an asset report for one item
@@ -41,8 +41,35 @@ def test_create():
         [access_token],
         days_requested=60,
         options=options)
-    assert response['asset_report_token'] is not None
-    assert response['asset_report_id'] is not None
+    asset_report_token = response['asset_report_token']
+    asset_report_id = response['asset_report_id']
+    assert asset_report_token is not None
+    assert asset_report_id is not None
+
+    # retrieve the asset report
+    response = poll_for_asset_report(client, asset_report_token)
+    assert response['report'] is not None
+
+    # retrieve the asset report as a PDF
+    pdf = client.AssetReport.get_pdf(asset_report_token)
+    assert pdf is not None
+
+    # create an audit copy
+    response = client.AssetReport.audit_copy.create(
+        asset_report_token,
+        'fannie_mae')
+    audit_copy_token = response['audit_copy_token']
+    assert audit_copy_token is not None
+
+    # remove the audit copy token
+    response = client.AssetReport.audit_copy.remove(audit_copy_token)
+    removed = response['removed']
+    assert removed
+
+    # remove the asset report
+    response = client.AssetReport.remove(asset_report_token)
+    removed = response['removed']
+    assert removed
 
 def poll_for_asset_report(client, asset_report_token, retries=20):
     try:
@@ -56,34 +83,3 @@ def poll_for_asset_report(client, asset_report_token, retries=20):
                 retries - 1)
 
         raise e
-
-def test_get():
-    client = create_client()
-
-    # create an asset report for one item
-    response = client.AssetReport.create(
-        [access_token],
-        days_requested=60)
-    asset_report_token = response['asset_report_token']
-
-    # retrieve the asset report
-    response = poll_for_asset_report(client, asset_report_token)
-    assert response['report'] is not None
-
-def test_get_pdf():
-    client = create_client()
-
-    # create an asset report for one item
-    response = client.AssetReport.create(
-        [access_token],
-        days_requested=60)
-    asset_report_token = response['asset_report_token']
-
-    # verify that the asset report has been generated
-    get_response = poll_for_asset_report(client, asset_report_token)
-    assert get_response['report'] is not None
-
-    # retrieve the asset report as a PDF
-    pdf = client.AssetReport.get_pdf(asset_report_token)
-    assert pdf is not None
-

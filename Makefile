@@ -5,7 +5,7 @@ lint:
 
 .PHONY: test
 test: lint
-	py.test --cov plaid -k assets -s -rxs ./tests/
+	py.test --cov plaid -s -rxs ./tests/
 
 
 .PHONY: setup
