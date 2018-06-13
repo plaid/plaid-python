@@ -52,7 +52,7 @@ def http_request(
         headers or {},
         timeout)
 
-    if is_json:
+    if is_json and response.headers['Content-Type'] == 'application/json':
         try:
             response_body = json.loads(response.text)
         except JSONDecodeError:
