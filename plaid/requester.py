@@ -68,7 +68,7 @@ def http_request(
         else:
             return response_body
     else:
-        return response.text
+        return response.content
 
 
 # helpers to simplify partial function application
