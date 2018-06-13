@@ -43,7 +43,8 @@ def http_request(
         method=None,
         data=None,
         headers=None,
-        timeout=DEFAULT_TIMEOUT):
+        timeout=DEFAULT_TIMEOUT,
+        is_json=True):
     response = _requests_http_request(
         url,
         method,
@@ -51,7 +52,7 @@ def http_request(
         headers or {},
         timeout)
 
-    if response.headers['Content-Type'] == 'application/json':
+    if is_json:
         try:
             response_body = json.loads(response.text)
         except JSONDecodeError:
@@ -67,7 +68,7 @@ def http_request(
         else:
             return response_body
     else:
-        return response.content
+        return response.text
 
 
 # helpers to simplify partial function application

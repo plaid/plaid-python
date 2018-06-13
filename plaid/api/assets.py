@@ -70,7 +70,7 @@ class AssetReport(API):
 
         return self.client.post('/asset_report/pdf/get', {
             'asset_report_token': asset_report_token,
-        })
+        }, is_json=False)
 
     def remove(self,
                asset_report_token):
