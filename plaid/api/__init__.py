@@ -1,4 +1,5 @@
 from plaid.api.accounts import Accounts
+from plaid.api.assets import AssetReport
 from plaid.api.auth import Auth
 from plaid.api.categories import Categories
 from plaid.api.credit_details import CreditDetails
@@ -12,6 +13,7 @@ from plaid.api.transactions import Transactions
 
 __all__ = [
     'Accounts',
+    'AssetReport',
     'Auth',
     'Categories',
     'CreditDetails',

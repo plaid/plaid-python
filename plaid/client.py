@@ -2,6 +2,7 @@ import warnings
 
 from plaid.api import (
     Accounts,
+    AssetReport,
     Auth,
     Categories,
     CreditDetails,
@@ -64,6 +65,7 @@ class Client(object):
 
         # Mirror the HTTP API hierarchy
         self.Accounts = Accounts(self)
+        self.AssetReport = AssetReport(self)
         self.Auth = Auth(self)
         self.Categories = Categories(self)
         self.CreditDetails = CreditDetails(self)
@@ -75,28 +77,28 @@ class Client(object):
         self.Sandbox = Sandbox(self)
         self.Transactions = Transactions(self)
 
-    def post(self, path, data):
+    def post(self, path, data, is_json=True):
         '''Make a post request with client_id and secret key.'''
         post_data = {
             'client_id': self.client_id,
             'secret': self.secret,
         }
         post_data.update(data)
-        return self._post(path, post_data)
+        return self._post(path, post_data, is_json)
 
-    def post_public(self, path, data):
+    def post_public(self, path, data, is_json=True):
         '''Make a post request requiring no auth.'''
-        return self._post(path, data)
+        return self._post(path, data, is_json)
 
-    def post_public_key(self, path, data):
+    def post_public_key(self, path, data, is_json=True):
         '''Make a post request using a public key.'''
         post_data = {
             'public_key': self.public_key
         }
         post_data.update(data)
-        return self._post(path, post_data)
+        return self._post(path, post_data, is_json)
 
-    def _post(self, path, data):
+    def _post(self, path, data, is_json):
         headers = {}
         if self.api_version is not None:
             headers = {'Plaid-Version': self.api_version}
@@ -104,5 +106,6 @@ class Client(object):
             urljoin('https://' + self.environment + '.plaid.com', path),
             data=data,
             timeout=self.timeout,
+            is_json=is_json,
             headers=headers,
         )
