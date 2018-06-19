@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 2.2.1 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 2.3.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.2.1',
+        VERSION:     '2.3.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -49,14 +49,14 @@
 <h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="plaid.Client">
-<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Python Plaid API client.</p>
 <p>See official documentation at: <a class="reference external" href="https://plaid.com/docs">https://plaid.com/docs</a>.</p>
 <p>All of the endpoints documented under the <code class="docutils literal"><span class="pre">plaid.api</span></code>
 module may be called from a <code class="docutils literal"><span class="pre">plaid.Client</span></code> instance.</p>
 <dl class="method">
 <dt id="plaid.Client.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a client with credentials.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -175,31 +175,14 @@ each Item to be included in the Asset
 Report.</li>
 <li><strong>days_requested</strong> (<em>int</em>) &#8211; Days of transaction history requested
 to be included in the Asset Report.</li>
-<li><strong>options</strong> (<em>dict</em>) &#8211; An optional dictionary, as below. For
-more information on these fields, see
+<li><strong>options</strong> (<em>dict</em>) &#8211; An optional dictionary. For
+more information on the user object, see
 the documentation site listed above.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<dl class="docutils">
-<dt>{</dt>
-<dd><p class="first">&#8216;client_report_id&#8217;: &#8216;123&#8217;,
-&#8216;webhook&#8217;: &#8216;<a class="reference external" href="https://www.example.com">https://www.example.com</a>&#8216;,
-&#8216;user&#8217;: {</p>
-<blockquote>
-<div>&#8216;client_user_id&#8217;: &#8216;789&#8217;,
-&#8216;first_name&#8217;: &#8216;Jane&#8217;,
-&#8216;middle_name&#8217;: &#8216;Leah&#8217;,
-&#8216;last_name&#8217;: &#8216;Doe&#8217;,
-&#8216;ssn&#8217;: &#8216;123-45-6789&#8217;,
-&#8216;phone_number&#8217;: &#8216;(555) 123-4567&#8217;,
-&#8216;email&#8217;: <a class="reference external" href="mailto:'jane&#46;doe&#37;&#52;&#48;example&#46;com">'jane<span>&#46;</span>doe<span>&#64;</span>example<span>&#46;</span>com</a>&#8216;,</div></blockquote>
-<p class="last">}</p>
-</dd>
-</dl>
-<p>}</p>
 </dd></dl>
 
 <dl class="method">
