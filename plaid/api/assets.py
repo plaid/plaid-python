@@ -21,23 +21,9 @@ class AssetReport(API):
                                         Report.
         :param  int     days_requested: Days of transaction history requested
                                         to be included in the Asset Report.
-        :param  dict    options:        An optional dictionary, as below. For
-                                        more information on these fields, see
+        :param  dict    options:        An optional dictionary. For more
+                                        information on the user object, see
                                         the documentation site listed above.
-
-        {
-            'client_report_id': '123',
-            'webhook': 'https://www.example.com',
-            'user': {
-                'client_user_id': '789',
-                'first_name': 'Jane',
-                'middle_name': 'Leah',
-                'last_name': 'Doe',
-                'ssn': '123-45-6789',
-                'phone_number': '(555) 123-4567',
-                'email': 'jane.doe@example.com',
-            }
-        }
         '''
 
         return self.client.post('/asset_report/create', {
