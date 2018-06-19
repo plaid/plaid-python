@@ -21,8 +21,8 @@ class AssetReport(API):
                                         Report.
         :param  int     days_requested: Days of transaction history requested
                                         to be included in the Asset Report.
-        :param  dict    options:        An optional dictionary. For
-                                        more information on the user object, see
+        :param  dict    options:        An optional dictionary. For more
+                                        information on the user object, see
                                         the documentation site listed above.
         '''
 
