@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 2.3.2 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 2.3.3 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.2',
+        VERSION:     '2.3.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -634,6 +634,25 @@ item.</li>
 <em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Processor</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Endpoints for creating processor tokens.</p>
 <dl class="method">
+<dt id="plaid.api.Processor.dwollaBankAccountTokenCreate">
+<code class="descname">dwollaBankAccountTokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.dwollaBankAccountTokenCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Dwolla processor token for a given account ID
+(<a class="reference external" href="https://plaid.com/docs/link/dwolla">HTTP docs</a>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="plaid.api.Processor.stripeBankAccountTokenCreate">
 <code class="descname">stripeBankAccountTokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.stripeBankAccountTokenCreate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a Stripe bank_account token for a given account ID
@@ -643,7 +662,7 @@ item.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>public_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
 <li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
 </ul>
 </td>
@@ -724,7 +743,7 @@ the beginning of the fetch. Optional.</li>
 <dl class="exception">
 <dt id="plaid.errors.PlaidError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>A Plaid API error.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
