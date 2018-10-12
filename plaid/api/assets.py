@@ -22,12 +22,52 @@ class AssetReport(API):
         :param  int     days_requested: Days of transaction history requested
                                         to be included in the Asset Report.
         :param  dict    options:        An optional dictionary. For more
-                                        information on the user object, see
+                                        information on the options object, see
                                         the documentation site listed above.
         '''
 
         return self.client.post('/asset_report/create', {
             'access_tokens': access_tokens,
+            'days_requested': days_requested,
+            'options': options,
+        })
+
+    def filter(self,
+               asset_report_token,
+               account_ids_to_exclude):
+        '''
+        Create a new, filtered asset report based on an existing asset report.
+
+        :param  str   asset_report_token:       The existing Asset Report's
+                                                asset report token.
+        :param  [str] account_ids_to_exclude:   A list of account IDs to
+                                                exclude from the new Asset
+                                                Report.
+        '''
+
+        return self.client.post('/asset_report/filter', {
+            'asset_report_token': asset_report_token,
+            'account_ids_to_exclude': account_ids_to_exclude,
+        })
+
+    def refresh(self,
+                asset_report_token,
+                days_requested,
+                options={}):
+        '''
+        Create a new, refreshed asset report based on an existing asset report.
+
+        :param  str   asset_report_token:   The existing Asset Report's asset
+                                            report token.
+        :param  int   days_requested:       Days of transaction history
+                                            requested to be included in the
+                                            Asset Report.
+        :param  dict  options:              An optional dictionary. This is the
+                                            same object used in `create`.
+        '''
+
+        return self.client.post('/asset_report/refresh', {
+            'asset_report_token': asset_report_token,
             'days_requested': days_requested,
             'options': options,
         })
@@ -93,6 +133,19 @@ class AuditCopy(API):
         return self.client.post('/asset_report/audit_copy/create', {
             'asset_report_token': asset_report_token,
             'auditor_id': auditor_id,
+        })
+
+    def get(self,
+            audit_copy_token):
+        '''
+        Retrieves an audit copy.
+
+        :param  str   audit_copy_token:     The audit copy token for the audit
+                                            copy you want to retrieve.
+        '''
+
+        return self.client.post('/asset_report/audit_copy/get', {
+            'audit_copy_token': audit_copy_token,
         })
 
     def remove(self,
