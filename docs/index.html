@@ -176,8 +176,29 @@ Report.</li>
 <li><strong>days_requested</strong> (<em>int</em>) &#8211; Days of transaction history requested
 to be included in the Asset Report.</li>
 <li><strong>options</strong> (<em>dict</em>) &#8211; An optional dictionary. For more
-information on the user object, see
+information on the options object, see
 the documentation site listed above.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.AssetReport.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>asset_report_token</em>, <em>account_ids_to_exclude</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new, filtered asset report based on an existing asset report.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>asset_report_token</strong> (<em>str</em>) &#8211; The existing Asset Report&#8217;s
+asset report token.</li>
+<li><strong>account_ids_to_exclude</strong> (<em></em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; A list of account IDs to
+exclude from the new Asset
+Report.</li>
 </ul>
 </td>
 </tr>
@@ -210,6 +231,29 @@ asset report you created.</td>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asset_report_token</strong> (<em>str</em>) &#8211; The asset report token for the
 asset report you created.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.AssetReport.refresh">
+<code class="descname">refresh</code><span class="sig-paren">(</span><em>asset_report_token</em>, <em>days_requested</em>, <em>options={}</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new, refreshed asset report based on an existing asset report.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>asset_report_token</strong> (<em>str</em>) &#8211; The existing Asset Report&#8217;s asset
+report token.</li>
+<li><strong>days_requested</strong> (<em>int</em>) &#8211; Days of transaction history
+requested to be included in the
+Asset Report.</li>
+<li><strong>options</strong> (<em>dict</em>) &#8211; An optional dictionary. This is the
+same object used in <cite>create</cite>.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -743,7 +787,7 @@ the beginning of the fetch. Optional.</li>
 <dl class="exception">
 <dt id="plaid.errors.PlaidError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 <p>A Plaid API error.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

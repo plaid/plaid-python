@@ -48,18 +48,33 @@ def test_full_flow():
 
     # retrieve the asset report
     response = poll_for_asset_report(client, asset_report_token)
-    assert response['report'] is not None
+    report = response['report']
+    assert report is not None
 
     # retrieve the asset report as a PDF
     pdf = client.AssetReport.get_pdf(asset_report_token)
     assert pdf is not None
 
+    # create a filtered copy of the asset report
+    account_ids_to_exclude = [report['items'][0]['accounts'][0]['account_id']]
+    response = client.AssetReport.filter(asset_report_token, account_ids_to_exclude)
+    assert response['asset_report_token'] is not None
+
+    # create a refreshed copy of the asset report
+    response = client.AssetReport.refresh(asset_report_token, 10)
+    assert response['asset_report_token'] is not None
+
     # create an audit copy
     response = client.AssetReport.audit_copy.create(
         asset_report_token,
-        'fannie_mae')
+        client.client_id)
     audit_copy_token = response['audit_copy_token']
     assert audit_copy_token is not None
+
+    # get the audit copy
+    response = client.AssetReport.audit_copy.get(audit_copy_token)
+    audit_copy = response['report']
+    assert audit_copy is not None
 
     # remove the audit copy token
     response = client.AssetReport.audit_copy.remove(audit_copy_token)
