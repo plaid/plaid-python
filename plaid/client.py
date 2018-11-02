@@ -1,3 +1,4 @@
+import json
 import warnings
 
 from plaid.api import (
@@ -39,7 +40,8 @@ class Client(object):
                  suppress_warnings=False,
                  timeout=DEFAULT_TIMEOUT,
                  api_version=None,
-                 client_app=None):
+                 client_app=None,
+                 json_parser=json.loads):
         '''
         Initialize a client with credentials.
 
@@ -53,6 +55,8 @@ class Client(object):
         :arg    str     api_version:        API version to use for requests
         :arg    str     client_app:         Internal header to include
                                             in requests
+        :arg    method  json_parser:        Method used to deserialize JSON to a Python
+                                            object.  [default=json.loads]
 
         '''
         self.client_id = client_id
@@ -63,6 +67,7 @@ class Client(object):
         self.timeout = timeout
         self.api_version = api_version
         self.client_app = client_app
+        self.json_parser = json_parser
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
@@ -121,4 +126,5 @@ class Client(object):
             timeout=self.timeout,
             is_json=is_json,
             headers=headers,
+            json_parser=self.json_parser,
         )
