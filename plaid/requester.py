@@ -44,7 +44,8 @@ def http_request(
         data=None,
         headers=None,
         timeout=DEFAULT_TIMEOUT,
-        is_json=True):
+        is_json=True,
+        json_parser=json.loads):
     response = _requests_http_request(
         url,
         method,
@@ -54,7 +55,7 @@ def http_request(
 
     if is_json or response.headers['Content-Type'] == 'application/json':
         try:
-            response_body = json.loads(response.text)
+            response_body = json_parser(response.text)
         except JSONDecodeError:
             raise PlaidError.from_response({
                 'error_message': response.text,
