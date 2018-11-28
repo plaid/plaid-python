@@ -4,7 +4,7 @@ from plaid.api.api import API
 class Credentials(API):
     '''Item Credentials endpoints.'''
 
-    def update(self, access_token, credentials, _options={}):
+    def update(self, access_token, credentials, _options=None):
         '''
         Update the credentials associated with an item.
 
@@ -13,6 +13,8 @@ class Credentials(API):
 
         :param  dict     credentials:   See ``Item.create`` for details.
         '''
+        _options = _options or {}
+
         return self.client.post('/item/credentials/update', {
             'access_token': access_token,
             'credentials': credentials,
@@ -117,7 +119,7 @@ class Item(API):
                credentials,
                institution_id,
                initial_products,
-               _options={},
+               _options=None,
                transactions__start_date=None,
                transactions__end_date=None,
                transactions__await_results=None,
@@ -155,8 +157,10 @@ class Item(API):
 
         All dates should be formatted as ``YYYY-MM-DD``.
         '''
+        options = _options or {}
+
         transaction_options = {}
-        transaction_options.update(_options.get('transactions', {}))
+        transaction_options.update(options.get('transactions', {}))
         if transactions__start_date is not None:
             transaction_options['start_date'] = transactions__start_date
         if transactions__end_date is not None:
@@ -164,8 +168,6 @@ class Item(API):
         if transactions__await_results is not None:
             transaction_options['await_results'] = transactions__await_results
 
-        options = {}
-        options.update(_options)
         if transaction_options:
             options['transactions'] = transaction_options
         if webhook is not None:
@@ -178,7 +180,7 @@ class Item(API):
             'options': options,
         })
 
-    def mfa(self, access_token, mfa_type, responses, _options={}):
+    def mfa(self, access_token, mfa_type, responses, _options=None):
         '''
         Provide an MFA (Multi-Factor Authentication) response for an item.
 
@@ -186,6 +188,8 @@ class Item(API):
         :param  str     mfa_type:       The type of mfa answered (e.g. device)
         :param  [str]   responses:      The MFA response(s)
         '''
+        _options = _options or {}
+
         return self.client.post('/item/mfa', {
             'access_token': access_token,
             'mfa_type': mfa_type,

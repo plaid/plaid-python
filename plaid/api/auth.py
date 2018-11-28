@@ -6,7 +6,7 @@ class Auth(API):
 
     def get(self,
             access_token,
-            _options={},
+            _options=None,
             account_ids=None):
         '''
         Retrieve account and routing numbers for checking and savings accounts.
@@ -16,8 +16,7 @@ class Auth(API):
         :param  [str]   account_ids:    A list of account_ids to retrieve for
                                         the item. Optional.
         '''
-        options = {}
-        options.update(_options)
+        options = _options or {}
         if account_ids is not None:
             options['account_ids'] = account_ids
 
