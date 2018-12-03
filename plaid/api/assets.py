@@ -82,10 +82,9 @@ class AssetReport(API):
                                             asset report you created.
         :param  bool  include_insights:     An optional boolean specifying
                                             whether we should retrieve the
-                                            report as an "Assets + Insights"
-                                            report. For information about
-                                            Assets + Insights reports, see
-                                            https://plaid.com/docs/#assets.
+                                            report as an Asset Report with
+                                            Insights. For more, see
+                                            https://plaid.com/docs/#retrieve-json-report-request.
         '''
 
         return self.client.post('/asset_report/get', {
