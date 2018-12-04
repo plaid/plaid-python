@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 2.3.3 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 2.3.4 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.3',
+        VERSION:     '2.3.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -208,14 +208,22 @@ Report.</li>
 
 <dl class="method">
 <dt id="plaid.api.AssetReport.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>asset_report_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.get" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get</code><span class="sig-paren">(</span><em>asset_report_token</em>, <em>include_insights=False</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves an asset report.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asset_report_token</strong> (<em>str</em>) &#8211; The asset report token for the
-asset report you created.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>asset_report_token</strong> (<em>str</em>) &#8211; The asset report token for the
+asset report you created.</li>
+<li><strong>include_insights</strong> (<em>bool</em>) &#8211; An optional boolean specifying
+whether we should retrieve the
+report as an Asset Report with
+Insights. For more, see
+<a class="reference external" href="https://plaid.com/docs/#retrieve-json-report-request">https://plaid.com/docs/#retrieve-json-report-request</a>.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>

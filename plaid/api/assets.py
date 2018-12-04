@@ -73,16 +73,23 @@ class AssetReport(API):
         })
 
     def get(self,
-            asset_report_token):
+            asset_report_token,
+            include_insights=False):
         '''
         Retrieves an asset report.
 
         :param  str   asset_report_token:   The asset report token for the
                                             asset report you created.
+        :param  bool  include_insights:     An optional boolean specifying
+                                            whether we should retrieve the
+                                            report as an Asset Report with
+                                            Insights. For more, see
+                                            https://plaid.com/docs/#retrieve-json-report-request.
         '''
 
         return self.client.post('/asset_report/get', {
             'asset_report_token': asset_report_token,
+            'include_insights': include_insights,
         })
 
     def get_pdf(self,
