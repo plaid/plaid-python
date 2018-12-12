@@ -22,7 +22,10 @@ class PublicToken(API):
                institution_id,
                initial_products,
                _options=None,
-               webhook=None):
+               webhook=None,
+               transactions__start_date=None,
+               transactions__end_date=None,
+               ):
         '''
         Generate a public token for sandbox testing.
 
@@ -33,9 +36,17 @@ class PublicToken(API):
         :param  str     webhook:
         '''
         options = _options or {}
+        transaction_options = {}
+        transaction_options.update(options.get('transactions', {}))
 
         if webhook is not None:
             options['webhook'] = webhook
+        if transactions__start_date is not None:
+            transaction_options['start_date'] = transactions__start_date
+        if transactions__end_date is not None:
+            transaction_options['end_date'] = transactions__end_date
+        if transaction_options:
+            options['transactions'] = transaction_options
 
         return self.client.post_public_key('/sandbox/public_token/create', {
             'institution_id': institution_id,

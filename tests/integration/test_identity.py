@@ -9,10 +9,10 @@ access_token = None
 
 def setup_module(module):
     client = create_client()
-    response = client.Item.create(
-        CREDENTIALS, SANDBOX_INSTITUTION, ['identity'])
+    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['identity'])
+    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
     global access_token
-    access_token = response['access_token']
+    access_token = exchange_response['access_token']
 
 
 def teardown_module(module):

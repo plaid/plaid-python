@@ -111,91 +111,8 @@ class Item(API):
     def __init__(self, client):
         super(Item, self).__init__(client)
         self.access_token = AccessToken(client)
-        self.credentials = Credentials(client)
         self.public_token = PublicToken(client)
         self.webhook = Webhook(client)
-
-    def create(self,
-               credentials,
-               institution_id,
-               initial_products,
-               _options=None,
-               transactions__start_date=None,
-               transactions__end_date=None,
-               transactions__await_results=None,
-               webhook=None):
-        '''
-        Add a bank account user/login to Plaid.
-
-        Returns either a successful response or a response indicating that MFA
-        (Multi Factor Authentication) is required.
-
-        :param  dict    credentials:                    A dictionary containing
-                                                        the fields
-                                                        ``username``,
-                                                        ``password``, and
-                                                        (optionally) ``pin``.
-        :param  str     institution_id:
-        :param  list    initial_products:               A list containing
-                                                        product names.
-        :param  str     transactions__start_date:       The date to begin the
-                                                        item's initial
-                                                        transaction pull.
-        :param  str     transactions__end_date:         The date to end the
-                                                        item's initial
-                                                        transaction pull.
-        :param  str     transactions__await_results:    If ``True``, wait for
-                                                        the initial
-                                                        transaction pull to
-                                                        complete before
-                                                        returning. Will
-                                                        increase the user wait
-                                                        time.
-        :param  str     webhook:                        The URL for a webhook
-                                                        associated with the
-                                                        item.
-
-        All dates should be formatted as ``YYYY-MM-DD``.
-        '''
-        options = _options or {}
-
-        transaction_options = {}
-        transaction_options.update(options.get('transactions', {}))
-        if transactions__start_date is not None:
-            transaction_options['start_date'] = transactions__start_date
-        if transactions__end_date is not None:
-            transaction_options['end_date'] = transactions__end_date
-        if transactions__await_results is not None:
-            transaction_options['await_results'] = transactions__await_results
-
-        if transaction_options:
-            options['transactions'] = transaction_options
-        if webhook is not None:
-            options['webhook'] = webhook
-
-        return self.client.post('/item/create', {
-            'credentials': credentials,
-            'institution_id': institution_id,
-            'initial_products': initial_products,
-            'options': options,
-        })
-
-    def mfa(self, access_token, mfa_type, responses, _options=None):
-        '''
-        Provide an MFA (Multi-Factor Authentication) response for an item.
-
-        :param  str     access_token:
-        :param  str     mfa_type:       The type of mfa answered (e.g. device)
-        :param  [str]   responses:      The MFA response(s)
-        '''
-        _options = _options or {}
-
-        return self.client.post('/item/mfa', {
-            'access_token': access_token,
-            'mfa_type': mfa_type,
-            'responses': responses,
-            'options': _options,
-        })
 
     def get(self, access_token):
         '''
@@ -205,19 +122,6 @@ class Item(API):
         :param  str     access_token:
         '''
         return self.client.post('/item/get', {
-            'access_token': access_token,
-        })
-
-    def delete(self, access_token):
-        '''
-        Delete an item.
-        (`HTTP docs <https://plaid.com/docs/api/#delete-an-item>`__)
-
-        This also deactivates the access_token.
-
-        :param  str     access_token:
-        '''
-        return self.client.post('/item/delete', {
             'access_token': access_token,
         })
 
