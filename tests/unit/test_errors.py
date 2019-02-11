@@ -21,4 +21,11 @@ def test_from_response():
     error = PlaidError.from_response(response)
     assert isinstance(error, APIError)
     assert error.code == 'INTERNAL_SERVER_ERROR'
+
     assert len(error.causes) == 1
+    cause = error.causes[0]
+    assert cause.item_id == '456'
+    assert cause.type == 'API_ERROR'
+    assert cause.code == 'INTERNAL_SERVER_ERROR'
+    assert cause.message == 'an unexpected error occurred'
+

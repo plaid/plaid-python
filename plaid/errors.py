@@ -29,7 +29,17 @@ class PlaidError(Exception):
         self.code = code
         self.display_message = display_message
         self.request_id = request_id
-        self.causes = causes
+        self.causes = []
+
+        for cause in causes:
+            c = PlaidCause(
+                cause['item_id'],
+                cause['error_message'],
+                cause['error_type'],
+                cause['error_code'],
+                cause['display_message'] if 'display_message' in cause else '',
+            )
+            self.causes.append(c)
 
     @staticmethod
     def from_response(response):
@@ -45,6 +55,30 @@ class PlaidError(Exception):
                    response['display_message'],
                    response['request_id'],
                    response['causes'])
+
+
+class PlaidCause(PlaidError):
+    '''
+    A reason for an API error.
+
+    :ivar   str     item_id:            The item ID.
+    '''
+
+    def __init__(
+        self,
+        item_id,
+        message,
+        type,
+        code,
+        display_message,
+    ):
+        super(PlaidCause, self).__init__(
+            message,
+            type,
+            code,
+            display_message,
+        )
+        self.item_id = item_id
 
 
 class InvalidRequestError(PlaidError):
