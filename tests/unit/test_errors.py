@@ -7,9 +7,18 @@ def test_from_response():
         'error_type': 'API_ERROR',
         'error_code': 'INTERNAL_SERVER_ERROR',
         'error_message': 'an unexpected error occurred',
-        'request_id': 'abc123'
+        'request_id': 'abc123',
+        'causes': [
+            {
+                'item_id': '456',
+                'error_type': 'API_ERROR',
+                'error_code': 'INTERNAL_SERVER_ERROR',
+                'error_message': 'an unexpected error occurred',
+            },
+        ],
     }
 
     error = PlaidError.from_response(response)
     assert isinstance(error, APIError)
     assert error.code == 'INTERNAL_SERVER_ERROR'
+    assert len(error.causes) == 1

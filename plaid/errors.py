@@ -11,14 +11,25 @@ class PlaidError(Exception):
                                         for programmatic use. May be None.
     :ivar   str     request_id:         A unique id returned for all server
                                         responses.
+    :ivar   list    causes:             A list of reasons explaining why the
+                                        error happened.
     '''
 
-    def __init__(self, message, type, code, display_message, request_id=""):
+    def __init__(
+        self,
+        message,
+        type,
+        code,
+        display_message,
+        request_id="",
+        causes=[],
+    ):
         super(PlaidError, self).__init__(message)
         self.type = type
         self.code = code
         self.display_message = display_message
         self.request_id = request_id
+        self.causes = causes
 
     @staticmethod
     def from_response(response):
@@ -32,7 +43,8 @@ class PlaidError(Exception):
                    response['error_type'],
                    response['error_code'],
                    response['display_message'],
-                   response['request_id'])
+                   response['request_id'],
+                   response['causes'])
 
 
 class InvalidRequestError(PlaidError):
