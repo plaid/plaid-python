@@ -27,5 +27,4 @@ def test_from_response():
     assert cause.item_id == '456'
     assert cause.type == 'API_ERROR'
     assert cause.code == 'INTERNAL_SERVER_ERROR'
-    assert cause.message == 'an unexpected error occurred'
 
