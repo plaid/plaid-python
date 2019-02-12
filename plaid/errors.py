@@ -22,7 +22,7 @@ class PlaidError(Exception):
         code,
         display_message,
         request_id="",
-        causes=[],
+        causes=None,
     ):
         super(PlaidError, self).__init__(message)
         self.type = type
@@ -30,16 +30,13 @@ class PlaidError(Exception):
         self.display_message = display_message
         self.request_id = request_id
         self.causes = []
-
-        for cause in causes:
-            c = PlaidCause(
-                cause['item_id'],
-                cause['error_message'],
-                cause['error_type'],
-                cause['error_code'],
-                cause['display_message'] if 'display_message' in cause else '',
-            )
-            self.causes.append(c)
+        self.causes = [PlaidCause(
+            cause['item_id'],
+            cause['error_message'],
+            cause['error_type'],
+            cause['error_code'],
+            cause.get('display_message'),
+        ) for cause in causes or []]
 
     @staticmethod
     def from_response(response):
