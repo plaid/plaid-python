@@ -29,7 +29,6 @@ class PlaidError(Exception):
         self.code = code
         self.display_message = display_message
         self.request_id = request_id
-        self.causes = []
         self.causes = [PlaidCause(
             cause['item_id'],
             cause['error_message'],
