@@ -34,7 +34,7 @@ class PlaidError(Exception):
             cause['error_message'],
             cause['error_type'],
             cause['error_code'],
-            cause.get('display_message'),
+            cause.get('display_message', ''),
         ) for cause in causes or []]
 
     @staticmethod
