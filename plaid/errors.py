@@ -51,7 +51,7 @@ class PlaidError(Exception):
                    response['error_code'],
                    response['display_message'],
                    response['request_id'],
-                   response['causes'] if 'causes' in response else [])
+                   response.get('causes'))
 
 
 class PlaidCause(PlaidError):
