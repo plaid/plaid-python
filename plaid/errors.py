@@ -18,6 +18,12 @@ class BaseError(Exception):
         display_message,
     ):
         super(BaseError, self).__init__(message)
+
+        # In Python 3, the Exception class does not expose a `message`
+        # attribute so we need to set it explicitly. See
+        # https://www.python.org/dev/peps/pep-0352/#retracted-ideas.
+        self.message = message
+
         self.type = type
         self.code = code
         self.display_message = display_message
