@@ -10,10 +10,10 @@ def test_from_response():
         'request_id': 'abc123',
         'causes': [
             {
-                'item_id': '456',
                 'error_type': 'API_ERROR',
                 'error_code': 'INTERNAL_SERVER_ERROR',
                 'error_message': 'an unexpected error occurred',
+                'item_id': '456',
             },
         ],
     }
@@ -24,8 +24,8 @@ def test_from_response():
 
     assert len(error.causes) == 1
     cause = error.causes[0]
-    assert cause.item_id == '456'
     assert cause.type == 'API_ERROR'
     assert cause.code == 'INTERNAL_SERVER_ERROR'
     assert cause.message == 'an unexpected error occurred'
+    assert cause.item_id == '456'
 

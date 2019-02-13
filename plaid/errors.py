@@ -1,12 +1,37 @@
-class PlaidError(Exception):
+class BaseError(Exception):
     '''
-    A Plaid API error.
+    A base error class.
 
+    :ivar   str     message:            A developer-friendly error message. Not
+                                        safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
                                         corresponding to the error class.
     :ivar   str     code:               An error code for programmatic use.
+    :ivar   str     display_message:    A user-friendly error message. Not safe
+                                        for programmatic use. May be None.
+    '''
+    def __init__(
+        self,
+        message,
+        type,
+        code,
+        display_message,
+    ):
+        super(BaseError, self).__init__(message)
+        self.type = type
+        self.code = code
+        self.display_message = display_message
+
+
+class PlaidError(BaseError):
+    '''
+    A Plaid API error.
+
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
+    :ivar   str     type:               A broad categorization of the error,
+                                        corresponding to the error class.
+    :ivar   str     code:               An error code for programmatic use.
     :ivar   str     display_message:    A user-friendly error message. Not safe
                                         for programmatic use. May be None.
     :ivar   str     request_id:         A unique id returned for all server
@@ -24,18 +49,22 @@ class PlaidError(Exception):
         request_id="",
         causes=None,
     ):
-        super(PlaidError, self).__init__(message)
-        self.type = type
-        self.code = code
-        self.display_message = display_message
+        super(PlaidError, self).__init__(
+            message,
+            type,
+            code,
+            display_message,
+        )
         self.request_id = request_id
-        self.causes = [PlaidCause(
-            cause['item_id'],
-            cause['error_message'],
-            cause['error_type'],
-            cause['error_code'],
-            cause.get('display_message', ''),
-        ) for cause in causes or []]
+        self.causes = [
+            PlaidCause(
+                cause['error_message'],
+                cause['error_type'],
+                cause['error_code'],
+                cause.get('display_message', ''),
+                cause['item_id'],
+            ) for cause in causes or []
+        ]
 
     @staticmethod
     def from_response(response):
@@ -53,20 +82,27 @@ class PlaidError(Exception):
                    response.get('causes'))
 
 
-class PlaidCause(PlaidError):
+class PlaidCause(BaseError):
     '''
-    A reason for an API error.
+    A cause of a Plaid error.
 
+    :ivar   str     message:            A developer-friendly error message. Not
+                                        safe for programmatic use.
+    :ivar   str     type:               A broad categorization of the error,
+                                        corresponding to the error class.
+    :ivar   str     code:               An error code for programmatic use.
+    :ivar   str     display_message:    A user-friendly error message. Not safe
+                                        for programmatic use. May be None.
     :ivar   str     item_id:            The item ID.
     '''
 
     def __init__(
         self,
-        item_id,
         message,
         type,
         code,
         display_message,
+        item_id,
     ):
         super(PlaidCause, self).__init__(
             message,
