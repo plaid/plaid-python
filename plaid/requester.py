@@ -62,6 +62,7 @@ def http_request(
                 'error_code': 'INTERNAL_SERVER_ERROR',
                 'display_message': None,
                 'request_id': '',
+                'causes': [],
             })
         if response_body.get('error_type'):
             raise PlaidError.from_response(response_body)

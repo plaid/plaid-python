@@ -1,24 +1,76 @@
-class PlaidError(Exception):
+class BaseError(Exception):
     '''
-    A Plaid API error.
+    A base error class.
 
+    :ivar   str     message:            A developer-friendly error message. Not
+                                        safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
                                         corresponding to the error class.
     :ivar   str     code:               An error code for programmatic use.
+    :ivar   str     display_message:    A user-friendly error message. Not safe
+                                        for programmatic use. May be None.
+    '''
+    def __init__(
+        self,
+        message,
+        type,
+        code,
+        display_message,
+    ):
+        super(BaseError, self).__init__(message)
+
+        # In Python 3, the Exception class does not expose a `message`
+        # attribute so we need to set it explicitly. See
+        # https://www.python.org/dev/peps/pep-0352/#retracted-ideas.
+        self.message = message
+
+        self.type = type
+        self.code = code
+        self.display_message = display_message
+
+
+class PlaidError(BaseError):
+    '''
+    A Plaid API error.
+
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
+    :ivar   str     type:               A broad categorization of the error,
+                                        corresponding to the error class.
+    :ivar   str     code:               An error code for programmatic use.
     :ivar   str     display_message:    A user-friendly error message. Not safe
                                         for programmatic use. May be None.
     :ivar   str     request_id:         A unique id returned for all server
                                         responses.
+    :ivar   list    causes:             A list of reasons explaining why the
+                                        error happened.
     '''
 
-    def __init__(self, message, type, code, display_message, request_id=""):
-        super(PlaidError, self).__init__(message)
-        self.type = type
-        self.code = code
-        self.display_message = display_message
+    def __init__(
+        self,
+        message,
+        type,
+        code,
+        display_message,
+        request_id="",
+        causes=None,
+    ):
+        super(PlaidError, self).__init__(
+            message,
+            type,
+            code,
+            display_message,
+        )
         self.request_id = request_id
+        self.causes = [
+            PlaidCause(
+                cause['error_message'],
+                cause['error_type'],
+                cause['error_code'],
+                cause.get('display_message', ''),
+                cause['item_id'],
+            ) for cause in causes or []
+        ]
 
     @staticmethod
     def from_response(response):
@@ -32,7 +84,39 @@ class PlaidError(Exception):
                    response['error_type'],
                    response['error_code'],
                    response['display_message'],
-                   response['request_id'])
+                   response['request_id'],
+                   response.get('causes'))
+
+
+class PlaidCause(BaseError):
+    '''
+    A cause of a Plaid error.
+
+    :ivar   str     message:            A developer-friendly error message. Not
+                                        safe for programmatic use.
+    :ivar   str     type:               A broad categorization of the error,
+                                        corresponding to the error class.
+    :ivar   str     code:               An error code for programmatic use.
+    :ivar   str     display_message:    A user-friendly error message. Not safe
+                                        for programmatic use. May be None.
+    :ivar   str     item_id:            The item ID.
+    '''
+
+    def __init__(
+        self,
+        message,
+        type,
+        code,
+        display_message,
+        item_id,
+    ):
+        super(PlaidCause, self).__init__(
+            message,
+            type,
+            code,
+            display_message,
+        )
+        self.item_id = item_id
 
 
 class InvalidRequestError(PlaidError):
