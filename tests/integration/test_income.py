@@ -1,8 +1,7 @@
 from plaid.errors import ItemError
 from tests.integration.util import (
     create_client,
-    CREDENTIALS,
-    SANDBOX_INSTITUTION
+    CREDENTIALS
 )
 
 access_token = None
