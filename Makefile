@@ -1,17 +1,18 @@
+#!make
+
 .PHONY: lint
 lint:
 	flake8 plaid
 
-
+# Requires tox to be installed and in the executable path
 .PHONY: test
 test: lint
-	py.test --cov plaid -s -rxs ./tests/
+	./.env tox
 
-
+# Setting up for local development
 .PHONY: setup
 setup:
 	pip install -r requirements.txt
-
 
 .PHONY: docs
 docs:
