@@ -9,6 +9,7 @@ from tests.integration.util import (
 
 access_token = None
 
+
 def setup_module(module):
     client = create_client()
     response = client.Item.create(
@@ -16,9 +17,11 @@ def setup_module(module):
     global access_token
     access_token = response['access_token']
 
+
 def teardown_module(module):
     client = create_client()
     client.Item.remove(access_token)
+
 
 def test_full_flow():
     client = create_client()
@@ -66,7 +69,8 @@ def test_full_flow():
 
     # create a filtered copy of the asset report
     account_ids_to_exclude = [report['items'][0]['accounts'][0]['account_id']]
-    response = client.AssetReport.filter(asset_report_token, account_ids_to_exclude)
+    response = client.AssetReport.filter(
+        asset_report_token, account_ids_to_exclude)
     assert response['asset_report_token'] is not None
 
     # create a refreshed copy of the asset report
@@ -94,6 +98,7 @@ def test_full_flow():
     response = client.AssetReport.remove(asset_report_token)
     removed = response['removed']
     assert removed
+
 
 def poll_for_asset_report(client, asset_report_token, retries=20):
     try:

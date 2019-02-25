@@ -1,9 +1,6 @@
 '''
 Client.Processor.* tests.
 '''
-
-from contextlib import contextmanager
-
 import pytest
 
 from plaid.errors import InvalidRequestError

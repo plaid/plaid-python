@@ -151,6 +151,7 @@ def test_delete():
     delete_response = client.Item.delete(create_response['access_token'])
     assert delete_response['deleted']
 
+
 def test_remove():
     client = create_client()
     create_response = client.Item.create(
@@ -158,6 +159,7 @@ def test_remove():
 
     remove_response = client.Item.remove(create_response['access_token'])
     assert remove_response['removed']
+
 
 def test_public_token():
     client = create_client()
@@ -175,6 +177,7 @@ def test_public_token():
             create_response['public_token'])
         assert exchange_response['access_token'] is not None
 
+
 def test_sandbox_public_token():
     client = create_client()
     create_response = client.Sandbox.public_token.create(
@@ -185,6 +188,7 @@ def test_sandbox_public_token():
     exchange_response = client.Item.public_token.exchange(
         create_response['public_token'])
     assert exchange_response['access_token'] is not None
+
 
 def test_access_token_invalidate():
     client = create_client()

@@ -20,7 +20,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
-import plaid
+import plaid  # noqa: E402
 
 # -- General configuration ------------------------------------------------
 

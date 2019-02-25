@@ -6,6 +6,7 @@ class Income(API):
     Income endpoints.
     (`HTTP docs <https://plaid.com/docs/api/#income>`__)
     '''
+
     def get(self, access_token):
         '''
         Retrieve income data associated with an item.
