@@ -8,7 +8,7 @@ class Transactions(API):
             access_token,
             start_date,
             end_date,
-            _options={},
+            _options=None,
             account_ids=None,
             count=None,
             offset=None,
@@ -33,8 +33,8 @@ class Transactions(API):
 
         All date should be formatted as ``YYYY-MM-DD``.
         '''
-        options = {}
-        options.update(_options)
+        options = _options or {}
+
         if account_ids is not None:
             options['account_ids'] = account_ids
         if count is not None:

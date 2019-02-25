@@ -19,15 +19,17 @@ class Institutions(API):
             'offset': offset,
         })
 
-    def get_by_id(self, institution_id, _options={}):
+    def get_by_id(self, institution_id, _options=None):
         '''
         Fetch a single institution by id.
 
         :param  str     institution_id:
         '''
+        options = _options or {}
+
         return self.client.post_public_key('/institutions/get_by_id', {
             'institution_id': institution_id,
-            'options': _options,
+            'options': options,
         })
 
     def search(self, query, _options={}, products=None):
@@ -38,8 +40,10 @@ class Institutions(API):
                                     institutions.
         :param  [str]    products:  Filter FIs by available products. Optional.
         '''
+        options = _options or {}
+
         return self.client.post_public_key('/institutions/search', {
             'query': query,
             'products': products,
-            'options': _options,
+            'options': options,
         })

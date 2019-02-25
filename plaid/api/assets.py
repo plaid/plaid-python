@@ -12,7 +12,7 @@ class AssetReport(API):
     def create(self,
                access_tokens,
                days_requested,
-               options={}):
+               options=None):
         '''
         Create an asset report.
 
@@ -25,6 +25,7 @@ class AssetReport(API):
                                         information on the options object, see
                                         the documentation site listed above.
         '''
+        options = options or {}
 
         return self.client.post('/asset_report/create', {
             'access_tokens': access_tokens,
@@ -44,7 +45,6 @@ class AssetReport(API):
                                                 exclude from the new Asset
                                                 Report.
         '''
-
         return self.client.post('/asset_report/filter', {
             'asset_report_token': asset_report_token,
             'account_ids_to_exclude': account_ids_to_exclude,
@@ -53,7 +53,7 @@ class AssetReport(API):
     def refresh(self,
                 asset_report_token,
                 days_requested,
-                options={}):
+                options=None):
         '''
         Create a new, refreshed asset report based on an existing asset report.
 
@@ -65,6 +65,7 @@ class AssetReport(API):
         :param  dict  options:              An optional dictionary. This is the
                                             same object used in `create`.
         '''
+        options = options or {}
 
         return self.client.post('/asset_report/refresh', {
             'asset_report_token': asset_report_token,

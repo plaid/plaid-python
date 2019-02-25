@@ -6,7 +6,7 @@ class Balance(API):
 
     def get(self,
             access_token,
-            _options={},
+            _options=None,
             account_ids=None):
         '''
         Retrieve real-time balance information for accounts.
@@ -15,8 +15,7 @@ class Balance(API):
         :param  [str]   account_ids:    A list of account_ids to retrieve for
                                         the item. Optional.
         '''
-        options = {}
-        options.update(_options)
+        options = _options or {}
         if account_ids is not None:
             options['account_ids'] = account_ids
 
@@ -41,7 +40,7 @@ class Accounts(API):
 
     def get(self,
             access_token,
-            _options={},
+            _options=None,
             account_ids=None):
         '''
         Retrieve high-level account information for an Item.
@@ -50,8 +49,7 @@ class Accounts(API):
         :param  [str]   account_ids:    A list of account_ids to retrieve for
                                         the item. Optional.
         '''
-        options = {}
-        options.update(_options)
+        options = _options or {}
         if account_ids is not None:
             options['account_ids'] = account_ids
 

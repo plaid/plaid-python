@@ -21,7 +21,7 @@ class PublicToken(API):
     def create(self,
                institution_id,
                initial_products,
-               _options={},
+               _options=None,
                webhook=None):
         '''
         Generate a public token for sandbox testing.
@@ -32,8 +32,8 @@ class PublicToken(API):
 
         :param  str     webhook:
         '''
-        options = {}
-        options.update(_options)
+        options = _options or {}
+
         if webhook is not None:
             options['webhook'] = webhook
 
