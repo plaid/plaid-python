@@ -61,7 +61,9 @@ def test_full_flow():
 
     # The transactions in an Asset Report with Insights should have a non-null
     # `name` (when available).
-    assert report['items'][0]['accounts'][0]['transactions'][0]['name'] is not None
+    assert (
+        report['items'][0]['accounts'][0]['transactions'][0]['name']
+    ) is not None
 
     # retrieve the asset report as a PDF
     pdf = client.AssetReport.get_pdf(asset_report_token)
