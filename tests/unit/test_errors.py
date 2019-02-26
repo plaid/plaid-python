@@ -29,4 +29,3 @@ def test_from_response():
     assert cause.code == 'INTERNAL_SERVER_ERROR'
     assert cause.message == 'an unexpected error occurred'
     assert cause.item_id == '456'
-
