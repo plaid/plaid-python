@@ -11,9 +11,25 @@ def test_get():
     assert len(response['institutions']) == 3
 
 
+def test_get_with_include_institution_data():
+    client = create_client()
+    response = client.Institutions.get(3, offset=1, _options={
+        'include_institution_data': True,
+    })
+    assert len(response['institutions']) == 3
+
+
 def test_get_by_id():
     client = create_client()
     response = client.Institutions.get_by_id(SANDBOX_INSTITUTION)
+    assert response['institution']['institution_id'] == SANDBOX_INSTITUTION
+
+
+def test_get_by_id_with_include_institution_data():
+    client = create_client()
+    response = client.Institutions.get_by_id(SANDBOX_INSTITUTION, _options={
+        'include_institution_data': True,
+    })
     assert response['institution']['institution_id'] == SANDBOX_INSTITUTION
 
 
@@ -27,4 +43,13 @@ def test_search_with_products():
     client = create_client()
     response = client.Institutions.search(
         SANDBOX_INSTITUTION_NAME, products=['transactions'])
+    assert len(response['institutions']) >= 1
+
+
+def test_search_with_include_institution_data():
+    client = create_client()
+    response = client.Institutions.search(
+        SANDBOX_INSTITUTION_NAME, _options={
+            'include_institution_data': True,
+        })
     assert len(response['institutions']) >= 1

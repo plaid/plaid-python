@@ -7,7 +7,7 @@ class Institutions(API):
     (`HTTP docs <https://plaid.com/docs/api/#institutions>`__)
     '''
 
-    def get(self, count, offset=0):
+    def get(self, count, offset=0, _options=None):
         '''
         Fetch all Plaid institutions, using /institutions/all.
 
