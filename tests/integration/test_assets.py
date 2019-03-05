@@ -104,10 +104,7 @@ def test_full_flow():
 def name_exists_for_some_transaction(report):
     for account in report['items'][0]['accounts']:
         if len(account['transactions']) > 0:
-            return (report['items'][0]['accounts'][i]
-                    ['transactions'][0]['name']
-                    is not None)
-        i = i + 1
+            return (accounts['transactions'][0]['name'] is not None)
 
     return False
 
