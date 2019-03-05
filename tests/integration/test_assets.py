@@ -62,7 +62,7 @@ def test_full_flow():
     # The transactions in an Asset Report with Insights should have a non-null
     # `name` (when available).
     assert (
-        name_exists_for_some_some_transaction(report)) is True
+        name_exists_for_some_transaction(report))
 
     # retrieve the asset report as a PDF
     pdf = client.AssetReport.get_pdf(asset_report_token)
@@ -101,10 +101,9 @@ def test_full_flow():
     assert removed
 
 
-def name_exists_for_some_some_transaction(report):
-    i = 0
-    while i < len(report['items'][0]['accounts']):
-        if len(report['items'][0]['accounts'][i]['transactions']) > 0:
+def name_exists_for_some_transaction(report):
+    for account in report['items'][0]['accounts']:
+        if len(account['transactions']) > 0:
             return (report['items'][0]['accounts'][i]
                     ['transactions'][0]['name']
                     is not None)
