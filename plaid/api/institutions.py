@@ -14,9 +14,13 @@ class Institutions(API):
         :param  int     count:      Number of institutions to fetch.
         :param  int     offset:     Number of institutions to skip.
         '''
+
+        options = _options or {}
+
         return self.client.post('/institutions/get', {
             'count': count,
             'offset': offset,
+            'options': options,
         })
 
     def get_by_id(self, institution_id, _options=None):
