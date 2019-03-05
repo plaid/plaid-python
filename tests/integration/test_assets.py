@@ -49,7 +49,7 @@ def test_full_flow():
     assert asset_report_token is not None
     assert asset_report_id is not None
 
-    puts ("hi!")
+    print("Hello World")
 
     # retrieve the asset report
     response = poll_for_asset_report(client, asset_report_token)
