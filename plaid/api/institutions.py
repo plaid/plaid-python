@@ -7,16 +7,20 @@ class Institutions(API):
     (`HTTP docs <https://plaid.com/docs/api/#institutions>`__)
     '''
 
-    def get(self, count, offset=0):
+    def get(self, count, offset=0, _options=None):
         '''
         Fetch all Plaid institutions, using /institutions/all.
 
         :param  int     count:      Number of institutions to fetch.
         :param  int     offset:     Number of institutions to skip.
         '''
+
+        options = _options or {}
+
         return self.client.post('/institutions/get', {
             'count': count,
             'offset': offset,
+            'options': options,
         })
 
     def get_by_id(self, institution_id, _options=None):

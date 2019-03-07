@@ -62,8 +62,7 @@ def test_full_flow():
     # The transactions in an Asset Report with Insights should have a non-null
     # `name` (when available).
     assert (
-        report['items'][0]['accounts'][0]['transactions'][0]['name']
-    ) is not None
+        name_exists_for_some_transaction(report))
 
     # retrieve the asset report as a PDF
     pdf = client.AssetReport.get_pdf(asset_report_token)
@@ -100,6 +99,14 @@ def test_full_flow():
     response = client.AssetReport.remove(asset_report_token)
     removed = response['removed']
     assert removed
+
+
+def name_exists_for_some_transaction(report):
+    for account in report['items'][0]['accounts']:
+        if len(account['transactions']) > 0:
+            return (account['transactions'][0]['name'] is not None)
+
+    return False
 
 
 def poll_for_asset_report(client, asset_report_token, retries=20):
