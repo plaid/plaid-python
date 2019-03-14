@@ -81,8 +81,6 @@ class Item(API):
         :members:
     .. autoclass:: plaid.api.item.PublicToken
         :members:
-    .. autoclass:: plaid.api.item.Credentials
-        :members:
     .. autoclass:: plaid.api.item.Webhook
         :members:
     '''
