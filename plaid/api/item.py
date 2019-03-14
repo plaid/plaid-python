@@ -1,27 +1,6 @@
 from plaid.api.api import API
 
 
-class Credentials(API):
-    '''Item Credentials endpoints.'''
-
-    def update(self, access_token, credentials, _options=None):
-        '''
-        Update the credentials associated with an item.
-
-        Returns either a successful response or a response indicating that MFA
-        (Multi Factor Authentication) is required.
-
-        :param  dict     credentials:   See ``Item.create`` for details.
-        '''
-        _options = _options or {}
-
-        return self.client.post('/item/credentials/update', {
-            'access_token': access_token,
-            'credentials': credentials,
-            'options': _options,
-        })
-
-
 class PublicToken(API):
     '''Endpoints for translating between public tokens and access tokens.'''
 

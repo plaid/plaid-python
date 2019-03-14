@@ -28,20 +28,22 @@ For example:
 .. code-block:: python
 
   // Prefer this...
-  client.Item.create(credentials=dict(username='user_good',
-                                      password='pass_good'),
-                     institution_id='ins_109508',
-                     initial_products=['transactions', 'auth'],
-                     webhook='https://example.com/webhook');
+  client.Transactions.get(access_token,
+                          start_date,
+                          end_date,
+                          account_ids=account_ids,
+                          count=count,
+                          offset=offset);
 
   // ... over this.
-  client.Item.create(credentials=dict(username='user_good',
-                                      password='pass_good'),
-                     institution_id='ins_109508',
-                     initial_products=['transactions', 'auth'],
-                     _options={
-                     	'webhook': 'https://example.com/webhook',
-                     });
+  client.Transactions.get(access_token,
+                          start_date,
+                          end_date,
+                          _options={
+                            'account_ids': account_ids,
+                            'count': count,
+                            'offset': offset,
+                          });
 
 .. automodule:: plaid.api
     :members:
