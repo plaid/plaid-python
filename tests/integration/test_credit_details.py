@@ -1,6 +1,5 @@
 from tests.integration.util import (
     create_client,
-    CREDENTIALS,
     SANDBOX_INSTITUTION,
 )
 
@@ -9,8 +8,10 @@ access_token = None
 
 def setup_module(module):
     client = create_client()
-    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['credit_details'])
-    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
+    pt_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['credit_details'])
+    exchange_response = client.Item.public_token.exchange(
+        pt_response['public_token'])
     global access_token
     access_token = exchange_response['access_token']
 

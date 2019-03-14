@@ -9,13 +9,8 @@ runner.
 
 from contextlib import contextmanager
 
-import pytest
-
-from plaid.errors import ItemError
-
 from tests.integration.util import (
     create_client,
-    CREDENTIALS,
     SANDBOX_INSTITUTION,
 )
 
@@ -28,19 +23,25 @@ def ensure_item_removed(access_token):
     finally:
         create_client().Item.remove(access_token)
 
+
 def test_get():
     client = create_client()
-    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['transactions'])
-    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
+    pt_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'])
+    exchange_response = client.Item.public_token.exchange(
+        pt_response['public_token'])
 
     with ensure_item_removed(exchange_response['access_token']):
         get_response = client.Item.get(exchange_response['access_token'])
         assert get_response['item'] is not None
 
+
 def test_remove():
     client = create_client()
-    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['transactions'])
-    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
+    pt_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'])
+    exchange_response = client.Item.public_token.exchange(
+        pt_response['public_token'])
 
     remove_response = client.Item.remove(exchange_response['access_token'])
     assert remove_response['removed']
@@ -48,8 +49,10 @@ def test_remove():
 
 def test_public_token():
     client = create_client()
-    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['transactions'])
-    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
+    pt_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'])
+    exchange_response = client.Item.public_token.exchange(
+        pt_response['public_token'])
     with ensure_item_removed(exchange_response['access_token']):
         assert pt_response['public_token'] is not None
         assert exchange_response['access_token'] is not None
@@ -69,8 +72,10 @@ def test_sandbox_public_token():
 
 def test_access_token_invalidate():
     client = create_client()
-    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['transactions'])
-    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
+    pt_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'])
+    exchange_response = client.Item.public_token.exchange(
+        pt_response['public_token'])
 
     try:
         invalidate_response = client.Item.access_token.invalidate(
@@ -81,13 +86,17 @@ def test_access_token_invalidate():
         with ensure_item_removed(exchange_response['access_token']):
             raise
 
+
 def test_webhook_update():
     client = create_client()
-    pt_response = client.Sandbox.public_token.create(SANDBOX_INSTITUTION, ['transactions'])
-    exchange_response = client.Item.public_token.exchange(pt_response['public_token'])
+    pt_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'])
+    exchange_response = client.Item.public_token.exchange(
+        pt_response['public_token'])
 
     with ensure_item_removed(exchange_response['access_token']):
         webhook_response = client.Item.webhook.update(
-            exchange_response['access_token'], 'https://plaid.com/webhook-test')
+            exchange_response['access_token'],
+            'https://plaid.com/webhook-test')
         assert (webhook_response['item']['webhook'] ==
                 'https://plaid.com/webhook-test')
