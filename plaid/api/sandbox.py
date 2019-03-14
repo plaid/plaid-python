@@ -36,11 +36,12 @@ class PublicToken(API):
         :param  str     webhook:
         '''
         options = _options or {}
-        transaction_options = {}
-        transaction_options.update(options.get('transactions', {}))
 
         if webhook is not None:
             options['webhook'] = webhook
+
+        transaction_options = {}
+        transaction_options.update(options.get('transactions', {}))
         if transactions__start_date is not None:
             transaction_options['start_date'] = transactions__start_date
         if transactions__end_date is not None:

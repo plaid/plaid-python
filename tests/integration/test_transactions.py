@@ -32,21 +32,20 @@ def get_transactions_with_retries(client,
                                   num_retries=5):
     response = None
     for i in range(num_retries):
-        while True:
-            try:
-                response = client.Transactions.get(access_token,
-                                                   start_date,
-                                                   end_date,
-                                                   account_ids=account_ids,
-                                                   count=count,
-                                                   offset=offset)
-            except ItemError as ie:
-                if ie.code == u'PRODUCT_NOT_READY':
-                    time.sleep(5)
-                    continue
-                else:
-                    raise ie
-            break
+        try:
+            response = client.Transactions.get(access_token,
+                                               start_date,
+                                               end_date,
+                                               account_ids=account_ids,
+                                               count=count,
+                                               offset=offset)
+        except ItemError as ie:
+            if ie.code == u'PRODUCT_NOT_READY':
+                time.sleep(5)
+                continue
+            else:
+                raise ie
+        break
     return response
 
 
