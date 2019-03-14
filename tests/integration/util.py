@@ -14,31 +14,6 @@ def create_client():
                   api_version="2017-03-08")
 
 
-CREDENTIALS = {
-    'username': 'user_good',
-    'password': 'pass_good',
-}
-
-MFA_DEVICE_CREDENTIALS = {
-    'username': 'user_good',
-    'password': 'mfa_device',
-}
-
-MFA_SELECTIONS_CREDENTIALS = {
-    'username': 'user_good',
-    'password': 'mfa_selections',
-}
-
-MFA_QUESTIONS_CREDENTIALS = {
-    'username': 'user_good',
-    'password': 'mfa_questions_1_1'
-}
-
-INVALID_CREDENTIALS = {
-    'username': 'user_bad',
-    'password': 'pass_bad',
-}
-
 SANDBOX_INSTITUTION = 'ins_109508'
 SANDBOX_INSTITUTION_NAME = 'First Platypus Bank'
 
