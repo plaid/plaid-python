@@ -115,15 +115,15 @@ stripe_response = client.Processor.stripeBankAccountTokenCreate(access_token, '[
 bank_account_token = stripe_response['stripe_bank_account_token']
 ```
 
-### Delete Item
+### Remove Item
 
 ```python
 from plaid import Client
 
 client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 
-# Provide the access token for the Item you want to delete
-client.Item.delete(access_token)
+# Provide the access token for the Item you want to remove
+client.Item.remove(access_token)
 ```
 
 ### Retrieve Transactions
@@ -180,7 +180,7 @@ Please open an [issue][5] for anything not on this list!
 (https://github.com/plaid/plaid-python/issues/62) -
 Work around is installing `pyopenssl ndg-httpsclient pyasn1` from pip.
 
-2. Requests are no longer made using `urlfetch.fetch` on Google App Engine. You will need to use the appengine requests 
+2. Requests are no longer made using `urlfetch.fetch` on Google App Engine. You will need to use the appengine requests
 adapter to monkeypatch requests. See the [app engine documentation][8] for details.
 ## Contributing
 

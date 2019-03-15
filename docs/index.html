@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 2.3.4 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 3.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.3.4',
+        VERSION:     '3.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -39,6 +39,8 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="plaid-python-documentation">
@@ -89,20 +91,22 @@ it is recommended that you pass in options using the provided keyword
 arguments where possible.</p>
 <p>For example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Prefer</span> <span class="n">this</span><span class="o">...</span>
-<span class="n">client</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">credentials</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;user_good&#39;</span><span class="p">,</span>
-                                    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;pass_good&#39;</span><span class="p">),</span>
-                   <span class="n">institution_id</span><span class="o">=</span><span class="s1">&#39;ins_109508&#39;</span><span class="p">,</span>
-                   <span class="n">initial_products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;auth&#39;</span><span class="p">],</span>
-                   <span class="n">webhook</span><span class="o">=</span><span class="s1">&#39;https://example.com/webhook&#39;</span><span class="p">);</span>
+<span class="n">client</span><span class="o">.</span><span class="n">Transactions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span>
+                        <span class="n">start_date</span><span class="p">,</span>
+                        <span class="n">end_date</span><span class="p">,</span>
+                        <span class="n">account_ids</span><span class="o">=</span><span class="n">account_ids</span><span class="p">,</span>
+                        <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span>
+                        <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">);</span>
 
 <span class="o">//</span> <span class="o">...</span> <span class="n">over</span> <span class="n">this</span><span class="o">.</span>
-<span class="n">client</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">credentials</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;user_good&#39;</span><span class="p">,</span>
-                                    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;pass_good&#39;</span><span class="p">),</span>
-                   <span class="n">institution_id</span><span class="o">=</span><span class="s1">&#39;ins_109508&#39;</span><span class="p">,</span>
-                   <span class="n">initial_products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;transactions&#39;</span><span class="p">,</span> <span class="s1">&#39;auth&#39;</span><span class="p">],</span>
-                   <span class="n">_options</span><span class="o">=</span><span class="p">{</span>
-                      <span class="s1">&#39;webhook&#39;</span><span class="p">:</span> <span class="s1">&#39;https://example.com/webhook&#39;</span><span class="p">,</span>
-                   <span class="p">});</span>
+<span class="n">client</span><span class="o">.</span><span class="n">Transactions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span>
+                        <span class="n">start_date</span><span class="p">,</span>
+                        <span class="n">end_date</span><span class="p">,</span>
+                        <span class="n">_options</span><span class="o">=</span><span class="p">{</span>
+                          <span class="s1">&#39;account_ids&#39;</span><span class="p">:</span> <span class="n">account_ids</span><span class="p">,</span>
+                          <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span>
+                          <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+                        <span class="p">});</span>
 </pre></div>
 </div>
 <span class="target" id="module-plaid.api"></span><dl class="class">
@@ -116,7 +120,7 @@ arguments where possible.</p>
 <dd><p>Accounts balance endpoint.</p>
 <dl class="method">
 <dt id="plaid.api.accounts.Accounts.Balance.Balance.get">
-<code class="descclassname">Balance.</code><code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options={}</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.accounts.Accounts.Balance.Balance.get" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Balance.</code><code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options=None</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.accounts.Accounts.Balance.Balance.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve real-time balance information for accounts.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -137,7 +141,7 @@ the item. Optional.</li>
 
 <dl class="method">
 <dt id="plaid.api.Accounts.get">
-<code class="descclassname">Accounts.</code><code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options={}</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Accounts.get" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Accounts.</code><code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options=None</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Accounts.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve high-level account information for an Item.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -163,7 +167,7 @@ the item. Optional.</li>
 (<a class="reference external" href="https://plaid.com/docs/api/#assets">HTTP docs</a>)</p>
 <dl class="method">
 <dt id="plaid.api.AssetReport.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>access_tokens</em>, <em>days_requested</em>, <em>options={}</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.create" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create</code><span class="sig-paren">(</span><em>access_tokens</em>, <em>days_requested</em>, <em>options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an asset report.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -246,7 +250,7 @@ asset report you created.</td>
 
 <dl class="method">
 <dt id="plaid.api.AssetReport.refresh">
-<code class="descname">refresh</code><span class="sig-paren">(</span><em>asset_report_token</em>, <em>days_requested</em>, <em>options={}</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.refresh" title="Permalink to this definition">¶</a></dt>
+<code class="descname">refresh</code><span class="sig-paren">(</span><em>asset_report_token</em>, <em>days_requested</em>, <em>options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.AssetReport.refresh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new, refreshed asset report based on an existing asset report.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -290,7 +294,7 @@ asset report you want to remove.</td>
 <dd><p>Auth endpoints.</p>
 <dl class="method">
 <dt id="plaid.api.Auth.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options={}</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Auth.get" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options=None</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Auth.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve account and routing numbers for checking and savings accounts.
 (<a class="reference external" href="https://plaid.com/docs/api/#auth">HTTP docs</a>)</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -394,7 +398,7 @@ Adds the income product to the item if it does not already have it.</p>
 (<a class="reference external" href="https://plaid.com/docs/api/#institutions">HTTP docs</a>)</p>
 <dl class="method">
 <dt id="plaid.api.Institutions.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>count</em>, <em>offset=0</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Institutions.get" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get</code><span class="sig-paren">(</span><em>count</em>, <em>offset=0</em>, <em>_options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Institutions.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch all Plaid institutions, using /institutions/all.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -412,7 +416,7 @@ Adds the income product to the item if it does not already have it.</p>
 
 <dl class="method">
 <dt id="plaid.api.Institutions.get_by_id">
-<code class="descname">get_by_id</code><span class="sig-paren">(</span><em>institution_id</em>, <em>_options={}</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Institutions.get_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_by_id</code><span class="sig-paren">(</span><em>institution_id</em>, <em>_options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Institutions.get_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch a single institution by id.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -524,28 +528,6 @@ the Plaid API
 </dd></dl>
 
 <dl class="class">
-<dt id="plaid.api.item.Credentials">
-<em class="property">class </em><code class="descclassname">plaid.api.item.</code><code class="descname">Credentials</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.Credentials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Item Credentials endpoints.</p>
-<dl class="method">
-<dt id="plaid.api.item.Credentials.update">
-<code class="descname">update</code><span class="sig-paren">(</span><em>access_token</em>, <em>credentials</em>, <em>_options={}</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.Credentials.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the credentials associated with an item.</p>
-<p>Returns either a successful response or a response indicating that MFA
-(Multi Factor Authentication) is required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>credentials</strong> (<em>dict</em>) &#8211; See <code class="docutils literal"><span class="pre">Item.create</span></code> for details.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="plaid.api.item.Webhook">
 <em class="property">class </em><code class="descclassname">plaid.api.item.</code><code class="descname">Webhook</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.Webhook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Webhook endpoints.</p>
@@ -571,65 +553,6 @@ the Plaid API
 </dd></dl>
 
 <dl class="method">
-<dt id="plaid.api.Item.create">
-<code class="descclassname">Item.</code><code class="descname">create</code><span class="sig-paren">(</span><em>credentials</em>, <em>institution_id</em>, <em>initial_products</em>, <em>_options={}</em>, <em>transactions__start_date=None</em>, <em>transactions__end_date=None</em>, <em>transactions__await_results=None</em>, <em>webhook=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a bank account user/login to Plaid.</p>
-<p>Returns either a successful response or a response indicating that MFA
-(Multi Factor Authentication) is required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>credentials</strong> (<em>dict</em>) &#8211; A dictionary containing
-the fields
-<code class="docutils literal"><span class="pre">username</span></code>,
-<code class="docutils literal"><span class="pre">password</span></code>, and
-(optionally) <code class="docutils literal"><span class="pre">pin</span></code>.</li>
-<li><strong>institution_id</strong> (<em>str</em>) &#8211; </li>
-<li><strong>initial_products</strong> (<em>list</em>) &#8211; A list containing
-product names.</li>
-<li><strong>transactions__start_date</strong> (<em>str</em>) &#8211; The date to begin the
-item&#8217;s initial
-transaction pull.</li>
-<li><strong>transactions__end_date</strong> (<em>str</em>) &#8211; The date to end the
-item&#8217;s initial
-transaction pull.</li>
-<li><strong>transactions__await_results</strong> (<em>str</em>) &#8211; If <code class="docutils literal"><span class="pre">True</span></code>, wait for
-the initial
-transaction pull to
-complete before
-returning. Will
-increase the user wait
-time.</li>
-<li><strong>webhook</strong> (<em>str</em>) &#8211; The URL for a webhook
-associated with the
-item.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>All dates should be formatted as <code class="docutils literal"><span class="pre">YYYY-MM-DD</span></code>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="plaid.api.Item.delete">
-<code class="descclassname">Item.</code><code class="descname">delete</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete an item.
-(<a class="reference external" href="https://plaid.com/docs/api/#delete-an-item">HTTP docs</a>)</p>
-<p>This also deactivates the access_token.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>access_token</strong> (<em>str</em>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="plaid.api.Item.get">
 <code class="descclassname">Item.</code><code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get information about the status of an item.
@@ -639,25 +562,6 @@ item.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>access_token</strong> (<em>str</em>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="plaid.api.Item.mfa">
-<code class="descclassname">Item.</code><code class="descname">mfa</code><span class="sig-paren">(</span><em>access_token</em>, <em>mfa_type</em>, <em>responses</em>, <em>_options={}</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.mfa" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provide an MFA (Multi-Factor Authentication) response for an item.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
-<li><strong>mfa_type</strong> (<em>str</em>) &#8211; The type of mfa answered (e.g. device)</li>
-<li><strong>responses</strong> (<em></em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; The MFA response(s)</li>
-</ul>
-</td>
 </tr>
 </tbody>
 </table>
@@ -759,7 +663,7 @@ item.</li>
 <dd><p>Transactions endpoints.</p>
 <dl class="method">
 <dt id="plaid.api.Transactions.get">
-<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>start_date</em>, <em>end_date</em>, <em>_options={}</em>, <em>account_ids=None</em>, <em>count=None</em>, <em>offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Transactions.get" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>start_date</em>, <em>end_date</em>, <em>_options=None</em>, <em>account_ids=None</em>, <em>count=None</em>, <em>offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Transactions.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return accounts and transactions for an item.
 (<a class="reference external" href="https://plaid.com/docs/api/#transactions">HTTP docs</a>)</p>
 <p>The transactions in the response are paginated &#8211; compare the number of
@@ -793,24 +697,50 @@ the beginning of the fetch. Optional.</li>
 <div class="section" id="module-plaid.errors">
 <span id="errors"></span><h2>Errors<a class="headerlink" href="#module-plaid.errors" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
+<dt id="plaid.errors.BaseError">
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">BaseError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.BaseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>A base error class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> (<em>str</em>) &#8211; A developer-friendly error message. Not
+safe for programmatic use.</li>
+<li><strong>type</strong> (<em>str</em>) &#8211; A broad categorization of the error,
+corresponding to the error class.</li>
+<li><strong>code</strong> (<em>str</em>) &#8211; An error code for programmatic use.</li>
+<li><strong>display_message</strong> (<em>str</em>) &#8211; A user-friendly error message. Not safe
+for programmatic use. May be None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
 <dt id="plaid.errors.PlaidError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#plaid.errors.BaseError" title="plaid.errors.BaseError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.BaseError</span></code></a></p>
 <p>A Plaid API error.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> (<em>str</em>) &#8211; A developer-friendly error message. Not
+safe for programmatic use.</li>
 <li><strong>type</strong> (<em>str</em>) &#8211; A broad categorization of the error,
 corresponding to the error class.</li>
 <li><strong>code</strong> (<em>str</em>) &#8211; An error code for programmatic use.</li>
-<li><strong>message</strong> (<em>str</em>) &#8211; A developer-friendly error message. Not
-safe for programmatic use.</li>
 <li><strong>display_message</strong> (<em>str</em>) &#8211; A user-friendly error message. Not safe
 for programmatic use. May be None.</li>
 <li><strong>request_id</strong> (<em>str</em>) &#8211; A unique id returned for all server
 responses.</li>
+<li><strong>causes</strong> (<em>list</em>) &#8211; A list of reasons explaining why the
+error happened.</li>
 </ul>
 </td>
 </tr>
@@ -826,43 +756,68 @@ responses.</li>
 </dd></dl>
 
 <dl class="exception">
+<dt id="plaid.errors.PlaidCause">
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">PlaidCause</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>item_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.PlaidCause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#plaid.errors.BaseError" title="plaid.errors.BaseError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.BaseError</span></code></a></p>
+<p>A cause of a Plaid error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> (<em>str</em>) &#8211; A developer-friendly error message. Not
+safe for programmatic use.</li>
+<li><strong>type</strong> (<em>str</em>) &#8211; A broad categorization of the error,
+corresponding to the error class.</li>
+<li><strong>code</strong> (<em>str</em>) &#8211; An error code for programmatic use.</li>
+<li><strong>display_message</strong> (<em>str</em>) &#8211; A user-friendly error message. Not safe
+for programmatic use. May be None.</li>
+<li><strong>item_id</strong> (<em>str</em>) &#8211; The item ID.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
 <dt id="plaid.errors.InvalidRequestError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidRequestError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidRequestError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidRequestError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidRequestError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>The request is malformed and cannot be processed.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.InvalidInputError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidInputError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidInputError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InvalidInputError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InvalidInputError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>The request is correctly formatted, but the values are incorrect.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.RateLimitExceededError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">RateLimitExceededError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.RateLimitExceededError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">RateLimitExceededError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.RateLimitExceededError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>The request is valid but has exceeded established rate limits.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.APIError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">APIError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.APIError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">APIError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.APIError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>Planned maintenance or an API internal server error.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.ItemError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">ItemError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.ItemError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">ItemError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.ItemError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>There is invalid information about an item or it is not supported.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="plaid.errors.InstitutionError">
-<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InstitutionError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InstitutionError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InstitutionError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InstitutionError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>There are errors for the requested financial institution.</p>
 </dd></dl>
@@ -879,6 +834,7 @@ responses.</li>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -919,7 +875,7 @@ responses.</li>
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 
