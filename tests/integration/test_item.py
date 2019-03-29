@@ -69,6 +69,24 @@ def test_sandbox_public_token():
         create_response['public_token'])
     assert exchange_response['access_token'] is not None
 
+def test_sandbox_fire_webhook():
+    client = create_client()
+    create_response = client.Sandbox.public_token.create(
+        SANDBOX_INSTITUTION, ['transactions'], webhook='https://plaid.com/foo/bar/hook')
+    assert create_response['public_token'] is not None
+
+    # public token -> access token
+    exchange_response = client.Item.public_token.exchange(
+        create_response['public_token'])
+    assert exchange_response['access_token'] is not None
+
+    # fire webhook
+    fire_webhook_response = client.Sandbox.item.fire_webhook(
+        exchange_response['access_token'],
+        'DEFAULT_UPDATE'
+    )
+    assert fire_webhook_response['webhook_fired'] is True
+
 
 def test_access_token_invalidate():
     client = create_client()

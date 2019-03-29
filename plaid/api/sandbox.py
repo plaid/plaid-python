@@ -14,6 +14,18 @@ class Item(API):
             'access_token': access_token,
         })
 
+    def fire_webhook(self, access_token, webhook_code):
+        '''
+        Fire a webhook for an item
+
+        :param  str     access_token:
+        :param  str     webhook_code:
+        '''
+        return self.client.post('/sandbox/item/fire_webhook', {
+            'access_token': access_token,
+            'webhook_code': webhook_code,
+        })
+
 
 class PublicToken(API):
     '''Sandbox public token endpoints.'''
