@@ -1,0 +1,18 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - checkout
+      - run:
+          name: Python environment
+          command: pyenv global 2.7.10 3.6.0
+      - run:
+          name: Install dependencies
+          command: pip install tox tox-pyenv
+          command: pyenv local 2.7.10 3.6.0
+      - run:
+          name: Tests
+          command: tox
