@@ -1,3 +1,7 @@
+## 3.1.1
+
+- Add [`/sandbox/item/fire_webhook`][docs-sandbox-item-fire-webhook] endpoint ([#160](https://github.com/plaid/plaid-python/pull/160))
+
 ## 3.1.0
 
 - Fix flag name for retrieving institution display data, it is `include_optional_metadata`
@@ -20,3 +24,5 @@
 ## 2.4.0
 
 - Add support for asset reports with insights ([#138](https://github.com/plaid/plaid-python/pull/138))
+
+[docs-sandbox-item-fire-webhook]: https://plaid.com/docs/#firing-webhooks
