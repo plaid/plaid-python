@@ -11,7 +11,7 @@ def create_client():
                   os.environ['SECRET'],
                   os.environ['PUBLIC_KEY'],
                   'sandbox',
-                  api_version="2017-03-08")
+                  api_version="2019-05-29")
 
 
 SANDBOX_INSTITUTION = 'ins_109508'

@@ -1,4 +1,6 @@
 import time
+import pytest
+
 from plaid.errors import PlaidError
 from tests.integration.util import (
     create_client,
@@ -24,6 +26,7 @@ def teardown_module(module):
     client.Item.remove(access_token)
 
 
+@pytest.mark.skip(reason="this is disabled for sandbox institutions")
 def test_full_flow():
     client = create_client()
 
