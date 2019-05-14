@@ -37,6 +37,8 @@ class PublicToken(API):
                webhook=None,
                transactions__start_date=None,
                transactions__end_date=None,
+               override_username=None,
+               override_password=None
                ):
         '''
         Generate a public token for sandbox testing.
@@ -51,6 +53,10 @@ class PublicToken(API):
 
         if webhook is not None:
             options['webhook'] = webhook
+        if override_username is not None:
+            options['override_username'] = override_username
+        if override_password is not None:
+            options['override_password'] = override_password
 
         transaction_options = {}
         transaction_options.update(options.get('transactions', {}))
