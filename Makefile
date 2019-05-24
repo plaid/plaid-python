@@ -12,7 +12,7 @@ test: lint
 # Setting up for local development
 .PHONY: setup
 setup:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 .PHONY: docs
 docs:

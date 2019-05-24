@@ -1,0 +1,18 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.4
+    steps:
+      - checkout
+      - run:
+        name: Install pyenv, tox
+        command: pip3 install tox
+      - run:
+        name: Install dependencies
+        command: make setup
+      - run:
+        name: Tests
+        command: make test
+
