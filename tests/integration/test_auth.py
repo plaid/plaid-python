@@ -32,4 +32,10 @@ def test_get():
     # get auth for selected accounts
     account_id = response['accounts'][0]['account_id']
     response = client.Auth.get(access_token, account_ids=[account_id])
-    assert len(response['numbers']) == 1
+    for key in [
+        'eft',
+        'ach',
+        'international',
+        'bacs',
+    ]:
+        assert key in response['numbers']
