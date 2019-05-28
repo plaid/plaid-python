@@ -4,7 +4,6 @@ from plaid.errors import APIError, PlaidError
 def test_from_response():
     response = {
         'display_message': None,
-        'suggested_action': None,
         'error_type': 'API_ERROR',
         'error_code': 'INTERNAL_SERVER_ERROR',
         'error_message': 'an unexpected error occurred',
