@@ -9,6 +9,8 @@ class BaseError(Exception):
     :ivar   str     code:               An error code for programmatic use.
     :ivar   str     display_message:    A user-friendly error message. Not safe
                                         for programmatic use. May be None.
+    :ivar   str     suggested_action:   A developer-friendly message for how to
+                                        resolve the error. May be None.
     '''
     def __init__(
         self,
@@ -16,6 +18,7 @@ class BaseError(Exception):
         type,
         code,
         display_message,
+        suggested_action,
     ):
         super(BaseError, self).__init__(message)
 
@@ -27,6 +30,7 @@ class BaseError(Exception):
         self.type = type
         self.code = code
         self.display_message = display_message
+        self.suggested_action = suggested_action
 
 
 class PlaidError(BaseError):
@@ -40,6 +44,8 @@ class PlaidError(BaseError):
     :ivar   str     code:               An error code for programmatic use.
     :ivar   str     display_message:    A user-friendly error message. Not safe
                                         for programmatic use. May be None.
+    :ivar   str     suggested_action:   A developer-friendly message for how to
+                                        resolve the error. May be None.
     :ivar   str     request_id:         A unique id returned for all server
                                         responses.
     :ivar   list    causes:             A list of reasons explaining why the
@@ -52,6 +58,7 @@ class PlaidError(BaseError):
         type,
         code,
         display_message,
+        suggested_action,
         request_id="",
         causes=None,
     ):
@@ -60,6 +67,7 @@ class PlaidError(BaseError):
             type,
             code,
             display_message,
+            suggested_action,
         )
         self.request_id = request_id
         self.causes = [
@@ -84,6 +92,7 @@ class PlaidError(BaseError):
                    response['error_type'],
                    response['error_code'],
                    response['display_message'],
+                   response['suggested_action'],
                    response['request_id'],
                    response.get('causes'))
 
@@ -115,6 +124,7 @@ class PlaidCause(BaseError):
             type,
             code,
             display_message,
+            None,
         )
         self.item_id = item_id
 
