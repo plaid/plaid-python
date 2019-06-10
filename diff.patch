@@ -1,0 +1,271 @@
+diff --git a/plaid/api/__init__.py b/plaid/api/__init__.py
+index 6eabff6..4b33ee1 100644
+--- a/plaid/api/__init__.py
++++ b/plaid/api/__init__.py
+@@ -3,9 +3,11 @@ from plaid.api.assets import AssetReport
+ from plaid.api.auth import Auth
+ from plaid.api.categories import Categories
+ from plaid.api.credit_details import CreditDetails
++from plaid.api.holdings import Holdings
+ from plaid.api.identity import Identity
+ from plaid.api.income import Income
+ from plaid.api.institutions import Institutions
++from plaid.api.investment_transactions import InvestmentTransactions
+ from plaid.api.item import Item
+ from plaid.api.processor import Processor
+ from plaid.api.sandbox import Sandbox
+@@ -17,9 +19,11 @@ __all__ = [
+     'Auth',
+     'Categories',
+     'CreditDetails',
++    'Holdings',
+     'Identity',
+     'Income',
+     'Institutions',
++    'InvestmentTransactions',
+     'Item',
+     'Processor',
+     'Sandbox',
+diff --git a/plaid/api/holdings.py b/plaid/api/holdings.py
+new file mode 100644
+index 0000000..bae06c5
+--- /dev/null
++++ b/plaid/api/holdings.py
+@@ -0,0 +1,19 @@
++from plaid.api.api import API
++
++
++class Holdings(API):
++    '''
++    Holdings endpoints.
++    (`HTTP docs <https://plaid.com/docs/api/#holdings>`__)
++    '''
++
++    def get(self,
++            access_token):
++        '''
++        Retrieve investmen holdings information about an item.
++
++        :param  str     access_token:
++        '''
++        return self.client.post('/investments/holdings/get', {
++            'access_token': access_token,
++        })
+\ No newline at end of file
+diff --git a/plaid/api/investment_transactions.py b/plaid/api/investment_transactions.py
+new file mode 100644
+index 0000000..2950b50
+--- /dev/null
++++ b/plaid/api/investment_transactions.py
+@@ -0,0 +1,50 @@
++from plaid.api.api import API
++
++
++class InvestmentTransactions(API):
++    '''InvestmentTransactions endpoints.'''
++
++    def get(self,
++            access_token,
++            start_date,
++            end_date,
++            _options=None,
++            account_ids=None,
++            count=None,
++            offset=None,
++            ):
++        '''
++        Return accounts and transactions for an item.
++        (`HTTP docs <https://plaid.com/docs/api/#investment-transactions>`__)
++
++        The transactions in the response are paginated -- compare the number of
++        transactions received so far against response['total_transactions'] to
++        determine whether to fetch another page.
++
++        :param  str     access_token:
++        :param  str     start_date:     The earliest date for transactions.
++        :param  str     end_date:       The latest date for transactions.
++        :param  [str]   account_ids:    A list of account_ids to retrieve for
++                                        the item. Optional.
++        :param  int     count:          The number of transactions to fetch.
++                                        Optional.
++        :param  int     offset:         The number of transactions to skip from
++                                        the beginning of the fetch. Optional.
++
++        All date should be formatted as ``YYYY-MM-DD``.
++        '''
++        options = _options or {}
++
++        if account_ids is not None:
++            options['account_ids'] = account_ids
++        if count is not None:
++            options['count'] = count
++        if offset is not None:
++            options['offset'] = offset
++
++        return self.client.post('/investments/transactions/get', {
++            'access_token': access_token,
++            'start_date': start_date,
++            'end_date': end_date,
++            'options': options,
++        })
+diff --git a/plaid/client.py b/plaid/client.py
+index bf4e2ca..286c85d 100644
+--- a/plaid/client.py
++++ b/plaid/client.py
+@@ -6,9 +6,11 @@ from plaid.api import (
+     Auth,
+     Categories,
+     CreditDetails,
++    Holdings,
+     Identity,
+     Income,
+     Institutions,
++    InvestmentTransactions,
+     Item,
+     Processor,
+     Sandbox,
+@@ -69,9 +71,11 @@ class Client(object):
+         self.Auth = Auth(self)
+         self.Categories = Categories(self)
+         self.CreditDetails = CreditDetails(self)
++        self.Holdings = Holdings(self)
+         self.Identity = Identity(self)
+         self.Income = Income(self)
+         self.Institutions = Institutions(self)
++        self.InvestmentTransactions = InvestmentTransactions(self)
+         self.Item = Item(self)
+         self.Processor = Processor(self)
+         self.Sandbox = Sandbox(self)
+diff --git a/tests/integration/test_holdings.py b/tests/integration/test_holdings.py
+new file mode 100644
+index 0000000..b39040f
+--- /dev/null
++++ b/tests/integration/test_holdings.py
+@@ -0,0 +1,31 @@
++from plaid.errors import ItemError
++from tests.integration.util import (
++    create_client,
++    SANDBOX_INSTITUTION
++)
++
++access_token = None
++
++
++def setup_module(module):
++    client = create_client()
++    pt_response = client.Sandbox.public_token.create(
++        SANDBOX_INSTITUTION, ['investments'])
++    exchange_response = client.Item.public_token.exchange(
++        pt_response['public_token'])
++    global access_token
++    access_token = exchange_response['access_token']
++
++
++def teardown_module(module):
++    client = create_client()
++    client.Item.remove(access_token)
++
++
++def test_get():
++    client = create_client()
++    response = client.Holdings.get(access_token)
++    assert response['item'] is not None
++    assert response['accounts'] is not None
++    assert response['securities'] is not None
++    assert response['holdings'] is not None
+diff --git a/tests/integration/test_investment_transactions.py b/tests/integration/test_investment_transactions.py
+new file mode 100644
+index 0000000..44ff296
+--- /dev/null
++++ b/tests/integration/test_investment_transactions.py
+@@ -0,0 +1,90 @@
++import time
++
++from plaid.errors import ItemError
++from tests.integration.util import (
++    create_client,
++    SANDBOX_INSTITUTION,
++)
++
++access_token = None
++
++
++def setup_module(module):
++    client = create_client()
++    pt_response = client.Sandbox.public_token.create(
++        SANDBOX_INSTITUTION, ['investments'],
++        transactions__start_date='2018-01-01',
++        transactions__end_date='2019-01-01',
++    )
++    exchange_response = client.Item.public_token.exchange(
++        pt_response['public_token'])
++    global access_token
++    access_token = exchange_response['access_token']
++
++
++def get_investment_transactions_with_retries(client,
++                                  access_token,
++                                  start_date,
++                                  end_date,
++                                  account_ids=None,
++                                  count=None,
++                                  offset=None,
++                                  num_retries=5):
++    response = None
++    for i in range(num_retries):
++        try:
++            response = client.InvestmentTransactions.get(access_token,
++                                               start_date,
++                                               end_date,
++                                               account_ids=account_ids,
++                                               count=count,
++                                               offset=offset)
++        except ItemError as ie:
++            if ie.code == u'PRODUCT_NOT_READY':
++                time.sleep(5)
++                continue
++            else:
++                raise ie
++        break
++    return response
++
++
++def teardown_module(module):
++    client = create_client()
++    client.Item.remove(access_token)
++
++
++def test_get():
++    client = create_client()
++
++    response = get_investment_transactions_with_retries(client,
++                                             access_token,
++                                             '2018-01-01',
++                                             '2019-01-01',
++                                             num_retries=5)
++    assert response['item'] is not None
++    assert response['accounts'] is not None
++    assert response['securities'] is not None
++    assert response['investment_transactions'] is not None
++    assert response['total_investment_transactions'] is not None
++
++    # get transactions for selected accounts
++    account_id = response['accounts'][0]['account_id']
++    response = get_investment_transactions_with_retries(client,
++                                             access_token,
++                                             '2018-01-01',
++                                             '2019-01-01',
++                                             account_ids=[account_id],
++                                             num_retries=5)
++    assert response['investment_transactions'] is not None
++
++
++def test_get_with_options():
++    client = create_client()
++    response = get_investment_transactions_with_retries(client,
++                                             access_token,
++                                             '2018-01-01',
++                                             '2019-01-01',
++                                             count=2,
++                                             offset=1)
++    assert len(response['investment_transactions']) == 2
