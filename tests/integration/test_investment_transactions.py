@@ -72,8 +72,8 @@ def test_get():
     account_id = response['accounts'][0]['account_id']
     response = get_investment_transactions_with_retries(client,
                                              access_token,
-                                             '2018-01-01',
-                                             '2019-01-01',
+                                             '2018-06-01',
+                                             '2019-06-01',
                                              account_ids=[account_id],
                                              num_retries=5)
     assert response['investment_transactions'] is not None
@@ -83,8 +83,8 @@ def test_get_with_options():
     client = create_client()
     response = get_investment_transactions_with_retries(client,
                                              access_token,
-                                             '2018-01-01',
-                                             '2019-01-01',
+                                             '2018-06-01',
+                                             '2019-06-01',
                                              count=2,
                                              offset=1)
     assert len(response['investment_transactions']) == 2
