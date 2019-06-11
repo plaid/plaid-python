@@ -10,7 +10,7 @@ class Holdings(API):
     def get(self,
             access_token):
         '''
-        Retrieve investmen holdings information about an item.
+        Retrieve investment holdings information about an item.
 
         :param  str     access_token:
         '''

@@ -14,7 +14,7 @@ class InvestmentTransactions(API):
             offset=None,
             ):
         '''
-        Return accounts and transactions for an item.
+        Return accounts and investment transactions for an item.
         (`HTTP docs <https://plaid.com/docs/api/#investment-transactions>`__)
 
         The transactions in the response are paginated -- compare the number of
