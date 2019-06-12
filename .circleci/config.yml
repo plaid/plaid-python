@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/plaid/plaid-python
-    parallelism: 1
     shell: /bin/bash --login
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
