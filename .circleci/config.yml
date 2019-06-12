@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/plaid/plaid-python
-    parallelism: 1
     shell: /bin/bash --login
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
@@ -12,36 +10,19 @@ jobs:
       command: /sbin/init
     steps:
     - checkout
-    # Prepare for artifact and test results  collection equivalent to how it was done on 1.0.
-    # In many cases you can simplify this from what is generated here.
-    # 'See docs on artifact collection here https://circleci.com/docs/2.0/artifacts/'
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    # This is based on your 1.0 configuration file or project settings
-    # - run:
-    #     command: if ["3.6.0" == "system"] || pyenv versions --bare | grep -x -q '3.6.0'; then pyenv global version;else pyenv install --skip-existing  3.6.0 && pyenv global version && pyenv rehash && pip install virtualenv && pip install nose && pip install pep8 && pyenv rehash;fi
-    # This is based on your 1.0 configuration file or project settings
     - run:
         command: pyenv global 2.7.10 3.6.0
-    # Dependencies
-    #   This would typically go in either a build or a build-and-test job when using workflows
-    # Restore the dependency cache
     - restore_cache:
         keys:
-        # This branch if available
         - v1-dep-{{ .Branch }}-
-        # Default branch if not
         - v1-dep-master-
-        # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
         - v1-dep-
-    # This is based on your 1.0 configuration file or project settings
     - run: pip install tox tox-pyenv
     - run: pyenv local 2.7.10 3.6.0
-    # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:
-        # This is a broad list of cache paths to include many possible development environments
-        # You can probably delete some of these entries
         - vendor/bundle
         - ~/virtualenvs
         - ~/.m2
@@ -50,12 +31,9 @@ jobs:
         - ~/.go_workspace
         - ~/.gradle
         - ~/.cache/bower
-    # Test
     - run: tox
-    # Save test results
     - store_test_results:
         path: /tmp/circleci-test-results
-    # Save artifacts
     - store_artifacts:
         path: /tmp/circleci-artifacts
     - store_artifacts:
