@@ -17,8 +17,8 @@ jobs:
     # 'See docs on artifact collection here https://circleci.com/docs/2.0/artifacts/'
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     # This is based on your 1.0 configuration file or project settings
-    - run:
-        command: if ["3.6.0" == "system"] || pyenv versions --bare | grep -x -q '3.6.0'; then pyenv global version;else pyenv install --skip-existing  3.6.0 && pyenv global version && pyenv rehash && pip install virtualenv && pip install nose && pip install pep8 && pyenv rehash;fi
+    # - run:
+    #     command: if ["3.6.0" == "system"] || pyenv versions --bare | grep -x -q '3.6.0'; then pyenv global version;else pyenv install --skip-existing  3.6.0 && pyenv global version && pyenv rehash && pip install virtualenv && pip install nose && pip install pep8 && pyenv rehash;fi
     # This is based on your 1.0 configuration file or project settings
     - run:
         command: pyenv global 2.7.10 3.6.0
