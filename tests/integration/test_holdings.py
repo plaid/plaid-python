@@ -1,4 +1,3 @@
-from plaid.errors import ItemError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION
