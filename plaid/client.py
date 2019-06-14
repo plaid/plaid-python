@@ -6,9 +6,11 @@ from plaid.api import (
     Auth,
     Categories,
     CreditDetails,
+    Holdings,
     Identity,
     Income,
     Institutions,
+    InvestmentTransactions,
     Item,
     Processor,
     Sandbox,
@@ -69,9 +71,11 @@ class Client(object):
         self.Auth = Auth(self)
         self.Categories = Categories(self)
         self.CreditDetails = CreditDetails(self)
+        self.Holdings = Holdings(self)
         self.Identity = Identity(self)
         self.Income = Income(self)
         self.Institutions = Institutions(self)
+        self.InvestmentTransactions = InvestmentTransactions(self)
         self.Item = Item(self)
         self.Processor = Processor(self)
         self.Sandbox = Sandbox(self)
