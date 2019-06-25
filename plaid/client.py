@@ -81,14 +81,14 @@ class Client(object):
         self.Sandbox = Sandbox(self)
         self.Transactions = Transactions(self)
 
-    def post(self, path, data, is_json=True):
+    def post(self, path, data, is_json=True, **petal_kwargs):
         '''Make a post request with client_id and secret key.'''
         post_data = {
             'client_id': self.client_id,
             'secret': self.secret,
         }
         post_data.update(data)
-        return self._post(path, post_data, is_json)
+        return self._post(path, post_data, is_json, **petal_kwargs)
 
     def post_public(self, path, data, is_json=True):
         '''Make a post request requiring no auth.'''
@@ -102,7 +102,7 @@ class Client(object):
         post_data.update(data)
         return self._post(path, post_data, is_json)
 
-    def _post(self, path, data, is_json):
+    def _post(self, path, data, is_json, **petal_kwargs):
         headers = {}
         if self.api_version is not None:
             headers = {'Plaid-Version': self.api_version}
@@ -112,4 +112,5 @@ class Client(object):
             timeout=self.timeout,
             is_json=is_json,
             headers=headers,
+            **petal_kwargs
         )
