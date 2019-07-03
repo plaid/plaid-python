@@ -109,9 +109,9 @@ class Client(object):
     def _post(self, path, data, is_json):
         headers = {}
         if self.api_version is not None:
-            headers = {'Plaid-Version': self.api_version}
-        if self.app_name is not None:
-            headers['Client-App'] = self.app_name
+            headers['Plaid-Version'] = self.api_version
+        if self.client_app is not None:
+            headers['Plaid-Client-App'] = self.client_app
         return post_request(
             urljoin('https://' + self.environment + '.plaid.com', path),
             data=data,
