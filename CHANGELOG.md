@@ -1,10 +1,20 @@
+## 3.3.0
+
+- Add support for new Investments product ([#169](https://github.com/plaid/plaid-python/pull/169))
+  - `/investments/transactions/get`
+  - `/investments/holdings/get`
+
+## 3.2.0
+
+- Add support for [version `2019-05-29`](https://plaid.com/docs/api-upgrades/) of the Plaid API
+
 ## 3.1.1
 
 - Add [`/sandbox/item/fire_webhook`][docs-sandbox-item-fire-webhook] endpoint ([#160](https://github.com/plaid/plaid-python/pull/160))
 
 ## 3.1.0
 
-- Fix flag name for retrieving institution display data, it is `include_optional_metadata`
+- Fix flag name for retrieving institution display data, it is `include_optional_metadata` ([#159](https://github.com/plaid/plaid-python/pull/159))
 
 ## 3.0.0
 
@@ -19,10 +29,34 @@
 
 ## 2.4.1
 
-- Fix error types for asset reports ([#145](https://github.com/plaid/plaid-python/pull/145))
+- Fix error types for Asset reports ([#145](https://github.com/plaid/plaid-python/pull/145))
 
 ## 2.4.0
 
-- Add support for asset reports with insights ([#138](https://github.com/plaid/plaid-python/pull/138))
+- Add support for Asset reports with insights ([#138](https://github.com/plaid/plaid-python/pull/138))
+
+## 2.3.4
+
+- Add support for Assets endpoints ([#134](https://github.com/plaid/plaid-python/pull/134))
+  - `/asset_report/audit_copy/get`
+  - `/asset_report/filter`
+  - `/asset_report/refresh`
+
+## 2.3.3
+
+- Add support for Dwolla processor token ([#126](https://github.com/plaid/plaid-python/pull/126))
+
+## 2.3.2
+
+- Add support for new Asset endpoints ([#127](https://github.com/plaid/plaid-python/pull/127))
+
+## 2.3.1
+
+- Add new endpoint to create Sandbox Items ([#123](https://github.com/plaid/plaid-python/pull/123))
+
+## 2.3.0
+
+- Add support for [version `2018-05-22`](https://plaid.com/docs/api-upgrades/) of the Plaid API
+
 
 [docs-sandbox-item-fire-webhook]: https://plaid.com/docs/#firing-webhooks
