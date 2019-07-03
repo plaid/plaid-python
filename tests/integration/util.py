@@ -12,7 +12,7 @@ def create_client():
                   os.environ['PUBLIC_KEY'],
                   'sandbox',
                   api_version="2019-05-29",
-                  client_name="Plaid Python Quickstart")
+                  client_name="plaid-python-unit-tests")
 
 
 SANDBOX_INSTITUTION = 'ins_109508'
