@@ -38,7 +38,7 @@ class Client(object):
                  suppress_warnings=False,
                  timeout=DEFAULT_TIMEOUT,
                  api_version=None,
-                 app_name=None):
+                 client_app=None):
         '''
         Initialize a client with credentials.
 
@@ -50,7 +50,8 @@ class Client(object):
         :arg    bool    suppress_warnings:  Suppress Plaid warnings.
         :arg    int     timeout:            Timeout for API requests.
         :arg    str     api_version:        API version to use for requests
-        :arg    str     app_name:           App name header to include in request headers
+        :arg    str     client_app:         Internal header to include
+                                            in requests
 
         '''
         self.client_id = client_id
@@ -60,7 +61,7 @@ class Client(object):
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
         self.api_version = api_version
-        self.app_name = app_name
+        self.client_app = client_app
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
