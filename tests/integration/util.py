@@ -11,7 +11,8 @@ def create_client():
                   os.environ['SECRET'],
                   os.environ['PUBLIC_KEY'],
                   'sandbox',
-                  api_version="2019-05-29")
+                  api_version="2019-05-29",
+                  client_app="plaid-python-unit-tests")
 
 
 SANDBOX_INSTITUTION = 'ins_109508'

@@ -37,7 +37,8 @@ class Client(object):
                  environment,
                  suppress_warnings=False,
                  timeout=DEFAULT_TIMEOUT,
-                 api_version=None):
+                 api_version=None,
+                 client_app=None):
         '''
         Initialize a client with credentials.
 
@@ -48,6 +49,9 @@ class Client(object):
                                             ``development``, or ``production``.
         :arg    bool    suppress_warnings:  Suppress Plaid warnings.
         :arg    int     timeout:            Timeout for API requests.
+        :arg    str     api_version:        API version to use for requests
+        :arg    str     client_app:         Internal header to include
+                                            in requests
 
         '''
         self.client_id = client_id
@@ -57,6 +61,7 @@ class Client(object):
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
         self.api_version = api_version
+        self.client_app = client_app
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
@@ -105,7 +110,9 @@ class Client(object):
     def _post(self, path, data, is_json):
         headers = {}
         if self.api_version is not None:
-            headers = {'Plaid-Version': self.api_version}
+            headers['Plaid-Version'] = self.api_version
+        if self.client_app is not None:
+            headers['Plaid-Client-App'] = self.client_app
         return post_request(
             urljoin('https://' + self.environment + '.plaid.com', path),
             data=data,
