@@ -31,7 +31,7 @@ def test_get():
 
     # get liabiliteis for specified account
     account_id = response['accounts'][0]['account_id']
-    response = client.Liabilities.get(test_get,
+    response = client.Liabilities.get(access_token,
                                       account_ids=[account_id])
     assert response['liabilities'] is not None
     assert len(response['accounts']) == 1
