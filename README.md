@@ -232,3 +232,4 @@ If you're looking for a Python client that works with the legacy Plaid API, use 
 [8]: https://cloud.google.com/appengine/docs/python/issue-requests
 [9]: https://blog.plaid.com/improving-our-api/
 [10]: https://github.com/plaid/plaid-python-legacy
+[api-upgrades]: https://plaid.com/docs/api-upgrades/
