@@ -48,7 +48,7 @@ HTTP response.
 
 ### Versioning
 
-You can specify the Plaid API version you wish to use when initializing `plaid-python`.
+You can specify the Plaid API version you wish to use when initializing `plaid`.
 
 ```python
 from plaid import Client
