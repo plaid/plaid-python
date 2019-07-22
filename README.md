@@ -39,13 +39,30 @@ To call an endpoint you must create a `Client` object.
 ```python
 from plaid import Client
 
-
 # Available environments are 'sandbox', 'development', and 'production'.
 client = Client(client_id='***', secret='***', public_key='***', environment='sandbox')
 ```
 
 Each endpoint returns a dictionary which contains the parsed JSON from the
 HTTP response.
+
+### Versioning
+
+You can specify the Plaid API version you wish to use when initializing `plaid`.
+
+```python
+from plaid import Client
+
+client = Client(
+  client_id='***',
+  secret='***',
+  public_key='***',
+  environment='sandbox',
+  version='2019-05-29'  # Specify API version
+)
+```
+
+For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
 
 ### Errors
 
@@ -215,3 +232,4 @@ If you're looking for a Python client that works with the legacy Plaid API, use 
 [8]: https://cloud.google.com/appengine/docs/python/issue-requests
 [9]: https://blog.plaid.com/improving-our-api/
 [10]: https://github.com/plaid/plaid-python-legacy
+[api-upgrades]: https://plaid.com/docs/api-upgrades/
