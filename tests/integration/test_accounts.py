@@ -6,7 +6,7 @@ from tests.integration.util import (
 access_token = None
 
 
-def setup_module(module):
+def setup_module(_module):
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
         SANDBOX_INSTITUTION, ['transactions'])
@@ -16,7 +16,7 @@ def setup_module(module):
     access_token = exchange_response['access_token']
 
 
-def teardown_module(module):
+def teardown_module(_module):
     client = create_client()
     client.Item.remove(access_token)
 

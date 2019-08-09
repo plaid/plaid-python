@@ -9,7 +9,7 @@ from tests.integration.util import (
 access_token = None
 
 
-def setup_module(module):
+def setup_module(_module):
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
         SANDBOX_INSTITUTION, ['investments'],
@@ -31,7 +31,7 @@ def get_investment_transactions_with_retries(client,
                                              offset=None,
                                              num_retries=5):
     response = None
-    for i in range(num_retries):
+    for _ in range(num_retries):
         try:
             response = \
                 client.InvestmentTransactions.get(access_token,
@@ -50,7 +50,7 @@ def get_investment_transactions_with_retries(client,
     return response
 
 
-def teardown_module(module):
+def teardown_module(_module):
     client = create_client()
     client.Item.remove(access_token)
 
