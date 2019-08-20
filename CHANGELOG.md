@@ -1,3 +1,8 @@
+## 3.4.0
+
+- Add support for new Liabilities product ([#173](https://github.com/plaid/plaid-python/pull/173))
+  - `/liabilities/get`
+
 ## 3.3.0
 
 - Add support for new Investments product ([#169](https://github.com/plaid/plaid-python/pull/169))
