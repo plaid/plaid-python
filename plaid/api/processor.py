@@ -31,3 +31,17 @@ class Processor(API):
                                     'access_token': access_token,
                                     'account_id': account_id,
                                 })
+
+    def ocrolusProcessorTokenCreate(self, access_token, account_id):
+        '''
+        Create an Ocrolus processor token for a given account ID
+        (`HTTP docs <https://plaid.com/docs/link/ocrolus>`__)
+
+        :param  str     access_token:
+        :param  str     account_id:
+        '''
+        return self.client.post('/processor/ocrolus/processor_token/create',
+                                {
+                                    'access_token': access_token,
+                                    'account_id': account_id,
+                                })

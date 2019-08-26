@@ -26,3 +26,12 @@ def test_dwolla_processor_token():
         client.Processor.dwollaBankAccountTokenCreate(
             'fakeAccessToken', 'fakeAccountId')
         assert e.code == 'INVALID_INPUT'
+
+
+def test_ocrolus_processor_token():
+    client = create_client()
+    # Just test the failure case - behavior here depends on the API keys used
+    with pytest.raises(InvalidRequestError) as e:
+        client.Processor.ocrolusProcessorTokenCreate(
+            'fakeAccessToken', 'fakeAccountId')
+        assert e.code == 'INVALID_INPUT'
