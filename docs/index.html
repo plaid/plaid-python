@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 3.1.1 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 3.4.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.1.1',
+        VERSION:     '3.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -51,14 +51,14 @@
 <h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="plaid.Client">
-<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em>, <em>client_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Python Plaid API client.</p>
 <p>See official documentation at: <a class="reference external" href="https://plaid.com/docs">https://plaid.com/docs</a>.</p>
 <p>All of the endpoints documented under the <code class="docutils literal"><span class="pre">plaid.api</span></code>
 module may be called from a <code class="docutils literal"><span class="pre">plaid.Client</span></code> instance.</p>
 <dl class="method">
 <dt id="plaid.Client.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em>, <em>client_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a client with credentials.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -72,6 +72,9 @@ module may be called from a <code class="docutils literal"><span class="pre">pla
 <code class="docutils literal"><span class="pre">development</span></code>, or <code class="docutils literal"><span class="pre">production</span></code>.</li>
 <li><strong>suppress_warnings</strong> (<em>bool</em>) &#8211; Suppress Plaid warnings.</li>
 <li><strong>timeout</strong> (<em>int</em>) &#8211; Timeout for API requests.</li>
+<li><strong>api_version</strong> (<em>str</em>) &#8211; API version to use for requests</li>
+<li><strong>client_app</strong> (<em>str</em>) &#8211; Internal header to include
+in requests</li>
 </ul>
 </td>
 </tr>
@@ -349,6 +352,27 @@ the item. Optional.</li>
 </dd></dl>
 
 <dl class="class">
+<dt id="plaid.api.Holdings">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Holdings</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Holdings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holdings endpoints.
+(<a class="reference external" href="https://plaid.com/docs/api/#holdings">HTTP docs</a>)</p>
+<dl class="method">
+<dt id="plaid.api.Holdings.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Holdings.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve investment holdings information about an item.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>access_token</strong> (<em>str</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="plaid.api.Identity">
 <em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Identity</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Identity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identity endpoints.
@@ -445,6 +469,42 @@ institutions.</li>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="plaid.api.InvestmentTransactions">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">InvestmentTransactions</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.InvestmentTransactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>InvestmentTransactions endpoints.</p>
+<dl class="method">
+<dt id="plaid.api.InvestmentTransactions.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>start_date</em>, <em>end_date</em>, <em>_options=None</em>, <em>account_ids=None</em>, <em>count=None</em>, <em>offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.InvestmentTransactions.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return accounts and investment transactions for an item.
+(<a class="reference external" href="https://plaid.com/docs/api/#investment-transactions">HTTP docs</a>)</p>
+<p>The transactions in the response are paginated &#8211; compare the number of
+transactions received so far against response[&#8216;total_transactions&#8217;] to
+determine whether to fetch another page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>start_date</strong> (<em>str</em>) &#8211; The earliest date for transactions.</li>
+<li><strong>end_date</strong> (<em>str</em>) &#8211; The latest date for transactions.</li>
+<li><strong>account_ids</strong> (<em></em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; A list of account_ids to retrieve for
+the item. Optional.</li>
+<li><strong>count</strong> (<em>int</em>) &#8211; The number of transactions to fetch.
+Optional.</li>
+<li><strong>offset</strong> (<em>int</em>) &#8211; The number of transactions to skip from
+the beginning of the fetch. Optional.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>All date should be formatted as <code class="docutils literal"><span class="pre">YYYY-MM-DD</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -586,6 +646,32 @@ the Plaid API
 </dd></dl>
 
 <dl class="class">
+<dt id="plaid.api.Liabilities">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Liabilities</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Liabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Liabilities endpoints.
+(<a class="reference external" href="https://plaid.com/docs/api/#liabilities">HTTP docs</a>)</p>
+<dl class="method">
+<dt id="plaid.api.Liabilities.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>access_token</em>, <em>_options=None</em>, <em>account_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Liabilities.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve liabilities information about an item.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>account_ids</strong> (<em></em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; A list of account_ids to retrieve for
+the item. Optional</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="plaid.api.Processor">
 <em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Processor</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Endpoints for creating processor tokens.</p>
@@ -594,6 +680,25 @@ the Plaid API
 <code class="descname">dwollaBankAccountTokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.dwollaBankAccountTokenCreate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a Dwolla processor token for a given account ID
 (<a class="reference external" href="https://plaid.com/docs/link/dwolla">HTTP docs</a>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.Processor.ocrolusProcessorTokenCreate">
+<code class="descname">ocrolusProcessorTokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.ocrolusProcessorTokenCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an Ocrolus processor token for a given account ID
+(<a class="reference external" href="https://plaid.com/docs/link/ocrolus">HTTP docs</a>)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -717,7 +822,7 @@ the beginning of the fetch. Optional.</li>
 <dl class="exception">
 <dt id="plaid.errors.BaseError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">BaseError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.BaseError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 <p>A base error class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
