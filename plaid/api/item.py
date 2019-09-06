@@ -4,72 +4,82 @@ from plaid.api.api import API
 class PublicToken(API):
     '''Endpoints for translating between public tokens and access tokens.'''
 
-    def exchange(self, public_token):
+    def exchange(self, public_token, session=None):
         '''
         Exchange a Link public_token for an API access_token.
         (`HTTP docs <https://plaid.com/docs/api/#exchange-token-flow>`__)
 
         :param  str     public_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/item/public_token/exchange', {
             'public_token': public_token,
-        })
+        }, session=session)
 
-    def create(self, access_token):
+    def create(self, access_token, session=None):
         '''
         Create a Link public_token for an API access_token.
         (`HTTP docs <https://plaid.com/docs/api/#create-public-token>`__)
 
         :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/item/public_token/create', {
             'access_token': access_token,
-        })
+        }, session=session)
 
 
 class AccessToken(API):
     '''Access token endpoints.'''
 
-    def invalidate(self, access_token):
+    def invalidate(self, access_token, session=None):
         '''
         Rotate the access token for an item.
         (`HTTP docs <https://plaid.com/docs/api/#rotate-access-token>`__)
 
         :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/item/access_token/invalidate', {
             'access_token': access_token,
-        })
+        }, session=session)
 
-    def update_version(self, access_token):
+    def update_version(self, access_token, session=None):
         '''
         Transition an access token to work with the current version of
         the Plaid API
         (`HTTP docs <https://plaid.com/docs/api/#update-access-token-
         version>`__)
 
-        :param  str      access_token:
+        :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/item/access_token/update_version', {
             'access_token_v1': access_token,
-        })
+        }, session=session)
 
 
 class Webhook(API):
     '''Webhook endpoints.'''
 
-    def update(self, access_token, webhook):
+    def update(self, access_token, webhook, session=None):
         '''
         Update the webhook for an Item.
         (`HTTP docs <https://plaid.com/docs/api/#update-webhook>`__)
 
         :param  str     access_token:
         :param  str     webhook: The URL of the webhook to associate.
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('./item/webhook/update', {
             'access_token': access_token,
             'webhook': webhook,
-        })
+        }, session=session)
 
 
 class Item(API):
@@ -91,18 +101,20 @@ class Item(API):
         self.public_token = PublicToken(client)
         self.webhook = Webhook(client)
 
-    def get(self, access_token):
+    def get(self, access_token, session=None):
         '''
         Get information about the status of an item.
         (`HTTP docs <https://plaid.com/docs/api/#get-item>`__)
 
         :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/item/get', {
             'access_token': access_token,
-        })
+        }, session=session)
 
-    def remove(self, access_token):
+    def remove(self, access_token, session=None):
         '''
         Remove an item.
         (`HTTP docs <https://plaid.com/docs/api/#remove-an-item>`__)
@@ -110,7 +122,9 @@ class Item(API):
         This also deactivates the access_token.
 
         :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/item/remove', {
             'access_token': access_token,
-        })
+        }, session=session)

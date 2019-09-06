@@ -12,7 +12,7 @@ class InvestmentTransactions(API):
             account_ids=None,
             count=None,
             offset=None,
-            ):
+            session=None):
         '''
         Return accounts and investment transactions for an item.
         (`HTTP docs <https://plaid.com/docs/api/#investment-transactions>`__)
@@ -30,6 +30,8 @@ class InvestmentTransactions(API):
                                         Optional.
         :param  int     offset:         The number of transactions to skip from
                                         the beginning of the fetch. Optional.
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
 
         All date should be formatted as ``YYYY-MM-DD``.
         '''
@@ -47,4 +49,4 @@ class InvestmentTransactions(API):
             'start_date': start_date,
             'end_date': end_date,
             'options': options,
-        })
+        }, session=session)

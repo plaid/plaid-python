@@ -4,27 +4,31 @@ from plaid.api.api import API
 class Item(API):
     '''Sandbox item endpoints.'''
 
-    def reset_login(self, access_token):
+    def reset_login(self, access_token, session=None):
         '''
         Put an item into an ITEM_LOGIN_REQUIRED error state.
 
         :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/sandbox/item/reset_login', {
             'access_token': access_token,
-        })
+        }, session=session)
 
-    def fire_webhook(self, access_token, webhook_code):
+    def fire_webhook(self, access_token, webhook_code, session=None):
         '''
         Fire a webhook for an item
 
         :param  str     access_token:
         :param  str     webhook_code:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/sandbox/item/fire_webhook', {
             'access_token': access_token,
             'webhook_code': webhook_code,
-        })
+        }, session=session)
 
 
 class PublicToken(API):
@@ -37,7 +41,7 @@ class PublicToken(API):
                webhook=None,
                transactions__start_date=None,
                transactions__end_date=None,
-               ):
+               session=None):
         '''
         Generate a public token for sandbox testing.
 
@@ -46,6 +50,9 @@ class PublicToken(API):
         :param  [str]   initial_products:
 
         :param  str     webhook:
+
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         options = _options or {}
 
@@ -65,7 +72,7 @@ class PublicToken(API):
             'institution_id': institution_id,
             'initial_products': initial_products,
             'options': options,
-        })
+        }, session=session)
 
 
 class Sandbox(API):
