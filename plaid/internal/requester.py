@@ -22,11 +22,12 @@ def _requests_http_request(
         method,
         data,
         headers,
-        timeout=DEFAULT_TIMEOUT):
+        timeout=DEFAULT_TIMEOUT,
+        session=None):
     normalized_method = method.lower()
     headers.update({'User-Agent': 'Plaid Python v{}'.format(__version__)})
     if normalized_method in ALLOWED_METHODS:
-        return getattr(requests, normalized_method)(
+        return getattr(session or requests, normalized_method)(
             url,
             json=data,
             headers=headers,
@@ -44,13 +45,15 @@ def _http_request(
         data=None,
         headers=None,
         timeout=DEFAULT_TIMEOUT,
-        is_json=True):
+        is_json=True,
+        session=None):
     response = _requests_http_request(
         url,
         method,
         data or {},
         headers or {},
-        timeout)
+        timeout,
+        session=session)
 
     if is_json or response.headers['Content-Type'] == 'application/json':
         try:

@@ -93,20 +93,20 @@ class Client(object):
         self.Transactions = Transactions(self)
         self.Webhooks = Webhooks(self)
 
-    def post(self, path, data, is_json=True):
+    def post(self, path, data, is_json=True, session=None):
         '''Make a post request with client_id and secret key.'''
         post_data = {
             'client_id': self.client_id,
             'secret': self.secret,
         }
         post_data.update(data)
-        return self._post(path, post_data, is_json)
+        return self._post(path, post_data, is_json, session=session)
 
-    def post_public(self, path, data, is_json=True):
+    def post_public(self, path, data, is_json=True, session=None):
         '''Make a post request requiring no auth.'''
-        return self._post(path, data, is_json)
+        return self._post(path, data, is_json, session=session)
 
-    def _post(self, path, data, is_json):
+    def _post(self, path, data, is_json, session=None):
         headers = {}
         if self.api_version is not None:
             headers['Plaid-Version'] = self.api_version
@@ -118,4 +118,5 @@ class Client(object):
             timeout=self.timeout,
             is_json=is_json,
             headers=headers,
+            session=session,
         )

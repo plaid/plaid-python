@@ -12,7 +12,7 @@ class Transactions(API):
             account_ids=None,
             count=None,
             offset=None,
-            ):
+            session=None):
         '''
         Return accounts and transactions for an item.
         (`HTTP docs <https://plaid.com/docs/api/#transactions>`__)
@@ -30,6 +30,8 @@ class Transactions(API):
                                         Optional.
         :param  int     offset:         The number of transactions to skip from
                                         the beginning of the fetch. Optional.
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
 
         All date should be formatted as ``YYYY-MM-DD``.
         '''
@@ -47,10 +49,11 @@ class Transactions(API):
             'start_date': start_date,
             'end_date': end_date,
             'options': options,
-        })
+        }, session=session)
 
     def refresh(self,
                 access_token,
+                session=None,
                 ):
         '''
         Request on-demand refresh of transactions and balances for an Item
@@ -62,7 +65,9 @@ class Transactions(API):
         call /transactions/get.
 
         :param  str     access_token:
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
         '''
         return self.client.post('/transactions/refresh', {
             'access_token': access_token,
-        })
+        }, session=session)

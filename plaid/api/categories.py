@@ -7,6 +7,11 @@ class Categories(API):
     (`HTTP docs <https://plaid.com/docs/api/#categories>`__)
     '''
 
-    def get(self):
-        '''Fetch all plaid categories.'''
-        return self.client.post_public('/categories/get', {})
+    def get(self, session=None):
+        '''
+        Fetch all plaid categories.
+
+        :param  object  session:        A requests.Session instance to use for
+                                        making HTTP requests. Optional.
+        '''
+        return self.client.post_public('/categories/get', {}, session=session)
