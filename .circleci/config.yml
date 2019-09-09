@@ -25,12 +25,6 @@ jobs:
         paths:
         - vendor/bundle
         - ~/virtualenvs
-        - ~/.m2
-        - ~/.ivy2
-        - ~/.bundle
-        - ~/.go_workspace
-        - ~/.gradle
-        - ~/.cache/bower
     - run: tox
     - store_test_results:
         path: /tmp/circleci-test-results
