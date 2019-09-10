@@ -36,18 +36,22 @@ class Institutions(API):
             'options': options,
         })
 
-    def search(self, query, _options={}, products=None):
+    def search(self, query, products=None, account_filter=None, _options={}):
         '''
         Search all institutions by name.
 
-        :param  str      query:     Query against the full list of
-                                    institutions.
-        :param  [str]    products:  Filter FIs by available products. Optional.
+        :param  str      query:           Query against the full list of
+                                          institutions.
+        :param  [str]    products:        Filter FIs by available products.
+                                          Optional.
+        :param  dict     account_filter:  Filter FIs with specific account
+                                          types. Optional.
         '''
         options = _options or {}
 
         return self.client.post_public_key('/institutions/search', {
             'query': query,
             'products': products,
+            'account_filter': account_filter,
             'options': options,
         })
