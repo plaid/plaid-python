@@ -57,6 +57,17 @@ def test_search_with_products():
     assert len(response['institutions']) >= 1
 
 
+def test_search_with_account_filter():
+    client = create_client()
+    response = client.Institutions.search(
+        SANDBOX_INSTITUTION_NAME, products=['liabilities'],
+        account_filter={
+            "loans": ["student"]
+        }
+    )
+    assert len(response['institutions']) >= 1
+
+
 def test_search_with_include_optional_metadata():
     client = create_client()
     response = client.Institutions.search(
