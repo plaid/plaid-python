@@ -23,6 +23,15 @@ def test_dwolla_processor_token():
     client = create_client()
     # Just test the failure case - behavior here depends on the API keys used
     with pytest.raises(InvalidRequestError) as e:
-        client.Processor.dwollaBankAccountTokenCreate(
+        client.Processor.dwollaProcessorTokenCreate(
+            'fakeAccessToken', 'fakeAccountId')
+        assert e.code == 'INVALID_INPUT'
+
+
+def test_modern_treasury_processor_token():
+    client = create_client()
+    # Just test the failure case - behavior here depends on the API keys used
+    with pytest.raises(InvalidRequestError) as e:
+        client.Processor.modernTreasuryProcessorTokenCreate(
             'fakeAccessToken', 'fakeAccountId')
         assert e.code == 'INVALID_INPUT'
