@@ -40,8 +40,10 @@ class Processor(API):
         :param  str     access_token:
         :param  str     account_id:
         '''
-        return self.client.post('/processor/modern_treasury/processor_token/create',
-                                {
-                                    'access_token': access_token,
-                                    'account_id': account_id,
-                                })
+        return self.client.post(
+            '/processor/modern_treasury/processor_token/create',
+            {
+                'access_token': access_token,
+                'account_id': account_id,
+            }
+        )
