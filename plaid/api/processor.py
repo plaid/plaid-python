@@ -12,17 +12,18 @@ class Processor(API):
         :param  str     account_id:
         :param  str     processor:
         '''
+        endpoint = 'processor/token/create'
+        options = {
+            'access_token': access_token,
+            'account_id': account_id,
+            'processor': processor
+        }
 
-        endpoint = ('/processor/stripe/bank_account_token/create'
-                    if processor == 'stripe'
-                    else '/processor/{}/processor_token/create'.format(
-                        processor))
+        if processor == 'stripe':
+            endpoint = '/processor/stripe/bank_account_token/create'
+            del options['processor']
 
-        return self.client.post(endpoint,
-                                {
-                                    'access_token': access_token,
-                                    'account_id': account_id,
-                                })
+        return self.client.post(endpoint, options)
 
     def stripeBankAccountTokenCreate(self, access_token, account_id):
         '''
