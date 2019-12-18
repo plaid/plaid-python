@@ -18,7 +18,7 @@ class Processor(API):
                                     'account_id': account_id,
                                 })
 
-    def dwollaProcessorTokenCreate(self, access_token, account_id):
+    def dwollaBankAccountTokenCreate(self, access_token, account_id):
         '''
         Create a Dwolla processor token for a given account ID
         (`HTTP docs <https://plaid.com/docs/link/dwolla>`__)
