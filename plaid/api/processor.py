@@ -22,6 +22,9 @@ class Processor(API):
         if processor == 'stripe':
             endpoint = '/processor/stripe/bank_account_token/create'
             del options['processor']
+        elif processor == 'apex':
+            endpoint = '/processor/apex/processor_token/create'
+            del options['processor']
 
         return self.client.post(endpoint, options)
 
