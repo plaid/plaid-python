@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index &#8212; Plaid Python 3.1.1 documentation</title>
+    <title>Index &#8212; Plaid Python 3.4.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.1.1',
+        VERSION:     '3.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -56,7 +56,9 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
@@ -106,14 +108,20 @@
 </li>
       <li><a href="index.html#plaid.Client">Client (class in plaid)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#plaid.api.AssetReport.create">create() (plaid.api.AssetReport method)</a>
 
       <ul>
         <li><a href="index.html#plaid.api.item.PublicToken.create">(plaid.api.item.PublicToken method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#plaid.api.PaymentInitiation.create_payment">create_payment() (plaid.api.PaymentInitiation method)</a>
+</li>
+      <li><a href="index.html#plaid.api.PaymentInitiation.create_payment_token">create_payment_token() (plaid.api.PaymentInitiation method)</a>
+</li>
+      <li><a href="index.html#plaid.api.PaymentInitiation.create_recipient">create_recipient() (plaid.api.PaymentInitiation method)</a>
+</li>
       <li><a href="index.html#plaid.api.CreditDetails">CreditDetails (class in plaid.api)</a>
 </li>
   </ul></td>
@@ -163,13 +171,19 @@
 </li>
         <li><a href="index.html#plaid.api.CreditDetails.get">(plaid.api.CreditDetails method)</a>
 </li>
+        <li><a href="index.html#plaid.api.Holdings.get">(plaid.api.Holdings method)</a>
+</li>
         <li><a href="index.html#plaid.api.Identity.get">(plaid.api.Identity method)</a>
 </li>
         <li><a href="index.html#plaid.api.Income.get">(plaid.api.Income method)</a>
 </li>
         <li><a href="index.html#plaid.api.Institutions.get">(plaid.api.Institutions method)</a>
 </li>
+        <li><a href="index.html#plaid.api.InvestmentTransactions.get">(plaid.api.InvestmentTransactions method)</a>
+</li>
         <li><a href="index.html#plaid.api.Item.get">(plaid.api.Item method)</a>
+</li>
+        <li><a href="index.html#plaid.api.Liabilities.get">(plaid.api.Liabilities method)</a>
 </li>
         <li><a href="index.html#plaid.api.Transactions.get">(plaid.api.Transactions method)</a>
 </li>
@@ -180,7 +194,19 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="index.html#plaid.api.Institutions.get_by_id">get_by_id() (plaid.api.Institutions method)</a>
 </li>
+      <li><a href="index.html#plaid.api.PaymentInitiation.get_payment">get_payment() (plaid.api.PaymentInitiation method)</a>
+</li>
       <li><a href="index.html#plaid.api.AssetReport.get_pdf">get_pdf() (plaid.api.AssetReport method)</a>
+</li>
+      <li><a href="index.html#plaid.api.PaymentInitiation.get_recipient">get_recipient() (plaid.api.PaymentInitiation method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#plaid.api.Holdings">Holdings (class in plaid.api)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -204,6 +230,8 @@
 </li>
       <li><a href="index.html#plaid.errors.InvalidRequestError">InvalidRequestError</a>
 </li>
+      <li><a href="index.html#plaid.api.InvestmentTransactions">InvestmentTransactions (class in plaid.api)</a>
+</li>
       <li><a href="index.html#plaid.api.Item">Item (class in plaid.api)</a>
 </li>
       <li><a href="index.html#plaid.api.item.Item.AccessToken">Item.AccessToken (class in plaid.api.item)</a>
@@ -213,17 +241,33 @@
   </ul></td>
 </tr></table>
 
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#plaid.api.Liabilities">Liabilities (class in plaid.api)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#plaid.api.PaymentInitiation.list_payments">list_payments() (plaid.api.PaymentInitiation method)</a>
+</li>
+      <li><a href="index.html#plaid.api.PaymentInitiation.list_recipients">list_recipients() (plaid.api.PaymentInitiation method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#plaid.api.PaymentInitiation">PaymentInitiation (class in plaid.api)</a>
+</li>
       <li><a href="index.html#module-plaid.api">plaid.api (module)</a>
 </li>
       <li><a href="index.html#module-plaid.errors">plaid.errors (module)</a>
 </li>
-      <li><a href="index.html#plaid.errors.PlaidCause">PlaidCause</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="index.html#plaid.errors.PlaidCause">PlaidCause</a>
+</li>
       <li><a href="index.html#plaid.errors.PlaidError">PlaidError</a>
 </li>
       <li><a href="index.html#plaid.api.Processor">Processor (class in plaid.api)</a>
