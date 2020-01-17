@@ -63,4 +63,3 @@ def test_all_payment_routes():
     # list payments
     response = client.PaymentInitiation.list_payments({'count': 10})
     assert response['payments'] is not None and len(response['payments']) > 0
-    assert response['next_cursor'] is not None
