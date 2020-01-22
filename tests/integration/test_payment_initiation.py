@@ -27,7 +27,8 @@ def test_all_payment_routes():
 
     # list recipients
     response = client.PaymentInitiation.list_recipients()
-    assert response['recipients'] is not None and len(response['recipients']) > 0
+    assert response['recipients'] is not None
+    assert len(response['recipients']) > 0
 
     # create payment
     response = client.PaymentInitiation.create_payment(
