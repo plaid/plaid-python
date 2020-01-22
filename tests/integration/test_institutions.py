@@ -18,15 +18,12 @@ def test_get_with_include_optional_metadata():
     })
     assert len(response['institutions']) == 3
     assert len(response['institutions'][0]['url']) > 0
-    assert len(response['institutions'][0]['logo']) > 0
     assert len(response['institutions'][0]['primary_color']) > 0
 
     assert len(response['institutions'][1]['url']) > 0
-    assert len(response['institutions'][1]['logo']) > 0
     assert len(response['institutions'][1]['primary_color']) > 0
 
     assert len(response['institutions'][2]['url']) > 0
-    assert len(response['institutions'][2]['logo']) > 0
     assert len(response['institutions'][2]['primary_color']) > 0
 
 
