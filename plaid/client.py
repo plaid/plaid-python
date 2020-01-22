@@ -13,6 +13,7 @@ from plaid.api import (
     InvestmentTransactions,
     Item,
     Liabilities,
+    PaymentInitiation,
     Processor,
     Sandbox,
     Transactions,
@@ -84,6 +85,7 @@ class Client(object):
         self.InvestmentTransactions = InvestmentTransactions(self)
         self.Item = Item(self)
         self.Liabilities = Liabilities(self)
+        self.PaymentInitiation = PaymentInitiation(self)
         self.Processor = Processor(self)
         self.Sandbox = Sandbox(self)
         self.Transactions = Transactions(self)
