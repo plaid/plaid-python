@@ -10,6 +10,7 @@ from plaid.api.institutions import Institutions
 from plaid.api.investment_transactions import InvestmentTransactions
 from plaid.api.item import Item
 from plaid.api.liabilities import Liabilities
+from plaid.api.payment_initiation import PaymentInitiation
 from plaid.api.processor import Processor
 from plaid.api.sandbox import Sandbox
 from plaid.api.transactions import Transactions
@@ -27,6 +28,7 @@ __all__ = [
     'InvestmentTransactions',
     'Item',
     'Liabilities',
+    'PaymentInitiation',
     'Processor',
     'Sandbox',
     'Transactions',
