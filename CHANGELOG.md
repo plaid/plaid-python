@@ -1,3 +1,14 @@
+## 3.5.0
+
+- Add support for new UK Payment Initiation product ([#195](https://github.com/plaid/plaid-python/pull/195))
+  - `/payment_initiation/recipient/create`
+  - `/payment_initiation/recipient/get`
+  - `/payment_initiation/recipient/list`
+  - `/payment_initiation/payment/create`
+  - `/payment_initiation/payment/token/create`
+  - `/payment_initiation/payment/get`
+  - `/payment_initiation/payment/list`
+
 ## 3.4.0
 
 - Add support for new Liabilities product ([#173](https://github.com/plaid/plaid-python/pull/173))
