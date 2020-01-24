@@ -1,6 +1,5 @@
 from tests.integration.util import (
     create_client,
-    SANDBOX_INSTITUTION
 )
 
 access_token = None
