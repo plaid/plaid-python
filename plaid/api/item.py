@@ -114,3 +114,22 @@ class Item(API):
         return self.client.post('/item/remove', {
             'access_token': access_token,
         })
+
+    def import_item(self, products, user_auth, _options):
+        '''
+        Imports an item.
+        (`HTTP docs coming soon`__)
+
+        :param  [str]   initial_products:   List of products that the item
+                                            will be enabled for.
+        :param  dict    user_auth:          User authentication fields for the
+                                            item.
+        :param  dict    options:            Additional options.
+        '''
+        options = _options or {}
+
+        return self.client.post('/item/import', {
+            'products': products,
+            'user_auth': user_auth,
+            'options': options,
+        })

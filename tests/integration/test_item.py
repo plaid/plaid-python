@@ -47,6 +47,14 @@ def test_remove():
     assert remove_response['removed']
 
 
+def test_import():
+    client = create_client()
+    at_response = client.Item.import_item(
+        ['identity', 'auth'],
+        {'user_id': 'user_good', 'auth_token': 'pass_good'},
+        None)
+    assert at_response['access_token'] is not None
+
 def test_public_token():
     client = create_client()
     pt_response = client.Sandbox.public_token.create(

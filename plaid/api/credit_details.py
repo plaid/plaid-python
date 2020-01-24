@@ -7,8 +7,7 @@ class CreditDetails(API):
     (`HTTP docs <https://plaid.com/docs/api/#credit-details>`__)
     '''
 
-    def get(self,
-            access_token):
+    def get(self, access_token):
         '''
         Retrieve credit details associated with an item.
 
