@@ -6,6 +6,7 @@ access_token = None
 target_account_id = None
 deposit_switch_id = None
 
+
 def setup_module(module):
     client = create_client()
     # import an item
@@ -32,6 +33,7 @@ def setup_module(module):
     global deposit_switch_id
     deposit_switch_id = deposit_switch_response['deposit_switch_id']
 
+
 def test_get():
     client = create_client()
     response = client.DepositSwitch.get(deposit_switch_id)
@@ -41,10 +43,12 @@ def test_get():
     assert response['date_created'] is not None
     assert response['state'] is not None
 
+
 def test_create():
     client = create_client()
     response = client.DepositSwitch.create(target_account_id, access_token)
     assert response['deposit_switch_id'] is not None
+
 
 def test_create_token():
     client = create_client()
