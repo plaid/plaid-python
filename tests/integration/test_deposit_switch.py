@@ -9,6 +9,7 @@ deposit_switch_id = None
 
 def setup_module(module):
     client = create_client()
+    # import an item
     at_response = client.Item.import_item(
         ['identity', 'auth'],
         {'user_id': 'user_good', 'auth_token': 'pass_good'},
@@ -16,14 +17,19 @@ def setup_module(module):
     assert at_response['access_token'] is not None
     global access_token
     access_token = at_response['access_token']
+
+    # get account id
     account_id_response = client.Accounts.get(access_token)
     assert len(account_id_response['accounts']) != 0
     global target_account_id
     target_account_id = account_id_response['accounts'][0]['account_id']
+
+    # create deposit switch
     deposit_switch_response = client.DepositSwitch.create(
         target_account_id,
         access_token)
     assert deposit_switch_response['deposit_switch_id'] is not None
+
     global deposit_switch_id
     deposit_switch_id = deposit_switch_response['deposit_switch_id']
 

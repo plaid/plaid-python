@@ -9,7 +9,7 @@ class DepositSwitch(API):
 
     def get(self, deposit_switch_id):
         '''
-        Retrieves deposit switch information given a deposit switch id.
+        Gets deposit switch information given a deposit switch id.
 
         :param  str deposit_switch_id:  ID of deposit switch to get.
         '''
