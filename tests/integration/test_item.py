@@ -55,6 +55,7 @@ def test_import():
         None)
     assert at_response['access_token'] is not None
 
+
 def test_public_token():
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
