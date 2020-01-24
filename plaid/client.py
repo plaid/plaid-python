@@ -6,6 +6,7 @@ from plaid.api import (
     Auth,
     Categories,
     CreditDetails,
+    DepositSwitch,
     Holdings,
     Identity,
     Income,
@@ -13,7 +14,6 @@ from plaid.api import (
     InvestmentTransactions,
     Item,
     Liabilities,
-    PaymentInitiation,
     Processor,
     Sandbox,
     Transactions,
@@ -78,6 +78,7 @@ class Client(object):
         self.Auth = Auth(self)
         self.Categories = Categories(self)
         self.CreditDetails = CreditDetails(self)
+        self.DepositSwitch = DepositSwitch(self)
         self.Holdings = Holdings(self)
         self.Identity = Identity(self)
         self.Income = Income(self)
@@ -85,7 +86,6 @@ class Client(object):
         self.InvestmentTransactions = InvestmentTransactions(self)
         self.Item = Item(self)
         self.Liabilities = Liabilities(self)
-        self.PaymentInitiation = PaymentInitiation(self)
         self.Processor = Processor(self)
         self.Sandbox = Sandbox(self)
         self.Transactions = Transactions(self)
