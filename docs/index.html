@@ -753,6 +753,115 @@ the item. Optional</li>
 </dd></dl>
 
 <dl class="class">
+<dt id="plaid.api.PaymentInitiation">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">PaymentInitiation</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Payment Initiation endpoints.</p>
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.create_payment">
+<code class="descname">create_payment</code><span class="sig-paren">(</span><em>recipient_id</em>, <em>reference</em>, <em>amount</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.create_payment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a payment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>recipient_id</strong> (<em>str</em>) &#8211; </li>
+<li><strong>reference</strong> (<em>str</em>) &#8211; </li>
+<li><strong>amount</strong> (<em>dict</em>) &#8211; A dictionary containing currency and
+value fields.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.create_payment_token">
+<code class="descname">create_payment_token</code><span class="sig-paren">(</span><em>payment_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.create_payment_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a payment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>payment_id</strong> (<em>str</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.create_recipient">
+<code class="descname">create_recipient</code><span class="sig-paren">(</span><em>name</em>, <em>iban</em>, <em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.create_recipient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a payment recipient.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; </li>
+<li><strong>iban</strong> (<em>str</em>) &#8211; </li>
+<li><strong>address</strong> (<em>dict</em>) &#8211; A dictionary containing street, city,
+postal_code, and country fields.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.get_payment">
+<code class="descname">get_payment</code><span class="sig-paren">(</span><em>payment_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.get_payment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a payment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>payment_id</strong> (<em>str</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.get_recipient">
+<code class="descname">get_recipient</code><span class="sig-paren">(</span><em>recipient_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.get_recipient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a payment recipient.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>recipient_id</strong> (<em>str</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.list_payments">
+<code class="descname">list_payments</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.list_payments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all the payments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> (<em>dict</em>) &#8211; A dictionary containing count, and
+cursor fields.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.PaymentInitiation.list_recipients">
+<code class="descname">list_recipients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.list_recipients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all the payment recipients.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="plaid.api.Processor">
 <em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Processor</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Endpoints for creating processor tokens.</p>
