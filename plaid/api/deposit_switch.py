@@ -14,7 +14,7 @@ class DepositSwitch(API):
         :param  str deposit_switch_id:  ID of deposit switch to get.
         '''
 
-        return self.client.post('deposit_switch/get', {
+        return self.client.post('/deposit_switch/get', {
             'deposit_switch_id': deposit_switch_id,
         })
 
@@ -29,7 +29,7 @@ class DepositSwitch(API):
         :param  str target_access_token:    The access token to create the
                                             the deposit switch.
         '''
-        return self.client.post('deposit_switch/create', {
+        return self.client.post('/deposit_switch/create', {
             'target_account_id': target_account_id,
             'target_access_token': target_access_token,
         })
@@ -42,6 +42,6 @@ class DepositSwitch(API):
 
         :param  str deposit_switch_id:  ID of deposit switch
         '''
-        return self.client.post('deposit_switch/token/create', {
+        return self.client.post('/deposit_switch/token/create', {
             'deposit_switch_id': deposit_switch_id,
         })
