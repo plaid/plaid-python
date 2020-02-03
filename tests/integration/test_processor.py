@@ -14,7 +14,7 @@ def test_create_token():
     client = create_client()
     # Just test the failure case - behavior here depends on the API keys used
     with pytest.raises(InvalidRequestError) as e:
-        client.Processor.stripeBankAccountTokenCreate(
+        client.Processor.tokenCreate(
             'fakeAccessToken', 'fakeAccountId')
         assert e.code == 'INVALID_INPUT'
 
