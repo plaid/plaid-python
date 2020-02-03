@@ -58,7 +58,7 @@ client = Client(
   secret='***',
   public_key='***',
   environment='sandbox',
-  version='2019-05-29'  # Specify API version
+  api_version='2019-05-29'  # Specify API version
 )
 ```
 
