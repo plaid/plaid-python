@@ -14,6 +14,7 @@ from plaid.api.payment_initiation import PaymentInitiation
 from plaid.api.processor import Processor
 from plaid.api.sandbox import Sandbox
 from plaid.api.transactions import Transactions
+from plaid.api.webhooks import Webhooks
 
 __all__ = [
     'Accounts',
@@ -32,4 +33,5 @@ __all__ = [
     'Processor',
     'Sandbox',
     'Transactions',
+    'Webhooks',
 ]

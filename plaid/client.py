@@ -17,6 +17,7 @@ from plaid.api import (
     Processor,
     Sandbox,
     Transactions,
+    Webhooks,
 )
 from plaid.requester import DEFAULT_TIMEOUT, post_request
 from plaid.utils import urljoin
@@ -89,6 +90,7 @@ class Client(object):
         self.Processor = Processor(self)
         self.Sandbox = Sandbox(self)
         self.Transactions = Transactions(self)
+        self.Webhooks = Webhooks(self)
 
     def post(self, path, data, is_json=True):
         '''Make a post request with client_id and secret key.'''
