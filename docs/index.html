@@ -813,6 +813,25 @@ postal_code, and country fields.</li>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="plaid.api.Processor.tokenCreate">
+<code class="descname">tokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em>, <em>processor</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.tokenCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a processor token for a given processor and account ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
+<li><strong>processor</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -903,7 +922,7 @@ the beginning of the fetch. Optional.</li>
 <dl class="exception">
 <dt id="plaid.errors.BaseError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">BaseError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.BaseError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 <p>A base error class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
