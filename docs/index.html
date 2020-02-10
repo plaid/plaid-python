@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 3.4.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 3.5.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.4.0',
+        VERSION:     '3.5.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -903,6 +903,25 @@ cursor fields.</td>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="plaid.api.Processor.tokenCreate">
+<code class="descname">tokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em>, <em>processor</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.tokenCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a processor token for a given processor and account ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
+<li><strong>processor</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -983,6 +1002,27 @@ the beginning of the fetch. Optional.</li>
 </tbody>
 </table>
 <p>All date should be formatted as <code class="docutils literal"><span class="pre">YYYY-MM-DD</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="plaid.api.Webhooks">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Webhooks</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Webhooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Webhooks endpoints.
+(<a class="reference external" href="https://plaid.com/docs/#webhook-verification">HTTP docs</a>)</p>
+<dl class="method">
+<dt id="plaid.api.Webhooks.get_verification_key">
+<code class="descname">get_verification_key</code><span class="sig-paren">(</span><em>key_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Webhooks.get_verification_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve webhook verification key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key_id</strong> (<em>str</em>) &#8211; ID of key from Plaid-Verification header</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>

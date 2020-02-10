@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. From the `plaid-node-apiv2` directory, create the `.env` file, which will be used to configure the Plaid client.
+1. From the `plaid-python` directory, create the `.env` file, which will be used to configure the Plaid client.
 
   ```
   cp .env.example .env
