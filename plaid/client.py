@@ -6,6 +6,7 @@ from plaid.api import (
     Auth,
     Categories,
     CreditDetails,
+    DepositSwitch,
     Holdings,
     Identity,
     Income,
@@ -79,6 +80,7 @@ class Client(object):
         self.Auth = Auth(self)
         self.Categories = Categories(self)
         self.CreditDetails = CreditDetails(self)
+        self.DepositSwitch = DepositSwitch(self)
         self.Holdings = Holdings(self)
         self.Identity = Identity(self)
         self.Income = Income(self)
