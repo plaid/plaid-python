@@ -1,3 +1,15 @@
+## 3.6.0
+- Add support for webhook verification
+  - `/webhook_verification/get`
+- Add support for generic processor token
+  - `/processor/token/create`
+- Add support for deposit switch
+  - `/deposit_switch/token/create`
+  - `/deposit_switch/create`
+  - `/deposit_switch/get`
+- Add support for item import
+  - `/item/import`
+
 ## 3.5.0
 
 - Add support for new UK Payment Initiation product ([#195](https://github.com/plaid/plaid-python/pull/195))
