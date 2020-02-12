@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 3.4.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 3.5.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.4.0',
+        VERSION:     '3.5.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -352,6 +352,65 @@ the item. Optional.</li>
 </dd></dl>
 
 <dl class="class">
+<dt id="plaid.api.DepositSwitch">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">DepositSwitch</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.DepositSwitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deposit Switch endpoints.
+(<a class="reference external" href="comingsoon">HTTP docs</a>)</p>
+<dl class="method">
+<dt id="plaid.api.DepositSwitch.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>target_account_id</em>, <em>target_access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.DepositSwitch.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a deposit switch given target account id and target access
+token.
+(<a class="reference external" href="comingsoon">HTTP docs</a>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target_account_id</strong> (<em>str</em>) &#8211; The id of the bank account that
+the deposit switch will go to.</li>
+<li><strong>target_access_token</strong> (<em>str</em>) &#8211; The access token to create the
+the deposit switch.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.DepositSwitch.create_token">
+<code class="descname">create_token</code><span class="sig-paren">(</span><em>deposit_switch_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.DepositSwitch.create_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a deposit switch token, which is used to initialize a deposit
+switch.
+(<a class="reference external" href="comingsoon">HTTP docs</a>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>deposit_switch_id</strong> (<em>str</em>) &#8211; ID of deposit switch</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.DepositSwitch.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>deposit_switch_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.DepositSwitch.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets deposit switch information given a deposit switch id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>deposit_switch_id</strong> (<em>str</em>) &#8211; ID of deposit switch to get.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="plaid.api.Holdings">
 <em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Holdings</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Holdings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Holdings endpoints.
@@ -628,6 +687,28 @@ the Plaid API
 </dd></dl>
 
 <dl class="method">
+<dt id="plaid.api.Item.import_item">
+<code class="descclassname">Item.</code><code class="descname">import_item</code><span class="sig-paren">(</span><em>products</em>, <em>user_auth</em>, <em>_options</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.import_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports an item.
+(<a href="#id1"><span class="problematic" id="id2">`HTTP docs coming soon`__</span></a>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initial_products</strong> (<em></em><em>[</em><em>str</em><em>]</em><em></em>) &#8211; List of products that the item
+will be enabled for.</li>
+<li><strong>user_auth</strong> (<em>dict</em>) &#8211; User authentication fields for the
+item.</li>
+<li><strong>options</strong> (<em>dict</em>) &#8211; Additional options.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="plaid.api.Item.remove">
 <code class="descclassname">Item.</code><code class="descname">remove</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Item.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove an item.
@@ -761,6 +842,15 @@ postal_code, and country fields.</li>
 <dt id="plaid.api.PaymentInitiation.list_payments">
 <code class="descname">list_payments</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.list_payments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Lists all the payments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> (<em>dict</em>) &#8211; A dictionary containing count, and
+cursor fields.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -806,6 +896,25 @@ postal_code, and country fields.</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
 <li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="plaid.api.Processor.tokenCreate">
+<code class="descname">tokenCreate</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em>, <em>processor</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Processor.tokenCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a processor token for a given processor and account ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> (<em>str</em>) &#8211; </li>
+<li><strong>account_id</strong> (<em>str</em>) &#8211; </li>
+<li><strong>processor</strong> (<em>str</em>) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -893,6 +1002,27 @@ the beginning of the fetch. Optional.</li>
 </tbody>
 </table>
 <p>All date should be formatted as <code class="docutils literal"><span class="pre">YYYY-MM-DD</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="plaid.api.Webhooks">
+<em class="property">class </em><code class="descclassname">plaid.api.</code><code class="descname">Webhooks</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Webhooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Webhooks endpoints.
+(<a class="reference external" href="https://plaid.com/docs/#webhook-verification">HTTP docs</a>)</p>
+<dl class="method">
+<dt id="plaid.api.Webhooks.get_verification_key">
+<code class="descname">get_verification_key</code><span class="sig-paren">(</span><em>key_id</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Webhooks.get_verification_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve webhook verification key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key_id</strong> (<em>str</em>) &#8211; ID of key from Plaid-Verification header</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
