@@ -48,9 +48,11 @@ def get_transactions_with_retries(client,
         break
     return response
 
+
 def refresh_transactions(client,
                          access_token):
     return client.Transactions.refresh(access_token)
+
 
 def teardown_module(module):
     client = create_client()
@@ -88,6 +90,7 @@ def test_get_with_options():
                                              count=2,
                                              offset=1)
     assert len(response['transactions']) == 2
+
 
 def test_refresh():
     client = create_client()
