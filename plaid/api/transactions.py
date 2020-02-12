@@ -48,3 +48,19 @@ class Transactions(API):
             'end_date': end_date,
             'options': options,
         })
+
+    def refresh(self,
+                access_token,
+                ):
+        '''
+        TODO: confirm language here
+        Refreshes transactions for an item.
+        (`HTTP docs <https://plaid.com/docs/api/#transactions` __)
+
+        Initiates a manual transaction pull for a given item.
+
+        :param  str     access_token:
+        '''
+        return self.client.post('/transactions/refresh', {
+            'access_token': access_token,
+        })
