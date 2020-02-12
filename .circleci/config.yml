@@ -7,7 +7,6 @@ jobs:
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
     - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
-      command: /sbin/init
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
@@ -18,6 +17,7 @@ jobs:
         - v1-dep-{{ .Branch }}-
         - v1-dep-master-
         - v1-dep-
+    - run: pip install --upgrade pip
     - run: pip install tox tox-pyenv
     - run: pyenv local 2.7.10 3.6.0
     - save_cache:
