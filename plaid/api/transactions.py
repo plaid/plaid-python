@@ -53,11 +53,13 @@ class Transactions(API):
                 access_token,
                 ):
         '''
-        TODO: confirm language here
-        Refreshes transactions for an item.
-        (`HTTP docs <https://plaid.com/docs/api/#transactions` __)
+        Request on-demand refresh of transactions and balances for an Item
+        (`HTTP docs <https://plaid.com/docs/api/#transactions-refresh>`__)
 
-        Initiates a manual transaction pull for a given item.
+        Calls to /transactions/refresh will initiate an on-demand check for new
+        transactions since last scheduled update. If there are fresh
+        transactions, Plaid will fire a webhook. To fetch these transactions,
+        call /transactions/get.
 
         :param  str     access_token:
         '''
