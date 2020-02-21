@@ -1,3 +1,7 @@
+## 3.7.0
+- Add support for transactions refresh
+  - `/transactions/refresh`
+
 ## 3.6.0
 - Add support for webhook verification
   - `/webhook_verification/get`
