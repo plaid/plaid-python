@@ -8,7 +8,7 @@
 cp .env.example .env
 ```
 
-2. Go to the [Plaid Dashboard](https://dashboard.plaid.com/) and copy and paste your `client_id`, `public_key`, and Sandbox `secret` into `.env` using a text editor of your choice.
+2. Go to the [Plaid Dashboard](https://dashboard.plaid.com/team/keys) and copy and paste your `client_id`, `public_key`, and Sandbox `secret` into `.env` using a text editor of your choice.
 
 ## Requirements
 
