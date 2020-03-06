@@ -1,25 +1,22 @@
 #!make
 
-.PHONY: lint
-lint:
-	flake8 plaid
+.PHONY: build
+build:
+	docker build -t plaid-python .
 
-# Requires tox to be installed and in the executable path
+.PHONY: lint
+lint: build
+	docker run plaid-python flake8 plaid
+
 .PHONY: test
 test: lint
-	./.env tox
-
-# Setting up for local development
-.PHONY: setup
-setup:
-	pip install -r requirements.txt
+	docker run plaid-python tox
 
 .PHONY: docs
 docs:
 	-rm -r docs/
 	sphinx-build docs_source/ docs/ -b html
 	touch docs/.nojekyll
-
 
 # Clean the /dist directory for a new publish
 .PHONY: package-clean

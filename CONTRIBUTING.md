@@ -4,26 +4,28 @@
 
 1. From the `plaid-python` directory, create the `.env` file, which will be used to configure the Plaid client.
 
-  ```
-  cp .env.example .env
-  ```
+```
+cp .env.example .env
+```
 
-2. Go to the [Plaid Dashboard](https://dashboard.plaid.com/) and copy and paste your `client_id`, `public_key`, and `secret`
-   into `.env` using a text editor of your choice. Your account must be enabled for sandbox access.
+2. Go to the [Plaid Dashboard](https://dashboard.plaid.com/) and copy and paste your `client_id`, `public_key`, and Sandbox `secret` into `.env` using a text editor of your choice.
 
-3. Install the necessary dependencies.
+## Requirements
 
-  ```
-  make setup
-  ```
+Docker is required to run tests and lint code. Make sure `docker` is available from your command line
 
 ## Running Tests
 
-Please lint (with `flake8`) and test your pull requests:
+```console
+$ make test
+```
+
+## Linting
+
+Linting is run automatically when tests are run, but you can also run
 
 ```console
 $ make lint
-$ ./.env make test
 ```
 
 ## Updating Documentation
