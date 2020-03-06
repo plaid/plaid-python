@@ -6,11 +6,11 @@ build:
 
 .PHONY: lint
 lint: build
-	docker run plaid-python flake8 plaid
+	docker run --env-file .env plaid-python flake8 plaid
 
 .PHONY: test
 test: lint
-	docker run plaid-python tox
+	docker run --env-file .env plaid-python tox
 
 .PHONY: docs
 docs:
