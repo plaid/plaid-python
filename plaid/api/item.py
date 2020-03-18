@@ -99,6 +99,7 @@ class Item(API):
         super(Item, self).__init__(client)
         self.access_token = AccessToken(client)
         self.public_token = PublicToken(client)
+        self.add_token = AddToken(client)
         self.webhook = Webhook(client)
 
     def get(self, access_token):
