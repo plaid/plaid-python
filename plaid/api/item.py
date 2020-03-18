@@ -1,5 +1,6 @@
 from plaid.api.api import API
 
+
 class AddToken(API):
     '''Endpoints for managing item add tokens. BETA.'''
     def create(self):
@@ -8,6 +9,7 @@ class AddToken(API):
         Undocumented - beta endpoint.
         '''
         return self.client.post('/item/add_token/create', {})
+
 
 class PublicToken(API):
     '''Endpoints for translating between public tokens and access tokens.'''
