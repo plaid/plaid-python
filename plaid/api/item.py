@@ -1,5 +1,13 @@
 from plaid.api.api import API
 
+class AddToken(API):
+    '''Endpoints for managing item add tokens. BETA.'''
+    def create(self):
+        '''
+        Create a Link item add token.
+        Undocumented - beta endpoint.
+        '''
+        return self.client.post('/item/add_token/create', {})
 
 class PublicToken(API):
     '''Endpoints for translating between public tokens and access tokens.'''
@@ -77,6 +85,8 @@ class Item(API):
     Item endpoints.
     (`HTTP docs <https://plaid.com/docs/api/#item-management>`__)
 
+    .. autoclass:: plaid.api.item.AddToken
+        :members:
     .. autoclass:: plaid.api.item.AccessToken
         :members:
     .. autoclass:: plaid.api.item.PublicToken
