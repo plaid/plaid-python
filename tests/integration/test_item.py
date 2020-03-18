@@ -55,6 +55,11 @@ def test_import():
         None)
     assert at_response['access_token'] is not None
 
+def test_add_token():
+    client = create_client()
+    create_response = client.Item.add_token.create()
+    assert create_response['add_token'] is not None
+    assert create_response['expiration'] is not None
 
 def test_public_token():
     client = create_client()
@@ -65,12 +70,6 @@ def test_public_token():
     with ensure_item_removed(exchange_response['access_token']):
         assert pt_response['public_token'] is not None
         assert exchange_response['access_token'] is not None
-
-def test_add_token():
-    client = create_client()
-    create_response = client.Sandbox.add_token.create()
-    assert create_response['add_token'] is not None
-    assert create_response['expiration'] is not None
 
 def test_sandbox_public_token():
     client = create_client()
