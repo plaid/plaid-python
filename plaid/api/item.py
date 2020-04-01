@@ -11,7 +11,7 @@ class AddToken(API):
         :param  dict user:  An optional dictionary with additional user data.
         '''
         return self.client.post('/item/add_token/create', {
-            'user': user
+            'user': user,
         })
 
 
