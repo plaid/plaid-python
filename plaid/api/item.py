@@ -3,12 +3,16 @@ from plaid.api.api import API
 
 class AddToken(API):
     '''Endpoints for managing item add tokens. BETA.'''
-    def create(self):
+    def create(self, user=None):
         '''
         Create a Link item add token.
         Undocumented - beta endpoint.
+
+        :param  dict user:  An optional dictionary with additional user data.
         '''
-        return self.client.post('/item/add_token/create', {})
+        return self.client.post('/item/add_token/create', {
+            'user': user
+        })
 
 
 class PublicToken(API):
