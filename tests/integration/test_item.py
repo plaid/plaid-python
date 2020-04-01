@@ -56,6 +56,13 @@ def test_import():
     assert at_response['access_token'] is not None
 
 
+def test_add_token():
+    client = create_client()
+    create_response = client.Item.add_token.create()
+    assert create_response['add_token'] is not None
+    assert create_response['expiration'] is not None
+
+
 def test_public_token():
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
