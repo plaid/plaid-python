@@ -63,6 +63,18 @@ def test_add_token():
     assert create_response['expiration'] is not None
 
 
+def test_add_token_with_user():
+    client = create_client()
+    user = {
+        'phone_number': '+1 415 555 0123',
+        'email_address': 'example@plaid.com',
+        'phone_number_verified_time': '2020-01-01T00:00:00Z',
+    }
+    create_response = client.Item.add_token.create(user=user)
+    assert create_response['add_token'] is not None
+    assert create_response['expiration'] is not None
+
+
 def test_public_token():
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
