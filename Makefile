@@ -1,16 +1,18 @@
 #!make
 
+DOCKER = docker run --env-file .env plaid-python
+
 .PHONY: build
 build:
 	docker build -t plaid-python .
 
 .PHONY: lint
 lint: build
-	docker run --env-file .env plaid-python flake8 plaid
+	$(DOCKER) flake8 plaid
 
 .PHONY: test
 test: lint
-	docker run --env-file .env plaid-python tox
+	$(DOCKER) tox
 
 .PHONY: docs
 docs:
