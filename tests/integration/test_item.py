@@ -60,7 +60,7 @@ def test_import():
 def test_add_token():
     client = create_client()
     create_response = client.Item.add_token.create({
-        'client_user_id': time.time().str(),
+        'client_user_id': str(time.time()),
     })
     assert create_response['add_token'] is not None
     assert create_response['expiration'] is not None
@@ -69,7 +69,7 @@ def test_add_token():
 def test_add_token_with_user():
     client = create_client()
     user = {
-        'client_user_id': time.time().str(),
+        'client_user_id': str(time.time()),
         'phone_number': '+1 415 555 0123',
         'email_address': 'example@plaid.com',
         'phone_number_verified_time': '2020-01-01T00:00:00Z',
