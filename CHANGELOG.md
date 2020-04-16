@@ -1,3 +1,8 @@
+
+## 3.9.0
+
+- Add `client_user_id` field to Item add token endpoint
+
 ## 3.8.0
 
 - Add support for Item add token endpoint (BETA)

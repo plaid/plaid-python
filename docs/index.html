@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 3.8.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 3.9.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '3.8.0',
+        VERSION:     '3.9.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -576,12 +576,11 @@ the beginning of the fetch. Optional.</li>
 <dl class="class">
 <dt id="plaid.api.item.Item.AddToken">
 <em class="property">class </em><code class="descname">AddToken</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.Item.AddToken" title="Permalink to this definition">¶</a></dt>
-<dd><p>Endpoints for managing item add tokens. BETA.</p>
+<dd><p>Endpoints for managing item add tokens.</p>
 <dl class="method">
 <dt id="plaid.api.item.Item.AddToken.AddToken.create">
-<code class="descclassname">AddToken.</code><code class="descname">create</code><span class="sig-paren">(</span><em>user=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.Item.AddToken.AddToken.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a Link item add token.
-Undocumented - beta endpoint.</p>
+<code class="descclassname">AddToken.</code><code class="descname">create</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.Item.AddToken.AddToken.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Link item add token.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1073,7 +1072,7 @@ call /transactions/get.</p>
 <dl class="exception">
 <dt id="plaid.errors.BaseError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">BaseError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.BaseError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
 <p>A base error class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
