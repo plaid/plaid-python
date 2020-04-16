@@ -2,11 +2,10 @@ from plaid.api.api import API
 
 
 class AddToken(API):
-    '''Endpoints for managing item add tokens. BETA.'''
-    def create(self, user=None):
+    '''Endpoints for managing item add tokens.'''
+    def create(self, user):
         '''
         Create a Link item add token.
-        Undocumented - beta endpoint.
 
         :param  dict user:  An optional dictionary with additional user data.
         '''
