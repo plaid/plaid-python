@@ -1,8 +1,20 @@
+
+## 3.9.0
+
+- Add `client_user_id` field to Item add token endpoint
+
+## 3.8.0
+
+- Add support for Item add token endpoint (BETA)
+  - `/item/add_token/create` (BETA)
+
 ## 3.7.0
+
 - Add support for transactions refresh
   - `/transactions/refresh`
 
 ## 3.6.0
+
 - Add support for webhook verification
   - `/webhook_verification/get`
 - Add support for generic processor token
@@ -89,6 +101,5 @@
 ## 2.3.0
 
 - Add support for [version `2018-05-22`](https://plaid.com/docs/api-upgrades/) of the Plaid API
-
 
 [docs-sandbox-item-fire-webhook]: https://plaid.com/docs/#firing-webhooks
