@@ -36,7 +36,7 @@ class Institutions(API):
             'options': options,
         })
 
-    def search(self, query, _options={}, products=None):
+    def search(self, query, _options=None, products=None):
         '''
         Search all institutions by name.
 
