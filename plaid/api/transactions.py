@@ -48,3 +48,21 @@ class Transactions(API):
             'end_date': end_date,
             'options': options,
         })
+
+    def refresh(self,
+                access_token,
+                ):
+        '''
+        Request on-demand refresh of transactions and balances for an Item
+        (`HTTP docs <https://plaid.com/docs/api/#transactions-refresh>`__)
+
+        Calls to /transactions/refresh will initiate an on-demand check for new
+        transactions since last scheduled update. If there are fresh
+        transactions, Plaid will fire a webhook. To fetch these transactions,
+        call /transactions/get.
+
+        :param  str     access_token:
+        '''
+        return self.client.post('/transactions/refresh', {
+            'access_token': access_token,
+        })

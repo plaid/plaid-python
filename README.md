@@ -215,10 +215,6 @@ Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
 - [@chrisforrette](https://github.com/chrisforrette) (Chris Forrette)
 - [@gae123](https://github.com/gae123)
 
-## Legacy API
-
-If you're looking for a Python client that works with the legacy Plaid API, use [`plaid-python-legacy`][10], available via pypi.
-
 ## License
 [MIT][6]
 
