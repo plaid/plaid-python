@@ -26,9 +26,11 @@ class Item(API):
             'webhook_code': webhook_code,
         })
 
-    def set_verification_status(self, access_token, account_id, verification_status):
+    def set_verification_status(self, access_token, account_id,
+                                verification_status):
         '''
-        Set verification status for an item created via the automated microdeposits flow
+        Set verification status for an item created via the
+        automated microdeposits flow
 
         :param  str     access_token:
         :param  str     account_id:
