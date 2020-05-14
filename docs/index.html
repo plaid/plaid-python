@@ -513,7 +513,7 @@ Adds the income product to the item if it does not already have it.</p>
 
 <dl class="method">
 <dt id="plaid.api.Institutions.search">
-<code class="descname">search</code><span class="sig-paren">(</span><em>query</em>, <em>_options={}</em>, <em>products=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Institutions.search" title="Permalink to this definition">¶</a></dt>
+<code class="descname">search</code><span class="sig-paren">(</span><em>query</em>, <em>_options=None</em>, <em>products=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.Institutions.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search all institutions by name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -602,22 +602,6 @@ the beginning of the fetch. Optional.</li>
 <code class="descname">invalidate</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.AccessToken.invalidate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rotate the access token for an item.
 (<a class="reference external" href="https://plaid.com/docs/api/#rotate-access-token">HTTP docs</a>)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>access_token</strong> (<em>str</em>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="plaid.api.item.AccessToken.update_version">
-<code class="descname">update_version</code><span class="sig-paren">(</span><em>access_token</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.item.AccessToken.update_version" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transition an access token to work with the current version of
-the Plaid API
-(<a class="reference external" href="https://plaid.com/docs/api/#update-access-token-version">HTTP docs</a>)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1072,7 +1056,7 @@ call /transactions/get.</p>
 <dl class="exception">
 <dt id="plaid.errors.BaseError">
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">BaseError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.BaseError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>A base error class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
