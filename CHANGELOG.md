@@ -1,6 +1,11 @@
-## 3.9.1
+## 4.0.0
 
 - Fix use of mutable default param in `institutions.search`
+- Remove support for `/item/access_token/update_version`
+
+BREAKING CHANGES:
+
+- Removes `client.Item.update_version`
 
 ## 3.9.0
 
