@@ -54,6 +54,7 @@ class AccessToken(API):
             'access_token': access_token,
         })
 
+
 class Webhook(API):
     '''Webhook endpoints.'''
 
