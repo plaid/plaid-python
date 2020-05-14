@@ -1,3 +1,6 @@
+## 3.9.1
+
+- Fix use of mutable default param in `institutions.search`
 
 ## 3.9.0
 
