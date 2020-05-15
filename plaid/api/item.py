@@ -1,6 +1,19 @@
 from plaid.api.api import API
 
 
+class AddToken(API):
+    '''Endpoints for managing item add tokens.'''
+    def create(self, user):
+        '''
+        Create a Link item add token.
+
+        :param  dict user:  An optional dictionary with additional user data.
+        '''
+        return self.client.post('/item/add_token/create', {
+            'user': user,
+        })
+
+
 class PublicToken(API):
     '''Endpoints for translating between public tokens and access tokens.'''
 
@@ -41,19 +54,6 @@ class AccessToken(API):
             'access_token': access_token,
         })
 
-    def update_version(self, access_token):
-        '''
-        Transition an access token to work with the current version of
-        the Plaid API
-        (`HTTP docs <https://plaid.com/docs/api/#update-access-token-
-        version>`__)
-
-        :param  str      access_token:
-        '''
-        return self.client.post('/item/access_token/update_version', {
-            'access_token_v1': access_token,
-        })
-
 
 class Webhook(API):
     '''Webhook endpoints.'''
@@ -77,6 +77,8 @@ class Item(API):
     Item endpoints.
     (`HTTP docs <https://plaid.com/docs/api/#item-management>`__)
 
+    .. autoclass:: plaid.api.item.AddToken
+        :members:
     .. autoclass:: plaid.api.item.AccessToken
         :members:
     .. autoclass:: plaid.api.item.PublicToken
@@ -89,6 +91,7 @@ class Item(API):
         super(Item, self).__init__(client)
         self.access_token = AccessToken(client)
         self.public_token = PublicToken(client)
+        self.add_token = AddToken(client)
         self.webhook = Webhook(client)
 
     def get(self, access_token):
