@@ -1,3 +1,12 @@
+## 4.0.0
+
+- Fix use of mutable default param in `institutions.search`
+- Remove support for deprecated `/item/access_token/update_version` endpoint
+- Add support for the `/sandbox/item/set_verification_status` endpoint
+
+BREAKING CHANGES:
+
+- Removes `client.Item.update_version`
 
 ## 3.9.0
 
