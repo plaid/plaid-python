@@ -26,6 +26,22 @@ class Item(API):
             'webhook_code': webhook_code,
         })
 
+    def set_verification_status(self, access_token, account_id,
+                                verification_status):
+        '''
+        Set verification status for an item created via the
+        automated microdeposits flow
+
+        :param  str     access_token:
+        :param  str     account_id:
+        :param  str     verification_status:
+        '''
+        return self.client.post('/sandbox/item/set_verification_status', {
+            'access_token': access_token,
+            'account_id': account_id,
+            'verification_status': verification_status,
+        })
+
 
 class PublicToken(API):
     '''Sandbox public token endpoints.'''
