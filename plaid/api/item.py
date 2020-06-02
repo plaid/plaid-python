@@ -54,19 +54,6 @@ class AccessToken(API):
             'access_token': access_token,
         })
 
-    def update_version(self, access_token):
-        '''
-        Transition an access token to work with the current version of
-        the Plaid API
-        (`HTTP docs <https://plaid.com/docs/api/#update-access-token-
-        version>`__)
-
-        :param  str      access_token:
-        '''
-        return self.client.post('/item/access_token/update_version', {
-            'access_token_v1': access_token,
-        })
-
 
 class Webhook(API):
     '''Webhook endpoints.'''
