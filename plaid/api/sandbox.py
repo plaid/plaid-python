@@ -77,7 +77,7 @@ class PublicToken(API):
         if transaction_options:
             options['transactions'] = transaction_options
 
-        return self.client.post_public_key('/sandbox/public_token/create', {
+        return self.client.post('/sandbox/public_token/create', {
             'institution_id': institution_id,
             'initial_products': initial_products,
             'options': options,

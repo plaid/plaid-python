@@ -38,7 +38,6 @@ class Client(object):
     def __init__(self,
                  client_id,
                  secret,
-                 public_key,
                  environment,
                  suppress_warnings=False,
                  timeout=DEFAULT_TIMEOUT,
@@ -49,7 +48,6 @@ class Client(object):
 
         :param  str     client_id:          Your Plaid client ID
         :arg    str     secret:             Your Plaid secret
-        :arg    str     public_key:         Your Plaid public key
         :arg    str     environment:        One of ``sandbox``,
                                             ``development``, or ``production``.
         :arg    bool    suppress_warnings:  Suppress Plaid warnings.
@@ -61,7 +59,6 @@ class Client(object):
         '''
         self.client_id = client_id
         self.secret = secret
-        self.public_key = public_key
         self.environment = environment
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
@@ -107,14 +104,6 @@ class Client(object):
     def post_public(self, path, data, is_json=True):
         '''Make a post request requiring no auth.'''
         return self._post(path, data, is_json)
-
-    def post_public_key(self, path, data, is_json=True):
-        '''Make a post request using a public key.'''
-        post_data = {
-            'public_key': self.public_key
-        }
-        post_data.update(data)
-        return self._post(path, post_data, is_json)
 
     def _post(self, path, data, is_json):
         headers = {}

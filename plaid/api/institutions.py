@@ -31,7 +31,7 @@ class Institutions(API):
         '''
         options = _options or {}
 
-        return self.client.post_public_key('/institutions/get_by_id', {
+        return self.client.post('/institutions/get_by_id', {
             'institution_id': institution_id,
             'options': options,
         })
@@ -46,7 +46,7 @@ class Institutions(API):
         '''
         options = _options or {}
 
-        return self.client.post_public_key('/institutions/search', {
+        return self.client.post('/institutions/search', {
             'query': query,
             'products': products,
             'options': options,

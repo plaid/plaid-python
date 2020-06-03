@@ -9,7 +9,6 @@ def create_client():
     '''Create a new client for testing.'''
     return Client(os.environ['CLIENT_ID'],
                   os.environ['SECRET'],
-                  os.environ['PUBLIC_KEY'],
                   'sandbox',
                   api_version="2019-05-29",
                   client_app="plaid-python-unit-tests")
