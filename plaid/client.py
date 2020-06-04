@@ -23,6 +23,7 @@ from plaid.api import (
 
 from plaid.internal.requester import DEFAULT_TIMEOUT, post_request
 from plaid.internal.utils import urljoin
+from plaid.environments import environments
 
 
 class Client(object):
@@ -64,6 +65,9 @@ class Client(object):
         self.timeout = timeout
         self.api_version = api_version
         self.client_app = client_app
+
+        if self.environment not in environments.values():
+            raise Exception("Invalid Plaid environment")
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
