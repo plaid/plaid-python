@@ -1,14 +1,15 @@
 from plaid import Client
 from plaid.environments import environments
 
+
 def test_client_invalid_environment():
     try:
-        client = Client("client_id", "secret", "invalid-env")
+        Client("client_id", "secret", "invalid-env")
     except Exception as error:
         assert error is not None
     else:
         # should not have reached this code
-        assert false
+        assert False
 
 
 def test_client_success():
@@ -18,4 +19,3 @@ def test_client_success():
         environments['SANDBOX']
     )
     assert client is not None
-    
