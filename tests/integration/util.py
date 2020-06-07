@@ -3,16 +3,17 @@
 import os
 
 from plaid import Client
-from plaid.environments import environments
 
 
 def create_client():
     '''Create a new client for testing.'''
-    return Client(os.environ['CLIENT_ID'],
-                  os.environ['SECRET'],
-                  environments['SANDBOX'],
-                  api_version="2019-05-29",
-                  client_app="plaid-python-unit-tests")
+    return Client(
+        client_id=os.environ['CLIENT_ID'],
+        secret=os.environ['SECRET'],
+        environment='sandbox',
+        api_version="2019-05-29",
+        client_app="plaid-python-unit-tests"
+    )
 
 
 SANDBOX_INSTITUTION = 'ins_109508'

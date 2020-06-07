@@ -37,9 +37,9 @@ class Client(object):
     '''
 
     def __init__(self,
-                 client_id,
-                 secret,
-                 environment,
+                 client_id=None,
+                 secret=None,
+                 environment=None,
                  suppress_warnings=False,
                  timeout=DEFAULT_TIMEOUT,
                  api_version=None,
@@ -47,7 +47,7 @@ class Client(object):
         '''
         Initialize a client with credentials.
 
-        :param  str     client_id:          Your Plaid client ID
+        :param    str     client_id:          Your Plaid client ID
         :arg    str     secret:             Your Plaid secret
         :arg    str     environment:        One of ``sandbox``,
                                             ``development``, or ``production``.
@@ -55,19 +55,16 @@ class Client(object):
         :arg    int     timeout:            Timeout for API requests.
         :arg    str     api_version:        API version to use for requests
         :arg    str     client_app:         Internal header to include
-                                            in requests
-
+                                                in requests
         '''
         self.client_id = client_id
         self.secret = secret
         self.environment = environment
+
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
         self.api_version = api_version
         self.client_app = client_app
-
-        if self.environment not in environments.values():
-            raise Exception("Invalid Plaid environment")
 
         if self.environment == 'development' and not self.suppress_warnings:
             warnings.warn('''
