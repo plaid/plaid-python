@@ -47,7 +47,7 @@ class Client(object):
         '''
         Initialize a client with credentials.
 
-        :param    str     client_id:          Your Plaid client ID
+        :param  str     client_id:          Your Plaid client ID
         :arg    str     secret:             Your Plaid secret
         :arg    str     environment:        One of ``sandbox``,
                                             ``development``, or ``production``.
@@ -60,7 +60,6 @@ class Client(object):
         self.client_id = client_id
         self.secret = secret
         self.environment = environment
-
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
         self.api_version = api_version
