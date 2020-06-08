@@ -154,10 +154,12 @@ class InstitutionError(PlaidError):
 
     pass
 
+
 class AuthError(PlaidError):
     '''There are errors with verifying or pulling auth numbers data.'''
 
     pass
+
 
 class AssetReportError(PlaidError):
     '''There are errors with creating the asset report.'''
