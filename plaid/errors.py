@@ -154,6 +154,16 @@ class InstitutionError(PlaidError):
 
     pass
 
+class AuthError(PlaidError):
+    '''There are errors with verifying or pulling auth numbers data.'''
+
+    pass
+
+class AssetReportError(PlaidError):
+    '''There are errors with creating the asset report.'''
+
+    pass
+
 
 PLAID_ERROR_TYPE_MAP = {
     'INSTITUTION_ERROR': InstitutionError,
@@ -162,4 +172,6 @@ PLAID_ERROR_TYPE_MAP = {
     'RATE_LIMIT_EXCEEDED': RateLimitExceededError,
     'API_ERROR': APIError,
     'ITEM_ERROR': ItemError,
+    'AUTH_ERROR': AuthError,
+    'ASSET_REPORT_ERROR': AssetReportError,
 }
