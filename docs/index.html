@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 4.0.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 4.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.0.0',
+        VERSION:     '4.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -973,7 +973,8 @@ cursor fields.</td>
 <dl class="method">
 <dt id="plaid.api.sandbox.Sandbox.Item.Item.set_verification_status">
 <code class="descclassname">Item.</code><code class="descname">set_verification_status</code><span class="sig-paren">(</span><em>access_token</em>, <em>account_id</em>, <em>verification_status</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.sandbox.Sandbox.Item.Item.set_verification_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set verification status for an item created via the automated microdeposits flow</p>
+<dd><p>Set verification status for an item created via the
+automated microdeposits flow</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1196,6 +1197,20 @@ for programmatic use. May be None.</li>
 <em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">InstitutionError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.InstitutionError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
 <p>There are errors for the requested financial institution.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="plaid.errors.AuthError">
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">AuthError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.AuthError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
+<p>There are errors with verifying or pulling auth numbers data.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="plaid.errors.AssetReportError">
+<em class="property">exception </em><code class="descclassname">plaid.errors.</code><code class="descname">AssetReportError</code><span class="sig-paren">(</span><em>message</em>, <em>type</em>, <em>code</em>, <em>display_message</em>, <em>request_id=''</em>, <em>causes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.errors.AssetReportError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#plaid.errors.PlaidError" title="plaid.errors.PlaidError"><code class="xref py py-class docutils literal"><span class="pre">plaid.errors.PlaidError</span></code></a></p>
+<p>There are errors with creating the asset report.</p>
 </dd></dl>
 
 </div>
