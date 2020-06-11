@@ -1,3 +1,7 @@
+## 4.1.0
+
+- Add classes for missing error types (`AuthError`, `AssetReportError`)
+
 ## 4.0.0
 
 - Fix use of mutable default param in `institutions.search`
