@@ -20,6 +20,7 @@ from plaid.api import (
     Transactions,
     Webhooks,
 )
+
 from plaid.internal.requester import DEFAULT_TIMEOUT, post_request
 from plaid.internal.utils import urljoin
 
