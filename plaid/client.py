@@ -20,8 +20,8 @@ from plaid.api import (
     Transactions,
     Webhooks,
 )
-from plaid.requester import DEFAULT_TIMEOUT, post_request
-from plaid.utils import urljoin
+from plaid.internal.requester import DEFAULT_TIMEOUT, post_request
+from plaid.internal.utils import urljoin
 
 
 class Client(object):
