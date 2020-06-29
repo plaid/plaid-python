@@ -38,7 +38,7 @@ def _requests_http_request(
         )
 
 
-def http_request(
+def _http_request(
         url,
         method=None,
         data=None,
@@ -73,4 +73,4 @@ def http_request(
 
 
 # helpers to simplify partial function application
-post_request = partial(http_request, method='POST')
+post_request = partial(_http_request, method='POST')

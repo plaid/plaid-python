@@ -1,5 +1,5 @@
 import time
-from plaid.errors import PlaidError
+from plaid.errors import AssetReportError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,
@@ -113,7 +113,7 @@ def name_exists_for_some_transaction(report):
 def poll_for_asset_report(client, asset_report_token, retries=20):
     try:
         return client.AssetReport.get(asset_report_token)
-    except PlaidError as e:
+    except AssetReportError as e:
         if e.code == 'PRODUCT_NOT_READY' and retries > 0:
             time.sleep(1)
             return poll_for_asset_report(
