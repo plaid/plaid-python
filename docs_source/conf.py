@@ -43,7 +43,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The primary toctree document.
-primary_doc = 'index'
+primary_doc = 'contents'
 
 # General information about the project.
 project = 'Plaid Python'

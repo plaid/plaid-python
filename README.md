@@ -224,7 +224,7 @@ Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
 [4]: https://github.com/plaid/link
 [5]: https://github.com/plaid/plaid-python/issues/new
 [6]: https://github.com/plaid/plaid-python/blob/master/LICENSE
-[7]: https://plaid.github.io/plaid-python/index.html
+[7]: https://plaid.github.io/plaid-python/contents.html
 [8]: https://cloud.google.com/appengine/docs/python/issue-requests
 [9]: https://blog.plaid.com/improving-our-api/
 [10]: https://github.com/plaid/plaid-python-legacy
