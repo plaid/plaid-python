@@ -19,6 +19,7 @@ docs:
 	-rm -r docs/
 	sphinx-build docs_source/ docs/ -b html
 	touch docs/.nojekyll
+	cp docs_source/index.html docs/
 
 
 # Clean the /dist directory for a new publish
