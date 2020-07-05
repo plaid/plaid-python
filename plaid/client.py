@@ -14,6 +14,7 @@ from plaid.api import (
     InvestmentTransactions,
     Item,
     Liabilities,
+    LinkToken,
     PaymentInitiation,
     Processor,
     Sandbox,
@@ -85,6 +86,7 @@ class Client(object):
         self.InvestmentTransactions = InvestmentTransactions(self)
         self.Item = Item(self)
         self.Liabilities = Liabilities(self)
+        self.LinkToken = LinkToken(self)
         self.PaymentInitiation = PaymentInitiation(self)
         self.Processor = Processor(self)
         self.Sandbox = Sandbox(self)
