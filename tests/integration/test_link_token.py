@@ -26,7 +26,7 @@ def test_link_token_create_optional():
     configs = {
         'user': {
             'client_user_id': str(time.time()),
-        }
+        },
         'products': ["auth", "transactions"],
         'client_name': "Plaid Test",
         'country_codes': ['GB']
