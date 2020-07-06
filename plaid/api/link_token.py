@@ -1,5 +1,6 @@
 from plaid.api.api import API
 
+
 class LinkToken(API):
     '''Endpoints for managing link tokens.'''
     def create(self, configs):
