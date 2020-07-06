@@ -29,7 +29,7 @@ def test_link_token_create_optional():
         },
         'products': ["auth", "transactions"],
         'client_name': "Plaid Test",
-        'country_codes': ['GB']
+        'country_codes': ['GB'],
         'language': 'en',
         'webhook': 'https://sample-webhook-uri.com',
         'redirect_ur': 'https://sample-redirect-uri.com',
