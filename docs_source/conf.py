@@ -42,8 +42,8 @@ templates_path = ['_templates']
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
-# The master toctree document.
-master_doc = 'index'
+# The primary toctree document.
+primary_doc = 'contents'
 
 # General information about the project.
 project = 'Plaid Python'
@@ -128,7 +128,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PlaidPython.tex', 'Plaid Python Documentation',
+    (primary_doc, 'PlaidPython.tex', 'Plaid Python Documentation',
      'Plaid', 'manual'),
 ]
 
@@ -138,7 +138,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'plaidpython', 'Plaid Python Documentation',
+    (primary_doc, 'plaidpython', 'Plaid Python Documentation',
      [author], 1)
 ]
 
@@ -149,7 +149,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'PlaidPython', 'Plaid Python Documentation',
+    (primary_doc, 'PlaidPython', 'Plaid Python Documentation',
      author, 'PlaidPython', 'One line description of project.',
      'Miscellaneous'),
 ]
