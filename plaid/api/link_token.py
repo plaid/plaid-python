@@ -21,7 +21,7 @@ class LinkToken(API):
         #     'android_package_name': configs.get('android_package_name'),
         #     'webhook': configs.get('webhook'),
         #     'institution_id': configs.get('institution_id'),
-        #     'link_customization_name': 
+        #     'link_customization_name':
         #      configs.get('link_customization_name'),
         #     'access_token': configs.get('access_token'),
         #     'account_filters': configs.get('account_filters'),
