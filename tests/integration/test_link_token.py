@@ -35,7 +35,7 @@ def test_link_token_create_optional():
         'country_codes': ['GB'],
         'language': 'en',
         'webhook': 'https://sample-webhook-uri.com',
-        'redirect_ur': 'https://sample-redirect-uri.com',
+        'redirect_uri': 'https://sample-redirect-uri.com',
         'link_customization_name': 'default',
         'account_filters': {
             'depository': {
