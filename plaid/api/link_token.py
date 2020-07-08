@@ -1,6 +1,6 @@
 from plaid.api.api import API
 
-linkTokenFieldNames = [
+link_token_field_names = [
     'user',
     'client_name',
     'products',
@@ -27,7 +27,7 @@ class LinkToken(API):
 
         body = {}
 
-        for field in linkTokenFieldNames:
+        for field in link_token_field_names:
             body[field] = configs.get(field)
 
         return self.client.post('/link/token/create', body)
