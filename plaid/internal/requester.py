@@ -52,11 +52,6 @@ def _http_request(
         headers or {},
         timeout)
 
-    print(data)
-    print("response hook: ")
-    print(response.text)
-    print(response)
-
     if is_json or response.headers['Content-Type'] == 'application/json':
         try:
             response_body = json.loads(response.text)
