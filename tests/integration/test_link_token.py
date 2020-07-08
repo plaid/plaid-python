@@ -19,7 +19,7 @@ def test_link_token_create_required():
     response = client.LinkToken.create(configs)
 
     # assert on response
-    assert response['token'] is not None
+    assert response['link_token'] is not None
     assert response['expiration'] is not None
 
 
@@ -48,5 +48,5 @@ def test_link_token_create_optional():
     response = client.LinkToken.create(configs)
 
     # assert on response
-    assert response['token'] is not None
+    assert response['link_token'] is not None
     assert response['expiration'] is not None
