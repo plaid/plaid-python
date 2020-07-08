@@ -23,7 +23,6 @@ from plaid.api import (
 
 from plaid.internal.requester import DEFAULT_TIMEOUT, post_request
 from plaid.internal.utils import urljoin
-from plaid.environments import environments
 
 
 class Client(object):
