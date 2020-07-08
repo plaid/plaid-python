@@ -9,7 +9,6 @@ class LinkToken(API):
 
         :param dict configs: A required dictionary to configure the Link token.
         '''
-        #return self.client.post('/link/token/create', configs)
         return self.client.post('/link/token/create', {
             'user': configs.get('user'),
             'client_name': configs.get('client_name'),
