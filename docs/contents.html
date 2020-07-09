@@ -51,14 +51,14 @@
 <h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="plaid.Client">
-<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em>, <em>client_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">plaid.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em>, <em>client_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Python Plaid API client.</p>
 <p>See official documentation at: <a class="reference external" href="https://plaid.com/docs">https://plaid.com/docs</a>.</p>
 <p>All of the endpoints documented under the <code class="docutils literal"><span class="pre">plaid.api</span></code>
 module may be called from a <code class="docutils literal"><span class="pre">plaid.Client</span></code> instance.</p>
 <dl class="method">
 <dt id="plaid.Client.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>public_key</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em>, <em>client_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>client_id</em>, <em>secret</em>, <em>environment</em>, <em>suppress_warnings=False</em>, <em>timeout=600</em>, <em>api_version=None</em>, <em>client_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.Client.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a client with credentials.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -67,7 +67,6 @@ module may be called from a <code class="docutils literal"><span class="pre">pla
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>client_id</strong> (<em>str</em>) &#8211; Your Plaid client ID</li>
 <li><strong>secret</strong> (<em>str</em>) &#8211; Your Plaid secret</li>
-<li><strong>public_key</strong> (<em>str</em>) &#8211; Your Plaid public key</li>
 <li><strong>environment</strong> (<em>str</em>) &#8211; One of <code class="docutils literal"><span class="pre">sandbox</span></code>,
 <code class="docutils literal"><span class="pre">development</span></code>, or <code class="docutils literal"><span class="pre">production</span></code>.</li>
 <li><strong>suppress_warnings</strong> (<em>bool</em>) &#8211; Suppress Plaid warnings.</li>
