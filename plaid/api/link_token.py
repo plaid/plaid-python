@@ -16,6 +16,7 @@ link_token_field_names = [
     'payment_initiation',
 ]
 
+
 class LinkToken(API):
     '''Endpoints for managing link tokens.'''
     def create(self, configs):
