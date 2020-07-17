@@ -1,3 +1,7 @@
+## 5.0.0
+
+- Add support for link/token/create (#230)
+
 ## 4.1.0
 
 - Add classes for missing error types (`AuthError`, `AssetReportError`)
