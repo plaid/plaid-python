@@ -1,30 +1,7 @@
 from tests.integration.util import create_client
 
 
-def test_all_payment_routes():
-    client = create_client()
-
-    # create recipient
-    response = client.PaymentInitiation.create_recipient(
-        'John Doe',
-        'GB33BUKB20201555555555',
-        {
-            'street': ['street name 999'],
-            'city': 'city',
-            'postal_code': '99999',
-            'country': 'GB',
-        },
-    )
-    recipient_id = response['recipient_id']
-    assert recipient_id is not None
-
-    # get recipient
-    response = client.PaymentInitiation.get_recipient(recipient_id)
-    assert response['recipient_id'] is not None
-    assert response['name'] is not None
-    assert response['iban'] is not None
-    assert response['address'] is not None
-
+def payments_after_recipient_creation(client, recipient_id):
     # list recipients
     response = client.PaymentInitiation.list_recipients()
     assert response['recipients'] is not None
@@ -64,3 +41,62 @@ def test_all_payment_routes():
     # list payments
     response = client.PaymentInitiation.list_payments({'count': 10})
     assert response['payments'] is not None and len(response['payments']) > 0
+
+
+def test_all_payment_routes_with_bacs():
+    client = create_client()
+    bacs = {
+        'account': '12345678',
+        'sort_code': '01-02-03',
+    }
+
+    # create recipient
+    response = client.PaymentInitiation.create_recipient(
+        'John Doe',
+        None,
+        {
+            'street': ['street name 999'],
+            'city': 'city',
+            'postal_code': '99999',
+            'country': 'GB',
+        },
+        bacs,
+    )
+    recipient_id = response['recipient_id']
+    assert recipient_id is not None
+
+    # get recipient
+    response = client.PaymentInitiation.get_recipient(recipient_id)
+    assert response['recipient_id'] is not None
+    assert response['name'] is not None
+    assert response['bacs'] is not None
+    assert response['address'] is not None
+    payments_after_recipient_creation(client, recipient_id)
+
+
+def test_all_payment_routes_with_iban():
+    client = create_client()
+
+    # create recipient
+    response = client.PaymentInitiation.create_recipient(
+        'John Doe',
+        'GB33BUKB20201555555555',
+        {
+            'street': ['street name 999'],
+            'city': 'city',
+            'postal_code': '99999',
+            'country': 'GB',
+        },
+        None
+    )
+    recipient_id = response['recipient_id']
+    assert recipient_id is not None
+
+    # get recipient
+    response = client.PaymentInitiation.get_recipient(recipient_id)
+    assert response['recipient_id'] is not None
+    assert response['name'] is not None
+    assert response['iban'] is not None
+    assert response['address'] is not None
+
+    payments_after_recipient_creation(client, recipient_id)
