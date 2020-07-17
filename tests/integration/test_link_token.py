@@ -13,6 +13,8 @@ def test_link_token_create_required():
         },
         'products': ["auth", "transactions"],
         'client_name': "Plaid Test",
+        'country_codes': ['GB'],
+        'language': 'en',
     }
 
     # create link token
