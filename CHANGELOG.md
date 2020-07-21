@@ -1,3 +1,9 @@
+## 5.0.0
+
+BREAKING CHANGES:
+- Add support for link/token/create (#230)
+- Removes the public key as input to `Client`. The public key is no longer needed by the API. (#223)
+
 ## 4.1.0
 
 - Add classes for missing error types (`AuthError`, `AssetReportError`)
