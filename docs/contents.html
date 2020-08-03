@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plaid Python Documentation! &#8212; Plaid Python 5.0.0 documentation</title>
+    <title>Plaid Python Documentation! &#8212; Plaid Python 6.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '5.0.0',
+        VERSION:     '6.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false,
@@ -815,7 +815,7 @@ value fields.</li>
 
 <dl class="method">
 <dt id="plaid.api.PaymentInitiation.create_recipient">
-<code class="descname">create_recipient</code><span class="sig-paren">(</span><em>name</em>, <em>iban</em>, <em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.create_recipient" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_recipient</code><span class="sig-paren">(</span><em>name</em>, <em>iban</em>, <em>address</em>, <em>bacs</em><span class="sig-paren">)</span><a class="headerlink" href="#plaid.api.PaymentInitiation.create_recipient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a payment recipient.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -826,6 +826,7 @@ value fields.</li>
 <li><strong>iban</strong> (<em>str</em>) &#8211; </li>
 <li><strong>address</strong> (<em>dict</em>) &#8211; A dictionary containing street, city,
 postal_code, and country fields.</li>
+<li><strong>bacs</strong> (<em>dict</em>) &#8211; A dictionary containing account and sort_code</li>
 </ul>
 </td>
 </tr>
