@@ -1,6 +1,13 @@
+## 6.0.0
+
+BREAKING CHANGES:
+
+- Add BACS as a parameter to `/recipient/create` ([#234](https://github.com/plaid/plaid-python/pull/234))
+
 ## 5.0.0
 
 BREAKING CHANGES:
+
 - Add support for link/token/create (#230)
 - Removes the public key as input to `Client`. The public key is no longer needed by the API. (#223)
 
