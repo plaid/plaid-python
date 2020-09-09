@@ -87,10 +87,9 @@ def test_link_token_create_and_get():
     assert getResponse['expiration'] is not None
 
     assert getResponse['metadata'] is not None
-    assert getResponse['metadata']['initial_products'] == 'a'
-    assert getResponse['metadata']['webhook'] == 'a'
-    assert getResponse['metadata']['country_codes'] == 'a'
-    assert getResponse['metadata']['language'] == 'a'
-    assert getResponse['metadata']['account_filters'] == 'a'
-    assert getResponse['metadata']['redirect_uri'] == 'a'
-    assert getResponse['metadata']['client_name'] == 'a'
+    assert getResponse['metadata']['initial_products'] == ['auth', 'transactions']
+    assert getResponse['metadata']['webhook'] == 'https://sample-webhook-uri.com'
+    assert getResponse['metadata']['country_codes'] == ['GB']
+    assert getResponse['metadata']['language'] == 'en'
+    assert getResponse['metadata']['account_filters'] == { 'depository': { 'account_subtypes': ['checking', 'savings'] } }
+    assert getResponse['metadata']['client_name'] == 'Plaid Test'
