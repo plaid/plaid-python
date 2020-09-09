@@ -52,3 +52,45 @@ def test_link_token_create_optional():
     # assert on response
     assert response['link_token'] is not None
     assert response['expiration'] is not None
+
+def test_link_token_create_and_get():
+    client = create_client()
+
+    # build the configs
+    configs = {
+        'user': {
+            'client_user_id': str(time.time()),
+        },
+        'products': ["auth", "transactions"],
+        'client_name': "Plaid Test",
+        'country_codes': ['GB'],
+        'language': 'en',
+        'webhook': 'https://sample-webhook-uri.com',
+        'link_customization_name': 'default',
+        'account_filters': {
+            'depository': {
+                'account_subtypes': ['checking', 'savings'],
+            },
+        },
+    }
+
+    # create link token
+    createResponse = client.LinkToken.create(configs)
+
+    # assert on response
+    assert createResponse['link_token'] is not None
+    assert createResponse['expiration'] is not None
+
+    getResponse = client.LinkToken.get(createResponse['link_token'])
+    assert getResponse['link_token'] == createResponse['link_token']
+    assert getResponse['created_at'] is not None
+    assert getResponse['expiration'] is not None
+
+    assert getResponse['metadata'] is not None
+    assert getResponse['metadata']['initial_products'] == 'a'
+    assert getResponse['metadata']['webhook'] == 'a'
+    assert getResponse['metadata']['country_codes'] == 'a'
+    assert getResponse['metadata']['language'] == 'a'
+    assert getResponse['metadata']['account_filters'] == 'a'
+    assert getResponse['metadata']['redirect_uri'] == 'a'
+    assert getResponse['metadata']['client_name'] == 'a'
