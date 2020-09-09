@@ -53,6 +53,7 @@ def test_link_token_create_optional():
     assert response['link_token'] is not None
     assert response['expiration'] is not None
 
+
 def test_link_token_create_and_get():
     client = create_client()
 
