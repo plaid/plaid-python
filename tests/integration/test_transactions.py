@@ -32,7 +32,7 @@ def get_transactions_with_retries(client,
                                   account_ids=None,
                                   count=None,
                                   offset=None,
-                                  num_retries=5):
+                                  num_retries=50):
     response = None
     for i in range(num_retries):
         try:
@@ -80,7 +80,7 @@ def test_get():
                                              '2018-01-01',
                                              '2019-01-01',
                                              account_ids=[account_id],
-                                             num_retries=5)
+                                             num_retries=50)
     assert response['transactions'] is not None
 
 
