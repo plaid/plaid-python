@@ -1,7 +1,7 @@
 ## 6.1.0
 
 - Add support for Link Token get endpoint ([#243](https://github.com/plaid/plaid-python/pull/243))
-  - `link/token/get`
+  - `/link/token/get`
 
 ## 6.0.0
 
