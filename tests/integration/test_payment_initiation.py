@@ -31,7 +31,9 @@ def payments_after_recipient_creation(client, recipient_id):
         'client_name': "Plaid Test",
         'country_codes': ['GB'],
         'language': 'en',
-        'payment_id': payment_id,
+        'payment_initiation': {
+            'payment_id': payment_id,
+        }
     })
     assert response['link_token'] is not None
     assert response['expiration'] is not None
