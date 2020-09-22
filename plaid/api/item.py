@@ -15,6 +15,7 @@ class PublicToken(API):
             'public_token': public_token,
         })
 
+
 class AccessToken(API):
     '''Access token endpoints.'''
 
