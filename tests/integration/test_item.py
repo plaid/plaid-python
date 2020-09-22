@@ -45,7 +45,6 @@ def test_remove():
         pt_response['public_token'])
 
     remove_response = client.Item.remove(exchange_response['access_token'])
-    assert remove_response is {}
 
 
 def test_import():
