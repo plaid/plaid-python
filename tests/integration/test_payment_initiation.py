@@ -27,7 +27,7 @@ def payments_after_recipient_creation(client, recipient_id):
         'user': {
             'client_user_id': str(time.time()),
         },
-        'products': ["auth", "transactions"],
+        'products': ["payment_initiation"],
         'client_name': "Plaid Test",
         'country_codes': ['GB'],
         'language': 'en',
