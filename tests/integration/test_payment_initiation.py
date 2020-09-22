@@ -20,22 +20,27 @@ def payments_after_recipient_creation(client, recipient_id):
     assert payment_id is not None
     assert response['status'] is not None
 
-    # create payment token
-    response = client.PaymentInitiation.create_payment_token(
-        payment_id,
-    )
-    assert response['payment_token'] is not None
-    assert response['payment_token_expiration_time'] is not None
+    # create link token
+    response = client.LinkToken.create({
+        'user': {
+            'client_user_id': str(time.time()),
+        },
+        'products': ["auth", "transactions"],
+        'client_name': "Plaid Test",
+        'country_codes': ['GB'],
+        'language': 'en',
+        'payment_id': payment_id,
+    })
+    assert response['link_token'] is not None
+    assert response['expiration'] is not None
 
     # get payment
     response = client.PaymentInitiation.get_payment(payment_id)
     assert response['payment_id'] is not None
-    assert response['payment_token'] is not None
     assert response['reference'] is not None
     assert response['amount'] is not None
     assert response['status'] is not None
     assert response['last_status_update'] is not None
-    assert response['payment_token_expiration_time'] is not None
     assert response['recipient_id'] is not None
 
     # list payments

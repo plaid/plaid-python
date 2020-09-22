@@ -45,7 +45,7 @@ def test_remove():
         pt_response['public_token'])
 
     remove_response = client.Item.remove(exchange_response['access_token'])
-    assert remove_response['removed']
+    assert remove_response is {}
 
 
 def test_import():
@@ -55,28 +55,6 @@ def test_import():
         {'user_id': 'user_good', 'auth_token': 'pass_good'},
         None)
     assert at_response['access_token'] is not None
-
-
-def test_add_token():
-    client = create_client()
-    create_response = client.Item.add_token.create({
-        'client_user_id': str(time.time()),
-    })
-    assert create_response['add_token'] is not None
-    assert create_response['expiration'] is not None
-
-
-def test_add_token_with_user():
-    client = create_client()
-    user = {
-        'client_user_id': str(time.time()),
-        'phone_number': '+1 415 555 0123',
-        'email_address': 'example@plaid.com',
-        'phone_number_verified_time': '2020-01-01T00:00:00Z',
-    }
-    create_response = client.Item.add_token.create(user=user)
-    assert create_response['add_token'] is not None
-    assert create_response['expiration'] is not None
 
 
 def test_public_token():
