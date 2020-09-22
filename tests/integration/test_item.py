@@ -7,7 +7,6 @@ here since any errors will automatically be marked as failures by the test
 runner.
 '''
 
-import time
 from contextlib import contextmanager
 
 from tests.integration.util import (
