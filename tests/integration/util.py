@@ -11,7 +11,7 @@ def create_client():
         client_id=os.environ['CLIENT_ID'],
         secret=os.environ['SECRET'],
         environment='sandbox',
-        api_version="2019-05-29",
+        api_version="2020-09-14",
         client_app="plaid-python-unit-tests"
     )
 
