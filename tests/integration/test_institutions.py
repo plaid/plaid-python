@@ -12,6 +12,7 @@ def test_get():
         [SANDBOX_INSTITUTION_COUNTRY_CODE], 3, offset=1)
     assert len(response['institutions']) == 3
 
+
 def test_get_with_include_optional_metadata():
     client = create_client()
     response = client.Institutions.get(
