@@ -25,7 +25,7 @@ class Institutions(API):
             'options': options,
         })
 
-    def get_by_id(self, country_codes, institution_id, _options=None):
+    def get_by_id(self, institution_id, country_codes, _options=None):
         '''
         Fetch a single institution by id.
 
@@ -40,7 +40,7 @@ class Institutions(API):
             'options': options,
         })
 
-    def search(self, country_codes, query, _options=None, products=None):
+    def search(self, query, country_codes, _options=None, products=None):
         '''
         Search all institutions by name.
 
