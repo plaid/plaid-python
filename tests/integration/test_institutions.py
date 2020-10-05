@@ -33,14 +33,14 @@ def test_get_with_include_optional_metadata():
 def test_get_by_id():
     client = create_client()
     response = client.Institutions.get_by_id(
-        [SANDBOX_INSTITUTION_COUNTRY_CODE], SANDBOX_INSTITUTION)
+        SANDBOX_INSTITUTION, [SANDBOX_INSTITUTION_COUNTRY_CODE])
     assert response['institution']['institution_id'] == SANDBOX_INSTITUTION
 
 
 def test_get_by_id_with_include_optional_metadata():
     client = create_client()
     response = client.Institutions.get_by_id(
-        [SANDBOX_INSTITUTION_COUNTRY_CODE], SANDBOX_INSTITUTION, _options={
+        SANDBOX_INSTITUTION, [SANDBOX_INSTITUTION_COUNTRY_CODE], _options={
             'include_optional_metadata': True,
         })
     assert response['institution']['institution_id'] == SANDBOX_INSTITUTION
@@ -49,15 +49,15 @@ def test_get_by_id_with_include_optional_metadata():
 def test_search():
     client = create_client()
     response = client.Institutions.search(
-        [SANDBOX_INSTITUTION_COUNTRY_CODE], SANDBOX_INSTITUTION_NAME)
+        SANDBOX_INSTITUTION_NAME, [SANDBOX_INSTITUTION_COUNTRY_CODE])
     assert len(response['institutions']) >= 1
 
 
 def test_search_with_products():
     client = create_client()
     response = client.Institutions.search(
-        [SANDBOX_INSTITUTION_COUNTRY_CODE],
         SANDBOX_INSTITUTION_NAME,
+        [SANDBOX_INSTITUTION_COUNTRY_CODE],
         products=['transactions'])
     assert len(response['institutions']) >= 1
 
@@ -65,8 +65,8 @@ def test_search_with_products():
 def test_search_with_include_optional_metadata():
     client = create_client()
     response = client.Institutions.search(
-        [SANDBOX_INSTITUTION_COUNTRY_CODE],
         SANDBOX_INSTITUTION_NAME,
+        [SANDBOX_INSTITUTION_COUNTRY_CODE],
         _options={
             'include_optional_metadata': True,
         })
