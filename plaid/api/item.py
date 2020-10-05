@@ -53,8 +53,6 @@ class Item(API):
     Item endpoints.
     (`HTTP docs <https://plaid.com/docs/api/#item-management>`__)
 
-    .. autoclass:: plaid.api.item.AddToken
-        :members:
     .. autoclass:: plaid.api.item.AccessToken
         :members:
     .. autoclass:: plaid.api.item.PublicToken
