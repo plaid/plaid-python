@@ -14,14 +14,16 @@ from plaid.api import (
     InvestmentTransactions,
     Item,
     Liabilities,
+    LinkToken,
     PaymentInitiation,
     Processor,
     Sandbox,
     Transactions,
     Webhooks,
 )
-from plaid.requester import DEFAULT_TIMEOUT, post_request
-from plaid.utils import urljoin
+
+from plaid.internal.requester import DEFAULT_TIMEOUT, post_request
+from plaid.internal.utils import urljoin
 
 
 class Client(object):
@@ -35,10 +37,9 @@ class Client(object):
     '''
 
     def __init__(self,
-                 client_id,
-                 secret,
-                 public_key,
-                 environment,
+                 client_id=None,
+                 secret=None,
+                 environment=None,
                  suppress_warnings=False,
                  timeout=DEFAULT_TIMEOUT,
                  api_version=None,
@@ -48,19 +49,16 @@ class Client(object):
 
         :param  str     client_id:          Your Plaid client ID
         :arg    str     secret:             Your Plaid secret
-        :arg    str     public_key:         Your Plaid public key
         :arg    str     environment:        One of ``sandbox``,
                                             ``development``, or ``production``.
         :arg    bool    suppress_warnings:  Suppress Plaid warnings.
         :arg    int     timeout:            Timeout for API requests.
         :arg    str     api_version:        API version to use for requests
         :arg    str     client_app:         Internal header to include
-                                            in requests
-
+                                                in requests
         '''
         self.client_id = client_id
         self.secret = secret
-        self.public_key = public_key
         self.environment = environment
         self.suppress_warnings = suppress_warnings
         self.timeout = timeout
@@ -88,6 +86,7 @@ class Client(object):
         self.InvestmentTransactions = InvestmentTransactions(self)
         self.Item = Item(self)
         self.Liabilities = Liabilities(self)
+        self.LinkToken = LinkToken(self)
         self.PaymentInitiation = PaymentInitiation(self)
         self.Processor = Processor(self)
         self.Sandbox = Sandbox(self)
@@ -106,14 +105,6 @@ class Client(object):
     def post_public(self, path, data, is_json=True):
         '''Make a post request requiring no auth.'''
         return self._post(path, data, is_json)
-
-    def post_public_key(self, path, data, is_json=True):
-        '''Make a post request using a public key.'''
-        post_data = {
-            'public_key': self.public_key
-        }
-        post_data.update(data)
-        return self._post(path, post_data, is_json)
 
     def _post(self, path, data, is_json):
         headers = {}

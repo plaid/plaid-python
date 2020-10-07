@@ -15,17 +15,6 @@ class PublicToken(API):
             'public_token': public_token,
         })
 
-    def create(self, access_token):
-        '''
-        Create a Link public_token for an API access_token.
-        (`HTTP docs <https://plaid.com/docs/api/#create-public-token>`__)
-
-        :param  str     access_token:
-        '''
-        return self.client.post('/item/public_token/create', {
-            'access_token': access_token,
-        })
-
 
 class AccessToken(API):
     '''Access token endpoints.'''
@@ -39,19 +28,6 @@ class AccessToken(API):
         '''
         return self.client.post('/item/access_token/invalidate', {
             'access_token': access_token,
-        })
-
-    def update_version(self, access_token):
-        '''
-        Transition an access token to work with the current version of
-        the Plaid API
-        (`HTTP docs <https://plaid.com/docs/api/#update-access-token-
-        version>`__)
-
-        :param  str      access_token:
-        '''
-        return self.client.post('/item/access_token/update_version', {
-            'access_token_v1': access_token,
         })
 
 

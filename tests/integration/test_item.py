@@ -43,8 +43,7 @@ def test_remove():
     exchange_response = client.Item.public_token.exchange(
         pt_response['public_token'])
 
-    remove_response = client.Item.remove(exchange_response['access_token'])
-    assert remove_response['removed']
+    client.Item.remove(exchange_response['access_token'])
 
 
 def test_import():

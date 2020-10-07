@@ -11,6 +11,7 @@ from plaid.api.institutions import Institutions
 from plaid.api.investment_transactions import InvestmentTransactions
 from plaid.api.item import Item
 from plaid.api.liabilities import Liabilities
+from plaid.api.link_token import LinkToken
 from plaid.api.payment_initiation import PaymentInitiation
 from plaid.api.processor import Processor
 from plaid.api.sandbox import Sandbox
@@ -31,6 +32,7 @@ __all__ = [
     'InvestmentTransactions',
     'Item',
     'Liabilities',
+    'LinkToken',
     'PaymentInitiation',
     'Processor',
     'Sandbox',

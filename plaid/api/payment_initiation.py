@@ -4,7 +4,7 @@ from plaid.api.api import API
 class PaymentInitiation(API):
     '''Payment Initiation endpoints.'''
 
-    def create_recipient(self, name, iban, address):
+    def create_recipient(self, name, iban, address, bacs):
         '''
         Creates a payment recipient.
 
@@ -12,12 +12,14 @@ class PaymentInitiation(API):
         :param  str     iban:
         :param  dict    address: A dictionary containing street, city,
                                  postal_code, and country fields.
+        :param  dict    bacs: A dictionary containing account and sort_code
         '''
 
         return self.client.post('/payment_initiation/recipient/create', {
             'name': name,
             'iban': iban,
             'address': address,
+            'bacs': bacs,
         })
 
     def get_recipient(self, recipient_id):
@@ -52,17 +54,6 @@ class PaymentInitiation(API):
             'recipient_id': recipient_id,
             'reference': reference,
             'amount': amount,
-        })
-
-    def create_payment_token(self, payment_id):
-        '''
-        Creates a payment.
-
-        :param  str     payment_id:
-        '''
-
-        return self.client.post('/payment_initiation/payment/token/create', {
-            'payment_id': payment_id,
         })
 
     def get_payment(self, payment_id):

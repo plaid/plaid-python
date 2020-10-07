@@ -1,4 +1,63 @@
+## 7.0.0
+
+- The library has been pinned to the '2020-09-14' API release. Visit the [docs](https://plaid.com/docs/api/versioning/) to see what changed.
+- the `/item/public_token/create` endpoint has been disabled in favor of the /link/token/create
+    endpoint
+- The `/item/add_token/create endpoint` has been disabled in favor of the /link/token/create
+- The `/payment_initiation/payment/token/create` endpoint has been disabled in favor of the /link/token/create
+    endpoint
+- The `/item/remove` endpoint will no longer return a `removed` boolean.
+- The `/institutions/get`, `/institutions/get_by_id`, and `/institutions/search` now require
+    `country_codes` to be passed in.
+
+## 6.1.0
+
+- Add support for Link Token get endpoint ([#243](https://github.com/plaid/plaid-python/pull/243))
+  - `/link/token/get`
+
+## 6.0.0
+
+BREAKING CHANGES:
+
+- Add BACS as a parameter to `/recipient/create` ([#234](https://github.com/plaid/plaid-python/pull/234))
+
+## 5.0.0
+
+BREAKING CHANGES:
+
+- Add support for link/token/create (#230)
+- Removes the public key as input to `Client`. The public key is no longer needed by the API. (#223)
+
+## 4.1.0
+
+- Add classes for missing error types (`AuthError`, `AssetReportError`)
+
+## 4.0.0
+
+- Fix use of mutable default param in `institutions.search`
+- Remove support for deprecated `/item/access_token/update_version` endpoint
+- Add support for the `/sandbox/item/set_verification_status` endpoint
+
+BREAKING CHANGES:
+
+- Removes `client.Item.update_version`
+
+## 3.9.0
+
+- Add `client_user_id` field to Item add token endpoint
+
+## 3.8.0
+
+- Add support for Item add token endpoint (BETA)
+  - `/item/add_token/create` (BETA)
+
+## 3.7.0
+
+- Add support for transactions refresh
+  - `/transactions/refresh`
+
 ## 3.6.0
+
 - Add support for webhook verification
   - `/webhook_verification/get`
 - Add support for generic processor token
@@ -85,6 +144,5 @@
 ## 2.3.0
 
 - Add support for [version `2018-05-22`](https://plaid.com/docs/api-upgrades/) of the Plaid API
-
 
 [docs-sandbox-item-fire-webhook]: https://plaid.com/docs/#firing-webhooks
