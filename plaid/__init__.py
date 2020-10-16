@@ -1,4 +1,3 @@
-from plaid.client import Client
-from plaid.version import __version__
-
-__all__ = ['Client', '__version__']
+from plaid.wrapper import Client
+import plaid.generated_plaid
+import plaid.errors

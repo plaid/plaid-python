@@ -11,7 +11,7 @@ jobs:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run:
-        command: pyenv global 2.7.10 3.6.0
+        command: pyenv global 3.7.8
     - restore_cache:
         keys:
         - v1-dep-{{ .Branch }}-
@@ -19,7 +19,7 @@ jobs:
         - v1-dep-
     - run: pip install --upgrade pip
     - run: pip install tox tox-pyenv
-    - run: pyenv local 2.7.10 3.6.0
+    - run: pyenv local 3.7.8
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:
