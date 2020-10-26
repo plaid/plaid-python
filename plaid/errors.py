@@ -1,7 +1,10 @@
+import json
+from plaid.generated_plaid import ApiValueError
+
+
 class BaseError(Exception):
     '''
     A base error class.
-
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
@@ -32,7 +35,6 @@ class BaseError(Exception):
 class PlaidError(BaseError):
     '''
     A Plaid API error.
-
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
@@ -73,12 +75,16 @@ class PlaidError(BaseError):
         ]
 
     @staticmethod
-    def from_response(response):
+    def from_generated_error(exception: ApiValueError):
         '''
         Create an error of the right class from an API response.
-
         :param   response    dict        Response JSON
         '''
+        # if this is an internal error before hitting the API
+        if len(exception.args) > 0:
+            return InvalidInputError(exception.args[0], None, None, None)
+        response = json.loads(exception.body)
+
         cls = PLAID_ERROR_TYPE_MAP.get(response['error_type'], PlaidError)
         return cls(response['error_message'],
                    response['error_type'],
@@ -91,7 +97,6 @@ class PlaidError(BaseError):
 class PlaidCause(BaseError):
     '''
     A cause of a Plaid error.
-
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
