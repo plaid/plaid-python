@@ -1,9 +1,7 @@
 import re
 from setuptools import setup, find_packages
 
-with open('plaid/version.py', 'r') as f:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        f.read(), re.MULTILINE).group(1)
+version = '7.0.0'
 
 if not version:
     raise RuntimeError('Cannot find version information')
@@ -28,13 +26,7 @@ setup(
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Environment :: Web Environment",
     ]
