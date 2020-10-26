@@ -14,7 +14,7 @@ def test_create_token():
     client = create_client()
     # Just test the failure case - behavior here depends on the API keys used
     with pytest.raises(InvalidRequestError) as e:
-        client.Processor.tokenCreate(
+        client.Processor.token_create(
             'fakeAccessToken', 'fakeAccountId', 'fakeProcessor')
         assert e.code == 'INVALID_INPUT'
 
@@ -23,7 +23,7 @@ def test_stripe_processor_token():
     client = create_client()
     # Just test the failure case - behavior here depends on the API keys used
     with pytest.raises(InvalidRequestError) as e:
-        client.Processor.stripeBankAccountTokenCreate(
+        client.Processor.stripe_bank_account_token_create(
             'fakeAccessToken', 'fakeAccountId')
         assert e.code == 'INVALID_INPUT'
 
@@ -32,6 +32,6 @@ def test_dwolla_processor_token():
     client = create_client()
     # Just test the failure case - behavior here depends on the API keys used
     with pytest.raises(InvalidRequestError) as e:
-        client.Processor.dwollaBankAccountTokenCreate(
+        client.Processor.dwolla_bank_account_token_create(
             'fakeAccessToken', 'fakeAccountId')
         assert e.code == 'INVALID_INPUT'
