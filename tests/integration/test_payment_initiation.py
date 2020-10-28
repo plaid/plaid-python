@@ -1,5 +1,3 @@
-import time
-
 from tests.integration.util import create_client
 
 
@@ -22,22 +20,6 @@ def payments_after_recipient_creation(client, recipient_id):
     assert payment_id is not None
     assert response['status'] is not None
 
-    # create link token
-    response = client.LinkToken.create({
-        'user': {
-            'client_user_id': str(time.time()),
-        },
-        'products': ["payment_initiation"],
-        'client_name': "Plaid Test",
-        'country_codes': ['GB'],
-        'language': 'en',
-        'payment_initiation': {
-            'payment_id': payment_id,
-        }
-    })
-    assert response['link_token'] is not None
-    assert response['expiration'] is not None
-
     # get payment
     response = client.PaymentInitiation.get_payment(payment_id)
     assert response['payment_id'] is not None
@@ -48,7 +30,7 @@ def payments_after_recipient_creation(client, recipient_id):
     assert response['recipient_id'] is not None
 
     # list payments
-    response = client.PaymentInitiation.list_payments({'count': 10})
+    response = client.PaymentInitiation.list_payments(count=10)
     assert response['payments'] is not None and len(response['payments']) > 0
 
 
