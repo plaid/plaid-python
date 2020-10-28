@@ -7,6 +7,7 @@ here since any errors will automatically be marked as failures by the test
 runner.
 '''
 
+import time
 from contextlib import contextmanager
 
 from tests.integration.util import (
@@ -43,7 +44,8 @@ def test_remove():
     exchange_response = client.Item.public_token.exchange(
         pt_response['public_token'])
 
-    client.Item.remove(exchange_response['access_token'])
+    remove_response = client.Item.remove(exchange_response['access_token'])
+    assert remove_response['request_id']
 
 
 def test_import():
