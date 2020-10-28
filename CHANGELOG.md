@@ -1,3 +1,36 @@
+## 8.0.0-beta
+This version represents a transition in how we maintain our external client libraries. We are now using an API spec written in `OpenAPI 3.0.0` and are running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
+
+As part of this transition, we have created a wrapper around existing APIs to ease the burden of migrating to the new API client. The completely unwrapped version will be available next year as we have a few internal changes left to fully support it.
+
+The `OpenAPI` file will be actively maintained and published (coming soon) whenever changes are made to any of our external HTTP API surfaces.  This client library is now pinned to Python `3.7.x` with tests running on Python `3.7.8`.
+
+- Added the `BankTransfer` product.
+  - This also adds the endpoint `Sandbox.bank_transfer.simulate`.
+- Exposed optional parameters for multiple endpoints:
+  - `Holdings.get`
+  - `Institutions.get`
+  - `Institutions.get_by_id`
+  - `Institutions.search`
+  - `Item.import_item`
+  - `PaymentInitiation.list_payments`
+- Added new optional parameters:
+  - `override_username` and `override_password` to `Sandbox.public_token.create`
+  - `schedule` to `PaymentInitiation.create_payment`
+- Added new `Processor` endpoints:
+  - `auth_get`, `balance_get`, `identity_get`
+
+BREAKING CHANGES:
+
+- Removed the `CreditDetails` and `Income` products.
+- Removed ability to specify `api_version`, `timeout`, and `suppress_warnings`.  These do not carry over to our new generated internals.
+- Made `products` non-optional for `Institutions.search`.
+- Renamed all `Processor` endpoints from `camelCase` to `snake_case`.
+
+Other Deprecations:
+
+- Removed all in-code documentation.  Refer to our new [docs](https://plaid.com/docs), which are generated from the same OpenAPI schema!
+
 ## 7.0.0
 
 - The library has been pinned to the '2020-09-14' API release. Visit the [docs](https://plaid.com/docs/api/versioning/) to see what changed.
