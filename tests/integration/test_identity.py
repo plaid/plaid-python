@@ -25,6 +25,3 @@ def test_get():
     client = create_client()
     response = client.Identity.get(access_token)
     assert response['accounts'] is not None
-    for account in response['accounts']:
-        assert account['owners'] is not None
-        assert len(account['owners']) > 0
