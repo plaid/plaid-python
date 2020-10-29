@@ -227,4 +227,4 @@ Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
 [8]: https://cloud.google.com/appengine/docs/python/issue-requests
 [9]: https://blog.plaid.com/improving-our-api/
 [10]: https://github.com/plaid/plaid-python-legacy
-[api-upgrades]: https://plaid.com/docs/api/versioning/
+[api-upgrades]: https://plaid.com/docs/api-upgrades/
