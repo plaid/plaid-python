@@ -1,3 +1,7 @@
+## 7.1.0
+
+- Add options for overriding username and password to /sandbox/public_token/create
+
 ## 7.0.0
 
 - The library has been pinned to the '2020-09-14' API release. Visit the [docs](https://plaid.com/docs/api/versioning/) to see what changed.
