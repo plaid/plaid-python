@@ -16,8 +16,8 @@ def setup_module(module):
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
         SANDBOX_INSTITUTION, ['transactions'],
-        transactions__start_date='2018-01-01',
-        transactions__end_date='2019-01-01',
+        transactions__start_date='2019-01-01',
+        transactions__end_date='2020-01-01',
     )
     exchange_response = client.Item.public_token.exchange(
         pt_response['public_token'])
@@ -32,7 +32,7 @@ def get_transactions_with_retries(client,
                                   account_ids=None,
                                   count=None,
                                   offset=None,
-                                  num_retries=50):
+                                  num_retries=100):
     response = None
     for i in range(num_retries):
         try:
@@ -69,7 +69,7 @@ def test_get():
                                              access_token,
                                              '2018-01-01',
                                              '2019-01-01',
-                                             num_retries=5)
+                                             num_retries=50)
     assert response['accounts'] is not None
     assert response['transactions'] is not None
 
