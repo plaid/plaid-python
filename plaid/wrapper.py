@@ -2,23 +2,19 @@ import plaid.generated_plaid as generated_plaid
 from plaid.errors import PlaidError
 
 DEFAULT_TIMEOUT = 600  # 10 minutes
-API_VERSION = '2020-09-14'
+API_VERSION = "2020-09-14"
 
 
 class Client:
-    '''
+    """
     Python Plaid API client.
 
     See official documentation at: https://plaid.com/docs.
 
-    '''
+    """
 
-    def __init__(self,
-                 client_id=None,
-                 secret=None,
-                 environment=None,
-                 client_app=None):
-        '''
+    def __init__(self, client_id=None, secret=None, environment=None, client_app=None):
+        """
         Initialize a client with credentials.
 
         :param  str     client_id:          Your Plaid client ID
@@ -27,33 +23,34 @@ class Client:
                                             ``development``, or ``production``.
         :arg    str     client_app:         Internal header to include
                                                 in requests
-        '''
+        """
         self.client_id = client_id
         self.secret = secret
         self.environment = environment
         self.client_app = client_app
         self.api_version = API_VERSION
-        if self.environment == 'development':
-            warnings.warn('''
+        if self.environment == "development":
+            warnings.warn(
+                """
                 Development is not intended for production usage.
                 Swap out url for https://production.plaid.com
                 via Client.config before switching to production
-            ''')
+            """
+            )
 
         # initializing the generated client
         configuration = generated_plaid.Configuration(
-            host=f'https://{self.environment}.plaid.com',
+            host=f"https://{self.environment}.plaid.com",
         )
         self.generated_client = generated_plaid.ApiClient(configuration)
         self.generated_api = generated_plaid.PlaidApi(self.generated_client)
 
         # configuring the generated client with headers
         self.generated_client.default_headers = {
-            'Plaid-Version': self.api_version,
+            "Plaid-Version": self.api_version,
         }
         if self.client_app:
-            self.generated_client.\
-                default_headers['Plaid-Client-App'] = self.client_app
+            self.generated_client.default_headers["Plaid-Client-App"] = self.client_app
 
         self.Accounts = Accounts(self)
         self.AssetReport = AssetReport(self)
@@ -83,7 +80,7 @@ class Client:
 
 
 class API:
-    '''Base class for classes containing groups of API endpoints.'''
+    """Base class for classes containing groups of API endpoints."""
 
     def __init__(self, client: Client):
         self.client = client
@@ -93,25 +90,23 @@ class API:
 
 
 class Accounts(API):
-    '''
+    """
     Accounts endpoints.
 
-    '''
+    """
 
     def __init__(self, client):
         super(Accounts, self).__init__(client)
         self.balance = Accounts.Balance(client)
 
-    def get(self,
-            access_token,
-            _options=None,
-            account_ids=None):
+    def get(self, access_token, _options=None, account_ids=None):
         options = _options if _options else {}
         if account_ids is not None:
-            options['account_ids'] = account_ids
+            options["account_ids"] = account_ids
 
-        options = generated_plaid.AccountsGetRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.AccountsGetRequestOptions(**options) if options else None
+        )
 
         request = generated_plaid.AccountsGetRequest(
             self.client_id,
@@ -119,24 +114,19 @@ class Accounts(API):
             access_token,
             options,
         )
-        return self.client.handle_request(
-            self.gen_api.accounts_get,
-            request
-        )
+        return self.client.handle_request(self.gen_api.accounts_get, request)
 
     class Balance(API):
-        '''Accounts balance endpoint.'''
+        """Accounts balance endpoint."""
 
-        def get(self,
-                access_token,
-                _options=None,
-                account_ids=None):
+        def get(self, access_token, _options=None, account_ids=None):
             options = _options if _options else {}
             if account_ids is not None:
-                options['account_ids'] = account_ids
+                options["account_ids"] = account_ids
 
-            options = generated_plaid.BalanceGetRequestOptions(**options) \
-                if options else None
+            options = (
+                generated_plaid.BalanceGetRequestOptions(**options) if options else None
+            )
 
             request = generated_plaid.BalanceGetRequest(
                 access_token,
@@ -151,16 +141,13 @@ class Accounts(API):
 
 
 class AssetReport(API):
-    '''Assets endpoints.'''
+    """Assets endpoints."""
 
     def __init__(self, client: Client):
         super(AssetReport, self).__init__(client)
         self.audit_copy = AssetReport.AuditCopy(client)
 
-    def create(self,
-               access_tokens,
-               days_requested,
-               options=None):
+    def create(self, access_tokens, days_requested, options=None):
         request = generated_plaid.AssetReportCreateRequest(
             self.client_id,
             self.secret,
@@ -173,9 +160,7 @@ class AssetReport(API):
             request,
         )
 
-    def filter(self,
-               asset_report_token,
-               account_ids_to_exclude):
+    def filter(self, asset_report_token, account_ids_to_exclude):
         request = generated_plaid.AssetReportFilterRequest(
             self.client_id,
             self.secret,
@@ -187,10 +172,7 @@ class AssetReport(API):
             request,
         )
 
-    def refresh(self,
-                asset_report_token,
-                days_requested,
-                options=None):
+    def refresh(self, asset_report_token, days_requested, options=None):
         request = generated_plaid.AssetReportRefreshRequest(
             self.client_id,
             self.secret,
@@ -203,9 +185,7 @@ class AssetReport(API):
             request,
         )
 
-    def get(self,
-            asset_report_token,
-            include_insights=False):
+    def get(self, asset_report_token, include_insights=False):
         request = generated_plaid.AssetReportGetRequest(
             self.client_id,
             self.secret,
@@ -217,20 +197,17 @@ class AssetReport(API):
             request,
         )
 
-    def get_pdf(self,
-                asset_report_token):
+    def get_pdf(self, asset_report_token):
         request = generated_plaid.AssetReportPDFGetRequest(
-            self.client_id,
-            self.secret,
-            asset_report_token)
+            self.client_id, self.secret, asset_report_token
+        )
         temp_pdf_path = self.gen_api.asset_report_pdf_get(request)
-        temp_pdf_fd = open(temp_pdf_path, 'rb')
+        temp_pdf_fd = open(temp_pdf_path, "rb")
         contents = temp_pdf_fd.read()
         temp_pdf_fd.close()
         return contents
 
-    def remove(self,
-               asset_report_token):
+    def remove(self, asset_report_token):
         request = generated_plaid.AssetReportRemoveRequest(
             self.client_id,
             self.secret,
@@ -242,12 +219,10 @@ class AssetReport(API):
         )
 
     class AuditCopy(API):
-        '''Audit copy endpoints. Use this class via the `audit_copy` member on
-        the `AssetReport` class.'''
+        """Audit copy endpoints. Use this class via the `audit_copy` member on
+        the `AssetReport` class."""
 
-        def create(self,
-                   asset_report_token,
-                   auditor_id):
+        def create(self, asset_report_token, auditor_id):
             request = generated_plaid.AssetReportAuditCopyCreateRequest(
                 self.client_id,
                 self.secret,
@@ -259,8 +234,7 @@ class AssetReport(API):
                 request,
             )
 
-        def get(self,
-                audit_copy_token):
+        def get(self, audit_copy_token):
             request = generated_plaid.AssetReportAuditCopyGetRequest(
                 self.client_id,
                 self.secret,
@@ -272,8 +246,7 @@ class AssetReport(API):
                 request,
             )
 
-        def remove(self,
-                   audit_copy_token):
+        def remove(self, audit_copy_token):
             request = generated_plaid.AssetReportAuditCopyRemoveRequest(
                 self.client_id,
                 self.secret,
@@ -286,18 +259,14 @@ class AssetReport(API):
 
 
 class Auth(API):
-    '''Auth endpoints.'''
+    """Auth endpoints."""
 
-    def get(self,
-            access_token,
-            _options=None,
-            account_ids=None):
+    def get(self, access_token, _options=None, account_ids=None):
         options = _options if _options else {}
         if account_ids is not None:
-            options['account_ids'] = account_ids
+            options["account_ids"] = account_ids
 
-        options = generated_plaid.AuthGetRequestOptions(**options) \
-            if options else None
+        options = generated_plaid.AuthGetRequestOptions(**options) if options else None
 
         request = generated_plaid.AuthGetRequest(
             self.client_id,
@@ -328,20 +297,22 @@ class BankTransfer(API):
             request,
         )
 
-    def create(self,
-               idempotency_key,
-               access_token,
-               account_id,
-               type,
-               network,
-               amount,
-               iso_currency_code,
-               description,
-               user,
-               metadata,
-               ach_class=None,
-               custom_tag=None,
-               origination_account_id=None):
+    def create(
+        self,
+        idempotency_key,
+        access_token,
+        account_id,
+        type,
+        network,
+        amount,
+        iso_currency_code,
+        description,
+        user,
+        metadata,
+        ach_class=None,
+        custom_tag=None,
+        origination_account_id=None,
+    ):
 
         request = generated_plaid.BankTransferCreateRequest(
             self.client_id,
@@ -366,17 +337,19 @@ class BankTransfer(API):
             request,
         )
 
-    def list_events(self,
-                    start_date=None,
-                    end_date=None,
-                    bank_transfer_id=None,
-                    account_id=None,
-                    bank_transfer_type=None,
-                    event_types=None,
-                    count=None,
-                    offset=None,
-                    origination_account_id=None,
-                    direction=None):
+    def list_events(
+        self,
+        start_date=None,
+        end_date=None,
+        bank_transfer_id=None,
+        account_id=None,
+        bank_transfer_type=None,
+        event_types=None,
+        count=None,
+        offset=None,
+        origination_account_id=None,
+        direction=None,
+    ):
 
         request = generated_plaid.BankTransferEventListRequest(
             self.client_id,
@@ -392,15 +365,13 @@ class BankTransfer(API):
             origination_account_id,
             direction,
         )
-        print(request)
+
         return self.client.handle_request(
             self.gen_api.bank_transfer_event_list,
             request,
         )
 
-    def sync_events(self,
-                   after_id,
-                   count=None):
+    def sync_events(self, after_id, count=None):
 
         request = generated_plaid.BankTransferEventSyncRequest(
             self.client_id,
@@ -426,13 +397,15 @@ class BankTransfer(API):
             request,
         )
 
-    def list(self,
-             start_date=None,
-             end_date=None,
-             count=None,
-             offset=None,
-             origination_account_id=None,
-             direction=None):
+    def list(
+        self,
+        start_date=None,
+        end_date=None,
+        count=None,
+        offset=None,
+        origination_account_id=None,
+        direction=None,
+    ):
 
         request = generated_plaid.BankTransferListRequest(
             self.client_id,
@@ -450,11 +423,12 @@ class BankTransfer(API):
             request,
         )
 
-    def migrate_account(self,
-                        account_number,
-                        routing_number,
-                        account_type,
-                        ):
+    def migrate_account(
+        self,
+        account_number,
+        routing_number,
+        account_type,
+    ):
 
         request = generated_plaid.BankTransferMigrateAccountRequest(
             self.client_id,
@@ -472,9 +446,7 @@ class BankTransfer(API):
     class Balance(API):
         def get(self, origination_account_id=None):
             request = generated_plaid.BankTransferBalanceGetRequest(
-                self.client_id,
-                self.secret,
-                origination_account_id
+                self.client_id, self.secret, origination_account_id
             )
 
             return self.client.handle_request(
@@ -484,22 +456,19 @@ class BankTransfer(API):
 
 
 class Categories(API):
-    '''
+    """
     Categories endpoints.
-    '''
+    """
 
     def get(self):
         request = {}
-        return self.client.handle_request(
-            self.gen_api.categories_get,
-            request
-        )
+        return self.client.handle_request(self.gen_api.categories_get, request)
 
 
 class DepositSwitch(API):
-    '''
+    """
     Deposit Switch endpoints.
-    '''
+    """
 
     def get(self, deposit_switch_id):
         request = generated_plaid.DepositSwitchGetRequest(
@@ -540,21 +509,20 @@ class DepositSwitch(API):
 
 
 class Holdings(API):
-    '''
+    """
     Holdings endpoints.
-    '''
+    """
 
-    def get(self,
-            access_token,
-            _options=None,
-            account_ids=None):
+    def get(self, access_token, _options=None, account_ids=None):
         options = _options if _options else {}
         if account_ids is not None:
-            options['account_ids'] = account_ids
+            options["account_ids"] = account_ids
 
-        options = generated_plaid \
-            .InvestmentsHoldingsGetRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.InvestmentsHoldingsGetRequestOptions(**options)
+            if options
+            else None
+        )
 
         request = generated_plaid.InvestmentsHoldingsGetRequest(
             self.client_id,
@@ -569,12 +537,11 @@ class Holdings(API):
 
 
 class Identity(API):
-    '''
+    """
     Identity endpoints.
-    '''
+    """
 
-    def get(self,
-            access_token):
+    def get(self, access_token):
         request = generated_plaid.IdentityGetRequest(
             self.client_id,
             self.secret,
@@ -587,31 +554,36 @@ class Identity(API):
 
 
 class Institutions(API):
-    '''
+    """
     Institutions endpoints.
-    '''
+    """
 
-    def get(self,
-            country_codes,
-            count,
-            offset=0,
-            _options=None,
-            products=None,
-            routing_numbers=None,
-            oauth=None,
-            include_optional_metadata=None):
+    def get(
+        self,
+        country_codes,
+        count,
+        offset=0,
+        _options=None,
+        products=None,
+        routing_numbers=None,
+        oauth=None,
+        include_optional_metadata=None,
+    ):
         options = _options if _options else {}
         if products is not None:
-            options['products'] = products
+            options["products"] = products
         if routing_numbers is not None:
-            options['routing_numbers'] = routing_numbers
+            options["routing_numbers"] = routing_numbers
         if oauth is not None:
-            options['oauth'] = oauth
+            options["oauth"] = oauth
         if include_optional_metadata is not None:
-            options['include_optional_metadata'] = include_optional_metadata
+            options["include_optional_metadata"] = include_optional_metadata
 
-        options = generated_plaid.InstitutionsGetRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.InstitutionsGetRequestOptions(**options)
+            if options
+            else None
+        )
 
         request = generated_plaid.InstitutionsGetRequest(
             self.client_id,
@@ -627,22 +599,25 @@ class Institutions(API):
             request,
         )
 
-    def get_by_id(self,
-                  institution_id,
-                  country_codes,
-                  _options=None,
-                  include_optional_metadata=None,
-                  include_status=None,
-                  ):
+    def get_by_id(
+        self,
+        institution_id,
+        country_codes,
+        _options=None,
+        include_optional_metadata=None,
+        include_status=None,
+    ):
         options = _options or {}
         if include_optional_metadata is not None:
-            options['include_optional_metadata'] = include_optional_metadata
+            options["include_optional_metadata"] = include_optional_metadata
         if include_status is not None:
-            options['include_status'] = include_status
+            options["include_status"] = include_status
 
-        options = generated_plaid \
-            .InstitutionsGetByIdRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.InstitutionsGetByIdRequestOptions(**options)
+            if options
+            else None
+        )
 
         request = generated_plaid.InstitutionsGetByIdRequest(
             self.client_id,
@@ -657,21 +632,26 @@ class Institutions(API):
             request,
         )
 
-    def search(self,
-               query,
-               products,
-               country_codes,
-               _options=None,
-               oauth=None,
-               include_optional_metadata=None):
+    def search(
+        self,
+        query,
+        products,
+        country_codes,
+        _options=None,
+        oauth=None,
+        include_optional_metadata=None,
+    ):
         options = _options if _options else {}
         if oauth is not None:
-            options['oauth'] = oauth
+            options["oauth"] = oauth
         if include_optional_metadata is not None:
-            options['include_optional_metadata'] = include_optional_metadata
+            options["include_optional_metadata"] = include_optional_metadata
 
-        options = generated_plaid.InstitutionsSearchRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.InstitutionsSearchRequestOptions(**options)
+            if options
+            else None
+        )
 
         request = generated_plaid.InstitutionSearchRequest(
             self.client_id,
@@ -689,10 +669,10 @@ class Institutions(API):
 
 
 class Item(API):
-    '''
+    """
     Item endpoints.
 
-    '''
+    """
 
     def __init__(self, client):
         super(Item, self).__init__(client)
@@ -722,17 +702,14 @@ class Item(API):
             request,
         )
 
-    def import_item(self,
-                    products,
-                    user_auth,
-                    _options=None,
-                    webhook=None):
+    def import_item(self, products, user_auth, _options=None, webhook=None):
         options = _options if _options else {}
         if webhook is not None:
-            options['webhook'] = webhook
+            options["webhook"] = webhook
 
-        options = generated_plaid.ItemImportRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.ItemImportRequestOptions(**options) if options else None
+        )
 
         request = generated_plaid.ItemImportRequest(
             self.client_id,
@@ -785,28 +762,31 @@ class Item(API):
 
 
 class InvestmentTransactions(API):
-    '''InvestmentTransactions endpoints.'''
+    """InvestmentTransactions endpoints."""
 
-    def get(self,
-            access_token,
-            start_date,
-            end_date,
-            _options=None,
-            account_ids=None,
-            count=None,
-            offset=None,
-            ):
+    def get(
+        self,
+        access_token,
+        start_date,
+        end_date,
+        _options=None,
+        account_ids=None,
+        count=None,
+        offset=None,
+    ):
         options = _options if _options else {}
         if account_ids is not None:
-            options['account_ids'] = account_ids
+            options["account_ids"] = account_ids
         if count is not None:
-            options['count'] = count
+            options["count"] = count
         if offset is not None:
-            options['offset'] = offset
+            options["offset"] = offset
 
-        options = generated_plaid \
-            .InvestmentsTransactionsGetRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.InvestmentsTransactionsGetRequestOptions(**options)
+            if options
+            else None
+        )
 
         request = generated_plaid.InvestmentsTransactionsGetRequest(
             self.client_id,
@@ -824,26 +804,21 @@ class InvestmentTransactions(API):
 
 
 class Liabilities(API):
-    '''
+    """
     Liabilities endpoints.
-    '''
+    """
 
-    def get(self,
-            access_token,
-            _options=None,
-            account_ids=None):
+    def get(self, access_token, _options=None, account_ids=None):
         options = _options if _options else {}
         if account_ids is not None:
-            options['account_ids'] = account_ids
+            options["account_ids"] = account_ids
 
-        options = generated_plaid.LiabilitiesGetRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.LiabilitiesGetRequestOptions(**options) if options else None
+        )
 
         request = generated_plaid.LiabilitiesGetRequest(
-            self.client_id,
-            self.secret,
-            access_token,
-            options
+            self.client_id, self.secret, access_token, options
         )
 
         return self.client.handle_request(
@@ -853,11 +828,11 @@ class Liabilities(API):
 
 
 class LinkToken(API):
-    '''Endpoints for managing link tokens.'''
+    """Endpoints for managing link tokens."""
 
     def create(self, configs):
-        configs['client_id'] = self.client_id
-        configs['secret'] = self.secret
+        configs["client_id"] = self.client_id
+        configs["secret"] = self.secret
         request = generated_plaid.LinkTokenCreateRequest(**configs)
 
         return self.client.handle_request(
@@ -879,16 +854,16 @@ class LinkToken(API):
 
 
 class PaymentInitiation(API):
-    '''Payment Initiation endpoints.'''
+    """Payment Initiation endpoints."""
 
     def create_recipient(self, name, iban, address, bacs):
-        address = generated_plaid.PaymentInitiationAddress(
-            **address
-        ) if address else None
+        address = (
+            generated_plaid.PaymentInitiationAddress(**address) if address else None
+        )
         if bacs:
             bacs = generated_plaid.PaymentInitiationRecipientGetResponseBacs(
-                bacs.get('account'),
-                bacs.get('sort_code'),
+                bacs.get("account"),
+                bacs.get("sort_code"),
             )
         request = generated_plaid.PaymentInitiationRecipientCreateRequest(
             self.client_id,
@@ -954,10 +929,7 @@ class PaymentInitiation(API):
             request,
         )
 
-    def list_payments(self,
-                      count=None,
-                      cursor=None
-                      ):
+    def list_payments(self, count=None, cursor=None):
         request = generated_plaid.PaymentInitiationPaymentListRequest(
             self.client_id,
             self.secret,
@@ -966,18 +938,17 @@ class PaymentInitiation(API):
         )
 
         return self.client.handle_request(
-            self.gen_api.payment_initiation_payment_list,
-            request
+            self.gen_api.payment_initiation_payment_list, request
         )
 
 
 class Processor(API):
-    '''Endpoints for creating processor tokens.'''
+    """Endpoints for creating processor tokens."""
 
     def token_create(self, access_token, account_id, processor):
-        if processor == 'stripe':
+        if processor == "stripe":
             return self.stripe_bank_account_token_create(access_token, account_id)
-        elif processor == 'apex':
+        elif processor == "apex":
             return self.apex_bank_account_token_create(access_token, account_id)
         else:
             request = generated_plaid.ProcessorTokenCreateRequest(
@@ -989,8 +960,7 @@ class Processor(API):
             )
 
             return self.client.handle_request(
-                self.gen_api.processor_token_create,
-                request
+                self.gen_api.processor_token_create, request
             )
 
     def stripe_bank_account_token_create(self, access_token, account_id):
@@ -1007,7 +977,7 @@ class Processor(API):
         )
 
     def dwolla_bank_account_token_create(self, access_token, account_id):
-        return self.token_create(access_token, account_id, 'dwolla')
+        return self.token_create(access_token, account_id, "dwolla")
 
     def apex_bank_account_token_create(self, access_token, account_id):
         request = generated_plaid.ProcessorApexProcessorTokenCreateRequest(
@@ -1060,12 +1030,12 @@ class Processor(API):
 
 
 class Sandbox(API):
-    '''
+    """
     Sandbox-only endpoints.
 
     These endpoints may not be used in other environments.
 
-    '''
+    """
 
     def __init__(self, client: Client):
         super(Sandbox, self).__init__(client)
@@ -1089,7 +1059,7 @@ class Sandbox(API):
             )
 
     class Item(API):
-        '''Sandbox item endpoints.'''
+        """Sandbox item endpoints."""
 
         def reset_login(self, access_token):
             request = generated_plaid.SandboxItemResetLoginRequest(
@@ -1115,10 +1085,8 @@ class Sandbox(API):
             )
 
         def set_verification_status(
-                self,
-                access_token,
-                account_id,
-                verification_status):
+            self, access_token, account_id, verification_status
+        ):
             request = generated_plaid.SandboxItemSetVerificationStatusRequest(
                 self.client_id,
                 self.secret,
@@ -1132,37 +1100,43 @@ class Sandbox(API):
             )
 
     class PublicToken(API):
-        '''Sandbox public token endpoints.'''
+        """Sandbox public token endpoints."""
 
         def create(
-                self,
-                institution_id,
-                initial_products,
-                _options=None,
-                webhook=None,
-                override_username='user_good',
-                override_password='pass_good',
-                transactions__start_date=None,
-                transactions__end_date=None):
+            self,
+            institution_id,
+            initial_products,
+            _options=None,
+            webhook=None,
+            override_username="user_good",
+            override_password="pass_good",
+            transactions__start_date=None,
+            transactions__end_date=None,
+        ):
             options = _options if _options else {}
             if webhook is not None:
-                options['webhook'] = webhook
+                options["webhook"] = webhook
             if override_username is not None:
-                options['override_username'] = override_username
+                options["override_username"] = override_username
             if override_password is not None:
-                options['override_password'] = override_password
-            if transactions__start_date is not None \
-               or transactions__end_date is not None:
-                transactions = generated_plaid \
-                    .SandboxPublicTokenCreateRequestOptionsTransactions(
+                options["override_password"] = override_password
+            if (
+                transactions__start_date is not None
+                or transactions__end_date is not None
+            ):
+                transactions = (
+                    generated_plaid.SandboxPublicTokenCreateRequestOptionsTransactions(
                         transactions__start_date,
                         transactions__end_date,
                     )
-                options['transactions'] = transactions
+                )
+                options["transactions"] = transactions
 
-            options = generated_plaid \
-                .SandboxPublicTokenCreateRequestOptions(**options) \
-                if options else None
+            options = (
+                generated_plaid.SandboxPublicTokenCreateRequestOptions(**options)
+                if options
+                else None
+            )
 
             request = generated_plaid.SandboxPublicTokenCreateRequest(
                 self.client_id,
@@ -1178,26 +1152,31 @@ class Sandbox(API):
 
 
 class Transactions(API):
-    '''Transactions endpoints.'''
+    """Transactions endpoints."""
 
-    def get(self,
-            access_token,
-            start_date,
-            end_date,
-            _options=None,
-            account_ids=None,
-            count=None,
-            offset=None):
+    def get(
+        self,
+        access_token,
+        start_date,
+        end_date,
+        _options=None,
+        account_ids=None,
+        count=None,
+        offset=None,
+    ):
         options = _options if _options else {}
         if account_ids is not None:
-            options['account_ids'] = account_ids if account_ids else None
+            options["account_ids"] = account_ids if account_ids else None
         if count is not None:
-            options['count'] = count
+            options["count"] = count
         if offset is not None:
-            options['offset'] = offset
+            options["offset"] = offset
 
-        options = generated_plaid.TransactionsGetRequestOptions(**options) \
-            if options else None
+        options = (
+            generated_plaid.TransactionsGetRequestOptions(**options)
+            if options
+            else None
+        )
 
         request = generated_plaid.TransactionsGetRequest(
             self.client_id,
@@ -1213,8 +1192,7 @@ class Transactions(API):
             request,
         )
 
-    def refresh(self,
-                access_token):
+    def refresh(self, access_token):
         request = generated_plaid.TransactionsRefreshRequest(
             self.client_id,
             access_token,
@@ -1228,12 +1206,11 @@ class Transactions(API):
 
 
 class Webhooks(API):
-    '''
+    """
     Webhooks endpoints.
-    '''
+    """
 
-    def get_verification_key(self,
-                             key_id):
+    def get_verification_key(self, key_id):
         request = generated_plaid.WebhookVerificationKeyGetRequest(
             self.client_id,
             self.secret,
