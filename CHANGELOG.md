@@ -14,22 +14,26 @@ The `OpenAPI` file will be actively maintained and published (coming soon) whene
   - `Institutions.search`
   - `Item.import_item`
   - `PaymentInitiation.list_payments`
-- Added new optional parameters:
-  - `override_username` and `override_password` to `Sandbox.public_token.create`
-  - `schedule` to `PaymentInitiation.create_payment`
+- Added new optional parameter `schedule` to `PaymentInitiation.create_payment`
 - Added new `Processor` endpoints:
   - `auth_get`, `balance_get`, `identity_get`
 
 BREAKING CHANGES:
 
 - Removed the `CreditDetails` and `Income` products.
-- Removed ability to specify `api_version`, `timeout`, and `suppress_warnings`.  These do not carry over to our new generated internals.
+- Removed ability to specify `api_version`, `timeout`, and `suppress_warnings`.
+  - The API Version is pinned as of `7.0.0`, so `api_version` shouldn't be here anymore
+  - `timeout` and `suppress_warnings` aren't parameters that are configurable in the output generated code.  For things that could be configured once the generated code is unwrapped, check out `generated_plaid.Configuration`.
 - Made `products` non-optional for `Institutions.search`.
 - Renamed all `Processor` endpoints from `camelCase` to `snake_case`.
 
 Other Deprecations:
 
 - Removed all in-code documentation.  Refer to our new [docs](https://plaid.com/docs), which are generated from the same OpenAPI schema!
+
+## 7.1.0
+
+- Add options for overriding username and password to /sandbox/public_token/create
 
 ## 7.0.0
 

@@ -173,7 +173,7 @@ class AssetReportError(PlaidError):
 
 class BankTransferError(PlaidError):
     '''There are errors with the bank transfers .'''
-    
+
     pass
 
 PLAID_ERROR_TYPE_MAP = {

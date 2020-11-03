@@ -313,7 +313,6 @@ class BankTransfer(API):
         custom_tag=None,
         origination_account_id=None,
     ):
-
         request = generated_plaid.BankTransferCreateRequest(
             self.client_id,
             self.secret,

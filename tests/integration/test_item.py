@@ -10,6 +10,7 @@ runner.
 import time
 from contextlib import contextmanager
 
+from plaid.errors import InvalidInputError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,
@@ -46,6 +47,10 @@ def test_remove():
 
     remove_response = client.Item.remove(exchange_response['access_token'])
     assert remove_response['request_id']
+    try:
+        client.Item.remove(exchange_response['access_token'])
+    except InvalidInputError as e:
+        assert e.code == 'INVALID_ACCESS_TOKEN'
 
 
 def test_import():
