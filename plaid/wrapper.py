@@ -1,5 +1,6 @@
 import plaid.generated_plaid as generated_plaid
 from plaid.errors import PlaidError
+from plaid.version import __version__
 
 DEFAULT_TIMEOUT = 600  # 10 minutes
 API_VERSION = "2020-09-14"
@@ -48,6 +49,7 @@ class Client:
         # configuring the generated client with headers
         self.generated_client.default_headers = {
             "Plaid-Version": self.api_version,
+            "User-Agent": f"Plaid Python v{__version__}",
         }
         if self.client_app:
             self.generated_client.default_headers["Plaid-Client-App"] = self.client_app
