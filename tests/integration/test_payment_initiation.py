@@ -22,6 +22,13 @@ def payments_after_recipient_creation(client, recipient_id):
     assert payment_id is not None
     assert response['status'] is not None
 
+    # create legacy payment token
+    response = client.PaymentInitiation.create_payment_token(
+        payment_id,
+    )
+    assert response['payment_token'] is not None
+    assert response['payment_token_expiration_time'] is not None
+
     # create link token
     response = client.LinkToken.create({
         'user': {
