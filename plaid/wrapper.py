@@ -654,7 +654,7 @@ class Institutions(API):
             else None
         )
 
-        request = generated_plaid.InstitutionSearchRequest(
+        request = generated_plaid.InstitutionsSearchRequest(
             self.client_id,
             self.secret,
             query,
@@ -862,10 +862,11 @@ class PaymentInitiation(API):
             generated_plaid.PaymentInitiationAddress(**address) if address else None
         )
         if bacs:
-            bacs = generated_plaid.PaymentInitiationRecipientGetResponseBacs(
+            bacs = generated_plaid.RecipientBACS(
                 bacs.get("account"),
-                bacs.get("sort_code"),
+                bacs.get("sort_code")
             )
+
         request = generated_plaid.PaymentInitiationRecipientCreateRequest(
             self.client_id,
             self.secret,
@@ -919,7 +920,7 @@ class PaymentInitiation(API):
         )
 
     def get_payment(self, payment_id):
-        request = generated_plaid.PaymentIntiationPaymentGetRequest(
+        request = generated_plaid.PaymentInitiationPaymentGetRequest(
             self.client_id,
             self.secret,
             payment_id,
