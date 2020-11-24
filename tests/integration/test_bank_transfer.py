@@ -1,3 +1,5 @@
+import time
+
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION
@@ -8,6 +10,7 @@ from plaid.errors import BankTransferError
 
 access_token = None
 account_id = None
+num_retries = 10
 
 def setup_module(module):
     client = create_client()
@@ -41,6 +44,17 @@ def create_bank_transfer(client):
     assert bt_response is not None
     return bt_response['bank_transfer']
 
+def poll_for_response(checks):
+    success = False
+    for i in range(num_retries):
+        try:
+            checks()
+            success = True
+            break
+        except AssertionError:
+            continue
+    assert success
+
 def test_create():
     client = create_client()
     bt = create_bank_transfer(client)
@@ -50,17 +64,23 @@ def test_create():
 def test_cancel_success():
     client = create_client()
     bt = create_bank_transfer(client)
-    cancel_response = client.BankTransfer.cancel(bt['id'])
-    assert cancel_response is not None
+    def checks():
+        cancel_response = client.BankTransfer.cancel(bt['id'])
+        assert cancel_response is not None
+    poll_for_response(checks)
 
 def test_cancel_failure():
     client = create_client()
     bt = create_bank_transfer(client)
     simulate_response = client.Sandbox.bank_transfer.simulate(bt['id'], 'posted')
     assert simulate_response is not None
+    # allow event simulation to process so we don't inadvertently succeed
+    time.sleep(0.1)
     # assert that a BankTransferError is thrown
     try:
         client.BankTransfer.cancel(bt['id'])
+        # cancel should not succeed
+        assert False
     except BankTransferError:
         assert True
     except:
@@ -72,32 +92,40 @@ def test_list_events():
     bt_id = bt['id']
     simulate_response = client.Sandbox.bank_transfer.simulate(bt['id'], 'posted')
     assert simulate_response is not None
-    list_events_response = client.BankTransfer.list_events(bank_transfer_id=bt_id)
-    assert list_events_response is not None
-    assert list_events_response['bank_transfer_events'] is not None
-    assert len(list_events_response['bank_transfer_events']) == 2
+    def checks():
+        list_events_response = client.BankTransfer.list_events(bank_transfer_id=bt_id)
+        assert list_events_response is not None
+        assert list_events_response['bank_transfer_events'] is not None
+        assert len(list_events_response['bank_transfer_events']) == 2
+    poll_for_response(checks)
 
 def test_sync_events():
     client = create_client()
     bt = create_bank_transfer(client)
-    sync_response = client.BankTransfer.sync_events(0)
-    assert sync_response is not None
-    assert sync_response['bank_transfer_events'] is not None
-    assert len(sync_response['bank_transfer_events']) > 0
+    def checks():
+        sync_response = client.BankTransfer.sync_events(0)
+        assert sync_response is not None
+        assert sync_response['bank_transfer_events'] is not None
+        assert len(sync_response['bank_transfer_events']) > 0
+    poll_for_response(checks)
 
 def test_get():
     client = create_client()
     bt = create_bank_transfer(client)
-    get_response = client.BankTransfer.get(bt['id'])
-    assert bt == get_response['bank_transfer']
+    def checks():
+        get_response = client.BankTransfer.get(bt['id'])
+        assert bt == get_response['bank_transfer']
+    poll_for_response(checks)
 
 def test_list():
     client = create_client()
     bt = create_bank_transfer(client)
-    list_response = client.BankTransfer.list(count=1)
-    assert list_response is not None
-    assert len(list_response['bank_transfers']) == 1
-    assert list_response['bank_transfers'][0] == bt
+    def checks():
+        list_response = client.BankTransfer.list(count=1)
+        assert list_response is not None
+        assert len(list_response['bank_transfers']) == 1
+        assert list_response['bank_transfers'][0] == bt
+    poll_for_response(checks)
 
 def test_balance_get():
     client = create_client()
