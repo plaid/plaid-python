@@ -9,7 +9,7 @@ access_token = None
 def setup_module(module):
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
-        SANDBOX_INSTITUTION, ['liabilities'])
+        SANDBOX_INSTITUTION, ['liabilities', 'auth'])
     exchange_response = client.Item.public_token.exchange(
         pt_response['public_token'])
     global access_token
