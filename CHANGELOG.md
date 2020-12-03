@@ -1,5 +1,10 @@
-## 8.0.0-beta2
+## 8.0.0-beta3
+`request_id` added back to link token.
+`bank_transfers` fixes.
+`/processor/auth/get` fix nested type return object.
+`/link/token/create` fix nested type return object.
 
+## 8.0.0-beta2
 Fix a regression in sending the `User-Agent` header.
 
 ## 8.0.0-beta1
