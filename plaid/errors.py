@@ -185,5 +185,5 @@ PLAID_ERROR_TYPE_MAP = {
     'ITEM_ERROR': ItemError,
     'AUTH_ERROR': AuthError,
     'ASSET_REPORT_ERROR': AssetReportError,
-    'BANK_TRANSFER': BankTransferError,
+    'BANK_TRANSFER_ERROR': BankTransferError,
 }
