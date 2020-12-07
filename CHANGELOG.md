@@ -1,3 +1,6 @@
+## 8.0.0b4
+Fix a regression with `warnings` not being imported, which is required for `Client` initialization in the development environment. 
+
 ## 8.0.0b3
 `request_id` added back to link token.
 `bank_transfers` fixes.
