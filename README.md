@@ -28,6 +28,8 @@ $ pip install plaid-python
 The module supports all Plaid API endpoints.  For complete information about
 the API, head to the [docs][2].
 
+For a full list of endpoints and arguments, see the [python docs][7].
+
 ## Getting Started
 
 ### Calling Endpoints
@@ -43,6 +45,23 @@ client = Client(client_id='***', secret='***', environment='sandbox')
 
 Each endpoint returns a dictionary which contains the parsed JSON from the
 HTTP response.
+
+### Versioning
+
+You can specify the Plaid API version you wish to use when initializing `plaid`.
+
+```python
+from plaid import Client
+
+client = Client(
+  client_id='***',
+  secret='***',
+  environment='sandbox',
+  api_version='2019-05-29'  # Specify API version
+)
+```
+
+For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
 
 ### Errors
 
@@ -179,7 +198,6 @@ Work around is installing `pyopenssl ndg-httpsclient pyasn1` from pip.
 
 2. Requests are no longer made using `urlfetch.fetch` on Google App Engine. You will need to use the appengine requests
 adapter to monkeypatch requests. See the [app engine documentation][8] for details.
-
 ## Contributing
 
 Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions
@@ -209,4 +227,4 @@ Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
 [8]: https://cloud.google.com/appengine/docs/python/issue-requests
 [9]: https://blog.plaid.com/improving-our-api/
 [10]: https://github.com/plaid/plaid-python-legacy
-[api-upgrades]: https://plaid.com/docs/api-upgrades/
+[api-upgrades]: https://plaid.com/docs/api/versioning/

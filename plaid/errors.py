@@ -1,10 +1,7 @@
-import json
-from plaid.generated_plaid import ApiValueError
-
-
 class BaseError(Exception):
     '''
     A base error class.
+
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
@@ -35,6 +32,7 @@ class BaseError(Exception):
 class PlaidError(BaseError):
     '''
     A Plaid API error.
+
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
@@ -75,16 +73,12 @@ class PlaidError(BaseError):
         ]
 
     @staticmethod
-    def from_generated_error(exception: ApiValueError):
+    def from_response(response):
         '''
         Create an error of the right class from an API response.
+
         :param   response    dict        Response JSON
         '''
-        # if this is an internal error before hitting the API
-        if len(exception.args) > 0:
-            return InvalidInputError(exception.args[0], None, None, None)
-        response = json.loads(exception.body)
-
         cls = PLAID_ERROR_TYPE_MAP.get(response['error_type'], PlaidError)
         return cls(response['error_message'],
                    response['error_type'],
@@ -97,6 +91,7 @@ class PlaidError(BaseError):
 class PlaidCause(BaseError):
     '''
     A cause of a Plaid error.
+
     :ivar   str     message:            A developer-friendly error message. Not
                                         safe for programmatic use.
     :ivar   str     type:               A broad categorization of the error,
@@ -171,10 +166,6 @@ class AssetReportError(PlaidError):
 
     pass
 
-class BankTransferError(PlaidError):
-    '''There are errors with the bank transfers .'''
-
-    pass
 
 PLAID_ERROR_TYPE_MAP = {
     'INSTITUTION_ERROR': InstitutionError,
@@ -185,5 +176,4 @@ PLAID_ERROR_TYPE_MAP = {
     'ITEM_ERROR': ItemError,
     'AUTH_ERROR': AuthError,
     'ASSET_REPORT_ERROR': AssetReportError,
-    'BANK_TRANSFER': BankTransferError,
 }
