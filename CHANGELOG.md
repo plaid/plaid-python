@@ -1,8 +1,4 @@
-## 8.0.0-beta2
-
-Fix a regression in sending the `User-Agent` header.
-
-## 8.0.0-beta1
+## 8.0.0-beta
 This version represents a transition in how we maintain our external client libraries. We are now using an API spec written in `OpenAPI 3.0.0` and are running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
 
 As part of this transition, we have created a wrapper around existing APIs to ease the burden of migrating to the new API client. The completely unwrapped version will be available next year as we have a few internal changes left to fully support it.
