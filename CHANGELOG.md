@@ -1,3 +1,10 @@
+## 7.2.0
+- The legacy `/item/public_token/create` endpoint is added back. This endpoint should only be used if you
+    have your public_key enabled and are not yet migrated to link_tokens. It is marked deprecated.
+- The legacy `/payment_initiation/payment/token/create` endpoint is added back. This endpoint should
+    only be used if you have your public_key enabled and are not yet migrated to link_tokens. It is
+    marked deprecated.
+
 ## 7.1.0
 
 - Add options for overriding username and password to /sandbox/public_token/create
