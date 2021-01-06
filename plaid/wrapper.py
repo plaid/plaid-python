@@ -310,7 +310,7 @@ class BankTransfer(API):
         iso_currency_code,
         description,
         user,
-        metadata=None,
+        metadata,
         ach_class=None,
         custom_tag=None,
         origination_account_id=None,
@@ -654,7 +654,7 @@ class Institutions(API):
             else None
         )
 
-        request = generated_plaid.InstitutionsSearchRequest(
+        request = generated_plaid.InstitutionSearchRequest(
             self.client_id,
             self.secret,
             query,
@@ -862,11 +862,10 @@ class PaymentInitiation(API):
             generated_plaid.PaymentInitiationAddress(**address) if address else None
         )
         if bacs:
-            bacs = generated_plaid.RecipientBACS(
+            bacs = generated_plaid.PaymentInitiationRecipientGetResponseBacs(
                 bacs.get("account"),
-                bacs.get("sort_code")
+                bacs.get("sort_code"),
             )
-
         request = generated_plaid.PaymentInitiationRecipientCreateRequest(
             self.client_id,
             self.secret,
@@ -920,7 +919,7 @@ class PaymentInitiation(API):
         )
 
     def get_payment(self, payment_id):
-        request = generated_plaid.PaymentInitiationPaymentGetRequest(
+        request = generated_plaid.PaymentIntiationPaymentGetRequest(
             self.client_id,
             self.secret,
             payment_id,

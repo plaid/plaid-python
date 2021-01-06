@@ -54,8 +54,8 @@ def payments_after_recipient_creation(client, recipient_id):
 def test_all_payment_routes_with_bacs():
     client = create_client()
     bacs = {
-        'account': '26207729',
-        'sort_code': '560029',
+        'account': '12345678',
+        'sort_code': '010203',
     }
 
     # create recipient

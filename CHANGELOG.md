@@ -1,13 +1,8 @@
-## 8.0.0b3
-`request_id` added back to link token.
-`bank_transfers` fixes.
-`/processor/auth/get` fix nested type return object.
-`/link/token/create` fix nested type return object.
+## 8.0.0-beta2
 
-## 8.0.0b2
 Fix a regression in sending the `User-Agent` header.
 
-## 8.0.0b1
+## 8.0.0-beta1
 This version represents a transition in how we maintain our external client libraries. We are now using an API spec written in `OpenAPI 3.0.0` and are running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
 
 As part of this transition, we have created a wrapper around existing APIs to ease the burden of migrating to the new API client. The completely unwrapped version will be available next year as we have a few internal changes left to fully support it.

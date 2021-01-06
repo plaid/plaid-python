@@ -94,6 +94,6 @@ def test_link_token_create_and_get():
             'https://sample-webhook-uri.com')
     assert getResponse['metadata']['country_codes'] == ['GB']
     assert getResponse['metadata']['language'] == 'en'
-    assert (getResponse['metadata']['account_filters']['depository'] ==
-            {'account_subtypes': ['checking', 'savings']})
+    assert (getResponse['metadata']['account_filters'] ==
+            {'depository': {'account_subtypes': ['checking', 'savings']}})
     assert getResponse['metadata']['client_name'] == 'Plaid Test'
