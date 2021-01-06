@@ -7,10 +7,8 @@ here since any errors will automatically be marked as failures by the test
 runner.
 '''
 
-import time
 from contextlib import contextmanager
 
-from plaid.errors import InvalidInputError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,
@@ -45,12 +43,7 @@ def test_remove():
     exchange_response = client.Item.public_token.exchange(
         pt_response['public_token'])
 
-    remove_response = client.Item.remove(exchange_response['access_token'])
-    assert remove_response['request_id']
-    try:
-        client.Item.remove(exchange_response['access_token'])
-    except InvalidInputError as e:
-        assert e.code == 'INVALID_ACCESS_TOKEN'
+    client.Item.remove(exchange_response['access_token'])
 
 
 def test_import():

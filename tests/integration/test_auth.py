@@ -1,4 +1,3 @@
-from plaid.errors import InvalidInputError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,
@@ -40,15 +39,3 @@ def test_get():
         'bacs',
     ]:
         assert key in response['numbers']
-
-
-def test_auth_error():
-    client = create_client()
-
-    corrupted_access_token = access_token[:-1] + chr(ord(access_token[-1]) + 1)
-    # raise Exception(corrupted_access_token)
-
-    try:
-        response = client.Auth.get(corrupted_access_token)
-    except InvalidInputError as e:
-        assert e.code == 'INVALID_ACCESS_TOKEN'

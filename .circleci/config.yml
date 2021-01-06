@@ -6,12 +6,31 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-    - image: circleci/python:3.7.8
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+    - run:
+        command: pyenv global 2.7.10 3.6.0
+    - restore_cache:
+        keys:
+        - v1-dep-{{ .Branch }}-
+        - v1-dep-master-
+        - v1-dep-
     - run: pip install --upgrade pip
-    - run: pip install tox
+    - run: pip install tox tox-pyenv
+    - run: pyenv local 2.7.10 3.6.0
+    - save_cache:
+        key: v1-dep-{{ .Branch }}-{{ epoch }}
+        paths:
+        - vendor/bundle
+        - ~/virtualenvs
+        - ~/.m2
+        - ~/.ivy2
+        - ~/.bundle
+        - ~/.go_workspace
+        - ~/.gradle
+        - ~/.cache/bower
     - run: tox
     - store_test_results:
         path: /tmp/circleci-test-results

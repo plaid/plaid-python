@@ -7,12 +7,11 @@ from tests.integration.util import (
 )
 
 access_token = None
+START_DATE = '2020-01-01'
+END_DATE = '2020-12-30'
 
 # NOTE: Data is only generated over the past 2 years.  Ensure that the date
 # range used for transactions/get is within 2 years old
-
-START_DATE = '2019-01-01'
-END_DATE = '2020-01-01'
 
 
 def setup_module(module):
@@ -35,7 +34,7 @@ def get_transactions_with_retries(client,
                                   account_ids=None,
                                   count=None,
                                   offset=None,
-                                  num_retries=20):
+                                  num_retries=50):
     response = None
     for i in range(num_retries):
         try:
@@ -72,7 +71,7 @@ def test_get():
                                              access_token,
                                              START_DATE,
                                              END_DATE,
-                                             num_retries=10)
+                                             num_retries=5)
     assert response['accounts'] is not None
     assert response['transactions'] is not None
 
@@ -83,7 +82,7 @@ def test_get():
                                              START_DATE,
                                              END_DATE,
                                              account_ids=[account_id],
-                                             num_retries=10)
+                                             num_retries=50)
     assert response['transactions'] is not None
 
 

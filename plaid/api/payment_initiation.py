@@ -1,4 +1,5 @@
 from plaid.api.api import API
+import warnings
 
 
 class PaymentInitiation(API):
@@ -54,6 +55,21 @@ class PaymentInitiation(API):
             'recipient_id': recipient_id,
             'reference': reference,
             'amount': amount,
+        })
+
+    def create_payment_token(self, payment_id):
+        '''
+        Creates a payment.
+        :param  str     payment_id:
+        '''
+
+        warnings.warn(('Warning: this method will be deprecated in a future '
+                       'version. To replace the payment_token, look into '
+                       'the link_token at '
+                       'https://plaid.com/docs/api/tokens/#linktokencreate.'))
+
+        return self.client.post('/payment_initiation/payment/token/create', {
+            'payment_id': payment_id,
         })
 
     def get_payment(self, payment_id):
