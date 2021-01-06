@@ -1,5 +1,3 @@
-import warnings
-
 import plaid.generated_plaid as generated_plaid
 from plaid.errors import PlaidError
 from plaid.version import __version__
