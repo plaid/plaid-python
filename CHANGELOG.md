@@ -1,9 +1,47 @@
-## 7.2.0
-- The legacy `/item/public_token/create` endpoint is added back. This endpoint should only be used if you
-    have your public_key enabled and are not yet migrated to link_tokens. It is marked deprecated.
-- The legacy `/payment_initiation/payment/token/create` endpoint is added back. This endpoint should
-    only be used if you have your public_key enabled and are not yet migrated to link_tokens. It is
-    marked deprecated.
+## 8.0.0b4
+Fix a regression with `warnings` not being imported, which is required for `Client` initialization in the development environment.
+
+## 8.0.0b3
+`request_id` added back to link token.
+`bank_transfers` fixes.
+`/processor/auth/get` fix nested type return object.
+`/link/token/create` fix nested type return object.
+
+## 8.0.0b2
+Fix a regression in sending the `User-Agent` header.
+
+## 8.0.0b1
+This version represents a transition in how we maintain our external client libraries. We are now using an API spec written in `OpenAPI 3.0.0` and are running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
+
+As part of this transition, we have created a wrapper around existing APIs to ease the burden of migrating to the new API client. The completely unwrapped version will be available next year as we have a few internal changes left to fully support it.
+
+The `OpenAPI` file will be actively maintained and published (coming soon) whenever changes are made to any of our external HTTP API surfaces.  This client library is now pinned to Python `3.7.x` with tests running on Python `3.7.8`.
+
+- Added the `BankTransfer` product.
+  - This also adds the endpoint `Sandbox.bank_transfer.simulate`.
+- Exposed optional parameters for multiple endpoints:
+  - `Holdings.get`
+  - `Institutions.get`
+  - `Institutions.get_by_id`
+  - `Institutions.search`
+  - `Item.import_item`
+  - `PaymentInitiation.list_payments`
+- Added new optional parameter `schedule` to `PaymentInitiation.create_payment`
+- Added new `Processor` endpoints:
+  - `auth_get`, `balance_get`, `identity_get`
+
+BREAKING CHANGES:
+
+- Removed the `CreditDetails` and `Income` products.
+- Removed ability to specify `api_version`, `timeout`, and `suppress_warnings`.
+  - The API Version is pinned as of `7.0.0`, so `api_version` shouldn't be here anymore
+  - `timeout` and `suppress_warnings` aren't parameters that are configurable in the output generated code.  For things that could be configured once the generated code is unwrapped, check out `generated_plaid.Configuration`.
+- Made `products` non-optional for `Institutions.search`.
+- Renamed all `Processor` endpoints from `camelCase` to `snake_case`.
+
+Other Deprecations:
+
+- Removed all in-code documentation.  Refer to our new [docs](https://plaid.com/docs), which are generated from the same OpenAPI schema!
 
 ## 7.1.0
 
