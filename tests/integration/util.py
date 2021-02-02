@@ -1,24 +1,31 @@
 '''Shared objects for integration testing.'''
 
 import os
+import plaid
+from plaid.api import plaid_api
 
-from plaid import Client
-
+client_id = os.environ['CLIENT_ID']
+secret = os.environ['SECRET']
 
 def create_client():
     '''Create a new client for testing.'''
-    return Client(
-        client_id=os.environ['CLIENT_ID'],
-        secret=os.environ['SECRET'],
-        environment='sandbox',
-        api_version="2020-09-14",
-        client_app="plaid-python-unit-tests"
+    configuration = plaid.Configuration(
+        # TODO: Move to host/URL enum model.
+        # Should we generate one or custom add to each template?
+        host = "https://sandbox.plaid.com",
+        api_key={
+            'clientId': client_id,
+            'secret': secret,
+            'plaidVersion': '2020-09-14'
+        }
     )
 
 
+    api_client = plaid.ApiClient(configuration)
+    return plaid_api.PlaidApi(api_client)
+
 SANDBOX_INSTITUTION = 'ins_109508'
 SANDBOX_INSTITUTION_NAME = 'First Platypus Bank'
-SANDBOX_INSTITUTION_COUNTRY_CODE = 'US'
 
 SANDBOX_INSTITUTIONS = [
     'ins_109508',
