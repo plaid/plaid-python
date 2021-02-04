@@ -188,6 +188,65 @@ Authenticated endpoints require a `(client_id, secret)` pair.
 You do not need to pass in authentication to
 individual endpoints once you have set it on the `plaid.Client` object.
 
+### Payment Initiation
+For more information about this product, head to the (Payment Initiation docs)[https://plaid.com/docs/payment-initiation/].
+
+#### Create payment recipient using IBAN and address without BACS
+```python
+name = 'John Doe'
+iban = 'NL02ABNA0123456789'
+address = {
+    'street':      ['Street Name 999'],
+    'city':        'City',
+    'postal_code': '99999',
+    'country':     'GB'
+}
+
+response = client.PaymentInitiation.create_recipient(name, iban, address, bacs = None)
+recipient_id = response['recipient_id']
+```
+
+#### Create payment recipient using BACS with no IBAN or address
+```python
+bacs = {
+    'account': '26207729',
+    'sort_code': '560029',
+}
+
+response = client.PaymentInitiation.create_recipient(name, iban = None, address = None, bacs = bacs)
+recipient_id = response['recipient_id']
+```
+
+#### Create payment
+```python
+reference = 'testPayment'
+amount = {
+    'currency': 'GBP',
+    'value': 100.00,
+}
+
+response = client.PaymentInitiation.create_payment(recipient_id, reference, amount)
+payment_id = response["payment_id"]
+status = response["status"]
+```
+#### Create Link Token (for Payment Initiation only)
+```python
+response = client.LinkToken.create({
+  'user': {
+      'client_user_id': '123-test-user-id',
+  },
+  'products': ['payment_initiation'],
+  'client_name': "Plaid Test App",
+  'country_codes': ['GB'],
+  'language': 'en',
+  'webhook': 'https://sample-webhook.com',
+  'payment_initiation': {
+      'payment_id': payment_id
+  }
+})
+link_token = response['link_token']
+```
+
 ## Known Issues
 
 Please open an [issue][5] for anything not on this list!
