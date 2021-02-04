@@ -10,10 +10,12 @@ class PaymentInitiation(API):
         Creates a payment recipient.
 
         :param  str     name:
-        :param  str     iban:
+        :param  str     iban: Should be None if using bacs
         :param  dict    address: A dictionary containing street, city,
                                  postal_code, and country fields.
+                                 Best practice is to not use it.
         :param  dict    bacs: A dictionary containing account and sort_code
+                              Should be None if using iban.
         '''
 
         return self.client.post('/payment_initiation/recipient/create', {
