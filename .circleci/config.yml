@@ -5,7 +5,7 @@ jobs:
     environment:
       OPENAPI_VERSION: 1.5.0-beta
       OPENAPI_FILE: 2020-09-14.yml
-      CURRENT_DIR: pwd
+      CURRENT_DIR: ~/project
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
       OPENAPI_GENERATOR: docker run --rm -v $CURRENT_DIR:/local openapitools/openapi-generator-cli:v5.0.1 generate
