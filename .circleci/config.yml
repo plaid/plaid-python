@@ -13,6 +13,7 @@ jobs:
     - image: circleci/python:3.7.8
     steps:
     - checkout
+    - setup_remote_docker
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run: $OPENAPI_GENERATOR -g python \
         -i local/$OPENAPI_FILE -o local/plaid \
