@@ -1,11 +1,13 @@
 version: 2
 jobs:
   build:
-    image: cimg/base:2020.01
+    docker:
+    - image: circleci/python:3.7.8
     steps:
     - checkout
     - setup_remote_docker
     - run: make build-openapi
+    - run: ls
     - run: docker build -t plaid-python .
     - run: docker run -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python
     - store_test_results:
