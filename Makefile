@@ -35,6 +35,15 @@ package-check:
 package-publish:
 	twine upload dist/*
 
+.PHONY: pull-openapi
+pull-openapi:
+	curl https://raw.githubusercontent.com/plaid/plaid-openapi/$(OPENAPI_VERSION)/$(OPENAPI_FILE) --output $(CURRENT_DIR)/$(OPENAPI_FILE)
+
 .PHONY: build-openapi
 build-openapi:
-	curl https://raw.githubusercontent.com/plaid/plaid-openapi/$(OPENAPI_VERSION)/$(OPENAPI_FILE) --output $(CURRENT_DIR)/$(OPENAPI_FILE)
+	$(OPENAPI_GENERATOR) -g python \
+			-i local/$(OPENAPI_FILE) \
+			-o local/plaid \
+			-p packageName=plaid,packageVersion='$(PYTHON_PACKAGE_VERSION)' \
+			--global-property apiTests=false,modelTests=false \
+			-t local/templates/python
