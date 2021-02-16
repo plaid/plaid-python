@@ -1,11 +1,9 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: ubuntu-1604:202007-01
+    machine: true
     steps:
     - checkout
-    - setup_remote_docker
     - run: make pull-openapi
     - run: make build-openapi
     - run: docker build -t plaid-python .
