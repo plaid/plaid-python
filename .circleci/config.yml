@@ -1,17 +1,12 @@
 version: 2
 jobs:
   build:
-    docker:
-    - image: circleci/python:3.7.8
+    machine:
+      image: ubuntu-1604:202007-01
     steps:
     - checkout
     - setup_remote_docker
     - run: make pull-openapi
-    - run: |
-        # create a dummy container which will hold a volume with config
-        docker create -v /cfg --name openapi alpine:3.4 /bin/true
-        # copy a config file into this volume
-        docker cp /home/circleci/project/2020-09-14.yml openapi:/cfg
     - run: make build-openapi
     - run: docker build -t plaid-python .
     - run: docker run -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python
