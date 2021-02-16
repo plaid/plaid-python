@@ -15,12 +15,12 @@ jobs:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run: $OPENAPI_GENERATOR -g python \
-        -i local/$(OPENAPI_FILE) -o local/plaid \
-        -p packageName=plaid,packageVersion='$(PYTHON_PACKAGE_VERSION)' \
+        -i local/$OPENAPI_FILE -o local/plaid \
+        -p packageName=plaid,packageVersion='$PYTHON_PACKAGE_VERSION' \
         --global-property apiTests=false,modelTests=false \
         -t local/templates/python
     - run: docker build -t plaid-python .
-    - run: docker run -e CLIENT_ID=$(CLIENT_ID) -e SECRET=$(SECRET) plaid-python
+    - run: docker run -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python
     # - run: pip install tox
     # - run: tox
     - store_test_results:
