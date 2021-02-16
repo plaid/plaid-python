@@ -8,7 +8,7 @@ jobs:
     - checkout
     - setup_remote_docker
     - run: make build-openapi
-    - run: ls al
+    - run: ls
     - run: docker build -t plaid-python .
     - run: docker run -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python
     - store_test_results:
