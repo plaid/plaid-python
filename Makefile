@@ -43,7 +43,7 @@ pull-openapi:
 build-openapi:
 	$(OPENAPI_GENERATOR) -g python \
 			-i local/$(OPENAPI_FILE) \
-			-o local/plaid \
+			-o local/ \
 			-p packageName=plaid,packageVersion='$(PYTHON_PACKAGE_VERSION)' \
 			--global-property apiTests=false,modelTests=false \
 			-t local/templates/python
