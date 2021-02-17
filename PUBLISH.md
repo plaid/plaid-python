@@ -6,11 +6,11 @@
 
 Follow these steps sequentially to prepare a new release to Pypi:
 
-- Increment the library version in `plaid/version.py` by following [semantic versioning guidelines](https://semver.org/)
+- Increment the library version in `plaid/setup.py` by following [semantic versioning guidelines](https://semver.org/)
 - Update the `CHANGELOG.md` with the release version and relevant comments and changes
-- Build the updated docs with `make docs`
 - Commit the change, create a Pull Request, and obtain approval from a Plaid team member
 - Merge the commit into `master`, and pull down the latest changes locally from `master`
+- Run `make pull-openapi && make build-openapi` to build the generated dependencies
 
 2. **Publish to Pypi**
 
