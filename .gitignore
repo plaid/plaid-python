@@ -18,5 +18,5 @@ docs/objects.inv
 
 dist
 
-plaid
+plaid/**
 docs
