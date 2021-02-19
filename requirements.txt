@@ -1,17 +1,16 @@
 ##### Dependencies
-certifi >= 14.05.14
-six >= 1.10
+nulltype
 python_dateutil >= 2.5.3
 setuptools >= 21.0.0
-urllib3 >= 1.15.1
+urllib3 >= 1.25.3
 
 ##### DEV Dependencies
-cov-core==1.7
-coverage==3.7.1
-flake8==2.4.1
+cov-core==1.15.0
+coverage==5.3
+flake8==3.8.4
 flake8-mutable==1.2.0
-mock==1.0.1
-py==1.4.32
-pytest==2.9.2
-pytest-cov==1.6
-sphinx==1.5.2
+mock==4.0.3
+py==1.10.0
+pytest==6.2.1
+pytest-cov==2.10.1
+sphinx==3.3.1

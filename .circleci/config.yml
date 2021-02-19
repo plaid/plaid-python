@@ -1,21 +1,20 @@
 version: 2
 jobs:
   build:
-    shell: /bin/bash --login
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-    docker:
-    - image: circleci/python:3.7.8
+    machine: true
     steps:
     - checkout
-    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run: pip install --upgrade pip
-    - run: pip install tox
-    - run: tox
+    - run:
+        name: Download OpenAPI file via Curl from github
+        command: make pull-openapi
+    - run:
+        name: Build generated code using docker cli openapigenerator
+        command: make build-openapi
+    - run:
+        name: Build Docker image for running python tests
+        command: docker build -t plaid-python .
+    - run:
+        name: Run python tests in Docker
+        command: docker run --rm -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python
     - store_test_results:
-        path: /tmp/circleci-test-results
-    - store_artifacts:
-        path: /tmp/circleci-artifacts
-    - store_artifacts:
         path: /tmp/circleci-test-results

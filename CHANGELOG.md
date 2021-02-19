@@ -1,47 +1,94 @@
-## 8.0.0b4
-Fix a regression with `warnings` not being imported, which is required for `Client` initialization in the development environment. 
+## 8.0.0b9
+This version represents a transition in how we maintain our external client libraries. We are now using an [API spec](https://github.com/plaid/plaid-openapi) written in `OpenAPI 3.0.0` and running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
 
-## 8.0.0b3
-`request_id` added back to link token.
-`bank_transfers` fixes.
-`/processor/auth/get` fix nested type return object.
-`/link/token/create` fix nested type return object.
+**Python Migration Guide:**
 
-## 8.0.0b2
-Fix a regression in sending the `User-Agent` header.
+### Client initialization
+From:
+```python
+from plaid import Client
+Client(
+    client_id=os.environ['CLIENT_ID'],
+    secret=os.environ['SECRET'],
+    environment='sandbox',
+    api_version="2020-09-14",
+    client_app="plaid-python-unit-tests"
+)
+```
 
-## 8.0.0b1
-This version represents a transition in how we maintain our external client libraries. We are now using an API spec written in `OpenAPI 3.0.0` and are running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
+To:
+```python
+import plaid
+from plaid.api import plaid_api
+configuration = plaid.Configuration(
+    host=plaid.Environment.Sandbox,
+    api_key={
+        'clientId': client_id,
+        'secret': secret,
+        'plaidVersion': '2020-09-14'
+    }
+)
+api_client = plaid.ApiClient(configuration)
+client = plaid_api.PlaidApi(api_client)
+```
 
-As part of this transition, we have created a wrapper around existing APIs to ease the burden of migrating to the new API client. The completely unwrapped version will be available next year as we have a few internal changes left to fully support it.
+### Endpoints
+All endpoint requests now take a request model and the functions have been renamed to include `_`.
 
-The `OpenAPI` file will be actively maintained and published (coming soon) whenever changes are made to any of our external HTTP API surfaces.  This client library is now pinned to Python `3.7.x` with tests running on Python `3.7.8`.
+From:
+```python
+response = client.Auth.get(access_token)
+```
 
-- Added the `BankTransfer` product.
-  - This also adds the endpoint `Sandbox.bank_transfer.simulate`.
-- Exposed optional parameters for multiple endpoints:
-  - `Holdings.get`
-  - `Institutions.get`
-  - `Institutions.get_by_id`
-  - `Institutions.search`
-  - `Item.import_item`
-  - `PaymentInitiation.list_payments`
-- Added new optional parameter `schedule` to `PaymentInitiation.create_payment`
-- Added new `Processor` endpoints:
-  - `auth_get`, `balance_get`, `identity_get`
+To:
+```python
+import plaid
+from plaid.model.auth_get_request import AuthGetRequest
+from plaid.model.auth_get_request_options import AuthGetRequestOptions
 
-BREAKING CHANGES:
+ag_request = AuthGetRequest(
+    access_token=access_token
+)
 
-- Removed the `CreditDetails` and `Income` products.
-- Removed ability to specify `api_version`, `timeout`, and `suppress_warnings`.
-  - The API Version is pinned as of `7.0.0`, so `api_version` shouldn't be here anymore
-  - `timeout` and `suppress_warnings` aren't parameters that are configurable in the output generated code.  For things that could be configured once the generated code is unwrapped, check out `generated_plaid.Configuration`.
-- Made `products` non-optional for `Institutions.search`.
-- Renamed all `Processor` endpoints from `camelCase` to `snake_case`.
+response = client.auth_get(ag_request)
+```
 
-Other Deprecations:
+### Errors
 
-- Removed all in-code documentation.  Refer to our new [docs](https://plaid.com/docs), which are generated from the same OpenAPI schema!
+From:
+```python
+try:
+    client.Auth.get(access_token)
+except ItemError as e:
+    if e.code == 'ITEM_LOGIN_REQUIRED':
+    else:
+        ...
+except APIError as e:
+    if e.code == 'PLANNED_MAINTENANCE':
+        # inform user
+    else:
+        ...
+```
+
+To:
+```python
+try:
+    request = AssetReportGetRequest(
+        asset_report_token=asset_report_token,
+    )
+    return client.asset_report_get(request)
+except plaid.ApiException as e:
+    response = json.loads(e.body)
+    if response['error_code'] == 'ITEM_LOGIN_REQUIRED':
+    else:
+```
+
+## 7.2.0
+- The legacy `/item/public_token/create` endpoint is added back. This endpoint should only be used if you
+    have your public_key enabled and are not yet migrated to link_tokens. It is marked deprecated.
+- The legacy `/payment_initiation/payment/token/create` endpoint is added back. This endpoint should
+    only be used if you have your public_key enabled and are not yet migrated to link_tokens. It is
+    marked deprecated.
 
 ## 7.1.0
 
