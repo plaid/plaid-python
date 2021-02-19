@@ -2,6 +2,7 @@ import time
 import json
 import plaid
 from datetime import datetime
+from datetime import timedelta
 from plaid.model.products import Products
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
 from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
@@ -21,8 +22,9 @@ access_token = None
 # NOTE: Data is only generated over the past 2 years.  Ensure that the date
 # range used for transactions/get is within 2 years old
 
-START_DATE = '2020-01-01'
-END_DATE = '2021-01-20'
+START_DATE = (datetime.now() - timedelta(days=(365*2)))
+END_DATE = datetime.now()
+DATE_FORMAT = '%Y-%m-%d'
 
 def setup_module(module):
     client = create_client()
@@ -31,8 +33,8 @@ def setup_module(module):
         initial_products=[Products('transactions')],
         options=SandboxPublicTokenCreateRequestOptions(
             transactions=SandboxPublicTokenCreateRequestOptionsTransactions(
-                start_date=START_DATE,
-                end_date=END_DATE
+                start_date=START_DATE.strftime(DATE_FORMAT),
+                end_date=END_DATE.strftime(DATE_FORMAT)
             )
         )
     )
@@ -47,8 +49,6 @@ def setup_module(module):
 
 def get_transactions_with_retries(client,
                                   access_token,
-                                  start_date,
-                                  end_date,
                                   account_ids=None,
                                   count=None,
                                   offset=None,
@@ -67,8 +67,8 @@ def get_transactions_with_retries(client,
 
             request = TransactionsGetRequest(
                 access_token=access_token,
-                start_date=datetime.strptime(start_date, '%Y-%m-%d').date(),
-                end_date=datetime.strptime(end_date, '%Y-%m-%d').date(),
+                start_date=START_DATE.date(),
+                end_date=END_DATE.date(),
                 options=options
             )
             response = client.transactions_get(request)
@@ -105,8 +105,6 @@ def test_get():
 
     response = get_transactions_with_retries(client,
                                              access_token,
-                                             START_DATE,
-                                             END_DATE,
                                              num_retries=10)
     assert response['accounts'] is not None
     assert response['transactions'] is not None
@@ -115,8 +113,6 @@ def test_get():
     account_id = response['accounts'][0]['account_id']
     response = get_transactions_with_retries(client,
                                              access_token,
-                                             START_DATE,
-                                             END_DATE,
                                              account_ids=[account_id],
                                              num_retries=10)
     assert response['transactions'] is not None
@@ -126,8 +122,6 @@ def test_get_with_options():
     client = create_client()
     response = get_transactions_with_retries(client,
                                              access_token,
-                                             START_DATE,
-                                             END_DATE,
                                              count=2,
                                              offset=1)
     assert len(response['transactions']) == 2

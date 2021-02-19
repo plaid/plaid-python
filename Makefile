@@ -1,6 +1,6 @@
 #!make
 CURRENT_DIR:=$(shell pwd)
-OPENAPI_VERSION:=1.5.3-beta
+OPENAPI_VERSION:=1.5.4-beta
 OPENAPI_FILE:=2020-09-14.yml
 PYTHON_PACKAGE_VERSION=$(shell cat setup.py | grep VERSION | head -1 | sed -e "s/^VERSION=//" -e "s/'//"  -e "s/'//")
 OPENAPI_GENERATOR:=docker run --rm -v $(CURRENT_DIR):/local openapitools/openapi-generator-cli:v5.0.1 generate
