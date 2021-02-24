@@ -15,8 +15,7 @@ jobs:
         - v1-dep-{{ .Branch }}-
         - v1-dep-master-
         - v1-dep-
-    - run: pip install --upgrade pip
-    - run: pip install tox tox-pyenv
+    - run: pip install tox
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:
