@@ -1,7 +1,7 @@
 plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python) [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
 ============
 
-:warning: This major version of the library will only receive critical security patches after 7/12/21. Please consider trying out our new [beta version](https://github.com/plaid/plaid-python/tree/8.0.0-beta-releases).
+:warning: After 7/12/21, this major version of the library will only receive critical security patches. Please consider trying out our new [beta version](https://github.com/plaid/plaid-python/tree/8.0.0-beta-releases).
 
 The official python client library for the [Plaid API][1].
 
