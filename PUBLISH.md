@@ -9,7 +9,7 @@ Follow these steps sequentially to prepare a new release to Pypi:
 - Increment the library version in `plaid/setup.py` by following [semantic versioning guidelines](https://semver.org/)
 - Update the `CHANGELOG.md` with the release version and relevant comments and changes
 - Commit the change, create a Pull Request, and obtain approval from a Plaid team member
-- Merge the commit into `master`, and pull down the latest changes locally from `master`
+- Merge the commit into `8.0.0-beta-releases`, and pull down the latest changes locally from `8.0.0-beta-releases`
 - Run `make pull-openapi && make build-openapi` to build the generated dependencies
 
 2. **Publish to Pypi**
