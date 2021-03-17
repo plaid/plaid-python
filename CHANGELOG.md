@@ -1,3 +1,6 @@
+## 7.2.1
+- Add `account_ids` options to `/investments/holdings/get`
+
 ## 7.2.0
 - The legacy `/item/public_token/create` endpoint is added back. This endpoint should only be used if you
     have your public_key enabled and are not yet migrated to link_tokens. It is marked deprecated.

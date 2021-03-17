@@ -28,3 +28,8 @@ def test_get():
     assert response['accounts'] is not None
     assert response['securities'] is not None
     assert response['holdings'] is not None
+
+    # get selected accounts
+    account_id = response['accounts'][0]['account_id']
+    response = client.Holdings.get(access_token, account_ids=[account_id])
+    assert len(response['accounts']) == 1
