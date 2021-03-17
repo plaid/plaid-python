@@ -15,6 +15,8 @@ class Holdings(API):
         Retrieve investment holdings information about an item.
 
         :param  str     access_token:
+        :param  [str]   account_ids:    A list of account_ids to retrieve for
+                                the item. Optional.
         '''
 
         options = _options or {}
