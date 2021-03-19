@@ -1,21 +1,22 @@
-plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python) [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
-============
+# plaid-python [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python) [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
+
+:warning: After 7/12/21, this major version of the library will only receive critical security patches. Please consider trying out our new [beta version](https://github.com/plaid/plaid-python/tree/8.0.0-beta-releases).
 
 The official python client library for the [Plaid API][1].
 
 ## Table of Contents
 
 - [plaid-python](#plaid-python)
-  * [Install](#install)
-  * [Documentation](#documentation)
-  * [Getting Started](#getting-started)
-    + [Calling Endpoints](#calling-endpoints)
-    + [Errors](#errors)
-  * [Examples](#examples)
-  * [Known Issues](#known-issues)
-  * [Contributing](#contributing)
-  * [Legacy API](#legacy-api)
-  * [License](#license)
+  - [Install](#install)
+  - [Documentation](#documentation)
+  - [Getting Started](#getting-started)
+    - [Calling Endpoints](#calling-endpoints)
+    - [Errors](#errors)
+  - [Examples](#examples)
+  - [Known Issues](#known-issues)
+  - [Contributing](#contributing)
+  - [Legacy API](#legacy-api)
+  - [License](#license)
 
 ## Install
 
@@ -25,7 +26,7 @@ $ pip install plaid-python
 
 ## Documentation
 
-The module supports all Plaid API endpoints.  For complete information about
+The module supports all Plaid API endpoints. For complete information about
 the API, head to the [docs][2].
 
 For a full list of endpoints and arguments, see the [python docs][7].
@@ -47,6 +48,14 @@ Each endpoint returns a dictionary which contains the parsed JSON from the
 HTTP response.
 
 ### Versioning
+
+Each major version of `plaid-python` targets a specific version of the Plaid API:
+
+| API Version           | plaid-python release               |
+| --------------------- | ---------------------------------- |
+| 2020-09-14 **latest** | `7.x.x`, `8.x.x`                   |
+| 2019-05-29            | `3.2.x`, `4.x.x`, `5.x.x`, `6.x.x` |
+| 2018-05-22            | `2.3.x`                            |
 
 You can specify the Plaid API version you wish to use when initializing `plaid`.
 
@@ -96,11 +105,12 @@ except requests.Timeout:
 
 For more information on Plaid response codes, head to the [docs][3].
 
-
 ## Examples
 
 ### Create an Item using Link
+
 Exchange a `public_token` from [Plaid Link][4] for a Plaid access token:
+
 ```python
 from plaid import Client
 
@@ -114,7 +124,7 @@ access_token = response['access_token']
 
 ### Create a Stripe bank account token
 
-Exchange a Plaid Link `public_token` for an API `access_token`.  Then exchange
+Exchange a Plaid Link `public_token` for an API `access_token`. Then exchange
 that `access_token` and the Plaid Link `account_id` (received along with the
 `public_token`) for a Stripe `bank_account_token`:
 
@@ -143,6 +153,7 @@ client.Item.remove(access_token)
 ```
 
 ### Retrieve Transactions
+
 ```python
 from plaid import Client
 
@@ -161,7 +172,9 @@ while len(transactions) < response['total_transactions']:
 ```
 
 ### Retrieve Other Data
+
 Most other item data can be retrieved by following this pattern:
+
 ```python
 from plaid import Client
 
@@ -252,11 +265,12 @@ link_token = response['link_token']
 Please open an [issue][5] for anything not on this list!
 
 1. `SSLError: EOF occurred in violation of protocol (_ssl.c:581)`
-(https://github.com/plaid/plaid-python/issues/62) -
-Work around is installing `pyopenssl ndg-httpsclient pyasn1` from pip.
+   (https://github.com/plaid/plaid-python/issues/62) -
+   Work around is installing `pyopenssl ndg-httpsclient pyasn1` from pip.
 
 2. Requests are no longer made using `urlfetch.fetch` on Google App Engine. You will need to use the appengine requests
-adapter to monkeypatch requests. See the [app engine documentation][8] for details.
+   adapter to monkeypatch requests. See the [app engine documentation][8] for details.
+
 ## Contributing
 
 Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions
@@ -270,10 +284,12 @@ Version 2.0.0 was authored by [Joy Zheng](https://github.com/joyzheng) and
 [Rohan Shah](https://github.com/r-ohan).
 
 ### Contributors
+
 - [@chrisforrette](https://github.com/chrisforrette) (Chris Forrette)
 - [@gae123](https://github.com/gae123)
 
 ## License
+
 [MIT][6]
 
 [1]: https://plaid.com
