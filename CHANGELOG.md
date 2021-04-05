@@ -1,3 +1,6 @@
+## 7.2.2
+- Add `account_ids` options to `/identity/get`
+
 ## 7.2.1
 - Add `account_ids` options to `/investments/holdings/get`
 

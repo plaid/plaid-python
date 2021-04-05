@@ -28,3 +28,8 @@ def test_get():
     for account in response['accounts']:
         assert account['owners'] is not None
         assert len(account['owners']) > 0
+
+    # get selected accounts
+    account_id = response['accounts'][0]['account_id']
+    response = client.Identity.get(access_token, account_ids=[account_id])
+    assert len(response['accounts']) == 1
