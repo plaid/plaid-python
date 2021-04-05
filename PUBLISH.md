@@ -10,7 +10,6 @@ Follow these steps sequentially to prepare a new release to Pypi:
 - Update the `CHANGELOG.md` with the release version and relevant comments and changes
 - Commit the change, create a Pull Request, and obtain approval from a Plaid team member
 - Merge the commit into `master`, and pull down the latest changes locally from `master`
-- Run `make pull-openapi && make build-openapi` to build the generated dependencies
 
 2. **Publish to Pypi**
 

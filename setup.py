@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION='8.0.0b10'
+VERSION='8.0.0b11'
 url = 'https://github.com/plaid/plaid-python'
 
 REQUIRES = [
@@ -15,7 +15,7 @@ setup(
     description='Python client library for the Plaid API and Link',
     long_description='',
     keywords='api, client, plaid',
-    author='Plaid Technologies',
+    author='Plaid Inc.',
     author_email='developers@plaid.com',
     url=url,
     download_url='{}/tarball/v{}'.format(url, VERSION),
