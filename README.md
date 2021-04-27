@@ -20,7 +20,7 @@ The official python client library for the [Plaid API][1].
 ## Install
 
 ```console
-$ pip install --pre plaid-python==8.0.0b10
+$ pip3 install --pre plaid-python==8.0.0b10
 ```
 
 ## Documentation
