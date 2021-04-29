@@ -34,7 +34,7 @@ def test_get():
     assert len(response['accounts']) == 1
 
 
-def test_balances_get():
+def test_balance_get():
     client = create_client()
 
     # get all accounts
