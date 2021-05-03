@@ -7,17 +7,22 @@ class Balance(API):
     def get(self,
             access_token,
             _options=None,
-            account_ids=None):
+            account_ids=None,
+            min_last_updated_datetime=None):
         '''
         Retrieve real-time balance information for accounts.
 
         :param  str     access_token:
         :param  [str]   account_ids:    A list of account_ids to retrieve for
                                         the item. Optional.
+        :param  str     min_last_updated_datetime: The latest balance date that
+                                                   is acceptable. Optional.
         '''
         options = _options or {}
         if account_ids is not None:
             options['account_ids'] = account_ids
+        if min_last_updated_datetime is not None:
+            options['min_last_updated_datetime'] = min_last_updated_datetime
 
         return self.client.post('/accounts/balance/get', {
             'access_token': access_token,
