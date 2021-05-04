@@ -41,7 +41,7 @@ class PaymentInitiation(API):
 
         return self.client.post('/payment_initiation/recipient/list', {})
 
-    def create_payment(self, recipient_id, reference, amount, options={}):
+    def create_payment(self, recipient_id, reference, amount, options=None):
         '''
         Creates a payment.
 
