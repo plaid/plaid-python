@@ -52,7 +52,8 @@ class PaymentInitiation(API):
         :param  dict    options:      A dictionary containing additional
                                       payment options.
         '''
-
+        if options is None:
+            options = {}
         return self.client.post('/payment_initiation/payment/create', {
             'recipient_id': recipient_id,
             'reference': reference,
