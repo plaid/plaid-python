@@ -155,3 +155,8 @@ def test_payment_create_with_options():
     payment_id = response['payment_id']
     assert payment_id is not None
     assert response['status'] is not None
+
+    response = client.PaymentInitiation.get_payment(payment_id)
+    assert response['payment_id'] is not None
+    assert response['status'] is not None
+    assert response['bacs'] is not None
