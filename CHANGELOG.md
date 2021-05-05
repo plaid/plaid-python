@@ -1,6 +1,4 @@
 ## 7.3.0
-- Add support for new payment initiation options.
-## 7.3.0
 - Add support for `last_updated_datetime` to `/accounts/balance/get`
 
 ## 7.2.1
