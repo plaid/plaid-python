@@ -116,3 +116,47 @@ def test_all_payment_routes_with_iban():
     assert response['address'] is not None
 
     payments_after_recipient_creation(client, recipient_id)
+
+
+def test_payment_create_with_options():
+    client = create_client()
+
+    # create recipient
+    response = client.PaymentInitiation.create_recipient(
+        'John Doe',
+        'GB33BUKB20201555555555',
+        {
+            'street': ['street name 999'],
+            'city': 'city',
+            'postal_code': '99999',
+            'country': 'GB',
+        },
+        None
+    )
+    recipient_id = response['recipient_id']
+    assert recipient_id is not None
+    # create payment
+    response = client.PaymentInitiation.create_payment(
+        recipient_id,
+        'reference',
+        {
+            'currency': 'GBP',
+            'value': 100.00,
+        },
+        {
+            'request_refund_details': True,
+            'bacs': {
+                'account': '1234567890',
+                'sort_code': '000000',
+            }
+        }
+    )
+
+    payment_id = response['payment_id']
+    assert payment_id is not None
+    assert response['status'] is not None
+
+    response = client.PaymentInitiation.get_payment(payment_id)
+    assert response['payment_id'] is not None
+    assert response['status'] is not None
+    assert response['bacs'] is not None

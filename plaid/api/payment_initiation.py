@@ -41,7 +41,7 @@ class PaymentInitiation(API):
 
         return self.client.post('/payment_initiation/recipient/list', {})
 
-    def create_payment(self, recipient_id, reference, amount):
+    def create_payment(self, recipient_id, reference, amount, options=None):
         '''
         Creates a payment.
 
@@ -49,12 +49,16 @@ class PaymentInitiation(API):
         :param  str     reference:
         :param  dict    amount:       A dictionary containing currency and
                                       value fields.
+        :param  dict    options:      A dictionary containing additional
+                                      payment options.
         '''
-
+        if options is None:
+            options = {}
         return self.client.post('/payment_initiation/payment/create', {
             'recipient_id': recipient_id,
             'reference': reference,
             'amount': amount,
+            'options': options,
         })
 
     def create_payment_token(self, payment_id):
