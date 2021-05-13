@@ -80,7 +80,7 @@ class PaymentInitiationRecipientCreateRequest(ModelNormal):
             'name': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'iban': (str,),  # noqa: E501
+            'iban': (str, none_type,),  # noqa: E501
             'bacs': (NullableRecipientBACS,),  # noqa: E501
             'address': (PaymentInitiationAddress,),  # noqa: E501
         }
@@ -150,7 +150,7 @@ class PaymentInitiationRecipientCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            iban (str): The International Bank Account Number (IBAN) for the recipient. If BACS data is not provided, an IBAN is required.. [optional]  # noqa: E501
+            iban (str, none_type): The International Bank Account Number (IBAN) for the recipient. If BACS data is not provided, an IBAN is required.. [optional]  # noqa: E501
             bacs (NullableRecipientBACS): [optional]  # noqa: E501
             address (PaymentInitiationAddress): [optional]  # noqa: E501
         """

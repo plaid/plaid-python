@@ -24,7 +24,9 @@ plaid/model/accounts_get_response.py
 plaid/model/ach_class.py
 plaid/model/address.py
 plaid/model/address_data.py
-plaid/model/amount.py
+plaid/model/application.py
+plaid/model/application_get_request.py
+plaid/model/application_get_response.py
 plaid/model/apr.py
 plaid/model/asset_report.py
 plaid/model/asset_report_audit_copy_create_request.py
@@ -112,6 +114,8 @@ plaid/model/employer_income_summary_field_string.py
 plaid/model/employers_search_request.py
 plaid/model/employers_search_response.py
 plaid/model/error.py
+plaid/model/external_payment_options.py
+plaid/model/external_payment_refund_details.py
 plaid/model/external_payment_schedule.py
 plaid/model/external_payment_schedule_get.py
 plaid/model/health_incident.py
@@ -148,6 +152,7 @@ plaid/model/institutions_get_request.py
 plaid/model/institutions_get_request_options.py
 plaid/model/institutions_get_response.py
 plaid/model/institutions_search_account_filter.py
+plaid/model/institutions_search_payment_initiation_options.py
 plaid/model/institutions_search_request.py
 plaid/model/institutions_search_request_options.py
 plaid/model/institutions_search_response.py
@@ -182,6 +187,7 @@ plaid/model/item_webhook_update_request.py
 plaid/model/item_webhook_update_response.py
 plaid/model/jwk_public_key.py
 plaid/model/jwt_header.py
+plaid/model/liabilities_default_update_webhook.py
 plaid/model/liabilities_get_request.py
 plaid/model/liabilities_get_request_options.py
 plaid/model/liabilities_get_response.py
@@ -227,6 +233,8 @@ plaid/model/pay_frequency.py
 plaid/model/pay_period_details.py
 plaid/model/payment_amount.py
 plaid/model/payment_initiation_address.py
+plaid/model/payment_initiation_metadata.py
+plaid/model/payment_initiation_optional_restriction_bacs.py
 plaid/model/payment_initiation_payment_create_request.py
 plaid/model/payment_initiation_payment_create_response.py
 plaid/model/payment_initiation_payment_get_request.py
@@ -235,14 +243,15 @@ plaid/model/payment_initiation_payment_list_request.py
 plaid/model/payment_initiation_payment_list_response.py
 plaid/model/payment_initiation_payment_token_create_request.py
 plaid/model/payment_initiation_payment_token_create_response.py
-plaid/model/payment_initiation_recipient.py
 plaid/model/payment_initiation_recipient_create_request.py
 plaid/model/payment_initiation_recipient_create_response.py
 plaid/model/payment_initiation_recipient_get_request.py
 plaid/model/payment_initiation_recipient_get_response.py
 plaid/model/payment_initiation_recipient_list_request.py
 plaid/model/payment_initiation_recipient_list_response.py
+plaid/model/payment_initiation_standing_order_metadata.py
 plaid/model/payment_meta.py
+plaid/model/payment_schedule_interval.py
 plaid/model/payment_status_update_webhook.py
 plaid/model/paystub.py
 plaid/model/paystub_deduction.py

@@ -27,9 +27,11 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.country_code import CountryCode
     from plaid.model.institution_status import InstitutionStatus
+    from plaid.model.payment_initiation_metadata import PaymentInitiationMetadata
     from plaid.model.products import Products
     globals()['CountryCode'] = CountryCode
     globals()['InstitutionStatus'] = InstitutionStatus
+    globals()['PaymentInitiationMetadata'] = PaymentInitiationMetadata
     globals()['Products'] = Products
 
 
@@ -96,6 +98,7 @@ class Institution(ModelNormal):
             'logo': (str, none_type,),  # noqa: E501
             'routing_numbers': ([str], none_type,),  # noqa: E501
             'status': (InstitutionStatus,),  # noqa: E501
+            'payment_initiation_metadata': (PaymentInitiationMetadata,),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +117,7 @@ class Institution(ModelNormal):
         'logo': 'logo',  # noqa: E501
         'routing_numbers': 'routing_numbers',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'payment_initiation_metadata': 'payment_initiation_metadata',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,6 +178,7 @@ class Institution(ModelNormal):
             logo (str, none_type): Base64 encoded representation of the institution's logo. [optional]  # noqa: E501
             routing_numbers ([str], none_type): A partial list of routing numbers associated with the institution. This list is provided for the purpose of looking up institutions by routing number. It is not comprehensive and should never be used as a complete list of routing numbers for an institution.. [optional]  # noqa: E501
             status (InstitutionStatus): [optional]  # noqa: E501
+            payment_initiation_metadata (PaymentInitiationMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
