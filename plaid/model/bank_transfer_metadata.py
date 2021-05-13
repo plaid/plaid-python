@@ -66,7 +66,7 @@ class BankTransferMetadata(ModelNormal):
         """
         return (str,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():

@@ -169,7 +169,7 @@ class Item(ModelNormal):
             institution_id (str, none_type): The Plaid Institution ID associated with the Item. Field is `null` for Items created via Same Day Micro-deposits.. [optional]  # noqa: E501
             webhook (str, none_type): The URL registered to receive webhooks for the Item.. [optional]  # noqa: E501
             error (Error): [optional]  # noqa: E501
-            consent_expiration_time (str, none_type): The RFC 3339 timestamp after which the consent provided by the end user will expire. Upon consent expiration, the item will enter the `ITEM_LOGIN_REQUIRED` error state. To circumvent the `ITEM_LOGIN_REQUIRED` error and maintain continuous consent, the end user can reauthenticate via Link’s update mode in advance of the consent expiration time.  Note - This is only relevant for European institutions subject to PSD2 regulations mandating a 90-day consent window. For all other institutions, this field will be null. . [optional]  # noqa: E501
+            consent_expiration_time (str, none_type): The RFC 3339 timestamp after which the consent provided by the end user will expire. Upon consent expiration, the item will enter the `ITEM_LOGIN_REQUIRED` error state. To circumvent the `ITEM_LOGIN_REQUIRED` error and maintain continuous consent, the end user can reauthenticate via Link’s update mode in advance of the consent expiration time.  Note - This is only relevant for certain OAuth-based institutions. For all other institutions, this field will be null. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
