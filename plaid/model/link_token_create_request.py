@@ -199,7 +199,7 @@ class LinkTokenCreateRequest(ModelNormal):
             redirect_uri (str): A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. The `redirect_uri` should not contain any query parameters. If `android_package_name` is specified, this field should be left blank. Any redirect URI specified here must also be added under the \"Allowed redirect URIs\" configuration on the [developer dashboard](https://dashboard.plaid.com/team/api). In non-Sandbox (Production and Development) environments, the `redirect_uri` must begin with https.. [optional]  # noqa: E501
             android_package_name (str): The name of your app's Android package. Required if using the `link_token` to initialize Link on Android. When creating a `link_token` for initializing Link on other platforms, this field must be left blank. Any package name specified here must also be added to the Allowed Android package names setting on the [developer dashboard](https://dashboard.plaid.com/team/api). . [optional]  # noqa: E501
             account_filters (LinkTokenAccountFilters): [optional]  # noqa: E501
-            institution_id (str): Used for certain Europe-only configurations, as well as certain legacy use cases in other regions.. [optional]  # noqa: E501
+            institution_id (str): Used for certain legacy use cases. [optional]  # noqa: E501
             payment_initiation (LinkTokenCreateRequestPaymentInitiation): [optional]  # noqa: E501
             deposit_switch (LinkTokenCreateRequestDepositSwitch): [optional]  # noqa: E501
             income_verification (LinkTokenCreateRequestIncomeVerification): [optional]  # noqa: E501

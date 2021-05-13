@@ -1151,7 +1151,7 @@ class PlaidApi(object):
         ):
             """Retrieve an Asset Report  # noqa: E501
 
-            The `/asset_report/get` endpoint retrieves the Asset Report in JSON format. Before calling `/asset_report/get`, you must first create the Asset Report using `/asset_report/create` (or filter an Asset Report using `/asset_report/filter`) and then wait for the [`PRODUCT_READY`](/docs/api/webhooks) webhook to fire, indicating that the Report is ready to be retrieved.  By default, an Asset Report includes transaction descriptions as returned by the bank, as opposed to parsed and categorized by Plaid. You can also receive cleaned and categorized transactions, as well as additional insights like merchant name or location information. We call this an Asset Report with Insights. An Asset Report with Insights provides transaction category, location, and merchant information in addition to the transaction strings provided in a standard Asset Report.  To retrieve an Asset Report with Insights, call the `/asset_report/get` endpoint with `include_insights` set to `true`.  # noqa: E501
+            The `/asset_report/get` endpoint retrieves the Asset Report in JSON format. Before calling `/asset_report/get`, you must first create the Asset Report using `/asset_report/create` (or filter an Asset Report using `/asset_report/filter`) and then wait for the [`PRODUCT_READY`](/docs/api/webhooks) webhook to fire, indicating that the Report is ready to be retrieved.  By default, an Asset Report includes transaction descriptions as returned by the bank, as opposed to parsed and categorized by Plaid. You can also receive cleaned and categorized transactions, as well as additional insights like merchant name or location information. We call this an Asset Report with Insights. An Asset Report with Insights provides transaction category, location, and merchant information in addition to the transaction strings provided in a standard Asset Report.  To retrieve an Asset Report with Insights, call the `/asset_report/get` endpoint with `include_insights` set to `true`. Note that you will need to [contact us](https://dashboard.plaid.com/support) to get access to this feature.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3460,7 +3460,6 @@ class PlaidApi(object):
 
         def __employers_search(
             self,
-            employers_search_request,
             **kwargs
         ):
             """Search employer database  # noqa: E501
@@ -3469,13 +3468,12 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.employers_search(employers_search_request, async_req=True)
+            >>> thread = api.employers_search(async_req=True)
             >>> result = thread.get()
 
-            Args:
-                employers_search_request (EmployersSearchRequest):
 
             Keyword Args:
+                employers_search_request (EmployersSearchRequest): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3520,8 +3518,6 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['employers_search_request'] = \
-                employers_search_request
             return self.call_with_http_info(**kwargs)
 
         self.employers_search = _Endpoint(
@@ -3541,9 +3537,7 @@ class PlaidApi(object):
                 'all': [
                     'employers_search_request',
                 ],
-                'required': [
-                    'employers_search_request',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -3702,131 +3696,8 @@ class PlaidApi(object):
             callable=__identity_get
         )
 
-        def __income_verification_create(
-            self,
-            income_verification_create_request,
-            **kwargs
-        ):
-            """Create an income verification instance  # noqa: E501
-
-            `/income/verification/create` begins the income verification process by returning an `income_verification_id`. You can then provide the `income_verification_id` to `/link/token/create` under the `income_verification` parameter in order to create a Link instance that will prompt the user to upload their income documents. Once the documents have been uploaded and parsed, Plaid will fire an `INCOME` webhook.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.income_verification_create(income_verification_create_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                income_verification_create_request (IncomeVerificationCreateRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                IncomeVerificationCreateResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_create_request'] = \
-                income_verification_create_request
-            return self.call_with_http_info(**kwargs)
-
-        self.income_verification_create = _Endpoint(
-            settings={
-                'response_type': (IncomeVerificationCreateResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/income/verification/create',
-                'operation_id': 'income_verification_create',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'income_verification_create_request',
-                ],
-                'required': [
-                    'income_verification_create_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'income_verification_create_request':
-                        (IncomeVerificationCreateRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'income_verification_create_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__income_verification_create
-        )
-
         def __income_verification_documents_download(
             self,
-            income_verification_documents_download_request,
             **kwargs
         ):
             """Download the original documents used for income verification  # noqa: E501
@@ -3835,13 +3706,12 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.income_verification_documents_download(income_verification_documents_download_request, async_req=True)
+            >>> thread = api.income_verification_documents_download(async_req=True)
             >>> result = thread.get()
 
-            Args:
-                income_verification_documents_download_request (IncomeVerificationDocumentsDownloadRequest):
 
             Keyword Args:
+                income_verification_documents_download_request (IncomeVerificationDocumentsDownloadRequest): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3886,8 +3756,6 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_documents_download_request'] = \
-                income_verification_documents_download_request
             return self.call_with_http_info(**kwargs)
 
         self.income_verification_documents_download = _Endpoint(
@@ -3907,9 +3775,7 @@ class PlaidApi(object):
                 'all': [
                     'income_verification_documents_download_request',
                 ],
-                'required': [
-                    'income_verification_documents_download_request',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -3948,7 +3814,6 @@ class PlaidApi(object):
 
         def __income_verification_paystub_get(
             self,
-            income_verification_paystub_get_request,
             **kwargs
         ):
             """Retrieve information from the paystub used for income verification  # noqa: E501
@@ -3957,13 +3822,12 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.income_verification_paystub_get(income_verification_paystub_get_request, async_req=True)
+            >>> thread = api.income_verification_paystub_get(async_req=True)
             >>> result = thread.get()
 
-            Args:
-                income_verification_paystub_get_request (IncomeVerificationPaystubGetRequest):
 
             Keyword Args:
+                income_verification_paystub_get_request (IncomeVerificationPaystubGetRequest): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4008,8 +3872,6 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_paystub_get_request'] = \
-                income_verification_paystub_get_request
             return self.call_with_http_info(**kwargs)
 
         self.income_verification_paystub_get = _Endpoint(
@@ -4029,9 +3891,7 @@ class PlaidApi(object):
                 'all': [
                     'income_verification_paystub_get_request',
                 ],
-                'required': [
-                    'income_verification_paystub_get_request',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -4070,7 +3930,6 @@ class PlaidApi(object):
 
         def __income_verification_summary_get(
             self,
-            income_verification_summary_get_request,
             **kwargs
         ):
             """Retrieve a summary of information derived from income verification  # noqa: E501
@@ -4079,13 +3938,12 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.income_verification_summary_get(income_verification_summary_get_request, async_req=True)
+            >>> thread = api.income_verification_summary_get(async_req=True)
             >>> result = thread.get()
 
-            Args:
-                income_verification_summary_get_request (IncomeVerificationSummaryGetRequest):
 
             Keyword Args:
+                income_verification_summary_get_request (IncomeVerificationSummaryGetRequest): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4130,8 +3988,6 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_summary_get_request'] = \
-                income_verification_summary_get_request
             return self.call_with_http_info(**kwargs)
 
         self.income_verification_summary_get = _Endpoint(
@@ -4151,9 +4007,7 @@ class PlaidApi(object):
                 'all': [
                     'income_verification_summary_get_request',
                 ],
-                'required': [
-                    'income_verification_summary_get_request',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -4305,7 +4159,8 @@ class PlaidApi(object):
                     'application/json'
                 ],
                 'content_type': [
-                    'application/json'
+                    'application/json',
+                    'application/xml'
                 ]
             },
             api_client=api_client,
@@ -6752,6 +6607,122 @@ class PlaidApi(object):
             callable=__payment_initiation_recipient_list
         )
 
+        def __post_income_verification_create(
+            self,
+            **kwargs
+        ):
+            """Create an income verification instance  # noqa: E501
+
+            `/income/verification/create` begins the income verification process by returning an `income_verification_id`. You can then provide the `income_verification_id` to `/link/token/create` under the `income_verification` parameter in order to create a Link instance that will prompt the user to upload their income documents. Once the documents have been uploaded and parsed, Plaid will fire an `INCOME` webhook.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.post_income_verification_create(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                income_verification_create_request (IncomeVerificationCreateRequest): [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IncomeVerificationCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.post_income_verification_create = _Endpoint(
+            settings={
+                'response_type': (IncomeVerificationCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/income/verification/create',
+                'operation_id': 'post_income_verification_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'income_verification_create_request',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'income_verification_create_request':
+                        (IncomeVerificationCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'income_verification_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__post_income_verification_create
+        )
+
         def __processor_apex_processor_token_create(
             self,
             processor_apex_processor_token_create_request,
@@ -8096,7 +8067,6 @@ class PlaidApi(object):
 
         def __sandbox_processor_token_create(
             self,
-            sandbox_processor_token_create_request,
             **kwargs
         ):
             """Create a test Item and processor token  # noqa: E501
@@ -8105,13 +8075,12 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.sandbox_processor_token_create(sandbox_processor_token_create_request, async_req=True)
+            >>> thread = api.sandbox_processor_token_create(async_req=True)
             >>> result = thread.get()
 
-            Args:
-                sandbox_processor_token_create_request (SandboxProcessorTokenCreateRequest):
 
             Keyword Args:
+                sandbox_processor_token_create_request (SandboxProcessorTokenCreateRequest): [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -8156,8 +8125,6 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['sandbox_processor_token_create_request'] = \
-                sandbox_processor_token_create_request
             return self.call_with_http_info(**kwargs)
 
         self.sandbox_processor_token_create = _Endpoint(
@@ -8177,9 +8144,7 @@ class PlaidApi(object):
                 'all': [
                     'sandbox_processor_token_create_request',
                 ],
-                'required': [
-                    'sandbox_processor_token_create_request',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
