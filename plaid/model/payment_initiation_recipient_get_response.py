@@ -86,9 +86,9 @@ class PaymentInitiationRecipientGetResponse(ModelNormal):
         return {
             'recipient_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'iban': (str, none_type,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'address': (PaymentInitiationAddress,),  # noqa: E501
+            'iban': (str, none_type,),  # noqa: E501
             'bacs': (NullableRecipientBACS,),  # noqa: E501
         }
 
@@ -100,9 +100,9 @@ class PaymentInitiationRecipientGetResponse(ModelNormal):
     attribute_map = {
         'recipient_id': 'recipient_id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'iban': 'iban',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'address': 'address',  # noqa: E501
+        'iban': 'iban',  # noqa: E501
         'bacs': 'bacs',  # noqa: E501
     }
 
@@ -118,13 +118,12 @@ class PaymentInitiationRecipientGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recipient_id, name, iban, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, recipient_id, name, request_id, *args, **kwargs):  # noqa: E501
         """PaymentInitiationRecipientGetResponse - a model defined in OpenAPI
 
         Args:
             recipient_id (str): The ID of the recipient.
             name (str): The name of the recipient.
-            iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -159,6 +158,7 @@ class PaymentInitiationRecipientGetResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             address (PaymentInitiationAddress): [optional]  # noqa: E501
+            iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.. [optional]  # noqa: E501
             bacs (NullableRecipientBACS): [optional]  # noqa: E501
         """
 
@@ -187,7 +187,6 @@ class PaymentInitiationRecipientGetResponse(ModelNormal):
 
         self.recipient_id = recipient_id
         self.name = name
-        self.iban = iban
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -22,6 +22,8 @@ from plaid.model_utils import (  # noqa: F401
 from plaid.model.accounts_balance_get_request import AccountsBalanceGetRequest
 from plaid.model.accounts_get_request import AccountsGetRequest
 from plaid.model.accounts_get_response import AccountsGetResponse
+from plaid.model.application_get_request import ApplicationGetRequest
+from plaid.model.application_get_response import ApplicationGetResponse
 from plaid.model.asset_report_audit_copy_create_request import AssetReportAuditCopyCreateRequest
 from plaid.model.asset_report_audit_copy_create_response import AssetReportAuditCopyCreateResponse
 from plaid.model.asset_report_audit_copy_get_request import AssetReportAuditCopyGetRequest
@@ -408,6 +410,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__accounts_get
+        )
+
+        def __application_get(
+            self,
+            application_get_request,
+            **kwargs
+        ):
+            """Retrieve information about a Plaid application  # noqa: E501
+
+            Allows financial institutions to retrieve information about Plaid clients for the purpose of building control-tower experiences  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.application_get(application_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                application_get_request (ApplicationGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ApplicationGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['application_get_request'] = \
+                application_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.application_get = _Endpoint(
+            settings={
+                'response_type': (ApplicationGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/application/get',
+                'operation_id': 'application_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'application_get_request',
+                ],
+                'required': [
+                    'application_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'application_get_request':
+                        (ApplicationGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'application_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__application_get
         )
 
         def __asset_report_audit_copy_create(
@@ -2853,7 +2977,7 @@ class PlaidApi(object):
         ):
             """Create a deposit switch when not using Plaid Exchange.'  # noqa: E501
 
-            This endpoint provides an alternative to `/deposit_switch/create` for customers who have not yet fully integrated with Plaid Exchange. Like `/deposit_switch/create`, it created a deposit switch entity that will be persisted throughout the lifecycle of the switch.  # noqa: E501
+            This endpoint provides an alternative to `/deposit_switch/create` for customers who have not yet fully integrated with Plaid Exchange. Like `/deposit_switch/create`, it creates a deposit switch entity that will be persisted throughout the lifecycle of the switch.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -5148,7 +5272,7 @@ class PlaidApi(object):
         ):
             """Remove an Item  # noqa: E501
 
-            The `/item/remove`  endpoint allows you to remove an Item. Once removed, the `access_token`  associated with the Item is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count.  # noqa: E501
+            The `/item/remove`  endpoint allows you to remove an Item. Once removed, the `access_token`  associated with the Item is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution's OAuth permission manager.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6124,7 +6248,7 @@ class PlaidApi(object):
         ):
             """Create payment recipient  # noqa: E501
 
-            Create a payment recipient for payment initiation.  The recipient must be in Europe, within a country that is a member of the Single Euro Payment Area (SEPA).  For a standing order (recurring) payment, the recipient must be in the UK.  The endpoint is idempotent: if a developer has already made a request with the same payment details, Plaid will return the same `recipient_id`.  In the Sandbox environment, you can use the `/payment_initiation/recipient/create` endpoint to generate recipients. Programmatic recipient creation in the Development and Production environments can be done after approval by Plaid's Compliance team. [Contact Sales](https://plaid.com/contact/)for approval.   # noqa: E501
+            Create a payment recipient for payment initiation.  The recipient must be in Europe, within a country that is a member of the Single Euro Payment Area (SEPA).  For a standing order (recurring) payment, the recipient must be in the UK.  The endpoint is idempotent: if a developer has already made a request with the same payment details, Plaid will return the same `recipient_id`.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 

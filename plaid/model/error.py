@@ -52,6 +52,7 @@ class Error(ModelNormal):
     allowed_values = {
         ('error_type',): {
             'INVALID_REQUEST': "INVALID_REQUEST",
+            'INVALID_RESULT': "INVALID_RESULT",
             'INVALID_INPUT': "INVALID_INPUT",
             'INSTITUTION_ERROR': "INSTITUTION_ERROR",
             'RATE_LIMIT_EXCEEDED': "RATE_LIMIT_EXCEEDED",

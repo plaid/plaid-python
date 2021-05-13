@@ -50,6 +50,10 @@ class PaymentAmount(ModelNormal):
     """
 
     allowed_values = {
+        ('currency',): {
+            'GBP': "GBP",
+            'EUR': "EUR",
+        },
     }
 
     validations = {
@@ -106,8 +110,8 @@ class PaymentAmount(ModelNormal):
         """PaymentAmount - a model defined in OpenAPI
 
         Args:
-            currency (str): The ISO-4217 currency code of the payment amount
-            value (float): The payment amount
+            currency (str): The ISO-4217 currency code of the payment. For standing orders, `\"GBP\"` must be used.
+            value (float): The amount of the payment. Must contain at most two digits of precision e.g. `1.23`. Minimum accepted value is `1`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

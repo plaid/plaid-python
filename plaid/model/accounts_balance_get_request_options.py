@@ -71,6 +71,7 @@ class AccountsBalanceGetRequestOptions(ModelNormal):
         """
         return {
             'account_ids': ([str],),  # noqa: E501
+            'min_last_updated_datetime': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -80,6 +81,7 @@ class AccountsBalanceGetRequestOptions(ModelNormal):
 
     attribute_map = {
         'account_ids': 'account_ids',  # noqa: E501
+        'min_last_updated_datetime': 'min_last_updated_datetime',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -129,6 +131,7 @@ class AccountsBalanceGetRequestOptions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             account_ids ([str]): A list of `account_ids` to retrieve for the Item. The default value is `null`.  Note: An error will be returned if a provided `account_id` is not associated with the Item.. [optional]  # noqa: E501
+            min_last_updated_datetime (datetime): Timestamp in ISO-8601 format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the oldest acceptable balance when making a request to `/accounts/balance/get`.  If the balance that is pulled for `ins_128026` (Capital One) is older than the given timestamp, an `INVALID_REQUEST` error with the code of `LAST_UPDATED_DATETIME_OUT_OF_RANGE` will be returned with the most recent timestamp for the requested account contained in the response.  This field is only used when the institution is `ins_128026` (Capital One), in which case a value must be provided or an `INVALID_REQUEST` error with the code of `INVALID_FIELD` will be returned. For all other institutions, this field is ignored.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
