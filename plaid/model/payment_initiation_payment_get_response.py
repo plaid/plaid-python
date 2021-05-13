@@ -25,9 +25,13 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.external_payment_refund_details import ExternalPaymentRefundDetails
     from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
+    from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
     from plaid.model.payment_amount import PaymentAmount
+    globals()['ExternalPaymentRefundDetails'] = ExternalPaymentRefundDetails
     globals()['ExternalPaymentScheduleGet'] = ExternalPaymentScheduleGet
+    globals()['NullableRecipientBACS'] = NullableRecipientBACS
     globals()['PaymentAmount'] = PaymentAmount
 
 
@@ -99,10 +103,13 @@ class PaymentInitiationPaymentGetResponse(ModelNormal):
             'status': (str,),  # noqa: E501
             'recipient_id': (str,),  # noqa: E501
             'reference': (str,),  # noqa: E501
-            'last_status_update': (str,),  # noqa: E501
+            'last_status_update': (datetime,),  # noqa: E501
+            'bacs': (NullableRecipientBACS,),  # noqa: E501
+            'iban': (str, none_type,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
+            'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -117,9 +124,12 @@ class PaymentInitiationPaymentGetResponse(ModelNormal):
         'recipient_id': 'recipient_id',  # noqa: E501
         'reference': 'reference',  # noqa: E501
         'last_status_update': 'last_status_update',  # noqa: E501
+        'bacs': 'bacs',  # noqa: E501
+        'iban': 'iban',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
+        'refund_details': 'refund_details',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,7 +144,7 @@ class PaymentInitiationPaymentGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_id, amount, status, recipient_id, reference, last_status_update, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_id, amount, status, recipient_id, reference, last_status_update, bacs, iban, *args, **kwargs):  # noqa: E501
         """PaymentInitiationPaymentGetResponse - a model defined in OpenAPI
 
         Args:
@@ -143,7 +153,9 @@ class PaymentInitiationPaymentGetResponse(ModelNormal):
             status (str): The status of the payment.  `PAYMENT_STATUS_INPUT_NEEDED`: This is the initial state of all payments. It indicates that the payment is waiting on user input to continue processing. A payment may re-enter this state later on if further input is needed.  `PAYMENT_STATUS_PROCESSING`: The payment is currently being processed. The payment will automatically exit this state when processing is complete.  `PAYMENT_STATUS_INITIATED`: The payment has been successfully initiated and is considered complete.  `PAYMENT_STATUS_COMPLETED`: Indicates that the standing order has been successfully established. This state is only used for standing orders.  `PAYMENT_STATUS_INSUFFICIENT_FUNDS`: The payment has failed due to insufficient funds.  `PAYMENT_STATUS_FAILED`: The payment has failed to be initiated. This error is retryable once the root cause is resolved.  `PAYMENT_STATUS_BLOCKED`: The payment has been blocked. This is a retryable error.  `PAYMENT_STATUS_UNKNOWN`: The payment status is unknown.
             recipient_id (str): The ID of the recipient
             reference (str): A reference for the payment.
-            last_status_update (str): The date and time of the last time the `status` was updated, in IS0 8601 format
+            last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
+            bacs (NullableRecipientBACS):
+            iban (str, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,6 +191,7 @@ class PaymentInitiationPaymentGetResponse(ModelNormal):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.. [optional]  # noqa: E501
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
+            refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -210,6 +223,8 @@ class PaymentInitiationPaymentGetResponse(ModelNormal):
         self.recipient_id = recipient_id
         self.reference = reference
         self.last_status_update = last_status_update
+        self.bacs = bacs
+        self.iban = iban
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

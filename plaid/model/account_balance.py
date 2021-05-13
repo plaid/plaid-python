@@ -81,6 +81,7 @@ class AccountBalance(ModelNormal):
             'limit': (float, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'last_updated_datetime': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +95,7 @@ class AccountBalance(ModelNormal):
         'limit': 'limit',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'last_updated_datetime': 'last_updated_datetime',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,6 +151,7 @@ class AccountBalance(ModelNormal):
             limit (float, none_type): For `credit`-type accounts, this represents the credit limit.  For `depository`-type accounts, this represents the pre-arranged overdraft limit, which is common for current (checking) accounts in Europe.  In North America, this field is typically only available for `credit`-type accounts.. [optional]  # noqa: E501
             iso_currency_code (str, none_type): The ISO-4217 currency code of the balance. Always null if `unofficial_currency_code` is non-null.. [optional]  # noqa: E501
             unofficial_currency_code (str, none_type): The unofficial currency code associated with the balance. Always null if `iso_currency_code` is non-null. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `unofficial_currency_code`s.. [optional]  # noqa: E501
+            last_updated_datetime (str, none_type): Timestamp in ISO-8601 format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the last time that the balance for the given account has been updated.  This is currently only provided when the `min_last_updated_datetime` is passed when calling `/accounts/balance/get` for `ins_128026` (Capital One).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

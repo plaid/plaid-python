@@ -94,7 +94,6 @@ class LiabilityOverride(ModelNormal):
             'balance_transfer_apr': (float,),  # noqa: E501
             'special_apr': (float,),  # noqa: E501
             'last_payment_amount': (float,),  # noqa: E501
-            'last_statement_balance': (float,),  # noqa: E501
             'minimum_payment_amount': (float,),  # noqa: E501
             'is_overdue': (bool,),  # noqa: E501
             'origination_date': (str,),  # noqa: E501
@@ -127,7 +126,6 @@ class LiabilityOverride(ModelNormal):
         'balance_transfer_apr': 'balance_transfer_apr',  # noqa: E501
         'special_apr': 'special_apr',  # noqa: E501
         'last_payment_amount': 'last_payment_amount',  # noqa: E501
-        'last_statement_balance': 'last_statement_balance',  # noqa: E501
         'minimum_payment_amount': 'minimum_payment_amount',  # noqa: E501
         'is_overdue': 'is_overdue',  # noqa: E501
         'origination_date': 'origination_date',  # noqa: E501
@@ -160,7 +158,7 @@ class LiabilityOverride(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, type, purchase_apr, cash_apr, balance_transfer_apr, special_apr, last_payment_amount, last_statement_balance, minimum_payment_amount, is_overdue, origination_date, principal, nominal_apr, interest_capitalization_grace_period_months, repayment_model, expected_payoff_date, guarantor, is_federal, loan_name, loan_status, payment_reference_number, pslf_status, repayment_plan_description, repayment_plan_type, sequence_number, servicer_address, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, purchase_apr, cash_apr, balance_transfer_apr, special_apr, last_payment_amount, minimum_payment_amount, is_overdue, origination_date, principal, nominal_apr, interest_capitalization_grace_period_months, repayment_model, expected_payoff_date, guarantor, is_federal, loan_name, loan_status, payment_reference_number, pslf_status, repayment_plan_description, repayment_plan_type, sequence_number, servicer_address, *args, **kwargs):  # noqa: E501
         """LiabilityOverride - a model defined in OpenAPI
 
         Args:
@@ -170,8 +168,7 @@ class LiabilityOverride(ModelNormal):
             balance_transfer_apr (float): The balance transfer APR percentage value. Can only be set if `type` is `credit`. Can only be set if `type` is `credit`.
             special_apr (float): The special APR percentage value. Can only be set if `type` is `credit`.
             last_payment_amount (float): Override the `last_payment_amount` field. Can only be set if `type` is `credit`.
-            last_statement_balance (float): Override the `last_statement_balance` field. Can only be set if `type` is `credit`.
-            minimum_payment_amount (float): Override the `minimum_payment_amount` field. Can only be set if `type` is `credit`.
+            minimum_payment_amount (float): Override the `minimum_payment_amount` field. Can only be set if `type` is `credit` or `student`.
             is_overdue (bool): Override the `is_overdue` field
             origination_date (str): The date on which the loan was initially lent, in ISO 8601 (YYYY-MM-DD) format. Can only be set if `type` is `student`.
             principal (float): The original loan principal. Can only be set if `type` is `student`.
@@ -252,7 +249,6 @@ class LiabilityOverride(ModelNormal):
         self.balance_transfer_apr = balance_transfer_apr
         self.special_apr = special_apr
         self.last_payment_amount = last_payment_amount
-        self.last_statement_balance = last_statement_balance
         self.minimum_payment_amount = minimum_payment_amount
         self.is_overdue = is_overdue
         self.origination_date = origination_date
