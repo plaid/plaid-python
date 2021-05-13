@@ -1,3 +1,6 @@
+## 7.4.0
+- Add support for `options` to `/payment_initiation/payment/create`
+
 ## 7.3.0
 - Add support for `last_updated_datetime` to `/accounts/balance/get`
 
