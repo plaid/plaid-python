@@ -83,7 +83,7 @@ class PaymentInitiationPaymentListResponse(ModelNormal):
         lazy_import()
         return {
             'payments': ([PaymentInitiationPaymentGetResponse],),  # noqa: E501
-            'next_cursor': (str,),  # noqa: E501
+            'next_cursor': (datetime, none_type,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -115,7 +115,7 @@ class PaymentInitiationPaymentListResponse(ModelNormal):
 
         Args:
             payments ([PaymentInitiationPaymentGetResponse]): An array of payments that have been created, associated with the given `client_id`.
-            next_cursor (str): The value that, when used as the optional `cursor` parameter to `/payment_initiation/payment/list`, will return the next unreturned payment as its first payment.
+            next_cursor (datetime, none_type): The value that, when used as the optional `cursor` parameter to `/payment_initiation/payment/list`, will return the next unreturned payment as its first payment.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
