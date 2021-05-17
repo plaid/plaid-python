@@ -1,5 +1,5 @@
 ## 8.0.0b12
-Updating to OAS 2020-09-14_1.16.1. See full changelog [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
+Updating to OAS 2020-09-14_1.16.3. See full changelog [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
 ## 8.0.0b10
 Type fixes, see full changelog [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).

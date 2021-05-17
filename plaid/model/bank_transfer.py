@@ -108,11 +108,11 @@ class BankTransfer(ModelNormal):
             'status': (BankTransferStatus,),  # noqa: E501
             'network': (BankTransferNetwork,),  # noqa: E501
             'cancellable': (bool,),  # noqa: E501
+            'metadata': (BankTransferMetadata,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'direction': (BankTransferDirection,),  # noqa: E501
             'failure_reason': (BankTransferFailure,),  # noqa: E501
             'custom_tag': (str, none_type,),  # noqa: E501
-            'metadata': (BankTransferMetadata,),  # noqa: E501
         }
 
     @cached_property
@@ -133,11 +133,11 @@ class BankTransfer(ModelNormal):
         'status': 'status',  # noqa: E501
         'network': 'network',  # noqa: E501
         'cancellable': 'cancellable',  # noqa: E501
+        'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'direction': 'direction',  # noqa: E501
         'failure_reason': 'failure_reason',  # noqa: E501
         'custom_tag': 'custom_tag',  # noqa: E501
-        'metadata': 'metadata',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,7 +152,7 @@ class BankTransfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, ach_class, account_id, type, user, amount, iso_currency_code, description, created, status, network, cancellable, origination_account_id, direction, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, ach_class, account_id, type, user, amount, iso_currency_code, description, created, status, network, cancellable, metadata, origination_account_id, direction, *args, **kwargs):  # noqa: E501
         """BankTransfer - a model defined in OpenAPI
 
         Args:
@@ -168,6 +168,7 @@ class BankTransfer(ModelNormal):
             status (BankTransferStatus):
             network (BankTransferNetwork):
             cancellable (bool): When `true`, you can still cancel this bank transfer.
+            metadata (BankTransferMetadata):
             origination_account_id (str): Plaid’s unique identifier for the origination account that was used for this transfer.
             direction (BankTransferDirection):
 
@@ -204,7 +205,6 @@ class BankTransfer(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             failure_reason (BankTransferFailure): [optional]  # noqa: E501
             custom_tag (str, none_type): A string containing the custom tag provided by the client in the create request. Will be null if not provided.. [optional]  # noqa: E501
-            metadata (BankTransferMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,6 +242,7 @@ class BankTransfer(ModelNormal):
         self.status = status
         self.network = network
         self.cancellable = cancellable
+        self.metadata = metadata
         self.origination_account_id = origination_account_id
         self.direction = direction
         for var_name, var_value in kwargs.items():

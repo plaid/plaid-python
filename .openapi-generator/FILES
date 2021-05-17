@@ -235,6 +235,7 @@ plaid/model/payment_amount.py
 plaid/model/payment_initiation_address.py
 plaid/model/payment_initiation_metadata.py
 plaid/model/payment_initiation_optional_restriction_bacs.py
+plaid/model/payment_initiation_payment.py
 plaid/model/payment_initiation_payment_create_request.py
 plaid/model/payment_initiation_payment_create_response.py
 plaid/model/payment_initiation_payment_get_request.py
@@ -243,10 +244,12 @@ plaid/model/payment_initiation_payment_list_request.py
 plaid/model/payment_initiation_payment_list_response.py
 plaid/model/payment_initiation_payment_token_create_request.py
 plaid/model/payment_initiation_payment_token_create_response.py
+plaid/model/payment_initiation_recipient.py
 plaid/model/payment_initiation_recipient_create_request.py
 plaid/model/payment_initiation_recipient_create_response.py
 plaid/model/payment_initiation_recipient_get_request.py
 plaid/model/payment_initiation_recipient_get_response.py
+plaid/model/payment_initiation_recipient_get_response_all_of.py
 plaid/model/payment_initiation_recipient_list_request.py
 plaid/model/payment_initiation_recipient_list_response.py
 plaid/model/payment_initiation_standing_order_metadata.py

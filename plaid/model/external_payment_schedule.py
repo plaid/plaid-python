@@ -85,7 +85,7 @@ class ExternalPaymentSchedule(ModelNormal):
             'interval': (PaymentScheduleInterval,),  # noqa: E501
             'interval_execution_day': (int,),  # noqa: E501
             'start_date': (date,),  # noqa: E501
-            'end_date': (date,),  # noqa: E501
+            'end_date': (date, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +151,7 @@ class ExternalPaymentSchedule(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            end_date (date): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will end on the last `interval_execution_day` on or before the `end_date`.  If the only `interval_execution_day` between the start date and the end date (inclusive) is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make a payment on that day, but it is not guaranteed to do so.. [optional]  # noqa: E501
+            end_date (date, none_type): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will end on the last `interval_execution_day` on or before the `end_date`.  If the only `interval_execution_day` between the start date and the end date (inclusive) is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make a payment on that day, but it is not guaranteed to do so.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.payment_initiation_recipient_get_response import PaymentInitiationRecipientGetResponse
-    globals()['PaymentInitiationRecipientGetResponse'] = PaymentInitiationRecipientGetResponse
+    from plaid.model.payment_initiation_recipient import PaymentInitiationRecipient
+    globals()['PaymentInitiationRecipient'] = PaymentInitiationRecipient
 
 
 class PaymentInitiationRecipientListResponse(ModelNormal):
@@ -82,7 +82,7 @@ class PaymentInitiationRecipientListResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'recipients': ([PaymentInitiationRecipientGetResponse],),  # noqa: E501
+            'recipients': ([PaymentInitiationRecipient],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -112,7 +112,7 @@ class PaymentInitiationRecipientListResponse(ModelNormal):
         """PaymentInitiationRecipientListResponse - a model defined in OpenAPI
 
         Args:
-            recipients ([PaymentInitiationRecipientGetResponse]): An array of payment recipients created for Payment Initiation
+            recipients ([PaymentInitiationRecipient]): An array of payment recipients created for Payment Initiation
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.payment_initiation_payment_get_response import PaymentInitiationPaymentGetResponse
-    globals()['PaymentInitiationPaymentGetResponse'] = PaymentInitiationPaymentGetResponse
+    from plaid.model.payment_initiation_payment import PaymentInitiationPayment
+    globals()['PaymentInitiationPayment'] = PaymentInitiationPayment
 
 
 class PaymentInitiationPaymentListResponse(ModelNormal):
@@ -82,7 +82,7 @@ class PaymentInitiationPaymentListResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'payments': ([PaymentInitiationPaymentGetResponse],),  # noqa: E501
+            'payments': ([PaymentInitiationPayment],),  # noqa: E501
             'next_cursor': (datetime, none_type,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
@@ -114,7 +114,7 @@ class PaymentInitiationPaymentListResponse(ModelNormal):
         """PaymentInitiationPaymentListResponse - a model defined in OpenAPI
 
         Args:
-            payments ([PaymentInitiationPaymentGetResponse]): An array of payments that have been created, associated with the given `client_id`.
+            payments ([PaymentInitiationPayment]): An array of payments that have been created, associated with the given `client_id`.
             next_cursor (datetime, none_type): The value that, when used as the optional `cursor` parameter to `/payment_initiation/payment/list`, will return the next unreturned payment as its first payment.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
