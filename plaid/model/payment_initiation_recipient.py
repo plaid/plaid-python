@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
     from plaid.model.payment_initiation_address import PaymentInitiationAddress
+    globals()['NullableRecipientBACS'] = NullableRecipientBACS
     globals()['PaymentInitiationAddress'] = PaymentInitiationAddress
 
 
@@ -86,7 +88,7 @@ class PaymentInitiationRecipient(ModelNormal):
             'name': (str,),  # noqa: E501
             'address': (PaymentInitiationAddress,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
-            'bacs': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'bacs': (NullableRecipientBACS,),  # noqa: E501
         }
 
     @cached_property
@@ -114,13 +116,12 @@ class PaymentInitiationRecipient(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recipient_id, name, address, *args, **kwargs):  # noqa: E501
+    def __init__(self, recipient_id, name, *args, **kwargs):  # noqa: E501
         """PaymentInitiationRecipient - a model defined in OpenAPI
 
         Args:
-            recipient_id (str): The ID of the recipient. Like all Plaid identifiers, the `recipient_id` is case sensitive.
-            name (str): The name of the recipient
-            address (PaymentInitiationAddress):
+            recipient_id (str): The ID of the recipient.
+            name (str): The name of the recipient.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,8 +154,9 @@ class PaymentInitiationRecipient(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            address (PaymentInitiationAddress): [optional]  # noqa: E501
             iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.. [optional]  # noqa: E501
-            bacs ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            bacs (NullableRecipientBACS): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,7 +184,6 @@ class PaymentInitiationRecipient(ModelNormal):
 
         self.recipient_id = recipient_id
         self.name = name
-        self.address = address
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

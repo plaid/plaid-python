@@ -116,8 +116,18 @@ class JWKPublicKey(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, alg, crv, kid, kty, use, x, y, created_at, *args, **kwargs):  # noqa: E501
         """JWKPublicKey - a model defined in OpenAPI
+
+        Args:
+            alg (str): The alg member identifies the cryptographic algorithm family used with the key.
+            crv (str): The crv member identifies the cryptographic curve used with the key.
+            kid (str): The kid (Key ID) member can be used to match a specific key. This can be used, for instance, to choose among a set of keys within the JWK during key rollover.
+            kty (str): The kty (key type) parameter identifies the cryptographic algorithm family used with the key, such as RSA or EC.
+            use (str): The use (public key use) parameter identifies the intended use of the public key.
+            x (str): The x member contains the x coordinate for the elliptic curve point.
+            y (str): The y member contains the y coordinate for the elliptic curve point.
+            created_at (int):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,14 +160,6 @@ class JWKPublicKey(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            alg (str): The alg member identifies the cryptographic algorithm family used with the key.. [optional]  # noqa: E501
-            crv (str): The crv member identifies the cryptographic curve used with the key.. [optional]  # noqa: E501
-            kid (str): The kid (Key ID) member can be used to match a specific key. This can be used, for instance, to choose among a set of keys within the JWK during key rollover.. [optional]  # noqa: E501
-            kty (str): The kty (key type) parameter identifies the cryptographic algorithm family used with the key, such as RSA or EC.. [optional]  # noqa: E501
-            use (str): The use (public key use) parameter identifies the intended use of the public key.. [optional]  # noqa: E501
-            x (str): The x member contains the x coordinate for the elliptic curve point.. [optional]  # noqa: E501
-            y (str): The y member contains the y coordinate for the elliptic curve point.. [optional]  # noqa: E501
-            created_at (int): [optional]  # noqa: E501
             expired_at (int, none_type): [optional]  # noqa: E501
         """
 
@@ -184,6 +186,14 @@ class JWKPublicKey(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.alg = alg
+        self.crv = crv
+        self.kid = kid
+        self.kty = kty
+        self.use = use
+        self.x = x
+        self.y = y
+        self.created_at = created_at
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

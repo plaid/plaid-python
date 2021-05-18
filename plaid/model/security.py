@@ -77,7 +77,6 @@ class Security(ModelNormal):
         """
         return {
             'security_id': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'isin': (str, none_type,),  # noqa: E501
             'cusip': (str, none_type,),  # noqa: E501
             'sedol': (str, none_type,),  # noqa: E501
@@ -86,9 +85,10 @@ class Security(ModelNormal):
             'proxy_security_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'ticker_symbol': (str, none_type,),  # noqa: E501
-            'is_cash_equivalent': (bool,),  # noqa: E501
+            'is_cash_equivalent': (bool, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
             'close_price': (float, none_type,),  # noqa: E501
-            'close_price_as_of': (str, none_type,),  # noqa: E501
+            'close_price_as_of': (date, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
         }
@@ -100,7 +100,6 @@ class Security(ModelNormal):
 
     attribute_map = {
         'security_id': 'security_id',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'isin': 'isin',  # noqa: E501
         'cusip': 'cusip',  # noqa: E501
         'sedol': 'sedol',  # noqa: E501
@@ -110,6 +109,7 @@ class Security(ModelNormal):
         'name': 'name',  # noqa: E501
         'ticker_symbol': 'ticker_symbol',  # noqa: E501
         'is_cash_equivalent': 'is_cash_equivalent',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'close_price': 'close_price',  # noqa: E501
         'close_price_as_of': 'close_price_as_of',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
@@ -128,12 +128,25 @@ class Security(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, security_id, type, *args, **kwargs):  # noqa: E501
+    def __init__(self, security_id, isin, cusip, sedol, institution_security_id, institution_id, proxy_security_id, name, ticker_symbol, is_cash_equivalent, type, close_price, close_price_as_of, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
         """Security - a model defined in OpenAPI
 
         Args:
             security_id (str): A unique, Plaid-specific identifier for the security, used to associate securities with holdings. Like all Plaid identifiers, the `security_id` is case sensitive.
-            type (str): The security type of the holding. Valid security types are:  `cash`: Cash, currency, and money market funds  `derivative`: Options, warrants, and other derivative instruments  `equity`: Domestic and foreign equities  `etf`: Multi-asset exchange-traded investment funds  `fixed income`: Bonds and certificates of deposit (CDs)  `loan`: Loans and loan receivables.  `mutual fund`: Open- and closed-end vehicles pooling funds of multiple investors.  `other`: Unknown or other investment types
+            isin (str, none_type): 12-character ISIN, a globally unique securities identifier.
+            cusip (str, none_type): 9-character CUSIP, an identifier assigned to North American securities.
+            sedol (str, none_type): 7-character SEDOL, an identifier assigned to securities in the UK.
+            institution_security_id (str, none_type): An identifier given to the security by the institution
+            institution_id (str, none_type): If `institution_security_id` is present, this field indicates the Plaid `institution_id` of the institution to whom the identifier belongs.
+            proxy_security_id (str, none_type): In certain cases, Plaid will provide the ID of another security whose performance resembles this security, typically when the original security has low volume, or when a private security can be modeled with a publicly traded security.
+            name (str, none_type): A descriptive name for the security, suitable for display.
+            ticker_symbol (str, none_type): The security’s trading symbol for publicly traded securities, and otherwise a short identifier if available.
+            is_cash_equivalent (bool, none_type): Indicates that a security is a highly liquid asset and can be treated like cash.
+            type (str, none_type): The security type of the holding. Valid security types are:  `cash`: Cash, currency, and money market funds  `derivative`: Options, warrants, and other derivative instruments  `equity`: Domestic and foreign equities  `etf`: Multi-asset exchange-traded investment funds  `fixed income`: Bonds and certificates of deposit (CDs)  `loan`: Loans and loan receivables.  `mutual fund`: Open- and closed-end vehicles pooling funds of multiple investors.  `other`: Unknown or other investment types
+            close_price (float, none_type): Price of the security at the close of the previous trading session. `null` for non-public securities.
+            close_price_as_of (date, none_type): Date for which `close_price` is accurate. Always `null` if `close_price` is `null`.
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the price given. Always `null` if `unofficial_currency_code` is non-`null`.
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,19 +179,6 @@ class Security(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            isin (str, none_type): 12-character ISIN, a globally unique securities identifier.. [optional]  # noqa: E501
-            cusip (str, none_type): 9-character CUSIP, an identifier assigned to North American securities.. [optional]  # noqa: E501
-            sedol (str, none_type): 7-character SEDOL, an identifier assigned to securities in the UK.. [optional]  # noqa: E501
-            institution_security_id (str, none_type): An identifier given to the security by the institution. [optional]  # noqa: E501
-            institution_id (str, none_type): If `institution_security_id` is present, this field indicates the Plaid `institution_id` of the institution to whom the identifier belongs.. [optional]  # noqa: E501
-            proxy_security_id (str, none_type): In certain cases, Plaid will provide the ID of another security whose performance resembles this security, typically when the original security has low volume, or when a private security can be modeled with a publicly traded security.. [optional]  # noqa: E501
-            name (str, none_type): A descriptive name for the security, suitable for display.. [optional]  # noqa: E501
-            ticker_symbol (str, none_type): The security’s trading symbol for publicly traded securities, and otherwise a short identifier if available.. [optional]  # noqa: E501
-            is_cash_equivalent (bool): Indicates that a security is a highly liquid asset and can be treated like cash.. [optional]  # noqa: E501
-            close_price (float, none_type): Price of the security at the close of the previous trading session. `null` for non-public securities.. [optional]  # noqa: E501
-            close_price_as_of (str, none_type): Date for which `close_price` is accurate. Always `null` if `close_price` is `null`.. [optional]  # noqa: E501
-            iso_currency_code (str, none_type): The ISO-4217 currency code of the price given. Always `null` if `unofficial_currency_code` is non-`null`.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -205,7 +205,20 @@ class Security(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.security_id = security_id
+        self.isin = isin
+        self.cusip = cusip
+        self.sedol = sedol
+        self.institution_security_id = institution_security_id
+        self.institution_id = institution_id
+        self.proxy_security_id = proxy_security_id
+        self.name = name
+        self.ticker_symbol = ticker_symbol
+        self.is_cash_equivalent = is_cash_equivalent
         self.type = type
+        self.close_price = close_price
+        self.close_price_as_of = close_price_as_of
+        self.iso_currency_code = iso_currency_code
+        self.unofficial_currency_code = unofficial_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

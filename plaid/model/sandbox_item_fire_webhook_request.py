@@ -74,9 +74,9 @@ class SandboxItemFireWebhookRequest(ModelNormal):
         """
         return {
             'access_token': (str,),  # noqa: E501
+            'webhook_code': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'webhook_code': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class SandboxItemFireWebhookRequest(ModelNormal):
 
     attribute_map = {
         'access_token': 'access_token',  # noqa: E501
+        'webhook_code': 'webhook_code',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'webhook_code': 'webhook_code',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,6 +110,7 @@ class SandboxItemFireWebhookRequest(ModelNormal):
             access_token (str): The access token associated with the Item data is being requested for.
 
         Keyword Args:
+            webhook_code (str): The following values for `webhook_code` are supported:  * `DEFAULT_UPDATE`. defaults to "DEFAULT_UPDATE", must be one of ["DEFAULT_UPDATE", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -142,9 +143,9 @@ class SandboxItemFireWebhookRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            webhook_code (str): The following values for `webhook_code` are supported:  * `DEFAULT_UPDATE`. [optional] if omitted the server will use the default value of "DEFAULT_UPDATE"  # noqa: E501
         """
 
+        webhook_code = kwargs.get('webhook_code', "DEFAULT_UPDATE")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -169,6 +170,7 @@ class SandboxItemFireWebhookRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.access_token = access_token
+        self.webhook_code = webhook_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

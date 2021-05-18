@@ -25,10 +25,12 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.amount import Amount
+    from plaid.model.external_payment_options import ExternalPaymentOptions
     from plaid.model.external_payment_schedule import ExternalPaymentSchedule
-    globals()['Amount'] = Amount
+    from plaid.model.payment_amount import PaymentAmount
+    globals()['ExternalPaymentOptions'] = ExternalPaymentOptions
     globals()['ExternalPaymentSchedule'] = ExternalPaymentSchedule
+    globals()['PaymentAmount'] = PaymentAmount
 
 
 class PaymentInitiationPaymentCreateRequest(ModelNormal):
@@ -79,10 +81,11 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
         return {
             'recipient_id': (str,),  # noqa: E501
             'reference': (str,),  # noqa: E501
-            'amount': (Amount,),  # noqa: E501
+            'amount': (PaymentAmount,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'schedule': (ExternalPaymentSchedule,),  # noqa: E501
+            'options': (ExternalPaymentOptions,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +100,7 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
+        'options': 'options',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -117,7 +121,7 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
         Args:
             recipient_id (str): The ID of the recipient the payment is for.
             reference (str): A reference for the payment. This must be an alphanumeric string with at most 18 characters and must not contain any special characters (since not all institutions support them).
-            amount (Amount):
+            amount (PaymentAmount):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,6 +157,7 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             schedule (ExternalPaymentSchedule): [optional]  # noqa: E501
+            options (ExternalPaymentOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
