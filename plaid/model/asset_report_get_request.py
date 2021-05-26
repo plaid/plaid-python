@@ -139,7 +139,7 @@ class AssetReportGetRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            include_insights (bool): `true` if you would like to retrieve the Asset Report with Insights, `false` otherwise. This field defaults to `false` if omitted. [Contact Plaid Support](https://dashboard.plaid.com/support) to get access to this feature.. [optional]  # noqa: E501
+            include_insights (bool): `true` if you would like to retrieve the Asset Report with Insights, `false` otherwise. This field defaults to `false` if omitted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

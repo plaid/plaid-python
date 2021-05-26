@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.external_payment_schedule import ExternalPaymentSchedule
+    from plaid.model.payment_schedule_interval import PaymentScheduleInterval
     globals()['ExternalPaymentSchedule'] = ExternalPaymentSchedule
+    globals()['PaymentScheduleInterval'] = PaymentScheduleInterval
 
 
 class ExternalPaymentScheduleGet(ModelComposed):
@@ -82,11 +84,11 @@ class ExternalPaymentScheduleGet(ModelComposed):
         """
         lazy_import()
         return {
-            'interval': (str,),  # noqa: E501
-            'interval_execution_day': (float,),  # noqa: E501
+            'interval': (PaymentScheduleInterval,),  # noqa: E501
+            'interval_execution_day': (int,),  # noqa: E501
             'start_date': (date,),  # noqa: E501
             'adjusted_start_date': (date, none_type,),  # noqa: E501
-            'end_date': (date,),  # noqa: E501
+            'end_date': (date, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -119,8 +121,8 @@ class ExternalPaymentScheduleGet(ModelComposed):
         """ExternalPaymentScheduleGet - a model defined in OpenAPI
 
         Args:
-            interval (str): The frequency interval of the payment. Valid values are `\"WEEKLY\"` or `\"MONTHLY\"`.
-            interval_execution_day (float): The day of the interval on which to schedule the payment.  If the payment interval is weekly, `interval_execution_day` should be an integer from 1 (Monday) to 7 (Sunday).  If the payment interval is monthly, `interval_execution_day` should be an integer indicating which day of the month to make the payment on. Integers from 1 to 28 can be used to make a payment on that day of the month. Negative integers from -1 to -5 can be used to make a payment relative to the end of the month. To make a payment on the last day of the month, use -1; to make the payment on the second-to-last day, use -2, and so on.
+            interval (PaymentScheduleInterval):
+            interval_execution_day (int): The day of the interval on which to schedule the payment.  If the payment interval is weekly, `interval_execution_day` should be an integer from 1 (Monday) to 7 (Sunday).  If the payment interval is monthly, `interval_execution_day` should be an integer indicating which day of the month to make the payment on. Integers from 1 to 28 can be used to make a payment on that day of the month. Negative integers from -1 to -5 can be used to make a payment relative to the end of the month. To make a payment on the last day of the month, use -1; to make the payment on the second-to-last day, use -2, and so on.
             start_date (date): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will begin on the first `interval_execution_day` on or after the `start_date`.  If the first `interval_execution_day` on or after the start date is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make the first payment on that day, but it is not guaranteed to do so.
 
         Keyword Args:
@@ -155,7 +157,7 @@ class ExternalPaymentScheduleGet(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in ISO 8601 format (YYYY-MM-DD). If the start date did not require adjustment, this field will be `null`.. [optional]  # noqa: E501
-            end_date (date): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will end on the last `interval_execution_day` on or before the `end_date`.  If the only `interval_execution_day` between the start date and the end date (inclusive) is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make a payment on that day, but it is not guaranteed to do so.. [optional]  # noqa: E501
+            end_date (date, none_type): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will end on the last `interval_execution_day` on or before the `end_date`.  If the only `interval_execution_day` between the start date and the end date (inclusive) is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make a payment on that day, but it is not guaranteed to do so.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

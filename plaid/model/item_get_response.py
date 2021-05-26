@@ -26,10 +26,8 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.item import Item
-    from plaid.model.nullable_access_token import NullableAccessToken
     from plaid.model.nullable_item_status import NullableItemStatus
     globals()['Item'] = Item
-    globals()['NullableAccessToken'] = NullableAccessToken
     globals()['NullableItemStatus'] = NullableItemStatus
 
 
@@ -89,7 +87,6 @@ class ItemGetResponse(ModelNormal):
             'item': (Item,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'status': (NullableItemStatus,),  # noqa: E501
-            'access_token': (NullableAccessToken,),  # noqa: E501
         }
 
     @cached_property
@@ -101,7 +98,6 @@ class ItemGetResponse(ModelNormal):
         'item': 'item',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'access_token': 'access_token',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,7 +151,6 @@ class ItemGetResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             status (NullableItemStatus): [optional]  # noqa: E501
-            access_token (NullableAccessToken): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

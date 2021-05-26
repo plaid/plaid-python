@@ -77,7 +77,7 @@ class LinkTokenCreateRequestUser(ModelNormal):
             'email_address': (str,),  # noqa: E501
             'email_address_verified_time': (str,),  # noqa: E501
             'ssn': (str,),  # noqa: E501
-            'date_of_birth': (str,),  # noqa: E501
+            'date_of_birth': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +151,7 @@ class LinkTokenCreateRequestUser(ModelNormal):
             email_address (str): The user's email address. This field is optional, but required to enable the [pre-authenticated returning user flow](/docs/link/returning-user/#enabling-the-returning-user-experience).. [optional]  # noqa: E501
             email_address_verified_time (str): The date and time the email address was verified in ISO 8601 format (`YYYY-MM-DDThh:mm:ssZ`). This is an optional field used in the [returning user experience](/docs/link/returning-user).   Only pass a verification time for an email address that you have verified. If you have performed verification but don’t have the time, you may supply a signal value of the start of the UNIX epoch.   Example: `2020-01-01T00:00:00Z`. [optional]  # noqa: E501
             ssn (str): To be provided in the format \"ddd-dd-dddd\". This field is optional and will support not-yet-implemented functionality for new products.. [optional]  # noqa: E501
-            date_of_birth (str): To be provided in the format \"yyyy-mm-dd\". This field is optional and will support not-yet-implemented functionality for new products.. [optional]  # noqa: E501
+            date_of_birth (datetime): To be provided in the format \"yyyy-mm-dd\". This field is optional and will support not-yet-implemented functionality for new products.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

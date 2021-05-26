@@ -97,7 +97,6 @@ class StudentLoan(ModelNormal):
             'is_overdue': (bool, none_type,),  # noqa: E501
             'last_payment_amount': (float, none_type,),  # noqa: E501
             'last_payment_date': (str, none_type,),  # noqa: E501
-            'last_statement_balance': (float, none_type,),  # noqa: E501
             'last_statement_issue_date': (str, none_type,),  # noqa: E501
             'loan_name': (str, none_type,),  # noqa: E501
             'loan_status': (StudentLoanStatus,),  # noqa: E501
@@ -130,7 +129,6 @@ class StudentLoan(ModelNormal):
         'is_overdue': 'is_overdue',  # noqa: E501
         'last_payment_amount': 'last_payment_amount',  # noqa: E501
         'last_payment_date': 'last_payment_date',  # noqa: E501
-        'last_statement_balance': 'last_statement_balance',  # noqa: E501
         'last_statement_issue_date': 'last_statement_issue_date',  # noqa: E501
         'loan_name': 'loan_name',  # noqa: E501
         'loan_status': 'loan_status',  # noqa: E501
@@ -205,7 +203,6 @@ class StudentLoan(ModelNormal):
             is_overdue (bool, none_type): `true` if a payment is currently overdue. Availability for this field is limited.. [optional]  # noqa: E501
             last_payment_amount (float, none_type): The amount of the last payment.. [optional]  # noqa: E501
             last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            last_statement_balance (float, none_type): The outstanding balance on the last statement. This field could also be interpreted as the next payment due. Availability for this field is limited. . [optional]  # noqa: E501
             last_statement_issue_date (str, none_type): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             loan_name (str, none_type): The type of loan, e.g., \"Consolidation Loans\".. [optional]  # noqa: E501
             loan_status (StudentLoanStatus): [optional]  # noqa: E501

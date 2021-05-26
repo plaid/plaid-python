@@ -6,6 +6,7 @@ plaid/apis/__init__.py
 plaid/configuration.py
 plaid/exceptions.py
 plaid/model/__init__.py
+plaid/model/account_access.py
 plaid/model/account_assets.py
 plaid/model/account_assets_all_of.py
 plaid/model/account_balance.py
@@ -24,7 +25,9 @@ plaid/model/accounts_get_response.py
 plaid/model/ach_class.py
 plaid/model/address.py
 plaid/model/address_data.py
-plaid/model/amount.py
+plaid/model/application.py
+plaid/model/application_get_request.py
+plaid/model/application_get_response.py
 plaid/model/apr.py
 plaid/model/asset_report.py
 plaid/model/asset_report_audit_copy_create_request.py
@@ -112,6 +115,8 @@ plaid/model/employer_income_summary_field_string.py
 plaid/model/employers_search_request.py
 plaid/model/employers_search_response.py
 plaid/model/error.py
+plaid/model/external_payment_options.py
+plaid/model/external_payment_refund_details.py
 plaid/model/external_payment_schedule.py
 plaid/model/external_payment_schedule_get.py
 plaid/model/health_incident.py
@@ -148,6 +153,7 @@ plaid/model/institutions_get_request.py
 plaid/model/institutions_get_request_options.py
 plaid/model/institutions_get_response.py
 plaid/model/institutions_search_account_filter.py
+plaid/model/institutions_search_payment_initiation_options.py
 plaid/model/institutions_search_request.py
 plaid/model/institutions_search_request_options.py
 plaid/model/institutions_search_response.py
@@ -163,6 +169,8 @@ plaid/model/investments_transactions_get_response.py
 plaid/model/item.py
 plaid/model/item_access_token_invalidate_request.py
 plaid/model/item_access_token_invalidate_response.py
+plaid/model/item_application_scopes_update_request.py
+plaid/model/item_application_scopes_update_response.py
 plaid/model/item_error_webhook.py
 plaid/model/item_get_request.py
 plaid/model/item_get_response.py
@@ -182,6 +190,7 @@ plaid/model/item_webhook_update_request.py
 plaid/model/item_webhook_update_response.py
 plaid/model/jwk_public_key.py
 plaid/model/jwt_header.py
+plaid/model/liabilities_default_update_webhook.py
 plaid/model/liabilities_get_request.py
 plaid/model/liabilities_get_request_options.py
 plaid/model/liabilities_get_response.py
@@ -227,6 +236,9 @@ plaid/model/pay_frequency.py
 plaid/model/pay_period_details.py
 plaid/model/payment_amount.py
 plaid/model/payment_initiation_address.py
+plaid/model/payment_initiation_metadata.py
+plaid/model/payment_initiation_optional_restriction_bacs.py
+plaid/model/payment_initiation_payment.py
 plaid/model/payment_initiation_payment_create_request.py
 plaid/model/payment_initiation_payment_create_response.py
 plaid/model/payment_initiation_payment_get_request.py
@@ -240,9 +252,12 @@ plaid/model/payment_initiation_recipient_create_request.py
 plaid/model/payment_initiation_recipient_create_response.py
 plaid/model/payment_initiation_recipient_get_request.py
 plaid/model/payment_initiation_recipient_get_response.py
+plaid/model/payment_initiation_recipient_get_response_all_of.py
 plaid/model/payment_initiation_recipient_list_request.py
 plaid/model/payment_initiation_recipient_list_response.py
+plaid/model/payment_initiation_standing_order_metadata.py
 plaid/model/payment_meta.py
+plaid/model/payment_schedule_interval.py
 plaid/model/payment_status_update_webhook.py
 plaid/model/paystub.py
 plaid/model/paystub_deduction.py
@@ -261,6 +276,7 @@ plaid/model/processor_stripe_bank_account_token_create_request.py
 plaid/model/processor_stripe_bank_account_token_create_response.py
 plaid/model/processor_token_create_request.py
 plaid/model/processor_token_create_response.py
+plaid/model/product_access.py
 plaid/model/product_status.py
 plaid/model/product_status_breakdown.py
 plaid/model/products.py
@@ -285,6 +301,7 @@ plaid/model/sandbox_public_token_create_request.py
 plaid/model/sandbox_public_token_create_request_options.py
 plaid/model/sandbox_public_token_create_request_options_transactions.py
 plaid/model/sandbox_public_token_create_response.py
+plaid/model/scopes.py
 plaid/model/security.py
 plaid/model/servicer_address_data.py
 plaid/model/standalone_account_type.py

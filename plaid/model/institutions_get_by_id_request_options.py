@@ -72,6 +72,7 @@ class InstitutionsGetByIdRequestOptions(ModelNormal):
         return {
             'include_optional_metadata': (bool,),  # noqa: E501
             'include_status': (bool,),  # noqa: E501
+            'include_payment_initiation_metadata': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -82,6 +83,7 @@ class InstitutionsGetByIdRequestOptions(ModelNormal):
     attribute_map = {
         'include_optional_metadata': 'include_optional_metadata',  # noqa: E501
         'include_status': 'include_status',  # noqa: E501
+        'include_payment_initiation_metadata': 'include_payment_initiation_metadata',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -130,8 +132,9 @@ class InstitutionsGetByIdRequestOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            include_optional_metadata (bool): When `true`, return an institution's logo, brand color, and URL. When available, the bank's logo is returned as a base64 encoded 152x152 PNG, the brand color is in hexadecimal format. The default value is `false`.  Note that Plaid does not own any of the logos shared by the API and that by accessing or using these logos, you agree that you are doing so at your own risk and will, if necessary, obtain all required permissions from the appropriate rights holders and adhere to any applicable usage guidelines. Plaid disclaims all express or implied warranties with respect to the logos.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_optional_metadata (bool): When `true`, return an institution's logo, brand color, and URL. When available, the bank's logo is returned as a base64 encoded 152x152 PNG, the brand color is in hexadecimal format. The default value is `false`. Note that you may need to contact your Plaid Account Manager to be enabled to use this flag.  Note that Plaid does not own any of the logos shared by the API and that by accessing or using these logos, you agree that you are doing so at your own risk and will, if necessary, obtain all required permissions from the appropriate rights holders and adhere to any applicable usage guidelines. Plaid disclaims all express or implied warranties with respect to the logos.. [optional] if omitted the server will use the default value of False  # noqa: E501
             include_status (bool): If `true`, the response will include status information about the institution. Default value is `false`.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_payment_initiation_metadata (bool): When `true`, returns metadata related to the Payment Initiation product indicating which payment configurations are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

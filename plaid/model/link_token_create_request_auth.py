@@ -50,7 +50,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
     """
 
     allowed_values = {
-        ('auth_flow',): {
+        ('flow_type',): {
             'FLEXIBLE_AUTH': "FLEXIBLE_AUTH",
         },
     }
@@ -73,7 +73,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'auth_flow': (str,),  # noqa: E501
+            'flow_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -82,7 +82,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
 
 
     attribute_map = {
-        'auth_flow': 'auth_flow',  # noqa: E501
+        'flow_type': 'flow_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,7 +103,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
         Args:
 
         Keyword Args:
-            auth_flow (str): The optional Auth flow to use. Currently only used to enable Flexible Auth.. defaults to "FLEXIBLE_AUTH", must be one of ["FLEXIBLE_AUTH", ]  # noqa: E501
+            flow_type (str): The optional Auth flow to use. Currently only used to enable Flexible Auth.. defaults to "FLEXIBLE_AUTH", must be one of ["FLEXIBLE_AUTH", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -136,7 +136,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        auth_flow = kwargs.get('auth_flow', "FLEXIBLE_AUTH")
+        flow_type = kwargs.get('flow_type', "FLEXIBLE_AUTH")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -160,7 +160,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.auth_flow = auth_flow
+        self.flow_type = flow_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

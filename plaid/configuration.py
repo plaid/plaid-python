@@ -427,8 +427,8 @@ conf = plaid.Configuration(
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
-               "Version of the API: 2020-09-14_1.11.0\n"\
-               "SDK Package Version: 8.0.0b11".\
+               "Version of the API: 2020-09-14_1.16.6\n"\
+               "SDK Package Version: 8.0.0b12".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

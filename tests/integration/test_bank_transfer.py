@@ -72,7 +72,6 @@ def create_bank_transfer(client):
         iso_currency_code='USD',
         description='test',
         user=BankTransferUser(legal_name='Firstname Lastname'),
-        metadata=None,
         ach_class=ACHClass('ppd'),
         custom_tag='',
     )
