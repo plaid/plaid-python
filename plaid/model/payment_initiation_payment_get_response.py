@@ -135,7 +135,10 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
+<<<<<<< HEAD
         'emi_account_id': 'emi_account_id',  # noqa: E501
+=======
+>>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
     }
 
     required_properties = set([
@@ -199,7 +202,10 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
+<<<<<<< HEAD
             emi_account_id (str, none_type): The EMI (E-Money Institution) account that this payment is associated with, if any. This EMI account is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
+=======
+>>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
         """
 
         _check_type = kwargs.pop('_check_type', True)

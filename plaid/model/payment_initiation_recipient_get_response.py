@@ -167,7 +167,10 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
             address (PaymentInitiationAddress): [optional]  # noqa: E501
             iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.. [optional]  # noqa: E501
             bacs (NullableRecipientBACS): [optional]  # noqa: E501
+<<<<<<< HEAD
             emi_recipient_id (str, none_type): The EMI (E-Money Institution) recipient that this recipient is associated with, if any. This EMI recipient is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
+=======
+>>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
         """
 
         _check_type = kwargs.pop('_check_type', True)
