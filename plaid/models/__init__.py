@@ -172,11 +172,8 @@ from plaid.model.investments_transactions_get_response import InvestmentsTransac
 from plaid.model.item import Item
 from plaid.model.item_access_token_invalidate_request import ItemAccessTokenInvalidateRequest
 from plaid.model.item_access_token_invalidate_response import ItemAccessTokenInvalidateResponse
-<<<<<<< HEAD
 from plaid.model.item_application_scopes_update_request import ItemApplicationScopesUpdateRequest
 from plaid.model.item_application_scopes_update_response import ItemApplicationScopesUpdateResponse
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
 from plaid.model.item_error_webhook import ItemErrorWebhook
 from plaid.model.item_get_request import ItemGetRequest
 from plaid.model.item_get_response import ItemGetResponse
@@ -283,10 +280,7 @@ from plaid.model.processor_stripe_bank_account_token_create_request import Proce
 from plaid.model.processor_stripe_bank_account_token_create_response import ProcessorStripeBankAccountTokenCreateResponse
 from plaid.model.processor_token_create_request import ProcessorTokenCreateRequest
 from plaid.model.processor_token_create_response import ProcessorTokenCreateResponse
-<<<<<<< HEAD
 from plaid.model.product_access import ProductAccess
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
 from plaid.model.product_status import ProductStatus
 from plaid.model.product_status_breakdown import ProductStatusBreakdown
 from plaid.model.products import Products
@@ -310,10 +304,7 @@ from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCr
 from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
 from plaid.model.sandbox_public_token_create_request_options_transactions import SandboxPublicTokenCreateRequestOptionsTransactions
 from plaid.model.sandbox_public_token_create_response import SandboxPublicTokenCreateResponse
-<<<<<<< HEAD
 from plaid.model.scopes import Scopes
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
 from plaid.model.security import Security
 from plaid.model.servicer_address_data import ServicerAddressData
 from plaid.model.standalone_account_type import StandaloneAccountType

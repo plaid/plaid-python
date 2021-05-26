@@ -169,11 +169,8 @@ plaid/model/investments_transactions_get_response.py
 plaid/model/item.py
 plaid/model/item_access_token_invalidate_request.py
 plaid/model/item_access_token_invalidate_response.py
-<<<<<<< HEAD
 plaid/model/item_application_scopes_update_request.py
 plaid/model/item_application_scopes_update_response.py
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
 plaid/model/item_error_webhook.py
 plaid/model/item_get_request.py
 plaid/model/item_get_response.py
@@ -279,10 +276,7 @@ plaid/model/processor_stripe_bank_account_token_create_request.py
 plaid/model/processor_stripe_bank_account_token_create_response.py
 plaid/model/processor_token_create_request.py
 plaid/model/processor_token_create_response.py
-<<<<<<< HEAD
 plaid/model/product_access.py
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
 plaid/model/product_status.py
 plaid/model/product_status_breakdown.py
 plaid/model/products.py
@@ -307,10 +301,7 @@ plaid/model/sandbox_public_token_create_request.py
 plaid/model/sandbox_public_token_create_request_options.py
 plaid/model/sandbox_public_token_create_request_options_transactions.py
 plaid/model/sandbox_public_token_create_response.py
-<<<<<<< HEAD
 plaid/model/scopes.py
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
 plaid/model/security.py
 plaid/model/servicer_address_data.py
 plaid/model/standalone_account_type.py

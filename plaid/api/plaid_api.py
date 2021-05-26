@@ -4924,7 +4924,6 @@ class PlaidApi(object):
             callable=__item_access_token_invalidate
         )
 
-<<<<<<< HEAD
         def __item_application_scopes_update(
             self,
             item_application_scopes_update_request,
@@ -5047,8 +5046,6 @@ class PlaidApi(object):
             callable=__item_application_scopes_update
         )
 
-=======
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
         def __item_create_public_token(
             self,
             item_public_token_create_request,
@@ -7374,11 +7371,7 @@ class PlaidApi(object):
         ):
             """Create Stripe bank account token  # noqa: E501
 
-<<<<<<< HEAD
             Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/).  # noqa: E501
-=======
-            Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations.  # noqa: E501
->>>>>>> 1ab207cb0784e731bd26664581a42f20d481ccf9
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
