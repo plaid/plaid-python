@@ -3,7 +3,7 @@ requests==2.20.0
 
 ##### DEV Dependencies
 cov-core==1.7
-coverage==3.7.1
+coverage==4.4
 flake8==2.4.1
 flake8-mutable==1.2.0
 mock==1.0.1
