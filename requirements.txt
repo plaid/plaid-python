@@ -12,5 +12,6 @@ flake8-mutable==1.2.0
 mock==4.0.3
 py==1.10.0
 pytest==6.2.1
+pytest-xdist==1.34.0
 pytest-cov==2.10.1
 sphinx==3.3.1
