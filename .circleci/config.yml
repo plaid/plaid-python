@@ -16,7 +16,6 @@ jobs:
         - v1-dep-master-
         - v1-dep-
     - run: pip install tox
-    - run: pip install pytest-xdist
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:
