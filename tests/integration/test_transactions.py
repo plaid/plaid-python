@@ -50,6 +50,8 @@ def get_transactions_with_retries(client,
                 continue
             else:
                 raise ie
+        if not response['transactions'] or not len(response['transactions']):
+            continue
         break
     return response
 

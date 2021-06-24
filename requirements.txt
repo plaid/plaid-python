@@ -7,7 +7,7 @@ coverage==3.7.1
 flake8==2.4.1
 flake8-mutable==1.2.0
 mock==1.0.1
-py==1.5.0
+py==1.5.1
 pytest==4.4.0
 pytest-xdist==1.34.0
 pytest-cov==2.12.1
