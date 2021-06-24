@@ -4,6 +4,8 @@ from plaid.errors import ItemError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,
+    START_DATE,
+    END_DATE
 )
 
 access_token = None
@@ -13,8 +15,8 @@ def setup_module(module):
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
         SANDBOX_INSTITUTION, ['investments'],
-        transactions__start_date='2018-01-01',
-        transactions__end_date='2019-01-01',
+        transactions__start_date=START_DATE,
+        transactions__end_date=END_DATE,
     )
     exchange_response = client.Item.public_token.exchange(
         pt_response['public_token'])
@@ -60,8 +62,8 @@ def test_get():
 
     response = get_investment_transactions_with_retries(client,
                                                         access_token,
-                                                        '2018-01-01',
-                                                        '2019-01-01',
+                                                        START_DATE,
+                                                        END_DATE,
                                                         num_retries=5)
     assert response['item'] is not None
     assert response['accounts'] is not None
@@ -74,8 +76,8 @@ def test_get():
     response = \
         get_investment_transactions_with_retries(client,
                                                  access_token,
-                                                 '2018-06-01',
-                                                 '2019-06-01',
+                                                 START_DATE,
+                                                 END_DATE,
                                                  account_ids=[account_id],
                                                  num_retries=5)
     assert response['investment_transactions'] is not None
@@ -85,8 +87,8 @@ def test_get_with_options():
     client = create_client()
     response = get_investment_transactions_with_retries(client,
                                                         access_token,
-                                                        '2018-06-01',
-                                                        '2019-06-01',
+                                                        START_DATE,
+                                                        END_DATE,
                                                         count=2,
                                                         offset=1)
     assert len(response['investment_transactions']) == 2
