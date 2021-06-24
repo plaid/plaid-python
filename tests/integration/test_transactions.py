@@ -4,11 +4,11 @@ from plaid.errors import ItemError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,
+    START_DATE,
+    END_DATE
 )
 
 access_token = None
-START_DATE = '2020-01-01'
-END_DATE = '2021-03-15'
 
 # NOTE: Data is only generated over the past 2 years.  Ensure that the date
 # range used for transactions/get is within 2 years old
