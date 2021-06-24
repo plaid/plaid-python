@@ -11,6 +11,7 @@ access_token = None
 START_DATE = '2020-01-01'
 END_DATE = '2021-01-01'
 
+
 def setup_module(module):
     client = create_client()
     pt_response = client.Sandbox.public_token.create(
