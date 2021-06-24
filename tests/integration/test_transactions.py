@@ -34,7 +34,7 @@ def get_transactions_with_retries(client,
                                   account_ids=None,
                                   count=None,
                                   offset=None,
-                                  num_retries=50):
+                                  num_retries=100):
     response = None
     for i in range(num_retries):
         try:
