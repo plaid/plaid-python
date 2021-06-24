@@ -2,7 +2,7 @@
 # Requires tox to be installed and in the executable path
 .PHONY: test
 test:
-	CLIENT_ID=$(CLIENT_ID) SECRET=$(SECRET) tox
+	CLIENT_ID=$(CLIENT_ID) SECRET=$(SECRET) tox -p all -o
 
 # Setting up for local development
 .PHONY: setup
