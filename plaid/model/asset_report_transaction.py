@@ -118,7 +118,7 @@ class AssetReportTransaction(ModelComposed):
             'authorized_date': (str, none_type,),  # noqa: E501
             'authorized_datetime': (str, none_type,),  # noqa: E501
             'datetime': (str, none_type,),  # noqa: E501
-            'category_id': (str,),  # noqa: E501
+            'category_id': (str, none_type,),  # noqa: E501
             'category': ([str], none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
@@ -223,9 +223,9 @@ class AssetReportTransaction(ModelComposed):
             authorized_date (str, none_type): The date that the transaction was authorized. Dates are returned in an ISO 8601 format ( `YYYY-MM-DD` ).. [optional]  # noqa: E501
             authorized_datetime (str, none_type): Date and time when a transaction was authorized in ISO 8601 format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.. [optional]  # noqa: E501
             datetime (str, none_type): Date and time when a transaction was posted in ISO 8601 format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.. [optional]  # noqa: E501
-            category_id (str): The ID of the category to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
+            category_id (str, none_type): The ID of the category to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
             category ([str], none_type): A hierarchical array of the categories to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the transaction. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the transaction. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
             iso_currency_code (str, none_type): The ISO-4217 currency code of the transaction. Always `null` if `unofficial_currency_code` is non-null.. [optional]  # noqa: E501
             transaction_code (TransactionCode): [optional]  # noqa: E501
             date_transacted (str, none_type): The date on which the transaction took place, in IS0 8601 format.. [optional]  # noqa: E501

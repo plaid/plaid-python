@@ -11,13 +11,17 @@
 
 from plaid.model.ach_class import ACHClass
 from plaid.model.apr import APR
+from plaid.model.account_access import AccountAccess
 from plaid.model.account_assets import AccountAssets
 from plaid.model.account_assets_all_of import AccountAssetsAllOf
 from plaid.model.account_balance import AccountBalance
 from plaid.model.account_base import AccountBase
+from plaid.model.account_filter import AccountFilter
+from plaid.model.account_filter_subtypes import AccountFilterSubtypes
 from plaid.model.account_filters_response import AccountFiltersResponse
 from plaid.model.account_identity import AccountIdentity
 from plaid.model.account_identity_all_of import AccountIdentityAllOf
+from plaid.model.account_selection_cardinality import AccountSelectionCardinality
 from plaid.model.account_subtype import AccountSubtype
 from plaid.model.account_subtypes import AccountSubtypes
 from plaid.model.account_type import AccountType
@@ -93,6 +97,7 @@ from plaid.model.bank_transfers_events_update_webhook import BankTransfersEvents
 from plaid.model.categories_get_response import CategoriesGetResponse
 from plaid.model.category import Category
 from plaid.model.cause import Cause
+from plaid.model.connected_application import ConnectedApplication
 from plaid.model.country_code import CountryCode
 from plaid.model.credit_card_liability import CreditCardLiability
 from plaid.model.credit_filter import CreditFilter
@@ -138,8 +143,8 @@ from plaid.model.income_verification_create_request import IncomeVerificationCre
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
 from plaid.model.income_verification_documents_download_request import IncomeVerificationDocumentsDownloadRequest
 from plaid.model.income_verification_documents_download_response import IncomeVerificationDocumentsDownloadResponse
-from plaid.model.income_verification_paystub_get_request import IncomeVerificationPaystubGetRequest
-from plaid.model.income_verification_paystub_get_response import IncomeVerificationPaystubGetResponse
+from plaid.model.income_verification_paystubs_get_request import IncomeVerificationPaystubsGetRequest
+from plaid.model.income_verification_paystubs_get_response import IncomeVerificationPaystubsGetResponse
 from plaid.model.income_verification_status_webhook import IncomeVerificationStatusWebhook
 from plaid.model.income_verification_summary_get_request import IncomeVerificationSummaryGetRequest
 from plaid.model.income_verification_summary_get_response import IncomeVerificationSummaryGetResponse
@@ -171,6 +176,10 @@ from plaid.model.investments_transactions_get_response import InvestmentsTransac
 from plaid.model.item import Item
 from plaid.model.item_access_token_invalidate_request import ItemAccessTokenInvalidateRequest
 from plaid.model.item_access_token_invalidate_response import ItemAccessTokenInvalidateResponse
+from plaid.model.item_application_list_request import ItemApplicationListRequest
+from plaid.model.item_application_list_response import ItemApplicationListResponse
+from plaid.model.item_application_scopes_update_request import ItemApplicationScopesUpdateRequest
+from plaid.model.item_application_scopes_update_response import ItemApplicationScopesUpdateResponse
 from plaid.model.item_error_webhook import ItemErrorWebhook
 from plaid.model.item_get_request import ItemGetRequest
 from plaid.model.item_get_response import ItemGetResponse
@@ -224,6 +233,7 @@ from plaid.model.nullable_numbers_bacs import NullableNumbersBACS
 from plaid.model.nullable_numbers_eft import NullableNumbersEFT
 from plaid.model.nullable_numbers_international import NullableNumbersInternational
 from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
+from plaid.model.nullable_scopes import NullableScopes
 from plaid.model.numbers import Numbers
 from plaid.model.numbers_ach import NumbersACH
 from plaid.model.numbers_bacs import NumbersBACS
@@ -262,6 +272,7 @@ from plaid.model.payment_schedule_interval import PaymentScheduleInterval
 from plaid.model.payment_status_update_webhook import PaymentStatusUpdateWebhook
 from plaid.model.paystub import Paystub
 from plaid.model.paystub_deduction import PaystubDeduction
+from plaid.model.paystub_employer import PaystubEmployer
 from plaid.model.paystub_ytd_details import PaystubYTDDetails
 from plaid.model.pending_expiration_webhook import PendingExpirationWebhook
 from plaid.model.phone_number import PhoneNumber
@@ -277,12 +288,14 @@ from plaid.model.processor_stripe_bank_account_token_create_request import Proce
 from plaid.model.processor_stripe_bank_account_token_create_response import ProcessorStripeBankAccountTokenCreateResponse
 from plaid.model.processor_token_create_request import ProcessorTokenCreateRequest
 from plaid.model.processor_token_create_response import ProcessorTokenCreateResponse
+from plaid.model.product_access import ProductAccess
 from plaid.model.product_status import ProductStatus
 from plaid.model.product_status_breakdown import ProductStatusBreakdown
 from plaid.model.products import Products
 from plaid.model.projected_income_summary_field_number import ProjectedIncomeSummaryFieldNumber
 from plaid.model.recaptcha_required_error import RecaptchaRequiredError
 from plaid.model.recipient_bacs import RecipientBACS
+from plaid.model.requested_scopes import RequestedScopes
 from plaid.model.sandbox_bank_transfer_fire_webhook_request import SandboxBankTransferFireWebhookRequest
 from plaid.model.sandbox_bank_transfer_fire_webhook_response import SandboxBankTransferFireWebhookResponse
 from plaid.model.sandbox_bank_transfer_simulate_request import SandboxBankTransferSimulateRequest
@@ -300,6 +313,7 @@ from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCr
 from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
 from plaid.model.sandbox_public_token_create_request_options_transactions import SandboxPublicTokenCreateRequestOptionsTransactions
 from plaid.model.sandbox_public_token_create_response import SandboxPublicTokenCreateResponse
+from plaid.model.scopes import Scopes
 from plaid.model.security import Security
 from plaid.model.servicer_address_data import ServicerAddressData
 from plaid.model.standalone_account_type import StandaloneAccountType

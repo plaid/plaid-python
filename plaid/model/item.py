@@ -58,7 +58,7 @@ class Item(ModelNormal):
     allowed_values = {
         ('update_type',): {
             'BACKGROUND': "background",
-            'REQUIRES_USER_AUTHENTICATION': "requires_user_authentication",
+            'USER_PRESENT_REQUIRED': "user_present_required",
         },
     }
 
@@ -133,7 +133,7 @@ class Item(ModelNormal):
             item_id (str): The Plaid Item ID. The `item_id` is always unique; linking the same account at the same institution twice will result in two Items with different `item_id` values. Like all Plaid identifiers, the `item_id` is case-sensitive.
             available_products ([Products]): A list of products available for the Item that have not yet been accessed.
             billed_products ([Products]): A list of products that have been billed for the Item. Note - `billed_products` is populated in all environments but only requests in Production are billed. 
-            update_type (str): Indicates whether an Item requires user interaction to be updated, which can be the case for Items with some forms of two-factor authentication.  `background` - Item can be updated in the background  `requires_user_authentication` - Item requires user interaction to be updated
+            update_type (str): Indicates whether an Item requires user interaction to be updated, which can be the case for Items with some forms of two-factor authentication.  `background` - Item can be updated in the background  `user_present_required` - Item requires user interaction to be updated
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

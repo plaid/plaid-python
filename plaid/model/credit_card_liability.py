@@ -87,7 +87,7 @@ class CreditCardLiability(ModelNormal):
             'last_payment_date': (str,),  # noqa: E501
             'last_statement_issue_date': (str,),  # noqa: E501
             'minimum_payment_amount': (float,),  # noqa: E501
-            'next_payment_due_date': (str,),  # noqa: E501
+            'next_payment_due_date': (str, none_type,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
             'is_overdue': (bool, none_type,),  # noqa: E501
         }
@@ -129,7 +129,7 @@ class CreditCardLiability(ModelNormal):
             last_payment_date (str): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD). Availability for this field is limited.
             last_statement_issue_date (str): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             minimum_payment_amount (float): The minimum payment due for the next billing cycle.
-            next_payment_due_date (str): The due date for the next payment. The due date is `null` if a payment is not expected. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            next_payment_due_date (str, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

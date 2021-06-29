@@ -84,7 +84,6 @@ class Employee(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'address': (NullableAddressData,),  # noqa: E501
-            'ssn_masked': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,7 +94,6 @@ class Employee(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'address': 'address',  # noqa: E501
-        'ssn_masked': 'ssn_masked',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,7 +144,6 @@ class Employee(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             name (str, none_type): The name of the employee.. [optional]  # noqa: E501
             address (NullableAddressData): [optional]  # noqa: E501
-            ssn_masked (str, none_type): The SSN of the employee, with all but the last 4 digits masked out. For example: \"XXX-XX-1111\".. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

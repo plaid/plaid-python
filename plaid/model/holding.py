@@ -160,7 +160,7 @@ class Holding(ModelNormal):
             institution_price_as_of (date, none_type): The date at which `institution_price` was current.. [optional]  # noqa: E501
             cost_basis (float, none_type): The cost basis of the holding.. [optional]  # noqa: E501
             iso_currency_code (str, none_type): The ISO-4217 currency code of the holding. Always `null` if `unofficial_currency_code` is non-`null`.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s. . [optional]  # noqa: E501
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -136,7 +136,7 @@ class BankTransferFailure(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            ach_return_code (str, none_type): The ACH return code, e.g. `R01`.  A return code will be provided if and only if the transfer status is `reversed`. For a full listing of ACH return codes, see [Bank Transfers errors](/docs/errors/bank-transfers/#ach-return-codes).. [optional]  # noqa: E501
+            ach_return_code (str, none_type): The ACH return code, e.g. `R01`.  A return code will be provided if and only if the transfer status is `reversed`. For a full listing of ACH return codes, see [Bank Transfers errors](https://plaid.com/docs/errors/bank-transfers/#ach-return-codes).. [optional]  # noqa: E501
             description (str): A human-readable description of the reason for the failure or reversal.. [optional]  # noqa: E501
         """
 

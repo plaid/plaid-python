@@ -114,6 +114,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
+            'emi_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -134,6 +135,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
+        'emi_account_id': 'emi_account_id',  # noqa: E501
     }
 
     required_properties = set([
@@ -160,7 +162,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             reference (str): A reference for the payment.
             last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
             bacs (NullableRecipientBACS):
-            iban (str, none_type):
+            iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -197,6 +199,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
+            emi_account_id (str, none_type): The EMI (E-Money Institution) account that this payment is associated with, if any. This EMI account is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

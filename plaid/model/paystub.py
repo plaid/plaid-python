@@ -26,15 +26,13 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.employee import Employee
-    from plaid.model.employer import Employer
     from plaid.model.income_breakdown import IncomeBreakdown
     from plaid.model.pay_period_details import PayPeriodDetails
-    from plaid.model.paystub_ytd_details import PaystubYTDDetails
+    from plaid.model.paystub_employer import PaystubEmployer
     globals()['Employee'] = Employee
-    globals()['Employer'] = Employer
     globals()['IncomeBreakdown'] = IncomeBreakdown
     globals()['PayPeriodDetails'] = PayPeriodDetails
-    globals()['PaystubYTDDetails'] = PaystubYTDDetails
+    globals()['PaystubEmployer'] = PaystubEmployer
 
 
 class Paystub(ModelNormal):
@@ -90,12 +88,11 @@ class Paystub(ModelNormal):
         """
         lazy_import()
         return {
-            'paystub_id': (str,),  # noqa: E501
-            'employer': (Employer,),  # noqa: E501
+            'employer': (PaystubEmployer,),  # noqa: E501
             'employee': (Employee,),  # noqa: E501
             'pay_period_details': (PayPeriodDetails,),  # noqa: E501
             'income_breakdown': (IncomeBreakdown,),  # noqa: E501
-            'ytd_earnings': (PaystubYTDDetails,),  # noqa: E501
+            'ytd_earnings': (object,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
         }
 
@@ -105,7 +102,6 @@ class Paystub(ModelNormal):
 
 
     attribute_map = {
-        'paystub_id': 'paystub_id',  # noqa: E501
         'employer': 'employer',  # noqa: E501
         'employee': 'employee',  # noqa: E501
         'pay_period_details': 'pay_period_details',  # noqa: E501
@@ -126,16 +122,15 @@ class Paystub(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, paystub_id, employer, employee, pay_period_details, income_breakdown, ytd_earnings, *args, **kwargs):  # noqa: E501
+    def __init__(self, employer, employee, pay_period_details, income_breakdown, ytd_earnings, *args, **kwargs):  # noqa: E501
         """Paystub - a model defined in OpenAPI
 
         Args:
-            paystub_id (str): The unique identifier for this paystub.
-            employer (Employer):
+            employer (PaystubEmployer):
             employee (Employee):
             pay_period_details (PayPeriodDetails):
             income_breakdown (IncomeBreakdown):
-            ytd_earnings (PaystubYTDDetails):
+            ytd_earnings (object):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -194,7 +189,6 @@ class Paystub(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.paystub_id = paystub_id
         self.employer = employer
         self.employee = employee
         self.pay_period_details = pay_period_details

@@ -53,6 +53,7 @@ class IncidentUpdate(ModelNormal):
         ('status',): {
             'INVESTIGATING': "INVESTIGATING",
             'IDENTIFIED': "IDENTIFIED",
+            'SCHEDULED': "SCHEDULED",
             'RESOLVED': "RESOLVED",
             'UNKNOWN': "UNKNOWN",
         },

@@ -146,7 +146,7 @@ class Security(ModelNormal):
             close_price (float, none_type): Price of the security at the close of the previous trading session. `null` for non-public securities.
             close_price_as_of (date, none_type): Date for which `close_price` is accurate. Always `null` if `close_price` is `null`.
             iso_currency_code (str, none_type): The ISO-4217 currency code of the price given. Always `null` if `unofficial_currency_code` is non-`null`.
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
