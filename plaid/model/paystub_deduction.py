@@ -104,8 +104,13 @@ class PaystubDeduction(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, is_pretax, total, *args, **kwargs):  # noqa: E501
         """PaystubDeduction - a model defined in OpenAPI
+
+        Args:
+            type (str, none_type): The description of the deduction, as provided on the paystub. For example: `\"401(k)\"`, `\"FICA MED TAX\"`.
+            is_pretax (bool, none_type): `true` if the deduction is pre-tax; `false` otherwise.
+            total (float, none_type): The amount of the deduction.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -138,9 +143,6 @@ class PaystubDeduction(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): The description of the deduction, as provided on the paystub. For example: `\"401(k)\"`, `\"FICA MED TAX\"`.. [optional]  # noqa: E501
-            is_pretax (bool, none_type): `true` if the deduction is pre-tax; `false` otherwise.. [optional]  # noqa: E501
-            total (float, none_type): The amount of the deduction.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,6 +168,9 @@ class PaystubDeduction(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.type = type
+        self.is_pretax = is_pretax
+        self.total = total
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

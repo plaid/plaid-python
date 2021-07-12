@@ -80,6 +80,7 @@ class TransactionsGetRequestOptions(ModelNormal):
             'account_ids': ([str],),  # noqa: E501
             'count': (int,),  # noqa: E501
             'offset': (int,),  # noqa: E501
+            'include_original_description': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +92,7 @@ class TransactionsGetRequestOptions(ModelNormal):
         'account_ids': 'account_ids',  # noqa: E501
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
+        'include_original_description': 'include_original_description',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,6 +144,7 @@ class TransactionsGetRequestOptions(ModelNormal):
             account_ids ([str]): A list of `account_ids` to retrieve for the Item  Note: An error will be returned if a provided `account_id` is not associated with the Item.. [optional]  # noqa: E501
             count (int): The number of transactions to fetch.. [optional] if omitted the server will use the default value of 100  # noqa: E501
             offset (int): The number of transactions to skip. The default value is 0.. [optional] if omitted the server will use the default value of 0  # noqa: E501
+            include_original_description (bool, none_type): Include the transactions' original descriptions. This feature is in closed beta and only available to beta program participants. For more details, contact your Plaid Account Manager.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

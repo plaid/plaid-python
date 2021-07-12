@@ -50,6 +50,7 @@ class BankTransferDirection(ModelSimple):
             'None': None,
             'OUTBOUND': "outbound",
             'INBOUND': "inbound",
+            'NULL': "null",
         },
     }
 
@@ -99,10 +100,10 @@ class BankTransferDirection(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Indicates the direction of the transfer: `outbound` for API-initiated transfers, or `inbound` for payments received by the FBO account.., must be one of ["outbound", "inbound", ]  # noqa: E501
+            args[0] (str): Indicates the direction of the transfer: `outbound` for API-initiated transfers, or `inbound` for payments received by the FBO account.., must be one of ["outbound", "inbound", "null", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Indicates the direction of the transfer: `outbound` for API-initiated transfers, or `inbound` for payments received by the FBO account.., must be one of ["outbound", "inbound", ]  # noqa: E501
+            value (str): Indicates the direction of the transfer: `outbound` for API-initiated transfers, or `inbound` for payments received by the FBO account.., must be one of ["outbound", "inbound", "null", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

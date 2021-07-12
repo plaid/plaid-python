@@ -59,7 +59,6 @@ class AccountBase(ModelNormal):
 
     allowed_values = {
         ('verification_status',): {
-            'None': None,
             'PENDING_AUTOMATIC_VERIFICATION': "pending_automatic_verification",
             'PENDING_MANUAL_VERIFICATION': "pending_manual_verification",
             'MANUALLY_VERIFIED': "manually_verified",
@@ -96,12 +95,12 @@ class AccountBase(ModelNormal):
         return {
             'account_id': (str,),  # noqa: E501
             'balances': (AccountBalance,),  # noqa: E501
+            'mask': (str, none_type,),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'official_name': (str, none_type,),  # noqa: E501
             'type': (AccountType,),  # noqa: E501
             'subtype': (AccountSubtype,),  # noqa: E501
-            'mask': (str, none_type,),  # noqa: E501
-            'official_name': (str, none_type,),  # noqa: E501
-            'verification_status': (str, none_type,),  # noqa: E501
+            'verification_status': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -112,11 +111,11 @@ class AccountBase(ModelNormal):
     attribute_map = {
         'account_id': 'account_id',  # noqa: E501
         'balances': 'balances',  # noqa: E501
+        'mask': 'mask',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'official_name': 'official_name',  # noqa: E501
         'type': 'type',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
-        'mask': 'mask',  # noqa: E501
-        'official_name': 'official_name',  # noqa: E501
         'verification_status': 'verification_status',  # noqa: E501
     }
 
@@ -132,13 +131,15 @@ class AccountBase(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, balances, name, type, subtype, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, balances, mask, name, official_name, type, subtype, *args, **kwargs):  # noqa: E501
         """AccountBase - a model defined in OpenAPI
 
         Args:
             account_id (str): Plaid’s unique identifier for the account. This value will not change unless Plaid can't reconcile the account with the data returned by the financial institution. This may occur, for example, when the name of the account changes. If this happens a new `account_id` will be assigned to the account.  The `account_id` can also change if the `access_token` is deleted and the same credentials that were used to generate that `access_token` are used to generate a new `access_token` on a later date. In that case, the new `account_id` will be different from the old `account_id`.  If an account with a specific `account_id` disappears instead of changing, the account is likely closed. Closed accounts are not returned by the Plaid API.  Like all Plaid identifiers, the `account_id` is case sensitive.
             balances (AccountBalance):
+            mask (str, none_type): The last 2-4 alphanumeric characters of an account's official account number. Note that the mask may be non-unique between an Item's accounts, and it may also not match the mask that the bank displays to the user.
             name (str): The name of the account, either assigned by the user or by the financial institution itself
+            official_name (str, none_type): The official name of the account as given by the financial institution
             type (AccountType):
             subtype (AccountSubtype):
 
@@ -173,9 +174,7 @@ class AccountBase(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            mask (str, none_type): The last 2-4 alphanumeric characters of an account's official account number. Note that the mask may be non-unique between an Item's accounts, and it may also not match the mask that the bank displays to the user.. [optional]  # noqa: E501
-            official_name (str, none_type): The official name of the account as given by the financial institution. [optional]  # noqa: E501
-            verification_status (str, none_type): The current verification status of an Auth Item initiated through Automated or Manual micro-deposits.  Returned for Auth Items only.  `pending_automatic_verification`: The Item is pending automatic verification  `pending_manual_verification`: The Item is pending manual micro-deposit verification. Items remain in this state until the user successfully verifies the two amounts.  `automatically_verified`: The Item has successfully been automatically verified   `manually_verified`: The Item has successfully been manually verified  `verification_expired`: Plaid was unable to automatically verify the deposit within 7 calendar days and will no longer attempt to validate the Item. Users may retry by submitting their information again through Link.  `verification_failed`: The Item failed manual micro-deposit verification because the user exhausted all 3 verification attempts. Users may retry by submitting their information again through Link.   . [optional]  # noqa: E501
+            verification_status (str): The current verification status of an Auth Item initiated through Automated or Manual micro-deposits.  Returned for Auth Items only.  `pending_automatic_verification`: The Item is pending automatic verification  `pending_manual_verification`: The Item is pending manual micro-deposit verification. Items remain in this state until the user successfully verifies the two amounts.  `automatically_verified`: The Item has successfully been automatically verified   `manually_verified`: The Item has successfully been manually verified  `verification_expired`: Plaid was unable to automatically verify the deposit within 7 calendar days and will no longer attempt to validate the Item. Users may retry by submitting their information again through Link.  `verification_failed`: The Item failed manual micro-deposit verification because the user exhausted all 3 verification attempts. Users may retry by submitting their information again through Link.   . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -203,7 +202,9 @@ class AccountBase(ModelNormal):
 
         self.account_id = account_id
         self.balances = balances
+        self.mask = mask
         self.name = name
+        self.official_name = official_name
         self.type = type
         self.subtype = subtype
         for var_name, var_value in kwargs.items():

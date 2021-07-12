@@ -107,11 +107,11 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             'payment_id': (str,),  # noqa: E501
             'new_payment_status': (str,),  # noqa: E501
             'old_payment_status': (str,),  # noqa: E501
-            'timestamp': (str,),  # noqa: E501
             'original_reference': (str, none_type,),  # noqa: E501
-            'adjusted_reference': (str, none_type,),  # noqa: E501
             'original_start_date': (date, none_type,),  # noqa: E501
             'adjusted_start_date': (date, none_type,),  # noqa: E501
+            'timestamp': (str,),  # noqa: E501
+            'adjusted_reference': (str, none_type,),  # noqa: E501
             'error': (Error,),  # noqa: E501
         }
 
@@ -126,11 +126,11 @@ class PaymentStatusUpdateWebhook(ModelNormal):
         'payment_id': 'payment_id',  # noqa: E501
         'new_payment_status': 'new_payment_status',  # noqa: E501
         'old_payment_status': 'old_payment_status',  # noqa: E501
-        'timestamp': 'timestamp',  # noqa: E501
         'original_reference': 'original_reference',  # noqa: E501
-        'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'original_start_date': 'original_start_date',  # noqa: E501
         'adjusted_start_date': 'adjusted_start_date',  # noqa: E501
+        'timestamp': 'timestamp',  # noqa: E501
+        'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -146,7 +146,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, webhook_type, webhook_code, payment_id, new_payment_status, old_payment_status, timestamp, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, payment_id, new_payment_status, old_payment_status, original_reference, original_start_date, adjusted_start_date, timestamp, *args, **kwargs):  # noqa: E501
         """PaymentStatusUpdateWebhook - a model defined in OpenAPI
 
         Args:
@@ -155,6 +155,9 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             payment_id (str): The `payment_id` for the payment being updated
             new_payment_status (str): The new status of the payment.  `PAYMENT_STATUS_INPUT_NEEDED`: This is the initial state of all payments. It indicates that the payment is waiting on user input to continue processing. A payment may re-enter this state later on if further input is needed.  `PAYMENT_STATUS_PROCESSING`: The payment is currently being processed. The payment will automatically exit this state when processing is complete.  `PAYMENT_STATUS_INITIATED`: The payment has been successfully initiated and is considered complete.  `PAYMENT_STATUS_COMPLETED`: Indicates that the standing order has been successfully established. This state is only used for standing orders.  `PAYMENT_STATUS_INSUFFICIENT_FUNDS`: The payment has failed due to insufficient funds.  `PAYMENT_STATUS_FAILED`: The payment has failed to be initiated. This error is retryable once the root cause is resolved.  `PAYMENT_STATUS_BLOCKED`: The payment has been blocked. This is a retryable error.  `PAYMENT_STATUS_UNKNOWN`: The payment status is unknown.
             old_payment_status (str): The previous status of the payment.  `PAYMENT_STATUS_INPUT_NEEDED`: This is the initial state of all payments. It indicates that the payment is waiting on user input to continue processing. A payment may re-enter this state later on if further input is needed.  `PAYMENT_STATUS_PROCESSING`: The payment is currently being processed. The payment will automatically exit this state when processing is complete.  `PAYMENT_STATUS_INITIATED`: The payment has been successfully initiated and is considered complete.  `PAYMENT_STATUS_COMPLETED`: Indicates that the standing order has been successfully established. This state is only used for standing orders.  `PAYMENT_STATUS_INSUFFICIENT_FUNDS`: The payment has failed due to insufficient funds.  `PAYMENT_STATUS_FAILED`: The payment has failed to be initiated. This error is retryable once the root cause is resolved.  `PAYMENT_STATUS_BLOCKED`: The payment has been blocked. This is a retryable error.  `PAYMENT_STATUS_UNKNOWN`: The payment status is unknown.
+            original_reference (str, none_type): The original value of the reference when creating the payment.
+            original_start_date (date, none_type): The original value of the `start_date` provided during the creation of a standing order. If the payment is not a standing order, this field will be `null`.
+            adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in ISO 8601 format (YYYY-MM-DD). If the start date did not require adjustment, or if the payment is not a standing order, this field will be `null`.
             timestamp (str): The timestamp of the update, in ISO 8601 format, e.g. `\"2017-09-14T14:42:19.350Z\"`
 
         Keyword Args:
@@ -188,10 +191,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            original_reference (str, none_type): The original value of the reference when creating the payment.. [optional]  # noqa: E501
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
-            original_start_date (date, none_type): The original value of the `start_date` provided during the creation of a standing order. If the payment is not a standing order, this field will be `null`.. [optional]  # noqa: E501
-            adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in ISO 8601 format (YYYY-MM-DD). If the start date did not require adjustment, or if the payment is not a standing order, this field will be `null`.. [optional]  # noqa: E501
             error (Error): [optional]  # noqa: E501
         """
 
@@ -223,6 +223,9 @@ class PaymentStatusUpdateWebhook(ModelNormal):
         self.payment_id = payment_id
         self.new_payment_status = new_payment_status
         self.old_payment_status = old_payment_status
+        self.original_reference = original_reference
+        self.original_start_date = original_start_date
+        self.adjusted_start_date = adjusted_start_date
         self.timestamp = timestamp
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

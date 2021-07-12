@@ -106,12 +106,14 @@ class HistoricalBalance(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, date, current, *args, **kwargs):  # noqa: E501
+    def __init__(self, date, current, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
         """HistoricalBalance - a model defined in OpenAPI
 
         Args:
             date (str): The date of the calculated historical balance, in an ISO 8601 format (YYYY-MM-DD)
             current (float): The total amount of funds in the account, calculated from the `current` balance in the `balance` object by subtracting inflows and adding back outflows according to the posted date of each transaction.  If the account has any pending transactions, historical balance amounts on or after the date of the earliest pending transaction may differ if retrieved in subsequent Asset Reports as a result of those pending transactions posting.
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the balance. Always `null` if `unofficial_currency_code` is non-`null`.
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the balance. Always `null` if `iso_currency_code` is non-`null`.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -144,8 +146,6 @@ class HistoricalBalance(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            iso_currency_code (str, none_type): The ISO-4217 currency code of the balance. Always `null` if `unofficial_currency_code` is non-`null`.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the balance. Always `null` if `iso_currency_code` is non-`null`.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -173,6 +173,8 @@ class HistoricalBalance(ModelNormal):
 
         self.date = date
         self.current = current
+        self.iso_currency_code = iso_currency_code
+        self.unofficial_currency_code = unofficial_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

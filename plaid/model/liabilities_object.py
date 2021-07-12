@@ -114,8 +114,13 @@ class LiabilitiesObject(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, credit, mortgage, student, *args, **kwargs):  # noqa: E501
         """LiabilitiesObject - a model defined in OpenAPI
+
+        Args:
+            credit ([CreditCardLiability], none_type): The credit accounts returned.
+            mortgage ([MortgageLiability], none_type): The mortgage accounts returned.
+            student ([StudentLoan], none_type): The student loan accounts returned.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,9 +153,6 @@ class LiabilitiesObject(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            credit ([CreditCardLiability], none_type): The credit accounts returned. If no credit accounts are returned, `credit` will not be present in the schema.. [optional]  # noqa: E501
-            mortgage ([MortgageLiability], none_type): The mortgage accounts returned. If no mortgage accounts are returned, `mortgage` will not be present in the schema.. [optional]  # noqa: E501
-            student ([StudentLoan], none_type): The student loan accounts returned. If no student loan accounts are returned, `student` will not be present in the schema.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -176,6 +178,9 @@ class LiabilitiesObject(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.credit = credit
+        self.mortgage = mortgage
+        self.student = student
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

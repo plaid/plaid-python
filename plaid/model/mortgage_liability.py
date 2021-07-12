@@ -84,8 +84,8 @@ class MortgageLiability(ModelNormal):
         """
         lazy_import()
         return {
+            'account_id': (str,),  # noqa: E501
             'account_number': (str,),  # noqa: E501
-            'account_id': (str, none_type,),  # noqa: E501
             'current_late_fee': (float, none_type,),  # noqa: E501
             'escrow_balance': (float, none_type,),  # noqa: E501
             'has_pmi': (bool, none_type,),  # noqa: E501
@@ -112,8 +112,8 @@ class MortgageLiability(ModelNormal):
 
 
     attribute_map = {
-        'account_number': 'account_number',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'account_number': 'account_number',  # noqa: E501
         'current_late_fee': 'current_late_fee',  # noqa: E501
         'escrow_balance': 'escrow_balance',  # noqa: E501
         'has_pmi': 'has_pmi',  # noqa: E501
@@ -146,11 +146,30 @@ class MortgageLiability(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_number, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, account_number, current_late_fee, escrow_balance, has_pmi, has_prepayment_penalty, interest_rate, last_payment_amount, last_payment_date, loan_type_description, loan_term, maturity_date, next_monthly_payment, next_payment_due_date, origination_date, origination_principal_amount, past_due_amount, property_address, ytd_interest_paid, ytd_principal_paid, *args, **kwargs):  # noqa: E501
         """MortgageLiability - a model defined in OpenAPI
 
         Args:
+            account_id (str): The ID of the account that this liability belongs to.
             account_number (str): The account number of the loan.
+            current_late_fee (float, none_type): The current outstanding amount charged for late payment.
+            escrow_balance (float, none_type): Total amount held in escrow to pay taxes and insurance on behalf of the borrower.
+            has_pmi (bool, none_type): Indicates whether the borrower has private mortgage insurance in effect.
+            has_prepayment_penalty (bool, none_type): Indicates whether the borrower will pay a penalty for early payoff of mortgage.
+            interest_rate (MortgageInterestRate):
+            last_payment_amount (float, none_type): The amount of the last payment.
+            last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            loan_type_description (str, none_type): Description of the type of loan, for example `conventional`, `fixed`, or `variable`. This field is provided directly from the loan servicer and does not have an enumerated set of possible values.
+            loan_term (str, none_type): Full duration of mortgage as at origination (e.g. `10 year`).
+            maturity_date (str, none_type): Original date on which mortgage is due in full. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            next_monthly_payment (float, none_type): The amount of the next payment.
+            next_payment_due_date (str, none_type): The due date for the next payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            origination_date (str, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            origination_principal_amount (float, none_type): The original principal balance of the mortgage.
+            past_due_amount (float, none_type): Amount of loan (principal + interest) past due for payment.
+            property_address (MortgagePropertyAddress):
+            ytd_interest_paid (float, none_type): The year to date (YTD) interest paid.
+            ytd_principal_paid (float, none_type): The YTD principal paid.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -183,25 +202,6 @@ class MortgageLiability(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            account_id (str, none_type): The ID of the account that this liability belongs to.. [optional]  # noqa: E501
-            current_late_fee (float, none_type): The current outstanding amount charged for late payment.. [optional]  # noqa: E501
-            escrow_balance (float, none_type): Total amount held in escrow to pay taxes and insurance on behalf of the borrower.. [optional]  # noqa: E501
-            has_pmi (bool, none_type): Indicates whether the borrower has private mortgage insurance in effect.. [optional]  # noqa: E501
-            has_prepayment_penalty (bool, none_type): Indicates whether the borrower will pay a penalty for early payoff of mortgage.. [optional]  # noqa: E501
-            interest_rate (MortgageInterestRate): [optional]  # noqa: E501
-            last_payment_amount (float, none_type): The amount of the last payment.. [optional]  # noqa: E501
-            last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            loan_type_description (str, none_type): Description of the type of loan, for example `conventional`, `fixed`, or `variable`. This field is provided directly from the loan servicer and does not have an enumerated set of possible values.. [optional]  # noqa: E501
-            loan_term (str, none_type): Full duration of mortgage as at origination (e.g. `10 year`).. [optional]  # noqa: E501
-            maturity_date (str, none_type): Original date on which mortgage is due in full. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            next_monthly_payment (float, none_type): The amount of the next payment.. [optional]  # noqa: E501
-            next_payment_due_date (str, none_type): The due date for the next payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            origination_date (str, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            origination_principal_amount (float, none_type): The original principal balance of the mortgage.. [optional]  # noqa: E501
-            past_due_amount (float, none_type): Amount of loan (principal + interest) past due for payment.. [optional]  # noqa: E501
-            property_address (MortgagePropertyAddress): [optional]  # noqa: E501
-            ytd_interest_paid (float, none_type): The year to date (YTD) interest paid.. [optional]  # noqa: E501
-            ytd_principal_paid (float, none_type): The YTD principal paid.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -227,7 +227,26 @@ class MortgageLiability(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.account_id = account_id
         self.account_number = account_number
+        self.current_late_fee = current_late_fee
+        self.escrow_balance = escrow_balance
+        self.has_pmi = has_pmi
+        self.has_prepayment_penalty = has_prepayment_penalty
+        self.interest_rate = interest_rate
+        self.last_payment_amount = last_payment_amount
+        self.last_payment_date = last_payment_date
+        self.loan_type_description = loan_type_description
+        self.loan_term = loan_term
+        self.maturity_date = maturity_date
+        self.next_monthly_payment = next_monthly_payment
+        self.next_payment_due_date = next_payment_due_date
+        self.origination_date = origination_date
+        self.origination_principal_amount = origination_principal_amount
+        self.past_due_amount = past_due_amount
+        self.property_address = property_address
+        self.ytd_interest_paid = ytd_interest_paid
+        self.ytd_principal_paid = ytd_principal_paid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

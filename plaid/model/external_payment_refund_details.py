@@ -103,8 +103,13 @@ class ExternalPaymentRefundDetails(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, iban, bacs, *args, **kwargs):  # noqa: E501
         """ExternalPaymentRefundDetails - a model defined in OpenAPI
+
+        Args:
+            name (str): The name of the account holder.
+            iban (str, none_type): The International Bank Account Number (IBAN) for the account.
+            bacs (NullableRecipientBACS):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -137,9 +142,6 @@ class ExternalPaymentRefundDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str): The name of the account holder.. [optional]  # noqa: E501
-            iban (str, none_type): The International Bank Account Number (IBAN) for the account.. [optional]  # noqa: E501
-            bacs (NullableRecipientBACS): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -165,6 +167,9 @@ class ExternalPaymentRefundDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.name = name
+        self.iban = iban
+        self.bacs = bacs
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

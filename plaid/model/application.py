@@ -72,6 +72,7 @@ class Application(ModelNormal):
         return {
             'application_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'created_at': (str,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
@@ -85,6 +86,7 @@ class Application(ModelNormal):
     attribute_map = {
         'application_id': 'application_id',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
@@ -102,12 +104,13 @@ class Application(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, application_id, name, logo_url, application_url, reason_for_access, *args, **kwargs):  # noqa: E501
+    def __init__(self, application_id, name, created_at, logo_url, application_url, reason_for_access, *args, **kwargs):  # noqa: E501
         """Application - a model defined in OpenAPI
 
         Args:
             application_id (str): This field will map to the application ID that is returned from /item/applications/list, or provided to the institution in an oauth redirect.
             name (str): The name of the application
+            created_at (str): The date this application was linked in ISO8601 (YYYY-MM-DD) format in UTC.
             logo_url (str, none_type): A URL that links to the application logo image.
             application_url (str, none_type): The URL for the application's website
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
@@ -170,6 +173,7 @@ class Application(ModelNormal):
 
         self.application_id = application_id
         self.name = name
+        self.created_at = created_at
         self.logo_url = logo_url
         self.application_url = application_url
         self.reason_for_access = reason_for_access

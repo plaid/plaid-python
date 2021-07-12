@@ -112,8 +112,14 @@ class PaymentInitiationMetadata(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, supports_international_payments, maximum_payment_amount, supports_refund_details, standing_order_metadata, *args, **kwargs):  # noqa: E501
         """PaymentInitiationMetadata - a model defined in OpenAPI
+
+        Args:
+            supports_international_payments (bool): Indicates whether the institution supports payments from a different country.
+            maximum_payment_amount ({str: (str,)}): A mapping of currency to maximum payment amount (denominated in the smallest unit of currency) supported by the insitution.  Example: `{\"GBP\": \"10000\"}` 
+            supports_refund_details (bool): Indicates whether the institution supports returning refund details when initiating a payment.
+            standing_order_metadata (PaymentInitiationStandingOrderMetadata):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -146,10 +152,6 @@ class PaymentInitiationMetadata(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            supports_international_payments (bool): Indicates whether the institution supports payments from a different country.. [optional]  # noqa: E501
-            maximum_payment_amount ({str: (str,)}): A mapping of currency to maximum payment amount (denominated in the smallest unit of currency) supported by the insitution.  Example: `{\"GBP\": \"10000\"}` . [optional]  # noqa: E501
-            supports_refund_details (bool): Indicates whether the institution supports returning refund details when initiating a payment.. [optional]  # noqa: E501
-            standing_order_metadata (PaymentInitiationStandingOrderMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -175,6 +177,10 @@ class PaymentInitiationMetadata(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.supports_international_payments = supports_international_payments
+        self.maximum_payment_amount = maximum_payment_amount
+        self.supports_refund_details = supports_refund_details
+        self.standing_order_metadata = standing_order_metadata
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

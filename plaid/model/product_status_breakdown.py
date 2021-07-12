@@ -51,7 +51,6 @@ class ProductStatusBreakdown(ModelNormal):
 
     allowed_values = {
         ('refresh_interval',): {
-            'None': None,
             'NORMAL': "NORMAL",
             'DELAYED': "DELAYED",
             'STOPPED': "STOPPED",
@@ -85,7 +84,7 @@ class ProductStatusBreakdown(ModelNormal):
             'success': (float,),  # noqa: E501
             'error_plaid': (float,),  # noqa: E501
             'error_institution': (float,),  # noqa: E501
-            'refresh_interval': (str, none_type,),  # noqa: E501
+            'refresh_interval': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +150,7 @@ class ProductStatusBreakdown(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            refresh_interval (str, none_type): The `refresh_interval` may be `DELAYED` or `STOPPED` even when the success rate is high. This value is only returned for Transactions status breakdowns.. [optional]  # noqa: E501
+            refresh_interval (str): The `refresh_interval` may be `DELAYED` or `STOPPED` even when the success rate is high. This value is only returned for Transactions status breakdowns.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

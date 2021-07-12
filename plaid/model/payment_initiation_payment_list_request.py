@@ -53,9 +53,6 @@ class PaymentInitiationPaymentListRequest(ModelNormal):
     }
 
     validations = {
-        ('count',): {
-            'inclusive_maximum': 200,
-        },
     }
 
     additional_properties_type = None

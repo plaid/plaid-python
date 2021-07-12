@@ -114,18 +114,8 @@ class Numbers(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account, ach_routing, ach_wire_routing, eft_institution, eft_branch, international_bic, international_iban, bacs_sort_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """Numbers - a model defined in OpenAPI
-
-        Args:
-            account (str): Will be used for the account number.
-            ach_routing (str): Must be a valid ACH routing number.
-            ach_wire_routing (str): Must be a valid wire transfer routing number.
-            eft_institution (str): EFT institution number. Must be specified alongside `eft_branch`.
-            eft_branch (str): EFT branch number. Must be specified alongside `eft_institution`.
-            international_bic (str): Bank identifier code (BIC). Must be specified alongside `international_iban`.
-            international_iban (str): International bank account number (IBAN). If no account number is specified via `account`, will also be used as the account number by default. Must be specified alongside `international_bic`.
-            bacs_sort_code (str): BACS sort code
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -158,6 +148,14 @@ class Numbers(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            account (str): Will be used for the account number.. [optional]  # noqa: E501
+            ach_routing (str): Must be a valid ACH routing number.. [optional]  # noqa: E501
+            ach_wire_routing (str): Must be a valid wire transfer routing number.. [optional]  # noqa: E501
+            eft_institution (str): EFT institution number. Must be specified alongside `eft_branch`.. [optional]  # noqa: E501
+            eft_branch (str): EFT branch number. Must be specified alongside `eft_institution`.. [optional]  # noqa: E501
+            international_bic (str): Bank identifier code (BIC). Must be specified alongside `international_iban`.. [optional]  # noqa: E501
+            international_iban (str): International bank account number (IBAN). If no account number is specified via `account`, will also be used as the account number by default. Must be specified alongside `international_bic`.. [optional]  # noqa: E501
+            bacs_sort_code (str): BACS sort code. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -183,14 +181,6 @@ class Numbers(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.account = account
-        self.ach_routing = ach_routing
-        self.ach_wire_routing = ach_wire_routing
-        self.eft_institution = eft_institution
-        self.eft_branch = eft_branch
-        self.international_bic = international_bic
-        self.international_iban = international_iban
-        self.bacs_sort_code = bacs_sort_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

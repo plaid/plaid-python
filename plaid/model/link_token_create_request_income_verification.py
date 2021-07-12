@@ -71,7 +71,7 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
         """
         return {
             'income_verification_id': (str,),  # noqa: E501
-            'asset_report_id': (str, none_type,),  # noqa: E501
+            'asset_report_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -133,7 +133,7 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            asset_report_id (str, none_type): The `asset_report_id` of an asset report associated with the user, as provided by `/asset_report/create`. Providing an `asset_report_id` is optional and can be used to verify the user through a streamlined flow. If provided, the bank linking flow will be skipped.. [optional]  # noqa: E501
+            asset_report_id (str): The `asset_report_id` of an asset report associated with the user, as provided by `/asset_report/create`. Providing an `asset_report_id` is optional and can be used to verify the user through a streamlined flow. If provided, the bank linking flow will be skipped.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

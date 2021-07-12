@@ -85,7 +85,7 @@ class Employer(ModelNormal):
             'employer_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'address': (NullableAddressData,),  # noqa: E501
-            'confidence_score': (float, none_type,),  # noqa: E501
+            'confidence_score': (float,),  # noqa: E501
         }
 
     @cached_property
@@ -112,12 +112,14 @@ class Employer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, employer_id, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, employer_id, name, address, confidence_score, *args, **kwargs):  # noqa: E501
         """Employer - a model defined in OpenAPI
 
         Args:
             employer_id (str): Plaid's unique identifier for the employer.
             name (str): The name of the employer
+            address (NullableAddressData):
+            confidence_score (float): A number from 0 to 1 indicating Plaid's level of confidence in the pairing between the employer and the institution (not yet implemented).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,8 +152,6 @@ class Employer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            address (NullableAddressData): [optional]  # noqa: E501
-            confidence_score (float, none_type): A number from 0 to 1 indicating Plaid's level of confidence in the pairing between the employer and the institution (not yet implemented).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -179,6 +179,8 @@ class Employer(ModelNormal):
 
         self.employer_id = employer_id
         self.name = name
+        self.address = address
+        self.confidence_score = confidence_score
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -130,8 +130,17 @@ class IncomeSummary(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, employer_name, employee_name, ytd_gross_income, ytd_net_income, pay_frequency, projected_wage, verified_transaction, *args, **kwargs):  # noqa: E501
         """IncomeSummary - a model defined in OpenAPI
+
+        Args:
+            employer_name (EmployerIncomeSummaryFieldString):
+            employee_name (EmployeeIncomeSummaryFieldString):
+            ytd_gross_income (YTDGrossIncomeSummaryFieldNumber):
+            ytd_net_income (YTDNetIncomeSummaryFieldNumber):
+            pay_frequency (PayFrequency):
+            projected_wage (ProjectedIncomeSummaryFieldNumber):
+            verified_transaction (TransactionData):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -164,13 +173,6 @@ class IncomeSummary(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            employer_name (EmployerIncomeSummaryFieldString): [optional]  # noqa: E501
-            employee_name (EmployeeIncomeSummaryFieldString): [optional]  # noqa: E501
-            ytd_gross_income (YTDGrossIncomeSummaryFieldNumber): [optional]  # noqa: E501
-            ytd_net_income (YTDNetIncomeSummaryFieldNumber): [optional]  # noqa: E501
-            pay_frequency (PayFrequency): [optional]  # noqa: E501
-            projected_wage (ProjectedIncomeSummaryFieldNumber): [optional]  # noqa: E501
-            verified_transaction (TransactionData): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -196,6 +198,13 @@ class IncomeSummary(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.employer_name = employer_name
+        self.employee_name = employee_name
+        self.ytd_gross_income = ytd_gross_income
+        self.ytd_net_income = ytd_net_income
+        self.pay_frequency = pay_frequency
+        self.projected_wage = projected_wage
+        self.verified_transaction = verified_transaction
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -98,13 +98,13 @@ class BankTransferEvent(ModelNormal):
             'event_type': (BankTransferEventType,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'bank_transfer_id': (str,),  # noqa: E501
+            'origination_account_id': (str, none_type,),  # noqa: E501
             'bank_transfer_type': (BankTransferType,),  # noqa: E501
             'bank_transfer_amount': (str,),  # noqa: E501
             'bank_transfer_iso_currency_code': (str,),  # noqa: E501
             'failure_reason': (BankTransferFailure,),  # noqa: E501
             'direction': (BankTransferDirection,),  # noqa: E501
             'receiver_details': (BankTransferReceiverDetails,),  # noqa: E501
-            'origination_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -118,13 +118,13 @@ class BankTransferEvent(ModelNormal):
         'event_type': 'event_type',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'bank_transfer_id': 'bank_transfer_id',  # noqa: E501
+        'origination_account_id': 'origination_account_id',  # noqa: E501
         'bank_transfer_type': 'bank_transfer_type',  # noqa: E501
         'bank_transfer_amount': 'bank_transfer_amount',  # noqa: E501
         'bank_transfer_iso_currency_code': 'bank_transfer_iso_currency_code',  # noqa: E501
         'failure_reason': 'failure_reason',  # noqa: E501
         'direction': 'direction',  # noqa: E501
         'receiver_details': 'receiver_details',  # noqa: E501
-        'origination_account_id': 'origination_account_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +139,7 @@ class BankTransferEvent(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, event_id, timestamp, event_type, account_id, bank_transfer_id, bank_transfer_type, bank_transfer_amount, bank_transfer_iso_currency_code, failure_reason, direction, receiver_details, *args, **kwargs):  # noqa: E501
+    def __init__(self, event_id, timestamp, event_type, account_id, bank_transfer_id, origination_account_id, bank_transfer_type, bank_transfer_amount, bank_transfer_iso_currency_code, failure_reason, direction, receiver_details, *args, **kwargs):  # noqa: E501
         """BankTransferEvent - a model defined in OpenAPI
 
         Args:
@@ -148,6 +148,7 @@ class BankTransferEvent(ModelNormal):
             event_type (BankTransferEventType):
             account_id (str): The account ID associated with the bank transfer.
             bank_transfer_id (str): Plaid’s unique identifier for a bank transfer.
+            origination_account_id (str, none_type): The ID of the origination account that this balance belongs to.
             bank_transfer_type (BankTransferType):
             bank_transfer_amount (str): The bank transfer amount.
             bank_transfer_iso_currency_code (str): The currency of the bank transfer amount.
@@ -186,7 +187,6 @@ class BankTransferEvent(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            origination_account_id (str, none_type): The ID of the origination account that this balance belongs to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,6 +217,7 @@ class BankTransferEvent(ModelNormal):
         self.event_type = event_type
         self.account_id = account_id
         self.bank_transfer_id = bank_transfer_id
+        self.origination_account_id = origination_account_id
         self.bank_transfer_type = bank_transfer_type
         self.bank_transfer_amount = bank_transfer_amount
         self.bank_transfer_iso_currency_code = bank_transfer_iso_currency_code

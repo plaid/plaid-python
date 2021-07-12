@@ -50,6 +50,13 @@ class IncomeBreakdown(ModelNormal):
     """
 
     allowed_values = {
+        ('type',): {
+            'None': None,
+            'BONUS': "bonus",
+            'OVERTIME': "overtime",
+            'REGULAR': "regular",
+            'NULL': "null",
+        },
     }
 
     validations = {
@@ -106,8 +113,14 @@ class IncomeBreakdown(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, rate, hours, total, *args, **kwargs):  # noqa: E501
         """IncomeBreakdown - a model defined in OpenAPI
+
+        Args:
+            type (str, none_type): The type of income. Possible values include:   `\"regular\"`: regular income   `\"overtime\"`: overtime income    `\"bonus\"`: bonus income
+            rate (float, none_type): The hourly rate at which the income is paid.
+            hours (float, none_type): The number of hours logged for this income for this pay period.
+            total (float, none_type): The total pay for this pay period.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,10 +153,6 @@ class IncomeBreakdown(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): The type of income. Possible values include `\"regular\"`, `\"overtime\"`, and `\"bonus\"`.. [optional]  # noqa: E501
-            rate (float, none_type): The hourly rate at which the income is paid.. [optional]  # noqa: E501
-            hours (float, none_type): The number of hours logged for this income for this pay period.. [optional]  # noqa: E501
-            total (float, none_type): The total pay for this pay period.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -169,6 +178,10 @@ class IncomeBreakdown(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.type = type
+        self.rate = rate
+        self.hours = hours
+        self.total = total
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

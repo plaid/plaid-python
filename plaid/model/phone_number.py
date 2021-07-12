@@ -51,7 +51,6 @@ class PhoneNumber(ModelNormal):
 
     allowed_values = {
         ('type',): {
-            'None': None,
             'HOME': "home",
             'WORK': "work",
             'OFFICE': "office",
@@ -86,8 +85,8 @@ class PhoneNumber(ModelNormal):
         """
         return {
             'data': (str,),  # noqa: E501
-            'primary': (bool, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
+            'primary': (bool,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -113,11 +112,13 @@ class PhoneNumber(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, data, *args, **kwargs):  # noqa: E501
+    def __init__(self, data, primary, type, *args, **kwargs):  # noqa: E501
         """PhoneNumber - a model defined in OpenAPI
 
         Args:
             data (str): The phone number.
+            primary (bool): When `true`, identifies the phone number as the primary number on an account.
+            type (str): The type of phone number.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,8 +151,6 @@ class PhoneNumber(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            primary (bool, none_type): When `true`, identifies the phone number as the primary number on an account.. [optional]  # noqa: E501
-            type (str, none_type): The type of phone number.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -178,6 +177,8 @@ class PhoneNumber(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.data = data
+        self.primary = primary
+        self.type = type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

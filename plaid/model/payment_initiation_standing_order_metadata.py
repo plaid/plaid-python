@@ -110,8 +110,13 @@ class PaymentInitiationStandingOrderMetadata(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, supports_standing_order_end_date, supports_standing_order_negative_execution_days, valid_standing_order_intervals, *args, **kwargs):  # noqa: E501
         """PaymentInitiationStandingOrderMetadata - a model defined in OpenAPI
+
+        Args:
+            supports_standing_order_end_date (bool): Indicates whether the institution supports closed-ended standing orders by providing an end date.
+            supports_standing_order_negative_execution_days (bool): This is only applicable to `MONTHLY` standing orders. Indicates whether the institution supports negative integers (-1 to -5) for setting up a `MONTHLY` standing order relative to the end of the month.
+            valid_standing_order_intervals ([PaymentScheduleInterval]): A list of the valid standing order intervals supported by the institution.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -144,9 +149,6 @@ class PaymentInitiationStandingOrderMetadata(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            supports_standing_order_end_date (bool): Indicates whether the institution supports closed-ended standing orders by providing an end date.. [optional]  # noqa: E501
-            supports_standing_order_negative_execution_days (bool): This is only applicable to `MONTHLY` standing orders. Indicates whether the institution supports negative integers (-1 to -5) for setting up a `MONTHLY` standing order relative to the end of the month.. [optional]  # noqa: E501
-            valid_standing_order_intervals ([PaymentScheduleInterval]): A list of the valid standing order intervals supported by the institution.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +174,9 @@ class PaymentInitiationStandingOrderMetadata(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.supports_standing_order_end_date = supports_standing_order_end_date
+        self.supports_standing_order_negative_execution_days = supports_standing_order_negative_execution_days
+        self.valid_standing_order_intervals = valid_standing_order_intervals
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

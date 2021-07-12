@@ -88,12 +88,12 @@ class StudentLoan(ModelNormal):
         """
         lazy_import()
         return {
-            'interest_rate_percentage': (float,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
             'account_number': (str, none_type,),  # noqa: E501
             'disbursement_dates': ([str], none_type,),  # noqa: E501
             'expected_payoff_date': (str, none_type,),  # noqa: E501
             'guarantor': (str, none_type,),  # noqa: E501
+            'interest_rate_percentage': (float,),  # noqa: E501
             'is_overdue': (bool, none_type,),  # noqa: E501
             'last_payment_amount': (float, none_type,),  # noqa: E501
             'last_payment_date': (str, none_type,),  # noqa: E501
@@ -120,12 +120,12 @@ class StudentLoan(ModelNormal):
 
 
     attribute_map = {
-        'interest_rate_percentage': 'interest_rate_percentage',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'account_number': 'account_number',  # noqa: E501
         'disbursement_dates': 'disbursement_dates',  # noqa: E501
         'expected_payoff_date': 'expected_payoff_date',  # noqa: E501
         'guarantor': 'guarantor',  # noqa: E501
+        'interest_rate_percentage': 'interest_rate_percentage',  # noqa: E501
         'is_overdue': 'is_overdue',  # noqa: E501
         'last_payment_amount': 'last_payment_amount',  # noqa: E501
         'last_payment_date': 'last_payment_date',  # noqa: E501
@@ -158,11 +158,34 @@ class StudentLoan(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, interest_rate_percentage, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, account_number, disbursement_dates, expected_payoff_date, guarantor, interest_rate_percentage, is_overdue, last_payment_amount, last_payment_date, last_statement_issue_date, loan_name, loan_status, minimum_payment_amount, next_payment_due_date, origination_date, origination_principal_amount, outstanding_interest_amount, payment_reference_number, pslf_status, repayment_plan, sequence_number, servicer_address, ytd_interest_paid, ytd_principal_paid, *args, **kwargs):  # noqa: E501
         """StudentLoan - a model defined in OpenAPI
 
         Args:
+            account_id (str, none_type): The ID of the account that this liability belongs to.
+            account_number (str, none_type): The account number of the loan. For some institutions, this may be a masked version of the number (e.g., the last 4 digits instead of the entire number).
+            disbursement_dates ([str], none_type): The dates on which loaned funds were disbursed or will be disbursed. These are often in the past. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            expected_payoff_date (str, none_type): The date when the student loan is expected to be paid off. Availability for this field is limited. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            guarantor (str, none_type): The guarantor of the student loan.
             interest_rate_percentage (float): The interest rate on the loan as a percentage.
+            is_overdue (bool, none_type): `true` if a payment is currently overdue. Availability for this field is limited.
+            last_payment_amount (float, none_type): The amount of the last payment.
+            last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            last_statement_issue_date (str, none_type): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            loan_name (str, none_type): The type of loan, e.g., \"Consolidation Loans\".
+            loan_status (StudentLoanStatus):
+            minimum_payment_amount (float, none_type): The minimum payment due for the next billing cycle. There are some exceptions: Some institutions require a minimum payment across all loans associated with an account number. Our API presents that same minimum payment amount on each loan. The institutions that do this are: Great Lakes ( `ins_116861`), Firstmark (`ins_116295`), Commonbond Firstmark Services (`ins_116950`), Nelnet (`ins_116528`), EdFinancial Services (`ins_116304`), Granite State (`ins_116308`), and Oklahoma Student Loan Authority (`ins_116945`). Firstmark (`ins_116295` ) will display as $0 if there is an autopay program in effect.
+            next_payment_due_date (str, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. A payment is not expected if `loan_status.type` is `deferment`, `in_school`, `consolidated`, `paid in full`, or `transferred`. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            origination_date (str, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD). 
+            origination_principal_amount (float, none_type): The original principal balance of the loan.
+            outstanding_interest_amount (float, none_type): The total dollar amount of the accrued interest balance. For Sallie Mae ( `ins_116944`), this amount is included in the current balance of the loan, so this field will return as `null`.
+            payment_reference_number (str, none_type): The relevant account number that should be used to reference this loan for payments. In the majority of cases, `payment_reference_number` will match a`ccount_number,` but in some institutions, such as Great Lakes (`ins_116861`), it will be different.
+            pslf_status (PSLFStatus):
+            repayment_plan (StudentRepaymentPlan):
+            sequence_number (str, none_type): The sequence number of the student loan. Heartland ECSI (`ins_116948`) does not make this field available.
+            servicer_address (ServicerAddressData):
+            ytd_interest_paid (float, none_type): The year to date (YTD) interest paid. Availability for this field is limited.
+            ytd_principal_paid (float, none_type): The year to date (YTD) principal paid. Availability for this field is limited.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -195,29 +218,6 @@ class StudentLoan(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            account_id (str, none_type): The ID of the account that this liability belongs to.. [optional]  # noqa: E501
-            account_number (str, none_type): The account number of the loan. For some institutions, this may be a masked version of the number (e.g., the last 4 digits instead of the entire number).. [optional]  # noqa: E501
-            disbursement_dates ([str], none_type): The dates on which loaned funds were disbursed or will be disbursed. These are often in the past. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            expected_payoff_date (str, none_type): The date when the student loan is expected to be paid off. Availability for this field is limited. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            guarantor (str, none_type): The guarantor of the student loan.. [optional]  # noqa: E501
-            is_overdue (bool, none_type): `true` if a payment is currently overdue. Availability for this field is limited.. [optional]  # noqa: E501
-            last_payment_amount (float, none_type): The amount of the last payment.. [optional]  # noqa: E501
-            last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            last_statement_issue_date (str, none_type): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            loan_name (str, none_type): The type of loan, e.g., \"Consolidation Loans\".. [optional]  # noqa: E501
-            loan_status (StudentLoanStatus): [optional]  # noqa: E501
-            minimum_payment_amount (float, none_type): The minimum payment due for the next billing cycle. There are some exceptions: Some institutions require a minimum payment across all loans associated with an account number. Our API presents that same minimum payment amount on each loan. The institutions that do this are: Great Lakes ( `ins_116861`), Firstmark (`ins_116295`), Commonbond Firstmark Services (`ins_116950`), Nelnet (`ins_116528`), EdFinancial Services (`ins_116304`), Granite State (`ins_116308`), and Oklahoma Student Loan Authority (`ins_116945`). Firstmark (`ins_116295` ) will display as $0 if there is an autopay program in effect.. [optional]  # noqa: E501
-            next_payment_due_date (str, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. A payment is not expected if `loan_status.type` is `deferment`, `in_school`, `consolidated`, `paid in full`, or `transferred`. Dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            origination_date (str, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD). . [optional]  # noqa: E501
-            origination_principal_amount (float, none_type): The original principal balance of the loan.. [optional]  # noqa: E501
-            outstanding_interest_amount (float, none_type): The total dollar amount of the accrued interest balance. For Sallie Mae ( `ins_116944`), this amount is included in the current balance of the loan, so this field will return as `null`.. [optional]  # noqa: E501
-            payment_reference_number (str, none_type): The relevant account number that should be used to reference this loan for payments. In the majority of cases, `payment_reference_number` will match a`ccount_number,` but in some institutions, such as Great Lakes (`ins_116861`), it will be different.. [optional]  # noqa: E501
-            pslf_status (PSLFStatus): [optional]  # noqa: E501
-            repayment_plan (StudentRepaymentPlan): [optional]  # noqa: E501
-            sequence_number (str, none_type): The sequence number of the student loan. Heartland ECSI (`ins_116948`) does not make this field available.. [optional]  # noqa: E501
-            servicer_address (ServicerAddressData): [optional]  # noqa: E501
-            ytd_interest_paid (float, none_type): The year to date (YTD) interest paid. Availability for this field is limited.. [optional]  # noqa: E501
-            ytd_principal_paid (float, none_type): The year to date (YTD) principal paid. Availability for this field is limited.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -243,7 +243,30 @@ class StudentLoan(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.account_id = account_id
+        self.account_number = account_number
+        self.disbursement_dates = disbursement_dates
+        self.expected_payoff_date = expected_payoff_date
+        self.guarantor = guarantor
         self.interest_rate_percentage = interest_rate_percentage
+        self.is_overdue = is_overdue
+        self.last_payment_amount = last_payment_amount
+        self.last_payment_date = last_payment_date
+        self.last_statement_issue_date = last_statement_issue_date
+        self.loan_name = loan_name
+        self.loan_status = loan_status
+        self.minimum_payment_amount = minimum_payment_amount
+        self.next_payment_due_date = next_payment_due_date
+        self.origination_date = origination_date
+        self.origination_principal_amount = origination_principal_amount
+        self.outstanding_interest_amount = outstanding_interest_amount
+        self.payment_reference_number = payment_reference_number
+        self.pslf_status = pslf_status
+        self.repayment_plan = repayment_plan
+        self.sequence_number = sequence_number
+        self.servicer_address = servicer_address
+        self.ytd_interest_paid = ytd_interest_paid
+        self.ytd_principal_paid = ytd_principal_paid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

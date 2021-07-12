@@ -93,12 +93,12 @@ class Error(ModelNormal):
             'error_type': (str,),  # noqa: E501
             'error_code': (str,),  # noqa: E501
             'error_message': (str,),  # noqa: E501
-            'request_id': (str,),  # noqa: E501
             'display_message': (str, none_type,),  # noqa: E501
+            'request_id': (str,),  # noqa: E501
             'causes': ([bool, date, datetime, dict, float, int, list, str, none_type],),  # noqa: E501
             'status': (float, none_type,),  # noqa: E501
-            'documentation_url': (str, none_type,),  # noqa: E501
-            'suggested_action': (str, none_type,),  # noqa: E501
+            'documentation_url': (str,),  # noqa: E501
+            'suggested_action': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -110,8 +110,8 @@ class Error(ModelNormal):
         'error_type': 'error_type',  # noqa: E501
         'error_code': 'error_code',  # noqa: E501
         'error_message': 'error_message',  # noqa: E501
-        'request_id': 'request_id',  # noqa: E501
         'display_message': 'display_message',  # noqa: E501
+        'request_id': 'request_id',  # noqa: E501
         'causes': 'causes',  # noqa: E501
         'status': 'status',  # noqa: E501
         'documentation_url': 'documentation_url',  # noqa: E501
@@ -130,14 +130,14 @@ class Error(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, error_type, error_code, error_message, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, error_type, error_code, error_message, display_message, *args, **kwargs):  # noqa: E501
         """Error - a model defined in OpenAPI
 
         Args:
             error_type (str): A broad categorization of the error. Safe for programatic use.
             error_code (str): The particular error code. Safe for programmatic use.
             error_message (str): A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
-            request_id (str): A unique identifying the request, to be used for troubleshooting purposes. This field will be omitted in errors provided by webhooks.
+            display_message (str, none_type): A user-friendly representation of the error code. `null` if the error is not related to user action.  This may change over time and is not safe for programmatic use.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,11 +170,11 @@ class Error(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            display_message (str, none_type): A user-friendly representation of the error code. `null` if the error is not related to user action.  This may change over time and is not safe for programmatic use.. [optional]  # noqa: E501
+            request_id (str): A unique ID identifying the request, to be used for troubleshooting purposes. This field will be omitted in errors provided by webhooks.. [optional]  # noqa: E501
             causes ([bool, date, datetime, dict, float, int, list, str, none_type]): In the Assets product, a request can pertain to more than one Item. If an error is returned for such a request, `causes` will return an array of errors containing a breakdown of these errors on the individual Item level, if any can be identified.  `causes` will only be provided for the `error_type` `ASSET_REPORT_ERROR`.. [optional]  # noqa: E501
             status (float, none_type): The HTTP status code associated with the error. This will only be returned in the response body when the error information is provided via a webhook.. [optional]  # noqa: E501
-            documentation_url (str, none_type): The URL of a Plaid documentation page with more information about the error. [optional]  # noqa: E501
-            suggested_action (str, none_type): Suggested steps for resolving the error. [optional]  # noqa: E501
+            documentation_url (str): The URL of a Plaid documentation page with more information about the error. [optional]  # noqa: E501
+            suggested_action (str): Suggested steps for resolving the error. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -203,7 +203,7 @@ class Error(ModelNormal):
         self.error_type = error_type
         self.error_code = error_code
         self.error_message = error_message
-        self.request_id = request_id
+        self.display_message = display_message
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

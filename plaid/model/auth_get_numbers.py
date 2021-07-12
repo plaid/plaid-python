@@ -118,8 +118,14 @@ class AuthGetNumbers(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, ach, eft, international, bacs, *args, **kwargs):  # noqa: E501
         """AuthGetNumbers - a model defined in OpenAPI
+
+        Args:
+            ach ([NumbersACH]): An array of ACH numbers identifying accounts.
+            eft ([NumbersEFT]): An array of EFT numbers identifying accounts.
+            international ([NumbersInternational]): An array of IBAN numbers identifying accounts.
+            bacs ([NumbersBACS]): An array of BACS numbers identifying accounts.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,10 +158,6 @@ class AuthGetNumbers(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            ach ([NumbersACH]): An array of ACH numbers identifying accounts.. [optional]  # noqa: E501
-            eft ([NumbersEFT]): An array of EFT numbers identifying accounts.. [optional]  # noqa: E501
-            international ([NumbersInternational]): An array of IBAN numbers identifying accounts.. [optional]  # noqa: E501
-            bacs ([NumbersBACS]): An array of BACS numbers identifying accounts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,6 +183,10 @@ class AuthGetNumbers(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.ach = ach
+        self.eft = eft
+        self.international = international
+        self.bacs = bacs
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

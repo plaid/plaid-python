@@ -88,6 +88,7 @@ def poll_for_response(checks):
             success = True
             break
         except AssertionError:
+            time.sleep(0.5)
             continue
     assert success
 
@@ -157,7 +158,7 @@ def test_list_events():
             list_events_request)
         assert list_events_response is not None
         assert list_events_response['bank_transfer_events'] is not None
-        assert len(list_events_response['bank_transfer_events']) == 2
+        assert len(list_events_response['bank_transfer_events']) >= 1
     poll_for_response(checks)
 
 

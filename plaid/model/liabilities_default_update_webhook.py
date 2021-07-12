@@ -109,8 +109,16 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, item_id, error, account_ids_with_new_liabilities, account_ids_with_updated_liabilities, *args, **kwargs):  # noqa: E501
         """LiabilitiesDefaultUpdateWebhook - a model defined in OpenAPI
+
+        Args:
+            webhook_type (str): `LIABILITIES`
+            webhook_code (str): `DEFAULT_UPDATE`
+            item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
+            error (Error):
+            account_ids_with_new_liabilities ([str]): An array of `account_id`'s for accounts that contain new liabilities.
+            account_ids_with_updated_liabilities ({str: ([str],)}): An object with keys of `account_id`'s that are mapped to their respective liabilities fields that changed.  Example: `{ \"XMBvvyMGQ1UoLbKByoMqH3nXMj84ALSdE5B58\": [\"past_amount_due\"] }` 
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -143,12 +151,6 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            webhook_type (str): `LIABILITIES`. [optional]  # noqa: E501
-            webhook_code (str): `DEFAULT_UPDATE`. [optional]  # noqa: E501
-            item_id (str): The `item_id` of the Item associated with this webhook, warning, or error. [optional]  # noqa: E501
-            error (Error): [optional]  # noqa: E501
-            account_ids_with_new_liabilities ([str]): An array of `account_id`'s for accounts that contain new liabilities.. [optional]  # noqa: E501
-            account_ids_with_updated_liabilities ({str: ([str],)}): An object with keys of `account_id`'s that are mapped to their respective liabilities fields that changed.  Example: `{ \"53068f27dedc572a19000029\": [\"past_amount_due\"] }` . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,6 +176,12 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.webhook_type = webhook_type
+        self.webhook_code = webhook_code
+        self.item_id = item_id
+        self.error = error
+        self.account_ids_with_new_liabilities = account_ids_with_new_liabilities
+        self.account_ids_with_updated_liabilities = account_ids_with_updated_liabilities
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -113,13 +113,14 @@ class NullableNumbersACH(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, account, routing, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, account, routing, wire_routing, *args, **kwargs):  # noqa: E501
         """NullableNumbersACH - a model defined in OpenAPI
 
         Args:
             account_id (str): The Plaid account ID associated with the account numbers
-            account (str): The ACH account number for the account.  Note that when using OAuth with Chase Bank (`ins_56`), Chase will issue \"tokenized\" routing and account numbers, which are not the user's actual account and routing numbers. These tokenized numbers should work identically to normal account and routing numbers, with the following exceptions: real-time payments are not supported, and same-day ACH transfers using the virtual account number that are initiated within 9 hours of the Item's creation may fail. The digits returned in the mask field will continue to reflect the actual account number, rather than the tokenized account number. If a user revokes their permissions to your app, the tokenized numbers will continue to work for ACH deposits, but not withdrawals.
+            account (str): The ACH account number for the account.  Note that when using OAuth with Chase Bank (`ins_56`), Chase will issue \"tokenized\" routing and account numbers, which are not the user's actual account and routing numbers. These tokenized numbers should work identically to normal account and routing numbers. The digits returned in the mask field will continue to reflect the actual account number, rather than the tokenized account number. If a user revokes their permissions to your app, the tokenized numbers will continue to work for ACH deposits, but not withdrawals.
             routing (str): The ACH routing number for the account. If the institution is `ins_56`, this may be a tokenized routing number. For more information, see the description of the `account` field.
+            wire_routing (str, none_type): The wire transfer routing number for the account, if available
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,7 +153,6 @@ class NullableNumbersACH(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            wire_routing (str, none_type): The wire transfer routing number for the account, if available. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,6 +189,7 @@ class NullableNumbersACH(ModelComposed):
             'account_id': account_id,
             'account': account,
             'routing': routing,
+            'wire_routing': wire_routing,
         }
         model_args = {}
         model_args.update(required_args)

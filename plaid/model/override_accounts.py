@@ -26,19 +26,19 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.account_subtype import AccountSubtype
-    from plaid.model.account_type import AccountType
     from plaid.model.inflow_model import InflowModel
     from plaid.model.liability_override import LiabilityOverride
     from plaid.model.meta import Meta
     from plaid.model.numbers import Numbers
+    from plaid.model.override_account_type import OverrideAccountType
     from plaid.model.owner_override import OwnerOverride
     from plaid.model.transaction_override import TransactionOverride
     globals()['AccountSubtype'] = AccountSubtype
-    globals()['AccountType'] = AccountType
     globals()['InflowModel'] = InflowModel
     globals()['LiabilityOverride'] = LiabilityOverride
     globals()['Meta'] = Meta
     globals()['Numbers'] = Numbers
+    globals()['OverrideAccountType'] = OverrideAccountType
     globals()['OwnerOverride'] = OwnerOverride
     globals()['TransactionOverride'] = TransactionOverride
 
@@ -96,7 +96,7 @@ class OverrideAccounts(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (AccountType,),  # noqa: E501
+            'type': (OverrideAccountType,),  # noqa: E501
             'subtype': (AccountSubtype,),  # noqa: E501
             'starting_balance': (float,),  # noqa: E501
             'force_available_balance': (float,),  # noqa: E501
@@ -144,7 +144,7 @@ class OverrideAccounts(ModelNormal):
         """OverrideAccounts - a model defined in OpenAPI
 
         Args:
-            type (AccountType):
+            type (OverrideAccountType):
             subtype (AccountSubtype):
             starting_balance (float): If provided, the account will start with this amount as the current balance. 
             force_available_balance (float): If provided, the account will always have this amount as its  available balance, regardless of current balance or changes in transactions over time.

@@ -92,11 +92,11 @@ class Institution(ModelNormal):
             'name': (str,),  # noqa: E501
             'products': ([Products],),  # noqa: E501
             'country_codes': ([CountryCode],),  # noqa: E501
+            'routing_numbers': ([str], none_type,),  # noqa: E501
             'oauth': (bool,),  # noqa: E501
             'url': (str, none_type,),  # noqa: E501
             'primary_color': (str, none_type,),  # noqa: E501
             'logo': (str, none_type,),  # noqa: E501
-            'routing_numbers': ([str], none_type,),  # noqa: E501
             'status': (InstitutionStatus,),  # noqa: E501
             'payment_initiation_metadata': (PaymentInitiationMetadata,),  # noqa: E501
         }
@@ -111,11 +111,11 @@ class Institution(ModelNormal):
         'name': 'name',  # noqa: E501
         'products': 'products',  # noqa: E501
         'country_codes': 'country_codes',  # noqa: E501
+        'routing_numbers': 'routing_numbers',  # noqa: E501
         'oauth': 'oauth',  # noqa: E501
         'url': 'url',  # noqa: E501
         'primary_color': 'primary_color',  # noqa: E501
         'logo': 'logo',  # noqa: E501
-        'routing_numbers': 'routing_numbers',  # noqa: E501
         'status': 'status',  # noqa: E501
         'payment_initiation_metadata': 'payment_initiation_metadata',  # noqa: E501
     }
@@ -132,14 +132,15 @@ class Institution(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, institution_id, name, products, country_codes, oauth, *args, **kwargs):  # noqa: E501
+    def __init__(self, institution_id, name, products, country_codes, routing_numbers, oauth, *args, **kwargs):  # noqa: E501
         """Institution - a model defined in OpenAPI
 
         Args:
             institution_id (str): Unique identifier for the institution
             name (str): The official name of the institution
-            products ([Products]): A list of the Plaid products supported by the institution
+            products ([Products]): A list of the Plaid products supported by the institution. Note that only institutions that support Instant Auth will return `auth` in the product array; institutions that do not list `auth` may still support other Auth methods such as Instant Match or Automated Micro-deposit Verification. For more details, see [Full Auth coverage](https://plaid.com/docs/auth/coverage/).
             country_codes ([CountryCode]): A list of the country codes supported by the institution.
+            routing_numbers ([str], none_type): A partial list of routing numbers associated with the institution. This list is provided for the purpose of looking up institutions by routing number. It is not comprehensive and should never be used as a complete list of routing numbers for an institution.
             oauth (bool): Indicates that the institution has an OAuth login flow. This is primarily relevant to institutions with European country codes.
 
         Keyword Args:
@@ -176,7 +177,6 @@ class Institution(ModelNormal):
             url (str, none_type): The URL for the institution's website. [optional]  # noqa: E501
             primary_color (str, none_type): Hexadecimal representation of the primary color used by the institution. [optional]  # noqa: E501
             logo (str, none_type): Base64 encoded representation of the institution's logo. [optional]  # noqa: E501
-            routing_numbers ([str], none_type): A partial list of routing numbers associated with the institution. This list is provided for the purpose of looking up institutions by routing number. It is not comprehensive and should never be used as a complete list of routing numbers for an institution.. [optional]  # noqa: E501
             status (InstitutionStatus): [optional]  # noqa: E501
             payment_initiation_metadata (PaymentInitiationMetadata): [optional]  # noqa: E501
         """
@@ -208,6 +208,7 @@ class Institution(ModelNormal):
         self.name = name
         self.products = products
         self.country_codes = country_codes
+        self.routing_numbers = routing_numbers
         self.oauth = oauth
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -104,8 +104,13 @@ class PSLFStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, estimated_eligibility_date, payments_made, payments_remaining, *args, **kwargs):  # noqa: E501
         """PSLFStatus - a model defined in OpenAPI
+
+        Args:
+            estimated_eligibility_date (str, none_type): The estimated date borrower will have completed 120 qualifying monthly payments. Returned in ISO 8601 format (YYYY-MM-DD).
+            payments_made (float, none_type): The number of qualifying payments that have been made.
+            payments_remaining (float, none_type): The number of qualifying payments remaining.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -138,9 +143,6 @@ class PSLFStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            estimated_eligibility_date (str, none_type): The estimated date borrower will have completed 120 qualifying monthly payments. Returned in ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            payments_made (float, none_type): The number of qualifying payments that have been made.. [optional]  # noqa: E501
-            payments_remaining (float, none_type): The number of qualifying payments remaining.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,6 +168,9 @@ class PSLFStatus(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.estimated_eligibility_date = estimated_eligibility_date
+        self.payments_made = payments_made
+        self.payments_remaining = payments_remaining
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

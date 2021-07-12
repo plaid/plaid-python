@@ -108,8 +108,15 @@ class PayPeriodDetails(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, start_date, end_date, pay_day, gross_earnings, check_amount, *args, **kwargs):  # noqa: E501
         """PayPeriodDetails - a model defined in OpenAPI
+
+        Args:
+            start_date (str, none_type): The pay period start date, in ISO 8601 format: \"yyyy-mm-dd\".
+            end_date (str, none_type): The pay period end date, in ISO 8601 format: \"yyyy-mm-dd\".
+            pay_day (str, none_type): The date on which the paystub was issued, in ISO 8601 format (\"yyyy-mm-dd\").
+            gross_earnings (float, none_type): Total earnings before tax.
+            check_amount (float, none_type): The net amount of the paycheck.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,11 +149,6 @@ class PayPeriodDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            start_date (str, none_type): The pay period start date, in ISO 8601 format: \"yyyy-mm-dd\".. [optional]  # noqa: E501
-            end_date (str, none_type): The pay period end date, in ISO 8601 format: \"yyyy-mm-dd\".. [optional]  # noqa: E501
-            pay_day (str, none_type): The date on which the paystub was issued, in ISO 8601 format (\"yyyy-mm-dd\").. [optional]  # noqa: E501
-            gross_earnings (float, none_type): Total earnings before tax.. [optional]  # noqa: E501
-            check_amount (float, none_type): The net amount of the paycheck.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +174,11 @@ class PayPeriodDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.start_date = start_date
+        self.end_date = end_date
+        self.pay_day = pay_day
+        self.gross_earnings = gross_earnings
+        self.check_amount = check_amount
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

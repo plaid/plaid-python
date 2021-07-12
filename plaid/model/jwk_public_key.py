@@ -116,7 +116,7 @@ class JWKPublicKey(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, alg, crv, kid, kty, use, x, y, created_at, *args, **kwargs):  # noqa: E501
+    def __init__(self, alg, crv, kid, kty, use, x, y, created_at, expired_at, *args, **kwargs):  # noqa: E501
         """JWKPublicKey - a model defined in OpenAPI
 
         Args:
@@ -128,6 +128,7 @@ class JWKPublicKey(ModelNormal):
             x (str): The x member contains the x coordinate for the elliptic curve point.
             y (str): The y member contains the y coordinate for the elliptic curve point.
             created_at (int):
+            expired_at (int, none_type):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,7 +161,6 @@ class JWKPublicKey(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            expired_at (int, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -194,6 +194,7 @@ class JWKPublicKey(ModelNormal):
         self.x = x
         self.y = y
         self.created_at = created_at
+        self.expired_at = expired_at
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

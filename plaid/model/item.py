@@ -58,7 +58,7 @@ class Item(ModelNormal):
     allowed_values = {
         ('update_type',): {
             'BACKGROUND': "background",
-            'REQUIRES_USER_AUTHENTICATION': "requires_user_authentication",
+            'USER_PRESENT_REQUIRED': "user_present_required",
         },
     }
 
@@ -89,13 +89,13 @@ class Item(ModelNormal):
         lazy_import()
         return {
             'item_id': (str,),  # noqa: E501
-            'available_products': ([Products],),  # noqa: E501
-            'billed_products': ([Products],),  # noqa: E501
-            'update_type': (str,),  # noqa: E501
-            'institution_id': (str, none_type,),  # noqa: E501
             'webhook': (str, none_type,),  # noqa: E501
             'error': (Error,),  # noqa: E501
+            'available_products': ([Products],),  # noqa: E501
+            'billed_products': ([Products],),  # noqa: E501
             'consent_expiration_time': (str, none_type,),  # noqa: E501
+            'update_type': (str,),  # noqa: E501
+            'institution_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,13 +105,13 @@ class Item(ModelNormal):
 
     attribute_map = {
         'item_id': 'item_id',  # noqa: E501
-        'available_products': 'available_products',  # noqa: E501
-        'billed_products': 'billed_products',  # noqa: E501
-        'update_type': 'update_type',  # noqa: E501
-        'institution_id': 'institution_id',  # noqa: E501
         'webhook': 'webhook',  # noqa: E501
         'error': 'error',  # noqa: E501
+        'available_products': 'available_products',  # noqa: E501
+        'billed_products': 'billed_products',  # noqa: E501
         'consent_expiration_time': 'consent_expiration_time',  # noqa: E501
+        'update_type': 'update_type',  # noqa: E501
+        'institution_id': 'institution_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -126,14 +126,17 @@ class Item(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_id, available_products, billed_products, update_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_id, webhook, error, available_products, billed_products, consent_expiration_time, update_type, *args, **kwargs):  # noqa: E501
         """Item - a model defined in OpenAPI
 
         Args:
             item_id (str): The Plaid Item ID. The `item_id` is always unique; linking the same account at the same institution twice will result in two Items with different `item_id` values. Like all Plaid identifiers, the `item_id` is case-sensitive.
+            webhook (str, none_type): The URL registered to receive webhooks for the Item.
+            error (Error):
             available_products ([Products]): A list of products available for the Item that have not yet been accessed.
             billed_products ([Products]): A list of products that have been billed for the Item. Note - `billed_products` is populated in all environments but only requests in Production are billed. 
-            update_type (str): Indicates whether an Item requires user interaction to be updated, which can be the case for Items with some forms of two-factor authentication.  `background` - Item can be updated in the background  `requires_user_authentication` - Item requires user interaction to be updated
+            consent_expiration_time (str, none_type): The RFC 3339 timestamp after which the consent provided by the end user will expire. Upon consent expiration, the item will enter the `ITEM_LOGIN_REQUIRED` error state. To circumvent the `ITEM_LOGIN_REQUIRED` error and maintain continuous consent, the end user can reauthenticate via Link’s update mode in advance of the consent expiration time.  Note - This is only relevant for certain OAuth-based institutions. For all other institutions, this field will be null. 
+            update_type (str): Indicates whether an Item requires user interaction to be updated, which can be the case for Items with some forms of two-factor authentication.  `background` - Item can be updated in the background  `user_present_required` - Item requires user interaction to be updated
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -167,9 +170,6 @@ class Item(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             institution_id (str, none_type): The Plaid Institution ID associated with the Item. Field is `null` for Items created via Same Day Micro-deposits.. [optional]  # noqa: E501
-            webhook (str, none_type): The URL registered to receive webhooks for the Item.. [optional]  # noqa: E501
-            error (Error): [optional]  # noqa: E501
-            consent_expiration_time (str, none_type): The RFC 3339 timestamp after which the consent provided by the end user will expire. Upon consent expiration, the item will enter the `ITEM_LOGIN_REQUIRED` error state. To circumvent the `ITEM_LOGIN_REQUIRED` error and maintain continuous consent, the end user can reauthenticate via Link’s update mode in advance of the consent expiration time.  Note - This is only relevant for certain OAuth-based institutions. For all other institutions, this field will be null. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -196,8 +196,11 @@ class Item(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.item_id = item_id
+        self.webhook = webhook
+        self.error = error
         self.available_products = available_products
         self.billed_products = billed_products
+        self.consent_expiration_time = consent_expiration_time
         self.update_type = update_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

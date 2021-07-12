@@ -121,7 +121,7 @@ class InstitutionsSearchRequest(ModelNormal):
 
         Args:
             query (str): The search query. Institutions with names matching the query are returned
-            products ([Products]): Filter the Institutions based on whether they support all products listed in products. Provide `null` to get institutions regardless of supported products
+            products ([Products]): Filter the Institutions based on whether they support all products listed in `products`. Provide `null` to get institutions regardless of supported products. Note that when `auth` is specified as a product, if you are enabled for Instant Match or Automated Micro-deposits, institutions that support those products will be returned even if `auth` is not present in their product array.
             country_codes ([CountryCode]): Specify an array of Plaid-supported country codes this institution supports, using the ISO-3166-1 alpha-2 country code standard. 
 
         Keyword Args:
