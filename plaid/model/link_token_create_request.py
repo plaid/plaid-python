@@ -32,6 +32,7 @@ def lazy_import():
     from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
     from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
     from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
+    from plaid.model.link_token_eu_config import LinkTokenEUConfig
     from plaid.model.products import Products
     globals()['CountryCode'] = CountryCode
     globals()['LinkTokenAccountFilters'] = LinkTokenAccountFilters
@@ -40,6 +41,7 @@ def lazy_import():
     globals()['LinkTokenCreateRequestIncomeVerification'] = LinkTokenCreateRequestIncomeVerification
     globals()['LinkTokenCreateRequestPaymentInitiation'] = LinkTokenCreateRequestPaymentInitiation
     globals()['LinkTokenCreateRequestUser'] = LinkTokenCreateRequestUser
+    globals()['LinkTokenEUConfig'] = LinkTokenEUConfig
     globals()['Products'] = Products
 
 
@@ -105,6 +107,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'redirect_uri': (str,),  # noqa: E501
             'android_package_name': (str,),  # noqa: E501
             'account_filters': (LinkTokenAccountFilters,),  # noqa: E501
+            'eu_config': (LinkTokenEUConfig,),  # noqa: E501
             'institution_id': (str,),  # noqa: E501
             'payment_initiation': (LinkTokenCreateRequestPaymentInitiation,),  # noqa: E501
             'deposit_switch': (LinkTokenCreateRequestDepositSwitch,),  # noqa: E501
@@ -131,6 +134,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'redirect_uri': 'redirect_uri',  # noqa: E501
         'android_package_name': 'android_package_name',  # noqa: E501
         'account_filters': 'account_filters',  # noqa: E501
+        'eu_config': 'eu_config',  # noqa: E501
         'institution_id': 'institution_id',  # noqa: E501
         'payment_initiation': 'payment_initiation',  # noqa: E501
         'deposit_switch': 'deposit_switch',  # noqa: E501
@@ -199,6 +203,7 @@ class LinkTokenCreateRequest(ModelNormal):
             redirect_uri (str): A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. The `redirect_uri` should not contain any query parameters. When used in Production or Development, must be an https URI. To specify any subdomain, use `*` as a wildcard character, e.g. `https://*.example.com/oauth.html`. If `android_package_name` is specified, this field should be left blank.  Note that any redirect URI must also be added to the Allowed redirect URIs list in the [developer dashboard](https://dashboard.plaid.com/team/api).. [optional]  # noqa: E501
             android_package_name (str): The name of your app's Android package. Required if using the `link_token` to initialize Link on Android. When creating a `link_token` for initializing Link on other platforms, this field must be left blank. Any package name specified here must also be added to the Allowed Android package names setting on the [developer dashboard](https://dashboard.plaid.com/team/api). . [optional]  # noqa: E501
             account_filters (LinkTokenAccountFilters): [optional]  # noqa: E501
+            eu_config (LinkTokenEUConfig): [optional]  # noqa: E501
             institution_id (str): Used for certain Europe-only configurations, as well as certain legacy use cases in other regions.. [optional]  # noqa: E501
             payment_initiation (LinkTokenCreateRequestPaymentInitiation): [optional]  # noqa: E501
             deposit_switch (LinkTokenCreateRequestDepositSwitch): [optional]  # noqa: E501

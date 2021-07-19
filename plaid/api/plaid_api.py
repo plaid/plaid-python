@@ -2981,7 +2981,7 @@ class PlaidApi(object):
             deposit_switch_alt_create_request,
             **kwargs
         ):
-            """Create a deposit switch when not using Plaid Exchange.  # noqa: E501
+            """Create a deposit switch without using Plaid Exchange  # noqa: E501
 
             This endpoint provides an alternative to `/deposit_switch/create` for customers who have not yet fully integrated with Plaid Exchange. Like `/deposit_switch/create`, it creates a deposit switch entity that will be persisted throughout the lifecycle of the switch.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an

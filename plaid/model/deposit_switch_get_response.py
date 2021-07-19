@@ -52,8 +52,15 @@ class DepositSwitchGetResponse(ModelNormal):
     allowed_values = {
         ('state',): {
             'INITIALIZED': "initialized",
+            'PROCESSING': "processing",
             'COMPLETED': "completed",
             'ERROR': "error",
+        },
+        ('switch_method',): {
+            'None': None,
+            'INSTANT': "instant",
+            'MAIL': "mail",
+            'PDF': "pdf",
         },
     }
 
@@ -92,6 +99,11 @@ class DepositSwitchGetResponse(ModelNormal):
             'date_created': (date,),  # noqa: E501
             'date_completed': (date, none_type,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'switch_method': (str, none_type,),  # noqa: E501
+            'employer_name': (str, none_type,),  # noqa: E501
+            'employer_id': (str, none_type,),  # noqa: E501
+            'institution_name': (str, none_type,),  # noqa: E501
+            'institution_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -111,6 +123,11 @@ class DepositSwitchGetResponse(ModelNormal):
         'date_created': 'date_created',  # noqa: E501
         'date_completed': 'date_completed',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'switch_method': 'switch_method',  # noqa: E501
+        'employer_name': 'employer_name',  # noqa: E501
+        'employer_id': 'employer_id',  # noqa: E501
+        'institution_name': 'institution_name',  # noqa: E501
+        'institution_id': 'institution_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -129,10 +146,10 @@ class DepositSwitchGetResponse(ModelNormal):
         """DepositSwitchGetResponse - a model defined in OpenAPI
 
         Args:
-            deposit_switch_id (str): The ID of the deposit switch
-            target_account_id (str, none_type): The ID of the bank account the direct deposit was switched to
+            deposit_switch_id (str): The ID of the deposit switch.
+            target_account_id (str, none_type): The ID of the bank account the direct deposit was switched to.
             target_item_id (str, none_type): The ID of the Item the direct deposit was switched to.
-            state (str): The state of the deposit switch.
+            state (str):  The state, or status, of the deposit switch.  - `initialized` – The deposit switch has been initialized with the user entering the information required to submit the deposit switch request.  - `processing` – The deposit switch request has been submitted and is being processed.  - `completed` – The user's employer has fulfilled the deposit switch request.  - `error` – There was an error processing the deposit switch request.
             account_has_multiple_allocations (bool, none_type): When `true`, user’s direct deposit goes to multiple banks. When false, user’s direct deposit only goes to the target account. Always `null` if the deposit switch has not been completed.
             is_allocated_remainder (bool, none_type): When `true`, the target account is allocated the remainder of direct deposit after all other allocations have been deducted. When `false`, user’s direct deposit is allocated as a percent or amount. Always `null` if the deposit switch has not been completed.
             percent_allocated (float, none_type): The percentage of direct deposit allocated to the target account. Always `null` if the target account is not allocated a percentage or if the deposit switch has not been completed or if `is_allocated_remainder` is true.
@@ -172,6 +189,11 @@ class DepositSwitchGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            switch_method (str, none_type): The method used to make the deposit switch.  - `instant` – User instantly switched their direct deposit to a new or existing bank account by connecting their payroll or employer account. - `mail` – User requested that Plaid contact their employer by mail to make the direct deposit switch. - `pdf` – User generated a PDF or email to be sent to their employer with the information necessary to make the deposit switch.. [optional]  # noqa: E501
+            employer_name (str, none_type): The name of the employer selected by the user. If the user did not select an employer, the value returned is `null`.. [optional]  # noqa: E501
+            employer_id (str, none_type): The ID of the employer selected by the user. If the user did not select an employer, the value returned is `null`.. [optional]  # noqa: E501
+            institution_name (str, none_type): The name of the institution selected by the user. If the user did not select an institution, the value returned is `null`.. [optional]  # noqa: E501
+            institution_id (str, none_type): The ID of the institution selected by the user. If the user did not select an institution, the value returned is `null`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

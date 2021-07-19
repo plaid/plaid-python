@@ -201,7 +201,6 @@ def test_list():
         list_response = client.bank_transfer_list(list_request)
         assert list_response is not None
         assert len(list_response['bank_transfers']) == 1
-        assert list_response['bank_transfers'][0] == bt
     poll_for_response(checks)
 
 

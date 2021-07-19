@@ -103,9 +103,11 @@ plaid/model/deposit_switch_address_data.py
 plaid/model/deposit_switch_alt_create_request.py
 plaid/model/deposit_switch_alt_create_response.py
 plaid/model/deposit_switch_create_request.py
+plaid/model/deposit_switch_create_request_options.py
 plaid/model/deposit_switch_create_response.py
 plaid/model/deposit_switch_get_request.py
 plaid/model/deposit_switch_get_response.py
+plaid/model/deposit_switch_state_update_webhook.py
 plaid/model/deposit_switch_target_account.py
 plaid/model/deposit_switch_target_user.py
 plaid/model/deposit_switch_token_create_request.py
@@ -176,6 +178,7 @@ plaid/model/item_access_token_invalidate_request.py
 plaid/model/item_access_token_invalidate_response.py
 plaid/model/item_application_list_request.py
 plaid/model/item_application_list_response.py
+plaid/model/item_application_list_user_auth.py
 plaid/model/item_application_scopes_update_request.py
 plaid/model/item_application_scopes_update_response.py
 plaid/model/item_error_webhook.py
@@ -212,6 +215,7 @@ plaid/model/link_token_create_request_income_verification.py
 plaid/model/link_token_create_request_payment_initiation.py
 plaid/model/link_token_create_request_user.py
 plaid/model/link_token_create_response.py
+plaid/model/link_token_eu_config.py
 plaid/model/link_token_get_metadata_response.py
 plaid/model/link_token_get_request.py
 plaid/model/link_token_get_response.py
