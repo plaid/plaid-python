@@ -1,3 +1,8 @@
+See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
+
+## 8.0.0b13
+Updating to OAS 2020-09-14_1.19.10.
+
 ## 8.0.0b12
 Updating to OAS 2020-09-14_1.16.4. See full changelog [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
