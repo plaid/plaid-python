@@ -108,8 +108,15 @@ class ServicerAddressData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, city, region, street, postal_code, country, *args, **kwargs):  # noqa: E501
         """ServicerAddressData - a model defined in OpenAPI
+
+        Args:
+            city (str, none_type): The full city name
+            region (str, none_type): The region or state Example: `\"NC\"`
+            street (str, none_type): The full street address Example: `\"564 Main Street, APT 15\"`
+            postal_code (str, none_type): The postal code
+            country (str, none_type): The ISO 3166-1 alpha-2 country code
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,11 +149,6 @@ class ServicerAddressData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str, none_type): The full city name. [optional]  # noqa: E501
-            region (str, none_type): The region or state Example: `\"NC\"`. [optional]  # noqa: E501
-            street (str, none_type): The full street address Example: `\"564 Main Street, APT 15\"`. [optional]  # noqa: E501
-            postal_code (str, none_type): The postal code. [optional]  # noqa: E501
-            country (str, none_type): The ISO 3166-1 alpha-2 country code. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +174,11 @@ class ServicerAddressData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.city = city
+        self.region = region
+        self.street = street
+        self.postal_code = postal_code
+        self.country = country
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -32,6 +32,7 @@ def lazy_import():
     from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
     from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
     from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
+    from plaid.model.link_token_eu_config import LinkTokenEUConfig
     from plaid.model.products import Products
     globals()['CountryCode'] = CountryCode
     globals()['LinkTokenAccountFilters'] = LinkTokenAccountFilters
@@ -40,6 +41,7 @@ def lazy_import():
     globals()['LinkTokenCreateRequestIncomeVerification'] = LinkTokenCreateRequestIncomeVerification
     globals()['LinkTokenCreateRequestPaymentInitiation'] = LinkTokenCreateRequestPaymentInitiation
     globals()['LinkTokenCreateRequestUser'] = LinkTokenCreateRequestUser
+    globals()['LinkTokenEUConfig'] = LinkTokenEUConfig
     globals()['Products'] = Products
 
 
@@ -105,6 +107,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'redirect_uri': (str,),  # noqa: E501
             'android_package_name': (str,),  # noqa: E501
             'account_filters': (LinkTokenAccountFilters,),  # noqa: E501
+            'eu_config': (LinkTokenEUConfig,),  # noqa: E501
             'institution_id': (str,),  # noqa: E501
             'payment_initiation': (LinkTokenCreateRequestPaymentInitiation,),  # noqa: E501
             'deposit_switch': (LinkTokenCreateRequestDepositSwitch,),  # noqa: E501
@@ -131,6 +134,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'redirect_uri': 'redirect_uri',  # noqa: E501
         'android_package_name': 'android_package_name',  # noqa: E501
         'account_filters': 'account_filters',  # noqa: E501
+        'eu_config': 'eu_config',  # noqa: E501
         'institution_id': 'institution_id',  # noqa: E501
         'payment_initiation': 'payment_initiation',  # noqa: E501
         'deposit_switch': 'deposit_switch',  # noqa: E501
@@ -192,13 +196,14 @@ class LinkTokenCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            products ([Products]): List of Plaid product(s) you wish to use. If launching Link in update mode, should be omitted; required otherwise. Valid products are:  `transactions`, `auth`, `identity`, `assets`, `investments`, `liabilities`, `payment_initiation`, `deposit_switch`  Example: `['auth', 'transactions']`  `balance` is *not* a valid value, the Balance product does not require explicit initalization and will automatically be initialized when any other product is initialized.  Only institutions that support *all* requested products will be shown in Link; to maximize the number of institutions listed, it is recommended to initialize Link with the minimal product set required for your use case. Additional products can be added after Link initialization by calling the relevant endpoints. For details and exceptions, see [Choosing when to initialize products](/docs/link/best-practices/#choosing-when-to-initialize-products).  In Production, you will be billed for each product that you specify when initializing Link. Note that a product cannot be removed from an Item once the Item has been initialized with that product. To stop billing on an Item for subscription-based products, such as Liabilities, Investments, and Transactions, remove the Item via `/item/remove`.. [optional]  # noqa: E501
+            products ([Products]): List of Plaid product(s) you wish to use. If launching Link in update mode, should be omitted; required otherwise. Valid products are:  `transactions`, `auth`, `identity`, `assets`, `investments`, `liabilities`, `payment_initiation`, `deposit_switch`, `income_verification`  Example: `['auth', 'transactions']`  `balance` is *not* a valid value, the Balance product does not require explicit initalization and will automatically be initialized when any other product is initialized.  Only institutions that support *all* requested products will be shown in Link; to maximize the number of institutions listed, it is recommended to initialize Link with the minimal product set required for your use case. Additional products can be added after Link initialization by calling the relevant endpoints. For details and exceptions, see [Choosing when to initialize products](https://plaid.com/docs/link/best-practices/#choosing-when-to-initialize-products).  Note that, unless you have opted to disable Instant Match support, institutions that support Instant Match will also be shown in Link if `auth` is specified as a product, even though these institutions do not contain `auth` in their product array.  In Production, you will be billed for each product that you specify when initializing Link. Note that a product cannot be removed from an Item once the Item has been initialized with that product. To stop billing on an Item for subscription-based products, such as Liabilities, Investments, and Transactions, remove the Item via `/item/remove`.. [optional]  # noqa: E501
             webhook (str): The destination URL to which any webhooks should be sent.. [optional]  # noqa: E501
             access_token (str): The `access_token` associated with the Item to update, used when updating or modifying an existing `access_token`. Used when launching Link in update mode, when completing the Same-day (manual) Micro-deposit flow, or (optionally) when initializing Link as part of the Payment Initiation (UK and Europe) flow.. [optional]  # noqa: E501
             link_customization_name (str): The name of the Link customization from the Plaid Dashboard to be applied to Link. If not specified, the `default` customization will be used. When using a Link customization, the language in the customization must match the language selected via the `language` parameter, and the countries in the customization should match the country codes selected via `country_codes`.. [optional]  # noqa: E501
-            redirect_uri (str): A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. The `redirect_uri` should not contain any query parameters. If `android_package_name` is specified, this field should be left blank. Any redirect URI specified here must also be added under the \"Allowed redirect URIs\" configuration on the [developer dashboard](https://dashboard.plaid.com/team/api). In non-Sandbox (Production and Development) environments, the `redirect_uri` must begin with https.. [optional]  # noqa: E501
+            redirect_uri (str): A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. The `redirect_uri` should not contain any query parameters. When used in Production or Development, must be an https URI. To specify any subdomain, use `*` as a wildcard character, e.g. `https://*.example.com/oauth.html`. If `android_package_name` is specified, this field should be left blank.  Note that any redirect URI must also be added to the Allowed redirect URIs list in the [developer dashboard](https://dashboard.plaid.com/team/api).. [optional]  # noqa: E501
             android_package_name (str): The name of your app's Android package. Required if using the `link_token` to initialize Link on Android. When creating a `link_token` for initializing Link on other platforms, this field must be left blank. Any package name specified here must also be added to the Allowed Android package names setting on the [developer dashboard](https://dashboard.plaid.com/team/api). . [optional]  # noqa: E501
             account_filters (LinkTokenAccountFilters): [optional]  # noqa: E501
+            eu_config (LinkTokenEUConfig): [optional]  # noqa: E501
             institution_id (str): Used for certain Europe-only configurations, as well as certain legacy use cases in other regions.. [optional]  # noqa: E501
             payment_initiation (LinkTokenCreateRequestPaymentInitiation): [optional]  # noqa: E501
             deposit_switch (LinkTokenCreateRequestDepositSwitch): [optional]  # noqa: E501

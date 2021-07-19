@@ -26,10 +26,10 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.external_payment_options import ExternalPaymentOptions
-    from plaid.model.external_payment_schedule import ExternalPaymentSchedule
+    from plaid.model.external_payment_schedule_request import ExternalPaymentScheduleRequest
     from plaid.model.payment_amount import PaymentAmount
     globals()['ExternalPaymentOptions'] = ExternalPaymentOptions
-    globals()['ExternalPaymentSchedule'] = ExternalPaymentSchedule
+    globals()['ExternalPaymentScheduleRequest'] = ExternalPaymentScheduleRequest
     globals()['PaymentAmount'] = PaymentAmount
 
 
@@ -84,7 +84,7 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
             'amount': (PaymentAmount,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'schedule': (ExternalPaymentSchedule,),  # noqa: E501
+            'schedule': (ExternalPaymentScheduleRequest,),  # noqa: E501
             'options': (ExternalPaymentOptions,),  # noqa: E501
         }
 
@@ -156,7 +156,7 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            schedule (ExternalPaymentSchedule): [optional]  # noqa: E501
+            schedule (ExternalPaymentScheduleRequest): [optional]  # noqa: E501
             options (ExternalPaymentOptions): [optional]  # noqa: E501
         """
 

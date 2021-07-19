@@ -114,8 +114,18 @@ class Location(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, address, city, region, postal_code, country, lat, lon, store_number, *args, **kwargs):  # noqa: E501
         """Location - a model defined in OpenAPI
+
+        Args:
+            address (str, none_type): The street address where the transaction occurred.
+            city (str, none_type): The city where the transaction occurred.
+            region (str, none_type): The region or state where the transaction occurred.
+            postal_code (str, none_type): The postal code where the transaction occurred.
+            country (str, none_type): The ISO 3166-1 alpha-2 country code where the transaction occurred.
+            lat (float, none_type): The latitude where the transaction occurred.
+            lon (float, none_type): The longitude where the transaction occurred.
+            store_number (str, none_type): The merchant defined store number where the transaction occurred.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,14 +158,6 @@ class Location(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            address (str, none_type): The street address where the transaction occurred.. [optional]  # noqa: E501
-            city (str, none_type): The city where the transaction occurred.. [optional]  # noqa: E501
-            region (str, none_type): The region or state where the transaction occurred.. [optional]  # noqa: E501
-            postal_code (str, none_type): The postal code where the transaction occurred.. [optional]  # noqa: E501
-            country (str, none_type): The ISO 3166-1 alpha-2 country code where the transaction occurred.. [optional]  # noqa: E501
-            lat (float, none_type): The latitude where the transaction occurred.. [optional]  # noqa: E501
-            lon (float, none_type): The longitude where the transaction occurred.. [optional]  # noqa: E501
-            store_number (str, none_type): The merchant defined store number where the transaction occurred.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,6 +183,14 @@ class Location(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.address = address
+        self.city = city
+        self.region = region
+        self.postal_code = postal_code
+        self.country = country
+        self.lat = lat
+        self.lon = lon
+        self.store_number = store_number
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

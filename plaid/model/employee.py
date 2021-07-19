@@ -84,7 +84,6 @@ class Employee(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'address': (NullableAddressData,),  # noqa: E501
-            'ssn_masked': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,7 +94,6 @@ class Employee(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'address': 'address',  # noqa: E501
-        'ssn_masked': 'ssn_masked',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,8 +108,12 @@ class Employee(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, address, *args, **kwargs):  # noqa: E501
         """Employee - a model defined in OpenAPI
+
+        Args:
+            name (str, none_type): The name of the employee.
+            address (NullableAddressData):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -144,9 +146,6 @@ class Employee(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): The name of the employee.. [optional]  # noqa: E501
-            address (NullableAddressData): [optional]  # noqa: E501
-            ssn_masked (str, none_type): The SSN of the employee, with all but the last 4 digits masked out. For example: \"XXX-XX-1111\".. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +171,8 @@ class Employee(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.name = name
+        self.address = address
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

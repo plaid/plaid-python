@@ -109,8 +109,14 @@ class PaymentInitiationAddress(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, street, city, postal_code, country, *args, **kwargs):  # noqa: E501
         """PaymentInitiationAddress - a model defined in OpenAPI
+
+        Args:
+            street ([str]): An array of length 1-2 representing the street address where the recipient is located. Maximum of 70 characters.
+            city (str): The city where the recipient is located. Maximum of 35 characters.
+            postal_code (str): The postal code where the recipient is located. Maximum of 16 characters.
+            country (str): The ISO 3166-1 alpha-2 country code where the recipient is located.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -143,10 +149,6 @@ class PaymentInitiationAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            street ([str]): An array of length 1-2 representing the street address where the recipient is located. Maximum of 70 characters.. [optional]  # noqa: E501
-            city (str): The city where the recipient is located. Maximum of 35 characters.. [optional]  # noqa: E501
-            postal_code (str): The postal code where the recipient is located. Maximum of 16 characters.. [optional]  # noqa: E501
-            country (str): The ISO 3166-1 alpha-2 country code where the recipient is located.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +174,10 @@ class PaymentInitiationAddress(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.street = street
+        self.city = city
+        self.postal_code = postal_code
+        self.country = country
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

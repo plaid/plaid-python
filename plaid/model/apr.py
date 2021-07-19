@@ -112,12 +112,14 @@ class APR(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, apr_percentage, apr_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, apr_percentage, apr_type, balance_subject_to_apr, interest_charge_amount, *args, **kwargs):  # noqa: E501
         """APR - a model defined in OpenAPI
 
         Args:
             apr_percentage (float): Annual Percentage Rate applied. 
             apr_type (str): The type of balance to which the APR applies.
+            balance_subject_to_apr (float, none_type): Amount of money that is subjected to the APR if a balance was carried beyond payment due date. How it is calculated can vary by card issuer. It is often calculated as an average daily balance.
+            interest_charge_amount (float, none_type): Amount of money charged due to interest from last statement.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,8 +152,6 @@ class APR(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            balance_subject_to_apr (float, none_type): Amount of money that is subjected to the APR if a balance was carried beyond payment due date. How it is calculated can vary by card issuer. It is often calculated as an average daily balance.. [optional]  # noqa: E501
-            interest_charge_amount (float, none_type): Amount of money charged due to interest from last statement.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -179,6 +179,8 @@ class APR(ModelNormal):
 
         self.apr_percentage = apr_percentage
         self.apr_type = apr_type
+        self.balance_subject_to_apr = balance_subject_to_apr
+        self.interest_charge_amount = interest_charge_amount
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

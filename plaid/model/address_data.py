@@ -77,10 +77,10 @@ class AddressData(ModelNormal):
         """
         return {
             'city': (str,),  # noqa: E501
-            'street': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
+            'street': (str,),  # noqa: E501
             'postal_code': (str, none_type,),  # noqa: E501
+            'country': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,10 +90,10 @@ class AddressData(ModelNormal):
 
     attribute_map = {
         'city': 'city',  # noqa: E501
-        'street': 'street',  # noqa: E501
-        'country': 'country',  # noqa: E501
         'region': 'region',  # noqa: E501
+        'street': 'street',  # noqa: E501
         'postal_code': 'postal_code',  # noqa: E501
+        'country': 'country',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,13 +108,15 @@ class AddressData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, city, street, country, *args, **kwargs):  # noqa: E501
+    def __init__(self, city, region, street, postal_code, country, *args, **kwargs):  # noqa: E501
         """AddressData - a model defined in OpenAPI
 
         Args:
             city (str): The full city name
+            region (str, none_type): The region or state Example: `\"NC\"`
             street (str): The full street address Example: `\"564 Main Street, APT 15\"`
-            country (str): The ISO 3166-1 alpha-2 country code
+            postal_code (str, none_type): The postal code
+            country (str, none_type): The ISO 3166-1 alpha-2 country code
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,8 +149,6 @@ class AddressData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            region (str, none_type): The region or state Example: `\"NC\"`. [optional]  # noqa: E501
-            postal_code (str, none_type): The postal code. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -175,7 +175,9 @@ class AddressData(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.city = city
+        self.region = region
         self.street = street
+        self.postal_code = postal_code
         self.country = country
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -79,10 +79,10 @@ class Holding(ModelNormal):
             'account_id': (str,),  # noqa: E501
             'security_id': (str,),  # noqa: E501
             'institution_price': (float,),  # noqa: E501
-            'institution_value': (float,),  # noqa: E501
-            'quantity': (float,),  # noqa: E501
             'institution_price_as_of': (date, none_type,),  # noqa: E501
+            'institution_value': (float,),  # noqa: E501
             'cost_basis': (float, none_type,),  # noqa: E501
+            'quantity': (float,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
         }
@@ -96,10 +96,10 @@ class Holding(ModelNormal):
         'account_id': 'account_id',  # noqa: E501
         'security_id': 'security_id',  # noqa: E501
         'institution_price': 'institution_price',  # noqa: E501
-        'institution_value': 'institution_value',  # noqa: E501
-        'quantity': 'quantity',  # noqa: E501
         'institution_price_as_of': 'institution_price_as_of',  # noqa: E501
+        'institution_value': 'institution_value',  # noqa: E501
         'cost_basis': 'cost_basis',  # noqa: E501
+        'quantity': 'quantity',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
     }
@@ -116,15 +116,19 @@ class Holding(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, security_id, institution_price, institution_value, quantity, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, security_id, institution_price, institution_price_as_of, institution_value, cost_basis, quantity, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
         """Holding - a model defined in OpenAPI
 
         Args:
             account_id (str): The Plaid `account_id` associated with the holding.
             security_id (str): The Plaid `security_id` associated with the holding.
             institution_price (float): The last price given by the institution for this security.
+            institution_price_as_of (date, none_type): The date at which `institution_price` was current.
             institution_value (float): The value of the holding, as reported by the institution.
-            quantity (float): The total quantity of the asset held, as reported by the financial institution.
+            cost_basis (float, none_type): The cost basis of the holding.
+            quantity (float): The total quantity of the asset held, as reported by the financial institution. If the security is an option, `quantity` will reflect the total number of options (typically the number of contracts multiplied by 100), not the number of contracts.
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the holding. Always `null` if `unofficial_currency_code` is non-`null`.
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s. 
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,10 +161,6 @@ class Holding(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            institution_price_as_of (date, none_type): The date at which `institution_price` was current.. [optional]  # noqa: E501
-            cost_basis (float, none_type): The cost basis of the holding.. [optional]  # noqa: E501
-            iso_currency_code (str, none_type): The ISO-4217 currency code of the holding. Always `null` if `unofficial_currency_code` is non-`null`.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,8 +189,12 @@ class Holding(ModelNormal):
         self.account_id = account_id
         self.security_id = security_id
         self.institution_price = institution_price
+        self.institution_price_as_of = institution_price_as_of
         self.institution_value = institution_value
+        self.cost_basis = cost_basis
         self.quantity = quantity
+        self.iso_currency_code = iso_currency_code
+        self.unofficial_currency_code = unofficial_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -82,11 +82,11 @@ class LinkTokenGetResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'request_id': (str,),  # noqa: E501
             'link_token': (str,),  # noqa: E501
             'created_at': (datetime, none_type,),  # noqa: E501
             'expiration': (datetime, none_type,),  # noqa: E501
             'metadata': (LinkTokenGetMetadataResponse,),  # noqa: E501
+            'request_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -95,11 +95,11 @@ class LinkTokenGetResponse(ModelNormal):
 
 
     attribute_map = {
-        'request_id': 'request_id',  # noqa: E501
         'link_token': 'link_token',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'expiration': 'expiration',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
+        'request_id': 'request_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,10 +114,14 @@ class LinkTokenGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, link_token, created_at, expiration, metadata, request_id, *args, **kwargs):  # noqa: E501
         """LinkTokenGetResponse - a model defined in OpenAPI
 
         Args:
+            link_token (str): A `link_token`, which can be supplied to Link in order to initialize it and receive a `public_token`, which can be exchanged for an `access_token`.
+            created_at (datetime, none_type): The creation timestamp for the `link_token`, in ISO 8601 format.
+            expiration (datetime, none_type): The expiration timestamp for the `link_token`, in ISO 8601 format.
+            metadata (LinkTokenGetMetadataResponse):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -151,10 +155,6 @@ class LinkTokenGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            link_token (str): A `link_token`, which can be supplied to Link in order to initialize it and receive a `public_token`, which can be exchanged for an `access_token`.. [optional]  # noqa: E501
-            created_at (datetime, none_type): The creation timestamp for the `link_token`, in ISO 8601 format.. [optional]  # noqa: E501
-            expiration (datetime, none_type): The expiration timestamp for the `link_token`, in ISO 8601 format.. [optional]  # noqa: E501
-            metadata (LinkTokenGetMetadataResponse): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -180,6 +180,10 @@ class LinkTokenGetResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.link_token = link_token
+        self.created_at = created_at
+        self.expiration = expiration
+        self.metadata = metadata
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

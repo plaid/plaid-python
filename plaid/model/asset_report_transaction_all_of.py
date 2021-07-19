@@ -70,7 +70,6 @@ class AssetReportTransactionAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'original_description': (str,),  # noqa: E501
             'date_transacted': (str, none_type,),  # noqa: E501
         }
 
@@ -80,7 +79,6 @@ class AssetReportTransactionAllOf(ModelNormal):
 
 
     attribute_map = {
-        'original_description': 'original_description',  # noqa: E501
         'date_transacted': 'date_transacted',  # noqa: E501
     }
 
@@ -96,11 +94,8 @@ class AssetReportTransactionAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, original_description, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """AssetReportTransactionAllOf - a model defined in OpenAPI
-
-        Args:
-            original_description (str): The string returned by the financial institution to describe the transaction
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -159,7 +154,6 @@ class AssetReportTransactionAllOf(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.original_description = original_description
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

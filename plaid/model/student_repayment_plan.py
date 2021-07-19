@@ -62,6 +62,7 @@ class StudentRepaymentPlan(ModelNormal):
             'PAY_AS_YOU_EARN': "pay as you earn",
             'REVISED_PAY_AS_YOU_EARN': "revised pay as you earn",
             'STANDARD': "standard",
+            'NULL': "null",
         },
     }
 
@@ -115,8 +116,12 @@ class StudentRepaymentPlan(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, description, type, *args, **kwargs):  # noqa: E501
         """StudentRepaymentPlan - a model defined in OpenAPI
+
+        Args:
+            description (str, none_type): The description of the repayment plan as provided by the servicer.
+            type (str, none_type): The type of the repayment plan.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,8 +154,6 @@ class StudentRepaymentPlan(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str, none_type): The description of the repayment plan as provided by the servicer.. [optional]  # noqa: E501
-            type (str, none_type): The type of the repayment plan.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -176,6 +179,8 @@ class StudentRepaymentPlan(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.description = description
+        self.type = type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

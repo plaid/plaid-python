@@ -82,10 +82,10 @@ class HealthIncident(ModelNormal):
         """
         lazy_import()
         return {
-            'start_date': (str, none_type,),  # noqa: E501
-            'end_date': (str, none_type,),  # noqa: E501
+            'start_date': (str,),  # noqa: E501
             'title': (str,),  # noqa: E501
             'incident_updates': ([IncidentUpdate],),  # noqa: E501
+            'end_date': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -95,9 +95,9 @@ class HealthIncident(ModelNormal):
 
     attribute_map = {
         'start_date': 'start_date',  # noqa: E501
-        'end_date': 'end_date',  # noqa: E501
         'title': 'title',  # noqa: E501
         'incident_updates': 'incident_updates',  # noqa: E501
+        'end_date': 'end_date',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,8 +112,13 @@ class HealthIncident(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, start_date, title, incident_updates, *args, **kwargs):  # noqa: E501
         """HealthIncident - a model defined in OpenAPI
+
+        Args:
+            start_date (str): The start date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.
+            title (str): The title of the incident
+            incident_updates ([IncidentUpdate]): Updates on the health incident.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -146,10 +151,7 @@ class HealthIncident(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            start_date (str, none_type): The start date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
-            end_date (str, none_type): The end date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
-            title (str): The title of the incident. [optional]  # noqa: E501
-            incident_updates ([IncidentUpdate]): Updates on the health incident.. [optional]  # noqa: E501
+            end_date (str): The end date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -175,6 +177,9 @@ class HealthIncident(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.start_date = start_date
+        self.title = title
+        self.incident_updates = incident_updates
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

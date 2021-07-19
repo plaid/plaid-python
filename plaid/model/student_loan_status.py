@@ -123,8 +123,12 @@ class StudentLoanStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, end_date, type, *args, **kwargs):  # noqa: E501
         """StudentLoanStatus - a model defined in OpenAPI
+
+        Args:
+            end_date (str, none_type): The date until which the loan will be in its current status. Dates are returned in an ISO 8601 format (YYYY-MM-DD). 
+            type (str, none_type): The status type of the student loan
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,8 +161,6 @@ class StudentLoanStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            end_date (str, none_type): The date until which the loan will be in its current status. Dates are returned in an ISO 8601 format (YYYY-MM-DD). . [optional]  # noqa: E501
-            type (str, none_type): The status type of the student loan. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,6 +186,8 @@ class StudentLoanStatus(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.end_date = end_date
+        self.type = type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

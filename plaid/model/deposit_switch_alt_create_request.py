@@ -25,8 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.deposit_switch_create_request_options import DepositSwitchCreateRequestOptions
     from plaid.model.deposit_switch_target_account import DepositSwitchTargetAccount
     from plaid.model.deposit_switch_target_user import DepositSwitchTargetUser
+    globals()['DepositSwitchCreateRequestOptions'] = DepositSwitchCreateRequestOptions
     globals()['DepositSwitchTargetAccount'] = DepositSwitchTargetAccount
     globals()['DepositSwitchTargetUser'] = DepositSwitchTargetUser
 
@@ -56,6 +58,11 @@ class DepositSwitchAltCreateRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('country_code',): {
+            'None': None,
+            'US': "US",
+            'CA': "CA",
+        },
     }
 
     validations = {
@@ -81,6 +88,8 @@ class DepositSwitchAltCreateRequest(ModelNormal):
             'target_user': (DepositSwitchTargetUser,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'options': (DepositSwitchCreateRequestOptions,),  # noqa: E501
+            'country_code': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,6 +102,8 @@ class DepositSwitchAltCreateRequest(ModelNormal):
         'target_user': 'target_user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'options': 'options',  # noqa: E501
+        'country_code': 'country_code',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,6 +158,8 @@ class DepositSwitchAltCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            options (DepositSwitchCreateRequestOptions): [optional]  # noqa: E501
+            country_code (str, none_type): ISO-3166-1 alpha-2 country code standard.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

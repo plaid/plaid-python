@@ -90,9 +90,9 @@ class LinkTokenGetMetadataResponse(ModelNormal):
             'webhook': (str, none_type,),  # noqa: E501
             'country_codes': ([CountryCode],),  # noqa: E501
             'language': (str, none_type,),  # noqa: E501
-            'account_filters': (AccountFiltersResponse,),  # noqa: E501
             'redirect_uri': (str, none_type,),  # noqa: E501
             'client_name': (str, none_type,),  # noqa: E501
+            'account_filters': (AccountFiltersResponse,),  # noqa: E501
         }
 
     @cached_property
@@ -105,9 +105,9 @@ class LinkTokenGetMetadataResponse(ModelNormal):
         'webhook': 'webhook',  # noqa: E501
         'country_codes': 'country_codes',  # noqa: E501
         'language': 'language',  # noqa: E501
-        'account_filters': 'account_filters',  # noqa: E501
         'redirect_uri': 'redirect_uri',  # noqa: E501
         'client_name': 'client_name',  # noqa: E501
+        'account_filters': 'account_filters',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -122,8 +122,16 @@ class LinkTokenGetMetadataResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, initial_products, webhook, country_codes, language, redirect_uri, client_name, *args, **kwargs):  # noqa: E501
         """LinkTokenGetMetadataResponse - a model defined in OpenAPI
+
+        Args:
+            initial_products ([Products]): The `products` specified in the `/link/token/create` call.
+            webhook (str, none_type): The `webhook` specified in the `/link/token/create` call.
+            country_codes ([CountryCode]): The `country_codes` specified in the `/link/token/create` call.
+            language (str, none_type): The `language` specified in the `/link/token/create` call.
+            redirect_uri (str, none_type): The `redirect_uri` specified in the `/link/token/create` call.
+            client_name (str, none_type): The `client_name` specified in the `/link/token/create` call.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,13 +164,7 @@ class LinkTokenGetMetadataResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            initial_products ([Products]): The `products` specified in the `/link/token/create` call.. [optional]  # noqa: E501
-            webhook (str, none_type): The `webhook` specified in the `/link/token/create` call.. [optional]  # noqa: E501
-            country_codes ([CountryCode]): The `country_codes` specified in the `/link/token/create` call.. [optional]  # noqa: E501
-            language (str, none_type): The `language` specified in the `/link/token/create` call.. [optional]  # noqa: E501
             account_filters (AccountFiltersResponse): [optional]  # noqa: E501
-            redirect_uri (str, none_type): The `redirect_uri` specified in the `/link/token/create` call.. [optional]  # noqa: E501
-            client_name (str, none_type): The `client_name` specified in the `/link/token/create` call.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -188,6 +190,12 @@ class LinkTokenGetMetadataResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.initial_products = initial_products
+        self.webhook = webhook
+        self.country_codes = country_codes
+        self.language = language
+        self.redirect_uri = redirect_uri
+        self.client_name = client_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

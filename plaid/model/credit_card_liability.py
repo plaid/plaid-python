@@ -82,14 +82,14 @@ class CreditCardLiability(ModelNormal):
         """
         lazy_import()
         return {
+            'account_id': (str, none_type,),  # noqa: E501
             'aprs': ([APR],),  # noqa: E501
+            'is_overdue': (bool, none_type,),  # noqa: E501
             'last_payment_amount': (float,),  # noqa: E501
             'last_payment_date': (str,),  # noqa: E501
             'last_statement_issue_date': (str,),  # noqa: E501
             'minimum_payment_amount': (float,),  # noqa: E501
-            'next_payment_due_date': (str,),  # noqa: E501
-            'account_id': (str, none_type,),  # noqa: E501
-            'is_overdue': (bool, none_type,),  # noqa: E501
+            'next_payment_due_date': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,14 +98,14 @@ class CreditCardLiability(ModelNormal):
 
 
     attribute_map = {
+        'account_id': 'account_id',  # noqa: E501
         'aprs': 'aprs',  # noqa: E501
+        'is_overdue': 'is_overdue',  # noqa: E501
         'last_payment_amount': 'last_payment_amount',  # noqa: E501
         'last_payment_date': 'last_payment_date',  # noqa: E501
         'last_statement_issue_date': 'last_statement_issue_date',  # noqa: E501
         'minimum_payment_amount': 'minimum_payment_amount',  # noqa: E501
         'next_payment_due_date': 'next_payment_due_date',  # noqa: E501
-        'account_id': 'account_id',  # noqa: E501
-        'is_overdue': 'is_overdue',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,16 +120,18 @@ class CreditCardLiability(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, aprs, last_payment_amount, last_payment_date, last_statement_issue_date, minimum_payment_amount, next_payment_due_date, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, aprs, is_overdue, last_payment_amount, last_payment_date, last_statement_issue_date, minimum_payment_amount, next_payment_due_date, *args, **kwargs):  # noqa: E501
         """CreditCardLiability - a model defined in OpenAPI
 
         Args:
+            account_id (str, none_type): The ID of the account that this liability belongs to.
             aprs ([APR]): The various interest rates that apply to the account.
+            is_overdue (bool, none_type): true if a payment is currently overdue. Availability for this field is limited.
             last_payment_amount (float): The amount of the last payment.
             last_payment_date (str): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD). Availability for this field is limited.
             last_statement_issue_date (str): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             minimum_payment_amount (float): The minimum payment due for the next billing cycle.
-            next_payment_due_date (str): The due date for the next payment. The due date is `null` if a payment is not expected. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            next_payment_due_date (str, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -162,8 +164,6 @@ class CreditCardLiability(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            account_id (str, none_type): The ID of the account that this liability belongs to.. [optional]  # noqa: E501
-            is_overdue (bool, none_type): true if a payment is currently overdue. Availability for this field is limited.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,7 +189,9 @@ class CreditCardLiability(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.account_id = account_id
         self.aprs = aprs
+        self.is_overdue = is_overdue
         self.last_payment_amount = last_payment_amount
         self.last_payment_date = last_payment_date
         self.last_statement_issue_date = last_statement_issue_date

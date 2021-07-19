@@ -27,13 +27,13 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.external_payment_refund_details import ExternalPaymentRefundDetails
     from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
-    from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
+    from plaid.model.nullable_sender_bacs import NullableSenderBACS
     from plaid.model.payment_amount import PaymentAmount
     from plaid.model.payment_initiation_payment import PaymentInitiationPayment
     from plaid.model.payment_initiation_recipient_get_response_all_of import PaymentInitiationRecipientGetResponseAllOf
     globals()['ExternalPaymentRefundDetails'] = ExternalPaymentRefundDetails
     globals()['ExternalPaymentScheduleGet'] = ExternalPaymentScheduleGet
-    globals()['NullableRecipientBACS'] = NullableRecipientBACS
+    globals()['NullableSenderBACS'] = NullableSenderBACS
     globals()['PaymentAmount'] = PaymentAmount
     globals()['PaymentInitiationPayment'] = PaymentInitiationPayment
     globals()['PaymentInitiationRecipientGetResponseAllOf'] = PaymentInitiationRecipientGetResponseAllOf
@@ -108,12 +108,13 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             'recipient_id': (str,),  # noqa: E501
             'reference': (str,),  # noqa: E501
             'last_status_update': (datetime,),  # noqa: E501
-            'bacs': (NullableRecipientBACS,),  # noqa: E501
+            'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
+            'bacs': (NullableSenderBACS,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
-            'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
+            'emi_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -128,12 +129,13 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         'recipient_id': 'recipient_id',  # noqa: E501
         'reference': 'reference',  # noqa: E501
         'last_status_update': 'last_status_update',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
         'bacs': 'bacs',  # noqa: E501
         'iban': 'iban',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
-        'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
+        'emi_account_id': 'emi_account_id',  # noqa: E501
     }
 
     required_properties = set([
@@ -149,7 +151,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_id, amount, status, recipient_id, reference, last_status_update, bacs, iban, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_id, amount, status, recipient_id, reference, last_status_update, schedule, bacs, iban, request_id, *args, **kwargs):  # noqa: E501
         """PaymentInitiationPaymentGetResponse - a model defined in OpenAPI
 
         Args:
@@ -159,8 +161,9 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             recipient_id (str): The ID of the recipient
             reference (str): A reference for the payment.
             last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
-            bacs (NullableRecipientBACS):
-            iban (str, none_type):
+            schedule (ExternalPaymentScheduleGet):
+            bacs (NullableSenderBACS):
+            iban (str, none_type): The International Bank Account Number (IBAN) for the sender, if specified in the `/payment_initiation/payment/create` call.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -195,8 +198,8 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
-            schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
+            emi_account_id (str, none_type): The EMI (E-Money Institution) account that this payment is associated with, if any. This EMI account is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -236,6 +239,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             'recipient_id': recipient_id,
             'reference': reference,
             'last_status_update': last_status_update,
+            'schedule': schedule,
             'bacs': bacs,
             'iban': iban,
             'request_id': request_id,

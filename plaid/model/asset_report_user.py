@@ -151,7 +151,7 @@ class AssetReportUser(ModelNormal):
             middle_name (str, none_type): The user's middle name. [optional]  # noqa: E501
             last_name (str, none_type): The user's last name.  Required for the Fannie Mae Day 1 Certainty™ program.. [optional]  # noqa: E501
             ssn (str, none_type): The user's Social Security Number. Required for the Fannie Mae Day 1 Certainty™ program.  Format: \"ddd-dd-dddd\". [optional]  # noqa: E501
-            phone_number (str, none_type): The user's phone number, in E.164 format: +{countrycode}{number}. For example: \"+14151234567\". [optional]  # noqa: E501
+            phone_number (str, none_type): The user's phone number, in E.164 format: +{countrycode}{number}. For example: \"+14151234567\". Phone numbers provided in other formats will be parsed on a best-effort basis.. [optional]  # noqa: E501
             email (str, none_type): The user's email address.. [optional]  # noqa: E501
         """
 

@@ -55,7 +55,7 @@ class InvestmentsTransactionsGetRequestOptions(ModelNormal):
     validations = {
         ('count',): {
             'inclusive_maximum': 500,
-            'inclusive_minimum': 0,
+            'inclusive_minimum': 1,
         },
         ('offset',): {
             'inclusive_minimum': 0,

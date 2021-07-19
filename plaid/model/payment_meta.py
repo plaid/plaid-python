@@ -114,8 +114,18 @@ class PaymentMeta(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, reference_number, ppd_id, payee, by_order_of, payer, payment_method, payment_processor, reason, *args, **kwargs):  # noqa: E501
         """PaymentMeta - a model defined in OpenAPI
+
+        Args:
+            reference_number (str, none_type): The transaction reference number supplied by the financial institution.
+            ppd_id (str, none_type): The ACH PPD ID for the payer.
+            payee (str, none_type): For transfers, the party that is receiving the transaction.
+            by_order_of (str, none_type): The party initiating a wire transfer. Will be `null` if the transaction is not a wire transfer.
+            payer (str, none_type): For transfers, the party that is paying the transaction.
+            payment_method (str, none_type): The type of transfer, e.g. 'ACH'
+            payment_processor (str, none_type): The name of the payment processor
+            reason (str, none_type): The payer-supplied description of the transfer.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,14 +158,6 @@ class PaymentMeta(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            reference_number (str, none_type): The transaction reference number supplied by the financial institution.. [optional]  # noqa: E501
-            ppd_id (str, none_type): The ACH PPD ID for the payer.. [optional]  # noqa: E501
-            payee (str, none_type): For transfers, the party that is receiving the transaction.. [optional]  # noqa: E501
-            by_order_of (str, none_type): The party initiating a wire transfer. Will be `null` if the transaction is not a wire transfer.. [optional]  # noqa: E501
-            payer (str, none_type): For transfers, the party that is paying the transaction.. [optional]  # noqa: E501
-            payment_method (str, none_type): The type of transfer, e.g. 'ACH'. [optional]  # noqa: E501
-            payment_processor (str, none_type): The name of the payment processor. [optional]  # noqa: E501
-            reason (str, none_type): The payer-supplied description of the transfer.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,6 +183,14 @@ class PaymentMeta(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.reference_number = reference_number
+        self.ppd_id = ppd_id
+        self.payee = payee
+        self.by_order_of = by_order_of
+        self.payer = payer
+        self.payment_method = payment_method
+        self.payment_processor = payment_processor
+        self.reason = reason
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

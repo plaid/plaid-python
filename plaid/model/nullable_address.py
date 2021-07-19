@@ -85,7 +85,7 @@ class NullableAddress(ModelComposed):
         lazy_import()
         return {
             'data': (AddressData,),  # noqa: E501
-            'primary': (bool, none_type,),  # noqa: E501
+            'primary': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -148,7 +148,7 @@ class NullableAddress(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            primary (bool, none_type): When `true`, identifies the address as the primary address on an account.. [optional]  # noqa: E501
+            primary (bool): When `true`, identifies the address as the primary address on an account.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

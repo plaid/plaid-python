@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.error import Error
     from plaid.model.income_summary import IncomeSummary
+    globals()['Error'] = Error
     globals()['IncomeSummary'] = IncomeSummary
 
 
@@ -84,6 +86,7 @@ class IncomeVerificationSummaryGetResponse(ModelNormal):
         return {
             'income_summaries': ([IncomeSummary],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'error': (Error,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +97,7 @@ class IncomeVerificationSummaryGetResponse(ModelNormal):
     attribute_map = {
         'income_summaries': 'income_summaries',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'error': 'error',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,6 +150,7 @@ class IncomeVerificationSummaryGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            error (Error): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

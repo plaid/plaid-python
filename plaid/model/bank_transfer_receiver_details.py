@@ -54,6 +54,7 @@ class BankTransferReceiverDetails(ModelNormal):
             'None': None,
             'POSITIVE': "positive",
             'NEGATIVE': "negative",
+            'NULL': "null",
         },
     }
 
@@ -105,8 +106,11 @@ class BankTransferReceiverDetails(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, available_balance, *args, **kwargs):  # noqa: E501
         """BankTransferReceiverDetails - a model defined in OpenAPI
+
+        Args:
+            available_balance (str, none_type): The sign of the available balance for the receiver bank account associated with the receiver event at the time the matching transaction was found. Can be `positive`, `negative`, or null if the balance was not available at the time.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -139,7 +143,6 @@ class BankTransferReceiverDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            available_balance (str, none_type): The sign of the available balance for the receiver bank account associated with the receiver event at the time the matching transaction was found. Can be `positive`, `negative`, or null if the balance was not available at the time.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -165,6 +168,7 @@ class BankTransferReceiverDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.available_balance = available_balance
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

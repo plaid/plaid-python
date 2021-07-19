@@ -79,10 +79,10 @@ class AccountAssetsAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'days_available': (float,),  # noqa: E501
+            'transactions': ([AssetReportTransaction],),  # noqa: E501
             'owners': ([Owner],),  # noqa: E501
-            'days_available': (float, none_type,),  # noqa: E501
-            'transactions': ([AssetReportTransaction], none_type,),  # noqa: E501
-            'historical_balances': ([HistoricalBalance], none_type,),  # noqa: E501
+            'historical_balances': ([HistoricalBalance],),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class AccountAssetsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'owners': 'owners',  # noqa: E501
         'days_available': 'days_available',  # noqa: E501
         'transactions': 'transactions',  # noqa: E501
+        'owners': 'owners',  # noqa: E501
         'historical_balances': 'historical_balances',  # noqa: E501
     }
 
@@ -109,11 +109,14 @@ class AccountAssetsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, owners, *args, **kwargs):  # noqa: E501
+    def __init__(self, days_available, transactions, owners, historical_balances, *args, **kwargs):  # noqa: E501
         """AccountAssetsAllOf - a model defined in OpenAPI
 
         Args:
+            days_available (float): The duration of transaction history available for this Item, typically defined as the time since the date of the earliest transaction in that account. Only returned by Assets endpoints.
+            transactions ([AssetReportTransaction]): Transaction history associated with the account. Only returned by Assets endpoints. Transaction history returned by endpoints such as `/transactions/get` or `/investments/transactions/get` will be returned in the top-level `transactions` field instead.
             owners ([Owner]): Data returned by the financial institution about the account owner or owners. Only returned by Identity or Assets endpoints. Multiple owners on a single account will be represented in the same `owner` object, not in multiple owner objects within the array.
+            historical_balances ([HistoricalBalance]): Calculated data about the historical balances on the account. Only returned by Assets endpoints.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -146,9 +149,6 @@ class AccountAssetsAllOf(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            days_available (float, none_type): The duration of transaction history available for this Item, typically defined as the time since the date of the earliest transaction in that account. Only returned by Assets endpoints.. [optional]  # noqa: E501
-            transactions ([AssetReportTransaction], none_type): Transaction history associated with the account. Only returned by Assets endpoints. Transaction history returned by endpoints such as `/transactions/get` or `/investments/transactions/get` will be returned in the top-level `transactions` field instead.. [optional]  # noqa: E501
-            historical_balances ([HistoricalBalance], none_type): Calculated data about the historical balances on the account. Only returned by Assets endpoints.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,7 +174,10 @@ class AccountAssetsAllOf(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.days_available = days_available
+        self.transactions = transactions
         self.owners = owners
+        self.historical_balances = historical_balances
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

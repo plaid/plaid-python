@@ -132,18 +132,18 @@ class InvestmentTransaction(ModelNormal):
         return {
             'investment_transaction_id': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
+            'security_id': (str, none_type,),  # noqa: E501
             'date': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'quantity': (float,),  # noqa: E501
             'amount': (float,),  # noqa: E501
             'price': (float,),  # noqa: E501
+            'fees': (float, none_type,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'subtype': (str,),  # noqa: E501
-            'cancel_transaction_id': (str, none_type,),  # noqa: E501
-            'security_id': (str, none_type,),  # noqa: E501
-            'fees': (float, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'cancel_transaction_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -154,18 +154,18 @@ class InvestmentTransaction(ModelNormal):
     attribute_map = {
         'investment_transaction_id': 'investment_transaction_id',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'security_id': 'security_id',  # noqa: E501
         'date': 'date',  # noqa: E501
         'name': 'name',  # noqa: E501
         'quantity': 'quantity',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'price': 'price',  # noqa: E501
+        'fees': 'fees',  # noqa: E501
         'type': 'type',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
-        'cancel_transaction_id': 'cancel_transaction_id',  # noqa: E501
-        'security_id': 'security_id',  # noqa: E501
-        'fees': 'fees',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'cancel_transaction_id': 'cancel_transaction_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -180,19 +180,23 @@ class InvestmentTransaction(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, investment_transaction_id, account_id, date, name, quantity, amount, price, type, subtype, *args, **kwargs):  # noqa: E501
+    def __init__(self, investment_transaction_id, account_id, security_id, date, name, quantity, amount, price, fees, type, subtype, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
         """InvestmentTransaction - a model defined in OpenAPI
 
         Args:
             investment_transaction_id (str): The ID of the Investment transaction, unique across all Plaid transactions. Like all Plaid identifiers, the `investment_transaction_id` is case sensitive.
             account_id (str): The `account_id` of the account against which this transaction posted.
+            security_id (str, none_type): The `security_id` to which this transaction is related.
             date (str): The ISO-8601 posting date for the transaction, or transacted date for pending transactions.
             name (str): The institution’s description of the transaction.
-            quantity (float): The number of units of the security involved in this transactions
+            quantity (float): The number of units of the security involved in this transaction.
             amount (float): The complete value of the transaction. Positive values when cash is debited, e.g. purchases of stock; negative values when cash is credited, e.g. sales of stock. Treatment remains the same for cash-only movements unassociated with securities.
             price (float): The price of the security at which this transaction occurred.
-            type (str): Value is one of the following: `buy`: Buying an investment `sell`: Selling an investment `cancel`: A cancellation of a pending transaction  `cash`: Activity that modifies a cash position `fee`: A fee on the account `transfer`: Activity which modifies a position, but not through buy/sell activity e.g. options exercise, portfolio transfer
-            subtype (str): For descriptions of possible transaction subtypes, see [Investment transaction subtypes schema](/docs/api/accounts/#investment-transaction-subtypes-schema).
+            fees (float, none_type): The combined value of all fees applied to this transaction
+            type (str): Value is one of the following: `buy`: Buying an investment `sell`: Selling an investment `cancel`: A cancellation of a pending transaction `cash`: Activity that modifies a cash position `fee`: A fee on the account `transfer`: Activity which modifies a position, but not through buy/sell activity e.g. options exercise, portfolio transfer
+            subtype (str): For descriptions of possible transaction subtypes, see [Investment transaction subtypes schema](https://plaid.com/docs/api/accounts/#investment-transaction-subtypes-schema).
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the transaction. Always `null` if `unofficial_currency_code` is non-`null`.
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -226,10 +230,6 @@ class InvestmentTransaction(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             cancel_transaction_id (str, none_type): A legacy field formerly used internally by Plaid to identify certain canceled transactions.. [optional]  # noqa: E501
-            security_id (str, none_type): The `security_id` to which this transaction is related.. [optional]  # noqa: E501
-            fees (float, none_type): The combined value of all fees applied to this transaction. [optional]  # noqa: E501
-            iso_currency_code (str, none_type): The ISO-4217 currency code of the transaction. Always `null` if `unofficial_currency_code` is non-`null`.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -257,13 +257,17 @@ class InvestmentTransaction(ModelNormal):
 
         self.investment_transaction_id = investment_transaction_id
         self.account_id = account_id
+        self.security_id = security_id
         self.date = date
         self.name = name
         self.quantity = quantity
         self.amount = amount
         self.price = price
+        self.fees = fees
         self.type = type
         self.subtype = subtype
+        self.iso_currency_code = iso_currency_code
+        self.unofficial_currency_code = unofficial_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

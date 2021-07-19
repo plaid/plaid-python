@@ -25,9 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.external_payment_schedule import ExternalPaymentSchedule
+    from plaid.model.external_payment_schedule_base import ExternalPaymentScheduleBase
     from plaid.model.payment_schedule_interval import PaymentScheduleInterval
-    globals()['ExternalPaymentSchedule'] = ExternalPaymentSchedule
+    globals()['ExternalPaymentScheduleBase'] = ExternalPaymentScheduleBase
     globals()['PaymentScheduleInterval'] = PaymentScheduleInterval
 
 
@@ -87,8 +87,8 @@ class ExternalPaymentScheduleGet(ModelComposed):
             'interval': (PaymentScheduleInterval,),  # noqa: E501
             'interval_execution_day': (int,),  # noqa: E501
             'start_date': (date,),  # noqa: E501
-            'adjusted_start_date': (date, none_type,),  # noqa: E501
             'end_date': (date, none_type,),  # noqa: E501
+            'adjusted_start_date': (date, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,8 +100,8 @@ class ExternalPaymentScheduleGet(ModelComposed):
         'interval': 'interval',  # noqa: E501
         'interval_execution_day': 'interval_execution_day',  # noqa: E501
         'start_date': 'start_date',  # noqa: E501
-        'adjusted_start_date': 'adjusted_start_date',  # noqa: E501
         'end_date': 'end_date',  # noqa: E501
+        'adjusted_start_date': 'adjusted_start_date',  # noqa: E501
     }
 
     required_properties = set([
@@ -117,13 +117,15 @@ class ExternalPaymentScheduleGet(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, interval, interval_execution_day, start_date, *args, **kwargs):  # noqa: E501
+    def __init__(self, interval, interval_execution_day, start_date, end_date, adjusted_start_date, *args, **kwargs):  # noqa: E501
         """ExternalPaymentScheduleGet - a model defined in OpenAPI
 
         Args:
             interval (PaymentScheduleInterval):
             interval_execution_day (int): The day of the interval on which to schedule the payment.  If the payment interval is weekly, `interval_execution_day` should be an integer from 1 (Monday) to 7 (Sunday).  If the payment interval is monthly, `interval_execution_day` should be an integer indicating which day of the month to make the payment on. Integers from 1 to 28 can be used to make a payment on that day of the month. Negative integers from -1 to -5 can be used to make a payment relative to the end of the month. To make a payment on the last day of the month, use -1; to make the payment on the second-to-last day, use -2, and so on.
             start_date (date): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will begin on the first `interval_execution_day` on or after the `start_date`.  If the first `interval_execution_day` on or after the start date is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make the first payment on that day, but it is not guaranteed to do so.
+            end_date (date, none_type): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will end on the last `interval_execution_day` on or before the `end_date`. If the only `interval_execution_day` between the start date and the end date (inclusive) is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make a payment on that day, but it is not guaranteed to do so.
+            adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in ISO 8601 format (YYYY-MM-DD). If the start date did not require adjustment, this field will be `null`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,8 +158,6 @@ class ExternalPaymentScheduleGet(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in ISO 8601 format (YYYY-MM-DD). If the start date did not require adjustment, this field will be `null`.. [optional]  # noqa: E501
-            end_date (date, none_type): A date in ISO 8601 format (YYYY-MM-DD). Standing order payments will end on the last `interval_execution_day` on or before the `end_date`.  If the only `interval_execution_day` between the start date and the end date (inclusive) is also the same day that `/payment_initiation/payment/create` was called, the bank *may* make a payment on that day, but it is not guaranteed to do so.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -194,6 +194,8 @@ class ExternalPaymentScheduleGet(ModelComposed):
             'interval': interval,
             'interval_execution_day': interval_execution_day,
             'start_date': start_date,
+            'end_date': end_date,
+            'adjusted_start_date': adjusted_start_date,
         }
         model_args = {}
         model_args.update(required_args)
@@ -230,7 +232,7 @@ class ExternalPaymentScheduleGet(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              ExternalPaymentSchedule,
+              ExternalPaymentScheduleBase,
           ],
           'oneOf': [
           ],

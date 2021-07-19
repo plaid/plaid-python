@@ -58,6 +58,13 @@ class BankTransferEventListRequest(ModelNormal):
             'None': None,
             'DEBIT': "debit",
             'CREDIT': "credit",
+            'NULL': "null",
+        },
+        ('direction',): {
+            'None': None,
+            'INBOUND': "inbound",
+            'OUTBOUND': "outbound",
+            'NULL': "null",
         },
     }
 
@@ -178,7 +185,7 @@ class BankTransferEventListRequest(ModelNormal):
             count (int, none_type): The maximum number of bank transfer events to return. If the number of events matching the above parameters is greater than `count`, the most recent events will be returned.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int, none_type): The offset into the list of bank transfer events. When `count`=25 and `offset`=0, the first 25 events will be returned. When `count`=25 and `offset`=25, the next 25 bank transfer events will be returned.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             origination_account_id (str, none_type): The origination account ID to get events for transfers from a specific origination account.. [optional]  # noqa: E501
-            direction (str, none_type): Indicates the direction of the transfer: `outbound` for API-initiated transfers, or `inbound` for payments received by the FBO account.. [optional]  # noqa: E501
+            direction (str, none_type): Indicates the direction of the transfer: `outbound`: for API-initiated transfers `inbound`: for payments received by the FBO account.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
