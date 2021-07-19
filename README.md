@@ -19,8 +19,10 @@ The official python client library for the [Plaid API][1].
 
 ## Install
 
+This library only supports `python3`!
+
 ```console
-$ pip3 install --pre plaid-python==8.0.0b10
+$ pip3 install --pre plaid-python==8.0.0b13
 ```
 
 ## Documentation
