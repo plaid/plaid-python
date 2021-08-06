@@ -1,3 +1,8 @@
+## 7.5.0
+- Security vulnerabilities patch
+  - Update Sphinx dependency to `3.0.4`
+  - Update Py dependency to `1.10.0`
+
 ## 7.4.0
 - Add support for `options` to `/payment_initiation/payment/create`
 
