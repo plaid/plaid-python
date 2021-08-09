@@ -1,3 +1,7 @@
+## 7.5.0
+- Update Sphinx dependency to `1.8.5`
+- Update Py dependency to `1.10.0`
+
 ## 7.4.0
 - Add support for `options` to `/payment_initiation/payment/create`
 
