@@ -53,6 +53,9 @@ class PaymentInitiationRecipientGetRequest(ModelNormal):
     }
 
     validations = {
+        ('recipient_id',): {
+            'min_length': 1,
+        },
     }
 
     additional_properties_type = None

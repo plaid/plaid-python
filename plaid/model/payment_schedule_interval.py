@@ -53,6 +53,9 @@ class PaymentScheduleInterval(ModelSimple):
     }
 
     validations = {
+        ('value',): {
+            'min_length': 1,
+        },
     }
 
     additional_properties_type = None

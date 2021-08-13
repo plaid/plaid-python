@@ -57,6 +57,14 @@ class PaymentInitiationOptionalRestrictionBacs(ModelComposed):
     }
 
     validations = {
+        ('account',): {
+            'max_length': 10,
+            'min_length': 1,
+        },
+        ('sort_code',): {
+            'max_length': 6,
+            'min_length': 6,
+        },
     }
 
     @cached_property

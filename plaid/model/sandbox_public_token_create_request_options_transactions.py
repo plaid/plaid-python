@@ -70,8 +70,8 @@ class SandboxPublicTokenCreateRequestOptionsTransactions(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_date': (str,),  # noqa: E501
-            'end_date': (str,),  # noqa: E501
+            'start_date': (date,),  # noqa: E501
+            'end_date': (date,),  # noqa: E501
         }
 
     @cached_property
@@ -130,8 +130,8 @@ class SandboxPublicTokenCreateRequestOptionsTransactions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            start_date (str): The earliest date for which to fetch transaction history. Dates should be formatted as YYYY-MM-DD.. [optional]  # noqa: E501
-            end_date (str): The most recent date for which to fetch transaction history. Dates should be formatted as YYYY-MM-DD.. [optional]  # noqa: E501
+            start_date (date): The earliest date for which to fetch transaction history. Dates should be formatted as YYYY-MM-DD.. [optional]  # noqa: E501
+            end_date (date): The most recent date for which to fetch transaction history. Dates should be formatted as YYYY-MM-DD.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

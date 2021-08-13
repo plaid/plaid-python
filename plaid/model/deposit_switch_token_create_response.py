@@ -109,7 +109,7 @@ class DepositSwitchTokenCreateResponse(ModelNormal):
 
         Args:
             deposit_switch_token (str): Deposit switch token, used to initialize Link for the Deposit Switch product
-            deposit_switch_token_expiration_time (str): Expiration time of the token, in ISO8601 format
+            deposit_switch_token_expiration_time (str): Expiration time of the token, in ISO 8601 format
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

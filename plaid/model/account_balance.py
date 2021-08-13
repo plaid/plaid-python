@@ -81,7 +81,7 @@ class AccountBalance(ModelNormal):
             'limit': (float, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
-            'last_updated_datetime': (str, none_type,),  # noqa: E501
+            'last_updated_datetime': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +151,7 @@ class AccountBalance(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            last_updated_datetime (str, none_type): Timestamp in ISO-8601 format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the last time that the balance for the given account has been updated.  This is currently only provided when the `min_last_updated_datetime` is passed when calling `/accounts/balance/get` for `ins_128026` (Capital One).. [optional]  # noqa: E501
+            last_updated_datetime (datetime, none_type): Timestamp in ISO-8601 format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the last time that the balance for the given account has been updated  This is currently only provided when the `min_last_updated_datetime` is passed when calling `/accounts/balance/get` for `ins_128026` (Capital One).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

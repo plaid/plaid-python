@@ -92,13 +92,13 @@ class MortgageLiability(ModelNormal):
             'has_prepayment_penalty': (bool, none_type,),  # noqa: E501
             'interest_rate': (MortgageInterestRate,),  # noqa: E501
             'last_payment_amount': (float, none_type,),  # noqa: E501
-            'last_payment_date': (str, none_type,),  # noqa: E501
+            'last_payment_date': (date, none_type,),  # noqa: E501
             'loan_type_description': (str, none_type,),  # noqa: E501
             'loan_term': (str, none_type,),  # noqa: E501
-            'maturity_date': (str, none_type,),  # noqa: E501
+            'maturity_date': (date, none_type,),  # noqa: E501
             'next_monthly_payment': (float, none_type,),  # noqa: E501
-            'next_payment_due_date': (str, none_type,),  # noqa: E501
-            'origination_date': (str, none_type,),  # noqa: E501
+            'next_payment_due_date': (date, none_type,),  # noqa: E501
+            'origination_date': (date, none_type,),  # noqa: E501
             'origination_principal_amount': (float, none_type,),  # noqa: E501
             'past_due_amount': (float, none_type,),  # noqa: E501
             'property_address': (MortgagePropertyAddress,),  # noqa: E501
@@ -158,13 +158,13 @@ class MortgageLiability(ModelNormal):
             has_prepayment_penalty (bool, none_type): Indicates whether the borrower will pay a penalty for early payoff of mortgage.
             interest_rate (MortgageInterestRate):
             last_payment_amount (float, none_type): The amount of the last payment.
-            last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            last_payment_date (date, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             loan_type_description (str, none_type): Description of the type of loan, for example `conventional`, `fixed`, or `variable`. This field is provided directly from the loan servicer and does not have an enumerated set of possible values.
             loan_term (str, none_type): Full duration of mortgage as at origination (e.g. `10 year`).
-            maturity_date (str, none_type): Original date on which mortgage is due in full. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            maturity_date (date, none_type): Original date on which mortgage is due in full. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             next_monthly_payment (float, none_type): The amount of the next payment.
-            next_payment_due_date (str, none_type): The due date for the next payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
-            origination_date (str, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            next_payment_due_date (date, none_type): The due date for the next payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            origination_date (date, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             origination_principal_amount (float, none_type): The original principal balance of the mortgage.
             past_due_amount (float, none_type): Amount of loan (principal + interest) past due for payment.
             property_address (MortgagePropertyAddress):

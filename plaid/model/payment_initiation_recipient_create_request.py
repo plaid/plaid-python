@@ -25,10 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
     from plaid.model.payment_initiation_address import PaymentInitiationAddress
-    globals()['NullableRecipientBACS'] = NullableRecipientBACS
+    from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
     globals()['PaymentInitiationAddress'] = PaymentInitiationAddress
+    globals()['RecipientBACSNullable'] = RecipientBACSNullable
 
 
 class PaymentInitiationRecipientCreateRequest(ModelNormal):
@@ -59,6 +59,13 @@ class PaymentInitiationRecipientCreateRequest(ModelNormal):
     }
 
     validations = {
+        ('name',): {
+            'min_length': 1,
+        },
+        ('iban',): {
+            'max_length': 34,
+            'min_length': 15,
+        },
     }
 
     additional_properties_type = None
@@ -81,7 +88,7 @@ class PaymentInitiationRecipientCreateRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
-            'bacs': (NullableRecipientBACS,),  # noqa: E501
+            'bacs': (RecipientBACSNullable,),  # noqa: E501
             'address': (PaymentInitiationAddress,),  # noqa: E501
         }
 
@@ -151,7 +158,7 @@ class PaymentInitiationRecipientCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             iban (str, none_type): The International Bank Account Number (IBAN) for the recipient. If BACS data is not provided, an IBAN is required.. [optional]  # noqa: E501
-            bacs (NullableRecipientBACS): [optional]  # noqa: E501
+            bacs (RecipientBACSNullable): [optional]  # noqa: E501
             address (PaymentInitiationAddress): [optional]  # noqa: E501
         """
 

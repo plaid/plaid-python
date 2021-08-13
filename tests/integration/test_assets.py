@@ -52,8 +52,6 @@ def teardown_module(module):
 
 
 def test_full_flow():
-    # TODO: renable this test
-    return
     client = create_client()
 
     # create an asset report for one item
@@ -163,7 +161,6 @@ def name_exists_for_some_transaction(report):
     for account in report['items'][0]['accounts']:
         if len(account['transactions']) > 0:
             return (account['transactions'][0]['name'] is not None)
-
     return False
 
 

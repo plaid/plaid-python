@@ -86,7 +86,7 @@ class AssetReport(ModelNormal):
         return {
             'asset_report_id': (str,),  # noqa: E501
             'client_report_id': (str,),  # noqa: E501
-            'date_generated': (str,),  # noqa: E501
+            'date_generated': (datetime,),  # noqa: E501
             'days_requested': (float,),  # noqa: E501
             'user': (AssetReportUser,),  # noqa: E501
             'items': ([AssetReportItem],),  # noqa: E501
@@ -124,7 +124,7 @@ class AssetReport(ModelNormal):
         Args:
             asset_report_id (str): A unique ID identifying an Asset Report. Like all Plaid identifiers, this ID is case sensitive.
             client_report_id (str): An identifier you determine and submit for the Asset Report.
-            date_generated (str): The date and time when the Asset Report was created, in ISO 8601 format (e.g. \"2018-04-12T03:32:11Z\").
+            date_generated (datetime): The date and time when the Asset Report was created, in ISO 8601 format (e.g. \"2018-04-12T03:32:11Z\").
             days_requested (float): The duration of transaction history you requested
             user (AssetReportUser):
             items ([AssetReportItem]): Data returned by Plaid about each of the Items included in the Asset Report.

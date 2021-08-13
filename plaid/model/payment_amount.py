@@ -57,6 +57,10 @@ class PaymentAmount(ModelNormal):
     }
 
     validations = {
+        ('currency',): {
+            'max_length': 3,
+            'min_length': 3,
+        },
     }
 
     @cached_property

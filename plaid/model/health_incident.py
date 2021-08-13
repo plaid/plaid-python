@@ -82,10 +82,10 @@ class HealthIncident(ModelNormal):
         """
         lazy_import()
         return {
-            'start_date': (str,),  # noqa: E501
+            'start_date': (datetime,),  # noqa: E501
             'title': (str,),  # noqa: E501
             'incident_updates': ([IncidentUpdate],),  # noqa: E501
-            'end_date': (str,),  # noqa: E501
+            'end_date': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -116,7 +116,7 @@ class HealthIncident(ModelNormal):
         """HealthIncident - a model defined in OpenAPI
 
         Args:
-            start_date (str): The start date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.
+            start_date (datetime): The start date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.
             title (str): The title of the incident
             incident_updates ([IncidentUpdate]): Updates on the health incident.
 
@@ -151,7 +151,7 @@ class HealthIncident(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            end_date (str): The end date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
+            end_date (datetime): The end date of the incident, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

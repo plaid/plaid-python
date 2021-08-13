@@ -1,8 +1,7 @@
 import time
 import json
 import plaid
-from datetime import datetime
-from datetime import timedelta
+import datetime as dt
 from plaid.model.products import Products
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
 from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
@@ -21,10 +20,9 @@ access_token = None
 
 # NOTE: Data is only generated over the past 2 years.  Ensure that the date
 # range used for transactions/get is within 2 years old
+END_DATE = dt.date.today()
+START_DATE = (END_DATE - dt.timedelta(days=(365*2)))
 
-START_DATE = (datetime.now() - timedelta(days=(365*2)))
-END_DATE = datetime.now()
-DATE_FORMAT = '%Y-%m-%d'
 
 def setup_module(module):
     client = create_client()
@@ -33,8 +31,8 @@ def setup_module(module):
         initial_products=[Products('transactions')],
         options=SandboxPublicTokenCreateRequestOptions(
             transactions=SandboxPublicTokenCreateRequestOptionsTransactions(
-                start_date=START_DATE.strftime(DATE_FORMAT),
-                end_date=END_DATE.strftime(DATE_FORMAT)
+                start_date=START_DATE,
+                end_date=END_DATE,
             )
         )
     )
@@ -67,8 +65,8 @@ def get_transactions_with_retries(client,
 
             request = TransactionsGetRequest(
                 access_token=access_token,
-                start_date=START_DATE.date(),
-                end_date=END_DATE.date(),
+                start_date=START_DATE,
+                end_date=END_DATE,
                 options=options
             )
             response = client.transactions_get(request)

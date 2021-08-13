@@ -27,12 +27,12 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.external_payment_refund_details import ExternalPaymentRefundDetails
     from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
-    from plaid.model.nullable_sender_bacs import NullableSenderBACS
     from plaid.model.payment_amount import PaymentAmount
+    from plaid.model.sender_bacs_nullable import SenderBACSNullable
     globals()['ExternalPaymentRefundDetails'] = ExternalPaymentRefundDetails
     globals()['ExternalPaymentScheduleGet'] = ExternalPaymentScheduleGet
-    globals()['NullableSenderBACS'] = NullableSenderBACS
     globals()['PaymentAmount'] = PaymentAmount
+    globals()['SenderBACSNullable'] = SenderBACSNullable
 
 
 class PaymentInitiationPayment(ModelNormal):
@@ -73,6 +73,9 @@ class PaymentInitiationPayment(ModelNormal):
     }
 
     validations = {
+        ('emi_account_id',): {
+            'min_length': 1,
+        },
     }
 
     @cached_property
@@ -105,7 +108,7 @@ class PaymentInitiationPayment(ModelNormal):
             'reference': (str,),  # noqa: E501
             'last_status_update': (datetime,),  # noqa: E501
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
-            'bacs': (NullableSenderBACS,),  # noqa: E501
+            'bacs': (SenderBACSNullable,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
@@ -155,7 +158,7 @@ class PaymentInitiationPayment(ModelNormal):
             reference (str): A reference for the payment.
             last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
             schedule (ExternalPaymentScheduleGet):
-            bacs (NullableSenderBACS):
+            bacs (SenderBACSNullable):
             iban (str, none_type): The International Bank Account Number (IBAN) for the sender, if specified in the `/payment_initiation/payment/create` call.
 
         Keyword Args:

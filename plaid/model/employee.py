@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_address_data import NullableAddressData
-    globals()['NullableAddressData'] = NullableAddressData
+    from plaid.model.address_data_nullable import AddressDataNullable
+    globals()['AddressDataNullable'] = AddressDataNullable
 
 
 class Employee(ModelNormal):
@@ -83,7 +83,7 @@ class Employee(ModelNormal):
         lazy_import()
         return {
             'name': (str, none_type,),  # noqa: E501
-            'address': (NullableAddressData,),  # noqa: E501
+            'address': (AddressDataNullable,),  # noqa: E501
         }
 
     @cached_property
@@ -113,7 +113,7 @@ class Employee(ModelNormal):
 
         Args:
             name (str, none_type): The name of the employee.
-            address (NullableAddressData):
+            address (AddressDataNullable):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

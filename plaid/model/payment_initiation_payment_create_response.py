@@ -50,6 +50,9 @@ class PaymentInitiationPaymentCreateResponse(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'PAYMENT_STATUS_INPUT_NEEDED': "PAYMENT_STATUS_INPUT_NEEDED",
+        },
     }
 
     validations = {
@@ -104,15 +107,15 @@ class PaymentInitiationPaymentCreateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_id, status, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_id, request_id, *args, **kwargs):  # noqa: E501
         """PaymentInitiationPaymentCreateResponse - a model defined in OpenAPI
 
         Args:
             payment_id (str): A unique ID identifying the payment
-            status (str): For a payment returned by this endpoint, there is only one possible value:  `PAYMENT_STATUS_INPUT_NEEDED`: The initial phase of the payment
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
+            status (str): For a payment returned by this endpoint, there is only one possible value:  `PAYMENT_STATUS_INPUT_NEEDED`: The initial phase of the payment. defaults to "PAYMENT_STATUS_INPUT_NEEDED", must be one of ["PAYMENT_STATUS_INPUT_NEEDED", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -145,6 +148,7 @@ class PaymentInitiationPaymentCreateResponse(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
+        status = kwargs.get('status', "PAYMENT_STATUS_INPUT_NEEDED")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

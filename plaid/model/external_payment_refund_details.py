@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
-    globals()['NullableRecipientBACS'] = NullableRecipientBACS
+    from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
+    globals()['RecipientBACSNullable'] = RecipientBACSNullable
 
 
 class ExternalPaymentRefundDetails(ModelNormal):
@@ -77,7 +77,7 @@ class ExternalPaymentRefundDetails(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
-            'bacs': (NullableRecipientBACS,),  # noqa: E501
+            'bacs': (RecipientBACSNullable,),  # noqa: E501
         }
 
     @cached_property
@@ -109,7 +109,7 @@ class ExternalPaymentRefundDetails(ModelNormal):
         Args:
             name (str): The name of the account holder.
             iban (str, none_type): The International Bank Account Number (IBAN) for the account.
-            bacs (NullableRecipientBACS):
+            bacs (RecipientBACSNullable):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

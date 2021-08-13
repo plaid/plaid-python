@@ -50,6 +50,29 @@ class ProcessorTokenCreateRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('processor',): {
+            'ACHQ': "achq",
+            'ALPACA': "alpaca",
+            'ASTRA': "astra",
+            'CHECK': "check",
+            'CHECKBOOK': "checkbook",
+            'CIRCLE': "circle",
+            'DRIVEWEALTH': "drivewealth",
+            'DWOLLA': "dwolla",
+            'GALILEO': "galileo",
+            'LITHIC': "lithic",
+            'MODERN_TREASURY': "modern_treasury",
+            'MOOV': "moov",
+            'OCROLUS': "ocrolus",
+            'PRIME_TRUST': "prime_trust",
+            'RIZE': "rize",
+            'SILA_MONEY': "sila_money",
+            'SBV_API': "sbv_api",
+            'UNIT': "unit",
+            'VESTA': "vesta",
+            'VOPAY': "vopay",
+            'WYRE': "wyre",
+        },
     }
 
     validations = {
@@ -108,7 +131,7 @@ class ProcessorTokenCreateRequest(ModelNormal):
         Args:
             access_token (str): The access token associated with the Item data is being requested for.
             account_id (str): The `account_id` value obtained from the `onSuccess` callback in Link
-            processor (str): The processor you are integrating with. Valid values are `\"achq\"`, `\"check\"`, `\"checkbook\"`, `\"circle\"`, `\"drivewealth\"`, `\"dwolla\"`, `\"galileo\"`, \"`interactive_brokers`\", `\"lithic\"`, `\"modern_treasury\"`, `\"ocrolus\"`, `\"prime_trust\"`, `\"rize\"`, `\"sila_money\"`, `\"svb_api\"`, `\"unit\"`, `\"vesta\"`, `\"vopay\"`, `\"wyre\"`
+            processor (str): The processor you are integrating with.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -26,9 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.item import Item
-    from plaid.model.nullable_item_status import NullableItemStatus
+    from plaid.model.item_status_nullable import ItemStatusNullable
     globals()['Item'] = Item
-    globals()['NullableItemStatus'] = NullableItemStatus
+    globals()['ItemStatusNullable'] = ItemStatusNullable
 
 
 class ItemGetResponse(ModelNormal):
@@ -86,7 +86,7 @@ class ItemGetResponse(ModelNormal):
         return {
             'item': (Item,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'status': (NullableItemStatus,),  # noqa: E501
+            'status': (ItemStatusNullable,),  # noqa: E501
         }
 
     @cached_property
@@ -150,7 +150,7 @@ class ItemGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (NullableItemStatus): [optional]  # noqa: E501
+            status (ItemStatusNullable): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

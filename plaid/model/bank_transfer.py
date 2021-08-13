@@ -104,7 +104,7 @@ class BankTransfer(ModelNormal):
             'amount': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
-            'created': (str,),  # noqa: E501
+            'created': (datetime,),  # noqa: E501
             'status': (BankTransferStatus,),  # noqa: E501
             'network': (BankTransferNetwork,),  # noqa: E501
             'cancellable': (bool,),  # noqa: E501
@@ -164,7 +164,7 @@ class BankTransfer(ModelNormal):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
             description (str): The description of the transfer.
-            created (str): The datetime when this bank transfer was created. This will be of the form `2006-01-02T15:04:05Z`
+            created (datetime): The datetime when this bank transfer was created. This will be of the form `2006-01-02T15:04:05Z`
             status (BankTransferStatus):
             network (BankTransferNetwork):
             cancellable (bool): When `true`, you can still cancel this bank transfer.

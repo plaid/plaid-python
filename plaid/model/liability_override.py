@@ -96,12 +96,12 @@ class LiabilityOverride(ModelNormal):
             'last_payment_amount': (float,),  # noqa: E501
             'minimum_payment_amount': (float,),  # noqa: E501
             'is_overdue': (bool,),  # noqa: E501
-            'origination_date': (str,),  # noqa: E501
+            'origination_date': (date,),  # noqa: E501
             'principal': (float,),  # noqa: E501
             'nominal_apr': (float,),  # noqa: E501
             'interest_capitalization_grace_period_months': (float,),  # noqa: E501
             'repayment_model': (StudentLoanRepaymentModel,),  # noqa: E501
-            'expected_payoff_date': (str,),  # noqa: E501
+            'expected_payoff_date': (date,),  # noqa: E501
             'guarantor': (str,),  # noqa: E501
             'is_federal': (bool,),  # noqa: E501
             'loan_name': (str,),  # noqa: E501
@@ -170,12 +170,12 @@ class LiabilityOverride(ModelNormal):
             last_payment_amount (float): Override the `last_payment_amount` field. Can only be set if `type` is `credit`.
             minimum_payment_amount (float): Override the `minimum_payment_amount` field. Can only be set if `type` is `credit` or `student`.
             is_overdue (bool): Override the `is_overdue` field
-            origination_date (str): The date on which the loan was initially lent, in ISO 8601 (YYYY-MM-DD) format. Can only be set if `type` is `student`.
+            origination_date (date): The date on which the loan was initially lent, in ISO 8601 (YYYY-MM-DD) format. Can only be set if `type` is `student`.
             principal (float): The original loan principal. Can only be set if `type` is `student`.
             nominal_apr (float): The interest rate on the loan as a percentage. Can only be set if `type` is `student`.
             interest_capitalization_grace_period_months (float): If set, interest capitalization begins at the given number of months after loan origination. By default interest is never capitalized. Can only be set if `type` is `student`.
             repayment_model (StudentLoanRepaymentModel):
-            expected_payoff_date (str): Override the `expected_payoff_date` field. Can only be set if `type` is `student`.
+            expected_payoff_date (date): Override the `expected_payoff_date` field. Can only be set if `type` is `student`.
             guarantor (str): Override the `guarantor` field. Can only be set if `type` is `student`.
             is_federal (bool): Override the `is_federal` field. Can only be set if `type` is `student`.
             loan_name (str): Override the `loan_name` field. Can only be set if `type` is `student`.

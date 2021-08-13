@@ -56,6 +56,18 @@ class PaymentInitiationAddress(ModelNormal):
         ('street',): {
             'min_items': 1,
         },
+        ('city',): {
+            'max_length': 35,
+            'min_length': 1,
+        },
+        ('postal_code',): {
+            'max_length': 16,
+            'min_length': 1,
+        },
+        ('country',): {
+            'max_length': 2,
+            'min_length': 2,
+        },
     }
 
     @cached_property
