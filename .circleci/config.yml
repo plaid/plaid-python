@@ -1,36 +1,14 @@
 version: 2
 jobs:
   build:
-    shell: /bin/bash --login
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-    docker:
-    - image: python:3.6
+    machine: true
     steps:
     - checkout
-    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - restore_cache:
-        keys:
-        - v1-dep-{{ .Branch }}-
-        - v1-dep-master-
-        - v1-dep-
-    - run: pip install tox
-    - save_cache:
-        key: v1-dep-{{ .Branch }}-{{ epoch }}
-        paths:
-        - vendor/bundle
-        - ~/virtualenvs
-        - ~/.m2
-        - ~/.ivy2
-        - ~/.bundle
-        - ~/.go_workspace
-        - ~/.gradle
-        - ~/.cache/bower
-    - run: tox -p all -o
+    - run:
+        name: Build Docker image for running python tests
+        command: docker build -t plaid-python .
+    - run:
+        name: Run python tests in Docker
+        command: docker run --rm -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python
     - store_test_results:
-        path: /tmp/circleci-test-results
-    - store_artifacts:
-        path: /tmp/circleci-artifacts
-    - store_artifacts:
         path: /tmp/circleci-test-results

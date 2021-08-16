@@ -7,18 +7,20 @@ from tests.integration.util import (
     WEBHOOK_VERIFICATION_KEY_ID
 )
 
+from plaid.model.webhook_verification_key_get_request import WebhookVerificationKeyGetRequest
 
 def test_get_webhook_verification_key():
     client = create_client()
-    pt_response = client.Webhooks.get_verification_key(
-        WEBHOOK_VERIFICATION_KEY_ID
+
+    request = WebhookVerificationKeyGetRequest(
+        key_id=WEBHOOK_VERIFICATION_KEY_ID
     )
-    assert pt_response['key'] is not None
-    assert pt_response['key']['alg'] is not None
-    assert pt_response['key']['created_at'] is not None
-    assert pt_response['key']['crv'] is not None
-    assert pt_response['key']['kid'] is not None
-    assert pt_response['key']['kty'] is not None
-    assert pt_response['key']['use'] is not None
-    assert pt_response['key']['x'] is not None
-    assert pt_response['key']['y'] is not None
+    response = client.webhook_verification_key_get(request)
+    assert response['key'] is not None
+    assert response['key']['alg'] is not None
+    assert response['key']['crv'] is not None
+    assert response['key']['kid'] is not None
+    assert response['key']['kty'] is not None
+    assert response['key']['use'] is not None
+    assert response['key']['x'] is not None
+    assert response['key']['y'] is not None

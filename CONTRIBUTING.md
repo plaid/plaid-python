@@ -1,36 +1,19 @@
 # Contributing
 
+Instructions for contributing to [plaid-python][1]. A python client library for the [Plaid API][2]. This library is fully generated from the [Plaid OpenAPI spec](3).
+
 ## Setup
 
-1. From the `plaid-python` directory, create the `.env` file, which will be used to configure the Plaid client.
-
-  ```
-  cp .env.example .env
-  ```
-
-2. Go to the [Plaid Dashboard](https://dashboard.plaid.com/) and copy and paste your `client_id`, and `secret`
-   into `.env` using a text editor of your choice. Your account must be enabled for sandbox access.
-
-3. Install the necessary dependencies.
-
-  ```
-  make setup
-  ```
+Have a valid version of Python3 installed, as well as docker.
 
 ## Running Tests
 
-Please lint (with `flake8`) and test your pull requests:
+1. To build the docker image for the client tests, run `docker build -t plaid-python .`.
+2. Go to the [Plaid Dashboard](https://dashboard.plaid.com/) and copy and paste your `client_id` and sandbox `secret` into the following command.
+3. Run `docker run --rm -e CLIENT_ID=$CLIENT_ID -e SECRET=$SECRET plaid-python`.
 
-```console
-$ make lint
-$ ./.env make test
-```
+If you wish to run a single test, edit the `tox.ini` file and rebuild the docker image using the command from step 1.
 
-## Updating Documentation
-
-The generated HTML documentation is served directly from the `master` branch
-of the repository. To update the generated documentation:
-
-```console
-$ make docs
-```
+[1]: https://github.com/plaid/plaid-python
+[2]: https://plaid.com
+[3]: https://github.com/plaid/plaid-openapi

@@ -1,3 +1,104 @@
+See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
+
+## 8.0.0
+The official release of the `plaid-python` generated library. Refer to the beta migration guide for tips on migrating from older version of the libraries.
+
+This particular version is pinned to OpenAPI version `2020-09-14_1.20.6`.
+
+## 8.0.0b13
+Updating to OAS 2020-09-14_1.19.10.
+
+## 8.0.0b12
+Updating to OAS 2020-09-14_1.16.4. See full changelog [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
+
+## 8.0.0b10
+Type fixes, see full changelog [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
+
+## 8.0.0b9
+This version represents a transition in how we maintain our external client libraries. We are now using an [API spec](https://github.com/plaid/plaid-openapi) written in `OpenAPI 3.0.0` and running our definition file through [OpenAPITool's `python` generator](https://github.com/OpenAPITools/openapi-generator).
+
+**Python Migration Guide:**
+
+### Client initialization
+From:
+```python
+from plaid import Client
+Client(
+    client_id=os.environ['CLIENT_ID'],
+    secret=os.environ['SECRET'],
+    environment='sandbox',
+    api_version="2020-09-14",
+    client_app="plaid-python-unit-tests"
+)
+```
+
+To:
+```python
+import plaid
+from plaid.api import plaid_api
+configuration = plaid.Configuration(
+    host=plaid.Environment.Sandbox,
+    api_key={
+        'clientId': client_id,
+        'secret': secret,
+        'plaidVersion': '2020-09-14'
+    }
+)
+api_client = plaid.ApiClient(configuration)
+client = plaid_api.PlaidApi(api_client)
+```
+
+### Endpoints
+All endpoint requests now take a request model and the functions have been renamed to include `_`.
+
+From:
+```python
+response = client.Auth.get(access_token)
+```
+
+To:
+```python
+import plaid
+from plaid.model.auth_get_request import AuthGetRequest
+from plaid.model.auth_get_request_options import AuthGetRequestOptions
+
+ag_request = AuthGetRequest(
+    access_token=access_token
+)
+
+response = client.auth_get(ag_request)
+```
+
+### Errors
+
+From:
+```python
+try:
+    client.Auth.get(access_token)
+except ItemError as e:
+    if e.code == 'ITEM_LOGIN_REQUIRED':
+    else:
+        ...
+except APIError as e:
+    if e.code == 'PLANNED_MAINTENANCE':
+        # inform user
+    else:
+        ...
+```
+
+To:
+```python
+try:
+    request = AssetReportGetRequest(
+        asset_report_token=asset_report_token,
+    )
+    return client.asset_report_get(request)
+except plaid.ApiException as e:
+    response = json.loads(e.body)
+    if response['error_code'] == 'ITEM_LOGIN_REQUIRED':
+    else:
+```
+
 ## 7.5.0
 - Update Sphinx dependency to `1.8.5`
 - Update Py dependency to `1.10.0`
