@@ -1,6 +1,7 @@
 import time
-from datetime import datetime
+import datetime as dt
 import plaid
+import json
 from plaid.model.products import Products
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
 from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
@@ -18,8 +19,8 @@ from tests.integration.util import (
 
 access_token = None
 
-START_DATE = '2020-01-01'
-END_DATE = '2021-01-01'
+START_DATE = dt.date(2020, 1, 1)
+END_DATE = dt.date(2021, 1, 1)
 
 
 def setup_module(module):
@@ -67,8 +68,8 @@ def get_investment_transactions_with_retries(client,
 
             request = InvestmentsTransactionsGetRequest(
                 access_token=access_token,
-                start_date=datetime.strptime(start_date, '%Y-%m-%d').date(),
-                end_date=datetime.strptime(end_date, '%Y-%m-%d').date(),
+                start_date=start_date,
+                end_date=end_date,
                 options=options
             )
             response = \

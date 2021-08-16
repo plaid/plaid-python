@@ -25,14 +25,14 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_numbers_ach import NullableNumbersACH
-    from plaid.model.nullable_numbers_bacs import NullableNumbersBACS
-    from plaid.model.nullable_numbers_eft import NullableNumbersEFT
-    from plaid.model.nullable_numbers_international import NullableNumbersInternational
-    globals()['NullableNumbersACH'] = NullableNumbersACH
-    globals()['NullableNumbersBACS'] = NullableNumbersBACS
-    globals()['NullableNumbersEFT'] = NullableNumbersEFT
-    globals()['NullableNumbersInternational'] = NullableNumbersInternational
+    from plaid.model.numbers_ach_nullable import NumbersACHNullable
+    from plaid.model.numbers_bacs_nullable import NumbersBACSNullable
+    from plaid.model.numbers_eft_nullable import NumbersEFTNullable
+    from plaid.model.numbers_international_nullable import NumbersInternationalNullable
+    globals()['NumbersACHNullable'] = NumbersACHNullable
+    globals()['NumbersBACSNullable'] = NumbersBACSNullable
+    globals()['NumbersEFTNullable'] = NumbersEFTNullable
+    globals()['NumbersInternationalNullable'] = NumbersInternationalNullable
 
 
 class ProcessorNumber(ModelNormal):
@@ -88,10 +88,10 @@ class ProcessorNumber(ModelNormal):
         """
         lazy_import()
         return {
-            'ach': (NullableNumbersACH,),  # noqa: E501
-            'eft': (NullableNumbersEFT,),  # noqa: E501
-            'international': (NullableNumbersInternational,),  # noqa: E501
-            'bacs': (NullableNumbersBACS,),  # noqa: E501
+            'ach': (NumbersACHNullable,),  # noqa: E501
+            'eft': (NumbersEFTNullable,),  # noqa: E501
+            'international': (NumbersInternationalNullable,),  # noqa: E501
+            'bacs': (NumbersBACSNullable,),  # noqa: E501
         }
 
     @cached_property
@@ -152,10 +152,10 @@ class ProcessorNumber(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            ach (NullableNumbersACH): [optional]  # noqa: E501
-            eft (NullableNumbersEFT): [optional]  # noqa: E501
-            international (NullableNumbersInternational): [optional]  # noqa: E501
-            bacs (NullableNumbersBACS): [optional]  # noqa: E501
+            ach (NumbersACHNullable): [optional]  # noqa: E501
+            eft (NumbersEFTNullable): [optional]  # noqa: E501
+            international (NumbersInternationalNullable): [optional]  # noqa: E501
+            bacs (NumbersBACSNullable): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

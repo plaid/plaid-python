@@ -94,7 +94,7 @@ class BankTransferEvent(ModelNormal):
         lazy_import()
         return {
             'event_id': (int,),  # noqa: E501
-            'timestamp': (str,),  # noqa: E501
+            'timestamp': (datetime,),  # noqa: E501
             'event_type': (BankTransferEventType,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'bank_transfer_id': (str,),  # noqa: E501
@@ -144,7 +144,7 @@ class BankTransferEvent(ModelNormal):
 
         Args:
             event_id (int): Plaid’s unique identifier for this event. IDs are sequential unsigned 64-bit integers.
-            timestamp (str): The datetime when this event occurred. This will be of the form `2006-01-02T15:04:05Z`.
+            timestamp (datetime): The datetime when this event occurred. This will be of the form `2006-01-02T15:04:05Z`.
             event_type (BankTransferEventType):
             account_id (str): The account ID associated with the bank transfer.
             bank_transfer_id (str): Plaid’s unique identifier for a bank transfer.

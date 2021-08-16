@@ -25,14 +25,14 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
     from plaid.model.payment_initiation_address import PaymentInitiationAddress
     from plaid.model.payment_initiation_recipient import PaymentInitiationRecipient
     from plaid.model.payment_initiation_recipient_get_response_all_of import PaymentInitiationRecipientGetResponseAllOf
-    globals()['NullableRecipientBACS'] = NullableRecipientBACS
+    from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
     globals()['PaymentInitiationAddress'] = PaymentInitiationAddress
     globals()['PaymentInitiationRecipient'] = PaymentInitiationRecipient
     globals()['PaymentInitiationRecipientGetResponseAllOf'] = PaymentInitiationRecipientGetResponseAllOf
+    globals()['RecipientBACSNullable'] = RecipientBACSNullable
 
 
 class PaymentInitiationRecipientGetResponse(ModelComposed):
@@ -91,7 +91,7 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
             'recipient_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
-            'bacs': (NullableRecipientBACS,),  # noqa: E501
+            'bacs': (RecipientBACSNullable,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'address': (PaymentInitiationAddress,),  # noqa: E501
             'emi_recipient_id': (str, none_type,),  # noqa: E501
@@ -132,7 +132,7 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
             recipient_id (str): The ID of the recipient.
             name (str): The name of the recipient.
             iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.
-            bacs (NullableRecipientBACS):
+            bacs (RecipientBACSNullable):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

@@ -88,7 +88,7 @@ class ProductStatus(ModelNormal):
         lazy_import()
         return {
             'status': (str,),  # noqa: E501
-            'last_status_change': (str,),  # noqa: E501
+            'last_status_change': (datetime,),  # noqa: E501
             'breakdown': (ProductStatusBreakdown,),  # noqa: E501
         }
 
@@ -120,7 +120,7 @@ class ProductStatus(ModelNormal):
 
         Args:
             status (str): `HEALTHY`: the majority of requests are successful `DEGRADED`: only some requests are successful `DOWN`: all requests are failing
-            last_status_change (str): ISO 8601 formatted timestamp of the last status change for the institution.
+            last_status_change (datetime): ISO 8601 formatted timestamp of the last status change for the institution.
             breakdown (ProductStatusBreakdown):
 
         Keyword Args:

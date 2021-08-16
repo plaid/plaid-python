@@ -4,11 +4,7 @@ Instructions for contributing to [plaid-python][1]. A python client library for 
 
 ## Setup
 
-1. Run `make pull-openapi`.
-2. Install [Docker](https://docs.docker.com/desktop/) if you do not have it on your machine, this helps to isolate any dependency issues.
-3. Run `make build-openapi` after you have finished your Docker setup. This generates all the code necessary to run the library.
-
-If you find an issue, please investigate whether it is a type problem with [OpenAPI](3) or a problem with the [python](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/python.md) generator. Then open an issue and Plaid will investigate further.
+Have a valid version of Python3 installed, as well as docker.
 
 ## Running Tests
 

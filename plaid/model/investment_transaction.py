@@ -133,7 +133,7 @@ class InvestmentTransaction(ModelNormal):
             'investment_transaction_id': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'security_id': (str, none_type,),  # noqa: E501
-            'date': (str,),  # noqa: E501
+            'date': (date,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'quantity': (float,),  # noqa: E501
             'amount': (float,),  # noqa: E501
@@ -187,7 +187,7 @@ class InvestmentTransaction(ModelNormal):
             investment_transaction_id (str): The ID of the Investment transaction, unique across all Plaid transactions. Like all Plaid identifiers, the `investment_transaction_id` is case sensitive.
             account_id (str): The `account_id` of the account against which this transaction posted.
             security_id (str, none_type): The `security_id` to which this transaction is related.
-            date (str): The ISO-8601 posting date for the transaction, or transacted date for pending transactions.
+            date (date): The ISO-8601 posting date for the transaction, or transacted date for pending transactions.
             name (str): The institution’s description of the transaction.
             quantity (float): The number of units of the security involved in this transaction.
             amount (float): The complete value of the transaction. Positive values when cash is debited, e.g. purchases of stock; negative values when cash is credited, e.g. sales of stock. Treatment remains the same for cash-only movements unassociated with securities.

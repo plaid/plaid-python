@@ -90,19 +90,19 @@ class StudentLoan(ModelNormal):
         return {
             'account_id': (str, none_type,),  # noqa: E501
             'account_number': (str, none_type,),  # noqa: E501
-            'disbursement_dates': ([str], none_type,),  # noqa: E501
-            'expected_payoff_date': (str, none_type,),  # noqa: E501
+            'disbursement_dates': ([date], none_type,),  # noqa: E501
+            'expected_payoff_date': (date, none_type,),  # noqa: E501
             'guarantor': (str, none_type,),  # noqa: E501
             'interest_rate_percentage': (float,),  # noqa: E501
             'is_overdue': (bool, none_type,),  # noqa: E501
             'last_payment_amount': (float, none_type,),  # noqa: E501
-            'last_payment_date': (str, none_type,),  # noqa: E501
-            'last_statement_issue_date': (str, none_type,),  # noqa: E501
+            'last_payment_date': (date, none_type,),  # noqa: E501
+            'last_statement_issue_date': (date, none_type,),  # noqa: E501
             'loan_name': (str, none_type,),  # noqa: E501
             'loan_status': (StudentLoanStatus,),  # noqa: E501
             'minimum_payment_amount': (float, none_type,),  # noqa: E501
-            'next_payment_due_date': (str, none_type,),  # noqa: E501
-            'origination_date': (str, none_type,),  # noqa: E501
+            'next_payment_due_date': (date, none_type,),  # noqa: E501
+            'origination_date': (date, none_type,),  # noqa: E501
             'origination_principal_amount': (float, none_type,),  # noqa: E501
             'outstanding_interest_amount': (float, none_type,),  # noqa: E501
             'payment_reference_number': (str, none_type,),  # noqa: E501
@@ -164,19 +164,19 @@ class StudentLoan(ModelNormal):
         Args:
             account_id (str, none_type): The ID of the account that this liability belongs to.
             account_number (str, none_type): The account number of the loan. For some institutions, this may be a masked version of the number (e.g., the last 4 digits instead of the entire number).
-            disbursement_dates ([str], none_type): The dates on which loaned funds were disbursed or will be disbursed. These are often in the past. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
-            expected_payoff_date (str, none_type): The date when the student loan is expected to be paid off. Availability for this field is limited. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            disbursement_dates ([date], none_type): The dates on which loaned funds were disbursed or will be disbursed. These are often in the past. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            expected_payoff_date (date, none_type): The date when the student loan is expected to be paid off. Availability for this field is limited. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             guarantor (str, none_type): The guarantor of the student loan.
             interest_rate_percentage (float): The interest rate on the loan as a percentage.
             is_overdue (bool, none_type): `true` if a payment is currently overdue. Availability for this field is limited.
             last_payment_amount (float, none_type): The amount of the last payment.
-            last_payment_date (str, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
-            last_statement_issue_date (str, none_type): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            last_payment_date (date, none_type): The date of the last payment. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            last_statement_issue_date (date, none_type): The date of the last statement. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
             loan_name (str, none_type): The type of loan, e.g., \"Consolidation Loans\".
             loan_status (StudentLoanStatus):
             minimum_payment_amount (float, none_type): The minimum payment due for the next billing cycle. There are some exceptions: Some institutions require a minimum payment across all loans associated with an account number. Our API presents that same minimum payment amount on each loan. The institutions that do this are: Great Lakes ( `ins_116861`), Firstmark (`ins_116295`), Commonbond Firstmark Services (`ins_116950`), Nelnet (`ins_116528`), EdFinancial Services (`ins_116304`), Granite State (`ins_116308`), and Oklahoma Student Loan Authority (`ins_116945`). Firstmark (`ins_116295` ) will display as $0 if there is an autopay program in effect.
-            next_payment_due_date (str, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. A payment is not expected if `loan_status.type` is `deferment`, `in_school`, `consolidated`, `paid in full`, or `transferred`. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
-            origination_date (str, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD). 
+            next_payment_due_date (date, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. A payment is not expected if `loan_status.type` is `deferment`, `in_school`, `consolidated`, `paid in full`, or `transferred`. Dates are returned in an ISO 8601 format (YYYY-MM-DD).
+            origination_date (date, none_type): The date on which the loan was initially lent. Dates are returned in an ISO 8601 format (YYYY-MM-DD). 
             origination_principal_amount (float, none_type): The original principal balance of the loan.
             outstanding_interest_amount (float, none_type): The total dollar amount of the accrued interest balance. For Sallie Mae ( `ins_116944`), this amount is included in the current balance of the loan, so this field will return as `null`.
             payment_reference_number (str, none_type): The relevant account number that should be used to reference this loan for payments. In the majority of cases, `payment_reference_number` will match a`ccount_number,` but in some institutions, such as Great Lakes (`ins_116861`), it will be different.

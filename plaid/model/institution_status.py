@@ -90,6 +90,9 @@ class InstitutionStatus(ModelNormal):
             'balance': (ProductStatus,),  # noqa: E501
             'identity': (ProductStatus,),  # noqa: E501
             'investments_updates': (ProductStatus,),  # noqa: E501
+            'liabilities_updates': (ProductStatus,),  # noqa: E501
+            'liabilities': (ProductStatus,),  # noqa: E501
+            'investments': (ProductStatus,),  # noqa: E501
             'health_incidents': ([HealthIncident], none_type,),  # noqa: E501
         }
 
@@ -105,6 +108,9 @@ class InstitutionStatus(ModelNormal):
         'balance': 'balance',  # noqa: E501
         'identity': 'identity',  # noqa: E501
         'investments_updates': 'investments_updates',  # noqa: E501
+        'liabilities_updates': 'liabilities_updates',  # noqa: E501
+        'liabilities': 'liabilities',  # noqa: E501
+        'investments': 'investments',  # noqa: E501
         'health_incidents': 'health_incidents',  # noqa: E501
     }
 
@@ -162,6 +168,9 @@ class InstitutionStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            liabilities_updates (ProductStatus): [optional]  # noqa: E501
+            liabilities (ProductStatus): [optional]  # noqa: E501
+            investments (ProductStatus): [optional]  # noqa: E501
             health_incidents ([HealthIncident], none_type): Details of recent health incidents associated with the institution.. [optional]  # noqa: E501
         """
 

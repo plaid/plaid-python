@@ -78,7 +78,7 @@ class TransactionData(ModelNormal):
         return {
             'description': (str,),  # noqa: E501
             'amount': (float,),  # noqa: E501
-            'date': (str,),  # noqa: E501
+            'date': (date,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'transaction_id': (str,),  # noqa: E501
         }
@@ -114,7 +114,7 @@ class TransactionData(ModelNormal):
         Args:
             description (str): The description of the transaction.
             amount (float): The amount of the transaction.
-            date (str): The date of the transaction, in ISO 8601 format (\"yyyy-mm-dd\").
+            date (date): The date of the transaction, in ISO 8601 format (\"yyyy-mm-dd\").
             account_id (str): A unique identifier for the end user's account.
             transaction_id (str): A unique identifier for the transaction.
 

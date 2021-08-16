@@ -12,7 +12,7 @@ from plaid.model.payment_initiation_address import PaymentInitiationAddress
 from plaid.model.payment_initiation_recipient_create_request import PaymentInitiationRecipientCreateRequest
 from plaid.model.payment_initiation_recipient_get_request import PaymentInitiationRecipientGetRequest
 from plaid.model.products import Products
-from plaid.model.nullable_recipient_bacs import NullableRecipientBACS
+from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
 from plaid.model.payment_amount import PaymentAmount
 
 from tests.integration.util import create_client
@@ -83,7 +83,7 @@ def test_all_payment_routes_with_bacs():
     # create recipient
     request = PaymentInitiationRecipientCreateRequest(
         name='John Doe',
-        bacs=NullableRecipientBACS(account='26207729', sort_code='560029'),
+        bacs=RecipientBACSNullable(account='26207729', sort_code='560029'),
         address=PaymentInitiationAddress(
             street=['street name 999'],
             city='city',

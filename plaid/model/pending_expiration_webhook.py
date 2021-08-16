@@ -79,7 +79,7 @@ class PendingExpirationWebhook(ModelNormal):
             'webhook_type': (str,),  # noqa: E501
             'webhook_code': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
-            'consent_expiration_time': (str,),  # noqa: E501
+            'consent_expiration_time': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -113,7 +113,7 @@ class PendingExpirationWebhook(ModelNormal):
             webhook_type (str): `ITEM`
             webhook_code (str): `PENDING_EXPIRATION`
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
-            consent_expiration_time (str): The date and time at which the Item's access consent will expire, in ISO 8601 format
+            consent_expiration_time (datetime): The date and time at which the Item's access consent will expire, in ISO 8601 format
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -76,8 +76,8 @@ class TransactionOverride(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'date_transacted': (str,),  # noqa: E501
-            'date_posted': (str,),  # noqa: E501
+            'date_transacted': (date,),  # noqa: E501
+            'date_posted': (date,),  # noqa: E501
             'amount': (float,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'currency': (str,),  # noqa: E501
@@ -112,8 +112,8 @@ class TransactionOverride(ModelNormal):
         """TransactionOverride - a model defined in OpenAPI
 
         Args:
-            date_transacted (str): The date of the transaction, in ISO8601 (YYYY-MM-DD) format. Transaction dates in the past or present will result in posted transactions; transaction dates in the future will result in pending transactions. Transactions in Sandbox will move from pending to posted once their transaction date has been reached.
-            date_posted (str): The date the transaction posted, in ISO8601 (YYYY-MM-DD) format
+            date_transacted (date): The date of the transaction, in ISO8601 (YYYY-MM-DD) format. Transaction dates in the past or present will result in posted transactions; transaction dates in the future will result in pending transactions. Transactions in Sandbox will move from pending to posted once their transaction date has been reached.
+            date_posted (date): The date the transaction posted, in ISO8601 (YYYY-MM-DD) format
             amount (float): The transaction amount. Can be negative.
             description (str): The transaction description.
 

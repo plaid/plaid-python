@@ -110,7 +110,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             'original_reference': (str, none_type,),  # noqa: E501
             'original_start_date': (date, none_type,),  # noqa: E501
             'adjusted_start_date': (date, none_type,),  # noqa: E501
-            'timestamp': (str,),  # noqa: E501
+            'timestamp': (datetime,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'error': (Error,),  # noqa: E501
         }
@@ -158,7 +158,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             original_reference (str, none_type): The original value of the reference when creating the payment.
             original_start_date (date, none_type): The original value of the `start_date` provided during the creation of a standing order. If the payment is not a standing order, this field will be `null`.
             adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in ISO 8601 format (YYYY-MM-DD). If the start date did not require adjustment, or if the payment is not a standing order, this field will be `null`.
-            timestamp (str): The timestamp of the update, in ISO 8601 format, e.g. `\"2017-09-14T14:42:19.350Z\"`
+            timestamp (datetime): The timestamp of the update, in ISO 8601 format, e.g. `\"2017-09-14T14:42:19.350Z\"`
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

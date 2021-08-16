@@ -76,9 +76,9 @@ class PayPeriodDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_date': (str, none_type,),  # noqa: E501
-            'end_date': (str, none_type,),  # noqa: E501
-            'pay_day': (str, none_type,),  # noqa: E501
+            'start_date': (date, none_type,),  # noqa: E501
+            'end_date': (date, none_type,),  # noqa: E501
+            'pay_day': (date, none_type,),  # noqa: E501
             'gross_earnings': (float, none_type,),  # noqa: E501
             'check_amount': (float, none_type,),  # noqa: E501
         }
@@ -112,9 +112,9 @@ class PayPeriodDetails(ModelNormal):
         """PayPeriodDetails - a model defined in OpenAPI
 
         Args:
-            start_date (str, none_type): The pay period start date, in ISO 8601 format: \"yyyy-mm-dd\".
-            end_date (str, none_type): The pay period end date, in ISO 8601 format: \"yyyy-mm-dd\".
-            pay_day (str, none_type): The date on which the paystub was issued, in ISO 8601 format (\"yyyy-mm-dd\").
+            start_date (date, none_type): The pay period start date, in ISO 8601 format: \"yyyy-mm-dd\".
+            end_date (date, none_type): The pay period end date, in ISO 8601 format: \"yyyy-mm-dd\".
+            pay_day (date, none_type): The date on which the paystub was issued, in ISO 8601 format (\"yyyy-mm-dd\").
             gross_earnings (float, none_type): Total earnings before tax.
             check_amount (float, none_type): The net amount of the paycheck.
 

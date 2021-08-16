@@ -57,6 +57,13 @@ class ExternalPaymentOptions(ModelNormal):
     }
 
     validations = {
+        ('iban',): {
+            'max_length': 34,
+            'min_length': 15,
+        },
+        ('emi_account_id',): {
+            'min_length': 1,
+        },
     }
 
     @cached_property

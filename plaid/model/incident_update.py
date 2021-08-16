@@ -85,7 +85,7 @@ class IncidentUpdate(ModelNormal):
         return {
             'description': (str,),  # noqa: E501
             'status': (str,),  # noqa: E501
-            'updated_date': (str,),  # noqa: E501
+            'updated_date': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -147,7 +147,7 @@ class IncidentUpdate(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             description (str): The content of the update.. [optional]  # noqa: E501
             status (str): The status of the incident.. [optional]  # noqa: E501
-            updated_date (str): The date when the update was published, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
+            updated_date (datetime): The date when the update was published, in ISO 8601 format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

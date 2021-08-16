@@ -1,7 +1,7 @@
 plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python) [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
 ============
 
-The official python client library for the [Plaid API][1].
+The official python client library for the [Plaid API][1], which is generated from our [OpenAPI spec](https://github.com/plaid/plaid-openapi). For the last non-generated version of our library, go [here](https://github.com/plaid/plaid-python/commit/26ca2baccc382209557ac87f034e747bc802c9aa).
 
 ## Table of Contents
 
@@ -12,7 +12,6 @@ The official python client library for the [Plaid API][1].
     + [Calling Endpoints](#calling-endpoints)
     + [Errors](#errors)
   * [Examples](#examples)
-  * [Known Issues](#known-issues)
   * [Contributing](#contributing)
   * [Legacy API](#legacy-api)
   * [License](#license)
@@ -22,7 +21,7 @@ The official python client library for the [Plaid API][1].
 This library only supports `python3`!
 
 ```console
-$ pip3 install --pre plaid-python==8.0.0b13
+$ pip3 install plaid-python
 ```
 
 ## Documentation
@@ -49,7 +48,6 @@ configuration = plaid.Configuration(
     api_key={
         'clientId': client_id,
         'secret': secret,
-        'plaidVersion': '2020-09-14'
     }
 )
 
@@ -62,24 +60,7 @@ HTTP response.
 
 ### Versioning
 
-You can specify the Plaid API version you wish to use when initializing `plaid`.
-
-```python
-import plaid
-from plaid.api import plaid_api
-
-configuration = plaid.Configuration(
-    host=plaid.Environment.Production,
-    api_key={
-        'clientId': client_id,
-        'secret': secret,
-        'plaidVersion': '2020-09-14' # This version and forward only, supported by 8.0.0+
-    }
-)
-
-api_client = plaid.ApiClient(configuration)
-client = plaid_api.PlaidApi(api_client)
-```
+This release only supports the latest Plaid API version, `2020-09-14`.
 
 For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
 
@@ -222,14 +203,11 @@ accessed as follows:
 categories = client.categories_get({})
 ```
 
-Authenticated endpoints require a `(client_id, secret)` pair.
-You do not need to pass in authentication to
-individual endpoints once you have set it on the `plaid.Configuration` object.
+Authenticated endpoints require a `(client_id, secret)` pair. You do not need to pass in authentication to individual endpoints once you have set it on the `plaid.Configuration` object.
 
 ## Contributing
 
-Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions
-for local development.
+Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions for local development.
 
 ## License
 [MIT][6]

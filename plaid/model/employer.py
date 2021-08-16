@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_address_data import NullableAddressData
-    globals()['NullableAddressData'] = NullableAddressData
+    from plaid.model.address_data_nullable import AddressDataNullable
+    globals()['AddressDataNullable'] = AddressDataNullable
 
 
 class Employer(ModelNormal):
@@ -84,7 +84,7 @@ class Employer(ModelNormal):
         return {
             'employer_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'address': (NullableAddressData,),  # noqa: E501
+            'address': (AddressDataNullable,),  # noqa: E501
             'confidence_score': (float,),  # noqa: E501
         }
 
@@ -118,7 +118,7 @@ class Employer(ModelNormal):
         Args:
             employer_id (str): Plaid's unique identifier for the employer.
             name (str): The name of the employer
-            address (NullableAddressData):
+            address (AddressDataNullable):
             confidence_score (float): A number from 0 to 1 indicating Plaid's level of confidence in the pairing between the employer and the institution (not yet implemented).
 
         Keyword Args:

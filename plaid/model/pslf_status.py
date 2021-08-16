@@ -76,7 +76,7 @@ class PSLFStatus(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'estimated_eligibility_date': (str, none_type,),  # noqa: E501
+            'estimated_eligibility_date': (date, none_type,),  # noqa: E501
             'payments_made': (float, none_type,),  # noqa: E501
             'payments_remaining': (float, none_type,),  # noqa: E501
         }
@@ -108,7 +108,7 @@ class PSLFStatus(ModelNormal):
         """PSLFStatus - a model defined in OpenAPI
 
         Args:
-            estimated_eligibility_date (str, none_type): The estimated date borrower will have completed 120 qualifying monthly payments. Returned in ISO 8601 format (YYYY-MM-DD).
+            estimated_eligibility_date (date, none_type): The estimated date borrower will have completed 120 qualifying monthly payments. Returned in ISO 8601 format (YYYY-MM-DD).
             payments_made (float, none_type): The number of qualifying payments that have been made.
             payments_remaining (float, none_type): The number of qualifying payments remaining.
 

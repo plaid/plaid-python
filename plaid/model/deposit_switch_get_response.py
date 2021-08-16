@@ -61,6 +61,7 @@ class DepositSwitchGetResponse(ModelNormal):
             'INSTANT': "instant",
             'MAIL': "mail",
             'PDF': "pdf",
+            'NULL': "null",
         },
     }
 
@@ -189,7 +190,7 @@ class DepositSwitchGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            switch_method (str, none_type): The method used to make the deposit switch.  - `instant` – User instantly switched their direct deposit to a new or existing bank account by connecting their payroll or employer account. - `mail` – User requested that Plaid contact their employer by mail to make the direct deposit switch. - `pdf` – User generated a PDF or email to be sent to their employer with the information necessary to make the deposit switch.. [optional]  # noqa: E501
+            switch_method (str, none_type): The method used to make the deposit switch.  - `instant` – User instantly switched their direct deposit to a new or existing bank account by connecting their payroll or employer account.  - `mail` – User requested that Plaid contact their employer by mail to make the direct deposit switch.  - `pdf` – User generated a PDF or email to be sent to their employer with the information necessary to make the deposit switch.'. [optional]  # noqa: E501
             employer_name (str, none_type): The name of the employer selected by the user. If the user did not select an employer, the value returned is `null`.. [optional]  # noqa: E501
             employer_id (str, none_type): The ID of the employer selected by the user. If the user did not select an employer, the value returned is `null`.. [optional]  # noqa: E501
             institution_name (str, none_type): The name of the institution selected by the user. If the user did not select an institution, the value returned is `null`.. [optional]  # noqa: E501

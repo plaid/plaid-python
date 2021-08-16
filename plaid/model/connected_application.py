@@ -25,10 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.nullable_scopes import NullableScopes
     from plaid.model.requested_scopes import RequestedScopes
-    globals()['NullableScopes'] = NullableScopes
+    from plaid.model.scopes_nullable import ScopesNullable
     globals()['RequestedScopes'] = RequestedScopes
+    globals()['ScopesNullable'] = ScopesNullable
 
 
 class ConnectedApplication(ModelNormal):
@@ -85,11 +85,12 @@ class ConnectedApplication(ModelNormal):
             'application_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'logo': (str, none_type,),  # noqa: E501
+            'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
             'created_at': (str,),  # noqa: E501
             'product_data_types': ([str],),  # noqa: E501
-            'scopes': (NullableScopes,),  # noqa: E501
+            'scopes': (ScopesNullable,),  # noqa: E501
             'requested_scopes': (RequestedScopes,),  # noqa: E501
         }
 
@@ -102,6 +103,7 @@ class ConnectedApplication(ModelNormal):
         'application_id': 'application_id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'logo': 'logo',  # noqa: E501
+        'logo_url': 'logo_url',  # noqa: E501
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
@@ -122,13 +124,14 @@ class ConnectedApplication(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, application_id, name, logo, application_url, reason_for_access, created_at, product_data_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, application_id, name, logo, logo_url, application_url, reason_for_access, created_at, product_data_types, *args, **kwargs):  # noqa: E501
         """ConnectedApplication - a model defined in OpenAPI
 
         Args:
             application_id (str): This field will map to the application ID that is returned from /item/applications/list, or provided to the institution in an oauth redirect.
             name (str): The name of the application
-            logo (str, none_type): A URL that links to the application logo image.
+            logo (str, none_type): A URL that links to the application logo image (will be deprecated in the future, please use logo_url).
+            logo_url (str, none_type): A URL that links to the application logo image.
             application_url (str, none_type): The URL for the application's website
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
             created_at (str): The date this application was linked in ISO8601 (YYYY-MM-DD) format in UTC.
@@ -165,7 +168,7 @@ class ConnectedApplication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            scopes (NullableScopes): [optional]  # noqa: E501
+            scopes (ScopesNullable): [optional]  # noqa: E501
             requested_scopes (RequestedScopes): [optional]  # noqa: E501
         """
 
@@ -195,6 +198,7 @@ class ConnectedApplication(ModelNormal):
         self.application_id = application_id
         self.name = name
         self.logo = logo
+        self.logo_url = logo_url
         self.application_url = application_url
         self.reason_for_access = reason_for_access
         self.created_at = created_at
