@@ -155,8 +155,8 @@ class DepositSwitchGetResponse(ModelNormal):
             is_allocated_remainder (bool, none_type): When `true`, the target account is allocated the remainder of direct deposit after all other allocations have been deducted. When `false`, user’s direct deposit is allocated as a percent or amount. Always `null` if the deposit switch has not been completed.
             percent_allocated (float, none_type): The percentage of direct deposit allocated to the target account. Always `null` if the target account is not allocated a percentage or if the deposit switch has not been completed or if `is_allocated_remainder` is true.
             amount_allocated (float, none_type): The dollar amount of direct deposit allocated to the target account. Always `null` if the target account is not allocated an amount or if the deposit switch has not been completed.
-            date_created (date): ISO8601 date the deposit switch was created.
-            date_completed (date, none_type): ISO8601 date the deposit switch was completed. Always `null` if the deposit switch has not been completed.
+            date_created (date): [ISO 8601](https://wikipedia.org/wiki/ISO_8601) date the deposit switch was created. 
+            date_completed (date, none_type): [ISO 8601](https://wikipedia.org/wiki/ISO_8601) date the deposit switch was completed. Always `null` if the deposit switch has not been completed. 
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

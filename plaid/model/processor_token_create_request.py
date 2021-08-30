@@ -68,6 +68,7 @@ class ProcessorTokenCreateRequest(ModelNormal):
             'RIZE': "rize",
             'SILA_MONEY': "sila_money",
             'SBV_API': "sbv_api",
+            'TREASURY_PRIME': "treasury_prime",
             'UNIT': "unit",
             'VESTA': "vesta",
             'VOPAY': "vopay",

@@ -121,7 +121,7 @@ class AssetReportItem(ModelNormal):
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
             institution_name (str): The full financial institution name associated with the Item.
             institution_id (str): The id of the financial institution associated with the Item.
-            date_last_updated (datetime): The date and time when this Item’s data was last retrieved from the financial institution, in ISO 8601 format.
+            date_last_updated (datetime): The date and time when this Item’s data was last retrieved from the financial institution, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
             accounts ([AccountAssets]): Data about each of the accounts open on the Item.
 
         Keyword Args:

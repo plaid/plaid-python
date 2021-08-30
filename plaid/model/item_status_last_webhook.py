@@ -136,7 +136,7 @@ class ItemStatusLastWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sent_at (datetime, none_type): ISO 8601 timestamp of when the webhook was fired.. [optional]  # noqa: E501
+            sent_at (datetime, none_type): [ISO 8601](https://wikipedia.org/wiki/ISO_8601) timestamp of when the webhook was fired. . [optional]  # noqa: E501
             code_sent (str, none_type): The last webhook code sent.. [optional]  # noqa: E501
         """
 

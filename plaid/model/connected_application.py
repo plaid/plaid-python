@@ -88,7 +88,7 @@ class ConnectedApplication(ModelNormal):
             'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
+            'created_at': (date,),  # noqa: E501
             'product_data_types': ([str],),  # noqa: E501
             'scopes': (ScopesNullable,),  # noqa: E501
             'requested_scopes': (RequestedScopes,),  # noqa: E501
@@ -134,7 +134,7 @@ class ConnectedApplication(ModelNormal):
             logo_url (str, none_type): A URL that links to the application logo image.
             application_url (str, none_type): The URL for the application's website
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
-            created_at (str): The date this application was linked in ISO8601 (YYYY-MM-DD) format in UTC.
+            created_at (date): The date this application was linked in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
             product_data_types ([str]): (Deprecated) A list of enums representing the data collected and products enabled for this connected application.
 
         Keyword Args:

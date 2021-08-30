@@ -161,7 +161,7 @@ class BankTransfer(ModelNormal):
             account_id (str): The account ID that should be credited/debited for this bank transfer.
             type (BankTransferType):
             user (BankTransferUser):
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the bank transfer (decimal string with two digits of precision e.g. “10.00”).
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
             description (str): The description of the transfer.
             created (datetime): The datetime when this bank transfer was created. This will be of the form `2006-01-02T15:04:05Z`

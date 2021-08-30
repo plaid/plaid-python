@@ -53,6 +53,10 @@ class PaymentInitiationPaymentListRequest(ModelNormal):
     }
 
     validations = {
+        ('count',): {
+            'inclusive_maximum': 200,
+            'inclusive_minimum': 1,
+        },
     }
 
     additional_properties_type = None
@@ -73,7 +77,7 @@ class PaymentInitiationPaymentListRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
-            'cursor': (str, none_type,),  # noqa: E501
+            'cursor': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -137,7 +141,7 @@ class PaymentInitiationPaymentListRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             count (int, none_type): The maximum number of payments to return. If `count` is not specified, a maximum of 10 payments will be returned, beginning with the most recent payment before the cursor (if specified).. [optional] if omitted the server will use the default value of 10  # noqa: E501
-            cursor (str, none_type): A string in RFC 3339 format (i.e. \"2019-12-06T22:35:49Z\"). Only payments created before the cursor will be returned.. [optional]  # noqa: E501
+            cursor (datetime, none_type): A string in RFC 3339 format (i.e. \"2019-12-06T22:35:49Z\"). Only payments created before the cursor will be returned.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

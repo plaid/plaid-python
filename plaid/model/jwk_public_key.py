@@ -127,8 +127,8 @@ class JWKPublicKey(ModelNormal):
             use (str): The use (public key use) parameter identifies the intended use of the public key.
             x (str): The x member contains the x coordinate for the elliptic curve point.
             y (str): The y member contains the y coordinate for the elliptic curve point.
-            created_at (int):
-            expired_at (int, none_type):
+            created_at (int): The timestamp when the key was created, in Unix time.
+            expired_at (int, none_type): The timestamp when the key expired, in Unix time.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
