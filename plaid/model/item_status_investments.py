@@ -136,8 +136,8 @@ class ItemStatusInvestments(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            last_successful_update (datetime, none_type): ISO 8601 timestamp of the last successful investments update for the Item. The status will update each time Plaid successfully connects with the institution, regardless of whether any new data is available in the update.. [optional]  # noqa: E501
-            last_failed_update (datetime, none_type): ISO 8601 timestamp of the last failed investments update for the Item. The status will update each time Plaid fails an attempt to connect with the institution, regardless of whether any new data is available in the update.. [optional]  # noqa: E501
+            last_successful_update (datetime, none_type): [ISO 8601](https://wikipedia.org/wiki/ISO_8601) timestamp of the last successful investments update for the Item. The status will update each time Plaid successfully connects with the institution, regardless of whether any new data is available in the update.. [optional]  # noqa: E501
+            last_failed_update (datetime, none_type): [ISO 8601](https://wikipedia.org/wiki/ISO_8601) timestamp of the last failed investments update for the Item. The status will update each time Plaid fails an attempt to connect with the institution, regardless of whether any new data is available in the update.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

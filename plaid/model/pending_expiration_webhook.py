@@ -113,7 +113,7 @@ class PendingExpirationWebhook(ModelNormal):
             webhook_type (str): `ITEM`
             webhook_code (str): `PENDING_EXPIRATION`
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
-            consent_expiration_time (datetime): The date and time at which the Item's access consent will expire, in ISO 8601 format
+            consent_expiration_time (datetime): The date and time at which the Item's access consent will expire, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

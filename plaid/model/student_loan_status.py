@@ -127,7 +127,7 @@ class StudentLoanStatus(ModelNormal):
         """StudentLoanStatus - a model defined in OpenAPI
 
         Args:
-            end_date (date, none_type): The date until which the loan will be in its current status. Dates are returned in an ISO 8601 format (YYYY-MM-DD). 
+            end_date (date, none_type): The date until which the loan will be in its current status. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). 
             type (str, none_type): The status type of the student loan
 
         Keyword Args:

@@ -119,7 +119,7 @@ class StandaloneInvestmentTransactionType(ModelNormal):
             cancel (str): A cancellation of a pending transaction
             cash (str): Activity that modifies a cash position
             fee (str): Fees on the account, e.g. commission, bookkeeping, options-related.
-            transfer (str): Activity which modifies a position, but not through buy/sell activity e.g. options exercise, portfolio transfer
+            transfer (str): Activity that modifies a position, but not through buy/sell activity e.g. options exercise, portfolio transfer
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -120,6 +120,7 @@ class Transaction(ModelComposed):
             'authorized_date': (date, none_type,),  # noqa: E501
             'authorized_datetime': (datetime, none_type,),  # noqa: E501
             'datetime': (datetime, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
             'transaction_type': (str,),  # noqa: E501
             'original_description': (str, none_type,),  # noqa: E501
@@ -150,6 +151,7 @@ class Transaction(ModelComposed):
         'authorized_date': 'authorized_date',  # noqa: E501
         'authorized_datetime': 'authorized_datetime',  # noqa: E501
         'datetime': 'datetime',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
         'transaction_code': 'transaction_code',  # noqa: E501
         'transaction_type': 'transaction_type',  # noqa: E501
         'original_description': 'original_description',  # noqa: E501
@@ -168,7 +170,7 @@ class Transaction(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, pending_transaction_id, category_id, category, location, payment_meta, account_owner, name, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, payment_channel, merchant_name, authorized_date, authorized_datetime, datetime, transaction_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, pending_transaction_id, category_id, category, location, payment_meta, account_owner, name, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, payment_channel, merchant_name, authorized_date, authorized_datetime, datetime, check_number, transaction_code, *args, **kwargs):  # noqa: E501
         """Transaction - a model defined in OpenAPI
 
         Args:
@@ -183,14 +185,15 @@ class Transaction(ModelComposed):
             amount (float): The settled value of the transaction, denominated in the account's currency, as stated in `iso_currency_code` or `unofficial_currency_code`. Positive values when money moves out of the account; negative values when money moves in. For example, debit card purchases are positive; credit card payments, direct deposits, and refunds are negative.
             iso_currency_code (str, none_type): The ISO-4217 currency code of the transaction. Always `null` if `unofficial_currency_code` is non-null.
             unofficial_currency_code (str, none_type): The unofficial currency code associated with the transaction. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
-            date (date): For pending transactions, the date that the transaction occurred; for posted transactions, the date that the transaction posted. Both dates are returned in an ISO 8601 format ( `YYYY-MM-DD` ).
+            date (date): For pending transactions, the date that the transaction occurred; for posted transactions, the date that the transaction posted. Both dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
             pending (bool): When `true`, identifies the transaction as pending or unsettled. Pending transaction details (name, type, amount, category ID) may change before they are settled.
             transaction_id (str): The unique ID of the transaction. Like all Plaid identifiers, the `transaction_id` is case sensitive.
             payment_channel (str): The channel used to make a payment. `online:` transactions that took place online.  `in store:` transactions that were made at a physical location.  `other:` transactions that relate to banks, e.g. fees or deposits.  This field replaces the `transaction_type` field. 
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.
-            authorized_date (date, none_type): The date that the transaction was authorized. Dates are returned in an ISO 8601 format ( `YYYY-MM-DD` ).
-            authorized_datetime (datetime, none_type): Date and time when a transaction was authorized in ISO 8601 format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
-            datetime (datetime, none_type): Date and time when a transaction was posted in ISO 8601 format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
+            authorized_date (date, none_type): The date that the transaction was authorized. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
+            authorized_datetime (datetime, none_type): Date and time when a transaction was authorized in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
+            datetime (datetime, none_type): Date and time when a transaction was posted in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.
             transaction_code (TransactionCode):
 
         Keyword Args:
@@ -278,6 +281,7 @@ class Transaction(ModelComposed):
             'authorized_date': authorized_date,
             'authorized_datetime': authorized_datetime,
             'datetime': datetime,
+            'check_number': check_number,
             'transaction_code': transaction_code,
         }
         model_args = {}

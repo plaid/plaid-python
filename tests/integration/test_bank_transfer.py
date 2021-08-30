@@ -10,6 +10,7 @@ from plaid.model.bank_transfer_type import BankTransferType
 from plaid.model.bank_transfer_user import BankTransferUser
 from plaid.model.bank_transfer_event_list_request import BankTransferEventListRequest
 from plaid.model.bank_transfer_cancel_request import BankTransferCancelRequest
+from plaid.model.bank_transfer_idempotency_key import BankTransferIdempotencyKey
 from plaid.model.sandbox_bank_transfer_simulate_request import SandboxBankTransferSimulateRequest
 from plaid.model.bank_transfer_list_request import BankTransferListRequest
 from plaid.model.bank_transfer_event_sync_request import BankTransferEventSyncRequest
@@ -63,7 +64,7 @@ def setup_module(module):
 
 def create_bank_transfer(client):
     bt_request = BankTransferCreateRequest(
-        idempotency_key=str(random()),
+        idempotency_key=BankTransferIdempotencyKey(str(random())),
         access_token=access_token,
         account_id=account_id,
         type=BankTransferType('credit'),

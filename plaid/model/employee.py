@@ -25,8 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.address_data_nullable import AddressDataNullable
-    globals()['AddressDataNullable'] = AddressDataNullable
+    from plaid.model.paystub_address import PaystubAddress
+    from plaid.model.taxpayer_id import TaxpayerID
+    globals()['PaystubAddress'] = PaystubAddress
+    globals()['TaxpayerID'] = TaxpayerID
 
 
 class Employee(ModelNormal):
@@ -83,7 +85,9 @@ class Employee(ModelNormal):
         lazy_import()
         return {
             'name': (str, none_type,),  # noqa: E501
-            'address': (AddressDataNullable,),  # noqa: E501
+            'address': (PaystubAddress,),  # noqa: E501
+            'marital_status': (str, none_type,),  # noqa: E501
+            'taxpayer_id': (TaxpayerID,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +98,8 @@ class Employee(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'address': 'address',  # noqa: E501
+        'marital_status': 'marital_status',  # noqa: E501
+        'taxpayer_id': 'taxpayer_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -113,7 +119,7 @@ class Employee(ModelNormal):
 
         Args:
             name (str, none_type): The name of the employee.
-            address (AddressDataNullable):
+            address (PaystubAddress):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -146,6 +152,8 @@ class Employee(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            marital_status (str, none_type): Marital status of the employee.. [optional]  # noqa: E501
+            taxpayer_id (TaxpayerID): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
