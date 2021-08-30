@@ -90,10 +90,10 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
         return {
             'recipient_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'iban': (str, none_type,),  # noqa: E501
-            'bacs': (RecipientBACSNullable,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'address': (PaymentInitiationAddress,),  # noqa: E501
+            'iban': (str, none_type,),  # noqa: E501
+            'bacs': (RecipientBACSNullable,),  # noqa: E501
             'emi_recipient_id': (str, none_type,),  # noqa: E501
         }
 
@@ -105,10 +105,10 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
     attribute_map = {
         'recipient_id': 'recipient_id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'iban': 'iban',  # noqa: E501
-        'bacs': 'bacs',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'address': 'address',  # noqa: E501
+        'iban': 'iban',  # noqa: E501
+        'bacs': 'bacs',  # noqa: E501
         'emi_recipient_id': 'emi_recipient_id',  # noqa: E501
     }
 
@@ -125,14 +125,12 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recipient_id, name, iban, bacs, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, recipient_id, name, request_id, *args, **kwargs):  # noqa: E501
         """PaymentInitiationRecipientGetResponse - a model defined in OpenAPI
 
         Args:
             recipient_id (str): The ID of the recipient.
             name (str): The name of the recipient.
-            iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.
-            bacs (RecipientBACSNullable):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -167,6 +165,8 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             address (PaymentInitiationAddress): [optional]  # noqa: E501
+            iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.. [optional]  # noqa: E501
+            bacs (RecipientBACSNullable): [optional]  # noqa: E501
             emi_recipient_id (str, none_type): The EMI (E-Money Institution) recipient that this recipient is associated with, if any. This EMI recipient is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 
@@ -203,8 +203,6 @@ class PaymentInitiationRecipientGetResponse(ModelComposed):
         required_args = {
             'recipient_id': recipient_id,
             'name': name,
-            'iban': iban,
-            'bacs': bacs,
             'request_id': request_id,
         }
         model_args = {}

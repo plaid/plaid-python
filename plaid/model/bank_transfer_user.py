@@ -142,7 +142,7 @@ class BankTransferUser(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             email_address (str, none_type): The account holder’s email.. [optional]  # noqa: E501
-            routing_number (str): The account holder's routing number. This field is only used for response data. Do not provide this field when making requests.. [optional]  # noqa: E501
+            routing_number (str): The account holder's routing number. This field is only used in response data. Do not provide this field when making requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

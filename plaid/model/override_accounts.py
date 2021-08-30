@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.account_subtype import AccountSubtype
+    from plaid.model.holdings_override import HoldingsOverride
     from plaid.model.inflow_model import InflowModel
+    from plaid.model.investments_transactions_override import InvestmentsTransactionsOverride
     from plaid.model.liability_override import LiabilityOverride
     from plaid.model.meta import Meta
     from plaid.model.numbers import Numbers
@@ -34,7 +36,9 @@ def lazy_import():
     from plaid.model.owner_override import OwnerOverride
     from plaid.model.transaction_override import TransactionOverride
     globals()['AccountSubtype'] = AccountSubtype
+    globals()['HoldingsOverride'] = HoldingsOverride
     globals()['InflowModel'] = InflowModel
+    globals()['InvestmentsTransactionsOverride'] = InvestmentsTransactionsOverride
     globals()['LiabilityOverride'] = LiabilityOverride
     globals()['Meta'] = Meta
     globals()['Numbers'] = Numbers
@@ -107,6 +111,8 @@ class OverrideAccounts(ModelNormal):
             'identity': (OwnerOverride,),  # noqa: E501
             'liability': (LiabilityOverride,),  # noqa: E501
             'inflow_model': (InflowModel,),  # noqa: E501
+            'holdings': (HoldingsOverride,),  # noqa: E501
+            'investment_transactions': (InvestmentsTransactionsOverride,),  # noqa: E501
         }
 
     @cached_property
@@ -126,6 +132,8 @@ class OverrideAccounts(ModelNormal):
         'identity': 'identity',  # noqa: E501
         'liability': 'liability',  # noqa: E501
         'inflow_model': 'inflow_model',  # noqa: E501
+        'holdings': 'holdings',  # noqa: E501
+        'investment_transactions': 'investment_transactions',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -187,6 +195,8 @@ class OverrideAccounts(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            holdings (HoldingsOverride): [optional]  # noqa: E501
+            investment_transactions (InvestmentsTransactionsOverride): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

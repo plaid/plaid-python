@@ -224,7 +224,7 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             p10_eod_balance_90d (float, none_type): The 10th percentile of the end-of-day available balance over the past 90 days of the account that will be debited. [optional]  # noqa: E501
             available_balance (float, none_type): Available balance, as of the `balance_last_updated` time. The available balance is the current balance less any outstanding holds or debits that have not yet posted to the account.. [optional]  # noqa: E501
             current_balance (float, none_type): Current balance, as of the `balance_last_updated` time. The current balance is the total amount of funds in the account.. [optional]  # noqa: E501
-            balance_last_updated (datetime, none_type): Timestamp in ISO-8601 format (YYYY-MM-DDTHH:mm:ssZ) indicating the last time that the balance for the given account has been updated.. [optional]  # noqa: E501
+            balance_last_updated (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DDTHH:mm:ssZ) indicating the last time that the balance for the given account has been updated.. [optional]  # noqa: E501
             phone_change_count_28d (int, none_type): The number of times the account's phone numbers on file have changed over the past 28 days. [optional]  # noqa: E501
             phone_change_count_90d (int, none_type): The number of times the account's phone numbers on file have changed over the past 90 days. [optional]  # noqa: E501
             email_change_count_28d (int, none_type): The number of times the account's email addresses on file have changed over the past 28 days. [optional]  # noqa: E501

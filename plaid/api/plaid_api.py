@@ -58,6 +58,8 @@ from plaid.model.bank_transfer_list_request import BankTransferListRequest
 from plaid.model.bank_transfer_list_response import BankTransferListResponse
 from plaid.model.bank_transfer_migrate_account_request import BankTransferMigrateAccountRequest
 from plaid.model.bank_transfer_migrate_account_response import BankTransferMigrateAccountResponse
+from plaid.model.bank_transfer_sweep_get_request import BankTransferSweepGetRequest
+from plaid.model.bank_transfer_sweep_get_response import BankTransferSweepGetResponse
 from plaid.model.categories_get_response import CategoriesGetResponse
 from plaid.model.deposit_switch_alt_create_request import DepositSwitchAltCreateRequest
 from plaid.model.deposit_switch_alt_create_response import DepositSwitchAltCreateResponse
@@ -75,12 +77,15 @@ from plaid.model.identity_get_response import IdentityGetResponse
 from plaid.model.income_verification_create_request import IncomeVerificationCreateRequest
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
 from plaid.model.income_verification_documents_download_request import IncomeVerificationDocumentsDownloadRequest
+from plaid.model.income_verification_paystub_get_request import IncomeVerificationPaystubGetRequest
 from plaid.model.income_verification_paystubs_get_request import IncomeVerificationPaystubsGetRequest
 from plaid.model.income_verification_paystubs_get_response import IncomeVerificationPaystubsGetResponse
 from plaid.model.income_verification_refresh_request import IncomeVerificationRefreshRequest
 from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
 from plaid.model.income_verification_summary_get_request import IncomeVerificationSummaryGetRequest
 from plaid.model.income_verification_summary_get_response import IncomeVerificationSummaryGetResponse
+from plaid.model.income_verification_taxforms_get_request import IncomeVerificationTaxformsGetRequest
+from plaid.model.income_verification_taxforms_get_response import IncomeVerificationTaxformsGetResponse
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
 from plaid.model.institutions_get_by_id_response import InstitutionsGetByIdResponse
 from plaid.model.institutions_get_request import InstitutionsGetRequest
@@ -159,6 +164,8 @@ from plaid.model.sandbox_processor_token_create_request import SandboxProcessorT
 from plaid.model.sandbox_processor_token_create_response import SandboxProcessorTokenCreateResponse
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
 from plaid.model.sandbox_public_token_create_response import SandboxPublicTokenCreateResponse
+from plaid.model.sandbox_transfer_simulate_request import SandboxTransferSimulateRequest
+from plaid.model.sandbox_transfer_simulate_response import SandboxTransferSimulateResponse
 from plaid.model.signal_decision_report_request import SignalDecisionReportRequest
 from plaid.model.signal_decision_report_response import SignalDecisionReportResponse
 from plaid.model.signal_evaluate_request import SignalEvaluateRequest
@@ -169,6 +176,20 @@ from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_response import TransactionsGetResponse
 from plaid.model.transactions_refresh_request import TransactionsRefreshRequest
 from plaid.model.transactions_refresh_response import TransactionsRefreshResponse
+from plaid.model.transfer_authorization_create_request import TransferAuthorizationCreateRequest
+from plaid.model.transfer_authorization_create_response import TransferAuthorizationCreateResponse
+from plaid.model.transfer_cancel_request import TransferCancelRequest
+from plaid.model.transfer_cancel_response import TransferCancelResponse
+from plaid.model.transfer_create_request import TransferCreateRequest
+from plaid.model.transfer_create_response import TransferCreateResponse
+from plaid.model.transfer_event_list_request import TransferEventListRequest
+from plaid.model.transfer_event_list_response import TransferEventListResponse
+from plaid.model.transfer_event_sync_request import TransferEventSyncRequest
+from plaid.model.transfer_event_sync_response import TransferEventSyncResponse
+from plaid.model.transfer_get_request import TransferGetRequest
+from plaid.model.transfer_get_response import TransferGetResponse
+from plaid.model.transfer_list_request import TransferListRequest
+from plaid.model.transfer_list_response import TransferListResponse
 from plaid.model.webhook_verification_key_get_request import WebhookVerificationKeyGetRequest
 from plaid.model.webhook_verification_key_get_response import WebhookVerificationKeyGetResponse
 
@@ -2266,7 +2287,7 @@ class PlaidApi(object):
         ):
             """Sync bank transfer events  # noqa: E501
 
-            `/bank_transfer/event/sync` allows you to request up to the next 25 bank transfer events that happened after a specific `event_id`. Use the `/bank_transfer/event/sync` endpoint to guarantee you have seen all bank transfer events.   # noqa: E501
+            `/bank_transfer/event/sync` allows you to request up to the next 25 bank transfer events that happened after a specific `event_id`. Use the `/bank_transfer/event/sync` endpoint to guarantee you have seen all bank transfer events.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2745,6 +2766,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__bank_transfer_migrate_account
+        )
+
+        def __bank_transfer_sweep_get(
+            self,
+            bank_transfer_sweep_get_request,
+            **kwargs
+        ):
+            """Retrieve a sweep  # noqa: E501
+
+            The `/bank_transfer/sweep/get` endpoint fetches information about the sweep corresponding to the given `sweep_id`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.bank_transfer_sweep_get(bank_transfer_sweep_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                bank_transfer_sweep_get_request (BankTransferSweepGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                BankTransferSweepGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['bank_transfer_sweep_get_request'] = \
+                bank_transfer_sweep_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.bank_transfer_sweep_get = _Endpoint(
+            settings={
+                'response_type': (BankTransferSweepGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/bank_transfer/sweep/get',
+                'operation_id': 'bank_transfer_sweep_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'bank_transfer_sweep_get_request',
+                ],
+                'required': [
+                    'bank_transfer_sweep_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'bank_transfer_sweep_get_request':
+                        (BankTransferSweepGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'bank_transfer_sweep_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__bank_transfer_sweep_get
         )
 
         def __categories_get(
@@ -3963,6 +4106,127 @@ class PlaidApi(object):
             callable=__income_verification_documents_download
         )
 
+        def __income_verification_paystub_get(
+            self,
+            income_verification_paystub_get_request,
+            **kwargs
+        ):
+            """(Deprecated) Retrieve information from a single paystub used for income verification  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.income_verification_paystub_get(income_verification_paystub_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                income_verification_paystub_get_request (IncomeVerificationPaystubGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['income_verification_paystub_get_request'] = \
+                income_verification_paystub_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.income_verification_paystub_get = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/income/verification/paystub/get',
+                'operation_id': 'income_verification_paystub_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'income_verification_paystub_get_request',
+                ],
+                'required': [
+                    'income_verification_paystub_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'income_verification_paystub_get_request':
+                        (IncomeVerificationPaystubGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'income_verification_paystub_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__income_verification_paystub_get
+        )
+
         def __income_verification_paystubs_get(
             self,
             income_verification_paystubs_get_request,
@@ -4329,6 +4593,128 @@ class PlaidApi(object):
             callable=__income_verification_summary_get
         )
 
+        def __income_verification_taxforms_get(
+            self,
+            income_verification_taxforms_get_request,
+            **kwargs
+        ):
+            """Retrieve information from the tax documents used for income verification  # noqa: E501
+
+            `/income/verification/taxforms/get` returns the information collected from taxforms that were used to verify an end user's. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.income_verification_taxforms_get(income_verification_taxforms_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                income_verification_taxforms_get_request (IncomeVerificationTaxformsGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IncomeVerificationTaxformsGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['income_verification_taxforms_get_request'] = \
+                income_verification_taxforms_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.income_verification_taxforms_get = _Endpoint(
+            settings={
+                'response_type': (IncomeVerificationTaxformsGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/income/verification/taxforms/get',
+                'operation_id': 'income_verification_taxforms_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'income_verification_taxforms_get_request',
+                ],
+                'required': [
+                    'income_verification_taxforms_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'income_verification_taxforms_get_request':
+                        (IncomeVerificationTaxformsGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'income_verification_taxforms_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__income_verification_taxforms_get
+        )
+
         def __institutions_get(
             self,
             institutions_get_request,
@@ -4336,7 +4722,7 @@ class PlaidApi(object):
         ):
             """Get details of all supported institutions  # noqa: E501
 
-            Returns a JSON response containing details on all financial institutions currently supported by Plaid. Because Plaid supports thousands of institutions, results are paginated.  If there is no overlap between an institution’s enabled products and a client’s enabled products, then the institution will be filtered out from the response. As a result, the number of institutions returned may not match the count specified in the call.  This data changes frequently. If you store it locally on your system, be sure to update it regularly.  # noqa: E501
+            Returns a JSON response containing details on all financial institutions currently supported by Plaid. Because Plaid supports thousands of institutions, results are paginated.  If there is no overlap between an institution’s enabled products and a client’s enabled products, then the institution will be filtered out from the response. As a result, the number of institutions returned may not match the count specified in the call.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9086,6 +9472,128 @@ class PlaidApi(object):
             callable=__sandbox_public_token_create
         )
 
+        def __sandbox_transfer_simulate(
+            self,
+            sandbox_transfer_simulate_request,
+            **kwargs
+        ):
+            """Simulate a transfer event in Sandbox  # noqa: E501
+
+            Use the `/sandbox/transfer/simulate` endpoint to simulate a transfer event in the Sandbox environment.  Note that while an event will be simulated and will appear when using endpoints such as `/transfer/event/sync` or `/transfer/event/list`, no transactions will actually take place and funds will not move between accounts, even within the Sandbox.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_simulate(sandbox_transfer_simulate_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_simulate_request (SandboxTransferSimulateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferSimulateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_simulate_request'] = \
+                sandbox_transfer_simulate_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_simulate = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferSimulateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/simulate',
+                'operation_id': 'sandbox_transfer_simulate',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_simulate_request',
+                ],
+                'required': [
+                    'sandbox_transfer_simulate_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_simulate_request':
+                        (SandboxTransferSimulateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_simulate_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_simulate
+        )
+
         def __signal_decision_report(
             self,
             signal_decision_report_request,
@@ -9694,6 +10202,860 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transactions_refresh
+        )
+
+        def __transfer_authorization_create(
+            self,
+            transfer_authorization_create_request,
+            **kwargs
+        ):
+            """Create a transfer authorization  # noqa: E501
+
+            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's sandbox environment the decisions will be returned as follows:    - To approve a transfer, create an Item in Link with the username `user_good` and password `pass_good`    - To decline a transfer with the rationale code `NSF`, create an Item in Link with the username `declined_nsf_good` and password `pass_good`    - To decline a transfer with the rationale code `RISK`, create an Item in Link with the username `declined_risk_good` and password `pass_good`    - To permit a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).    - To permit a transfer with the rationale code `LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).  All username/password combinations other than the ones listed above will result in a decision of permitted and rationale code `ERROR`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_authorization_create(transfer_authorization_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_authorization_create_request (TransferAuthorizationCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferAuthorizationCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_authorization_create_request'] = \
+                transfer_authorization_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_authorization_create = _Endpoint(
+            settings={
+                'response_type': (TransferAuthorizationCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/authorization/create',
+                'operation_id': 'transfer_authorization_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_authorization_create_request',
+                ],
+                'required': [
+                    'transfer_authorization_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_authorization_create_request':
+                        (TransferAuthorizationCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_authorization_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_authorization_create
+        )
+
+        def __transfer_cancel(
+            self,
+            transfer_cancel_request,
+            **kwargs
+        ):
+            """Cancel a transfer  # noqa: E501
+
+            Use the `/transfer/cancel` endpoint to cancel a transfer.  A transfer is eligible for cancelation if the `cancellable` property returned by `/transfer/get` is `true`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_cancel(transfer_cancel_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_cancel_request (TransferCancelRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferCancelResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_cancel_request'] = \
+                transfer_cancel_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_cancel = _Endpoint(
+            settings={
+                'response_type': (TransferCancelResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/cancel',
+                'operation_id': 'transfer_cancel',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_cancel_request',
+                ],
+                'required': [
+                    'transfer_cancel_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_cancel_request':
+                        (TransferCancelRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_cancel_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_cancel
+        )
+
+        def __transfer_create(
+            self,
+            transfer_create_request,
+            **kwargs
+        ):
+            """Create a transfer  # noqa: E501
+
+            Use the `/transfer/create` endpoint to initiate a new transfer.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_create(transfer_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_create_request (TransferCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_create_request'] = \
+                transfer_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_create = _Endpoint(
+            settings={
+                'response_type': (TransferCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/create',
+                'operation_id': 'transfer_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_create_request',
+                ],
+                'required': [
+                    'transfer_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_create_request':
+                        (TransferCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_create
+        )
+
+        def __transfer_event_list(
+            self,
+            transfer_event_list_request,
+            **kwargs
+        ):
+            """List transfer events  # noqa: E501
+
+            Use the `/transfer/event/list` endpoint to get a list of transfer events based on specified filter criteria.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_event_list(transfer_event_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_event_list_request (TransferEventListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferEventListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_event_list_request'] = \
+                transfer_event_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_event_list = _Endpoint(
+            settings={
+                'response_type': (TransferEventListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/event/list',
+                'operation_id': 'transfer_event_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_event_list_request',
+                ],
+                'required': [
+                    'transfer_event_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_event_list_request':
+                        (TransferEventListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_event_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_event_list
+        )
+
+        def __transfer_event_sync(
+            self,
+            transfer_event_sync_request,
+            **kwargs
+        ):
+            """Sync transfer events  # noqa: E501
+
+            `/transfer/event/sync` allows you to request up to the next 25 transfer events that happened after a specific `event_id`. Use the `/transfer/event/sync` endpoint to guarantee you have seen all transfer events.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_event_sync(transfer_event_sync_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_event_sync_request (TransferEventSyncRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferEventSyncResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_event_sync_request'] = \
+                transfer_event_sync_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_event_sync = _Endpoint(
+            settings={
+                'response_type': (TransferEventSyncResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/event/sync',
+                'operation_id': 'transfer_event_sync',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_event_sync_request',
+                ],
+                'required': [
+                    'transfer_event_sync_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_event_sync_request':
+                        (TransferEventSyncRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_event_sync_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_event_sync
+        )
+
+        def __transfer_get(
+            self,
+            transfer_get_request,
+            **kwargs
+        ):
+            """Retrieve a transfer  # noqa: E501
+
+            The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_get(transfer_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_get_request (TransferGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_get_request'] = \
+                transfer_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_get = _Endpoint(
+            settings={
+                'response_type': (TransferGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/get',
+                'operation_id': 'transfer_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_get_request',
+                ],
+                'required': [
+                    'transfer_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_get_request':
+                        (TransferGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_get
+        )
+
+        def __transfer_list(
+            self,
+            transfer_list_request,
+            **kwargs
+        ):
+            """List transfers  # noqa: E501
+
+            Use the `/transfer/list` endpoint to see a list of all your transfers and their statuses. Results are paginated; use the `count` and `offset` query parameters to retrieve the desired transfers.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_list(transfer_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_list_request (TransferListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_list_request'] = \
+                transfer_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_list = _Endpoint(
+            settings={
+                'response_type': (TransferListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/list',
+                'operation_id': 'transfer_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_list_request',
+                ],
+                'required': [
+                    'transfer_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_list_request':
+                        (TransferListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_list
         )
 
         def __webhook_verification_key_get(

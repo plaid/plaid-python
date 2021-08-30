@@ -25,7 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.document_metadata import DocumentMetadata
+    from plaid.model.error import Error
     from plaid.model.paystub import Paystub
+    globals()['DocumentMetadata'] = DocumentMetadata
+    globals()['Error'] = Error
     globals()['Paystub'] = Paystub
 
 
@@ -84,6 +88,8 @@ class IncomeVerificationPaystubsGetResponse(ModelNormal):
         return {
             'paystubs': ([Paystub],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'error': (Error,),  # noqa: E501
+            'document_metadata': ([DocumentMetadata],),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +100,8 @@ class IncomeVerificationPaystubsGetResponse(ModelNormal):
     attribute_map = {
         'paystubs': 'paystubs',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'error': 'error',  # noqa: E501
+        'document_metadata': 'document_metadata',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,6 +154,8 @@ class IncomeVerificationPaystubsGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            error (Error): [optional]  # noqa: E501
+            document_metadata ([DocumentMetadata]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

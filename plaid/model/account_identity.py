@@ -65,6 +65,7 @@ class AccountIdentity(ModelComposed):
 
     allowed_values = {
         ('verification_status',): {
+            'AUTOMATICALLY_VERIFIED': "automatically_verified",
             'PENDING_AUTOMATIC_VERIFICATION': "pending_automatic_verification",
             'PENDING_MANUAL_VERIFICATION': "pending_manual_verification",
             'MANUALLY_VERIFIED': "manually_verified",

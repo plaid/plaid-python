@@ -107,10 +107,10 @@ class PaymentInitiationPayment(ModelNormal):
             'recipient_id': (str,),  # noqa: E501
             'reference': (str,),  # noqa: E501
             'last_status_update': (datetime,),  # noqa: E501
-            'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'bacs': (SenderBACSNullable,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
+            'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
             'emi_account_id': (str, none_type,),  # noqa: E501
         }
@@ -127,10 +127,10 @@ class PaymentInitiationPayment(ModelNormal):
         'recipient_id': 'recipient_id',  # noqa: E501
         'reference': 'reference',  # noqa: E501
         'last_status_update': 'last_status_update',  # noqa: E501
-        'schedule': 'schedule',  # noqa: E501
         'bacs': 'bacs',  # noqa: E501
         'iban': 'iban',  # noqa: E501
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
         'emi_account_id': 'emi_account_id',  # noqa: E501
     }
@@ -147,7 +147,7 @@ class PaymentInitiationPayment(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_id, amount, status, recipient_id, reference, last_status_update, schedule, bacs, iban, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_id, amount, status, recipient_id, reference, last_status_update, bacs, iban, *args, **kwargs):  # noqa: E501
         """PaymentInitiationPayment - a model defined in OpenAPI
 
         Args:
@@ -157,7 +157,6 @@ class PaymentInitiationPayment(ModelNormal):
             recipient_id (str): The ID of the recipient
             reference (str): A reference for the payment.
             last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
-            schedule (ExternalPaymentScheduleGet):
             bacs (SenderBACSNullable):
             iban (str, none_type): The International Bank Account Number (IBAN) for the sender, if specified in the `/payment_initiation/payment/create` call.
 
@@ -193,6 +192,7 @@ class PaymentInitiationPayment(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
+            schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
             emi_account_id (str, none_type): The EMI (E-Money Institution) account that this payment is associated with, if any. This EMI account is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
@@ -226,7 +226,6 @@ class PaymentInitiationPayment(ModelNormal):
         self.recipient_id = recipient_id
         self.reference = reference
         self.last_status_update = last_status_update
-        self.schedule = schedule
         self.bacs = bacs
         self.iban = iban
         for var_name, var_value in kwargs.items():
