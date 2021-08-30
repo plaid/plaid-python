@@ -170,7 +170,7 @@ class LiabilityOverride(ModelNormal):
             last_payment_amount (float): Override the `last_payment_amount` field. Can only be set if `type` is `credit`.
             minimum_payment_amount (float): Override the `minimum_payment_amount` field. Can only be set if `type` is `credit` or `student`.
             is_overdue (bool): Override the `is_overdue` field
-            origination_date (date): The date on which the loan was initially lent, in ISO 8601 (YYYY-MM-DD) format. Can only be set if `type` is `student`.
+            origination_date (date): The date on which the loan was initially lent, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format. Can only be set if `type` is `student`.
             principal (float): The original loan principal. Can only be set if `type` is `student`.
             nominal_apr (float): The interest rate on the loan as a percentage. Can only be set if `type` is `student`.
             interest_capitalization_grace_period_months (float): If set, interest capitalization begins at the given number of months after loan origination. By default interest is never capitalized. Can only be set if `type` is `student`.

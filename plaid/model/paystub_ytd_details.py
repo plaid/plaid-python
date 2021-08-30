@@ -76,8 +76,8 @@ class PaystubYTDDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'gross_earnings': (float,),  # noqa: E501
-            'net_earnings': (float,),  # noqa: E501
+            'gross_earnings': (float, none_type,),  # noqa: E501
+            'net_earnings': (float, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,12 +102,8 @@ class PaystubYTDDetails(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, gross_earnings, net_earnings, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """PaystubYTDDetails - a model defined in OpenAPI
-
-        Args:
-            gross_earnings (float): Year-to-date gross earnings.
-            net_earnings (float): Year-to-date net (take home) earnings.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,6 +136,8 @@ class PaystubYTDDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            gross_earnings (float, none_type): Year-to-date gross earnings.. [optional]  # noqa: E501
+            net_earnings (float, none_type): Year-to-date net (take home) earnings.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -165,8 +163,6 @@ class PaystubYTDDetails(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.gross_earnings = gross_earnings
-        self.net_earnings = net_earnings
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

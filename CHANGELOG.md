@@ -1,5 +1,8 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+## 8.1.0
+Updating to OAS 2020-09-14_1.26.1.
+
 ## 8.0.0
 The official release of the `plaid-python` generated library. Refer to the beta migration guide for tips on migrating from older version of the libraries.
 
@@ -98,19 +101,6 @@ except plaid.ApiException as e:
     if response['error_code'] == 'ITEM_LOGIN_REQUIRED':
     else:
 ```
-
-## 7.5.0
-- Update Sphinx dependency to `1.8.5`
-- Update Py dependency to `1.10.0`
-
-## 7.4.0
-- Add support for `options` to `/payment_initiation/payment/create`
-
-## 7.3.0
-- Add support for `last_updated_datetime` to `/accounts/balance/get`
-
-## 7.2.1
-- Add `account_ids` options to `/investments/holdings/get`
 
 ## 7.2.0
 - The legacy `/item/public_token/create` endpoint is added back. This endpoint should only be used if you

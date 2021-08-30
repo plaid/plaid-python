@@ -119,8 +119,8 @@ class LinkTokenGetResponse(ModelNormal):
 
         Args:
             link_token (str): A `link_token`, which can be supplied to Link in order to initialize it and receive a `public_token`, which can be exchanged for an `access_token`.
-            created_at (datetime, none_type): The creation timestamp for the `link_token`, in ISO 8601 format.
-            expiration (datetime, none_type): The expiration timestamp for the `link_token`, in ISO 8601 format.
+            created_at (datetime, none_type): The creation timestamp for the `link_token`, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
+            expiration (datetime, none_type): The expiration timestamp for the `link_token`, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
             metadata (LinkTokenGetMetadataResponse):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 

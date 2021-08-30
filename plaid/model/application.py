@@ -110,7 +110,7 @@ class Application(ModelNormal):
         Args:
             application_id (str): This field will map to the application ID that is returned from /item/applications/list, or provided to the institution in an oauth redirect.
             name (str): The name of the application
-            created_at (date): The date this application was linked in ISO8601 (YYYY-MM-DD) format in UTC.
+            created_at (date): The date this application was linked in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
             logo_url (str, none_type): A URL that links to the application logo image.
             application_url (str, none_type): The URL for the application's website
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.

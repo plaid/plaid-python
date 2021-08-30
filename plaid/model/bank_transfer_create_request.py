@@ -26,11 +26,13 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.ach_class import ACHClass
+    from plaid.model.bank_transfer_idempotency_key import BankTransferIdempotencyKey
     from plaid.model.bank_transfer_metadata import BankTransferMetadata
     from plaid.model.bank_transfer_network import BankTransferNetwork
     from plaid.model.bank_transfer_type import BankTransferType
     from plaid.model.bank_transfer_user import BankTransferUser
     globals()['ACHClass'] = ACHClass
+    globals()['BankTransferIdempotencyKey'] = BankTransferIdempotencyKey
     globals()['BankTransferMetadata'] = BankTransferMetadata
     globals()['BankTransferNetwork'] = BankTransferNetwork
     globals()['BankTransferType'] = BankTransferType
@@ -65,9 +67,6 @@ class BankTransferCreateRequest(ModelNormal):
     }
 
     validations = {
-        ('idempotency_key',): {
-            'max_length': 50,
-        },
         ('description',): {
             'max_length': 10,
         },
@@ -92,7 +91,7 @@ class BankTransferCreateRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'idempotency_key': (str,),  # noqa: E501
+            'idempotency_key': (BankTransferIdempotencyKey,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'type': (BankTransferType,),  # noqa: E501
@@ -148,12 +147,12 @@ class BankTransferCreateRequest(ModelNormal):
         """BankTransferCreateRequest - a model defined in OpenAPI
 
         Args:
-            idempotency_key (str): A random key provided by the client, per unique bank transfer. Maximum of 50 characters.  The API supports idempotency for safely retrying requests without accidentally performing the same operation twice. For example, if a request to create a bank transfer fails due to a network connection error, you can retry the request with the same idempotency key to guarantee that only a single bank transfer is created.
+            idempotency_key (BankTransferIdempotencyKey):
             access_token (str): The Plaid `access_token` for the account that will be debited or credited.
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.
             type (BankTransferType):
             network (BankTransferNetwork):
-            amount (str): The transfer amount (decimal string with two digits of precision e.g. \"10.00\").
+            amount (str): The amount of the bank transfer (decimal string with two digits of precision e.g. “10.00”).
             iso_currency_code (str): The currency of the transfer amount – should be set to \"USD\".
             description (str): The transfer description. Maximum of 10 characters.
             user (BankTransferUser):
@@ -192,7 +191,7 @@ class BankTransferCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             ach_class (ACHClass): [optional]  # noqa: E501
-            custom_tag (str, none_type): An arbitrary string provided by the client for storage with the bank transfer. Will be returned in all `BankTransfer` objects. May be up to 100 characters.. [optional]  # noqa: E501
+            custom_tag (str, none_type): An arbitrary string provided by the client for storage with the bank transfer. May be up to 100 characters.. [optional]  # noqa: E501
             metadata (BankTransferMetadata): [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for this transfer. If you have more than one origination account, this value must be specified.. [optional]  # noqa: E501
         """

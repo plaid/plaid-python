@@ -112,9 +112,9 @@ class PayPeriodDetails(ModelNormal):
         """PayPeriodDetails - a model defined in OpenAPI
 
         Args:
-            start_date (date, none_type): The pay period start date, in ISO 8601 format: \"yyyy-mm-dd\".
-            end_date (date, none_type): The pay period end date, in ISO 8601 format: \"yyyy-mm-dd\".
-            pay_day (date, none_type): The date on which the paystub was issued, in ISO 8601 format (\"yyyy-mm-dd\").
+            start_date (date, none_type): The pay period start date, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format: \"yyyy-mm-dd\".
+            end_date (date, none_type): The pay period end date, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format: \"yyyy-mm-dd\".
+            pay_day (date, none_type): The date on which the paystub was issued, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (\"yyyy-mm-dd\").
             gross_earnings (float, none_type): Total earnings before tax.
             check_amount (float, none_type): The net amount of the paycheck.
 
