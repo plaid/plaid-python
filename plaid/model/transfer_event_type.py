@@ -52,8 +52,6 @@ class TransferEventType(ModelSimple):
             'FAILED': "failed",
             'POSTED': "posted",
             'REVERSED': "reversed",
-            'RECEIVER_PENDING': "receiver_pending",
-            'RECEIVER_POSTED': "receiver_posted",
         },
     }
 
@@ -103,10 +101,10 @@ class TransferEventType(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `reversed`: A posted transfer was reversed.  `receiver_pending`: The matching transfer was found as a pending transaction in the receiver's account  `receiver_posted`: The matching transfer was found as a posted transaction in the receiver's account., must be one of ["pending", "cancelled", "failed", "posted", "reversed", "receiver_pending", "receiver_posted", ]  # noqa: E501
+            args[0] (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `reversed`: A posted transfer was reversed.., must be one of ["pending", "cancelled", "failed", "posted", "reversed", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `reversed`: A posted transfer was reversed.  `receiver_pending`: The matching transfer was found as a pending transaction in the receiver's account  `receiver_posted`: The matching transfer was found as a posted transaction in the receiver's account., must be one of ["pending", "cancelled", "failed", "posted", "reversed", "receiver_pending", "receiver_posted", ]  # noqa: E501
+            value (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `reversed`: A posted transfer was reversed.., must be one of ["pending", "cancelled", "failed", "posted", "reversed", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -60,12 +60,6 @@ class TransferEventListRequest(ModelNormal):
             'CREDIT': "credit",
             'NULL': "null",
         },
-        ('direction',): {
-            'None': None,
-            'INBOUND': "inbound",
-            'OUTBOUND': "outbound",
-            'NULL': "null",
-        },
     }
 
     validations = {
@@ -105,7 +99,6 @@ class TransferEventListRequest(ModelNormal):
             'count': (int, none_type,),  # noqa: E501
             'offset': (int, none_type,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
-            'direction': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -125,7 +118,6 @@ class TransferEventListRequest(ModelNormal):
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
-        'direction': 'direction',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -185,7 +177,6 @@ class TransferEventListRequest(ModelNormal):
             count (int, none_type): The maximum number of transfer events to return. If the number of events matching the above parameters is greater than `count`, the most recent events will be returned.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int, none_type): The offset into the list of transfer events. When `count`=25 and `offset`=0, the first 25 events will be returned. When `count`=25 and `offset`=25, the next 25 bank transfer events will be returned.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             origination_account_id (str, none_type): The origination account ID to get events for transfers from a specific origination account.. [optional]  # noqa: E501
-            direction (str, none_type): Indicates the direction of the transfer: `outbound`: for API-initiated transfers `inbound`: for payments received by the FBO account.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -87,6 +87,7 @@ class TransactionAllOf(ModelNormal):
             'datetime': (datetime, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
+            'personal_finance_category': (object, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +103,7 @@ class TransactionAllOf(ModelNormal):
         'datetime': 'datetime',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
         'transaction_code': 'transaction_code',  # noqa: E501
+        'personal_finance_category': 'personal_finance_category',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,6 +161,7 @@ class TransactionAllOf(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            personal_finance_category (object, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

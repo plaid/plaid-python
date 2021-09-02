@@ -427,7 +427,7 @@ conf = plaid.Configuration(
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
-               "Version of the API: 2020-09-14_1.26.1\n"\
+               "Version of the API: 2020-09-14_1.30.3\n"\
                "SDK Package Version: 8.1.0".\
                format(env=sys.platform, pyversion=sys.version)
 

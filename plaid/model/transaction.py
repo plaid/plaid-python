@@ -124,6 +124,7 @@ class Transaction(ModelComposed):
             'transaction_code': (TransactionCode,),  # noqa: E501
             'transaction_type': (str,),  # noqa: E501
             'original_description': (str, none_type,),  # noqa: E501
+            'personal_finance_category': (object, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -155,6 +156,7 @@ class Transaction(ModelComposed):
         'transaction_code': 'transaction_code',  # noqa: E501
         'transaction_type': 'transaction_type',  # noqa: E501
         'original_description': 'original_description',  # noqa: E501
+        'personal_finance_category': 'personal_finance_category',  # noqa: E501
     }
 
     required_properties = set([
@@ -229,6 +231,7 @@ class Transaction(ModelComposed):
                                 _visited_composed_classes = (Animal,)
             transaction_type (str): Please use the `payment_channel` field, `transaction_type` will be deprecated in the future.  `digital:` transactions that took place online.  `place:` transactions that were made at a physical location.  `special:` transactions that relate to banks, e.g. fees or deposits.  `unresolved:` transactions that do not fit into the other three types. . [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
+            personal_finance_category (object, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
