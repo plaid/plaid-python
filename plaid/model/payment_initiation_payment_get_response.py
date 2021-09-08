@@ -30,12 +30,14 @@ def lazy_import():
     from plaid.model.payment_amount import PaymentAmount
     from plaid.model.payment_initiation_payment import PaymentInitiationPayment
     from plaid.model.payment_initiation_recipient_get_response_all_of import PaymentInitiationRecipientGetResponseAllOf
+    from plaid.model.payment_initiation_refund import PaymentInitiationRefund
     from plaid.model.sender_bacs_nullable import SenderBACSNullable
     globals()['ExternalPaymentRefundDetails'] = ExternalPaymentRefundDetails
     globals()['ExternalPaymentScheduleGet'] = ExternalPaymentScheduleGet
     globals()['PaymentAmount'] = PaymentAmount
     globals()['PaymentInitiationPayment'] = PaymentInitiationPayment
     globals()['PaymentInitiationRecipientGetResponseAllOf'] = PaymentInitiationRecipientGetResponseAllOf
+    globals()['PaymentInitiationRefund'] = PaymentInitiationRefund
     globals()['SenderBACSNullable'] = SenderBACSNullable
 
 
@@ -117,6 +119,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
+            'initiated_refunds': ([PaymentInitiationRefund],),  # noqa: E501
             'emi_account_id': (str, none_type,),  # noqa: E501
         }
 
@@ -138,6 +141,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
+        'initiated_refunds': 'initiated_refunds',  # noqa: E501
         'emi_account_id': 'emi_account_id',  # noqa: E501
     }
 
@@ -202,6 +206,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
+            initiated_refunds ([PaymentInitiationRefund]): Initiated refunds associated with the payment.. [optional]  # noqa: E501
             emi_account_id (str, none_type): The EMI (E-Money Institution) account that this payment is associated with, if any. This EMI account is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 

@@ -77,6 +77,7 @@ class InstitutionsSearchRequestOptions(ModelNormal):
         return {
             'oauth': (bool,),  # noqa: E501
             'include_optional_metadata': (bool,),  # noqa: E501
+            'include_auth_metadata': (bool,),  # noqa: E501
             'include_payment_initiation_metadata': (bool,),  # noqa: E501
             'payment_initiation': (InstitutionsSearchPaymentInitiationOptions,),  # noqa: E501
         }
@@ -89,6 +90,7 @@ class InstitutionsSearchRequestOptions(ModelNormal):
     attribute_map = {
         'oauth': 'oauth',  # noqa: E501
         'include_optional_metadata': 'include_optional_metadata',  # noqa: E501
+        'include_auth_metadata': 'include_auth_metadata',  # noqa: E501
         'include_payment_initiation_metadata': 'include_payment_initiation_metadata',  # noqa: E501
         'payment_initiation': 'payment_initiation',  # noqa: E501
     }
@@ -141,6 +143,7 @@ class InstitutionsSearchRequestOptions(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             oauth (bool): Limit results to institutions with or without OAuth login flows. This is primarily relevant to institutions with European country codes. [optional]  # noqa: E501
             include_optional_metadata (bool): When true, return the institution's homepage URL, logo and primary brand color.. [optional]  # noqa: E501
+            include_auth_metadata (bool): When `true`, returns metadata related to the Auth product indicating which auth methods are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
             include_payment_initiation_metadata (bool): When `true`, returns metadata related to the Payment Initiation product indicating which payment configurations are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
             payment_initiation (InstitutionsSearchPaymentInitiationOptions): [optional]  # noqa: E501
         """

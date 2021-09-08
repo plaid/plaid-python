@@ -63,6 +63,8 @@ plaid/model/auth_get_numbers.py
 plaid/model/auth_get_request.py
 plaid/model/auth_get_request_options.py
 plaid/model/auth_get_response.py
+plaid/model/auth_metadata.py
+plaid/model/auth_supported_methods.py
 plaid/model/automatically_verified_webhook.py
 plaid/model/bank_initiated_return_risk.py
 plaid/model/bank_initiated_risk_tier.py
@@ -97,6 +99,8 @@ plaid/model/bank_transfer_sweep.py
 plaid/model/bank_transfer_sweep_account.py
 plaid/model/bank_transfer_sweep_get_request.py
 plaid/model/bank_transfer_sweep_get_response.py
+plaid/model/bank_transfer_sweep_list_request.py
+plaid/model/bank_transfer_sweep_list_response.py
 plaid/model/bank_transfer_type.py
 plaid/model/bank_transfer_user.py
 plaid/model/bank_transfers_events_update_webhook.py
@@ -162,8 +166,14 @@ plaid/model/income_verification_create_response.py
 plaid/model/income_verification_documents_download_request.py
 plaid/model/income_verification_documents_download_response.py
 plaid/model/income_verification_paystub_get_request.py
+plaid/model/income_verification_paystub_get_response.py
 plaid/model/income_verification_paystubs_get_request.py
 plaid/model/income_verification_paystubs_get_response.py
+plaid/model/income_verification_precheck_employer.py
+plaid/model/income_verification_precheck_military_info.py
+plaid/model/income_verification_precheck_request.py
+plaid/model/income_verification_precheck_response.py
+plaid/model/income_verification_precheck_user.py
 plaid/model/income_verification_refresh_request.py
 plaid/model/income_verification_refresh_response.py
 plaid/model/income_verification_status_webhook.py
@@ -282,6 +292,8 @@ plaid/model/payment_initiation_payment_get_request.py
 plaid/model/payment_initiation_payment_get_response.py
 plaid/model/payment_initiation_payment_list_request.py
 plaid/model/payment_initiation_payment_list_response.py
+plaid/model/payment_initiation_payment_reverse_request.py
+plaid/model/payment_initiation_payment_reverse_response.py
 plaid/model/payment_initiation_payment_token_create_request.py
 plaid/model/payment_initiation_payment_token_create_response.py
 plaid/model/payment_initiation_recipient.py
@@ -292,6 +304,7 @@ plaid/model/payment_initiation_recipient_get_response.py
 plaid/model/payment_initiation_recipient_get_response_all_of.py
 plaid/model/payment_initiation_recipient_list_request.py
 plaid/model/payment_initiation_recipient_list_response.py
+plaid/model/payment_initiation_refund.py
 plaid/model/payment_initiation_standing_order_metadata.py
 plaid/model/payment_meta.py
 plaid/model/payment_schedule_interval.py
@@ -303,6 +316,7 @@ plaid/model/paystub_details.py
 plaid/model/paystub_employer.py
 plaid/model/paystub_ytd_details.py
 plaid/model/pending_expiration_webhook.py
+plaid/model/personal_finance_category.py
 plaid/model/phone_number.py
 plaid/model/processor_apex_processor_token_create_request.py
 plaid/model/processor_auth_get_request.py
@@ -405,7 +419,6 @@ plaid/model/transfer_cancel_response.py
 plaid/model/transfer_create_idempotency_key.py
 plaid/model/transfer_create_request.py
 plaid/model/transfer_create_response.py
-plaid/model/transfer_direction.py
 plaid/model/transfer_event.py
 plaid/model/transfer_event_list_request.py
 plaid/model/transfer_event_list_response.py
@@ -419,7 +432,6 @@ plaid/model/transfer_list_request.py
 plaid/model/transfer_list_response.py
 plaid/model/transfer_metadata.py
 plaid/model/transfer_network.py
-plaid/model/transfer_receiver_details.py
 plaid/model/transfer_status.py
 plaid/model/transfer_type.py
 plaid/model/transfer_user_address_in_request.py
