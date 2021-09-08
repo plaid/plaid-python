@@ -25,15 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.transfer_direction import TransferDirection
     from plaid.model.transfer_event_type import TransferEventType
     from plaid.model.transfer_failure import TransferFailure
-    from plaid.model.transfer_receiver_details import TransferReceiverDetails
     from plaid.model.transfer_type import TransferType
-    globals()['TransferDirection'] = TransferDirection
     globals()['TransferEventType'] = TransferEventType
     globals()['TransferFailure'] = TransferFailure
-    globals()['TransferReceiverDetails'] = TransferReceiverDetails
     globals()['TransferType'] = TransferType
 
 
@@ -101,10 +97,7 @@ class TransferEvent(ModelNormal):
             'origination_account_id': (str, none_type,),  # noqa: E501
             'transfer_type': (TransferType,),  # noqa: E501
             'transfer_amount': (str,),  # noqa: E501
-            'transfer_iso_currency_code': (str,),  # noqa: E501
             'failure_reason': (TransferFailure,),  # noqa: E501
-            'direction': (TransferDirection,),  # noqa: E501
-            'receiver_details': (TransferReceiverDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -121,10 +114,7 @@ class TransferEvent(ModelNormal):
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'transfer_type': 'transfer_type',  # noqa: E501
         'transfer_amount': 'transfer_amount',  # noqa: E501
-        'transfer_iso_currency_code': 'transfer_iso_currency_code',  # noqa: E501
         'failure_reason': 'failure_reason',  # noqa: E501
-        'direction': 'direction',  # noqa: E501
-        'receiver_details': 'receiver_details',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +129,7 @@ class TransferEvent(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, transfer_iso_currency_code, failure_reason, direction, receiver_details, *args, **kwargs):  # noqa: E501
+    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, *args, **kwargs):  # noqa: E501
         """TransferEvent - a model defined in OpenAPI
 
         Args:
@@ -151,10 +141,7 @@ class TransferEvent(ModelNormal):
             origination_account_id (str, none_type): The ID of the origination account that this balance belongs to.
             transfer_type (TransferType):
             transfer_amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
-            transfer_iso_currency_code (str): The currency of the transfer amount.
             failure_reason (TransferFailure):
-            direction (TransferDirection):
-            receiver_details (TransferReceiverDetails):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -220,10 +207,7 @@ class TransferEvent(ModelNormal):
         self.origination_account_id = origination_account_id
         self.transfer_type = transfer_type
         self.transfer_amount = transfer_amount
-        self.transfer_iso_currency_code = transfer_iso_currency_code
         self.failure_reason = failure_reason
-        self.direction = direction
-        self.receiver_details = receiver_details
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

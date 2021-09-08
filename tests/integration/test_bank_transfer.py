@@ -6,6 +6,7 @@ from plaid.model.item_public_token_exchange_request import ItemPublicTokenExchan
 from plaid.model.accounts_get_request import AccountsGetRequest
 from plaid.model.bank_transfer_create_request import BankTransferCreateRequest
 from plaid.model.bank_transfer_network import BankTransferNetwork
+from plaid.model.bank_transfer_idempotency_key import BankTransferIdempotencyKey
 from plaid.model.bank_transfer_type import BankTransferType
 from plaid.model.bank_transfer_user import BankTransferUser
 from plaid.model.bank_transfer_event_list_request import BankTransferEventListRequest

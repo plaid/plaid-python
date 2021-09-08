@@ -26,7 +26,6 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.ach_class import ACHClass
-    from plaid.model.transfer_direction import TransferDirection
     from plaid.model.transfer_failure import TransferFailure
     from plaid.model.transfer_metadata import TransferMetadata
     from plaid.model.transfer_network import TransferNetwork
@@ -34,7 +33,6 @@ def lazy_import():
     from plaid.model.transfer_type import TransferType
     from plaid.model.transfer_user_in_response import TransferUserInResponse
     globals()['ACHClass'] = ACHClass
-    globals()['TransferDirection'] = TransferDirection
     globals()['TransferFailure'] = TransferFailure
     globals()['TransferMetadata'] = TransferMetadata
     globals()['TransferNetwork'] = TransferNetwork
@@ -102,17 +100,14 @@ class Transfer(ModelNormal):
             'type': (TransferType,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'amount': (str,),  # noqa: E501
-            'iso_currency_code': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
             'status': (TransferStatus,),  # noqa: E501
             'network': (TransferNetwork,),  # noqa: E501
             'cancellable': (bool,),  # noqa: E501
             'failure_reason': (TransferFailure,),  # noqa: E501
-            'custom_tag': (str, none_type,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
-            'direction': (TransferDirection,),  # noqa: E501
         }
 
     @cached_property
@@ -127,17 +122,14 @@ class Transfer(ModelNormal):
         'type': 'type',  # noqa: E501
         'user': 'user',  # noqa: E501
         'amount': 'amount',  # noqa: E501
-        'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'description': 'description',  # noqa: E501
         'created': 'created',  # noqa: E501
         'status': 'status',  # noqa: E501
         'network': 'network',  # noqa: E501
         'cancellable': 'cancellable',  # noqa: E501
         'failure_reason': 'failure_reason',  # noqa: E501
-        'custom_tag': 'custom_tag',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
-        'direction': 'direction',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,7 +144,7 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, ach_class, account_id, type, user, amount, iso_currency_code, description, created, status, network, cancellable, failure_reason, custom_tag, metadata, origination_account_id, direction, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
@@ -162,17 +154,14 @@ class Transfer(ModelNormal):
             type (TransferType):
             user (TransferUserInResponse):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
-            iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
             description (str): The description of the transfer.
             created (datetime): The datetime when this transfer was created. This will be of the form `2006-01-02T15:04:05Z`
             status (TransferStatus):
             network (TransferNetwork):
             cancellable (bool): When `true`, you can still cancel this transfer.
             failure_reason (TransferFailure):
-            custom_tag (str, none_type): A string containing the custom tag provided by the client in the create request. Will be null if not provided.
             metadata (TransferMetadata):
             origination_account_id (str): Plaid’s unique identifier for the origination account that was used for this transfer.
-            direction (TransferDirection):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -236,17 +225,14 @@ class Transfer(ModelNormal):
         self.type = type
         self.user = user
         self.amount = amount
-        self.iso_currency_code = iso_currency_code
         self.description = description
         self.created = created
         self.status = status
         self.network = network
         self.cancellable = cancellable
         self.failure_reason = failure_reason
-        self.custom_tag = custom_tag
         self.metadata = metadata
         self.origination_account_id = origination_account_id
-        self.direction = direction
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -25,10 +25,12 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.auth_metadata import AuthMetadata
     from plaid.model.country_code import CountryCode
     from plaid.model.institution_status import InstitutionStatus
     from plaid.model.payment_initiation_metadata import PaymentInitiationMetadata
     from plaid.model.products import Products
+    globals()['AuthMetadata'] = AuthMetadata
     globals()['CountryCode'] = CountryCode
     globals()['InstitutionStatus'] = InstitutionStatus
     globals()['PaymentInitiationMetadata'] = PaymentInitiationMetadata
@@ -99,6 +101,7 @@ class Institution(ModelNormal):
             'logo': (str, none_type,),  # noqa: E501
             'status': (InstitutionStatus,),  # noqa: E501
             'payment_initiation_metadata': (PaymentInitiationMetadata,),  # noqa: E501
+            'auth_metadata': (AuthMetadata,),  # noqa: E501
         }
 
     @cached_property
@@ -118,6 +121,7 @@ class Institution(ModelNormal):
         'logo': 'logo',  # noqa: E501
         'status': 'status',  # noqa: E501
         'payment_initiation_metadata': 'payment_initiation_metadata',  # noqa: E501
+        'auth_metadata': 'auth_metadata',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -179,6 +183,7 @@ class Institution(ModelNormal):
             logo (str, none_type): Base64 encoded representation of the institution's logo. [optional]  # noqa: E501
             status (InstitutionStatus): [optional]  # noqa: E501
             payment_initiation_metadata (PaymentInitiationMetadata): [optional]  # noqa: E501
+            auth_metadata (AuthMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

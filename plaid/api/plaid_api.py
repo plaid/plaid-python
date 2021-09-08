@@ -60,6 +60,8 @@ from plaid.model.bank_transfer_migrate_account_request import BankTransferMigrat
 from plaid.model.bank_transfer_migrate_account_response import BankTransferMigrateAccountResponse
 from plaid.model.bank_transfer_sweep_get_request import BankTransferSweepGetRequest
 from plaid.model.bank_transfer_sweep_get_response import BankTransferSweepGetResponse
+from plaid.model.bank_transfer_sweep_list_request import BankTransferSweepListRequest
+from plaid.model.bank_transfer_sweep_list_response import BankTransferSweepListResponse
 from plaid.model.categories_get_response import CategoriesGetResponse
 from plaid.model.deposit_switch_alt_create_request import DepositSwitchAltCreateRequest
 from plaid.model.deposit_switch_alt_create_response import DepositSwitchAltCreateResponse
@@ -78,8 +80,11 @@ from plaid.model.income_verification_create_request import IncomeVerificationCre
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
 from plaid.model.income_verification_documents_download_request import IncomeVerificationDocumentsDownloadRequest
 from plaid.model.income_verification_paystub_get_request import IncomeVerificationPaystubGetRequest
+from plaid.model.income_verification_paystub_get_response import IncomeVerificationPaystubGetResponse
 from plaid.model.income_verification_paystubs_get_request import IncomeVerificationPaystubsGetRequest
 from plaid.model.income_verification_paystubs_get_response import IncomeVerificationPaystubsGetResponse
+from plaid.model.income_verification_precheck_request import IncomeVerificationPrecheckRequest
+from plaid.model.income_verification_precheck_response import IncomeVerificationPrecheckResponse
 from plaid.model.income_verification_refresh_request import IncomeVerificationRefreshRequest
 from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
 from plaid.model.income_verification_summary_get_request import IncomeVerificationSummaryGetRequest
@@ -126,6 +131,8 @@ from plaid.model.payment_initiation_payment_get_request import PaymentInitiation
 from plaid.model.payment_initiation_payment_get_response import PaymentInitiationPaymentGetResponse
 from plaid.model.payment_initiation_payment_list_request import PaymentInitiationPaymentListRequest
 from plaid.model.payment_initiation_payment_list_response import PaymentInitiationPaymentListResponse
+from plaid.model.payment_initiation_payment_reverse_request import PaymentInitiationPaymentReverseRequest
+from plaid.model.payment_initiation_payment_reverse_response import PaymentInitiationPaymentReverseResponse
 from plaid.model.payment_initiation_payment_token_create_request import PaymentInitiationPaymentTokenCreateRequest
 from plaid.model.payment_initiation_payment_token_create_response import PaymentInitiationPaymentTokenCreateResponse
 from plaid.model.payment_initiation_recipient_create_request import PaymentInitiationRecipientCreateRequest
@@ -2890,6 +2897,128 @@ class PlaidApi(object):
             callable=__bank_transfer_sweep_get
         )
 
+        def __bank_transfer_sweep_list(
+            self,
+            bank_transfer_sweep_list_request,
+            **kwargs
+        ):
+            """List sweeps  # noqa: E501
+
+            The `/bank_transfer/sweep/list` endpoint fetches information about the sweeps matching the given filters.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.bank_transfer_sweep_list(bank_transfer_sweep_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                bank_transfer_sweep_list_request (BankTransferSweepListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                BankTransferSweepListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['bank_transfer_sweep_list_request'] = \
+                bank_transfer_sweep_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.bank_transfer_sweep_list = _Endpoint(
+            settings={
+                'response_type': (BankTransferSweepListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/bank_transfer/sweep/list',
+                'operation_id': 'bank_transfer_sweep_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'bank_transfer_sweep_list_request',
+                ],
+                'required': [
+                    'bank_transfer_sweep_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'bank_transfer_sweep_list_request':
+                        (BankTransferSweepListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'bank_transfer_sweep_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__bank_transfer_sweep_list
+        )
+
         def __categories_get(
             self,
             body,
@@ -4144,7 +4273,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                None
+                IncomeVerificationPaystubGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -4173,7 +4302,7 @@ class PlaidApi(object):
 
         self.income_verification_paystub_get = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (IncomeVerificationPaystubGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -4347,6 +4476,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__income_verification_paystubs_get
+        )
+
+        def __income_verification_precheck(
+            self,
+            income_verification_precheck_request,
+            **kwargs
+        ):
+            """Check a user's eligibility for the income verification product  # noqa: E501
+
+            `/income/verification/precheck` returns whether a given user is supportable by the income product  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.income_verification_precheck(income_verification_precheck_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                income_verification_precheck_request (IncomeVerificationPrecheckRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IncomeVerificationPrecheckResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['income_verification_precheck_request'] = \
+                income_verification_precheck_request
+            return self.call_with_http_info(**kwargs)
+
+        self.income_verification_precheck = _Endpoint(
+            settings={
+                'response_type': (IncomeVerificationPrecheckResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/income/verification/precheck',
+                'operation_id': 'income_verification_precheck',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'income_verification_precheck_request',
+                ],
+                'required': [
+                    'income_verification_precheck_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'income_verification_precheck_request':
+                        (IncomeVerificationPrecheckRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'income_verification_precheck_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__income_verification_precheck
         )
 
         def __income_verification_refresh(
@@ -7153,6 +7404,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__payment_initiation_payment_list
+        )
+
+        def __payment_initiation_payment_reverse(
+            self,
+            payment_initiation_payment_reverse_request,
+            **kwargs
+        ):
+            """Reverse an existing payment  # noqa: E501
+
+            Reverse a previously initiated payment.  A payment can only be reversed once and will be refunded to the original sender's account.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_initiation_payment_reverse(payment_initiation_payment_reverse_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_initiation_payment_reverse_request (PaymentInitiationPaymentReverseRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentInitiationPaymentReverseResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_initiation_payment_reverse_request'] = \
+                payment_initiation_payment_reverse_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_initiation_payment_reverse = _Endpoint(
+            settings={
+                'response_type': (PaymentInitiationPaymentReverseResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_initiation/payment/reverse',
+                'operation_id': 'payment_initiation_payment_reverse',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_initiation_payment_reverse_request',
+                ],
+                'required': [
+                    'payment_initiation_payment_reverse_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_initiation_payment_reverse_request':
+                        (PaymentInitiationPaymentReverseRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_initiation_payment_reverse_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_initiation_payment_reverse
         )
 
         def __payment_initiation_recipient_create(

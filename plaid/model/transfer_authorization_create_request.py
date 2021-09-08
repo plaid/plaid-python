@@ -65,9 +65,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
     }
 
     validations = {
-        ('description',): {
-            'max_length': 10,
-        },
     }
 
     additional_properties_type = None
@@ -91,8 +88,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             'type': (TransferType,),  # noqa: E501
             'network': (TransferNetwork,),  # noqa: E501
             'amount': (str,),  # noqa: E501
-            'iso_currency_code': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'user': (TransferUserInRequest,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
@@ -112,8 +107,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         'type': 'type',  # noqa: E501
         'network': 'network',  # noqa: E501
         'amount': 'amount',  # noqa: E501
-        'iso_currency_code': 'iso_currency_code',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'user': 'user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
@@ -134,7 +127,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_token, account_id, type, network, amount, iso_currency_code, description, ach_class, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, account_id, type, network, amount, ach_class, user, *args, **kwargs):  # noqa: E501
         """TransferAuthorizationCreateRequest - a model defined in OpenAPI
 
         Args:
@@ -143,8 +136,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             type (TransferType):
             network (TransferNetwork):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
-            iso_currency_code (str): The currency of the transfer amount – should be set to \"USD\".
-            description (str): The authorization description. Maximum of 10 characters.
             ach_class (ACHClass):
             user (TransferUserInRequest):
 
@@ -213,8 +204,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         self.type = type
         self.network = network
         self.amount = amount
-        self.iso_currency_code = iso_currency_code
-        self.description = description
         self.ach_class = ach_class
         self.user = user
         for var_name, var_value in kwargs.items():
