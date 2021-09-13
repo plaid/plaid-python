@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.address_data_nullable import AddressDataNullable
-    globals()['AddressDataNullable'] = AddressDataNullable
+    from plaid.model.signal_address_data import SignalAddressData
+    globals()['SignalAddressData'] = SignalAddressData
 
 
 class IncomeVerificationPrecheckUser(ModelNormal):
@@ -78,7 +78,7 @@ class IncomeVerificationPrecheckUser(ModelNormal):
             'first_name': (str, none_type,),  # noqa: E501
             'last_name': (str, none_type,),  # noqa: E501
             'email_address': (str, none_type,),  # noqa: E501
-            'home_address': (AddressDataNullable,),  # noqa: E501
+            'home_address': (SignalAddressData,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +142,7 @@ class IncomeVerificationPrecheckUser(ModelNormal):
             first_name (str, none_type): The user's first name. [optional]  # noqa: E501
             last_name (str, none_type): The user's last name. [optional]  # noqa: E501
             email_address (str, none_type): The user's email address. [optional]  # noqa: E501
-            home_address (AddressDataNullable): [optional]  # noqa: E501
+            home_address (SignalAddressData): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
