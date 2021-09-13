@@ -60,6 +60,7 @@ class Products(ModelSimple):
             'INCOME_VERIFICATION': "income_verification",
             'DEPOSIT_SWITCH': "deposit_switch",
             'STANDING_ORDERS': "standing_orders",
+            'TRANSFER': "transfer",
         },
     }
 
@@ -109,10 +110,10 @@ class Products(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): A list of products that an institution can support. All Items must be initialized with at least one product. The Balance product is always available and does not need to be specified during initialization.., must be one of ["assets", "auth", "balance", "identity", "investments", "liabilities", "payment_initiation", "transactions", "credit_details", "income", "income_verification", "deposit_switch", "standing_orders", ]  # noqa: E501
+            args[0] (str): A list of products that an institution can support. All Items must be initialized with at least one product. The Balance product is always available and does not need to be specified during initialization.., must be one of ["assets", "auth", "balance", "identity", "investments", "liabilities", "payment_initiation", "transactions", "credit_details", "income", "income_verification", "deposit_switch", "standing_orders", "transfer", ]  # noqa: E501
 
         Keyword Args:
-            value (str): A list of products that an institution can support. All Items must be initialized with at least one product. The Balance product is always available and does not need to be specified during initialization.., must be one of ["assets", "auth", "balance", "identity", "investments", "liabilities", "payment_initiation", "transactions", "credit_details", "income", "income_verification", "deposit_switch", "standing_orders", ]  # noqa: E501
+            value (str): A list of products that an institution can support. All Items must be initialized with at least one product. The Balance product is always available and does not need to be specified during initialization.., must be one of ["assets", "auth", "balance", "identity", "investments", "liabilities", "payment_initiation", "transactions", "credit_details", "income", "income_verification", "deposit_switch", "standing_orders", "transfer", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

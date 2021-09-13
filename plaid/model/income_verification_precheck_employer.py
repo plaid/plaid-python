@@ -70,8 +70,8 @@ class IncomeVerificationPrecheckEmployer(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str,),  # noqa: E501
-            'tax_id': (str,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'tax_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -130,8 +130,8 @@ class IncomeVerificationPrecheckEmployer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str): The employer's name. [optional]  # noqa: E501
-            tax_id (str): The employer's tax id. [optional]  # noqa: E501
+            name (str, none_type): The employer's name. [optional]  # noqa: E501
+            tax_id (str, none_type): The employer's tax id. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
