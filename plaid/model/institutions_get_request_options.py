@@ -79,6 +79,7 @@ class InstitutionsGetRequestOptions(ModelNormal):
             'routing_numbers': ([str],),  # noqa: E501
             'oauth': (bool,),  # noqa: E501
             'include_optional_metadata': (bool,),  # noqa: E501
+            'include_auth_metadata': (bool,),  # noqa: E501
             'include_payment_initiation_metadata': (bool,),  # noqa: E501
         }
 
@@ -92,6 +93,7 @@ class InstitutionsGetRequestOptions(ModelNormal):
         'routing_numbers': 'routing_numbers',  # noqa: E501
         'oauth': 'oauth',  # noqa: E501
         'include_optional_metadata': 'include_optional_metadata',  # noqa: E501
+        'include_auth_metadata': 'include_auth_metadata',  # noqa: E501
         'include_payment_initiation_metadata': 'include_payment_initiation_metadata',  # noqa: E501
     }
 
@@ -145,6 +147,7 @@ class InstitutionsGetRequestOptions(ModelNormal):
             routing_numbers ([str]): Specify an array of routing numbers to filter institutions. The response will only return institutions that match all of the routing numbers in the array.. [optional]  # noqa: E501
             oauth (bool): Limit results to institutions with or without OAuth login flows. This is primarily relevant to institutions with European country codes.. [optional]  # noqa: E501
             include_optional_metadata (bool): When `true`, return the institution's homepage URL, logo and primary brand color.  Note that Plaid does not own any of the logos shared by the API, and that by accessing or using these logos, you agree that you are doing so at your own risk and will, if necessary, obtain all required permissions from the appropriate rights holders and adhere to any applicable usage guidelines. Plaid disclaims all express or implied warranties with respect to the logos.. [optional]  # noqa: E501
+            include_auth_metadata (bool): When `true`, returns metadata related to the Auth product indicating which auth methods are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
             include_payment_initiation_metadata (bool): When `true`, returns metadata related to the Payment Initiation product indicating which payment configurations are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 

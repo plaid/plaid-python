@@ -91,8 +91,6 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
             'type': (TransferType,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'amount': (str,),  # noqa: E501
-            'iso_currency_code': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
             'network': (str,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
         }
@@ -108,8 +106,6 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
         'type': 'type',  # noqa: E501
         'user': 'user',  # noqa: E501
         'amount': 'amount',  # noqa: E501
-        'iso_currency_code': 'iso_currency_code',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'network': 'network',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
     }
@@ -126,7 +122,7 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, ach_class, account_id, type, user, amount, iso_currency_code, description, network, origination_account_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, ach_class, account_id, type, user, amount, network, origination_account_id, *args, **kwargs):  # noqa: E501
         """TransferAuthorizationProposedTransfer - a model defined in OpenAPI
 
         Args:
@@ -135,8 +131,6 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
             type (TransferType):
             user (TransferUserInResponse):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
-            iso_currency_code (str): The currency of the transfer amount.
-            description (str): A description of the proposed transfer.
             network (str): The network or rails used for the transfer.
             origination_account_id (str): Plaid's unique identifier for the origination account that was used for this transfer.
 
@@ -201,8 +195,6 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
         self.type = type
         self.user = user
         self.amount = amount
-        self.iso_currency_code = iso_currency_code
-        self.description = description
         self.network = network
         self.origination_account_id = origination_account_id
         for var_name, var_value in kwargs.items():
