@@ -117,7 +117,7 @@ class IncomeBreakdown(ModelNormal):
         """IncomeBreakdown - a model defined in OpenAPI
 
         Args:
-            type (str, none_type): The type of income. Possible values include:   `\"regular\"`: regular income   `\"overtime\"`: overtime income    `\"bonus\"`: bonus income
+            type (str, none_type): The type of income. Possible values include:   `\"regular\"`: regular income   `\"overtime\"`: overtime income   `\"bonus\"`: bonus income
             rate (float, none_type): The hourly rate at which the income is paid.
             hours (float, none_type): The number of hours logged for this income for this pay period.
             total (float, none_type): The total pay for this pay period.

@@ -11,42 +11,9 @@ Follow these steps sequentially to prepare a new release to Pypi:
 - Commit the change, create a Pull Request, and obtain approval from a Plaid team member
 - Merge the commit into `master`, and pull down the latest changes locally from `master`
 
-2. **Publish to Pypi**
+2. **Publish to PyPi**
 
-Publishing to [Pypi][1] requires `twine` to upload the dist package:
-
-```bash
-pip install twine
-```
-
-Clean and remove old packages before building a new package with the latest
-version and changes. This command removes any existing packages in the `/dist`
-directory:
-
-```bash
-make package-clean
-```
-
-Build a new package into the `/dist` directory:
-
-```bash
-make package-build
-```
-
-Test and check the new package will render properly on Pypi:
-
-```bash
-make package-check
-```
-
-Finally, once everything has been tested and you are confident in publishing
-the new package to Pypi, run the publish command.
-
-_*Warning: this command is final and will create a new plaid-python release*_
-
-```bash
-make package-publish
-```
+Publishing to PyPi is now handled with a job. Refer to our internal OpenAPI/clib documentation on how to do this properly.
 
 3. **Verify publish to Pypi**
 

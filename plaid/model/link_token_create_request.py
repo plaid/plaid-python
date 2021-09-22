@@ -31,6 +31,7 @@ def lazy_import():
     from plaid.model.link_token_create_request_deposit_switch import LinkTokenCreateRequestDepositSwitch
     from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
     from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
+    from plaid.model.link_token_create_request_update import LinkTokenCreateRequestUpdate
     from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
     from plaid.model.link_token_eu_config import LinkTokenEUConfig
     from plaid.model.products import Products
@@ -40,6 +41,7 @@ def lazy_import():
     globals()['LinkTokenCreateRequestDepositSwitch'] = LinkTokenCreateRequestDepositSwitch
     globals()['LinkTokenCreateRequestIncomeVerification'] = LinkTokenCreateRequestIncomeVerification
     globals()['LinkTokenCreateRequestPaymentInitiation'] = LinkTokenCreateRequestPaymentInitiation
+    globals()['LinkTokenCreateRequestUpdate'] = LinkTokenCreateRequestUpdate
     globals()['LinkTokenCreateRequestUser'] = LinkTokenCreateRequestUser
     globals()['LinkTokenEUConfig'] = LinkTokenEUConfig
     globals()['Products'] = Products
@@ -113,6 +115,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'deposit_switch': (LinkTokenCreateRequestDepositSwitch,),  # noqa: E501
             'income_verification': (LinkTokenCreateRequestIncomeVerification,),  # noqa: E501
             'auth': (LinkTokenCreateRequestAuth,),  # noqa: E501
+            'update': (LinkTokenCreateRequestUpdate,),  # noqa: E501
         }
 
     @cached_property
@@ -140,6 +143,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'deposit_switch': 'deposit_switch',  # noqa: E501
         'income_verification': 'income_verification',  # noqa: E501
         'auth': 'auth',  # noqa: E501
+        'update': 'update',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -209,6 +213,7 @@ class LinkTokenCreateRequest(ModelNormal):
             deposit_switch (LinkTokenCreateRequestDepositSwitch): [optional]  # noqa: E501
             income_verification (LinkTokenCreateRequestIncomeVerification): [optional]  # noqa: E501
             auth (LinkTokenCreateRequestAuth): [optional]  # noqa: E501
+            update (LinkTokenCreateRequestUpdate): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
