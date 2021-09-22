@@ -27,6 +27,7 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.account_subtype import AccountSubtype
     from plaid.model.holdings_override import HoldingsOverride
+    from plaid.model.income_override import IncomeOverride
     from plaid.model.inflow_model import InflowModel
     from plaid.model.investments_transactions_override import InvestmentsTransactionsOverride
     from plaid.model.liability_override import LiabilityOverride
@@ -37,6 +38,7 @@ def lazy_import():
     from plaid.model.transaction_override import TransactionOverride
     globals()['AccountSubtype'] = AccountSubtype
     globals()['HoldingsOverride'] = HoldingsOverride
+    globals()['IncomeOverride'] = IncomeOverride
     globals()['InflowModel'] = InflowModel
     globals()['InvestmentsTransactionsOverride'] = InvestmentsTransactionsOverride
     globals()['LiabilityOverride'] = LiabilityOverride
@@ -113,6 +115,7 @@ class OverrideAccounts(ModelNormal):
             'inflow_model': (InflowModel,),  # noqa: E501
             'holdings': (HoldingsOverride,),  # noqa: E501
             'investment_transactions': (InvestmentsTransactionsOverride,),  # noqa: E501
+            'income': (IncomeOverride,),  # noqa: E501
         }
 
     @cached_property
@@ -134,6 +137,7 @@ class OverrideAccounts(ModelNormal):
         'inflow_model': 'inflow_model',  # noqa: E501
         'holdings': 'holdings',  # noqa: E501
         'investment_transactions': 'investment_transactions',  # noqa: E501
+        'income': 'income',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -197,6 +201,7 @@ class OverrideAccounts(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             holdings (HoldingsOverride): [optional]  # noqa: E501
             investment_transactions (InvestmentsTransactionsOverride): [optional]  # noqa: E501
+            income (IncomeOverride): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

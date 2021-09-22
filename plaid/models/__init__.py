@@ -161,6 +161,7 @@ from plaid.model.identity_get_request_options import IdentityGetRequestOptions
 from plaid.model.identity_get_response import IdentityGetResponse
 from plaid.model.incident_update import IncidentUpdate
 from plaid.model.income_breakdown import IncomeBreakdown
+from plaid.model.income_override import IncomeOverride
 from plaid.model.income_summary import IncomeSummary
 from plaid.model.income_summary_field_number import IncomeSummaryFieldNumber
 from plaid.model.income_summary_field_string import IncomeSummaryFieldString
@@ -254,6 +255,7 @@ from plaid.model.link_token_create_request_auth import LinkTokenCreateRequestAut
 from plaid.model.link_token_create_request_deposit_switch import LinkTokenCreateRequestDepositSwitch
 from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
 from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
+from plaid.model.link_token_create_request_update import LinkTokenCreateRequestUpdate
 from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_eu_config import LinkTokenEUConfig
@@ -268,6 +270,7 @@ from plaid.model.mortgage_interest_rate import MortgageInterestRate
 from plaid.model.mortgage_liability import MortgageLiability
 from plaid.model.mortgage_property_address import MortgagePropertyAddress
 from plaid.model.net_pay import NetPay
+from plaid.model.new_accounts_available_webhook import NewAccountsAvailableWebhook
 from plaid.model.numbers import Numbers
 from plaid.model.numbers_ach import NumbersACH
 from plaid.model.numbers_ach_nullable import NumbersACHNullable
@@ -318,6 +321,10 @@ from plaid.model.paystub_address import PaystubAddress
 from plaid.model.paystub_deduction import PaystubDeduction
 from plaid.model.paystub_details import PaystubDetails
 from plaid.model.paystub_employer import PaystubEmployer
+from plaid.model.paystub_override import PaystubOverride
+from plaid.model.paystub_override_employee import PaystubOverrideEmployee
+from plaid.model.paystub_override_employee_address import PaystubOverrideEmployeeAddress
+from plaid.model.paystub_override_employer import PaystubOverrideEmployer
 from plaid.model.paystub_ytd_details import PaystubYTDDetails
 from plaid.model.pending_expiration_webhook import PendingExpirationWebhook
 from plaid.model.personal_finance_category import PersonalFinanceCategory
@@ -345,6 +352,7 @@ from plaid.model.projected_income_summary_field_number import ProjectedIncomeSum
 from plaid.model.recaptcha_required_error import RecaptchaRequiredError
 from plaid.model.recipient_bacs import RecipientBACS
 from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
+from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
 from plaid.model.requested_scopes import RequestedScopes
 from plaid.model.sandbox_bank_transfer_fire_webhook_request import SandboxBankTransferFireWebhookRequest
 from plaid.model.sandbox_bank_transfer_fire_webhook_response import SandboxBankTransferFireWebhookResponse
@@ -404,9 +412,13 @@ from plaid.model.transaction_base import TransactionBase
 from plaid.model.transaction_code import TransactionCode
 from plaid.model.transaction_data import TransactionData
 from plaid.model.transaction_override import TransactionOverride
+from plaid.model.transaction_stream import TransactionStream
+from plaid.model.transaction_stream_amount import TransactionStreamAmount
 from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_request_options import TransactionsGetRequestOptions
 from plaid.model.transactions_get_response import TransactionsGetResponse
+from plaid.model.transactions_recurring_get_request import TransactionsRecurringGetRequest
+from plaid.model.transactions_recurring_get_response import TransactionsRecurringGetResponse
 from plaid.model.transactions_refresh_request import TransactionsRefreshRequest
 from plaid.model.transactions_refresh_response import TransactionsRefreshResponse
 from plaid.model.transactions_removed_webhook import TransactionsRemovedWebhook
