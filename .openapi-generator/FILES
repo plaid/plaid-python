@@ -158,6 +158,7 @@ plaid/model/identity_get_request_options.py
 plaid/model/identity_get_response.py
 plaid/model/incident_update.py
 plaid/model/income_breakdown.py
+plaid/model/income_override.py
 plaid/model/income_summary.py
 plaid/model/income_summary_field_number.py
 plaid/model/income_summary_field_string.py
@@ -251,6 +252,7 @@ plaid/model/link_token_create_request_auth.py
 plaid/model/link_token_create_request_deposit_switch.py
 plaid/model/link_token_create_request_income_verification.py
 plaid/model/link_token_create_request_payment_initiation.py
+plaid/model/link_token_create_request_update.py
 plaid/model/link_token_create_request_user.py
 plaid/model/link_token_create_response.py
 plaid/model/link_token_eu_config.py
@@ -265,6 +267,7 @@ plaid/model/mortgage_interest_rate.py
 plaid/model/mortgage_liability.py
 plaid/model/mortgage_property_address.py
 plaid/model/net_pay.py
+plaid/model/new_accounts_available_webhook.py
 plaid/model/numbers.py
 plaid/model/numbers_ach.py
 plaid/model/numbers_ach_nullable.py
@@ -314,6 +317,10 @@ plaid/model/paystub_address.py
 plaid/model/paystub_deduction.py
 plaid/model/paystub_details.py
 plaid/model/paystub_employer.py
+plaid/model/paystub_override.py
+plaid/model/paystub_override_employee.py
+plaid/model/paystub_override_employee_address.py
+plaid/model/paystub_override_employer.py
 plaid/model/paystub_ytd_details.py
 plaid/model/pending_expiration_webhook.py
 plaid/model/personal_finance_category.py
@@ -342,6 +349,7 @@ plaid/model/pslf_status.py
 plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
+plaid/model/recurring_transaction_frequency.py
 plaid/model/requested_scopes.py
 plaid/model/sandbox_bank_transfer_fire_webhook_request.py
 plaid/model/sandbox_bank_transfer_fire_webhook_response.py
@@ -401,9 +409,13 @@ plaid/model/transaction_base.py
 plaid/model/transaction_code.py
 plaid/model/transaction_data.py
 plaid/model/transaction_override.py
+plaid/model/transaction_stream.py
+plaid/model/transaction_stream_amount.py
 plaid/model/transactions_get_request.py
 plaid/model/transactions_get_request_options.py
 plaid/model/transactions_get_response.py
+plaid/model/transactions_recurring_get_request.py
+plaid/model/transactions_recurring_get_response.py
 plaid/model/transactions_refresh_request.py
 plaid/model/transactions_refresh_response.py
 plaid/model/transactions_removed_webhook.py

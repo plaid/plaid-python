@@ -181,6 +181,8 @@ from plaid.model.signal_return_report_request import SignalReturnReportRequest
 from plaid.model.signal_return_report_response import SignalReturnReportResponse
 from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_response import TransactionsGetResponse
+from plaid.model.transactions_recurring_get_request import TransactionsRecurringGetRequest
+from plaid.model.transactions_recurring_get_response import TransactionsRecurringGetResponse
 from plaid.model.transactions_refresh_request import TransactionsRefreshRequest
 from plaid.model.transactions_refresh_response import TransactionsRefreshResponse
 from plaid.model.transfer_authorization_create_request import TransferAuthorizationCreateRequest
@@ -10453,6 +10455,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transactions_get
+        )
+
+        def __transactions_recurring_get(
+            self,
+            transactions_recurring_get_request,
+            **kwargs
+        ):
+            """Get streams of recurring transactions  # noqa: E501
+
+            The `/transactions/recurring/get` endpoint identifies and returns groups of transactions that occur on a regular basis for the inputted Item and accounts.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_recurring_get(transactions_recurring_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_recurring_get_request (TransactionsRecurringGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsRecurringGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_recurring_get_request'] = \
+                transactions_recurring_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_recurring_get = _Endpoint(
+            settings={
+                'response_type': (TransactionsRecurringGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transactions/recurring/get',
+                'operation_id': 'transactions_recurring_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_recurring_get_request',
+                ],
+                'required': [
+                    'transactions_recurring_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_recurring_get_request':
+                        (TransactionsRecurringGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_recurring_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_recurring_get
         )
 
         def __transactions_refresh(
