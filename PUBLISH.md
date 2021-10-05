@@ -20,6 +20,10 @@ Publishing to PyPi is now handled with a job. Refer to our internal OpenAPI/clib
 Verify that the latest package version you just released matches the version
 history at:
 
+```
+https://pypi.org/project/plaid-python/#history.
+```
+
 4. **Tag the published version on GitHub**
 
 After you have verified that the latest version has been published on PyPi, tag the release on GitHub.
@@ -27,10 +31,6 @@ After you have verified that the latest version has been published on PyPi, tag 
 ```sh
 git tag {VERSION}
 git push origin {VERSION}
-```
-
-```
-https://pypi.org/project/plaid-python/#history.
 ```
 
 [1]: https://pypi.org/project/plaid-python/
