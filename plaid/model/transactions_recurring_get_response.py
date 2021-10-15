@@ -82,9 +82,9 @@ class TransactionsRecurringGetResponse(ModelNormal):
         """
         lazy_import()
         return {
+            'inflow_streams': ([TransactionStream],),  # noqa: E501
             'outflow_streams': ([TransactionStream],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'inflow_streams': ([TransactionStream],),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class TransactionsRecurringGetResponse(ModelNormal):
 
 
     attribute_map = {
+        'inflow_streams': 'inflow_streams',  # noqa: E501
         'outflow_streams': 'outflow_streams',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
-        'inflow_streams': 'inflow_streams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,10 +110,11 @@ class TransactionsRecurringGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, outflow_streams, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, inflow_streams, outflow_streams, request_id, *args, **kwargs):  # noqa: E501
         """TransactionsRecurringGetResponse - a model defined in OpenAPI
 
         Args:
+            inflow_streams ([TransactionStream]): An array of depository transaction streams.
             outflow_streams ([TransactionStream]): An array of expense transaction streams.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
@@ -148,7 +149,6 @@ class TransactionsRecurringGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            inflow_streams ([TransactionStream]): An array of depository transaction streams.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,6 +174,7 @@ class TransactionsRecurringGetResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.inflow_streams = inflow_streams
         self.outflow_streams = outflow_streams
         self.request_id = request_id
         for var_name, var_value in kwargs.items():

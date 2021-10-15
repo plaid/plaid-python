@@ -25,7 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.deductions_breakdown import DeductionsBreakdown
+    from plaid.model.deductions_total import DeductionsTotal
     from plaid.model.total import Total
+    globals()['DeductionsBreakdown'] = DeductionsBreakdown
+    globals()['DeductionsTotal'] = DeductionsTotal
     globals()['Total'] = Total
 
 
@@ -82,6 +86,8 @@ class Deductions(ModelNormal):
         """
         lazy_import()
         return {
+            'breakdown': ([DeductionsBreakdown],),  # noqa: E501
+            'total': (DeductionsTotal,),  # noqa: E501
             'subtotals': ([Total],),  # noqa: E501
             'totals': ([Total],),  # noqa: E501
         }
@@ -92,6 +98,8 @@ class Deductions(ModelNormal):
 
 
     attribute_map = {
+        'breakdown': 'breakdown',  # noqa: E501
+        'total': 'total',  # noqa: E501
         'subtotals': 'subtotals',  # noqa: E501
         'totals': 'totals',  # noqa: E501
     }
@@ -108,8 +116,12 @@ class Deductions(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, breakdown, total, *args, **kwargs):  # noqa: E501
         """Deductions - a model defined in OpenAPI
+
+        Args:
+            breakdown ([DeductionsBreakdown]):
+            total (DeductionsTotal):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,6 +181,8 @@ class Deductions(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.breakdown = breakdown
+        self.total = total
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

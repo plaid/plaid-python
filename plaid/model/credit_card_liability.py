@@ -88,6 +88,7 @@ class CreditCardLiability(ModelNormal):
             'last_payment_amount': (float,),  # noqa: E501
             'last_payment_date': (date,),  # noqa: E501
             'last_statement_issue_date': (date,),  # noqa: E501
+            'last_statement_balance': (float,),  # noqa: E501
             'minimum_payment_amount': (float,),  # noqa: E501
             'next_payment_due_date': (date, none_type,),  # noqa: E501
         }
@@ -104,6 +105,7 @@ class CreditCardLiability(ModelNormal):
         'last_payment_amount': 'last_payment_amount',  # noqa: E501
         'last_payment_date': 'last_payment_date',  # noqa: E501
         'last_statement_issue_date': 'last_statement_issue_date',  # noqa: E501
+        'last_statement_balance': 'last_statement_balance',  # noqa: E501
         'minimum_payment_amount': 'minimum_payment_amount',  # noqa: E501
         'next_payment_due_date': 'next_payment_due_date',  # noqa: E501
     }
@@ -120,7 +122,7 @@ class CreditCardLiability(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, aprs, is_overdue, last_payment_amount, last_payment_date, last_statement_issue_date, minimum_payment_amount, next_payment_due_date, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, aprs, is_overdue, last_payment_amount, last_payment_date, last_statement_issue_date, last_statement_balance, minimum_payment_amount, next_payment_due_date, *args, **kwargs):  # noqa: E501
         """CreditCardLiability - a model defined in OpenAPI
 
         Args:
@@ -130,6 +132,7 @@ class CreditCardLiability(ModelNormal):
             last_payment_amount (float): The amount of the last payment.
             last_payment_date (date): The date of the last payment. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). Availability for this field is limited.
             last_statement_issue_date (date): The date of the last statement. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD).
+            last_statement_balance (float): The total amount owed as of the last statement issued
             minimum_payment_amount (float): The minimum payment due for the next billing cycle.
             next_payment_due_date (date, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD).
 
@@ -195,6 +198,7 @@ class CreditCardLiability(ModelNormal):
         self.last_payment_amount = last_payment_amount
         self.last_payment_date = last_payment_date
         self.last_statement_issue_date = last_statement_issue_date
+        self.last_statement_balance = last_statement_balance
         self.minimum_payment_amount = minimum_payment_amount
         self.next_payment_due_date = next_payment_due_date
         for var_name, var_value in kwargs.items():

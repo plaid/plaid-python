@@ -70,10 +70,10 @@ class TransactionsRecurringGetRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'client_id': (str,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
-            'secret': (str,),  # noqa: E501
             'account_ids': ([str],),  # noqa: E501
+            'client_id': (str,),  # noqa: E501
+            'secret': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -82,10 +82,10 @@ class TransactionsRecurringGetRequest(ModelNormal):
 
 
     attribute_map = {
-        'client_id': 'client_id',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
-        'secret': 'secret',  # noqa: E501
         'account_ids': 'account_ids',  # noqa: E501
+        'client_id': 'client_id',  # noqa: E501
+        'secret': 'secret',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -100,8 +100,12 @@ class TransactionsRecurringGetRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, account_ids, *args, **kwargs):  # noqa: E501
         """TransactionsRecurringGetRequest - a model defined in OpenAPI
+
+        Args:
+            access_token (str): The access token associated with the Item data is being requested for.
+            account_ids ([str]): A list of `account_ids` to retrieve for the Item  Note: An error will be returned if a provided `account_id` is not associated with the Item.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -135,9 +139,7 @@ class TransactionsRecurringGetRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
-            access_token (str): The access token associated with the Item data is being requested for.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            account_ids ([str]): A list of `account_ids` to retrieve for the Item  Note: An error will be returned if a provided `account_id` is not associated with the Item.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -163,6 +165,8 @@ class TransactionsRecurringGetRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.access_token = access_token
+        self.account_ids = account_ids
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -62,7 +62,7 @@ class AssetReportCreateRequest(ModelNormal):
             'min_items': 1,
         },
         ('days_requested',): {
-            'inclusive_maximum': 730,
+            'inclusive_maximum': 731,
             'inclusive_minimum': 0,
         },
     }

@@ -72,6 +72,8 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
         return {
             'income_verification_id': (str,),  # noqa: E501
             'asset_report_id': (str,),  # noqa: E501
+            'precheck_id': (str,),  # noqa: E501
+            'access_tokens': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -82,6 +84,8 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
     attribute_map = {
         'income_verification_id': 'income_verification_id',  # noqa: E501
         'asset_report_id': 'asset_report_id',  # noqa: E501
+        'precheck_id': 'precheck_id',  # noqa: E501
+        'access_tokens': 'access_tokens',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -96,11 +100,8 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, income_verification_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """LinkTokenCreateRequestIncomeVerification - a model defined in OpenAPI
-
-        Args:
-            income_verification_id (str): The `income_verification_id` of the verification instance, as provided by `/income/verification/create`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,7 +134,10 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            income_verification_id (str): The `income_verification_id` of the verification instance, as provided by `/income/verification/create`.. [optional]  # noqa: E501
             asset_report_id (str): The `asset_report_id` of an asset report associated with the user, as provided by `/asset_report/create`. Providing an `asset_report_id` is optional and can be used to verify the user through a streamlined flow. If provided, the bank linking flow will be skipped.. [optional]  # noqa: E501
+            precheck_id (str): The ID of a precheck created with `/income/verification/precheck`. Will be used to improve conversion of the income verification flow.. [optional]  # noqa: E501
+            access_tokens ([str]): An array of access tokens corresponding to the Items that will be cross-referenced with the product data. If the `transactions` product was not initialized for the Items during link, it will be initialized after this Link session.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -159,7 +163,6 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.income_verification_id = income_verification_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

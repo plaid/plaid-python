@@ -75,8 +75,8 @@ class AssetReportCreateRequestOptions(ModelNormal):
         """
         lazy_import()
         return {
-            'client_report_id': (str,),  # noqa: E501
-            'webhook': (str,),  # noqa: E501
+            'client_report_id': (str, none_type,),  # noqa: E501
+            'webhook': (str, none_type,),  # noqa: E501
             'user': (AssetReportUser,),  # noqa: E501
         }
 
@@ -137,8 +137,8 @@ class AssetReportCreateRequestOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            client_report_id (str): Client-generated identifier, which can be used by lenders to track loan applications.. [optional]  # noqa: E501
-            webhook (str): URL to which Plaid will send Assets webhooks, for example when the requested Asset Report is ready.. [optional]  # noqa: E501
+            client_report_id (str, none_type): Client-generated identifier, which can be used by lenders to track loan applications.. [optional]  # noqa: E501
+            webhook (str, none_type): URL to which Plaid will send Assets webhooks, for example when the requested Asset Report is ready.. [optional]  # noqa: E501
             user (AssetReportUser): [optional]  # noqa: E501
         """
 

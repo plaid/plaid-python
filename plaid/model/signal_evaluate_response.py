@@ -112,13 +112,12 @@ class SignalEvaluateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, request_id, scores, core_attributes, *args, **kwargs):  # noqa: E501
+    def __init__(self, request_id, scores, *args, **kwargs):  # noqa: E501
         """SignalEvaluateResponse - a model defined in OpenAPI
 
         Args:
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
             scores (SignalScores):
-            core_attributes (SignalEvaluateCoreAttributes):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -151,6 +150,7 @@ class SignalEvaluateResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            core_attributes (SignalEvaluateCoreAttributes): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -178,7 +178,6 @@ class SignalEvaluateResponse(ModelNormal):
 
         self.request_id = request_id
         self.scores = scores
-        self.core_attributes = core_attributes
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

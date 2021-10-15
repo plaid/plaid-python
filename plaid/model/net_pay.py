@@ -25,9 +25,7 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.distribution_details import DistributionDetails
     from plaid.model.total import Total
-    globals()['DistributionDetails'] = DistributionDetails
     globals()['Total'] = Total
 
 
@@ -84,7 +82,11 @@ class NetPay(ModelNormal):
         """
         lazy_import()
         return {
-            'distribution_details': ([DistributionDetails],),  # noqa: E501
+            'current_amount': (float, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'iso_currency_code': (str, none_type,),  # noqa: E501
+            'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'ytd_amount': (float, none_type,),  # noqa: E501
             'total': (Total,),  # noqa: E501
         }
 
@@ -94,7 +96,11 @@ class NetPay(ModelNormal):
 
 
     attribute_map = {
-        'distribution_details': 'distribution_details',  # noqa: E501
+        'current_amount': 'current_amount',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
+        'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'ytd_amount': 'ytd_amount',  # noqa: E501
         'total': 'total',  # noqa: E501
     }
 
@@ -144,7 +150,11 @@ class NetPay(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            distribution_details ([DistributionDetails]): [optional]  # noqa: E501
+            current_amount (float, none_type): Raw amount of the net pay for the pay period. [optional]  # noqa: E501
+            description (str, none_type): Description of the net pay. [optional]  # noqa: E501
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the net pay. Always `null` if `unofficial_currency_code` is non-null.. [optional]  # noqa: E501
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the net pay. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
+            ytd_amount (float, none_type): The year-to-date amount of the net pay. [optional]  # noqa: E501
             total (Total): [optional]  # noqa: E501
         """
 

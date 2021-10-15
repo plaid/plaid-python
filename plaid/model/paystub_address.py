@@ -77,13 +77,13 @@ class PaystubAddress(ModelNormal):
         """
         return {
             'city': (str, none_type,),  # noqa: E501
+            'country': (str, none_type,),  # noqa: E501
+            'postal_code': (str, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
             'street': (str, none_type,),  # noqa: E501
             'line1': (str, none_type,),  # noqa: E501
             'line2': (str, none_type,),  # noqa: E501
-            'postal_code': (str, none_type,),  # noqa: E501
-            'region': (str, none_type,),  # noqa: E501
             'state_code': (str, none_type,),  # noqa: E501
-            'country': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,13 +93,13 @@ class PaystubAddress(ModelNormal):
 
     attribute_map = {
         'city': 'city',  # noqa: E501
+        'country': 'country',  # noqa: E501
+        'postal_code': 'postal_code',  # noqa: E501
+        'region': 'region',  # noqa: E501
         'street': 'street',  # noqa: E501
         'line1': 'line1',  # noqa: E501
         'line2': 'line2',  # noqa: E501
-        'postal_code': 'postal_code',  # noqa: E501
-        'region': 'region',  # noqa: E501
         'state_code': 'state_code',  # noqa: E501
-        'country': 'country',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,13 +149,13 @@ class PaystubAddress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             city (str, none_type): The full city name.. [optional]  # noqa: E501
-            street (str, none_type): The listed street address.. [optional]  # noqa: E501
+            country (str, none_type): The ISO 3166-1 alpha-2 country code.. [optional]  # noqa: E501
+            postal_code (str, none_type): The postal code of the address.. [optional]  # noqa: E501
+            region (str, none_type): The region or state Example: `\"NC\"`. [optional]  # noqa: E501
+            street (str, none_type): The full street address.. [optional]  # noqa: E501
             line1 (str, none_type): Street address line 1.. [optional]  # noqa: E501
             line2 (str, none_type): Street address line 2.. [optional]  # noqa: E501
-            postal_code (str, none_type): 5 digit postal code.. [optional]  # noqa: E501
-            region (str, none_type): The region or state Example: `\"NC\"`. [optional]  # noqa: E501
             state_code (str, none_type): The region or state Example: `\"NC\"`. [optional]  # noqa: E501
-            country (str, none_type): The country of the address.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

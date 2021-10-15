@@ -81,6 +81,7 @@ class TaxpayerID(ModelNormal):
         """
         return {
             'id_type': (str, none_type,),  # noqa: E501
+            'id_mask': (str, none_type,),  # noqa: E501
             'last_4_digits': (str, none_type,),  # noqa: E501
         }
 
@@ -91,6 +92,7 @@ class TaxpayerID(ModelNormal):
 
     attribute_map = {
         'id_type': 'id_type',  # noqa: E501
+        'id_mask': 'id_mask',  # noqa: E501
         'last_4_digits': 'last_4_digits',  # noqa: E501
     }
 
@@ -141,6 +143,7 @@ class TaxpayerID(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id_type (str, none_type): Type of ID, e.g. 'SSN'. [optional]  # noqa: E501
+            id_mask (str, none_type): ID mask; i.e. last 4 digits of the taxpayer ID. [optional]  # noqa: E501
             last_4_digits (str, none_type): Last 4 digits of unique number of ID.. [optional]  # noqa: E501
         """
 

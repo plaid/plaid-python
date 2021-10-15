@@ -100,16 +100,16 @@ class Paystub(ModelNormal):
         """
         lazy_import()
         return {
-            'employer': (PaystubEmployer,),  # noqa: E501
-            'employee': (Employee,),  # noqa: E501
-            'pay_period_details': (PayPeriodDetails,),  # noqa: E501
-            'income_breakdown': ([IncomeBreakdown],),  # noqa: E501
-            'ytd_earnings': (PaystubYTDDetails,),  # noqa: E501
             'deductions': (Deductions,),  # noqa: E501
             'doc_id': (str,),  # noqa: E501
             'earnings': (Earnings,),  # noqa: E501
-            'employment_details': (EmploymentDetails,),  # noqa: E501
+            'employee': (Employee,),  # noqa: E501
+            'employer': (PaystubEmployer,),  # noqa: E501
             'net_pay': (NetPay,),  # noqa: E501
+            'pay_period_details': (PayPeriodDetails,),  # noqa: E501
+            'income_breakdown': ([IncomeBreakdown],),  # noqa: E501
+            'ytd_earnings': (PaystubYTDDetails,),  # noqa: E501
+            'employment_details': (EmploymentDetails,),  # noqa: E501
             'paystub_details': (PaystubDetails,),  # noqa: E501
         }
 
@@ -119,16 +119,16 @@ class Paystub(ModelNormal):
 
 
     attribute_map = {
-        'employer': 'employer',  # noqa: E501
-        'employee': 'employee',  # noqa: E501
-        'pay_period_details': 'pay_period_details',  # noqa: E501
-        'income_breakdown': 'income_breakdown',  # noqa: E501
-        'ytd_earnings': 'ytd_earnings',  # noqa: E501
         'deductions': 'deductions',  # noqa: E501
         'doc_id': 'doc_id',  # noqa: E501
         'earnings': 'earnings',  # noqa: E501
-        'employment_details': 'employment_details',  # noqa: E501
+        'employee': 'employee',  # noqa: E501
+        'employer': 'employer',  # noqa: E501
         'net_pay': 'net_pay',  # noqa: E501
+        'pay_period_details': 'pay_period_details',  # noqa: E501
+        'income_breakdown': 'income_breakdown',  # noqa: E501
+        'ytd_earnings': 'ytd_earnings',  # noqa: E501
+        'employment_details': 'employment_details',  # noqa: E501
         'paystub_details': 'paystub_details',  # noqa: E501
     }
 
@@ -144,12 +144,16 @@ class Paystub(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, employer, employee, pay_period_details, income_breakdown, ytd_earnings, *args, **kwargs):  # noqa: E501
+    def __init__(self, deductions, doc_id, earnings, employee, employer, net_pay, pay_period_details, income_breakdown, ytd_earnings, *args, **kwargs):  # noqa: E501
         """Paystub - a model defined in OpenAPI
 
         Args:
-            employer (PaystubEmployer):
+            deductions (Deductions):
+            doc_id (str): An identifier of the document referenced by the document metadata.
+            earnings (Earnings):
             employee (Employee):
+            employer (PaystubEmployer):
+            net_pay (NetPay):
             pay_period_details (PayPeriodDetails):
             income_breakdown ([IncomeBreakdown]):
             ytd_earnings (PaystubYTDDetails):
@@ -185,11 +189,7 @@ class Paystub(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            deductions (Deductions): [optional]  # noqa: E501
-            doc_id (str): An identifier of the document referenced by the document metadata.. [optional]  # noqa: E501
-            earnings (Earnings): [optional]  # noqa: E501
             employment_details (EmploymentDetails): [optional]  # noqa: E501
-            net_pay (NetPay): [optional]  # noqa: E501
             paystub_details (PaystubDetails): [optional]  # noqa: E501
         """
 
@@ -216,8 +216,12 @@ class Paystub(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.employer = employer
+        self.deductions = deductions
+        self.doc_id = doc_id
+        self.earnings = earnings
         self.employee = employee
+        self.employer = employer
+        self.net_pay = net_pay
         self.pay_period_details = pay_period_details
         self.income_breakdown = income_breakdown
         self.ytd_earnings = ytd_earnings

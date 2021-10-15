@@ -63,7 +63,14 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -79,8 +86,8 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'taxforms': ([Taxform],),  # noqa: E501
             'document_metadata': ([DocumentMetadata],),  # noqa: E501
+            'taxforms': ([Taxform],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'error': (Error,),  # noqa: E501
         }
@@ -91,8 +98,8 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
 
 
     attribute_map = {
-        'taxforms': 'taxforms',  # noqa: E501
         'document_metadata': 'document_metadata',  # noqa: E501
+        'taxforms': 'taxforms',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
@@ -109,12 +116,12 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, taxforms, document_metadata, *args, **kwargs):  # noqa: E501
+    def __init__(self, document_metadata, taxforms, *args, **kwargs):  # noqa: E501
         """IncomeVerificationTaxformsGetResponse - a model defined in OpenAPI
 
         Args:
-            taxforms ([Taxform]): A list of taxforms.
             document_metadata ([DocumentMetadata]):
+            taxforms ([Taxform]): A list of taxforms.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,8 +181,8 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.taxforms = taxforms
         self.document_metadata = document_metadata
+        self.taxforms = taxforms
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
