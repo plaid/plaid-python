@@ -102,11 +102,13 @@ class EarningsTotal(ModelNormal):
         lazy_import()
         return {
             'canonical_description': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
+            'current_amount': (float, none_type,),  # noqa: E501
             'current_pay': (Pay,),  # noqa: E501
             'ytd_pay': (Pay,),  # noqa: E501
-            'current_hours': (str, none_type,),  # noqa: E501
-            'current_rate': (str, none_type,),  # noqa: E501
+            'hours': (float, none_type,),  # noqa: E501
+            'iso_currency_code': (str, none_type,),  # noqa: E501
+            'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'ytd_amount': (float, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -116,11 +118,13 @@ class EarningsTotal(ModelNormal):
 
     attribute_map = {
         'canonical_description': 'canonical_description',  # noqa: E501
-        'description': 'description',  # noqa: E501
+        'current_amount': 'current_amount',  # noqa: E501
         'current_pay': 'current_pay',  # noqa: E501
         'ytd_pay': 'ytd_pay',  # noqa: E501
-        'current_hours': 'current_hours',  # noqa: E501
-        'current_rate': 'current_rate',  # noqa: E501
+        'hours': 'hours',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
+        'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'ytd_amount': 'ytd_amount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -170,11 +174,13 @@ class EarningsTotal(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             canonical_description (str, none_type): Commonly used term to describe the line item.. [optional]  # noqa: E501
-            description (str, none_type): Text of the line item as printed on the paystub.. [optional]  # noqa: E501
+            current_amount (float, none_type): Total amount of the earnings for this pay period. [optional]  # noqa: E501
             current_pay (Pay): [optional]  # noqa: E501
             ytd_pay (Pay): [optional]  # noqa: E501
-            current_hours (str, none_type): [optional]  # noqa: E501
-            current_rate (str, none_type): [optional]  # noqa: E501
+            hours (float, none_type): Total number of hours worked for this pay period. [optional]  # noqa: E501
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the line item. Always `null` if `unofficial_currency_code` is non-null.. [optional]  # noqa: E501
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
+            ytd_amount (float, none_type): The total year-to-date amount of the earnings. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

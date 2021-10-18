@@ -63,6 +63,7 @@ class Error(ModelNormal):
             'OAUTH_ERROR': "OAUTH_ERROR",
             'PAYMENT_ERROR': "PAYMENT_ERROR",
             'BANK_TRANSFER_ERROR': "BANK_TRANSFER_ERROR",
+            'INCOME_VERIFICATION_ERROR': "INCOME_VERIFICATION_ERROR",
         },
     }
 

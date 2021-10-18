@@ -50,6 +50,16 @@ class DocumentMetadata(ModelNormal):
     """
 
     allowed_values = {
+        ('doc_type',): {
+            'UNKNOWN': "UNKNOWN",
+            'DOCUMENT_TYPE_PAYSTUB': "DOCUMENT_TYPE_PAYSTUB",
+            'DOCUMENT_TYPE_BANK_STATEMENT': "DOCUMENT_TYPE_BANK_STATEMENT",
+            'DOCUMENT_TYPE_US_TAX_W2': "DOCUMENT_TYPE_US_TAX_W2",
+            'DOCUMENT_TYPE_US_MILITARY_ERAS': "DOCUMENT_TYPE_US_MILITARY_ERAS",
+            'DOCUMENT_TYPE_US_MILITARY_LES': "DOCUMENT_TYPE_US_MILITARY_LES",
+            'DOCUMENT_TYPE_US_MILITARY_CLES': "DOCUMENT_TYPE_US_MILITARY_CLES",
+            'DOCUMENT_TYPE_GIG': "DOCUMENT_TYPE_GIG",
+        },
     }
 
     validations = {
@@ -79,6 +89,7 @@ class DocumentMetadata(ModelNormal):
             'name': (str,),  # noqa: E501
             'status': (str,),  # noqa: E501
             'doc_id': (str,),  # noqa: E501
+            'doc_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +101,7 @@ class DocumentMetadata(ModelNormal):
         'name': 'name',  # noqa: E501
         'status': 'status',  # noqa: E501
         'doc_id': 'doc_id',  # noqa: E501
+        'doc_type': 'doc_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,6 +153,7 @@ class DocumentMetadata(ModelNormal):
             name (str): The name of the document.. [optional]  # noqa: E501
             status (str): The processing status of the document.. [optional]  # noqa: E501
             doc_id (str): An identifier of the document that is also present in the paystub response.. [optional]  # noqa: E501
+            doc_type (str): The type of document. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

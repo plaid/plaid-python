@@ -73,6 +73,8 @@ from plaid.model.deposit_switch_token_create_request import DepositSwitchTokenCr
 from plaid.model.deposit_switch_token_create_response import DepositSwitchTokenCreateResponse
 from plaid.model.employers_search_request import EmployersSearchRequest
 from plaid.model.employers_search_response import EmployersSearchResponse
+from plaid.model.employment_verification_get_request import EmploymentVerificationGetRequest
+from plaid.model.employment_verification_get_response import EmploymentVerificationGetResponse
 from plaid.model.error import Error
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_response import IdentityGetResponse
@@ -3871,6 +3873,128 @@ class PlaidApi(object):
             callable=__employers_search
         )
 
+        def __employment_verification_get(
+            self,
+            employment_verification_get_request,
+            **kwargs
+        ):
+            """Retrieve a summary of an individual's employment information.  # noqa: E501
+
+            `/employment/verification/get` returns a list of employments through a user payroll that was verified by an end user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.employment_verification_get(employment_verification_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                employment_verification_get_request (EmploymentVerificationGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                EmploymentVerificationGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['employment_verification_get_request'] = \
+                employment_verification_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.employment_verification_get = _Endpoint(
+            settings={
+                'response_type': (EmploymentVerificationGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/employment/verification/get',
+                'operation_id': 'employment_verification_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'employment_verification_get_request',
+                ],
+                'required': [
+                    'employment_verification_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'employment_verification_get_request':
+                        (EmploymentVerificationGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'employment_verification_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__employment_verification_get
+        )
+
         def __identity_get(
             self,
             identity_get_request,
@@ -4122,7 +4246,7 @@ class PlaidApi(object):
         ):
             """Download the original documents used for income verification  # noqa: E501
 
-            `/income/verification/documents/download` provides the ability to download the source paystub PDF that the end user uploaded via Paystub Import.  The response to `/income/verification/documents/download` is a ZIP file in binary data. The `request_id`  is returned in the `Plaid-Request-ID` header.  For Payroll Income, the most recent file available for download with the payroll provider will also be available from this endpoint.  # noqa: E501
+            `/income/verification/documents/download` provides the ability to download the source documents associated with the verification.  If Document Income was used, the documents will be those the user provided in Link. For Payroll Income, the most recent files available for download from the payroll provider will be available from this endpoint.  The response to `/income/verification/documents/download` is ZIP file in binary data. If a document_id is passed, a single document will be contained in this file. If not, the response will contain all documents associated with the verification.  The `request_id` is returned in the `Plaid-Request-ID` header.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 

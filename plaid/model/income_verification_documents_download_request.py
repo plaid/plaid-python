@@ -74,6 +74,7 @@ class IncomeVerificationDocumentsDownloadRequest(ModelNormal):
             'secret': (str,),  # noqa: E501
             'income_verification_id': (str, none_type,),  # noqa: E501
             'access_token': (str, none_type,),  # noqa: E501
+            'document_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,6 +87,7 @@ class IncomeVerificationDocumentsDownloadRequest(ModelNormal):
         'secret': 'secret',  # noqa: E501
         'income_verification_id': 'income_verification_id',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
+        'document_id': 'document_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +140,7 @@ class IncomeVerificationDocumentsDownloadRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             income_verification_id (str, none_type): The ID of the verification.. [optional]  # noqa: E501
             access_token (str, none_type): The access token associated with the Item data is being requested for.. [optional]  # noqa: E501
+            document_id (str, none_type): The document ID to download. If passed, a single document will be returned in the resulting zip file, rather than all document. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

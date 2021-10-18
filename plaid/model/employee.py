@@ -84,8 +84,8 @@ class Employee(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'address': (PaystubAddress,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'marital_status': (str, none_type,),  # noqa: E501
             'taxpayer_id': (TaxpayerID,),  # noqa: E501
         }
@@ -96,8 +96,8 @@ class Employee(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'address': 'address',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'marital_status': 'marital_status',  # noqa: E501
         'taxpayer_id': 'taxpayer_id',  # noqa: E501
     }
@@ -114,12 +114,12 @@ class Employee(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, address, *args, **kwargs):  # noqa: E501
+    def __init__(self, address, name, *args, **kwargs):  # noqa: E501
         """Employee - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): The name of the employee.
             address (PaystubAddress):
+            name (str, none_type): The name of the employee.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,8 +179,8 @@ class Employee(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         self.address = address
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

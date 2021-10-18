@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.earnings_breakdown import EarningsBreakdown
     from plaid.model.earnings_total import EarningsTotal
+    globals()['EarningsBreakdown'] = EarningsBreakdown
     globals()['EarningsTotal'] = EarningsTotal
 
 
@@ -84,6 +86,8 @@ class Earnings(ModelNormal):
         return {
             'subtotals': ([EarningsTotal],),  # noqa: E501
             'totals': ([EarningsTotal],),  # noqa: E501
+            'breakdown': ([EarningsBreakdown],),  # noqa: E501
+            'total': (EarningsTotal,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +98,8 @@ class Earnings(ModelNormal):
     attribute_map = {
         'subtotals': 'subtotals',  # noqa: E501
         'totals': 'totals',  # noqa: E501
+        'breakdown': 'breakdown',  # noqa: E501
+        'total': 'total',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,6 +150,8 @@ class Earnings(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             subtotals ([EarningsTotal]): [optional]  # noqa: E501
             totals ([EarningsTotal]): [optional]  # noqa: E501
+            breakdown ([EarningsBreakdown]): [optional]  # noqa: E501
+            total (EarningsTotal): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

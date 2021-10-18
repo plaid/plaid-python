@@ -1,5 +1,8 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+## 8.4.0
+- Updating to OAS 2020-09-14_1.36.1
+
 ## 8.3.0
 - Updating to OAS 2020-09-14_1.34.1.
 - Fixed an issue with enums in this library. The library is supposed to be able to gracefully handle

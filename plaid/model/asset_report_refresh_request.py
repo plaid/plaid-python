@@ -58,7 +58,7 @@ class AssetReportRefreshRequest(ModelNormal):
 
     validations = {
         ('days_requested',): {
-            'inclusive_maximum': 730,
+            'inclusive_maximum': 731,
             'inclusive_minimum': 0,
         },
     }
@@ -82,7 +82,7 @@ class AssetReportRefreshRequest(ModelNormal):
             'asset_report_token': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'days_requested': (int,),  # noqa: E501
+            'days_requested': (int, none_type,),  # noqa: E501
             'options': (AssetReportRefreshRequestOptions,),  # noqa: E501
         }
 
@@ -150,7 +150,7 @@ class AssetReportRefreshRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            days_requested (int): The maximum number of days of history to include in the Asset Report. Must be an integer. If not specified, the value from the original call to `/asset_report/create` will be used.. [optional]  # noqa: E501
+            days_requested (int, none_type): The maximum number of days of history to include in the Asset Report. Must be an integer. If not specified, the value from the original call to `/asset_report/create` will be used.. [optional]  # noqa: E501
             options (AssetReportRefreshRequestOptions): [optional]  # noqa: E501
         """
 
