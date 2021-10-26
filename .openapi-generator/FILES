@@ -154,6 +154,7 @@ plaid/model/external_payment_refund_details.py
 plaid/model/external_payment_schedule_base.py
 plaid/model/external_payment_schedule_get.py
 plaid/model/external_payment_schedule_request.py
+plaid/model/fraud_attributes.py
 plaid/model/health_incident.py
 plaid/model/historical_balance.py
 plaid/model/historical_update_webhook.py
@@ -325,6 +326,7 @@ plaid/model/paystub_address.py
 plaid/model/paystub_deduction.py
 plaid/model/paystub_details.py
 plaid/model/paystub_employer.py
+plaid/model/paystub_fraud_verification.py
 plaid/model/paystub_override.py
 plaid/model/paystub_override_employee.py
 plaid/model/paystub_override_employee_address.py
