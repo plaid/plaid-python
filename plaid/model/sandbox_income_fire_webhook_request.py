@@ -76,6 +76,7 @@ class SandboxIncomeFireWebhookRequest(ModelNormal):
         """
         return {
             'income_verification_id': (str,),  # noqa: E501
+            'item_id': (str,),  # noqa: E501
             'webhook': (str,),  # noqa: E501
             'verification_status': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
@@ -89,6 +90,7 @@ class SandboxIncomeFireWebhookRequest(ModelNormal):
 
     attribute_map = {
         'income_verification_id': 'income_verification_id',  # noqa: E501
+        'item_id': 'item_id',  # noqa: E501
         'webhook': 'webhook',  # noqa: E501
         'verification_status': 'verification_status',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
@@ -107,11 +109,12 @@ class SandboxIncomeFireWebhookRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, income_verification_id, webhook, verification_status, *args, **kwargs):  # noqa: E501
+    def __init__(self, income_verification_id, item_id, webhook, verification_status, *args, **kwargs):  # noqa: E501
         """SandboxIncomeFireWebhookRequest - a model defined in OpenAPI
 
         Args:
             income_verification_id (str): The ID of the verification.
+            item_id (str): The Item ID associated with the verification.
             webhook (str): The URL to which the webhook should be sent.
             verification_status (str): `VERIFICATION_STATUS_PROCESSING_COMPLETE`: The income verification status processing has completed.  `VERIFICATION_STATUS_DOCUMENT_REJECTED`: The documentation uploaded by the end user was recognized as a supported file format, but not recognized as a valid paystub.  `VERIFICATION_STATUS_PROCESSING_FAILED`: A failure occurred when attempting to process the verification documentation.
 
@@ -174,6 +177,7 @@ class SandboxIncomeFireWebhookRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.income_verification_id = income_verification_id
+        self.item_id = item_id
         self.webhook = webhook
         self.verification_status = verification_status
         for var_name, var_value in kwargs.items():

@@ -157,6 +157,7 @@ from plaid.model.external_payment_refund_details import ExternalPaymentRefundDet
 from plaid.model.external_payment_schedule_base import ExternalPaymentScheduleBase
 from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
 from plaid.model.external_payment_schedule_request import ExternalPaymentScheduleRequest
+from plaid.model.fraud_attributes import FraudAttributes
 from plaid.model.health_incident import HealthIncident
 from plaid.model.historical_balance import HistoricalBalance
 from plaid.model.historical_update_webhook import HistoricalUpdateWebhook
@@ -329,6 +330,7 @@ from plaid.model.paystub_address import PaystubAddress
 from plaid.model.paystub_deduction import PaystubDeduction
 from plaid.model.paystub_details import PaystubDetails
 from plaid.model.paystub_employer import PaystubEmployer
+from plaid.model.paystub_fraud_verification import PaystubFraudVerification
 from plaid.model.paystub_override import PaystubOverride
 from plaid.model.paystub_override_employee import PaystubOverrideEmployee
 from plaid.model.paystub_override_employee_address import PaystubOverrideEmployeeAddress
