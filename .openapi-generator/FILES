@@ -16,6 +16,8 @@ plaid/model/account_filter_subtypes.py
 plaid/model/account_filters_response.py
 plaid/model/account_identity.py
 plaid/model/account_identity_all_of.py
+plaid/model/account_product_access.py
+plaid/model/account_product_access_nullable.py
 plaid/model/account_selection_cardinality.py
 plaid/model/account_subtype.py
 plaid/model/account_subtypes.py
@@ -154,7 +156,6 @@ plaid/model/external_payment_refund_details.py
 plaid/model/external_payment_schedule_base.py
 plaid/model/external_payment_schedule_get.py
 plaid/model/external_payment_schedule_request.py
-plaid/model/fraud_attributes.py
 plaid/model/health_incident.py
 plaid/model/historical_balance.py
 plaid/model/historical_update_webhook.py
@@ -326,11 +327,11 @@ plaid/model/paystub_address.py
 plaid/model/paystub_deduction.py
 plaid/model/paystub_details.py
 plaid/model/paystub_employer.py
-plaid/model/paystub_fraud_verification.py
 plaid/model/paystub_override.py
 plaid/model/paystub_override_employee.py
 plaid/model/paystub_override_employee_address.py
 plaid/model/paystub_override_employer.py
+plaid/model/paystub_verification.py
 plaid/model/paystub_ytd_details.py
 plaid/model/pending_expiration_webhook.py
 plaid/model/personal_finance_category.py
@@ -361,6 +362,7 @@ plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
 plaid/model/recurring_transaction_frequency.py
+plaid/model/removed_transaction.py
 plaid/model/requested_scopes.py
 plaid/model/sandbox_bank_transfer_fire_webhook_request.py
 plaid/model/sandbox_bank_transfer_fire_webhook_response.py
@@ -430,6 +432,8 @@ plaid/model/transactions_recurring_get_response.py
 plaid/model/transactions_refresh_request.py
 plaid/model/transactions_refresh_response.py
 plaid/model/transactions_removed_webhook.py
+plaid/model/transactions_sync_request.py
+plaid/model/transactions_sync_response.py
 plaid/model/transfer.py
 plaid/model/transfer_authorization.py
 plaid/model/transfer_authorization_create_request.py
@@ -463,6 +467,7 @@ plaid/model/transfer_user_in_request.py
 plaid/model/transfer_user_in_response.py
 plaid/model/user_custom_password.py
 plaid/model/user_permission_revoked_webhook.py
+plaid/model/verification_attribute.py
 plaid/model/verification_expired_webhook.py
 plaid/model/verification_refresh_status.py
 plaid/model/verification_status.py

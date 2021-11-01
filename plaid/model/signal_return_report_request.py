@@ -53,6 +53,10 @@ class SignalReturnReportRequest(ModelNormal):
     }
 
     validations = {
+        ('client_transaction_id',): {
+            'max_length': 36,
+            'min_length': 1,
+        },
     }
 
     @cached_property

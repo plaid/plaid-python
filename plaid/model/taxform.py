@@ -83,6 +83,7 @@ class Taxform(ModelNormal):
         lazy_import()
         return {
             'document_type': (str,),  # noqa: E501
+            'doc_id': (str,),  # noqa: E501
             'w2': (W2,),  # noqa: E501
         }
 
@@ -93,6 +94,7 @@ class Taxform(ModelNormal):
 
     attribute_map = {
         'document_type': 'document_type',  # noqa: E501
+        'doc_id': 'doc_id',  # noqa: E501
         'w2': 'w2',  # noqa: E501
     }
 
@@ -145,6 +147,7 @@ class Taxform(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            doc_id (str): An identifier of the document referenced by the document metadata.. [optional]  # noqa: E501
             w2 (W2): [optional]  # noqa: E501
         """
 

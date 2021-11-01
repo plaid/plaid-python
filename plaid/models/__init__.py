@@ -21,6 +21,8 @@ from plaid.model.account_filter_subtypes import AccountFilterSubtypes
 from plaid.model.account_filters_response import AccountFiltersResponse
 from plaid.model.account_identity import AccountIdentity
 from plaid.model.account_identity_all_of import AccountIdentityAllOf
+from plaid.model.account_product_access import AccountProductAccess
+from plaid.model.account_product_access_nullable import AccountProductAccessNullable
 from plaid.model.account_selection_cardinality import AccountSelectionCardinality
 from plaid.model.account_subtype import AccountSubtype
 from plaid.model.account_subtypes import AccountSubtypes
@@ -157,7 +159,6 @@ from plaid.model.external_payment_refund_details import ExternalPaymentRefundDet
 from plaid.model.external_payment_schedule_base import ExternalPaymentScheduleBase
 from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
 from plaid.model.external_payment_schedule_request import ExternalPaymentScheduleRequest
-from plaid.model.fraud_attributes import FraudAttributes
 from plaid.model.health_incident import HealthIncident
 from plaid.model.historical_balance import HistoricalBalance
 from plaid.model.historical_update_webhook import HistoricalUpdateWebhook
@@ -330,11 +331,11 @@ from plaid.model.paystub_address import PaystubAddress
 from plaid.model.paystub_deduction import PaystubDeduction
 from plaid.model.paystub_details import PaystubDetails
 from plaid.model.paystub_employer import PaystubEmployer
-from plaid.model.paystub_fraud_verification import PaystubFraudVerification
 from plaid.model.paystub_override import PaystubOverride
 from plaid.model.paystub_override_employee import PaystubOverrideEmployee
 from plaid.model.paystub_override_employee_address import PaystubOverrideEmployeeAddress
 from plaid.model.paystub_override_employer import PaystubOverrideEmployer
+from plaid.model.paystub_verification import PaystubVerification
 from plaid.model.paystub_ytd_details import PaystubYTDDetails
 from plaid.model.pending_expiration_webhook import PendingExpirationWebhook
 from plaid.model.personal_finance_category import PersonalFinanceCategory
@@ -364,6 +365,7 @@ from plaid.model.recaptcha_required_error import RecaptchaRequiredError
 from plaid.model.recipient_bacs import RecipientBACS
 from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
 from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
+from plaid.model.removed_transaction import RemovedTransaction
 from plaid.model.requested_scopes import RequestedScopes
 from plaid.model.sandbox_bank_transfer_fire_webhook_request import SandboxBankTransferFireWebhookRequest
 from plaid.model.sandbox_bank_transfer_fire_webhook_response import SandboxBankTransferFireWebhookResponse
@@ -433,6 +435,8 @@ from plaid.model.transactions_recurring_get_response import TransactionsRecurrin
 from plaid.model.transactions_refresh_request import TransactionsRefreshRequest
 from plaid.model.transactions_refresh_response import TransactionsRefreshResponse
 from plaid.model.transactions_removed_webhook import TransactionsRemovedWebhook
+from plaid.model.transactions_sync_request import TransactionsSyncRequest
+from plaid.model.transactions_sync_response import TransactionsSyncResponse
 from plaid.model.transfer import Transfer
 from plaid.model.transfer_authorization import TransferAuthorization
 from plaid.model.transfer_authorization_create_request import TransferAuthorizationCreateRequest
@@ -466,6 +470,7 @@ from plaid.model.transfer_user_in_request import TransferUserInRequest
 from plaid.model.transfer_user_in_response import TransferUserInResponse
 from plaid.model.user_custom_password import UserCustomPassword
 from plaid.model.user_permission_revoked_webhook import UserPermissionRevokedWebhook
+from plaid.model.verification_attribute import VerificationAttribute
 from plaid.model.verification_expired_webhook import VerificationExpiredWebhook
 from plaid.model.verification_refresh_status import VerificationRefreshStatus
 from plaid.model.verification_status import VerificationStatus

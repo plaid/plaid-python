@@ -140,10 +140,10 @@ class ProductAccess(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            statements (bool, none_type): Allow access to statements. If unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            identity (bool, none_type): Allow access to the Identity product (name, email, phone, address). If unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            auth (bool, none_type): Allow access to account number details. If unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            transactions (bool, none_type): Allow access to transaction details. If unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            statements (bool, none_type): Allow access to statements. Only used by certain partners. If relevant to the partner and unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            identity (bool, none_type): Allow access to the Identity product (name, email, phone, address). Only used by certain partners. If relevant to the partner and unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            auth (bool, none_type): Allow access to account number details. Only used by certain partners. If relevant to the partner and unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            transactions (bool, none_type): Allow access to transaction details. Only used by certain partners. If relevant to the partner and unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
