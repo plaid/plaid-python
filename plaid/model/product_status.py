@@ -119,7 +119,7 @@ class ProductStatus(ModelNormal):
         """ProductStatus - a model defined in OpenAPI
 
         Args:
-            status (str): `HEALTHY`: the majority of requests are successful `DEGRADED`: only some requests are successful `DOWN`: all requests are failing
+            status (str): This field is deprecated in favor of the `breakdown` object, which provides more granular institution health data.  `HEALTHY`: the majority of requests are successful `DEGRADED`: only some requests are successful `DOWN`: all requests are failing
             last_status_change (datetime): [ISO 8601](https://wikipedia.org/wiki/ISO_8601) formatted timestamp of the last status change for the institution. 
             breakdown (ProductStatusBreakdown):
 

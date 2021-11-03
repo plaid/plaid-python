@@ -187,6 +187,8 @@ from plaid.model.transactions_recurring_get_request import TransactionsRecurring
 from plaid.model.transactions_recurring_get_response import TransactionsRecurringGetResponse
 from plaid.model.transactions_refresh_request import TransactionsRefreshRequest
 from plaid.model.transactions_refresh_response import TransactionsRefreshResponse
+from plaid.model.transactions_sync_request import TransactionsSyncRequest
+from plaid.model.transactions_sync_response import TransactionsSyncResponse
 from plaid.model.transfer_authorization_create_request import TransferAuthorizationCreateRequest
 from plaid.model.transfer_authorization_create_response import TransferAuthorizationCreateResponse
 from plaid.model.transfer_cancel_request import TransferCancelRequest
@@ -4977,7 +4979,7 @@ class PlaidApi(object):
         ):
             """Retrieve information from the tax documents used for income verification  # noqa: E501
 
-            `/income/verification/taxforms/get` returns the information collected from taxforms that were used to verify an end user's. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
+            `/income/verification/taxforms/get` returns the information collected from taxforms that were used to verify an end user's income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -10823,6 +10825,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transactions_refresh
+        )
+
+        def __transactions_sync(
+            self,
+            transactions_sync_request,
+            **kwargs
+        ):
+            """Get incremental transaction updates on an item  # noqa: E501
+
+            The `/transactions/sync` endpoint returns item transactions as a set of delta updates. Subsequent calls to the endpoint using the cursor returned in the response will return new added, modified, and removed transactions since the last call to the endpoint  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_sync(transactions_sync_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_sync_request (TransactionsSyncRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsSyncResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_sync_request'] = \
+                transactions_sync_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_sync = _Endpoint(
+            settings={
+                'response_type': (TransactionsSyncResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transactions/sync',
+                'operation_id': 'transactions_sync',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_sync_request',
+                ],
+                'required': [
+                    'transactions_sync_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_sync_request':
+                        (TransactionsSyncRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_sync_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_sync
         )
 
         def __transfer_authorization_create(

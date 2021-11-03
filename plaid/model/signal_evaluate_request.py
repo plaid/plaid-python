@@ -61,6 +61,7 @@ class SignalEvaluateRequest(ModelNormal):
     validations = {
         ('client_transaction_id',): {
             'max_length': 36,
+            'min_length': 1,
         },
         ('client_user_id',): {
             'max_length': 36,

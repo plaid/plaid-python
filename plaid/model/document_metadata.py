@@ -153,7 +153,7 @@ class DocumentMetadata(ModelNormal):
             name (str): The name of the document.. [optional]  # noqa: E501
             status (str): The processing status of the document.. [optional]  # noqa: E501
             doc_id (str): An identifier of the document that is also present in the paystub response.. [optional]  # noqa: E501
-            doc_type (str): The type of document. [optional]  # noqa: E501
+            doc_type (str): The type of document.  `DOCUMENT_TYPE_PAYSTUB`: A paystub.  `DOCUMENT_TYPE_BANK_STATEMENT`: A bank statement.  `DOCUMENT_TYPE_US_TAX_W2`: A W-2 wage and tax statement provided by a US employer reflecting wages earned by the employee.  `DOCUMENT_TYPE_US_MILITARY_ERAS`: An electronic Retirement Account Statement (eRAS) issued by the US military.  `DOCUMENT_TYPE_US_MILITARY_LES`: A Leave and Earnings Statement (LES) issued by the US military.  `DOCUMENT_TYPE_US_MILITARY_CLES`: A Civilian Leave and Earnings Statment (CLES) issued by the US military.  `DOCUMENT_TYPE_GIG`: Used to indicate that the income is related to gig work. Does not necessarily correspond to a specific document type.  `UNKNOWN`: Document type could not be determined.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

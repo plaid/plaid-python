@@ -53,6 +53,10 @@ class SignalDecisionReportRequest(ModelNormal):
     }
 
     validations = {
+        ('client_transaction_id',): {
+            'max_length': 36,
+            'min_length': 1,
+        },
         ('days_funds_on_hold',): {
             'inclusive_minimum': 0,
         },
