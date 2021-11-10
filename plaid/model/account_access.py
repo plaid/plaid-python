@@ -140,7 +140,7 @@ class AccountAccess(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            authorized (bool, none_type): Allow the application to see this account (and associated details, including balance) in the list of accounts. If relevant to the partner and unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            authorized (bool, none_type): Allow the application to see this account (and associated details, including balance) in the list of accounts  If unset, defaults to `true`.. [optional] if omitted the server will use the default value of True  # noqa: E501
             account_product_access (AccountProductAccessNullable): [optional]  # noqa: E501
         """
 

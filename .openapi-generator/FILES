@@ -134,9 +134,11 @@ plaid/model/deposit_switch_token_create_request.py
 plaid/model/deposit_switch_token_create_response.py
 plaid/model/depository_filter.py
 plaid/model/distribution_breakdown.py
+plaid/model/doc_type.py
 plaid/model/document_metadata.py
 plaid/model/earnings.py
 plaid/model/earnings_breakdown.py
+plaid/model/earnings_breakdown_canonical_description.py
 plaid/model/earnings_total.py
 plaid/model/email.py
 plaid/model/employee.py
@@ -150,6 +152,7 @@ plaid/model/employment_details.py
 plaid/model/employment_verification.py
 plaid/model/employment_verification_get_request.py
 plaid/model/employment_verification_get_response.py
+plaid/model/employment_verification_status.py
 plaid/model/error.py
 plaid/model/external_payment_options.py
 plaid/model/external_payment_refund_details.py
@@ -167,6 +170,7 @@ plaid/model/identity_get_request_options.py
 plaid/model/identity_get_response.py
 plaid/model/incident_update.py
 plaid/model/income_breakdown.py
+plaid/model/income_breakdown_type.py
 plaid/model/income_override.py
 plaid/model/income_summary.py
 plaid/model/income_summary_field_number.py
@@ -179,6 +183,7 @@ plaid/model/income_verification_paystub_get_request.py
 plaid/model/income_verification_paystub_get_response.py
 plaid/model/income_verification_paystubs_get_request.py
 plaid/model/income_verification_paystubs_get_response.py
+plaid/model/income_verification_precheck_confidence.py
 plaid/model/income_verification_precheck_employer.py
 plaid/model/income_verification_precheck_employer_address.py
 plaid/model/income_verification_precheck_military_info.py
@@ -293,6 +298,7 @@ plaid/model/owner.py
 plaid/model/owner_override.py
 plaid/model/pay.py
 plaid/model/pay_frequency.py
+plaid/model/pay_frequency_value.py
 plaid/model/pay_period_details.py
 plaid/model/payment_amount.py
 plaid/model/payment_initiation_address.py
@@ -331,7 +337,9 @@ plaid/model/paystub_override.py
 plaid/model/paystub_override_employee.py
 plaid/model/paystub_override_employee_address.py
 plaid/model/paystub_override_employer.py
+plaid/model/paystub_pay_frequency.py
 plaid/model/paystub_verification.py
+plaid/model/paystub_verification_status.py
 plaid/model/paystub_ytd_details.py
 plaid/model/pending_expiration_webhook.py
 plaid/model/personal_finance_category.py
@@ -416,6 +424,7 @@ plaid/model/student_repayment_plan.py
 plaid/model/taxform.py
 plaid/model/taxpayer_id.py
 plaid/model/total.py
+plaid/model/total_canonical_description.py
 plaid/model/transaction.py
 plaid/model/transaction_all_of.py
 plaid/model/transaction_base.py

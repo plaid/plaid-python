@@ -4124,7 +4124,7 @@ class PlaidApi(object):
             income_verification_create_request,
             **kwargs
         ):
-            """Create an income verification instance  # noqa: E501
+            """(Deprecated) Create an income verification instance  # noqa: E501
 
             `/income/verification/create` begins the income verification process by returning an `income_verification_id`. You can then provide the `income_verification_id` to `/link/token/create` under the `income_verification` parameter in order to create a Link instance that will prompt the user to go through the income verification flow. Plaid will fire an `INCOME` webhook once the user completes the Payroll Income flow, or when the uploaded documents in the Document Income flow have finished processing.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -4855,7 +4855,7 @@ class PlaidApi(object):
             income_verification_summary_get_request,
             **kwargs
         ):
-            """Retrieve a summary of information derived from income verification  # noqa: E501
+            """(Deprecated) Retrieve a summary of information derived from income verification  # noqa: E501
 
             `/income/verification/summary/get` returns a verification summary for the income that was verified for an end user. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -10224,7 +10224,7 @@ class PlaidApi(object):
         ):
             """Evaluate a planned ACH transaction  # noqa: E501
 
-            Use `/signal/evaluate` to evaluate a planned ACH transaction to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause.  # noqa: E501
+            Use `/signal/evaluate` to evaluate a planned ACH transaction to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause. If `/signal/evaluate` is called on the same transaction multiple times within a 24-hour period, cached results may be returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 

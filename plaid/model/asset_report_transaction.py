@@ -102,6 +102,8 @@ class AssetReportTransaction(ModelComposed):
             'date': (date,),  # noqa: E501
             'pending': (bool,),  # noqa: E501
             'transaction_id': (str,),  # noqa: E501
+            'merchant_name': (str, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
             'transaction_type': (str,),  # noqa: E501
             'pending_transaction_id': (str, none_type,),  # noqa: E501
             'category_id': (str, none_type,),  # noqa: E501
@@ -127,6 +129,8 @@ class AssetReportTransaction(ModelComposed):
         'date': 'date',  # noqa: E501
         'pending': 'pending',  # noqa: E501
         'transaction_id': 'transaction_id',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
         'transaction_type': 'transaction_type',  # noqa: E501
         'pending_transaction_id': 'pending_transaction_id',  # noqa: E501
         'category_id': 'category_id',  # noqa: E501
@@ -151,7 +155,7 @@ class AssetReportTransaction(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, original_description, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, original_description, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, merchant_name, check_number, *args, **kwargs):  # noqa: E501
         """AssetReportTransaction - a model defined in OpenAPI
 
         Args:
@@ -163,6 +167,8 @@ class AssetReportTransaction(ModelComposed):
             date (date): For pending transactions, the date that the transaction occurred; for posted transactions, the date that the transaction posted. Both dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
             pending (bool): When `true`, identifies the transaction as pending or unsettled. Pending transaction details (name, type, amount, category ID) may change before they are settled.
             transaction_id (str): The unique ID of the transaction. Like all Plaid identifiers, the `transaction_id` is case sensitive.
+            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -245,6 +251,8 @@ class AssetReportTransaction(ModelComposed):
             'date': date,
             'pending': pending,
             'transaction_id': transaction_id,
+            'merchant_name': merchant_name,
+            'check_number': check_number,
         }
         model_args = {}
         model_args.update(required_args)

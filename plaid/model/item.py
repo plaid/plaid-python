@@ -96,6 +96,7 @@ class Item(ModelNormal):
             'consent_expiration_time': (datetime, none_type,),  # noqa: E501
             'update_type': (str,),  # noqa: E501
             'institution_id': (str, none_type,),  # noqa: E501
+            'products': ([Products],),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +113,7 @@ class Item(ModelNormal):
         'consent_expiration_time': 'consent_expiration_time',  # noqa: E501
         'update_type': 'update_type',  # noqa: E501
         'institution_id': 'institution_id',  # noqa: E501
+        'products': 'products',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -170,6 +172,7 @@ class Item(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             institution_id (str, none_type): The Plaid Institution ID associated with the Item. Field is `null` for Items created via Same Day Micro-deposits.. [optional]  # noqa: E501
+            products ([Products]): A list of authorized products for the Item. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

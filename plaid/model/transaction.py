@@ -115,12 +115,12 @@ class Transaction(ModelComposed):
             'date': (date,),  # noqa: E501
             'pending': (bool,),  # noqa: E501
             'transaction_id': (str,),  # noqa: E501
-            'payment_channel': (str,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
+            'payment_channel': (str,),  # noqa: E501
             'authorized_date': (date, none_type,),  # noqa: E501
             'authorized_datetime': (datetime, none_type,),  # noqa: E501
             'datetime': (datetime, none_type,),  # noqa: E501
-            'check_number': (str, none_type,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
             'transaction_type': (str,),  # noqa: E501
             'original_description': (str, none_type,),  # noqa: E501
@@ -147,12 +147,12 @@ class Transaction(ModelComposed):
         'date': 'date',  # noqa: E501
         'pending': 'pending',  # noqa: E501
         'transaction_id': 'transaction_id',  # noqa: E501
-        'payment_channel': 'payment_channel',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
+        'payment_channel': 'payment_channel',  # noqa: E501
         'authorized_date': 'authorized_date',  # noqa: E501
         'authorized_datetime': 'authorized_datetime',  # noqa: E501
         'datetime': 'datetime',  # noqa: E501
-        'check_number': 'check_number',  # noqa: E501
         'transaction_code': 'transaction_code',  # noqa: E501
         'transaction_type': 'transaction_type',  # noqa: E501
         'original_description': 'original_description',  # noqa: E501
@@ -172,7 +172,7 @@ class Transaction(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, pending_transaction_id, category_id, category, location, payment_meta, account_owner, name, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, payment_channel, merchant_name, authorized_date, authorized_datetime, datetime, check_number, transaction_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, pending_transaction_id, category_id, category, location, payment_meta, account_owner, name, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, merchant_name, check_number, payment_channel, authorized_date, authorized_datetime, datetime, transaction_code, *args, **kwargs):  # noqa: E501
         """Transaction - a model defined in OpenAPI
 
         Args:
@@ -190,12 +190,12 @@ class Transaction(ModelComposed):
             date (date): For pending transactions, the date that the transaction occurred; for posted transactions, the date that the transaction posted. Both dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
             pending (bool): When `true`, identifies the transaction as pending or unsettled. Pending transaction details (name, type, amount, category ID) may change before they are settled.
             transaction_id (str): The unique ID of the transaction. Like all Plaid identifiers, the `transaction_id` is case sensitive.
-            payment_channel (str): The channel used to make a payment. `online:` transactions that took place online.  `in store:` transactions that were made at a physical location.  `other:` transactions that relate to banks, e.g. fees or deposits.  This field replaces the `transaction_type` field. 
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.
+            payment_channel (str): The channel used to make a payment. `online:` transactions that took place online.  `in store:` transactions that were made at a physical location.  `other:` transactions that relate to banks, e.g. fees or deposits.  This field replaces the `transaction_type` field. 
             authorized_date (date, none_type): The date that the transaction was authorized. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
             authorized_datetime (datetime, none_type): Date and time when a transaction was authorized in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
             datetime (datetime, none_type): Date and time when a transaction was posted in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
-            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.
             transaction_code (TransactionCode):
 
         Keyword Args:
@@ -279,12 +279,12 @@ class Transaction(ModelComposed):
             'date': date,
             'pending': pending,
             'transaction_id': transaction_id,
-            'payment_channel': payment_channel,
             'merchant_name': merchant_name,
+            'check_number': check_number,
+            'payment_channel': payment_channel,
             'authorized_date': authorized_date,
             'authorized_datetime': authorized_datetime,
             'datetime': datetime,
-            'check_number': check_number,
             'transaction_code': transaction_code,
         }
         model_args = {}

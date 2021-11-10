@@ -137,9 +137,11 @@ from plaid.model.deposit_switch_token_create_request import DepositSwitchTokenCr
 from plaid.model.deposit_switch_token_create_response import DepositSwitchTokenCreateResponse
 from plaid.model.depository_filter import DepositoryFilter
 from plaid.model.distribution_breakdown import DistributionBreakdown
+from plaid.model.doc_type import DocType
 from plaid.model.document_metadata import DocumentMetadata
 from plaid.model.earnings import Earnings
 from plaid.model.earnings_breakdown import EarningsBreakdown
+from plaid.model.earnings_breakdown_canonical_description import EarningsBreakdownCanonicalDescription
 from plaid.model.earnings_total import EarningsTotal
 from plaid.model.email import Email
 from plaid.model.employee import Employee
@@ -153,6 +155,7 @@ from plaid.model.employment_details import EmploymentDetails
 from plaid.model.employment_verification import EmploymentVerification
 from plaid.model.employment_verification_get_request import EmploymentVerificationGetRequest
 from plaid.model.employment_verification_get_response import EmploymentVerificationGetResponse
+from plaid.model.employment_verification_status import EmploymentVerificationStatus
 from plaid.model.error import Error
 from plaid.model.external_payment_options import ExternalPaymentOptions
 from plaid.model.external_payment_refund_details import ExternalPaymentRefundDetails
@@ -170,6 +173,7 @@ from plaid.model.identity_get_request_options import IdentityGetRequestOptions
 from plaid.model.identity_get_response import IdentityGetResponse
 from plaid.model.incident_update import IncidentUpdate
 from plaid.model.income_breakdown import IncomeBreakdown
+from plaid.model.income_breakdown_type import IncomeBreakdownType
 from plaid.model.income_override import IncomeOverride
 from plaid.model.income_summary import IncomeSummary
 from plaid.model.income_summary_field_number import IncomeSummaryFieldNumber
@@ -182,6 +186,7 @@ from plaid.model.income_verification_paystub_get_request import IncomeVerificati
 from plaid.model.income_verification_paystub_get_response import IncomeVerificationPaystubGetResponse
 from plaid.model.income_verification_paystubs_get_request import IncomeVerificationPaystubsGetRequest
 from plaid.model.income_verification_paystubs_get_response import IncomeVerificationPaystubsGetResponse
+from plaid.model.income_verification_precheck_confidence import IncomeVerificationPrecheckConfidence
 from plaid.model.income_verification_precheck_employer import IncomeVerificationPrecheckEmployer
 from plaid.model.income_verification_precheck_employer_address import IncomeVerificationPrecheckEmployerAddress
 from plaid.model.income_verification_precheck_military_info import IncomeVerificationPrecheckMilitaryInfo
@@ -297,6 +302,7 @@ from plaid.model.owner_override import OwnerOverride
 from plaid.model.pslf_status import PSLFStatus
 from plaid.model.pay import Pay
 from plaid.model.pay_frequency import PayFrequency
+from plaid.model.pay_frequency_value import PayFrequencyValue
 from plaid.model.pay_period_details import PayPeriodDetails
 from plaid.model.payment_amount import PaymentAmount
 from plaid.model.payment_initiation_address import PaymentInitiationAddress
@@ -335,7 +341,9 @@ from plaid.model.paystub_override import PaystubOverride
 from plaid.model.paystub_override_employee import PaystubOverrideEmployee
 from plaid.model.paystub_override_employee_address import PaystubOverrideEmployeeAddress
 from plaid.model.paystub_override_employer import PaystubOverrideEmployer
+from plaid.model.paystub_pay_frequency import PaystubPayFrequency
 from plaid.model.paystub_verification import PaystubVerification
+from plaid.model.paystub_verification_status import PaystubVerificationStatus
 from plaid.model.paystub_ytd_details import PaystubYTDDetails
 from plaid.model.pending_expiration_webhook import PendingExpirationWebhook
 from plaid.model.personal_finance_category import PersonalFinanceCategory
@@ -419,6 +427,7 @@ from plaid.model.student_repayment_plan import StudentRepaymentPlan
 from plaid.model.taxform import Taxform
 from plaid.model.taxpayer_id import TaxpayerID
 from plaid.model.total import Total
+from plaid.model.total_canonical_description import TotalCanonicalDescription
 from plaid.model.transaction import Transaction
 from plaid.model.transaction_all_of import TransactionAllOf
 from plaid.model.transaction_base import TransactionBase
