@@ -30,6 +30,7 @@ def lazy_import():
     from plaid.model.transfer_metadata import TransferMetadata
     from plaid.model.transfer_network import TransferNetwork
     from plaid.model.transfer_status import TransferStatus
+    from plaid.model.transfer_sweep_status import TransferSweepStatus
     from plaid.model.transfer_type import TransferType
     from plaid.model.transfer_user_in_response import TransferUserInResponse
     globals()['ACHClass'] = ACHClass
@@ -37,6 +38,7 @@ def lazy_import():
     globals()['TransferMetadata'] = TransferMetadata
     globals()['TransferNetwork'] = TransferNetwork
     globals()['TransferStatus'] = TransferStatus
+    globals()['TransferSweepStatus'] = TransferSweepStatus
     globals()['TransferType'] = TransferType
     globals()['TransferUserInResponse'] = TransferUserInResponse
 
@@ -108,6 +110,7 @@ class Transfer(ModelNormal):
             'failure_reason': (TransferFailure,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
+            'sweep_status': (TransferSweepStatus,),  # noqa: E501
         }
 
     @cached_property
@@ -130,6 +133,7 @@ class Transfer(ModelNormal):
         'failure_reason': 'failure_reason',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
+        'sweep_status': 'sweep_status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -194,6 +198,7 @@ class Transfer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            sweep_status (TransferSweepStatus): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.paystub_verification_status import PaystubVerificationStatus
     from plaid.model.verification_attribute import VerificationAttribute
+    globals()['PaystubVerificationStatus'] = PaystubVerificationStatus
     globals()['VerificationAttribute'] = VerificationAttribute
 
 
@@ -54,13 +56,6 @@ class PaystubVerification(ModelNormal):
     """
 
     allowed_values = {
-        ('verification_status',): {
-            'None': None,
-            'PAYSTUB_VERIFICATION_STATUS_UNKNOWN': "PAYSTUB_VERIFICATION_STATUS_UNKNOWN",
-            'PAYSTUB_VERIFICATION_STATUS_VERIFIED': "PAYSTUB_VERIFICATION_STATUS_VERIFIED",
-            'PAYSTUB_VERIFICATION_STATUS_FRAUDULENT': "PAYSTUB_VERIFICATION_STATUS_FRAUDULENT",
-            'NULL': "null",
-        },
     }
 
     validations = {
@@ -89,7 +84,7 @@ class PaystubVerification(ModelNormal):
         """
         lazy_import()
         return {
-            'verification_status': (str, none_type,),  # noqa: E501
+            'verification_status': (PaystubVerificationStatus,),  # noqa: E501
             'verification_attributes': ([VerificationAttribute],),  # noqa: E501
         }
 
@@ -115,11 +110,12 @@ class PaystubVerification(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, verification_status, *args, **kwargs):  # noqa: E501
+    def __init__(self, verification_status, verification_attributes, *args, **kwargs):  # noqa: E501
         """PaystubVerification - a model defined in OpenAPI
 
         Args:
-            verification_status (str, none_type): Derived verification status.
+            verification_status (PaystubVerificationStatus):
+            verification_attributes ([VerificationAttribute]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,7 +148,6 @@ class PaystubVerification(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            verification_attributes ([VerificationAttribute]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -179,6 +174,7 @@ class PaystubVerification(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.verification_status = verification_status
+        self.verification_attributes = verification_attributes
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

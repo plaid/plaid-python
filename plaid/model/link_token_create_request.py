@@ -31,6 +31,7 @@ def lazy_import():
     from plaid.model.link_token_create_request_deposit_switch import LinkTokenCreateRequestDepositSwitch
     from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
     from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
+    from plaid.model.link_token_create_request_transfer import LinkTokenCreateRequestTransfer
     from plaid.model.link_token_create_request_update import LinkTokenCreateRequestUpdate
     from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
     from plaid.model.link_token_eu_config import LinkTokenEUConfig
@@ -41,6 +42,7 @@ def lazy_import():
     globals()['LinkTokenCreateRequestDepositSwitch'] = LinkTokenCreateRequestDepositSwitch
     globals()['LinkTokenCreateRequestIncomeVerification'] = LinkTokenCreateRequestIncomeVerification
     globals()['LinkTokenCreateRequestPaymentInitiation'] = LinkTokenCreateRequestPaymentInitiation
+    globals()['LinkTokenCreateRequestTransfer'] = LinkTokenCreateRequestTransfer
     globals()['LinkTokenCreateRequestUpdate'] = LinkTokenCreateRequestUpdate
     globals()['LinkTokenCreateRequestUser'] = LinkTokenCreateRequestUser
     globals()['LinkTokenEUConfig'] = LinkTokenEUConfig
@@ -115,6 +117,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'deposit_switch': (LinkTokenCreateRequestDepositSwitch,),  # noqa: E501
             'income_verification': (LinkTokenCreateRequestIncomeVerification,),  # noqa: E501
             'auth': (LinkTokenCreateRequestAuth,),  # noqa: E501
+            'transfer': (LinkTokenCreateRequestTransfer,),  # noqa: E501
             'update': (LinkTokenCreateRequestUpdate,),  # noqa: E501
         }
 
@@ -143,6 +146,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'deposit_switch': 'deposit_switch',  # noqa: E501
         'income_verification': 'income_verification',  # noqa: E501
         'auth': 'auth',  # noqa: E501
+        'transfer': 'transfer',  # noqa: E501
         'update': 'update',  # noqa: E501
     }
 
@@ -163,8 +167,8 @@ class LinkTokenCreateRequest(ModelNormal):
 
         Args:
             client_name (str): The name of your application, as it should be displayed in Link. Maximum length of 30 characters. If a value longer than 30 characters is provided, Link will display \"This Application\" instead.
-            language (str): The language that Link should be displayed in.  Supported languages are: - English (`'en'`) - French (`'fr'`) - Spanish (`'es'`) - Dutch (`'nl'`)  When using a Link customization, the language configured here must match the setting in the customization, or the customization will not be applied.
-            country_codes ([CountryCode]): Specify an array of Plaid-supported country codes using the ISO-3166-1 alpha-2 country code standard. Institutions from all listed countries will be shown.  Supported country codes are: `US`, `CA`, `ES`, `FR`, `GB`, `IE`, `NL`.  If Link is launched with multiple country codes, only products that you are enabled for in all countries will be used by Link. Note that while all countries are enabled by default in Sandbox and Development, in Production only US and Canada are enabled by default. To gain access to European institutions in the Production environment, [file a product access Support ticket](https://dashboard.plaid.com/support/new/product-and-development/product-troubleshooting/request-product-access) via the Plaid dashboard. If you initialize with a European country code, your users will see the European consent panel during the Link flow.  If using a Link customization, make sure the country codes in the customization match those specified in `country_codes`. If both `country_codes` and a Link customization are used, the value in `country_codes` may override the value in the customization.  If using the Auth features Instant Match, Same-day Micro-deposits, or Automated Micro-deposits, `country_codes` must be set to `['US']`.
+            language (str): The language that Link should be displayed in.  Supported languages are: - English (`'en'`) - French (`'fr'`) - Spanish (`'es'`) - Dutch (`'nl'`) - German(`'de'`)  When using a Link customization, the language configured here must match the setting in the customization, or the customization will not be applied.
+            country_codes ([CountryCode]): Specify an array of Plaid-supported country codes using the ISO-3166-1 alpha-2 country code standard. Institutions from all listed countries will be shown.  Supported country codes are: `US`, `CA`, `DE`, `ES`, `FR`, `GB`, `IE`, `NL`. For a complete mapping of supported products by country, see https://plaid.com/global/.  If Link is launched with multiple country codes, only products that you are enabled for in all countries will be used by Link. Note that while all countries are enabled by default in Sandbox and Development, in Production only US and Canada are enabled by default. To gain access to European institutions in the Production environment, [file a product access Support ticket](https://dashboard.plaid.com/support/new/product-and-development/product-troubleshooting/request-product-access) via the Plaid dashboard. If you initialize with a European country code, your users will see the European consent panel during the Link flow.  If using a Link customization, make sure the country codes in the customization match those specified in `country_codes`. If both `country_codes` and a Link customization are used, the value in `country_codes` may override the value in the customization.  If using the Auth features Instant Match, Same-day Micro-deposits, or Automated Micro-deposits, `country_codes` must be set to `['US']`.
             user (LinkTokenCreateRequestUser):
 
         Keyword Args:
@@ -213,6 +217,7 @@ class LinkTokenCreateRequest(ModelNormal):
             deposit_switch (LinkTokenCreateRequestDepositSwitch): [optional]  # noqa: E501
             income_verification (LinkTokenCreateRequestIncomeVerification): [optional]  # noqa: E501
             auth (LinkTokenCreateRequestAuth): [optional]  # noqa: E501
+            transfer (LinkTokenCreateRequestTransfer): [optional]  # noqa: E501
             update (LinkTokenCreateRequestUpdate): [optional]  # noqa: E501
         """
 

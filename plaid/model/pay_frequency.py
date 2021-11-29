@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.pay_frequency_value import PayFrequencyValue
     from plaid.model.verification_status import VerificationStatus
+    globals()['PayFrequencyValue'] = PayFrequencyValue
     globals()['VerificationStatus'] = VerificationStatus
 
 
@@ -54,14 +56,6 @@ class PayFrequency(ModelNormal):
     """
 
     allowed_values = {
-        ('value',): {
-            'MONTHLY': "monthly",
-            'SEMIMONTHLY': "semimonthly",
-            'WEEKLY': "weekly",
-            'BIWEEKLY': "biweekly",
-            'UNKNOWN': "unknown",
-            'NULL': "null",
-        },
     }
 
     validations = {
@@ -90,7 +84,7 @@ class PayFrequency(ModelNormal):
         """
         lazy_import()
         return {
-            'value': (str,),  # noqa: E501
+            'value': (PayFrequencyValue,),  # noqa: E501
             'verification_status': (VerificationStatus,),  # noqa: E501
         }
 
@@ -120,7 +114,7 @@ class PayFrequency(ModelNormal):
         """PayFrequency - a model defined in OpenAPI
 
         Args:
-            value (str): The frequency of the pay period.
+            value (PayFrequencyValue):
             verification_status (VerificationStatus):
 
         Keyword Args:

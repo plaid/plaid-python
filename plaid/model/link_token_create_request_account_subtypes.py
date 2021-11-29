@@ -137,7 +137,7 @@ class LinkTokenCreateRequestAccountSubtypes(ModelNormal):
             depository ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): A filter to apply to `depository`-type accounts. [optional]  # noqa: E501
             credit ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): A filter to apply to `credit`-type accounts. [optional]  # noqa: E501
             loan ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): A filter to apply to `loan`-type accounts. [optional]  # noqa: E501
-            investment ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): A filter to apply to `investment`-type accounts. [optional]  # noqa: E501
+            investment ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): A filter to apply to `investment`-type accounts (or `brokerage`-type accounts for API versions 2018-05-22 and earlier).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -26,8 +26,10 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.employer_verification import EmployerVerification
+    from plaid.model.employment_verification_status import EmploymentVerificationStatus
     from plaid.model.platform_ids import PlatformIds
     globals()['EmployerVerification'] = EmployerVerification
+    globals()['EmploymentVerificationStatus'] = EmploymentVerificationStatus
     globals()['PlatformIds'] = PlatformIds
 
 
@@ -56,12 +58,6 @@ class EmploymentVerification(ModelNormal):
     """
 
     allowed_values = {
-        ('status',): {
-            'None': None,
-            'EMPLOYMENT_STATUS_ACTIVE': "EMPLOYMENT_STATUS_ACTIVE",
-            'EMPLOYMENT_STATUS_INACTIVE': "EMPLOYMENT_STATUS_INACTIVE",
-            'NULL': "null",
-        },
     }
 
     validations = {
@@ -90,7 +86,7 @@ class EmploymentVerification(ModelNormal):
         """
         lazy_import()
         return {
-            'status': (str, none_type,),  # noqa: E501
+            'status': (EmploymentVerificationStatus,),  # noqa: E501
             'start_date': (date, none_type,),  # noqa: E501
             'end_date': (date, none_type,),  # noqa: E501
             'employer': (EmployerVerification,),  # noqa: E501
@@ -158,7 +154,7 @@ class EmploymentVerification(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (str, none_type): Current employment status.. [optional]  # noqa: E501
+            status (EmploymentVerificationStatus): [optional]  # noqa: E501
             start_date (date, none_type): Start of employment in ISO_8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             end_date (date, none_type): End of employment, if applicable. In ISO_8601 format (YYY-MM-DD).. [optional]  # noqa: E501
             employer (EmployerVerification): [optional]  # noqa: E501

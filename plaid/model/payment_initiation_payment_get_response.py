@@ -79,9 +79,6 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
     }
 
     validations = {
-        ('emi_account_id',): {
-            'min_length': 1,
-        },
     }
 
     @cached_property
@@ -120,7 +117,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
             'initiated_refunds': ([PaymentInitiationRefund],),  # noqa: E501
-            'emi_account_id': (str, none_type,),  # noqa: E501
+            'wallet_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +139,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
         'initiated_refunds': 'initiated_refunds',  # noqa: E501
-        'emi_account_id': 'emi_account_id',  # noqa: E501
+        'wallet_id': 'wallet_id',  # noqa: E501
     }
 
     required_properties = set([
@@ -207,7 +204,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
             initiated_refunds ([PaymentInitiationRefund]): Initiated refunds associated with the payment.. [optional]  # noqa: E501
-            emi_account_id (str, none_type): The EMI (E-Money Institution) account that this payment is associated with, if any. This EMI account is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
+            wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

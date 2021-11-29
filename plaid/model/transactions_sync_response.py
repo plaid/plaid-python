@@ -82,6 +82,7 @@ class TransactionsSyncResponse(ModelNormal):
             'removed': ([RemovedTransaction],),  # noqa: E501
             'next_cursor': (str,),  # noqa: E501
             'has_more': (bool,),  # noqa: E501
+            'request_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +96,7 @@ class TransactionsSyncResponse(ModelNormal):
         'removed': 'removed',  # noqa: E501
         'next_cursor': 'next_cursor',  # noqa: E501
         'has_more': 'has_more',  # noqa: E501
+        'request_id': 'request_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -109,7 +111,7 @@ class TransactionsSyncResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, added, modified, removed, next_cursor, has_more, *args, **kwargs):  # noqa: E501
+    def __init__(self, added, modified, removed, next_cursor, has_more, request_id, *args, **kwargs):  # noqa: E501
         """TransactionsSyncResponse - a model defined in OpenAPI
 
         Args:
@@ -118,6 +120,7 @@ class TransactionsSyncResponse(ModelNormal):
             removed ([RemovedTransaction]): Transactions that have been removed from the item since `cursor` ordered by ascending last modified time.
             next_cursor (str): Cursor used for fetching any future updates after the latest update provided in this response.
             has_more (bool): Represents if more than requested count of transaction updates exist. If true, the additional updates can be fetched by making an additional request with `cursor` set to `next_cursor`.
+            request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,6 +183,7 @@ class TransactionsSyncResponse(ModelNormal):
         self.removed = removed
         self.next_cursor = next_cursor
         self.has_more = has_more
+        self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

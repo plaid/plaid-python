@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.pay import Pay
+    from plaid.model.total_canonical_description import TotalCanonicalDescription
     globals()['Pay'] = Pay
+    globals()['TotalCanonicalDescription'] = TotalCanonicalDescription
 
 
 class Total(ModelNormal):
@@ -54,25 +56,6 @@ class Total(ModelNormal):
     """
 
     allowed_values = {
-        ('canonical_description',): {
-            'None': None,
-            'BONUS': "BONUS",
-            'COMMISSION': "COMMISSION",
-            'OVERTIME': "OVERTIME",
-            'PAID_TIME_OFF': "PAID TIME OFF",
-            'REGULAR_PAY': "REGULAR PAY",
-            'VACATION': "VACATION",
-            'EMPLOYEE_MEDICARE': "EMPLOYEE MEDICARE",
-            'FICA': "FICA",
-            'SOCIAL_SECURITY_EMPLOYEE_TAX': "SOCIAL SECURITY EMPLOYEE TAX",
-            'MEDICAL': "MEDICAL",
-            'VISION': "VISION",
-            'DENTAL': "DENTAL",
-            'NET_PAY': "NET PAY",
-            'TAXES': "TAXES",
-            'NOT_FOUND': "NOT_FOUND",
-            'OTHER': "OTHER",
-        },
     }
 
     validations = {
@@ -101,7 +84,7 @@ class Total(ModelNormal):
         """
         lazy_import()
         return {
-            'canonical_description': (str, none_type,),  # noqa: E501
+            'canonical_description': (TotalCanonicalDescription,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'current_pay': (Pay,),  # noqa: E501
             'ytd_pay': (Pay,),  # noqa: E501
@@ -165,7 +148,7 @@ class Total(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            canonical_description (str, none_type): Commonly used term to describe the line item.. [optional]  # noqa: E501
+            canonical_description (TotalCanonicalDescription): [optional]  # noqa: E501
             description (str, none_type): Text of the line item as printed on the paystub.. [optional]  # noqa: E501
             current_pay (Pay): [optional]  # noqa: E501
             ytd_pay (Pay): [optional]  # noqa: E501
