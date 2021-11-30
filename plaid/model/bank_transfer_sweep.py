@@ -57,9 +57,6 @@ class BankTransferSweep(ModelNormal):
     }
 
     validations = {
-        ('id',): {
-            'inclusive_minimum': 0,
-        },
     }
 
     @cached_property
@@ -85,7 +82,7 @@ class BankTransferSweep(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'transfer_id': (str, none_type,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'amount': (str,),  # noqa: E501
@@ -123,7 +120,7 @@ class BankTransferSweep(ModelNormal):
         """BankTransferSweep - a model defined in OpenAPI
 
         Args:
-            id (int): Identifier of the sweep.
+            id (str): Identifier of the sweep.
             transfer_id (str, none_type): Identifier of the sweep transfer.
             created_at (datetime): The datetime when the sweep occurred, in RFC 3339 format.
             amount (str): The amount of the sweep.

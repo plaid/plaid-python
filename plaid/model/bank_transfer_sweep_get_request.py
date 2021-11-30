@@ -53,9 +53,6 @@ class BankTransferSweepGetRequest(ModelNormal):
     }
 
     validations = {
-        ('sweep_id',): {
-            'inclusive_minimum': 0,
-        },
     }
 
     additional_properties_type = None
@@ -73,7 +70,7 @@ class BankTransferSweepGetRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'sweep_id': (int,),  # noqa: E501
+            'sweep_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
@@ -107,7 +104,7 @@ class BankTransferSweepGetRequest(ModelNormal):
         """BankTransferSweepGetRequest - a model defined in OpenAPI
 
         Args:
-            sweep_id (int): Identifier of the sweep.
+            sweep_id (str): Identifier of the sweep.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

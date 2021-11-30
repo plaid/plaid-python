@@ -98,6 +98,8 @@ class TransferEvent(ModelNormal):
             'transfer_type': (TransferType,),  # noqa: E501
             'transfer_amount': (str,),  # noqa: E501
             'failure_reason': (TransferFailure,),  # noqa: E501
+            'sweep_id': (str,),  # noqa: E501
+            'sweep_amount': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -115,6 +117,8 @@ class TransferEvent(ModelNormal):
         'transfer_type': 'transfer_type',  # noqa: E501
         'transfer_amount': 'transfer_amount',  # noqa: E501
         'failure_reason': 'failure_reason',  # noqa: E501
+        'sweep_id': 'sweep_id',  # noqa: E501
+        'sweep_amount': 'sweep_amount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,6 +178,8 @@ class TransferEvent(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            sweep_id (str): Plaid’s unique identifier for a sweep.. [optional]  # noqa: E501
+            sweep_amount (str): A signed amount of how much was `swept` or `reverse_swept` (decimal string with two digits of precision e.g. “-5.50”).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
