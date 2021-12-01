@@ -103,7 +103,7 @@ class AccountIdentityAllOf(ModelNormal):
         """AccountIdentityAllOf - a model defined in OpenAPI
 
         Args:
-            owners ([Owner]): Data returned by the financial institution about the account owner or owners. Only returned by Identity or Assets endpoints. Multiple owners on a single account will be represented in the same `owner` object, not in multiple owner objects within the array.
+            owners ([Owner]): Data returned by the financial institution about the account owner or owners. Only returned by Identity or Assets endpoints. Multiple owners on a single account will be represented in the same `owner` object, not in multiple owner objects within the array. In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29)
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

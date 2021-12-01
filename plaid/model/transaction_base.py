@@ -106,6 +106,8 @@ class TransactionBase(ModelNormal):
             'account_owner': (str, none_type,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'original_description': (str, none_type,),  # noqa: E501
+            'merchant_name': (str, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -130,6 +132,8 @@ class TransactionBase(ModelNormal):
         'account_owner': 'account_owner',  # noqa: E501
         'name': 'name',  # noqa: E501
         'original_description': 'original_description',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -196,6 +200,8 @@ class TransactionBase(ModelNormal):
             account_owner (str, none_type): The name of the account owner. This field is not typically populated and only relevant when dealing with sub-accounts.. [optional]  # noqa: E501
             name (str): The merchant name or transaction description.  If the `transactions` object was returned by a Transactions endpoint such as `/transactions/get`, this field will always appear. If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
+            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

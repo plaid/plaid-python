@@ -53,9 +53,6 @@ class BankTransferSweepListRequest(ModelNormal):
     }
 
     validations = {
-        ('start_id',): {
-            'inclusive_minimum': 0,
-        },
         ('count',): {
             'inclusive_maximum': 25,
             'inclusive_minimum': 1,
@@ -80,7 +77,6 @@ class BankTransferSweepListRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
-            'start_id': (int, none_type,),  # noqa: E501
             'start_time': (datetime, none_type,),  # noqa: E501
             'end_time': (datetime, none_type,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
@@ -95,7 +91,6 @@ class BankTransferSweepListRequest(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
-        'start_id': 'start_id',  # noqa: E501
         'start_time': 'start_time',  # noqa: E501
         'end_time': 'end_time',  # noqa: E501
         'count': 'count',  # noqa: E501
@@ -150,7 +145,6 @@ class BankTransferSweepListRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             origination_account_id (str, none_type): If multiple origination accounts are available, `origination_account_id` must be used to specify the account that the sweeps belong to.. [optional]  # noqa: E501
-            start_id (int, none_type): Starting ID of sweeps to return.. [optional]  # noqa: E501
             start_time (datetime, none_type): The start datetime of sweeps to return (RFC 3339 format).. [optional]  # noqa: E501
             end_time (datetime, none_type): The end datetime of sweeps to return (RFC 3339 format).. [optional]  # noqa: E501
             count (int, none_type): The maximum number of sweeps to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501

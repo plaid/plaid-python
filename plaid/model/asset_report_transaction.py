@@ -110,6 +110,8 @@ class AssetReportTransaction(ModelComposed):
             'payment_meta': (PaymentMeta,),  # noqa: E501
             'account_owner': (str, none_type,),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'merchant_name': (str, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
             'date_transacted': (str, none_type,),  # noqa: E501
         }
 
@@ -135,6 +137,8 @@ class AssetReportTransaction(ModelComposed):
         'payment_meta': 'payment_meta',  # noqa: E501
         'account_owner': 'account_owner',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
         'date_transacted': 'date_transacted',  # noqa: E501
     }
 
@@ -203,6 +207,8 @@ class AssetReportTransaction(ModelComposed):
             payment_meta (PaymentMeta): [optional]  # noqa: E501
             account_owner (str, none_type): The name of the account owner. This field is not typically populated and only relevant when dealing with sub-accounts.. [optional]  # noqa: E501
             name (str): The merchant name or transaction description.  If the `transactions` object was returned by a Transactions endpoint such as `/transactions/get`, this field will always appear. If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
+            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             date_transacted (str, none_type): The date on which the transaction took place, in IS0 8601 format.. [optional]  # noqa: E501
         """
 

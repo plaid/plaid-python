@@ -123,7 +123,7 @@ class InstitutionsGetRequest(ModelNormal):
         Args:
             count (int): The total number of Institutions to return.
             offset (int): The number of Institutions to skip.
-            country_codes ([CountryCode]): Specify an array of Plaid-supported country codes this institution supports, using the ISO-3166-1 alpha-2 country code standard. 
+            country_codes ([CountryCode]): Specify an array of Plaid-supported country codes this institution supports, using the ISO-3166-1 alpha-2 country code standard.   In API versions 2019-05-29 and earlier, the `country_codes` parameter is an optional parameter within the `options` object and will default to `[US]` if it is not supplied. 
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

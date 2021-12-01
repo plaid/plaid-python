@@ -81,11 +81,9 @@ class TransactionAllOf(ModelNormal):
         lazy_import()
         return {
             'payment_channel': (str,),  # noqa: E501
-            'merchant_name': (str, none_type,),  # noqa: E501
             'authorized_date': (date, none_type,),  # noqa: E501
             'authorized_datetime': (datetime, none_type,),  # noqa: E501
             'datetime': (datetime, none_type,),  # noqa: E501
-            'check_number': (str, none_type,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
             'personal_finance_category': (object, none_type,),  # noqa: E501
         }
@@ -97,11 +95,9 @@ class TransactionAllOf(ModelNormal):
 
     attribute_map = {
         'payment_channel': 'payment_channel',  # noqa: E501
-        'merchant_name': 'merchant_name',  # noqa: E501
         'authorized_date': 'authorized_date',  # noqa: E501
         'authorized_datetime': 'authorized_datetime',  # noqa: E501
         'datetime': 'datetime',  # noqa: E501
-        'check_number': 'check_number',  # noqa: E501
         'transaction_code': 'transaction_code',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
     }
@@ -118,16 +114,14 @@ class TransactionAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_channel, merchant_name, authorized_date, authorized_datetime, datetime, check_number, transaction_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_channel, authorized_date, authorized_datetime, datetime, transaction_code, *args, **kwargs):  # noqa: E501
         """TransactionAllOf - a model defined in OpenAPI
 
         Args:
             payment_channel (str): The channel used to make a payment. `online:` transactions that took place online.  `in store:` transactions that were made at a physical location.  `other:` transactions that relate to banks, e.g. fees or deposits.  This field replaces the `transaction_type` field. 
-            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.
             authorized_date (date, none_type): The date that the transaction was authorized. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
             authorized_datetime (datetime, none_type): Date and time when a transaction was authorized in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
             datetime (datetime, none_type): Date and time when a transaction was posted in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is only populated for UK institutions. For institutions in other countries, will be `null`.
-            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.
             transaction_code (TransactionCode):
 
         Keyword Args:
@@ -188,11 +182,9 @@ class TransactionAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.payment_channel = payment_channel
-        self.merchant_name = merchant_name
         self.authorized_date = authorized_date
         self.authorized_datetime = authorized_datetime
         self.datetime = datetime
-        self.check_number = check_number
         self.transaction_code = transaction_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

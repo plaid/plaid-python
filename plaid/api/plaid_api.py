@@ -175,6 +175,8 @@ from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCr
 from plaid.model.sandbox_public_token_create_response import SandboxPublicTokenCreateResponse
 from plaid.model.sandbox_transfer_simulate_request import SandboxTransferSimulateRequest
 from plaid.model.sandbox_transfer_simulate_response import SandboxTransferSimulateResponse
+from plaid.model.sandbox_transfer_sweep_simulate_request import SandboxTransferSweepSimulateRequest
+from plaid.model.sandbox_transfer_sweep_simulate_response import SandboxTransferSweepSimulateResponse
 from plaid.model.signal_decision_report_request import SignalDecisionReportRequest
 from plaid.model.signal_decision_report_response import SignalDecisionReportResponse
 from plaid.model.signal_evaluate_request import SignalEvaluateRequest
@@ -201,8 +203,22 @@ from plaid.model.transfer_event_sync_request import TransferEventSyncRequest
 from plaid.model.transfer_event_sync_response import TransferEventSyncResponse
 from plaid.model.transfer_get_request import TransferGetRequest
 from plaid.model.transfer_get_response import TransferGetResponse
+from plaid.model.transfer_intent_create_request import TransferIntentCreateRequest
+from plaid.model.transfer_intent_create_response import TransferIntentCreateResponse
+from plaid.model.transfer_intent_get_request import TransferIntentGetRequest
+from plaid.model.transfer_intent_get_response import TransferIntentGetResponse
 from plaid.model.transfer_list_request import TransferListRequest
 from plaid.model.transfer_list_response import TransferListResponse
+from plaid.model.transfer_sweep_get_request import TransferSweepGetRequest
+from plaid.model.transfer_sweep_get_response import TransferSweepGetResponse
+from plaid.model.transfer_sweep_list_request import TransferSweepListRequest
+from plaid.model.transfer_sweep_list_response import TransferSweepListResponse
+from plaid.model.wallet_get_request import WalletGetRequest
+from plaid.model.wallet_get_response import WalletGetResponse
+from plaid.model.wallet_transaction_execute_request import WalletTransactionExecuteRequest
+from plaid.model.wallet_transaction_execute_response import WalletTransactionExecuteResponse
+from plaid.model.wallet_transactions_list_request import WalletTransactionsListRequest
+from plaid.model.wallet_transactions_list_response import WalletTransactionsListResponse
 from plaid.model.webhook_verification_key_get_request import WebhookVerificationKeyGetRequest
 from plaid.model.webhook_verification_key_get_response import WebhookVerificationKeyGetResponse
 
@@ -1690,7 +1706,7 @@ class PlaidApi(object):
         ):
             """Retrieve auth data  # noqa: E501
 
-            The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item's checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Also note that `/auth/get` will not return data for any new accounts opened after the Item was created. To obtain data for new accounts, create a new Item.  # noqa: E501
+            The `/auth/get` endpoint returns the bank account and bank identification numbers (such as routing numbers, for US accounts) associated with an Item's checking and savings accounts, along with high-level account data and balances when available.  Note: This request may take some time to complete if `auth` was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Also note that `/auth/get` will not return data for any new accounts opened after the Item was created. To obtain data for new accounts, create a new Item.  Versioning note: In API version 2017-03-08, the schema of the `numbers` object returned by this endpoint is substantially different. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2018-05-22).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3032,7 +3048,7 @@ class PlaidApi(object):
         ):
             """Get Categories  # noqa: E501
 
-            Send a request to the `/categories/get`  endpoint to get detailed information on categories returned by Plaid. This endpoint does not require authentication.  # noqa: E501
+            Send a request to the `/categories/get` endpoint to get detailed information on categories returned by Plaid. This endpoint does not require authentication.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4124,7 +4140,7 @@ class PlaidApi(object):
             income_verification_create_request,
             **kwargs
         ):
-            """Create an income verification instance  # noqa: E501
+            """(Deprecated) Create an income verification instance  # noqa: E501
 
             `/income/verification/create` begins the income verification process by returning an `income_verification_id`. You can then provide the `income_verification_id` to `/link/token/create` under the `income_verification` parameter in order to create a Link instance that will prompt the user to go through the income verification flow. Plaid will fire an `INCOME` webhook once the user completes the Payroll Income flow, or when the uploaded documents in the Document Income flow have finished processing.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -4855,7 +4871,7 @@ class PlaidApi(object):
             income_verification_summary_get_request,
             **kwargs
         ):
-            """Retrieve a summary of information derived from income verification  # noqa: E501
+            """(Deprecated) Retrieve a summary of information derived from income verification  # noqa: E501
 
             `/income/verification/summary/get` returns a verification summary for the income that was verified for an end user. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -5223,7 +5239,7 @@ class PlaidApi(object):
         ):
             """Get details of an institution  # noqa: E501
 
-            Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  # noqa: E501
+            Returns a JSON response containing details on a specified financial institution currently supported by Plaid.   Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -5345,7 +5361,7 @@ class PlaidApi(object):
         ):
             """Search institutions  # noqa: E501
 
-            Returns a JSON response containing details for institutions that match the query parameters, up to a maximum of ten institutions per query.  # noqa: E501
+            Returns a JSON response containing details for institutions that match the query parameters, up to a maximum of ten institutions per query.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` parameters to authenticate to this endpoint. The `public_key` parameter has since been deprecated; all customers are encouraged to use `client_id` and `secret` instead.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6565,7 +6581,7 @@ class PlaidApi(object):
         ):
             """Remove an Item  # noqa: E501
 
-            The `/item/remove`  endpoint allows you to remove an Item. Once removed, the `access_token`  associated with the Item is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution's OAuth permission manager.  # noqa: E501
+            The `/item/remove`  endpoint allows you to remove an Item. Once removed, the `access_token`  associated with the Item is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution's OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -8151,7 +8167,7 @@ class PlaidApi(object):
         ):
             """Retrieve Auth data  # noqa: E501
 
-            The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for a checking or savings account that's associated with a given `processor_token`. The endpoint also returns high-level account data and balances when available.  # noqa: E501
+            The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for a checking or savings account that''s associated with a given `processor_token`. The endpoint also returns high-level account data and balances when available.   Versioning note: API versions 2019-05-29 and earlier use a different schema for the `numbers` object returned by this endpoint. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2020-09-14).   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9249,7 +9265,7 @@ class PlaidApi(object):
         ):
             """Fire a test webhook  # noqa: E501
 
-            The `/sandbox/item/fire_webhook` endpoint is used to test that code correctly handles webhooks. Calling this endpoint triggers a Transactions `DEFAULT_UPDATE` webhook to be fired for a given Sandbox Item. If the Item does not support Transactions, a `SANDBOX_PRODUCT_NOT_ENABLED` error will result.  # noqa: E501
+            The `/sandbox/item/fire_webhook` endpoint is used to test that code correctly handles webhooks. Calling this endpoint triggers a Transactions `DEFAULT_UPDATE` webhook to be fired for a given Sandbox Item. If the Item does not support Transactions, a `SANDBOX_PRODUCT_NOT_ENABLED` error will result. Note that this endpoint is provided for developer ease-of-use and is not required for testing webhooks; webhooks will also fire in Sandbox under the same conditions that they would in Production or Development.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -10095,6 +10111,128 @@ class PlaidApi(object):
             callable=__sandbox_transfer_simulate
         )
 
+        def __sandbox_transfer_sweep_simulate(
+            self,
+            sandbox_transfer_sweep_simulate_request,
+            **kwargs
+        ):
+            """Simulate creating a sweep for a set of transfers  # noqa: E501
+
+            Use the `/sandbox/transfer/sweep/simulate` endpoint to create a sweep and associated events in the Sandbox environment.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_sweep_simulate(sandbox_transfer_sweep_simulate_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_sweep_simulate_request (SandboxTransferSweepSimulateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferSweepSimulateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_sweep_simulate_request'] = \
+                sandbox_transfer_sweep_simulate_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_sweep_simulate = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferSweepSimulateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/sweep/simulate',
+                'operation_id': 'sandbox_transfer_sweep_simulate',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_sweep_simulate_request',
+                ],
+                'required': [
+                    'sandbox_transfer_sweep_simulate_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_sweep_simulate_request':
+                        (SandboxTransferSweepSimulateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_sweep_simulate_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_sweep_simulate
+        )
+
         def __signal_decision_report(
             self,
             signal_decision_report_request,
@@ -10224,7 +10362,7 @@ class PlaidApi(object):
         ):
             """Evaluate a planned ACH transaction  # noqa: E501
 
-            Use `/signal/evaluate` to evaluate a planned ACH transaction to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause.  # noqa: E501
+            Use `/signal/evaluate` to evaluate a planned ACH transaction to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause. If `/signal/evaluate` is called on the same transaction multiple times within a 24-hour period, cached results may be returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11681,6 +11819,250 @@ class PlaidApi(object):
             callable=__transfer_get
         )
 
+        def __transfer_intent_create(
+            self,
+            transfer_intent_create_request,
+            **kwargs
+        ):
+            """Create a transfer intent object to invoke the Transfer UI  # noqa: E501
+
+            Use the `/transfer/intent/create` endpoint to generate a transfer intent object and invoke the Transfer UI.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_intent_create(transfer_intent_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_intent_create_request (TransferIntentCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferIntentCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_intent_create_request'] = \
+                transfer_intent_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_intent_create = _Endpoint(
+            settings={
+                'response_type': (TransferIntentCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/intent/create',
+                'operation_id': 'transfer_intent_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_intent_create_request',
+                ],
+                'required': [
+                    'transfer_intent_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_intent_create_request':
+                        (TransferIntentCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_intent_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_intent_create
+        )
+
+        def __transfer_intent_get(
+            self,
+            transfer_intent_get_request,
+            **kwargs
+        ):
+            """Retrieve more information about a transfer intent  # noqa: E501
+
+            Use the `/transfer/intent/get` endpoint to retrieve more information about a transfer intent.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_intent_get(transfer_intent_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_intent_get_request (TransferIntentGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferIntentGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_intent_get_request'] = \
+                transfer_intent_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_intent_get = _Endpoint(
+            settings={
+                'response_type': (TransferIntentGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/intent/get',
+                'operation_id': 'transfer_intent_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_intent_get_request',
+                ],
+                'required': [
+                    'transfer_intent_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_intent_get_request':
+                        (TransferIntentGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_intent_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_intent_get
+        )
+
         def __transfer_list(
             self,
             transfer_list_request,
@@ -11801,6 +12183,616 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transfer_list
+        )
+
+        def __transfer_sweep_get(
+            self,
+            transfer_sweep_get_request,
+            **kwargs
+        ):
+            """Retrieve a sweep  # noqa: E501
+
+            The `/transfer/sweep/get` endpoint fetches a sweep corresponding to the given `sweep_id`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_sweep_get(transfer_sweep_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_sweep_get_request (TransferSweepGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferSweepGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_sweep_get_request'] = \
+                transfer_sweep_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_sweep_get = _Endpoint(
+            settings={
+                'response_type': (TransferSweepGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/sweep/get',
+                'operation_id': 'transfer_sweep_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_sweep_get_request',
+                ],
+                'required': [
+                    'transfer_sweep_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_sweep_get_request':
+                        (TransferSweepGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_sweep_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_sweep_get
+        )
+
+        def __transfer_sweep_list(
+            self,
+            transfer_sweep_list_request,
+            **kwargs
+        ):
+            """List sweeps  # noqa: E501
+
+            The `/transfer/sweep/list` endpoint fetches sweeps matching the given filters.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_sweep_list(transfer_sweep_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_sweep_list_request (TransferSweepListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferSweepListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_sweep_list_request'] = \
+                transfer_sweep_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_sweep_list = _Endpoint(
+            settings={
+                'response_type': (TransferSweepListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/sweep/list',
+                'operation_id': 'transfer_sweep_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_sweep_list_request',
+                ],
+                'required': [
+                    'transfer_sweep_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_sweep_list_request':
+                        (TransferSweepListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_sweep_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_sweep_list
+        )
+
+        def __wallet_get(
+            self,
+            wallet_get_request,
+            **kwargs
+        ):
+            """Fetch an e-wallet  # noqa: E501
+
+            Fetch an e-wallet. The response includes the current balance.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.wallet_get(wallet_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                wallet_get_request (WalletGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WalletGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['wallet_get_request'] = \
+                wallet_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.wallet_get = _Endpoint(
+            settings={
+                'response_type': (WalletGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/wallet/get',
+                'operation_id': 'wallet_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'wallet_get_request',
+                ],
+                'required': [
+                    'wallet_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'wallet_get_request':
+                        (WalletGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'wallet_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__wallet_get
+        )
+
+        def __wallet_transaction_execute(
+            self,
+            wallet_transaction_execute_request,
+            **kwargs
+        ):
+            """Execute a transaction using an e-wallet  # noqa: E501
+
+            Execute a transaction using the specified e-wallet. Specify the e-wallet to debit from, the counterparty to credit to, the idempotency key to prevent duplicate payouts, the amount and reference for the payout. The payouts are executed over the Faster Payment rails, where settlement usually only takes a few seconds.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.wallet_transaction_execute(wallet_transaction_execute_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                wallet_transaction_execute_request (WalletTransactionExecuteRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WalletTransactionExecuteResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['wallet_transaction_execute_request'] = \
+                wallet_transaction_execute_request
+            return self.call_with_http_info(**kwargs)
+
+        self.wallet_transaction_execute = _Endpoint(
+            settings={
+                'response_type': (WalletTransactionExecuteResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/wallet/transaction/execute',
+                'operation_id': 'wallet_transaction_execute',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'wallet_transaction_execute_request',
+                ],
+                'required': [
+                    'wallet_transaction_execute_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'wallet_transaction_execute_request':
+                        (WalletTransactionExecuteRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'wallet_transaction_execute_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__wallet_transaction_execute
+        )
+
+        def __wallet_transactions_list(
+            self,
+            wallet_transactions_list_request,
+            **kwargs
+        ):
+            """List e-wallet transactions  # noqa: E501
+
+            This endpoint lists the latest transactions of the specified e-wallet. Transactions are returned in descending order by the `created_at` time.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.wallet_transactions_list(wallet_transactions_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                wallet_transactions_list_request (WalletTransactionsListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WalletTransactionsListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['wallet_transactions_list_request'] = \
+                wallet_transactions_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.wallet_transactions_list = _Endpoint(
+            settings={
+                'response_type': (WalletTransactionsListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/wallet/transactions/list',
+                'operation_id': 'wallet_transactions_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'wallet_transactions_list_request',
+                ],
+                'required': [
+                    'wallet_transactions_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'wallet_transactions_list_request':
+                        (WalletTransactionsListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'wallet_transactions_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__wallet_transactions_list
         )
 
         def __webhook_verification_key_get(

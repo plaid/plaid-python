@@ -120,8 +120,8 @@ class Location(ModelNormal):
         Args:
             address (str, none_type): The street address where the transaction occurred.
             city (str, none_type): The city where the transaction occurred.
-            region (str, none_type): The region or state where the transaction occurred.
-            postal_code (str, none_type): The postal code where the transaction occurred.
+            region (str, none_type): The region or state where the transaction occurred. In API versions 2018-05-22 and earlier, this field is called `state`.
+            postal_code (str, none_type): The postal code where the transaction occurred. In API versions 2018-05-22 and earlier, this field is called `zip`.
             country (str, none_type): The ISO 3166-1 alpha-2 country code where the transaction occurred.
             lat (float, none_type): The latitude where the transaction occurred.
             lon (float, none_type): The longitude where the transaction occurred.

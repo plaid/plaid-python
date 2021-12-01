@@ -96,6 +96,7 @@ class TransferEventListRequest(ModelNormal):
             'account_id': (str, none_type,),  # noqa: E501
             'transfer_type': (str, none_type,),  # noqa: E501
             'event_types': ([TransferEventType],),  # noqa: E501
+            'sweep_id': (str,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
             'offset': (int, none_type,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
@@ -115,6 +116,7 @@ class TransferEventListRequest(ModelNormal):
         'account_id': 'account_id',  # noqa: E501
         'transfer_type': 'transfer_type',  # noqa: E501
         'event_types': 'event_types',  # noqa: E501
+        'sweep_id': 'sweep_id',  # noqa: E501
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
@@ -174,6 +176,7 @@ class TransferEventListRequest(ModelNormal):
             account_id (str, none_type): The account ID to get events for all transactions to/from an account.. [optional]  # noqa: E501
             transfer_type (str, none_type): The type of transfer. This will be either `debit` or `credit`.  A `debit` indicates a transfer of money into your origination account; a `credit` indicates a transfer of money out of your origination account.. [optional]  # noqa: E501
             event_types ([TransferEventType]): Filter events by event type.. [optional]  # noqa: E501
+            sweep_id (str): Plaid’s unique identifier for a sweep.. [optional]  # noqa: E501
             count (int, none_type): The maximum number of transfer events to return. If the number of events matching the above parameters is greater than `count`, the most recent events will be returned.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int, none_type): The offset into the list of transfer events. When `count`=25 and `offset`=0, the first 25 events will be returned. When `count`=25 and `offset`=25, the next 25 bank transfer events will be returned.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             origination_account_id (str, none_type): The origination account ID to get events for transfers from a specific origination account.. [optional]  # noqa: E501
