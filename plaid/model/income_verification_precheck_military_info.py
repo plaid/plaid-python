@@ -57,6 +57,7 @@ class IncomeVerificationPrecheckMilitaryInfo(ModelNormal):
             'COAST_GUARD': "COAST GUARD",
             'MARINES': "MARINES",
             'NAVY': "NAVY",
+            'UNKNOWN': "UNKNOWN",
         },
     }
 

@@ -314,6 +314,7 @@ plaid/model/payment_initiation_payment_list_request.py
 plaid/model/payment_initiation_payment_list_response.py
 plaid/model/payment_initiation_payment_reverse_request.py
 plaid/model/payment_initiation_payment_reverse_response.py
+plaid/model/payment_initiation_payment_status.py
 plaid/model/payment_initiation_payment_token_create_request.py
 plaid/model/payment_initiation_payment_token_create_response.py
 plaid/model/payment_initiation_recipient.py
@@ -467,9 +468,11 @@ plaid/model/transfer_event_type.py
 plaid/model/transfer_failure.py
 plaid/model/transfer_get_request.py
 plaid/model/transfer_get_response.py
+plaid/model/transfer_intent_create.py
 plaid/model/transfer_intent_create_mode.py
 plaid/model/transfer_intent_create_request.py
 plaid/model/transfer_intent_create_response.py
+plaid/model/transfer_intent_get.py
 plaid/model/transfer_intent_get_failure_reason.py
 plaid/model/transfer_intent_get_request.py
 plaid/model/transfer_intent_get_response.py

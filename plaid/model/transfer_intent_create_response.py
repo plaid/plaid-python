@@ -25,14 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.ach_class import ACHClass
-    from plaid.model.transfer_intent_create_mode import TransferIntentCreateMode
-    from plaid.model.transfer_metadata import TransferMetadata
-    from plaid.model.transfer_user_in_response import TransferUserInResponse
-    globals()['ACHClass'] = ACHClass
-    globals()['TransferIntentCreateMode'] = TransferIntentCreateMode
-    globals()['TransferMetadata'] = TransferMetadata
-    globals()['TransferUserInResponse'] = TransferUserInResponse
+    from plaid.model.transfer_intent_create import TransferIntentCreate
+    globals()['TransferIntentCreate'] = TransferIntentCreate
 
 
 class TransferIntentCreateResponse(ModelNormal):
@@ -60,11 +54,6 @@ class TransferIntentCreateResponse(ModelNormal):
     """
 
     allowed_values = {
-        ('status',): {
-            'PENDING': "PENDING",
-            'SUCCEEDED': "SUCCEEDED",
-            'FAILED': "FAILED",
-        },
     }
 
     validations = {
@@ -93,17 +82,8 @@ class TransferIntentCreateResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str,),  # noqa: E501
-            'created': (datetime,),  # noqa: E501
-            'status': (str,),  # noqa: E501
-            'origination_account_id': (str,),  # noqa: E501
-            'amount': (str,),  # noqa: E501
-            'mode': (TransferIntentCreateMode,),  # noqa: E501
-            'ach_class': (ACHClass,),  # noqa: E501
-            'user': (TransferUserInResponse,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'account_id': (str,),  # noqa: E501
-            'metadata': (TransferMetadata,),  # noqa: E501
+            'transfer_intent': (TransferIntentCreate,),  # noqa: E501
+            'request_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -112,17 +92,8 @@ class TransferIntentCreateResponse(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'created': 'created',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'origination_account_id': 'origination_account_id',  # noqa: E501
-        'amount': 'amount',  # noqa: E501
-        'mode': 'mode',  # noqa: E501
-        'ach_class': 'ach_class',  # noqa: E501
-        'user': 'user',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'account_id': 'account_id',  # noqa: E501
-        'metadata': 'metadata',  # noqa: E501
+        'transfer_intent': 'transfer_intent',  # noqa: E501
+        'request_id': 'request_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -137,19 +108,12 @@ class TransferIntentCreateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created, status, origination_account_id, amount, mode, ach_class, user, description, *args, **kwargs):  # noqa: E501
+    def __init__(self, transfer_intent, request_id, *args, **kwargs):  # noqa: E501
         """TransferIntentCreateResponse - a model defined in OpenAPI
 
         Args:
-            id (str): Plaid's unique identifier for the transfer intent object.
-            created (datetime): The datetime the transfer was created. This will be of the form `2006-01-02T15:04:05Z`.
-            status (str): The status of the transfer intent.  - `PENDING` – The transfer intent is pending. - `SUCCEEDED`– The transfer intent was successfully created. - `FAILED` – The transfer intent was unable to be created.
-            origination_account_id (str): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
-            mode (TransferIntentCreateMode):
-            ach_class (ACHClass):
-            user (TransferUserInResponse):
-            description (str): A description for the underlying transfer. Maximum of 8 characters.
+            transfer_intent (TransferIntentCreate):
+            request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -182,8 +146,6 @@ class TransferIntentCreateResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
-            metadata (TransferMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -209,15 +171,8 @@ class TransferIntentCreateResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.id = id
-        self.created = created
-        self.status = status
-        self.origination_account_id = origination_account_id
-        self.amount = amount
-        self.mode = mode
-        self.ach_class = ach_class
-        self.user = user
-        self.description = description
+        self.transfer_intent = transfer_intent
+        self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
