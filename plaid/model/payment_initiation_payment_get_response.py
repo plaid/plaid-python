@@ -29,6 +29,7 @@ def lazy_import():
     from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
     from plaid.model.payment_amount import PaymentAmount
     from plaid.model.payment_initiation_payment import PaymentInitiationPayment
+    from plaid.model.payment_initiation_payment_status import PaymentInitiationPaymentStatus
     from plaid.model.payment_initiation_recipient_get_response_all_of import PaymentInitiationRecipientGetResponseAllOf
     from plaid.model.payment_initiation_refund import PaymentInitiationRefund
     from plaid.model.sender_bacs_nullable import SenderBACSNullable
@@ -36,6 +37,7 @@ def lazy_import():
     globals()['ExternalPaymentScheduleGet'] = ExternalPaymentScheduleGet
     globals()['PaymentAmount'] = PaymentAmount
     globals()['PaymentInitiationPayment'] = PaymentInitiationPayment
+    globals()['PaymentInitiationPaymentStatus'] = PaymentInitiationPaymentStatus
     globals()['PaymentInitiationRecipientGetResponseAllOf'] = PaymentInitiationRecipientGetResponseAllOf
     globals()['PaymentInitiationRefund'] = PaymentInitiationRefund
     globals()['SenderBACSNullable'] = SenderBACSNullable
@@ -66,16 +68,6 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
     """
 
     allowed_values = {
-        ('status',): {
-            'INPUT_NEEDED': "PAYMENT_STATUS_INPUT_NEEDED",
-            'PROCESSING': "PAYMENT_STATUS_PROCESSING",
-            'INITIATED': "PAYMENT_STATUS_INITIATED",
-            'COMPLETED': "PAYMENT_STATUS_COMPLETED",
-            'INSUFFICIENT_FUNDS': "PAYMENT_STATUS_INSUFFICIENT_FUNDS",
-            'FAILED': "PAYMENT_STATUS_FAILED",
-            'BLOCKED': "PAYMENT_STATUS_BLOCKED",
-            'UNKNOWN': "PAYMENT_STATUS_UNKNOWN",
-        },
     }
 
     validations = {
@@ -106,7 +98,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         return {
             'payment_id': (str,),  # noqa: E501
             'amount': (PaymentAmount,),  # noqa: E501
-            'status': (str,),  # noqa: E501
+            'status': (PaymentInitiationPaymentStatus,),  # noqa: E501
             'recipient_id': (str,),  # noqa: E501
             'reference': (str,),  # noqa: E501
             'last_status_update': (datetime,),  # noqa: E501
@@ -161,7 +153,7 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         Args:
             payment_id (str): The ID of the payment. Like all Plaid identifiers, the `payment_id` is case sensitive.
             amount (PaymentAmount):
-            status (str): The status of the payment.  `PAYMENT_STATUS_INPUT_NEEDED`: This is the initial state of all payments. It indicates that the payment is waiting on user input to continue processing. A payment may re-enter this state later on if further input is needed.  `PAYMENT_STATUS_PROCESSING`: The payment is currently being processed. The payment will automatically exit this state when processing is complete.  `PAYMENT_STATUS_INITIATED`: The payment has been successfully initiated and is considered complete.  `PAYMENT_STATUS_COMPLETED`: Indicates that the standing order has been successfully established. This state is only used for standing orders.  `PAYMENT_STATUS_INSUFFICIENT_FUNDS`: The payment has failed due to insufficient funds.  `PAYMENT_STATUS_FAILED`: The payment has failed to be initiated. This error is retryable once the root cause is resolved.  `PAYMENT_STATUS_BLOCKED`: The payment has been blocked. This is a retryable error.  `PAYMENT_STATUS_UNKNOWN`: The payment status is unknown.
+            status (PaymentInitiationPaymentStatus):
             recipient_id (str): The ID of the recipient
             reference (str): A reference for the payment.
             last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
