@@ -1,5 +1,5 @@
 
-FROM python:3.7
+FROM python:3.10.0b4
 
 # Create app directory
 WORKDIR /usr/src/app
