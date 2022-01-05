@@ -25,10 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.error import Error
     from plaid.model.income_summary import IncomeSummary
-    globals()['Error'] = Error
+    from plaid.model.plaid_error import PlaidError
     globals()['IncomeSummary'] = IncomeSummary
+    globals()['PlaidError'] = PlaidError
 
 
 class IncomeVerificationSummaryGetResponse(ModelNormal):
@@ -86,7 +86,7 @@ class IncomeVerificationSummaryGetResponse(ModelNormal):
         return {
             'income_summaries': ([IncomeSummary],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -150,7 +150,7 @@ class IncomeVerificationSummaryGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            error (Error): [optional]  # noqa: E501
+            error (PlaidError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

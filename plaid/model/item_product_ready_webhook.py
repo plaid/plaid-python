@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.error import Error
-    globals()['Error'] = Error
+    from plaid.model.plaid_error import PlaidError
+    globals()['PlaidError'] = PlaidError
 
 
 class ItemProductReadyWebhook(ModelNormal):
@@ -85,7 +85,7 @@ class ItemProductReadyWebhook(ModelNormal):
             'webhook_type': (str,),  # noqa: E501
             'webhook_code': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +151,7 @@ class ItemProductReadyWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            error (Error): [optional]  # noqa: E501
+            error (PlaidError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

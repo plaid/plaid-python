@@ -87,7 +87,6 @@ class InstitutionStatus(ModelNormal):
             'item_logins': (ProductStatus,),  # noqa: E501
             'transactions_updates': (ProductStatus,),  # noqa: E501
             'auth': (ProductStatus,),  # noqa: E501
-            'balance': (ProductStatus,),  # noqa: E501
             'identity': (ProductStatus,),  # noqa: E501
             'investments_updates': (ProductStatus,),  # noqa: E501
             'liabilities_updates': (ProductStatus,),  # noqa: E501
@@ -105,7 +104,6 @@ class InstitutionStatus(ModelNormal):
         'item_logins': 'item_logins',  # noqa: E501
         'transactions_updates': 'transactions_updates',  # noqa: E501
         'auth': 'auth',  # noqa: E501
-        'balance': 'balance',  # noqa: E501
         'identity': 'identity',  # noqa: E501
         'investments_updates': 'investments_updates',  # noqa: E501
         'liabilities_updates': 'liabilities_updates',  # noqa: E501
@@ -126,14 +124,13 @@ class InstitutionStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_logins, transactions_updates, auth, balance, identity, investments_updates, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_logins, transactions_updates, auth, identity, investments_updates, *args, **kwargs):  # noqa: E501
         """InstitutionStatus - a model defined in OpenAPI
 
         Args:
             item_logins (ProductStatus):
             transactions_updates (ProductStatus):
             auth (ProductStatus):
-            balance (ProductStatus):
             identity (ProductStatus):
             investments_updates (ProductStatus):
 
@@ -200,7 +197,6 @@ class InstitutionStatus(ModelNormal):
         self.item_logins = item_logins
         self.transactions_updates = transactions_updates
         self.auth = auth
-        self.balance = balance
         self.identity = identity
         self.investments_updates = investments_updates
         for var_name, var_value in kwargs.items():

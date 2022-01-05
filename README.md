@@ -93,6 +93,39 @@ except plaid.ApiException as e:
 
 For more information on Plaid response codes, head to the [docs][3].
 
+## Data type differences from API and from previous versions
+
+### Converting the response to a JSON
+
+As this is a common question, we've included this in the README. `plaid-python` uses models like `TransactionsGetResponse` to encapsulate API responses. If you want to convert this to a JSON, do something like this:
+
+```python
+import json
+...
+response = ... # type TransactionsGetResponse
+# to_dict makes it first a python dictionary, and then we turn it into a string JSON.
+json_string = json.dumps(response.to_dict())
+```
+
+### Dates
+
+Dates and date times in requests and responses, which are represented as strings in the API and in previous client library versions, are represented in this version of the library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme.
+
+### Enums
+While the API and previous library versions represent enums using strings, this current library uses Python classes with restricted values.
+
+Old:
+```
+'products': ['auth', 'transactions'],
+'country_codes': ['US'],
+```
+
+Current:
+```
+products=[Products('auth'), Products('transactions')],
+country_codes=[CountryCode('US')],
+```
+
 ## Examples
 
 ### Create an Item using Link
@@ -186,16 +219,6 @@ FILE.write(pdf.read())
 FILE.close()
 ```
 
-### Retrieve Other Data
-Most other item data can be retrieved by following this pattern:
-```python
-import plaid
-from plaid.model.auth_get_request import AuthGetRequest
-
-response = client.Auth.get(access_token)
-numbers = response['numbers']
-```
-
 ### Authentication
 
 Public endpoints (category information) require no authentication and can be
@@ -206,6 +229,7 @@ categories = client.categories_get({})
 ```
 
 Authenticated endpoints require a `(client_id, secret)` pair. You do not need to pass in authentication to individual endpoints once you have set it on the `plaid.Configuration` object.
+
 
 ## Contributing
 

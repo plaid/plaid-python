@@ -77,8 +77,9 @@ class TransferSweep(ModelNormal):
         """
         return {
             'id': (str,),  # noqa: E501
-            'created_at': (datetime,),  # noqa: E501
+            'created': (datetime,),  # noqa: E501
             'amount': (str,),  # noqa: E501
+            'iso_currency_code': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -88,8 +89,9 @@ class TransferSweep(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'created_at': 'created_at',  # noqa: E501
+        'created': 'created',  # noqa: E501
         'amount': 'amount',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -104,12 +106,14 @@ class TransferSweep(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created_at, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, created, amount, iso_currency_code, *args, **kwargs):  # noqa: E501
         """TransferSweep - a model defined in OpenAPI
 
         Args:
             id (str): Identifier of the sweep.
-            created_at (datetime): The datetime when the sweep occurred, in RFC 3339 format.
+            created (datetime): The datetime when the sweep occurred, in RFC 3339 format.
+            amount (str): Signed decimal amount of the sweep as it appears on your sweep account ledger (e.g. \"-10.00\")  If amount is not present, the sweep was net-settled to zero and outstanding debits and credits between the sweep account and Plaid are balanced.
+            iso_currency_code (str): The currency of the sweep, e.g. \"USD\".
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,7 +146,6 @@ class TransferSweep(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            amount (str): Signed decimal amount of the sweep as it appears on your sweep account ledger (e.g. \"-10.00\")  If amount is not present, the sweep was net-settled to zero and outstanding debits and credits between the sweep account and Plaid are balanced.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -169,7 +172,9 @@ class TransferSweep(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
-        self.created_at = created_at
+        self.created = created
+        self.amount = amount
+        self.iso_currency_code = iso_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

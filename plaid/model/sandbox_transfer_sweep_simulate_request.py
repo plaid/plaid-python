@@ -72,8 +72,6 @@ class SandboxTransferSweepSimulateRequest(ModelNormal):
         return {
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'swept': ([str],),  # noqa: E501
-            'reverse_swept': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -84,8 +82,6 @@ class SandboxTransferSweepSimulateRequest(ModelNormal):
     attribute_map = {
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'swept': 'swept',  # noqa: E501
-        'reverse_swept': 'reverse_swept',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +132,6 @@ class SandboxTransferSweepSimulateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            swept ([str]): A set of `pending` or `posted` transfers which should be included in the sweep.. [optional]  # noqa: E501
-            reverse_swept ([str]): A set of transfers to be `reverse_swept`. Transfers must first be `reversed` using the `/sandbox/transfer/simulate` endpoint before they can be `reverse_swept`. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -52,8 +52,8 @@ class SandboxIncomeFireWebhookRequest(ModelNormal):
     allowed_values = {
         ('verification_status',): {
             'PROCESSING_COMPLETE': "VERIFICATION_STATUS_PROCESSING_COMPLETE",
-            'DOCUMENT_REJECTED': "VERIFICATION_STATUS_DOCUMENT_REJECTED",
             'PROCESSING_FAILED': "VERIFICATION_STATUS_PROCESSING_FAILED",
+            'PENDING_APPROVAL': "VERIFICATION_STATUS_PENDING_APPROVAL",
         },
     }
 
@@ -116,7 +116,7 @@ class SandboxIncomeFireWebhookRequest(ModelNormal):
             income_verification_id (str): The ID of the verification.
             item_id (str): The Item ID associated with the verification.
             webhook (str): The URL to which the webhook should be sent.
-            verification_status (str): `VERIFICATION_STATUS_PROCESSING_COMPLETE`: The income verification status processing has completed.  `VERIFICATION_STATUS_DOCUMENT_REJECTED`: The documentation uploaded by the end user was recognized as a supported file format, but not recognized as a valid paystub.  `VERIFICATION_STATUS_PROCESSING_FAILED`: A failure occurred when attempting to process the verification documentation.
+            verification_status (str): `VERIFICATION_STATUS_PROCESSING_COMPLETE`: The income verification status processing has completed. If the user uploaded multiple documents, this webhook will fire when all documents have finished processing. Call the `/paystubs/get` endpoint and check the document metadata to see which documents were successfully parsed.  `VERIFICATION_STATUS_PROCESSING_FAILED`: A failure occurred when attempting to process the verification documentation.  `VERIFICATION_STATUS_PENDING_APPROVAL`: The income verification has been sent to the user for review.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

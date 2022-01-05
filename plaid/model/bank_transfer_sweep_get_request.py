@@ -73,7 +73,6 @@ class BankTransferSweepGetRequest(ModelNormal):
             'sweep_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'origination_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,7 +84,6 @@ class BankTransferSweepGetRequest(ModelNormal):
         'sweep_id': 'sweep_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'origination_account_id': 'origination_account_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +137,6 @@ class BankTransferSweepGetRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            origination_account_id (str, none_type): If multiple origination accounts are available, `origination_account_id` must be used to specify the account that the sweep belongs to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.transfer_sweep import TransferSweep
-    globals()['TransferSweep'] = TransferSweep
+    from plaid.model.simulated_transfer_sweep import SimulatedTransferSweep
+    globals()['SimulatedTransferSweep'] = SimulatedTransferSweep
 
 
 class SandboxTransferSweepSimulateResponse(ModelNormal):
@@ -82,8 +82,8 @@ class SandboxTransferSweepSimulateResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'sweep': (TransferSweep,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'sweep': (SimulatedTransferSweep,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class SandboxTransferSweepSimulateResponse(ModelNormal):
 
 
     attribute_map = {
-        'sweep': 'sweep',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'sweep': 'sweep',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,11 +108,10 @@ class SandboxTransferSweepSimulateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, sweep, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, request_id, *args, **kwargs):  # noqa: E501
         """SandboxTransferSweepSimulateResponse - a model defined in OpenAPI
 
         Args:
-            sweep (TransferSweep):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -146,6 +145,7 @@ class SandboxTransferSweepSimulateResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            sweep (SimulatedTransferSweep): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -171,7 +171,6 @@ class SandboxTransferSweepSimulateResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.sweep = sweep
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

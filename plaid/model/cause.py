@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.error import Error
-    globals()['Error'] = Error
+    from plaid.model.plaid_error import PlaidError
+    globals()['PlaidError'] = PlaidError
 
 
 class Cause(ModelNormal):
@@ -83,7 +83,7 @@ class Cause(ModelNormal):
         lazy_import()
         return {
             'item_id': (str,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -113,7 +113,7 @@ class Cause(ModelNormal):
 
         Args:
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
-            error (Error):
+            error (PlaidError):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

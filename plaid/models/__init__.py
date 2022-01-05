@@ -101,7 +101,6 @@ from plaid.model.bank_transfer_network import BankTransferNetwork
 from plaid.model.bank_transfer_receiver_details import BankTransferReceiverDetails
 from plaid.model.bank_transfer_status import BankTransferStatus
 from plaid.model.bank_transfer_sweep import BankTransferSweep
-from plaid.model.bank_transfer_sweep_account import BankTransferSweepAccount
 from plaid.model.bank_transfer_sweep_get_request import BankTransferSweepGetRequest
 from plaid.model.bank_transfer_sweep_get_response import BankTransferSweepGetResponse
 from plaid.model.bank_transfer_sweep_list_request import BankTransferSweepListRequest
@@ -189,6 +188,7 @@ from plaid.model.income_verification_paystubs_get_response import IncomeVerifica
 from plaid.model.income_verification_precheck_confidence import IncomeVerificationPrecheckConfidence
 from plaid.model.income_verification_precheck_employer import IncomeVerificationPrecheckEmployer
 from plaid.model.income_verification_precheck_employer_address import IncomeVerificationPrecheckEmployerAddress
+from plaid.model.income_verification_precheck_employer_address_data import IncomeVerificationPrecheckEmployerAddressData
 from plaid.model.income_verification_precheck_military_info import IncomeVerificationPrecheckMilitaryInfo
 from plaid.model.income_verification_precheck_request import IncomeVerificationPrecheckRequest
 from plaid.model.income_verification_precheck_response import IncomeVerificationPrecheckResponse
@@ -333,6 +333,7 @@ from plaid.model.payment_initiation_refund import PaymentInitiationRefund
 from plaid.model.payment_initiation_standing_order_metadata import PaymentInitiationStandingOrderMetadata
 from plaid.model.payment_meta import PaymentMeta
 from plaid.model.payment_schedule_interval import PaymentScheduleInterval
+from plaid.model.payment_scheme import PaymentScheme
 from plaid.model.payment_status_update_webhook import PaymentStatusUpdateWebhook
 from plaid.model.paystub import Paystub
 from plaid.model.paystub_address import PaystubAddress
@@ -350,6 +351,7 @@ from plaid.model.paystub_ytd_details import PaystubYTDDetails
 from plaid.model.pending_expiration_webhook import PendingExpirationWebhook
 from plaid.model.personal_finance_category import PersonalFinanceCategory
 from plaid.model.phone_number import PhoneNumber
+from plaid.model.plaid_error import PlaidError
 from plaid.model.platform_ids import PlatformIds
 from plaid.model.processor_apex_processor_token_create_request import ProcessorApexProcessorTokenCreateRequest
 from plaid.model.processor_auth_get_request import ProcessorAuthGetRequest
@@ -421,6 +423,7 @@ from plaid.model.signal_return_report_response import SignalReturnReportResponse
 from plaid.model.signal_score import SignalScore
 from plaid.model.signal_scores import SignalScores
 from plaid.model.signal_user import SignalUser
+from plaid.model.simulated_transfer_sweep import SimulatedTransferSweep
 from plaid.model.standalone_account_type import StandaloneAccountType
 from plaid.model.standalone_currency_code_list import StandaloneCurrencyCodeList
 from plaid.model.standalone_investment_transaction_type import StandaloneInvestmentTransactionType

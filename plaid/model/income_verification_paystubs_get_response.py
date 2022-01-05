@@ -26,11 +26,11 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.document_metadata import DocumentMetadata
-    from plaid.model.error import Error
     from plaid.model.paystub import Paystub
+    from plaid.model.plaid_error import PlaidError
     globals()['DocumentMetadata'] = DocumentMetadata
-    globals()['Error'] = Error
     globals()['Paystub'] = Paystub
+    globals()['PlaidError'] = PlaidError
 
 
 class IncomeVerificationPaystubsGetResponse(ModelNormal):
@@ -89,7 +89,7 @@ class IncomeVerificationPaystubsGetResponse(ModelNormal):
             'paystubs': ([Paystub],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'document_metadata': ([DocumentMetadata],),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -155,7 +155,7 @@ class IncomeVerificationPaystubsGetResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             document_metadata ([DocumentMetadata]): [optional]  # noqa: E501
-            error (Error): [optional]  # noqa: E501
+            error (PlaidError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

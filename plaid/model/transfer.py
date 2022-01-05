@@ -110,6 +110,7 @@ class Transfer(ModelNormal):
             'failure_reason': (TransferFailure,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
+            'iso_currency_code': (str,),  # noqa: E501
             'sweep_status': (TransferSweepStatus,),  # noqa: E501
         }
 
@@ -133,6 +134,7 @@ class Transfer(ModelNormal):
         'failure_reason': 'failure_reason',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'sweep_status': 'sweep_status',  # noqa: E501
     }
 
@@ -148,7 +150,7 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, iso_currency_code, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
@@ -166,6 +168,7 @@ class Transfer(ModelNormal):
             failure_reason (TransferFailure):
             metadata (TransferMetadata):
             origination_account_id (str): Plaid’s unique identifier for the origination account that was used for this transfer.
+            iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -238,6 +241,7 @@ class Transfer(ModelNormal):
         self.failure_reason = failure_reason
         self.metadata = metadata
         self.origination_account_id = origination_account_id
+        self.iso_currency_code = iso_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

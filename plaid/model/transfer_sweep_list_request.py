@@ -79,10 +79,9 @@ class TransferSweepListRequest(ModelNormal):
         return {
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'start_time': (datetime, none_type,),  # noqa: E501
-            'end_time': (datetime, none_type,),  # noqa: E501
+            'start_date': (datetime, none_type,),  # noqa: E501
+            'end_date': (datetime, none_type,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
-            'transfer_id': (str,),  # noqa: E501
             'offset': (int,),  # noqa: E501
         }
 
@@ -94,10 +93,9 @@ class TransferSweepListRequest(ModelNormal):
     attribute_map = {
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'start_time': 'start_time',  # noqa: E501
-        'end_time': 'end_time',  # noqa: E501
+        'start_date': 'start_date',  # noqa: E501
+        'end_date': 'end_date',  # noqa: E501
         'count': 'count',  # noqa: E501
-        'transfer_id': 'transfer_id',  # noqa: E501
         'offset': 'offset',  # noqa: E501
     }
 
@@ -149,10 +147,9 @@ class TransferSweepListRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            start_time (datetime, none_type): The start datetime of sweeps to return (RFC 3339 format).. [optional]  # noqa: E501
-            end_time (datetime, none_type): The end datetime of sweeps to return (RFC 3339 format).. [optional]  # noqa: E501
+            start_date (datetime, none_type): The start datetime of sweeps to return (RFC 3339 format).. [optional]  # noqa: E501
+            end_date (datetime, none_type): The end datetime of sweeps to return (RFC 3339 format).. [optional]  # noqa: E501
             count (int, none_type): The maximum number of sweeps to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
-            transfer_id (str): Plaid’s unique identifier for a transfer.. [optional]  # noqa: E501
             offset (int): The number of sweeps to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
 
