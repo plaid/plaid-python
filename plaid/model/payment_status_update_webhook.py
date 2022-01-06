@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.error import Error
-    globals()['Error'] = Error
+    from plaid.model.plaid_error import PlaidError
+    globals()['PlaidError'] = PlaidError
 
 
 class PaymentStatusUpdateWebhook(ModelNormal):
@@ -112,7 +112,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             'adjusted_start_date': (date, none_type,),  # noqa: E501
             'timestamp': (datetime,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -192,7 +192,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
-            error (Error): [optional]  # noqa: E501
+            error (PlaidError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -94,6 +94,7 @@ class TransferIntentCreateRequest(ModelNormal):
             'account_id': (str, none_type,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
+            'iso_currency_code': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +113,7 @@ class TransferIntentCreateRequest(ModelNormal):
         'account_id': 'account_id',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -172,6 +174,7 @@ class TransferIntentCreateRequest(ModelNormal):
             account_id (str, none_type): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.. [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
+            iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\". [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

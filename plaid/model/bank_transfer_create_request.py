@@ -193,7 +193,7 @@ class BankTransferCreateRequest(ModelNormal):
             ach_class (ACHClass): [optional]  # noqa: E501
             custom_tag (str, none_type): An arbitrary string provided by the client for storage with the bank transfer. May be up to 100 characters.. [optional]  # noqa: E501
             metadata (BankTransferMetadata): [optional]  # noqa: E501
-            origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for this transfer. If you have more than one origination account, this value must be specified.. [optional]  # noqa: E501
+            origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for this transfer. If you have more than one origination account, this value must be specified. Otherwise, this field should be left blank.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

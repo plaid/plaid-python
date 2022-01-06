@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.payment_initiation_optional_restriction_bacs import PaymentInitiationOptionalRestrictionBacs
+    from plaid.model.payment_scheme import PaymentScheme
     globals()['PaymentInitiationOptionalRestrictionBacs'] = PaymentInitiationOptionalRestrictionBacs
+    globals()['PaymentScheme'] = PaymentScheme
 
 
 class ExternalPaymentOptions(ModelNormal):
@@ -93,6 +95,8 @@ class ExternalPaymentOptions(ModelNormal):
             'iban': (str, none_type,),  # noqa: E501
             'bacs': (PaymentInitiationOptionalRestrictionBacs,),  # noqa: E501
             'wallet_id': (str, none_type,),  # noqa: E501
+            'scheme': (PaymentScheme,),  # noqa: E501
+            'scheme_automatic_downgrade': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,6 +109,8 @@ class ExternalPaymentOptions(ModelNormal):
         'iban': 'iban',  # noqa: E501
         'bacs': 'bacs',  # noqa: E501
         'wallet_id': 'wallet_id',  # noqa: E501
+        'scheme': 'scheme',  # noqa: E501
+        'scheme_automatic_downgrade': 'scheme_automatic_downgrade',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,6 +163,8 @@ class ExternalPaymentOptions(ModelNormal):
             iban (str, none_type): The International Bank Account Number (IBAN) for the payer's account. If provided, the end user will be able to send payments only from the specified bank account.. [optional]  # noqa: E501
             bacs (PaymentInitiationOptionalRestrictionBacs): [optional]  # noqa: E501
             wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
+            scheme (PaymentScheme): [optional]  # noqa: E501
+            scheme_automatic_downgrade (bool, none_type): When `true`, Plaid will attempt to automatically downgrade payment `scheme` (e.g. `SEPA_CREDIT_TRANSFER_INSTANT` to `SEPA_CREDIT_TRANSFER`) when the requested scheme is not supported by the bank.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

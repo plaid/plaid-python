@@ -86,7 +86,7 @@ class CreditCardLiability(ModelNormal):
             'aprs': ([APR],),  # noqa: E501
             'is_overdue': (bool, none_type,),  # noqa: E501
             'last_payment_amount': (float,),  # noqa: E501
-            'last_payment_date': (date,),  # noqa: E501
+            'last_payment_date': (date, none_type,),  # noqa: E501
             'last_statement_issue_date': (date,),  # noqa: E501
             'last_statement_balance': (float,),  # noqa: E501
             'minimum_payment_amount': (float,),  # noqa: E501
@@ -130,7 +130,7 @@ class CreditCardLiability(ModelNormal):
             aprs ([APR]): The various interest rates that apply to the account.
             is_overdue (bool, none_type): true if a payment is currently overdue. Availability for this field is limited.
             last_payment_amount (float): The amount of the last payment.
-            last_payment_date (date): The date of the last payment. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). Availability for this field is limited.
+            last_payment_date (date, none_type): The date of the last payment. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). Availability for this field is limited.
             last_statement_issue_date (date): The date of the last statement. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD).
             last_statement_balance (float): The total amount owed as of the last statement issued
             minimum_payment_amount (float): The minimum payment due for the next billing cycle.

@@ -98,7 +98,6 @@ plaid/model/bank_transfer_network.py
 plaid/model/bank_transfer_receiver_details.py
 plaid/model/bank_transfer_status.py
 plaid/model/bank_transfer_sweep.py
-plaid/model/bank_transfer_sweep_account.py
 plaid/model/bank_transfer_sweep_get_request.py
 plaid/model/bank_transfer_sweep_get_response.py
 plaid/model/bank_transfer_sweep_list_request.py
@@ -186,6 +185,7 @@ plaid/model/income_verification_paystubs_get_response.py
 plaid/model/income_verification_precheck_confidence.py
 plaid/model/income_verification_precheck_employer.py
 plaid/model/income_verification_precheck_employer_address.py
+plaid/model/income_verification_precheck_employer_address_data.py
 plaid/model/income_verification_precheck_military_info.py
 plaid/model/income_verification_precheck_request.py
 plaid/model/income_verification_precheck_response.py
@@ -329,6 +329,7 @@ plaid/model/payment_initiation_refund.py
 plaid/model/payment_initiation_standing_order_metadata.py
 plaid/model/payment_meta.py
 plaid/model/payment_schedule_interval.py
+plaid/model/payment_scheme.py
 plaid/model/payment_status_update_webhook.py
 plaid/model/paystub.py
 plaid/model/paystub_address.py
@@ -346,6 +347,7 @@ plaid/model/paystub_ytd_details.py
 plaid/model/pending_expiration_webhook.py
 plaid/model/personal_finance_category.py
 plaid/model/phone_number.py
+plaid/model/plaid_error.py
 plaid/model/platform_ids.py
 plaid/model/processor_apex_processor_token_create_request.py
 plaid/model/processor_auth_get_request.py
@@ -418,6 +420,7 @@ plaid/model/signal_return_report_response.py
 plaid/model/signal_score.py
 plaid/model/signal_scores.py
 plaid/model/signal_user.py
+plaid/model/simulated_transfer_sweep.py
 plaid/model/standalone_account_type.py
 plaid/model/standalone_currency_code_list.py
 plaid/model/standalone_investment_transaction_type.py

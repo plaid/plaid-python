@@ -26,10 +26,10 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.document_metadata import DocumentMetadata
-    from plaid.model.error import Error
+    from plaid.model.plaid_error import PlaidError
     from plaid.model.taxform import Taxform
     globals()['DocumentMetadata'] = DocumentMetadata
-    globals()['Error'] = Error
+    globals()['PlaidError'] = PlaidError
     globals()['Taxform'] = Taxform
 
 
@@ -89,7 +89,7 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
             'document_metadata': ([DocumentMetadata],),  # noqa: E501
             'taxforms': ([Taxform],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -155,7 +155,7 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.. [optional]  # noqa: E501
-            error (Error): [optional]  # noqa: E501
+            error (PlaidError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

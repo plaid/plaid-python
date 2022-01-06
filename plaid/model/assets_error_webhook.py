@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.error import Error
-    globals()['Error'] = Error
+    from plaid.model.plaid_error import PlaidError
+    globals()['PlaidError'] = PlaidError
 
 
 class AssetsErrorWebhook(ModelNormal):
@@ -84,7 +84,7 @@ class AssetsErrorWebhook(ModelNormal):
         return {
             'webhook_type': (str,),  # noqa: E501
             'webhook_code': (str,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
             'asset_report_id': (str,),  # noqa: E501
         }
 
@@ -118,7 +118,7 @@ class AssetsErrorWebhook(ModelNormal):
         Args:
             webhook_type (str): `ASSETS`
             webhook_code (str): `ERROR`
-            error (Error):
+            error (PlaidError):
             asset_report_id (str): The ID associated with the Asset Report.
 
         Keyword Args:

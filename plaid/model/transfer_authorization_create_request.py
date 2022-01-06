@@ -94,6 +94,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             'secret': (str,),  # noqa: E501
             'device': (TransferAuthorizationDevice,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
+            'iso_currency_code': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -113,6 +114,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         'secret': 'secret',  # noqa: E501
         'device': 'device',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,6 +176,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             device (TransferAuthorizationDevice): [optional]  # noqa: E501
             origination_account_id (str): Plaid's unique identifier for the origination account for this authorization. If not specified, the default account will be used.. [optional]  # noqa: E501
+            iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

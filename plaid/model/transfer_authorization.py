@@ -90,7 +90,7 @@ class TransferAuthorization(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'created': (str,),  # noqa: E501
+            'created': (datetime,),  # noqa: E501
             'decision': (str,),  # noqa: E501
             'decision_rationale': (TransferAuthorizationDecisionRationale,),  # noqa: E501
             'proposed_transfer': (TransferAuthorizationProposedTransfer,),  # noqa: E501
@@ -126,7 +126,7 @@ class TransferAuthorization(ModelNormal):
 
         Args:
             id (str): Plaid’s unique identifier for a transfer authorization.
-            created (str): The datetime representing when the authorization was created, in the format \"2006-01-02T15:04:05Z\".
+            created (datetime): The datetime representing when the authorization was created, in the format `2006-01-02T15:04:05Z`.
             decision (str):  A decision regarding the proposed transfer.  `approved` – The proposed transfer has received the end user's consent and has been approved for processing. Plaid has also reviewed the proposed transfer and has approved it for processing.   `permitted` – Plaid was unable to fetch the information required to approve or decline the proposed transfer. You may proceed with the transfer, but further review is recommended. Plaid is awaiting further instructions from the client.  `declined` – Plaid reviewed the proposed transfer and declined processing. Refer to the `code` field in the `decision_rationale` object for details.
             decision_rationale (TransferAuthorizationDecisionRationale):
             proposed_transfer (TransferAuthorizationProposedTransfer):

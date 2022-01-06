@@ -116,6 +116,7 @@ class TransferIntentGet(ModelNormal):
             'ach_class': (ACHClass,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'description': (str,),  # noqa: E501
+            'iso_currency_code': (str,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
         }
@@ -139,6 +140,7 @@ class TransferIntentGet(ModelNormal):
         'ach_class': 'ach_class',  # noqa: E501
         'user': 'user',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
     }
@@ -155,7 +157,7 @@ class TransferIntentGet(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created, status, transfer_id, failure_reason, authorization_decision, authorization_decision_rationale, origination_account_id, amount, mode, ach_class, user, description, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, created, status, transfer_id, failure_reason, authorization_decision, authorization_decision_rationale, origination_account_id, amount, mode, ach_class, user, description, iso_currency_code, *args, **kwargs):  # noqa: E501
         """TransferIntentGet - a model defined in OpenAPI
 
         Args:
@@ -172,6 +174,7 @@ class TransferIntentGet(ModelNormal):
             ach_class (ACHClass):
             user (TransferUserInResponse):
             description (str): A description for the underlying transfer. Maximum of 8 characters.
+            iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,6 +247,7 @@ class TransferIntentGet(ModelNormal):
         self.ach_class = ach_class
         self.user = user
         self.description = description
+        self.iso_currency_code = iso_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

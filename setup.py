@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '8.8.0'
+VERSION = '8.9.0'
 url = 'https://github.com/plaid/plaid-python'
 
 REQUIRES = [
