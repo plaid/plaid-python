@@ -28,12 +28,10 @@ def lazy_import():
     from plaid.model.bank_transfer_direction import BankTransferDirection
     from plaid.model.bank_transfer_event_type import BankTransferEventType
     from plaid.model.bank_transfer_failure import BankTransferFailure
-    from plaid.model.bank_transfer_receiver_details import BankTransferReceiverDetails
     from plaid.model.bank_transfer_type import BankTransferType
     globals()['BankTransferDirection'] = BankTransferDirection
     globals()['BankTransferEventType'] = BankTransferEventType
     globals()['BankTransferFailure'] = BankTransferFailure
-    globals()['BankTransferReceiverDetails'] = BankTransferReceiverDetails
     globals()['BankTransferType'] = BankTransferType
 
 
@@ -104,7 +102,6 @@ class BankTransferEvent(ModelNormal):
             'bank_transfer_iso_currency_code': (str,),  # noqa: E501
             'failure_reason': (BankTransferFailure,),  # noqa: E501
             'direction': (BankTransferDirection,),  # noqa: E501
-            'receiver_details': (BankTransferReceiverDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -124,7 +121,6 @@ class BankTransferEvent(ModelNormal):
         'bank_transfer_iso_currency_code': 'bank_transfer_iso_currency_code',  # noqa: E501
         'failure_reason': 'failure_reason',  # noqa: E501
         'direction': 'direction',  # noqa: E501
-        'receiver_details': 'receiver_details',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +135,7 @@ class BankTransferEvent(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, event_id, timestamp, event_type, account_id, bank_transfer_id, origination_account_id, bank_transfer_type, bank_transfer_amount, bank_transfer_iso_currency_code, failure_reason, direction, receiver_details, *args, **kwargs):  # noqa: E501
+    def __init__(self, event_id, timestamp, event_type, account_id, bank_transfer_id, origination_account_id, bank_transfer_type, bank_transfer_amount, bank_transfer_iso_currency_code, failure_reason, direction, *args, **kwargs):  # noqa: E501
         """BankTransferEvent - a model defined in OpenAPI
 
         Args:
@@ -154,7 +150,6 @@ class BankTransferEvent(ModelNormal):
             bank_transfer_iso_currency_code (str): The currency of the bank transfer amount.
             failure_reason (BankTransferFailure):
             direction (BankTransferDirection):
-            receiver_details (BankTransferReceiverDetails):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -223,7 +218,6 @@ class BankTransferEvent(ModelNormal):
         self.bank_transfer_iso_currency_code = bank_transfer_iso_currency_code
         self.failure_reason = failure_reason
         self.direction = direction
-        self.receiver_details = receiver_details
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

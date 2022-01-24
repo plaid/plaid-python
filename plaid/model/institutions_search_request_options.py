@@ -75,10 +75,10 @@ class InstitutionsSearchRequestOptions(ModelNormal):
         """
         lazy_import()
         return {
-            'oauth': (bool,),  # noqa: E501
+            'oauth': (bool, none_type,),  # noqa: E501
             'include_optional_metadata': (bool,),  # noqa: E501
-            'include_auth_metadata': (bool,),  # noqa: E501
-            'include_payment_initiation_metadata': (bool,),  # noqa: E501
+            'include_auth_metadata': (bool, none_type,),  # noqa: E501
+            'include_payment_initiation_metadata': (bool, none_type,),  # noqa: E501
             'payment_initiation': (InstitutionsSearchPaymentInitiationOptions,),  # noqa: E501
         }
 
@@ -141,10 +141,10 @@ class InstitutionsSearchRequestOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            oauth (bool): Limit results to institutions with or without OAuth login flows. This is primarily relevant to institutions with European country codes. [optional]  # noqa: E501
+            oauth (bool, none_type): Limit results to institutions with or without OAuth login flows. This is primarily relevant to institutions with European country codes. [optional]  # noqa: E501
             include_optional_metadata (bool): When true, return the institution's homepage URL, logo and primary brand color.. [optional]  # noqa: E501
-            include_auth_metadata (bool): When `true`, returns metadata related to the Auth product indicating which auth methods are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            include_payment_initiation_metadata (bool): When `true`, returns metadata related to the Payment Initiation product indicating which payment configurations are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_auth_metadata (bool, none_type): When `true`, returns metadata related to the Auth product indicating which auth methods are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_payment_initiation_metadata (bool, none_type): When `true`, returns metadata related to the Payment Initiation product indicating which payment configurations are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
             payment_initiation (InstitutionsSearchPaymentInitiationOptions): [optional]  # noqa: E501
         """
 

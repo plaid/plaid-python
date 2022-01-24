@@ -76,7 +76,7 @@ class InstitutionsSearchPaymentInitiationOptions(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'payment_id': (str,),  # noqa: E501
+            'payment_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -134,7 +134,7 @@ class InstitutionsSearchPaymentInitiationOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            payment_id (str): A unique ID identifying the payment. [optional]  # noqa: E501
+            payment_id (str, none_type): A unique ID identifying the payment. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -26,9 +26,7 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.employment_verification import EmploymentVerification
-    from plaid.model.plaid_error import PlaidError
     globals()['EmploymentVerification'] = EmploymentVerification
-    globals()['PlaidError'] = PlaidError
 
 
 class EmploymentVerificationGetResponse(ModelNormal):
@@ -86,7 +84,6 @@ class EmploymentVerificationGetResponse(ModelNormal):
         return {
             'employments': ([EmploymentVerification],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'error': (PlaidError,),  # noqa: E501
         }
 
     @cached_property
@@ -97,7 +94,6 @@ class EmploymentVerificationGetResponse(ModelNormal):
     attribute_map = {
         'employments': 'employments',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
-        'error': 'error',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,7 +146,6 @@ class EmploymentVerificationGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            error (PlaidError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

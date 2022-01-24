@@ -98,8 +98,8 @@ class TransferEvent(ModelNormal):
             'transfer_type': (TransferType,),  # noqa: E501
             'transfer_amount': (str,),  # noqa: E501
             'failure_reason': (TransferFailure,),  # noqa: E501
-            'sweep_id': (str,),  # noqa: E501
-            'sweep_amount': (str,),  # noqa: E501
+            'sweep_id': (str, none_type,),  # noqa: E501
+            'sweep_amount': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -133,7 +133,7 @@ class TransferEvent(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, *args, **kwargs):  # noqa: E501
+    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, sweep_id, sweep_amount, *args, **kwargs):  # noqa: E501
         """TransferEvent - a model defined in OpenAPI
 
         Args:
@@ -144,8 +144,10 @@ class TransferEvent(ModelNormal):
             transfer_id (str): Plaid’s unique identifier for a transfer.
             origination_account_id (str, none_type): The ID of the origination account that this balance belongs to.
             transfer_type (TransferType):
-            transfer_amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            transfer_amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             failure_reason (TransferFailure):
+            sweep_id (str, none_type): Plaid’s unique identifier for a sweep.
+            sweep_amount (str, none_type): A signed amount of how much was `swept` or `reverse_swept` (decimal string with two digits of precision e.g. \"-5.50\").
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -178,8 +180,6 @@ class TransferEvent(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sweep_id (str): Plaid’s unique identifier for a sweep.. [optional]  # noqa: E501
-            sweep_amount (str): A signed amount of how much was `swept` or `reverse_swept` (decimal string with two digits of precision e.g. “-5.50”).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -214,6 +214,8 @@ class TransferEvent(ModelNormal):
         self.transfer_type = transfer_type
         self.transfer_amount = transfer_amount
         self.failure_reason = failure_reason
+        self.sweep_id = sweep_id
+        self.sweep_amount = sweep_amount
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -152,7 +152,7 @@ class BankTransferCreateRequest(ModelNormal):
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.
             type (BankTransferType):
             network (BankTransferNetwork):
-            amount (str): The amount of the bank transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the bank transfer (decimal string with two digits of precision e.g. \"10.00\").
             iso_currency_code (str): The currency of the transfer amount – should be set to \"USD\".
             description (str): The transfer description. Maximum of 10 characters.
             user (BankTransferUser):

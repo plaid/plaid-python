@@ -26,8 +26,12 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.transfer_authorization_decision_rationale import TransferAuthorizationDecisionRationale
+    from plaid.model.transfer_authorization_guarantee_decision import TransferAuthorizationGuaranteeDecision
+    from plaid.model.transfer_authorization_guarantee_decision_rationale import TransferAuthorizationGuaranteeDecisionRationale
     from plaid.model.transfer_authorization_proposed_transfer import TransferAuthorizationProposedTransfer
     globals()['TransferAuthorizationDecisionRationale'] = TransferAuthorizationDecisionRationale
+    globals()['TransferAuthorizationGuaranteeDecision'] = TransferAuthorizationGuaranteeDecision
+    globals()['TransferAuthorizationGuaranteeDecisionRationale'] = TransferAuthorizationGuaranteeDecisionRationale
     globals()['TransferAuthorizationProposedTransfer'] = TransferAuthorizationProposedTransfer
 
 
@@ -93,6 +97,8 @@ class TransferAuthorization(ModelNormal):
             'created': (datetime,),  # noqa: E501
             'decision': (str,),  # noqa: E501
             'decision_rationale': (TransferAuthorizationDecisionRationale,),  # noqa: E501
+            'guarantee_decision': (TransferAuthorizationGuaranteeDecision,),  # noqa: E501
+            'guarantee_decision_rationale': (TransferAuthorizationGuaranteeDecisionRationale,),  # noqa: E501
             'proposed_transfer': (TransferAuthorizationProposedTransfer,),  # noqa: E501
         }
 
@@ -106,6 +112,8 @@ class TransferAuthorization(ModelNormal):
         'created': 'created',  # noqa: E501
         'decision': 'decision',  # noqa: E501
         'decision_rationale': 'decision_rationale',  # noqa: E501
+        'guarantee_decision': 'guarantee_decision',  # noqa: E501
+        'guarantee_decision_rationale': 'guarantee_decision_rationale',  # noqa: E501
         'proposed_transfer': 'proposed_transfer',  # noqa: E501
     }
 
@@ -121,7 +129,7 @@ class TransferAuthorization(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created, decision, decision_rationale, proposed_transfer, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, created, decision, decision_rationale, guarantee_decision, guarantee_decision_rationale, proposed_transfer, *args, **kwargs):  # noqa: E501
         """TransferAuthorization - a model defined in OpenAPI
 
         Args:
@@ -129,6 +137,8 @@ class TransferAuthorization(ModelNormal):
             created (datetime): The datetime representing when the authorization was created, in the format `2006-01-02T15:04:05Z`.
             decision (str):  A decision regarding the proposed transfer.  `approved` – The proposed transfer has received the end user's consent and has been approved for processing. Plaid has also reviewed the proposed transfer and has approved it for processing.   `permitted` – Plaid was unable to fetch the information required to approve or decline the proposed transfer. You may proceed with the transfer, but further review is recommended. Plaid is awaiting further instructions from the client.  `declined` – Plaid reviewed the proposed transfer and declined processing. Refer to the `code` field in the `decision_rationale` object for details.
             decision_rationale (TransferAuthorizationDecisionRationale):
+            guarantee_decision (TransferAuthorizationGuaranteeDecision):
+            guarantee_decision_rationale (TransferAuthorizationGuaranteeDecisionRationale):
             proposed_transfer (TransferAuthorizationProposedTransfer):
 
         Keyword Args:
@@ -191,6 +201,8 @@ class TransferAuthorization(ModelNormal):
         self.created = created
         self.decision = decision
         self.decision_rationale = decision_rationale
+        self.guarantee_decision = guarantee_decision
+        self.guarantee_decision_rationale = guarantee_decision_rationale
         self.proposed_transfer = proposed_transfer
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

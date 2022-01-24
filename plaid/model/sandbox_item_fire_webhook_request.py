@@ -52,6 +52,7 @@ class SandboxItemFireWebhookRequest(ModelNormal):
     allowed_values = {
         ('webhook_code',): {
             'DEFAULT_UPDATE': "DEFAULT_UPDATE",
+            'NEW_ACCOUNTS_AVAILABLE': "NEW_ACCOUNTS_AVAILABLE",
         },
     }
 
@@ -103,14 +104,14 @@ class SandboxItemFireWebhookRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, webhook_code, *args, **kwargs):  # noqa: E501
         """SandboxItemFireWebhookRequest - a model defined in OpenAPI
 
         Args:
             access_token (str): The access token associated with the Item data is being requested for.
+            webhook_code (str): The following values for `webhook_code` are supported:  * `DEFAULT_UPDATE` * `NEW_ACCOUNTS_AVAILABLE`
 
         Keyword Args:
-            webhook_code (str): The following values for `webhook_code` are supported:  * `DEFAULT_UPDATE`. defaults to "DEFAULT_UPDATE", must be one of ["DEFAULT_UPDATE", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -145,7 +146,6 @@ class SandboxItemFireWebhookRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
         """
 
-        webhook_code = kwargs.get('webhook_code', "DEFAULT_UPDATE")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

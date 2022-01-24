@@ -155,8 +155,8 @@ class EmploymentVerification(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             status (EmploymentVerificationStatus): [optional]  # noqa: E501
-            start_date (date, none_type): Start of employment in ISO_8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
-            end_date (date, none_type): End of employment, if applicable. In ISO_8601 format (YYY-MM-DD).. [optional]  # noqa: E501
+            start_date (date, none_type): Start of employment in ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
+            end_date (date, none_type): End of employment, if applicable. Provided in ISO 8601 format (YYY-MM-DD).. [optional]  # noqa: E501
             employer (EmployerVerification): [optional]  # noqa: E501
             title (str, none_type): Current title of employee.. [optional]  # noqa: E501
             platform_ids (PlatformIds): [optional]  # noqa: E501

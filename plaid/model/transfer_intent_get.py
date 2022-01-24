@@ -169,7 +169,7 @@ class TransferIntentGet(ModelNormal):
             authorization_decision (str, none_type):  A decision regarding the proposed transfer.  `APPROVED` – The proposed transfer has received the end user's consent and has been approved for processing. Plaid has also reviewed the proposed transfer and has approved it for processing.   `PERMITTED` – Plaid was unable to fetch the information required to approve or decline the proposed transfer. You may proceed with the transfer, but further review is recommended. Plaid is awaiting further instructions from the client.  `DECLINED` – Plaid reviewed the proposed transfer and declined processing. Refer to the `code` field in the `decision_rationale` object for details. Null value otherwise.
             authorization_decision_rationale (TransferAuthorizationDecisionRationale):
             origination_account_id (str): Plaid’s unique identifier for the origination account used for the transfer.
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             mode (TransferIntentCreateMode):
             ach_class (ACHClass):
             user (TransferUserInResponse):
