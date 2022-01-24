@@ -102,10 +102,10 @@ class OverrideAccountType(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): `investment:` Investment account.  `credit:` Credit card  `depository:` Depository account  `loan:` Loan account  `payroll:` Payroll acccount  `other:` Non-specified account type  See the [Account type schema](https://plaid.com/docs/api/accounts#account-type-schema) for a full listing of account types and corresponding subtypes.., must be one of ["investment", "credit", "depository", "loan", "payroll", "other", ]  # noqa: E501
+            args[0] (str): `investment:` Investment account.  `credit:` Credit card  `depository:` Depository account  `loan:` Loan account  `payroll:` Payroll account  `other:` Non-specified account type  See the [Account type schema](https://plaid.com/docs/api/accounts#account-type-schema) for a full listing of account types and corresponding subtypes.., must be one of ["investment", "credit", "depository", "loan", "payroll", "other", ]  # noqa: E501
 
         Keyword Args:
-            value (str): `investment:` Investment account.  `credit:` Credit card  `depository:` Depository account  `loan:` Loan account  `payroll:` Payroll acccount  `other:` Non-specified account type  See the [Account type schema](https://plaid.com/docs/api/accounts#account-type-schema) for a full listing of account types and corresponding subtypes.., must be one of ["investment", "credit", "depository", "loan", "payroll", "other", ]  # noqa: E501
+            value (str): `investment:` Investment account.  `credit:` Credit card  `depository:` Depository account  `loan:` Loan account  `payroll:` Payroll account  `other:` Non-specified account type  See the [Account type schema](https://plaid.com/docs/api/accounts#account-type-schema) for a full listing of account types and corresponding subtypes.., must be one of ["investment", "credit", "depository", "loan", "payroll", "other", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

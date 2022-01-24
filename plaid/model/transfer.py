@@ -26,6 +26,8 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.ach_class import ACHClass
+    from plaid.model.transfer_authorization_guarantee_decision import TransferAuthorizationGuaranteeDecision
+    from plaid.model.transfer_authorization_guarantee_decision_rationale import TransferAuthorizationGuaranteeDecisionRationale
     from plaid.model.transfer_failure import TransferFailure
     from plaid.model.transfer_metadata import TransferMetadata
     from plaid.model.transfer_network import TransferNetwork
@@ -34,6 +36,8 @@ def lazy_import():
     from plaid.model.transfer_type import TransferType
     from plaid.model.transfer_user_in_response import TransferUserInResponse
     globals()['ACHClass'] = ACHClass
+    globals()['TransferAuthorizationGuaranteeDecision'] = TransferAuthorizationGuaranteeDecision
+    globals()['TransferAuthorizationGuaranteeDecisionRationale'] = TransferAuthorizationGuaranteeDecisionRationale
     globals()['TransferFailure'] = TransferFailure
     globals()['TransferMetadata'] = TransferMetadata
     globals()['TransferNetwork'] = TransferNetwork
@@ -112,6 +116,8 @@ class Transfer(ModelNormal):
             'origination_account_id': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'sweep_status': (TransferSweepStatus,),  # noqa: E501
+            'guarantee_decision': (TransferAuthorizationGuaranteeDecision,),  # noqa: E501
+            'guarantee_decision_rationale': (TransferAuthorizationGuaranteeDecisionRationale,),  # noqa: E501
         }
 
     @cached_property
@@ -136,6 +142,8 @@ class Transfer(ModelNormal):
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'sweep_status': 'sweep_status',  # noqa: E501
+        'guarantee_decision': 'guarantee_decision',  # noqa: E501
+        'guarantee_decision_rationale': 'guarantee_decision_rationale',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,7 +167,7 @@ class Transfer(ModelNormal):
             account_id (str): The account ID that should be credited/debited for this transfer.
             type (TransferType):
             user (TransferUserInResponse):
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             description (str): The description of the transfer.
             created (datetime): The datetime when this transfer was created. This will be of the form `2006-01-02T15:04:05Z`
             status (TransferStatus):
@@ -202,6 +210,8 @@ class Transfer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             sweep_status (TransferSweepStatus): [optional]  # noqa: E501
+            guarantee_decision (TransferAuthorizationGuaranteeDecision): [optional]  # noqa: E501
+            guarantee_decision_rationale (TransferAuthorizationGuaranteeDecisionRationale): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

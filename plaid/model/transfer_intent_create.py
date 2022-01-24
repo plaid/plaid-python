@@ -147,7 +147,7 @@ class TransferIntentCreate(ModelNormal):
             created (datetime): The datetime the transfer was created. This will be of the form `2006-01-02T15:04:05Z`.
             status (str): The status of the transfer intent.  - `PENDING` – The transfer intent is pending. - `SUCCEEDED` – The transfer intent was successfully created. - `FAILED` – The transfer intent was unable to be created.
             origination_account_id (str): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             mode (TransferIntentCreateMode):
             ach_class (ACHClass):
             user (TransferUserInResponse):

@@ -61,6 +61,10 @@ class InstitutionsGetRequest(ModelNormal):
     validations = {
         ('count',): {
             'inclusive_maximum': 500,
+            'inclusive_minimum': 1,
+        },
+        ('offset',): {
+            'inclusive_minimum': 0,
         },
         ('country_codes',): {
             'min_items': 1,

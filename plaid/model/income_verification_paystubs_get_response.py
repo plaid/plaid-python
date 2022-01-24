@@ -154,7 +154,7 @@ class IncomeVerificationPaystubsGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            document_metadata ([DocumentMetadata]): [optional]  # noqa: E501
+            document_metadata ([DocumentMetadata]): Metadata for an income document.. [optional]  # noqa: E501
             error (PlaidError): [optional]  # noqa: E501
         """
 

@@ -136,7 +136,7 @@ class DepositSwitchStateUpdateWebhook(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             webhook_type (str): `\"DEPOSIT_SWITCH\"`. [optional]  # noqa: E501
             webhook_code (str): `\"SWITCH_STATE_UPDATE\"`. [optional]  # noqa: E501
-            state (str):  The state, or status, of the deposit switch.  `initialized`: The deposit switch has been initialized with the user entering the information required to submit the deposit switch request.  `processing`: The deposit switch request has been submitted and is being processed.  `completed`: The user's employer has fulfilled and completed the deposit switch request.  `error`: There was an error processing the deposit switch request.  For more information, see the [Deposit Switch API reference](/docs/api/products#deposit_switchget).. [optional]  # noqa: E501
+            state (str):  The state, or status, of the deposit switch.  `initialized`: The deposit switch has been initialized with the user entering the information required to submit the deposit switch request.  `processing`: The deposit switch request has been submitted and is being processed.  `completed`: The user's employer has fulfilled and completed the deposit switch request.  `error`: There was an error processing the deposit switch request.  For more information, see the [Deposit Switch API reference](/docs/deposit-switch/reference#deposit_switchget).. [optional]  # noqa: E501
             deposit_switch_id (str): The ID of the deposit switch.. [optional]  # noqa: E501
         """
 

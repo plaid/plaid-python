@@ -142,7 +142,7 @@ class PlaidError(ModelComposed):
         """PlaidError - a model defined in OpenAPI
 
         Args:
-            error_type (str): A broad categorization of the error. Safe for programatic use.
+            error_type (str): A broad categorization of the error. Safe for programmatic use.
             error_code (str): The particular error code. Safe for programmatic use.
             error_message (str): A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
             display_message (str, none_type): A user-friendly representation of the error code. `null` if the error is not related to user action.  This may change over time and is not safe for programmatic use.

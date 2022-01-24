@@ -173,6 +173,8 @@ from plaid.model.sandbox_processor_token_create_request import SandboxProcessorT
 from plaid.model.sandbox_processor_token_create_response import SandboxProcessorTokenCreateResponse
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
 from plaid.model.sandbox_public_token_create_response import SandboxPublicTokenCreateResponse
+from plaid.model.sandbox_transfer_repayment_simulate_request import SandboxTransferRepaymentSimulateRequest
+from plaid.model.sandbox_transfer_repayment_simulate_response import SandboxTransferRepaymentSimulateResponse
 from plaid.model.sandbox_transfer_simulate_request import SandboxTransferSimulateRequest
 from plaid.model.sandbox_transfer_simulate_response import SandboxTransferSimulateResponse
 from plaid.model.sandbox_transfer_sweep_simulate_request import SandboxTransferSweepSimulateRequest
@@ -209,6 +211,10 @@ from plaid.model.transfer_intent_get_request import TransferIntentGetRequest
 from plaid.model.transfer_intent_get_response import TransferIntentGetResponse
 from plaid.model.transfer_list_request import TransferListRequest
 from plaid.model.transfer_list_response import TransferListResponse
+from plaid.model.transfer_repayment_list_request import TransferRepaymentListRequest
+from plaid.model.transfer_repayment_list_response import TransferRepaymentListResponse
+from plaid.model.transfer_repayment_return_list_request import TransferRepaymentReturnListRequest
+from plaid.model.transfer_repayment_return_list_response import TransferRepaymentReturnListResponse
 from plaid.model.transfer_sweep_get_request import TransferSweepGetRequest
 from plaid.model.transfer_sweep_get_response import TransferSweepGetResponse
 from plaid.model.transfer_sweep_list_request import TransferSweepListRequest
@@ -974,7 +980,7 @@ class PlaidApi(object):
         ):
             """Create an Asset Report  # noqa: E501
 
-            The `/asset_report/create` endpoint initiates the process of creating an Asset Report, which can then be retrieved by passing the `asset_report_token` return value to the `/asset_report/get` or `/asset_report/pdf/get` endpoints.  The Asset Report takes some time to be created and is not available immediately after calling `/asset_report/create`. When the Asset Report is ready to be retrieved using `/asset_report/get` or `/asset_report/pdf/get`, Plaid will fire a `PRODUCT_READY` webhook. For full details of the webhook schema, see [Asset Report webhooks](https://plaid.com/docs/api/webhooks/#Assets-webhooks).  The `/asset_report/create` endpoint creates an Asset Report at a moment in time. Asset Reports are immutable. To get an updated Asset Report, use the `/asset_report/refresh` endpoint.  # noqa: E501
+            The `/asset_report/create` endpoint initiates the process of creating an Asset Report, which can then be retrieved by passing the `asset_report_token` return value to the `/asset_report/get` or `/asset_report/pdf/get` endpoints.  The Asset Report takes some time to be created and is not available immediately after calling `/asset_report/create`. When the Asset Report is ready to be retrieved using `/asset_report/get` or `/asset_report/pdf/get`, Plaid will fire a `PRODUCT_READY` webhook. For full details of the webhook schema, see [Asset Report webhooks](https://plaid.com/docs/api/webhooks/#assets-webhooks).  The `/asset_report/create` endpoint creates an Asset Report at a moment in time. Asset Reports are immutable. To get an updated Asset Report, use the `/asset_report/refresh` endpoint.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4264,7 +4270,7 @@ class PlaidApi(object):
         ):
             """Download the original documents used for income verification  # noqa: E501
 
-            `/income/verification/documents/download` provides the ability to download the source documents associated with the verification.  If Document Income was used, the documents will be those the user provided in Link. For Payroll Income, the most recent files available for download from the payroll provider will be available from this endpoint.  The response to `/income/verification/documents/download` is ZIP file in binary data. If a document_id is passed, a single document will be contained in this file. If not, the response will contain all documents associated with the verification.  The `request_id` is returned in the `Plaid-Request-ID` header.  # noqa: E501
+            `/income/verification/documents/download` provides the ability to download the source documents associated with the verification.  If Document Income was used, the documents will be those the user provided in Link. For Payroll Income, the most recent files available for download from the payroll provider will be available from this endpoint.  The response to `/income/verification/documents/download` is a ZIP file in binary data. If a `document_id` is passed, a single document will be contained in this file. If not, the response will contain all documents associated with the verification.  The `request_id` is returned in the `Plaid-Request-ID` header.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4627,9 +4633,9 @@ class PlaidApi(object):
             income_verification_precheck_request,
             **kwargs
         ):
-            """Check a user's eligibility for the income verification product  # noqa: E501
+            """Check digital income verification eligibility and optimize conversion.  # noqa: E501
 
-            `/income/verification/precheck` returns whether a given user is supportable by the income product  # noqa: E501
+            `/income/verification/precheck` is an optional endpoint that can be called before initializing a Link session for income verification. It evaluates whether a given user is supportable by digital income verification and returns a `precheck_id` that can be provided to `/link/token/create`. If the user is eligible for digital verification, providing the `precheck_id` in this way will generate a Link UI optimized for the end user and their specific employer. If the user cannot be confirmed as eligible, the `precheck_id` can still be provided to `/link/token/create` and the user can still use the income verification flow, but they may be required to manually upload a paystub to verify their income.  While all request fields are optional, providing either `employer` or `transactions_access_tokens` data will increase the chance of receiving a useful result.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4995,7 +5001,7 @@ class PlaidApi(object):
         ):
             """Retrieve information from the tax documents used for income verification  # noqa: E501
 
-            `/income/verification/taxforms/get` returns the information collected from taxforms that were used to verify an end user's income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
+            `/income/verification/taxforms/get` returns the information collected from forms that were used to verify an end user's income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6703,7 +6709,7 @@ class PlaidApi(object):
         ):
             """Update Webhook URL  # noqa: E501
 
-            The POST `/item/webhook/update` allows you to update the webhook URL associated with an Item. This request triggers a [`WEBHOOK_UPDATE_ACKNOWLEDGED`](https://plaid.com/docs/api/webhooks/#item-webhook-url-updated) webhook to the newly specified webhook URL.  # noqa: E501
+            The POST `/item/webhook/update` allows you to update the webhook URL associated with an Item. This request triggers a [`WEBHOOK_UPDATE_ACKNOWLEDGED`](https://plaid.com/docs/api/webhooks/#item-webhook-update-acknowledged) webhook to the newly specified webhook URL.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9265,7 +9271,7 @@ class PlaidApi(object):
         ):
             """Fire a test webhook  # noqa: E501
 
-            The `/sandbox/item/fire_webhook` endpoint is used to test that code correctly handles webhooks. Calling this endpoint triggers a Transactions `DEFAULT_UPDATE` webhook to be fired for a given Sandbox Item. If the Item does not support Transactions, a `SANDBOX_PRODUCT_NOT_ENABLED` error will result. Note that this endpoint is provided for developer ease-of-use and is not required for testing webhooks; webhooks will also fire in Sandbox under the same conditions that they would in Production or Development.  # noqa: E501
+            The `/sandbox/item/fire_webhook` endpoint is used to test that code correctly handles webhooks. This endpoint can trigger a Transactions `DEFAULT_UPDATE` webhook to be fired for a given Sandbox Item. If the Item does not support Transactions, a `SANDBOX_PRODUCT_NOT_ENABLED` error will result. This endpoint can also trigger a `NEW_ACCOUNTS_AVAILABLE` webhook to be fired for a given Sandbox Item created with Account Select v2. Note that this endpoint is provided for developer ease-of-use and is not required for testing webhooks; webhooks will also fire in Sandbox under the same conditions that they would in Production or Development.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9987,6 +9993,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__sandbox_public_token_create
+        )
+
+        def __sandbox_transfer_repayment_simulate(
+            self,
+            sandbox_transfer_repayment_simulate_request,
+            **kwargs
+        ):
+            """Trigger the creation of a repayment.  # noqa: E501
+
+            Use the `/sandbox/transfer/repayment/simulate` endpoint to trigger the creation of a repayment. As a side effect of calling this route, a repayment is created that includes all unreimbursed returns of guaranteed transfers. If there are no such returns, an 400 error is returned.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_repayment_simulate(sandbox_transfer_repayment_simulate_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_repayment_simulate_request (SandboxTransferRepaymentSimulateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferRepaymentSimulateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_repayment_simulate_request'] = \
+                sandbox_transfer_repayment_simulate_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_repayment_simulate = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferRepaymentSimulateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/repayment/simulate',
+                'operation_id': 'sandbox_transfer_repayment_simulate',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_repayment_simulate_request',
+                ],
+                'required': [
+                    'sandbox_transfer_repayment_simulate_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_repayment_simulate_request':
+                        (SandboxTransferRepaymentSimulateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_repayment_simulate_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_repayment_simulate
         )
 
         def __sandbox_transfer_simulate(
@@ -10970,7 +11098,7 @@ class PlaidApi(object):
             transactions_sync_request,
             **kwargs
         ):
-            """Get incremental transaction updates on an item  # noqa: E501
+            """Get incremental transaction updates on an Item  # noqa: E501
 
             The `/transactions/sync` endpoint returns item transactions as a set of delta updates. Subsequent calls to the endpoint using the cursor returned in the response will return new added, modified, and removed transactions since the last call to the endpoint  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -12183,6 +12311,250 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transfer_list
+        )
+
+        def __transfer_repayment_list(
+            self,
+            transfer_repayment_list_request,
+            **kwargs
+        ):
+            """Lists historical repayments.  # noqa: E501
+
+            The `/transfer/repayment/list` endpoint fetches repayments matching the given filters. Repayments are returned in chronological order (least recent first) starting at the given `start_time`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_repayment_list(transfer_repayment_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_repayment_list_request (TransferRepaymentListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferRepaymentListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_repayment_list_request'] = \
+                transfer_repayment_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_repayment_list = _Endpoint(
+            settings={
+                'response_type': (TransferRepaymentListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/repayment/list',
+                'operation_id': 'transfer_repayment_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_repayment_list_request',
+                ],
+                'required': [
+                    'transfer_repayment_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_repayment_list_request':
+                        (TransferRepaymentListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_repayment_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_repayment_list
+        )
+
+        def __transfer_repayment_return_list(
+            self,
+            transfer_repayment_return_list_request,
+            **kwargs
+        ):
+            """Retrieves the set of returns that were batched together into the specified repayment. The sum of amounts of returns retrieved by this request equals the amount of the repayment.  # noqa: E501
+
+            The `/transfer/repayment/return/list` endpoint retrieves the set of returns that were batched together into the specified repayment.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_repayment_return_list(transfer_repayment_return_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_repayment_return_list_request (TransferRepaymentReturnListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferRepaymentReturnListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_repayment_return_list_request'] = \
+                transfer_repayment_return_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_repayment_return_list = _Endpoint(
+            settings={
+                'response_type': (TransferRepaymentReturnListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/repayment/return/list',
+                'operation_id': 'transfer_repayment_return_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_repayment_return_list_request',
+                ],
+                'required': [
+                    'transfer_repayment_return_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_repayment_return_list_request':
+                        (TransferRepaymentReturnListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_repayment_return_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_repayment_return_list
         )
 
         def __transfer_sweep_get(

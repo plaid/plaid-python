@@ -136,7 +136,7 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             income_verification_id (str): The `income_verification_id` of the verification instance, as provided by `/income/verification/create`.. [optional]  # noqa: E501
             asset_report_id (str): The `asset_report_id` of an asset report associated with the user, as provided by `/asset_report/create`. Providing an `asset_report_id` is optional and can be used to verify the user through a streamlined flow. If provided, the bank linking flow will be skipped.. [optional]  # noqa: E501
-            precheck_id (str): The ID of a precheck created with `/income/verification/precheck`. Will be used to improve conversion of the income verification flow.. [optional]  # noqa: E501
+            precheck_id (str): The ID of a precheck created with `/income/verification/precheck`. Will be used to improve conversion of the income verification flow by streamlining the Link interface presented to the end user.. [optional]  # noqa: E501
             access_tokens ([str]): An array of access tokens corresponding to the Items that will be cross-referenced with the product data. If the `transactions` product was not initialized for the Items during link, it will be initialized after this Link session.. [optional]  # noqa: E501
         """
 

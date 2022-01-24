@@ -99,10 +99,10 @@ class IncomeVerificationPrecheckConfidence(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The confidence that Plaid can support the user in the income verification flow. One of the following:  `\"HIGH\"`: This precheck information submitted is definitively tied to a Plaid-supported integration.  \"`LOW`\": This precheck information submitted is known not to be supported by Plaid.  `\"UNKNOWN\"`: It was not possible to determine if the user is supportable with the information passed.., must be one of ["HIGH", "LOW", "UNKNOWN", ]  # noqa: E501
+            args[0] (str): The confidence that Plaid can support the user in the digital income verification flow instead of requiring a manual paystub upload. One of the following:  `\"HIGH\"`: It is very likely that this user can use the digital income verification flow.  \"`LOW`\": It is unlikely that this user can use the digital income verification flow.  `\"UNKNOWN\"`: It was not possible to determine if the user is supportable with the information passed.., must be one of ["HIGH", "LOW", "UNKNOWN", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The confidence that Plaid can support the user in the income verification flow. One of the following:  `\"HIGH\"`: This precheck information submitted is definitively tied to a Plaid-supported integration.  \"`LOW`\": This precheck information submitted is known not to be supported by Plaid.  `\"UNKNOWN\"`: It was not possible to determine if the user is supportable with the information passed.., must be one of ["HIGH", "LOW", "UNKNOWN", ]  # noqa: E501
+            value (str): The confidence that Plaid can support the user in the digital income verification flow instead of requiring a manual paystub upload. One of the following:  `\"HIGH\"`: It is very likely that this user can use the digital income verification flow.  \"`LOW`\": It is unlikely that this user can use the digital income verification flow.  `\"UNKNOWN\"`: It was not possible to determine if the user is supportable with the information passed.., must be one of ["HIGH", "LOW", "UNKNOWN", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

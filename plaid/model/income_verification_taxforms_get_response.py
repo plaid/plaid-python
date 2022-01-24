@@ -121,7 +121,7 @@ class IncomeVerificationTaxformsGetResponse(ModelNormal):
 
         Args:
             document_metadata ([DocumentMetadata]):
-            taxforms ([Taxform]): A list of taxforms.
+            taxforms ([Taxform]): A list of forms.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

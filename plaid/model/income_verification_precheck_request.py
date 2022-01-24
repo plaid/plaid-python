@@ -154,7 +154,7 @@ class IncomeVerificationPrecheckRequest(ModelNormal):
             user (IncomeVerificationPrecheckUser): [optional]  # noqa: E501
             employer (IncomeVerificationPrecheckEmployer): [optional]  # noqa: E501
             transactions_access_token (str, none_type): The access token associated with the Item data is being requested for.. [optional]  # noqa: E501
-            transactions_access_tokens ([str]): An array of access tokens corresponding to the Items that will be cross-referenced with the product data. If the `transactions` product was not initialized for the Items during link, it will be initialized after this Link session.. [optional]  # noqa: E501
+            transactions_access_tokens ([str]): An array of access tokens corresponding to Items belonging to the user whose eligibility is being checked. Note that if the Items specified here are not already initialized with `transactions`, providing them in this field will cause these Items to be initialized with (and billed for) the Transactions product.. [optional]  # noqa: E501
             us_military_info (IncomeVerificationPrecheckMilitaryInfo): [optional]  # noqa: E501
         """
 
