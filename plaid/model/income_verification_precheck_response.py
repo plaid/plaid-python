@@ -107,7 +107,7 @@ class IncomeVerificationPrecheckResponse(ModelNormal):
         """IncomeVerificationPrecheckResponse - a model defined in OpenAPI
 
         Args:
-            precheck_id (str): ID of the precheck.
+            precheck_id (str): ID of the precheck. Provide this value when calling `/link/token/create` in order to optimize Link conversion.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
             confidence (IncomeVerificationPrecheckConfidence):
 

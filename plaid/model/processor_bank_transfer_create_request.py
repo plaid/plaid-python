@@ -149,7 +149,7 @@ class ProcessorBankTransferCreateRequest(ModelNormal):
             processor_token (str): The processor token obtained from the Plaid integration partner. Processor tokens are in the format: `processor-<environment>-<identifier>`
             type (BankTransferType):
             network (BankTransferNetwork):
-            amount (str): The amount of the bank transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the bank transfer (decimal string with two digits of precision e.g. \"10.00\").
             iso_currency_code (str): The currency of the transfer amount – should be set to \"USD\".
             description (str): The transfer description. Maximum of 10 characters.
             user (BankTransferUser):

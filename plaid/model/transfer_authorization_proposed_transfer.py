@@ -132,7 +132,7 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.
             type (TransferType):
             user (TransferUserInResponse):
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             network (str): The network or rails used for the transfer.
             origination_account_id (str): Plaid's unique identifier for the origination account that was used for this transfer.
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".

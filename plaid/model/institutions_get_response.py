@@ -114,7 +114,7 @@ class InstitutionsGetResponse(ModelNormal):
         """InstitutionsGetResponse - a model defined in OpenAPI
 
         Args:
-            institutions ([Institution]): A list of Plaid Institution
+            institutions ([Institution]): A list of Plaid institutions
             total (int): The total number of institutions available via this endpoint
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 

@@ -150,7 +150,7 @@ class TransferCreateRequest(ModelNormal):
             authorization_id (str): Plaid’s unique identifier for a transfer authorization.
             type (TransferType):
             network (TransferNetwork):
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             description (str): The transfer description. Maximum of 10 characters.
             ach_class (ACHClass):
             user (TransferUserInRequest):

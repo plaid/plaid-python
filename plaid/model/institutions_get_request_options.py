@@ -57,6 +57,9 @@ class InstitutionsGetRequestOptions(ModelNormal):
     }
 
     validations = {
+        ('products',): {
+            'min_items': 1,
+        },
     }
 
     additional_properties_type = None
@@ -75,9 +78,9 @@ class InstitutionsGetRequestOptions(ModelNormal):
         """
         lazy_import()
         return {
-            'products': ([Products],),  # noqa: E501
-            'routing_numbers': ([str],),  # noqa: E501
-            'oauth': (bool,),  # noqa: E501
+            'products': ([Products], none_type,),  # noqa: E501
+            'routing_numbers': ([str], none_type,),  # noqa: E501
+            'oauth': (bool, none_type,),  # noqa: E501
             'include_optional_metadata': (bool,),  # noqa: E501
             'include_auth_metadata': (bool,),  # noqa: E501
             'include_payment_initiation_metadata': (bool,),  # noqa: E501
@@ -143,9 +146,9 @@ class InstitutionsGetRequestOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            products ([Products]): Filter the Institutions based on which products they support. . [optional]  # noqa: E501
-            routing_numbers ([str]): Specify an array of routing numbers to filter institutions. The response will only return institutions that match all of the routing numbers in the array. Routing number records used for this matching are not comprehensive; failure to match a given routing number to an institution does not mean that the institution is unsupported by Plaid.. [optional]  # noqa: E501
-            oauth (bool): Limit results to institutions with or without OAuth login flows. This is primarily relevant to institutions with European country codes.. [optional]  # noqa: E501
+            products ([Products], none_type): Filter the Institutions based on which products they support. . [optional]  # noqa: E501
+            routing_numbers ([str], none_type): Specify an array of routing numbers to filter institutions. The response will only return institutions that match all of the routing numbers in the array. Routing number records used for this matching are not comprehensive; failure to match a given routing number to an institution does not mean that the institution is unsupported by Plaid.. [optional]  # noqa: E501
+            oauth (bool, none_type): Limit results to institutions with or without OAuth login flows. This is primarily relevant to institutions with European country codes.. [optional]  # noqa: E501
             include_optional_metadata (bool): When `true`, return the institution's homepage URL, logo and primary brand color.  Note that Plaid does not own any of the logos shared by the API, and that by accessing or using these logos, you agree that you are doing so at your own risk and will, if necessary, obtain all required permissions from the appropriate rights holders and adhere to any applicable usage guidelines. Plaid disclaims all express or implied warranties with respect to the logos.. [optional]  # noqa: E501
             include_auth_metadata (bool): When `true`, returns metadata related to the Auth product indicating which auth methods are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501
             include_payment_initiation_metadata (bool): When `true`, returns metadata related to the Payment Initiation product indicating which payment configurations are supported.. [optional] if omitted the server will use the default value of False  # noqa: E501

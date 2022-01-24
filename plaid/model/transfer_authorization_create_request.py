@@ -137,7 +137,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.
             type (TransferType):
             network (TransferNetwork):
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. “10.00”).
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             ach_class (ACHClass):
             user (TransferUserInRequest):
 

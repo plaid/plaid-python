@@ -95,7 +95,6 @@ plaid/model/bank_transfer_metadata.py
 plaid/model/bank_transfer_migrate_account_request.py
 plaid/model/bank_transfer_migrate_account_response.py
 plaid/model/bank_transfer_network.py
-plaid/model/bank_transfer_receiver_details.py
 plaid/model/bank_transfer_status.py
 plaid/model/bank_transfer_sweep.py
 plaid/model/bank_transfer_sweep_get_request.py
@@ -396,6 +395,8 @@ plaid/model/sandbox_public_token_create_request.py
 plaid/model/sandbox_public_token_create_request_options.py
 plaid/model/sandbox_public_token_create_request_options_transactions.py
 plaid/model/sandbox_public_token_create_response.py
+plaid/model/sandbox_transfer_repayment_simulate_request.py
+plaid/model/sandbox_transfer_repayment_simulate_response.py
 plaid/model/sandbox_transfer_simulate_request.py
 plaid/model/sandbox_transfer_simulate_response.py
 plaid/model/sandbox_transfer_sweep_simulate_request.py
@@ -456,6 +457,8 @@ plaid/model/transfer_authorization_create_request.py
 plaid/model/transfer_authorization_create_response.py
 plaid/model/transfer_authorization_decision_rationale.py
 plaid/model/transfer_authorization_device.py
+plaid/model/transfer_authorization_guarantee_decision.py
+plaid/model/transfer_authorization_guarantee_decision_rationale.py
 plaid/model/transfer_authorization_proposed_transfer.py
 plaid/model/transfer_cancel_request.py
 plaid/model/transfer_cancel_response.py
@@ -483,6 +486,12 @@ plaid/model/transfer_list_request.py
 plaid/model/transfer_list_response.py
 plaid/model/transfer_metadata.py
 plaid/model/transfer_network.py
+plaid/model/transfer_repayment.py
+plaid/model/transfer_repayment_list_request.py
+plaid/model/transfer_repayment_list_response.py
+plaid/model/transfer_repayment_return.py
+plaid/model/transfer_repayment_return_list_request.py
+plaid/model/transfer_repayment_return_list_response.py
 plaid/model/transfer_status.py
 plaid/model/transfer_sweep.py
 plaid/model/transfer_sweep_get_request.py

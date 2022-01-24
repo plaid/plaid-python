@@ -89,6 +89,7 @@ class ConnectedApplication(ModelNormal):
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
             'created_at': (date,),  # noqa: E501
+            'join_date': (date,),  # noqa: E501
             'product_data_types': ([str],),  # noqa: E501
             'scopes': (ScopesNullable,),  # noqa: E501
             'requested_scopes': (RequestedScopes,),  # noqa: E501
@@ -107,6 +108,7 @@ class ConnectedApplication(ModelNormal):
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
+        'join_date': 'join_date',  # noqa: E501
         'product_data_types': 'product_data_types',  # noqa: E501
         'scopes': 'scopes',  # noqa: E501
         'requested_scopes': 'requested_scopes',  # noqa: E501
@@ -124,7 +126,7 @@ class ConnectedApplication(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, application_id, name, logo, logo_url, application_url, reason_for_access, created_at, product_data_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, application_id, name, logo, logo_url, application_url, reason_for_access, created_at, join_date, product_data_types, *args, **kwargs):  # noqa: E501
         """ConnectedApplication - a model defined in OpenAPI
 
         Args:
@@ -135,6 +137,7 @@ class ConnectedApplication(ModelNormal):
             application_url (str, none_type): The URL for the application's website
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
             created_at (date): The date this application was linked in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
+            join_date (date): The date this application was granted production access at Plaid in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
             product_data_types ([str]): (Deprecated) A list of enums representing the data collected and products enabled for this connected application.
 
         Keyword Args:
@@ -202,6 +205,7 @@ class ConnectedApplication(ModelNormal):
         self.application_url = application_url
         self.reason_for_access = reason_for_access
         self.created_at = created_at
+        self.join_date = join_date
         self.product_data_types = product_data_types
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.payment_initiation_payment_status import PaymentInitiationPaymentStatus
     from plaid.model.plaid_error import PlaidError
+    globals()['PaymentInitiationPaymentStatus'] = PaymentInitiationPaymentStatus
     globals()['PlaidError'] = PlaidError
 
 
@@ -54,26 +56,6 @@ class PaymentStatusUpdateWebhook(ModelNormal):
     """
 
     allowed_values = {
-        ('new_payment_status',): {
-            'INPUT_NEEDED': "PAYMENT_STATUS_INPUT_NEEDED",
-            'PROCESSING': "PAYMENT_STATUS_PROCESSING",
-            'INITIATED': "PAYMENT_STATUS_INITIATED",
-            'COMPLETED': "PAYMENT_STATUS_COMPLETED",
-            'INSUFFICIENT_FUNDS': "PAYMENT_STATUS_INSUFFICIENT_FUNDS",
-            'FAILED': "PAYMENT_STATUS_FAILED",
-            'BLOCKED': "PAYMENT_STATUS_BLOCKED",
-            'UNKNOWN': "PAYMENT_STATUS_UNKNOWN",
-        },
-        ('old_payment_status',): {
-            'INPUT_NEEDED': "PAYMENT_STATUS_INPUT_NEEDED",
-            'PROCESSING': "PAYMENT_STATUS_PROCESSING",
-            'INITIATED': "PAYMENT_STATUS_INITIATED",
-            'COMPLETED': "PAYMENT_STATUS_COMPLETED",
-            'INSUFFICIENT_FUNDS': "PAYMENT_STATUS_INSUFFICIENT_FUNDS",
-            'FAILED': "PAYMENT_STATUS_FAILED",
-            'BLOCKED': "PAYMENT_STATUS_BLOCKED",
-            'UNKNOWN': "PAYMENT_STATUS_UNKNOWN",
-        },
     }
 
     validations = {
@@ -105,8 +87,8 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             'webhook_type': (str,),  # noqa: E501
             'webhook_code': (str,),  # noqa: E501
             'payment_id': (str,),  # noqa: E501
-            'new_payment_status': (str,),  # noqa: E501
-            'old_payment_status': (str,),  # noqa: E501
+            'new_payment_status': (PaymentInitiationPaymentStatus,),  # noqa: E501
+            'old_payment_status': (PaymentInitiationPaymentStatus,),  # noqa: E501
             'original_reference': (str, none_type,),  # noqa: E501
             'original_start_date': (date, none_type,),  # noqa: E501
             'adjusted_start_date': (date, none_type,),  # noqa: E501
@@ -153,8 +135,8 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             webhook_type (str): `PAYMENT_INITIATION`
             webhook_code (str): `PAYMENT_STATUS_UPDATE`
             payment_id (str): The `payment_id` for the payment being updated
-            new_payment_status (str): The new status of the payment.  `PAYMENT_STATUS_INPUT_NEEDED`: This is the initial state of all payments. It indicates that the payment is waiting on user input to continue processing. A payment may re-enter this state later on if further input is needed.  `PAYMENT_STATUS_PROCESSING`: The payment is currently being processed. The payment will automatically exit this state when processing is complete.  `PAYMENT_STATUS_INITIATED`: The payment has been successfully initiated and is considered complete.  `PAYMENT_STATUS_COMPLETED`: Indicates that the standing order has been successfully established. This state is only used for standing orders.  `PAYMENT_STATUS_INSUFFICIENT_FUNDS`: The payment has failed due to insufficient funds.  `PAYMENT_STATUS_FAILED`: The payment has failed to be initiated. This error is retryable once the root cause is resolved.  `PAYMENT_STATUS_BLOCKED`: The payment has been blocked. This is a retryable error.  `PAYMENT_STATUS_UNKNOWN`: The payment status is unknown.
-            old_payment_status (str): The previous status of the payment.  `PAYMENT_STATUS_INPUT_NEEDED`: This is the initial state of all payments. It indicates that the payment is waiting on user input to continue processing. A payment may re-enter this state later on if further input is needed.  `PAYMENT_STATUS_PROCESSING`: The payment is currently being processed. The payment will automatically exit this state when processing is complete.  `PAYMENT_STATUS_INITIATED`: The payment has been successfully initiated and is considered complete.  `PAYMENT_STATUS_COMPLETED`: Indicates that the standing order has been successfully established. This state is only used for standing orders.  `PAYMENT_STATUS_INSUFFICIENT_FUNDS`: The payment has failed due to insufficient funds.  `PAYMENT_STATUS_FAILED`: The payment has failed to be initiated. This error is retryable once the root cause is resolved.  `PAYMENT_STATUS_BLOCKED`: The payment has been blocked. This is a retryable error.  `PAYMENT_STATUS_UNKNOWN`: The payment status is unknown.
+            new_payment_status (PaymentInitiationPaymentStatus):
+            old_payment_status (PaymentInitiationPaymentStatus):
             original_reference (str, none_type): The original value of the reference when creating the payment.
             original_start_date (date, none_type): The original value of the `start_date` provided during the creation of a standing order. If the payment is not a standing order, this field will be `null`.
             adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). If the start date did not require adjustment, or if the payment is not a standing order, this field will be `null`.

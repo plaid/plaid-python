@@ -114,7 +114,7 @@ class Taxform(ModelNormal):
         """Taxform - a model defined in OpenAPI
 
         Args:
-            document_type (str): The type of tax document.
+            document_type (str): The type of tax document. Currently, the only supported value is `w2`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
