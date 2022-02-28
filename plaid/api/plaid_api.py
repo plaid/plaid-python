@@ -24,6 +24,11 @@ from plaid.model.accounts_get_request import AccountsGetRequest
 from plaid.model.accounts_get_response import AccountsGetResponse
 from plaid.model.application_get_request import ApplicationGetRequest
 from plaid.model.application_get_response import ApplicationGetResponse
+from plaid.model.asset_relay_create_request import AssetRelayCreateRequest
+from plaid.model.asset_relay_create_response import AssetRelayCreateResponse
+from plaid.model.asset_relay_get_request import AssetRelayGetRequest
+from plaid.model.asset_relay_remove_request import AssetRelayRemoveRequest
+from plaid.model.asset_relay_remove_response import AssetRelayRemoveResponse
 from plaid.model.asset_report_audit_copy_create_request import AssetReportAuditCopyCreateRequest
 from plaid.model.asset_report_audit_copy_create_response import AssetReportAuditCopyCreateResponse
 from plaid.model.asset_report_audit_copy_get_request import AssetReportAuditCopyGetRequest
@@ -38,6 +43,8 @@ from plaid.model.asset_report_get_response import AssetReportGetResponse
 from plaid.model.asset_report_pdf_get_request import AssetReportPDFGetRequest
 from plaid.model.asset_report_refresh_request import AssetReportRefreshRequest
 from plaid.model.asset_report_refresh_response import AssetReportRefreshResponse
+from plaid.model.asset_report_relay_refresh_request import AssetReportRelayRefreshRequest
+from plaid.model.asset_report_relay_refresh_response import AssetReportRelayRefreshResponse
 from plaid.model.asset_report_remove_request import AssetReportRemoveRequest
 from plaid.model.asset_report_remove_response import AssetReportRemoveResponse
 from plaid.model.auth_get_request import AuthGetRequest
@@ -63,6 +70,8 @@ from plaid.model.bank_transfer_sweep_get_response import BankTransferSweepGetRes
 from plaid.model.bank_transfer_sweep_list_request import BankTransferSweepListRequest
 from plaid.model.bank_transfer_sweep_list_response import BankTransferSweepListResponse
 from plaid.model.categories_get_response import CategoriesGetResponse
+from plaid.model.credit_bank_income_get_request import CreditBankIncomeGetRequest
+from plaid.model.credit_bank_income_get_response import CreditBankIncomeGetResponse
 from plaid.model.deposit_switch_alt_create_request import DepositSwitchAltCreateRequest
 from plaid.model.deposit_switch_alt_create_response import DepositSwitchAltCreateResponse
 from plaid.model.deposit_switch_create_request import DepositSwitchCreateRequest
@@ -81,16 +90,12 @@ from plaid.model.identity_get_response import IdentityGetResponse
 from plaid.model.income_verification_create_request import IncomeVerificationCreateRequest
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
 from plaid.model.income_verification_documents_download_request import IncomeVerificationDocumentsDownloadRequest
-from plaid.model.income_verification_paystub_get_request import IncomeVerificationPaystubGetRequest
-from plaid.model.income_verification_paystub_get_response import IncomeVerificationPaystubGetResponse
 from plaid.model.income_verification_paystubs_get_request import IncomeVerificationPaystubsGetRequest
 from plaid.model.income_verification_paystubs_get_response import IncomeVerificationPaystubsGetResponse
 from plaid.model.income_verification_precheck_request import IncomeVerificationPrecheckRequest
 from plaid.model.income_verification_precheck_response import IncomeVerificationPrecheckResponse
 from plaid.model.income_verification_refresh_request import IncomeVerificationRefreshRequest
 from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
-from plaid.model.income_verification_summary_get_request import IncomeVerificationSummaryGetRequest
-from plaid.model.income_verification_summary_get_response import IncomeVerificationSummaryGetResponse
 from plaid.model.income_verification_taxforms_get_request import IncomeVerificationTaxformsGetRequest
 from plaid.model.income_verification_taxforms_get_response import IncomeVerificationTaxformsGetResponse
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
@@ -127,6 +132,14 @@ from plaid.model.link_token_create_request import LinkTokenCreateRequest
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_get_request import LinkTokenGetRequest
 from plaid.model.link_token_get_response import LinkTokenGetResponse
+from plaid.model.payment_initiation_consent_create_request import PaymentInitiationConsentCreateRequest
+from plaid.model.payment_initiation_consent_create_response import PaymentInitiationConsentCreateResponse
+from plaid.model.payment_initiation_consent_get_request import PaymentInitiationConsentGetRequest
+from plaid.model.payment_initiation_consent_get_response import PaymentInitiationConsentGetResponse
+from plaid.model.payment_initiation_consent_payment_execute_request import PaymentInitiationConsentPaymentExecuteRequest
+from plaid.model.payment_initiation_consent_payment_execute_response import PaymentInitiationConsentPaymentExecuteResponse
+from plaid.model.payment_initiation_consent_revoke_request import PaymentInitiationConsentRevokeRequest
+from plaid.model.payment_initiation_consent_revoke_response import PaymentInitiationConsentRevokeResponse
 from plaid.model.payment_initiation_payment_create_request import PaymentInitiationPaymentCreateRequest
 from plaid.model.payment_initiation_payment_create_response import PaymentInitiationPaymentCreateResponse
 from plaid.model.payment_initiation_payment_get_request import PaymentInitiationPaymentGetRequest
@@ -169,6 +182,7 @@ from plaid.model.sandbox_item_reset_login_response import SandboxItemResetLoginR
 from plaid.model.sandbox_item_set_verification_status_request import SandboxItemSetVerificationStatusRequest
 from plaid.model.sandbox_item_set_verification_status_response import SandboxItemSetVerificationStatusResponse
 from plaid.model.sandbox_oauth_select_accounts_request import SandboxOauthSelectAccountsRequest
+from plaid.model.sandbox_oauth_select_accounts_response import SandboxOauthSelectAccountsResponse
 from plaid.model.sandbox_processor_token_create_request import SandboxProcessorTokenCreateRequest
 from plaid.model.sandbox_processor_token_create_response import SandboxProcessorTokenCreateResponse
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
@@ -185,6 +199,8 @@ from plaid.model.signal_evaluate_request import SignalEvaluateRequest
 from plaid.model.signal_evaluate_response import SignalEvaluateResponse
 from plaid.model.signal_return_report_request import SignalReturnReportRequest
 from plaid.model.signal_return_report_response import SignalReturnReportResponse
+from plaid.model.transactions_enhance_get_request import TransactionsEnhanceGetRequest
+from plaid.model.transactions_enhance_get_response import TransactionsEnhanceGetResponse
 from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_response import TransactionsGetResponse
 from plaid.model.transactions_recurring_get_request import TransactionsRecurringGetRequest
@@ -370,7 +386,7 @@ class PlaidApi(object):
         ):
             """Retrieve accounts  # noqa: E501
 
-            The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance.  This endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/webhooks/#item-new_accounts_available) webhook and then use Link's [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.  # noqa: E501
+            The `/accounts/get` endpoint can be used to retrieve a list of accounts associated with any linked Item. Plaid will only return active bank accounts — that is, accounts that are not closed and are capable of carrying a balance. This endpoint only returns accounts that were permissioned by the user when they initially created the Item. If a user creates a new account after the initial link, you can capture this event through the [`NEW_ACCOUNTS_AVAILABLE`](https://plaid.com/docs/api/items/#new_accounts_available) webhook and then use Link's [update mode](https://plaid.com/docs/link/update-mode/) to request that the user share this new account with you.  This endpoint retrieves cached information, rather than extracting fresh information from the institution. As a result, balances returned may not be up-to-date; for realtime balance information, use `/accounts/balance/get` instead. Note that some information is nullable.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -605,6 +621,372 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__application_get
+        )
+
+        def __asset_relay_create(
+            self,
+            asset_relay_create_request,
+            **kwargs
+        ):
+            """Create an `asset_relay_token` to share an Asset Report with a partner client  # noqa: E501
+
+            Plaid can share an Asset Report directly with a participating third party on your behalf. The shared Asset Report is the exact same Asset Report originally created in `/asset_report/create`.  To grant access to an Asset Report to a third party, use the `/asset_report/relay/create` endpoint to create an `asset_relay_token` and then pass that token to the third party who needs access. Each third party has its own `secondary_client_id`, for example `ce5bd328dcd34123456`. You'll need to create a separate `asset_relay_token` for each third party to whom you want to grant access to the Report.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.asset_relay_create(asset_relay_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                asset_relay_create_request (AssetRelayCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AssetRelayCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['asset_relay_create_request'] = \
+                asset_relay_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.asset_relay_create = _Endpoint(
+            settings={
+                'response_type': (AssetRelayCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/asset_report/relay/create',
+                'operation_id': 'asset_relay_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'asset_relay_create_request',
+                ],
+                'required': [
+                    'asset_relay_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'asset_relay_create_request':
+                        (AssetRelayCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'asset_relay_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__asset_relay_create
+        )
+
+        def __asset_relay_get(
+            self,
+            asset_relay_get_request,
+            **kwargs
+        ):
+            """Retrieve an Asset Report that was shared with you  # noqa: E501
+
+            `/asset_report/relay/get` allows third parties to get an Asset Report that was shared with them, using an `asset_relay_token` that was created by the report owner.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.asset_relay_get(asset_relay_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                asset_relay_get_request (AssetRelayGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AssetReportGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['asset_relay_get_request'] = \
+                asset_relay_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.asset_relay_get = _Endpoint(
+            settings={
+                'response_type': (AssetReportGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/asset_report/relay/get',
+                'operation_id': 'asset_relay_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'asset_relay_get_request',
+                ],
+                'required': [
+                    'asset_relay_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'asset_relay_get_request':
+                        (AssetRelayGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'asset_relay_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__asset_relay_get
+        )
+
+        def __asset_relay_remove(
+            self,
+            asset_relay_remove_request,
+            **kwargs
+        ):
+            """Remove Asset Report Relay Token  # noqa: E501
+
+            The `/asset_report/relay/remove` endpoint allows you to invalidate an `asset_relay_token`, meaning the third party holding the token will no longer be able to use it to access the Asset Report to which the `asset_relay_token` gives access to. The Asset Report, Items associated with it, and other Asset Relay Tokens that provide access to the same Asset Report are not affected and will remain accessible after removing the given `asset_relay_token.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.asset_relay_remove(asset_relay_remove_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                asset_relay_remove_request (AssetRelayRemoveRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AssetRelayRemoveResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['asset_relay_remove_request'] = \
+                asset_relay_remove_request
+            return self.call_with_http_info(**kwargs)
+
+        self.asset_relay_remove = _Endpoint(
+            settings={
+                'response_type': (AssetRelayRemoveResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/asset_report/relay/remove',
+                'operation_id': 'asset_relay_remove',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'asset_relay_remove_request',
+                ],
+                'required': [
+                    'asset_relay_remove_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'asset_relay_remove_request':
+                        (AssetRelayRemoveRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'asset_relay_remove_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__asset_relay_remove
         )
 
         def __asset_report_audit_copy_create(
@@ -980,7 +1362,7 @@ class PlaidApi(object):
         ):
             """Create an Asset Report  # noqa: E501
 
-            The `/asset_report/create` endpoint initiates the process of creating an Asset Report, which can then be retrieved by passing the `asset_report_token` return value to the `/asset_report/get` or `/asset_report/pdf/get` endpoints.  The Asset Report takes some time to be created and is not available immediately after calling `/asset_report/create`. When the Asset Report is ready to be retrieved using `/asset_report/get` or `/asset_report/pdf/get`, Plaid will fire a `PRODUCT_READY` webhook. For full details of the webhook schema, see [Asset Report webhooks](https://plaid.com/docs/api/webhooks/#assets-webhooks).  The `/asset_report/create` endpoint creates an Asset Report at a moment in time. Asset Reports are immutable. To get an updated Asset Report, use the `/asset_report/refresh` endpoint.  # noqa: E501
+            The `/asset_report/create` endpoint initiates the process of creating an Asset Report, which can then be retrieved by passing the `asset_report_token` return value to the `/asset_report/get` or `/asset_report/pdf/get` endpoints.  The Asset Report takes some time to be created and is not available immediately after calling `/asset_report/create`. When the Asset Report is ready to be retrieved using `/asset_report/get` or `/asset_report/pdf/get`, Plaid will fire a `PRODUCT_READY` webhook. For full details of the webhook schema, see [Asset Report webhooks](https://plaid.com/docs/api/products/assets/#webhooks).  The `/asset_report/create` endpoint creates an Asset Report at a moment in time. Asset Reports are immutable. To get an updated Asset Report, use the `/asset_report/refresh` endpoint.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1102,7 +1484,7 @@ class PlaidApi(object):
         ):
             """Filter Asset Report  # noqa: E501
 
-            By default, an Asset Report will contain all of the accounts on a given Item. In some cases, you may not want the Asset Report to contain all accounts. For example, you might have the end user choose which accounts are relevant in Link using the Account Select view, which you can enable in the dashboard. Or, you might always exclude certain account types or subtypes, which you can identify by using the `/accounts/get` endpoint. To narrow an Asset Report to only a subset of accounts, use the `/asset_report/filter` endpoint.  To exclude certain Accounts from an Asset Report, first use the `/asset_report/create` endpoint to create the report, then send the `asset_report_token` along with a list of `account_ids` to exclude to the `/asset_report/filter` endpoint, to create a new Asset Report which contains only a subset of the original Asset Report's data.  Because Asset Reports are immutable, calling `/asset_report/filter` does not alter the original Asset Report in any way; rather, `/asset_report/filter` creates a new Asset Report with a new token and id. Asset Reports created via `/asset_report/filter` do not contain new Asset data, and are not billed.  Plaid will fire a [`PRODUCT_READY`](https://plaid.com/docs/api/webhooks) webhook once generation of the filtered Asset Report has completed.  # noqa: E501
+            By default, an Asset Report will contain all of the accounts on a given Item. In some cases, you may not want the Asset Report to contain all accounts. For example, you might have the end user choose which accounts are relevant in Link using the Account Select view, which you can enable in the dashboard. Or, you might always exclude certain account types or subtypes, which you can identify by using the `/accounts/get` endpoint. To narrow an Asset Report to only a subset of accounts, use the `/asset_report/filter` endpoint.  To exclude certain Accounts from an Asset Report, first use the `/asset_report/create` endpoint to create the report, then send the `asset_report_token` along with a list of `account_ids` to exclude to the `/asset_report/filter` endpoint, to create a new Asset Report which contains only a subset of the original Asset Report's data.  Because Asset Reports are immutable, calling `/asset_report/filter` does not alter the original Asset Report in any way; rather, `/asset_report/filter` creates a new Asset Report with a new token and id. Asset Reports created via `/asset_report/filter` do not contain new Asset data, and are not billed.  Plaid will fire a [`PRODUCT_READY`](https://plaid.com/docs/api/products/assets/#product_ready) webhook once generation of the filtered Asset Report has completed.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1224,7 +1606,7 @@ class PlaidApi(object):
         ):
             """Retrieve an Asset Report  # noqa: E501
 
-            The `/asset_report/get` endpoint retrieves the Asset Report in JSON format. Before calling `/asset_report/get`, you must first create the Asset Report using `/asset_report/create` (or filter an Asset Report using `/asset_report/filter`) and then wait for the [`PRODUCT_READY`](https://plaid.com/docs/api/webhooks) webhook to fire, indicating that the Report is ready to be retrieved.  By default, an Asset Report includes transaction descriptions as returned by the bank, as opposed to parsed and categorized by Plaid. You can also receive cleaned and categorized transactions, as well as additional insights like merchant name or location information. We call this an Asset Report with Insights. An Asset Report with Insights provides transaction category, location, and merchant information in addition to the transaction strings provided in a standard Asset Report.  To retrieve an Asset Report with Insights, call the `/asset_report/get` endpoint with `include_insights` set to `true`.  # noqa: E501
+            The `/asset_report/get` endpoint retrieves the Asset Report in JSON format. Before calling `/asset_report/get`, you must first create the Asset Report using `/asset_report/create` (or filter an Asset Report using `/asset_report/filter`) and then wait for the [`PRODUCT_READY`](https://plaid.com/docs/api/products/assets/#product_ready) webhook to fire, indicating that the Report is ready to be retrieved.  By default, an Asset Report includes transaction descriptions as returned by the bank, as opposed to parsed and categorized by Plaid. You can also receive cleaned and categorized transactions, as well as additional insights like merchant name or location information. We call this an Asset Report with Insights. An Asset Report with Insights provides transaction category, location, and merchant information in addition to the transaction strings provided in a standard Asset Report.  To retrieve an Asset Report with Insights, call the `/asset_report/get` endpoint with `include_insights` set to `true`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1346,7 +1728,7 @@ class PlaidApi(object):
         ):
             """Retrieve a PDF Asset Report  # noqa: E501
 
-            The `/asset_report/pdf/get` endpoint retrieves the Asset Report in PDF format. Before calling `/asset_report/pdf/get`, you must first create the Asset Report using `/asset_report/create` (or filter an Asset Report using `/asset_report/filter`) and then wait for the [`PRODUCT_READY`](https://plaid.com/docs/api/webhooks) webhook to fire, indicating that the Report is ready to be retrieved.  The response to `/asset_report/pdf/get` is the PDF binary data. The `request_id`  is returned in the `Plaid-Request-ID` header.  [View a sample PDF Asset Report](https://plaid.com/documents/sample-asset-report.pdf).  # noqa: E501
+            The `/asset_report/pdf/get` endpoint retrieves the Asset Report in PDF format. Before calling `/asset_report/pdf/get`, you must first create the Asset Report using `/asset_report/create` (or filter an Asset Report using `/asset_report/filter`) and then wait for the [`PRODUCT_READY`](https://plaid.com/docs/api/products/assets/#product_ready) webhook to fire, indicating that the Report is ready to be retrieved.  The response to `/asset_report/pdf/get` is the PDF binary data. The `request_id`  is returned in the `Plaid-Request-ID` header.  [View a sample PDF Asset Report](https://plaid.com/documents/sample-asset-report.pdf).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1581,6 +1963,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__asset_report_refresh
+        )
+
+        def __asset_report_relay_refresh(
+            self,
+            asset_report_relay_refresh_request,
+            **kwargs
+        ):
+            """Refresh a Relay Token's Asset Report  # noqa: E501
+
+            The `/asset_report/relay/refresh` endpoint allows third parties to refresh an Asset Report that was relayed to them, using an `asset_relay_token` that was created by the report owner. A new Asset Report will be created based on the old one, but with the most recent data available.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.asset_report_relay_refresh(asset_report_relay_refresh_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                asset_report_relay_refresh_request (AssetReportRelayRefreshRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AssetReportRelayRefreshResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['asset_report_relay_refresh_request'] = \
+                asset_report_relay_refresh_request
+            return self.call_with_http_info(**kwargs)
+
+        self.asset_report_relay_refresh = _Endpoint(
+            settings={
+                'response_type': (AssetReportRelayRefreshResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/asset_report/relay/refresh',
+                'operation_id': 'asset_report_relay_refresh',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'asset_report_relay_refresh_request',
+                ],
+                'required': [
+                    'asset_report_relay_refresh_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'asset_report_relay_refresh_request':
+                        (AssetReportRelayRefreshRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'asset_report_relay_refresh_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__asset_report_relay_refresh
         )
 
         def __asset_report_remove(
@@ -3287,6 +3791,128 @@ class PlaidApi(object):
             callable=__create_payment_token
         )
 
+        def __credit_bank_income_get(
+            self,
+            credit_bank_income_get_request,
+            **kwargs
+        ):
+            """Get bank income report(s) for a user  # noqa: E501
+
+            This endpoint gets the bank income report(s) for a specified user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_bank_income_get(credit_bank_income_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                credit_bank_income_get_request (CreditBankIncomeGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreditBankIncomeGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['credit_bank_income_get_request'] = \
+                credit_bank_income_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_bank_income_get = _Endpoint(
+            settings={
+                'response_type': (CreditBankIncomeGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/bank_income/get',
+                'operation_id': 'credit_bank_income_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'credit_bank_income_get_request',
+                ],
+                'required': [
+                    'credit_bank_income_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'credit_bank_income_get_request':
+                        (CreditBankIncomeGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'credit_bank_income_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_bank_income_get
+        )
+
         def __deposit_switch_alt_create(
             self,
             deposit_switch_alt_create_request,
@@ -3902,7 +4528,7 @@ class PlaidApi(object):
             employment_verification_get_request,
             **kwargs
         ):
-            """Retrieve a summary of an individual's employment information.  # noqa: E501
+            """Retrieve a summary of an individual's employment information  # noqa: E501
 
             `/employment/verification/get` returns a list of employments through a user payroll that was verified by an end user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -4385,127 +5011,6 @@ class PlaidApi(object):
             callable=__income_verification_documents_download
         )
 
-        def __income_verification_paystub_get(
-            self,
-            income_verification_paystub_get_request,
-            **kwargs
-        ):
-            """(Deprecated) Retrieve information from a single paystub used for income verification  # noqa: E501
-
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.income_verification_paystub_get(income_verification_paystub_get_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                income_verification_paystub_get_request (IncomeVerificationPaystubGetRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                IncomeVerificationPaystubGetResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_paystub_get_request'] = \
-                income_verification_paystub_get_request
-            return self.call_with_http_info(**kwargs)
-
-        self.income_verification_paystub_get = _Endpoint(
-            settings={
-                'response_type': (IncomeVerificationPaystubGetResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/income/verification/paystub/get',
-                'operation_id': 'income_verification_paystub_get',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'income_verification_paystub_get_request',
-                ],
-                'required': [
-                    'income_verification_paystub_get_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'income_verification_paystub_get_request':
-                        (IncomeVerificationPaystubGetRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'income_verification_paystub_get_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__income_verification_paystub_get
-        )
-
         def __income_verification_paystubs_get(
             self,
             income_verification_paystubs_get_request,
@@ -4633,7 +5138,7 @@ class PlaidApi(object):
             income_verification_precheck_request,
             **kwargs
         ):
-            """Check digital income verification eligibility and optimize conversion.  # noqa: E501
+            """Check digital income verification eligibility and optimize conversion  # noqa: E501
 
             `/income/verification/precheck` is an optional endpoint that can be called before initializing a Link session for income verification. It evaluates whether a given user is supportable by digital income verification and returns a `precheck_id` that can be provided to `/link/token/create`. If the user is eligible for digital verification, providing the `precheck_id` in this way will generate a Link UI optimized for the end user and their specific employer. If the user cannot be confirmed as eligible, the `precheck_id` can still be provided to `/link/token/create` and the user can still use the income verification flow, but they may be required to manually upload a paystub to verify their income.  While all request fields are optional, providing either `employer` or `transactions_access_tokens` data will increase the chance of receiving a useful result.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -4870,128 +5375,6 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__income_verification_refresh
-        )
-
-        def __income_verification_summary_get(
-            self,
-            income_verification_summary_get_request,
-            **kwargs
-        ):
-            """(Deprecated) Retrieve a summary of information derived from income verification  # noqa: E501
-
-            `/income/verification/summary/get` returns a verification summary for the income that was verified for an end user. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.income_verification_summary_get(income_verification_summary_get_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                income_verification_summary_get_request (IncomeVerificationSummaryGetRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                IncomeVerificationSummaryGetResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_summary_get_request'] = \
-                income_verification_summary_get_request
-            return self.call_with_http_info(**kwargs)
-
-        self.income_verification_summary_get = _Endpoint(
-            settings={
-                'response_type': (IncomeVerificationSummaryGetResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/income/verification/summary/get',
-                'operation_id': 'income_verification_summary_get',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'income_verification_summary_get_request',
-                ],
-                'required': [
-                    'income_verification_summary_get_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'income_verification_summary_get_request':
-                        (IncomeVerificationSummaryGetRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'income_verification_summary_get_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__income_verification_summary_get
         )
 
         def __income_verification_taxforms_get(
@@ -5245,7 +5628,7 @@ class PlaidApi(object):
         ):
             """Get details of an institution  # noqa: E501
 
-            Returns a JSON response containing details on a specified financial institution currently supported by Plaid.   Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.   # noqa: E501
+            Returns a JSON response containing details on a specified financial institution currently supported by Plaid.  Versioning note: API versions 2019-05-29 and earlier allow use of the `public_key` parameter instead of the `client_id` and `secret` to authenticate to this endpoint. The `public_key` has been deprecated; all customers are encouraged to use `client_id` and `secret` instead.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6465,7 +6848,7 @@ class PlaidApi(object):
         ):
             """Exchange public token for an access token  # noqa: E501
 
-            Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.  # noqa: E501
+            Exchange a Link `public_token` for an API `access_token`. Link hands off the `public_token` client-side via the `onSuccess` callback once a user has successfully created an Item. The `public_token` is ephemeral and expires after 30 minutes. An `access_token` does not expire, but can be revoked by calling `/item/remove`.  The response also includes an `item_id` that should be stored with the `access_token`. The `item_id` is used to identify an Item in a webhook. The `item_id` can also be retrieved by making an `/item/get` request.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6587,7 +6970,7 @@ class PlaidApi(object):
         ):
             """Remove an Item  # noqa: E501
 
-            The `/item/remove`  endpoint allows you to remove an Item. Once removed, the `access_token`  associated with the Item is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution's OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.  # noqa: E501
+            The `/item/remove` endpoint allows you to remove an Item. Once removed, the `access_token`, as well as any processor tokens or bank account tokens associated with the Item, is no longer valid and cannot be used to access any data that was associated with the Item.  Note that in the Development environment, issuing an `/item/remove`  request will not decrement your live credential count. To increase your credential account in Development, contact Support.  Also note that for certain OAuth-based institutions, an Item removed via `/item/remove` may still show as an active connection in the institution's OAuth permission manager.  API versions 2019-05-29 and earlier return a `removed` boolean as part of the response.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6709,7 +7092,7 @@ class PlaidApi(object):
         ):
             """Update Webhook URL  # noqa: E501
 
-            The POST `/item/webhook/update` allows you to update the webhook URL associated with an Item. This request triggers a [`WEBHOOK_UPDATE_ACKNOWLEDGED`](https://plaid.com/docs/api/webhooks/#item-webhook-update-acknowledged) webhook to the newly specified webhook URL.  # noqa: E501
+            The POST `/item/webhook/update` allows you to update the webhook URL associated with an Item. This request triggers a [`WEBHOOK_UPDATE_ACKNOWLEDGED`](https://plaid.com/docs/api/items/#webhook_update_acknowledged) webhook to the newly specified webhook URL.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -7188,6 +7571,494 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__link_token_get
+        )
+
+        def __payment_initiation_consent_create(
+            self,
+            payment_initiation_consent_create_request,
+            **kwargs
+        ):
+            """Create payment consent  # noqa: E501
+
+            The `/payment_initiation/consent/create` endpoint is used to create a payment consent, which can be used to initiate payments on behalf of the user. Payment consents are created with `UNAUTHORISED` status by default and must be authorised by the user before payments can be initiated.  Consents can be limited in time and scope, and have constraints that describe limitations for payments.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_initiation_consent_create(payment_initiation_consent_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_initiation_consent_create_request (PaymentInitiationConsentCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentInitiationConsentCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_initiation_consent_create_request'] = \
+                payment_initiation_consent_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_initiation_consent_create = _Endpoint(
+            settings={
+                'response_type': (PaymentInitiationConsentCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_initiation/consent/create',
+                'operation_id': 'payment_initiation_consent_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_initiation_consent_create_request',
+                ],
+                'required': [
+                    'payment_initiation_consent_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_initiation_consent_create_request':
+                        (PaymentInitiationConsentCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_initiation_consent_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_initiation_consent_create
+        )
+
+        def __payment_initiation_consent_get(
+            self,
+            payment_initiation_consent_get_request,
+            **kwargs
+        ):
+            """Get payment consent  # noqa: E501
+
+            The `/payment_initiation/consent/get` endpoint can be used to check the status of a payment consent, as well as to receive basic information such as recipient and constraints.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_initiation_consent_get(payment_initiation_consent_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_initiation_consent_get_request (PaymentInitiationConsentGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentInitiationConsentGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_initiation_consent_get_request'] = \
+                payment_initiation_consent_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_initiation_consent_get = _Endpoint(
+            settings={
+                'response_type': (PaymentInitiationConsentGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_initiation/consent/get',
+                'operation_id': 'payment_initiation_consent_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_initiation_consent_get_request',
+                ],
+                'required': [
+                    'payment_initiation_consent_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_initiation_consent_get_request':
+                        (PaymentInitiationConsentGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_initiation_consent_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_initiation_consent_get
+        )
+
+        def __payment_initiation_consent_payment_execute(
+            self,
+            payment_initiation_consent_payment_execute_request,
+            **kwargs
+        ):
+            """Execute a single payment using consent  # noqa: E501
+
+            The `/payment_initiation/consent/payment/execute` endpoint can be used to execute payments using payment consent.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_initiation_consent_payment_execute(payment_initiation_consent_payment_execute_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_initiation_consent_payment_execute_request (PaymentInitiationConsentPaymentExecuteRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentInitiationConsentPaymentExecuteResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_initiation_consent_payment_execute_request'] = \
+                payment_initiation_consent_payment_execute_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_initiation_consent_payment_execute = _Endpoint(
+            settings={
+                'response_type': (PaymentInitiationConsentPaymentExecuteResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_initiation/consent/payment/execute',
+                'operation_id': 'payment_initiation_consent_payment_execute',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_initiation_consent_payment_execute_request',
+                ],
+                'required': [
+                    'payment_initiation_consent_payment_execute_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_initiation_consent_payment_execute_request':
+                        (PaymentInitiationConsentPaymentExecuteRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_initiation_consent_payment_execute_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_initiation_consent_payment_execute
+        )
+
+        def __payment_initiation_consent_revoke(
+            self,
+            payment_initiation_consent_revoke_request,
+            **kwargs
+        ):
+            """Revoke payment consent  # noqa: E501
+
+            The `/payment_initiation/consent/revoke` endpoint can be used to revoke the payment consent. Once the consent is revoked, it is not possible to initiate payments using it.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_initiation_consent_revoke(payment_initiation_consent_revoke_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_initiation_consent_revoke_request (PaymentInitiationConsentRevokeRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentInitiationConsentRevokeResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_initiation_consent_revoke_request'] = \
+                payment_initiation_consent_revoke_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_initiation_consent_revoke = _Endpoint(
+            settings={
+                'response_type': (PaymentInitiationConsentRevokeResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_initiation/consent/revoke',
+                'operation_id': 'payment_initiation_consent_revoke',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_initiation_consent_revoke_request',
+                ],
+                'required': [
+                    'payment_initiation_consent_revoke_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_initiation_consent_revoke_request':
+                        (PaymentInitiationConsentRevokeRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_initiation_consent_revoke_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_initiation_consent_revoke
         )
 
         def __payment_initiation_payment_create(
@@ -8173,7 +9044,7 @@ class PlaidApi(object):
         ):
             """Retrieve Auth data  # noqa: E501
 
-            The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for a checking or savings account that''s associated with a given `processor_token`. The endpoint also returns high-level account data and balances when available.   Versioning note: API versions 2019-05-29 and earlier use a different schema for the `numbers` object returned by this endpoint. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2020-09-14).   # noqa: E501
+            The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for a checking or savings account that''s associated with a given `processor_token`. The endpoint also returns high-level account data and balances when available.  Versioning note: API versions 2019-05-29 and earlier use a different schema for the `numbers` object returned by this endpoint. For details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2020-09-14).   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -8661,7 +9532,7 @@ class PlaidApi(object):
         ):
             """Create Stripe bank account token  # noqa: E501
 
-            Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/).  # noqa: E501
+            Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/). Bank account tokens can also be revoked, using `/item/remove`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -8783,7 +9654,7 @@ class PlaidApi(object):
         ):
             """Create processor token  # noqa: E501
 
-            Used to create a token suitable for sending to one of Plaid's partners to enable integrations. Note that Stripe partnerships use bank account tokens instead; see `/processor/stripe/bank_account_token/create` for creating tokens for use with Stripe integrations.  # noqa: E501
+            Used to create a token suitable for sending to one of Plaid's partners to enable integrations. Note that Stripe partnerships use bank account tokens instead; see `/processor/stripe/bank_account_token/create` for creating tokens for use with Stripe integrations. Processor tokens can also be revoked, using `/item/remove`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9637,6 +10508,7 @@ class PlaidApi(object):
         ):
             """Save the selected accounts when connecting to the Platypus Oauth institution  # noqa: E501
 
+            Save the selected accounts when connecting to the Platypus Oauth institution  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9668,7 +10540,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                {str: (bool, date, datetime, dict, float, int, list, str, none_type)}
+                SandboxOauthSelectAccountsResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -9697,7 +10569,7 @@ class PlaidApi(object):
 
         self.sandbox_oauth_select_accounts = _Endpoint(
             settings={
-                'response_type': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),
+                'response_type': (SandboxOauthSelectAccountsResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -10000,7 +10872,7 @@ class PlaidApi(object):
             sandbox_transfer_repayment_simulate_request,
             **kwargs
         ):
-            """Trigger the creation of a repayment.  # noqa: E501
+            """Trigger the creation of a repayment  # noqa: E501
 
             Use the `/sandbox/transfer/repayment/simulate` endpoint to trigger the creation of a repayment. As a side effect of calling this route, a repayment is created that includes all unreimbursed returns of guaranteed transfers. If there are no such returns, an 400 error is returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -10246,7 +11118,7 @@ class PlaidApi(object):
         ):
             """Simulate creating a sweep  # noqa: E501
 
-            Use the `/sandbox/transfer/sweep/simulate` endpoint to create a sweep and associated events in the Sandbox environment.  - All `posted` or `pending` Transfers with sweep_status `unswept` will become `swept` - All `reversed` Transfers with sweep_status `swept` will become `reverse_swept`  # noqa: E501
+            Use the `/sandbox/transfer/sweep/simulate` endpoint to create a sweep and associated events in the Sandbox environment. Upon calling this endpoint, all `posted` or `pending` transfers with a sweep status of `unswept` will become `swept`, and all `reversed` transfers with a sweep status of `swept` will become `reverse_swept`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -10727,6 +11599,128 @@ class PlaidApi(object):
             callable=__signal_return_report
         )
 
+        def __transactions_enhance(
+            self,
+            transactions_enhance_get_request,
+            **kwargs
+        ):
+            """enhance locally-held transaction data  # noqa: E501
+
+            The '/beta/transactions/v1/enhance' endpoint enriches raw transaction data provided directly by clients.  The product is currently in beta.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_enhance(transactions_enhance_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_enhance_get_request (TransactionsEnhanceGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsEnhanceGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_enhance_get_request'] = \
+                transactions_enhance_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_enhance = _Endpoint(
+            settings={
+                'response_type': (TransactionsEnhanceGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/beta/transactions/v1/enhance',
+                'operation_id': 'transactions_enhance',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_enhance_get_request',
+                ],
+                'required': [
+                    'transactions_enhance_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_enhance_get_request':
+                        (TransactionsEnhanceGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_enhance_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_enhance
+        )
+
         def __transactions_get(
             self,
             transactions_get_request,
@@ -10734,7 +11728,7 @@ class PlaidApi(object):
         ):
             """Get transaction data  # noqa: E501
 
-            The `/transactions/get` endpoint allows developers to receive user-authorized transaction data for credit, depository, and some loan-type accounts (only those with account subtype `student`; coverage may be limited). For transaction history from investments accounts, use the [Investments endpoint](https://plaid.com/docs/api/products#investments) instead. Transaction data is standardized across financial institutions, and in many cases transactions are linked to a clean name, entity type, location, and category. Similarly, account data is standardized and returned with a clean name, number, balance, and other meta information where available.  Transactions are returned in reverse-chronological order, and the sequence of transaction ordering is stable and will not shift.  Transactions are not immutable and can also be removed altogether by the institution; a removed transaction will no longer appear in `/transactions/get`.  For more details, see [Pending and posted transactions](https://plaid.com/docs/transactions/transactions-data/#pending-and-posted-transactions).  Due to the potentially large number of transactions associated with an Item, results are paginated. Manipulate the `count` and `offset` parameters in conjunction with the `total_transactions` response body field to fetch all available transactions.  Data returned by `/transactions/get` will be the data available for the Item as of the most recent successful check for new transactions. Plaid typically checks for new data multiple times a day, but these checks may occur less frequently, such as once a day, depending on the institution. An Item's `status.transactions.last_successful_update` field will show the timestamp of the most recent successful update. To force Plaid to check for new transactions, you can use the `/transactions/refresh` endpoint.  Note that data may not be immediately available to `/transactions/get`. Plaid will begin to prepare transactions data upon Item link, if Link was initialized with `transactions`, or upon the first call to `/transactions/get`, if it wasn't. To be alerted when transaction data is ready to be fetched, listen for the [`INITIAL_UPDATE`](https://plaid.com/docs/api/webhooks#transactions-initial_update) and [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/webhooks#transactions-historical_update) webhooks. If no transaction history is ready when `/transactions/get` is called, it will return a `PRODUCT_NOT_READY` error.  # noqa: E501
+            The `/transactions/get` endpoint allows developers to receive user-authorized transaction data for credit, depository, and some loan-type accounts (only those with account subtype `student`; coverage may be limited). For transaction history from investments accounts, use the [Investments endpoint](https://plaid.com/docs/api/products/investments/) instead. Transaction data is standardized across financial institutions, and in many cases transactions are linked to a clean name, entity type, location, and category. Similarly, account data is standardized and returned with a clean name, number, balance, and other meta information where available.  Transactions are returned in reverse-chronological order, and the sequence of transaction ordering is stable and will not shift.  Transactions are not immutable and can also be removed altogether by the institution; a removed transaction will no longer appear in `/transactions/get`.  For more details, see [Pending and posted transactions](https://plaid.com/docs/transactions/transactions-data/#pending-and-posted-transactions).  Due to the potentially large number of transactions associated with an Item, results are paginated. Manipulate the `count` and `offset` parameters in conjunction with the `total_transactions` response body field to fetch all available transactions.  Data returned by `/transactions/get` will be the data available for the Item as of the most recent successful check for new transactions. Plaid typically checks for new data multiple times a day, but these checks may occur less frequently, such as once a day, depending on the institution. An Item's `status.transactions.last_successful_update` field will show the timestamp of the most recent successful update. To force Plaid to check for new transactions, you can use the `/transactions/refresh` endpoint.  Note that data may not be immediately available to `/transactions/get`. Plaid will begin to prepare transactions data upon Item link, if Link was initialized with `transactions`, or upon the first call to `/transactions/get`, if it wasn't. To be alerted when transaction data is ready to be fetched, listen for the [`INITIAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#initial_update) and [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhooks. If no transaction history is ready when `/transactions/get` is called, it will return a `PRODUCT_NOT_READY` error.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -10978,7 +11972,7 @@ class PlaidApi(object):
         ):
             """Refresh transaction data  # noqa: E501
 
-            `/transactions/refresh` is an optional endpoint for users of the Transactions product. It initiates an on-demand extraction to fetch the newest transactions for an Item. This on-demand extraction takes place in addition to the periodic extractions that automatically occur multiple times a day for any Transactions-enabled Item. If changes to transactions are discovered after calling `/transactions/refresh`, Plaid will fire a webhook: [`TRANSACTIONS_REMOVED`](https://plaid.com/docs/api/webhooks#deleted-transactions-detected) will be fired if any removed transactions are detected, and [`DEFAULT_UPDATE`](https://plaid.com/docs/api/webhooks#transactions-default_update) will be fired if any new transactions are detected. New transactions can be fetched by calling `/transactions/get`.  Access to `/transactions/refresh` in Production is specific to certain pricing plans. If you cannot access `/transactions/refresh` in Production, [contact Sales](https://www.plaid.com/contact) for assistance.  # noqa: E501
+            `/transactions/refresh` is an optional endpoint for users of the Transactions product. It initiates an on-demand extraction to fetch the newest transactions for an Item. This on-demand extraction takes place in addition to the periodic extractions that automatically occur multiple times a day for any Transactions-enabled Item. If changes to transactions are discovered after calling `/transactions/refresh`, Plaid will fire a webhook: [`TRANSACTIONS_REMOVED`](https://plaid.com/docs/api/products/transactions/#transactions_removed) will be fired if any removed transactions are detected, and [`DEFAULT_UPDATE`](https://plaid.com/docs/api/products/transactions/#default_update) will be fired if any new transactions are detected. New transactions can be fetched by calling `/transactions/get`.  Access to `/transactions/refresh` in Production is specific to certain pricing plans. If you cannot access `/transactions/refresh` in Production, [contact Sales](https://www.plaid.com/contact) for assistance.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12318,9 +13312,9 @@ class PlaidApi(object):
             transfer_repayment_list_request,
             **kwargs
         ):
-            """Lists historical repayments.  # noqa: E501
+            """Lists historical repayments  # noqa: E501
 
-            The `/transfer/repayment/list` endpoint fetches repayments matching the given filters. Repayments are returned in chronological order (least recent first) starting at the given `start_time`.  # noqa: E501
+            The `/transfer/repayment/list` endpoint fetches repayments matching the given filters. Repayments are returned in reverse-chronological order (most recent first) starting at the given `start_time`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12440,9 +13434,9 @@ class PlaidApi(object):
             transfer_repayment_return_list_request,
             **kwargs
         ):
-            """Retrieves the set of returns that were batched together into the specified repayment. The sum of amounts of returns retrieved by this request equals the amount of the repayment.  # noqa: E501
+            """List the returns included in a repayment  # noqa: E501
 
-            The `/transfer/repayment/return/list` endpoint retrieves the set of returns that were batched together into the specified repayment.  # noqa: E501
+            The `/transfer/repayment/return/list` endpoint retrieves the set of returns that were batched together into the specified repayment. The sum of amounts of returns retrieved by this request equals the amount of the repayment.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 

@@ -77,9 +77,9 @@ class TransferRepaymentReturnListRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'repayment_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'repayment_id': (str,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
             'offset': (int,),  # noqa: E501
         }
@@ -90,9 +90,9 @@ class TransferRepaymentReturnListRequest(ModelNormal):
 
 
     attribute_map = {
+        'repayment_id': 'repayment_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'repayment_id': 'repayment_id',  # noqa: E501
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
     }
@@ -109,8 +109,11 @@ class TransferRepaymentReturnListRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, repayment_id, *args, **kwargs):  # noqa: E501
         """TransferRepaymentReturnListRequest - a model defined in OpenAPI
+
+        Args:
+            repayment_id (str): Identifier of the repayment to query.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -145,7 +148,6 @@ class TransferRepaymentReturnListRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            repayment_id (str): Identifier of the repayment to query.. [optional]  # noqa: E501
             count (int, none_type): The maximum number of repayments to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int): The number of repayments to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
@@ -173,6 +175,7 @@ class TransferRepaymentReturnListRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.repayment_id = repayment_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

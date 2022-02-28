@@ -88,7 +88,6 @@ class TransferCreateRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'idempotency_key': (TransferCreateIdempotencyKey,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'authorization_id': (str,),  # noqa: E501
@@ -100,6 +99,7 @@ class TransferCreateRequest(ModelNormal):
             'user': (TransferUserInRequest,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'idempotency_key': (TransferCreateIdempotencyKey,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
@@ -111,7 +111,6 @@ class TransferCreateRequest(ModelNormal):
 
 
     attribute_map = {
-        'idempotency_key': 'idempotency_key',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'authorization_id': 'authorization_id',  # noqa: E501
@@ -123,6 +122,7 @@ class TransferCreateRequest(ModelNormal):
         'user': 'user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'idempotency_key': 'idempotency_key',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
@@ -140,14 +140,13 @@ class TransferCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, idempotency_key, access_token, account_id, authorization_id, type, network, amount, description, ach_class, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, account_id, authorization_id, type, network, amount, description, ach_class, user, *args, **kwargs):  # noqa: E501
         """TransferCreateRequest - a model defined in OpenAPI
 
         Args:
-            idempotency_key (TransferCreateIdempotencyKey):
             access_token (str): The Plaid `access_token` for the account that will be debited or credited.
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.
-            authorization_id (str): Plaid’s unique identifier for a transfer authorization.
+            authorization_id (str): Plaid’s unique identifier for a transfer authorization. This parameter also serves the purpose of acting as an idempotency identifier.
             type (TransferType):
             network (TransferNetwork):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
@@ -188,6 +187,7 @@ class TransferCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            idempotency_key (TransferCreateIdempotencyKey): [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for this transfer. If you have more than one origination account, this value must be specified. Otherwise, this field should be left blank.. [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
@@ -216,7 +216,6 @@ class TransferCreateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.idempotency_key = idempotency_key
         self.access_token = access_token
         self.account_id = account_id
         self.authorization_id = authorization_id

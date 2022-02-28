@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.payment_initiation_maximum_payment_amount import PaymentInitiationMaximumPaymentAmount
     from plaid.model.payment_initiation_standing_order_metadata import PaymentInitiationStandingOrderMetadata
+    globals()['PaymentInitiationMaximumPaymentAmount'] = PaymentInitiationMaximumPaymentAmount
     globals()['PaymentInitiationStandingOrderMetadata'] = PaymentInitiationStandingOrderMetadata
 
 
@@ -83,7 +85,7 @@ class PaymentInitiationMetadata(ModelNormal):
         lazy_import()
         return {
             'supports_international_payments': (bool,),  # noqa: E501
-            'maximum_payment_amount': ({str: (str,)},),  # noqa: E501
+            'maximum_payment_amount': (PaymentInitiationMaximumPaymentAmount,),  # noqa: E501
             'supports_refund_details': (bool,),  # noqa: E501
             'standing_order_metadata': (PaymentInitiationStandingOrderMetadata,),  # noqa: E501
         }
@@ -117,7 +119,7 @@ class PaymentInitiationMetadata(ModelNormal):
 
         Args:
             supports_international_payments (bool): Indicates whether the institution supports payments from a different country.
-            maximum_payment_amount ({str: (str,)}): A mapping of currency to maximum payment amount (denominated in the smallest unit of currency) supported by the institution.  Example: `{\"GBP\": \"10000\"}` 
+            maximum_payment_amount (PaymentInitiationMaximumPaymentAmount):
             supports_refund_details (bool): Indicates whether the institution supports returning refund details when initiating a payment.
             standing_order_metadata (PaymentInitiationStandingOrderMetadata):
 
