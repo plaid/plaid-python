@@ -1,6 +1,6 @@
 import time
-from plaid.model.account_subtype import AccountSubtype
-from plaid.model.account_subtypes import AccountSubtypes
+from plaid.model.depository_account_subtypes import DepositoryAccountSubtypes
+from plaid.model.depository_account_subtype import DepositoryAccountSubtype
 from plaid.model.country_code import CountryCode
 from plaid.model.depository_filter import DepositoryFilter
 from plaid.model.link_token_account_filters import LinkTokenAccountFilters
@@ -46,8 +46,8 @@ def test_link_token_create_optional():
         link_customization_name='default',
         account_filters=LinkTokenAccountFilters(
             depository=DepositoryFilter(
-                account_subtypes=AccountSubtypes(
-                    [AccountSubtype('checking'), AccountSubtype('savings')])
+                account_subtypes=DepositoryAccountSubtypes(
+                    [DepositoryAccountSubtype('checking'), DepositoryAccountSubtype('savings')])
             )
         ),
         user=LinkTokenCreateRequestUser(
@@ -76,8 +76,8 @@ def test_link_token_create_and_get():
         link_customization_name='default',
         account_filters=LinkTokenAccountFilters(
             depository=DepositoryFilter(
-                account_subtypes=AccountSubtypes(
-                    [AccountSubtype('checking'), AccountSubtype('savings')])
+                account_subtypes=DepositoryAccountSubtypes(
+                    [DepositoryAccountSubtype('checking'), DepositoryAccountSubtype('savings')])
             )
         ),
         user=LinkTokenCreateRequestUser(
@@ -108,5 +108,5 @@ def test_link_token_create_and_get():
         CountryCode('GB')]
     assert getResponse['metadata']['language'] == 'en'
     assert getResponse['metadata']['account_filters']['depository']['account_subtypes'] == \
-        AccountSubtypes([AccountSubtype('checking'), AccountSubtype('savings')])
+        DepositoryAccountSubtypes([DepositoryAccountSubtype('checking'), DepositoryAccountSubtype('savings')])
     assert getResponse['metadata']['client_name'] == CLIENT_NAME
