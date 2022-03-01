@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.account_subtypes import AccountSubtypes
-    globals()['AccountSubtypes'] = AccountSubtypes
+    from plaid.model.depository_account_subtypes import DepositoryAccountSubtypes
+    globals()['DepositoryAccountSubtypes'] = DepositoryAccountSubtypes
 
 
 class DepositoryFilter(ModelNormal):
@@ -82,7 +82,7 @@ class DepositoryFilter(ModelNormal):
         """
         lazy_import()
         return {
-            'account_subtypes': (AccountSubtypes,),  # noqa: E501
+            'account_subtypes': (DepositoryAccountSubtypes,),  # noqa: E501
         }
 
     @cached_property
@@ -110,7 +110,7 @@ class DepositoryFilter(ModelNormal):
         """DepositoryFilter - a model defined in OpenAPI
 
         Args:
-            account_subtypes (AccountSubtypes):
+            account_subtypes (DepositoryAccountSubtypes):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

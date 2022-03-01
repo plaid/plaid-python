@@ -83,7 +83,7 @@ class IncomeVerificationPrecheckRequest(ModelNormal):
             'secret': (str,),  # noqa: E501
             'user': (IncomeVerificationPrecheckUser,),  # noqa: E501
             'employer': (IncomeVerificationPrecheckEmployer,),  # noqa: E501
-            'transactions_access_token': (str, none_type,),  # noqa: E501
+            'transactions_access_token': (object,),  # noqa: E501
             'transactions_access_tokens': ([str],),  # noqa: E501
             'us_military_info': (IncomeVerificationPrecheckMilitaryInfo,),  # noqa: E501
         }
@@ -153,7 +153,7 @@ class IncomeVerificationPrecheckRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             user (IncomeVerificationPrecheckUser): [optional]  # noqa: E501
             employer (IncomeVerificationPrecheckEmployer): [optional]  # noqa: E501
-            transactions_access_token (str, none_type): The access token associated with the Item data is being requested for.. [optional]  # noqa: E501
+            transactions_access_token (object): [optional]  # noqa: E501
             transactions_access_tokens ([str]): An array of access tokens corresponding to Items belonging to the user whose eligibility is being checked. Note that if the Items specified here are not already initialized with `transactions`, providing them in this field will cause these Items to be initialized with (and billed for) the Transactions product.. [optional]  # noqa: E501
             us_military_info (IncomeVerificationPrecheckMilitaryInfo): [optional]  # noqa: E501
         """
