@@ -114,7 +114,7 @@ class TransferUserAddressInResponse(ModelNormal):
         Args:
             street (str, none_type): The street number and name (i.e., \"100 Market St.\").
             city (str, none_type): Ex. \"San Francisco\"
-            region (str, none_type): The state or province (e.g., \"CA\").
+            region (str, none_type): The state or province (e.g., \"California\").
             postal_code (str, none_type): The postal code (e.g., \"94103\").
             country (str, none_type): A two-letter country code (e.g., \"US\").
 

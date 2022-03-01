@@ -26,9 +26,7 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.payment_amount import PaymentAmount
-    from plaid.model.payment_initiation_refund_status import PaymentInitiationRefundStatus
     globals()['PaymentAmount'] = PaymentAmount
-    globals()['PaymentInitiationRefundStatus'] = PaymentInitiationRefundStatus
 
 
 class PaymentInitiationRefund(ModelNormal):
@@ -56,6 +54,12 @@ class PaymentInitiationRefund(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'PROCESSING': "PROCESSING",
+            'INITIATED': "INITIATED",
+            'EXECUTED': "EXECUTED",
+            'FAILED': "FAILED",
+        },
     }
 
     validations = {
@@ -86,7 +90,7 @@ class PaymentInitiationRefund(ModelNormal):
         return {
             'refund_id': (str,),  # noqa: E501
             'amount': (PaymentAmount,),  # noqa: E501
-            'status': (PaymentInitiationRefundStatus,),  # noqa: E501
+            'status': (str,),  # noqa: E501
             'last_status_update': (datetime,),  # noqa: E501
         }
 
@@ -120,7 +124,7 @@ class PaymentInitiationRefund(ModelNormal):
         Args:
             refund_id (str): The ID of the refund. Like all Plaid identifiers, the `refund_id` is case sensitive.
             amount (PaymentAmount):
-            status (PaymentInitiationRefundStatus):
+            status (str): The status of the refund.  `PROCESSING`: The refund is currently being processed. The refund will automatically exit this state when processing is complete.  `INITIATED`: The refund has been successfully initiated.  `EXECUTED`: Indicates that the refund has been successfully executed.  `FAILED`: The refund has failed to be executed. This error is retryable once the root cause is resolved.
             last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
 
         Keyword Args:

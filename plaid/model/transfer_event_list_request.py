@@ -25,9 +25,7 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.transfer_event_list_transfer_type import TransferEventListTransferType
     from plaid.model.transfer_event_type import TransferEventType
-    globals()['TransferEventListTransferType'] = TransferEventListTransferType
     globals()['TransferEventType'] = TransferEventType
 
 
@@ -56,6 +54,12 @@ class TransferEventListRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('transfer_type',): {
+            'None': None,
+            'DEBIT': "debit",
+            'CREDIT': "credit",
+            'NULL': "null",
+        },
     }
 
     validations = {
@@ -90,7 +94,7 @@ class TransferEventListRequest(ModelNormal):
             'end_date': (datetime, none_type,),  # noqa: E501
             'transfer_id': (str, none_type,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
-            'transfer_type': (TransferEventListTransferType,),  # noqa: E501
+            'transfer_type': (str, none_type,),  # noqa: E501
             'event_types': ([TransferEventType],),  # noqa: E501
             'sweep_id': (str,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
@@ -170,7 +174,7 @@ class TransferEventListRequest(ModelNormal):
             end_date (datetime, none_type): The end datetime of transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
             transfer_id (str, none_type): Plaid’s unique identifier for a transfer.. [optional]  # noqa: E501
             account_id (str, none_type): The account ID to get events for all transactions to/from an account.. [optional]  # noqa: E501
-            transfer_type (TransferEventListTransferType): [optional]  # noqa: E501
+            transfer_type (str, none_type): The type of transfer. This will be either `debit` or `credit`.  A `debit` indicates a transfer of money into your origination account; a `credit` indicates a transfer of money out of your origination account.. [optional]  # noqa: E501
             event_types ([TransferEventType]): Filter events by event type.. [optional]  # noqa: E501
             sweep_id (str): Plaid’s unique identifier for a sweep.. [optional]  # noqa: E501
             count (int, none_type): The maximum number of transfer events to return. If the number of events matching the above parameters is greater than `count`, the most recent events will be returned.. [optional] if omitted the server will use the default value of 25  # noqa: E501

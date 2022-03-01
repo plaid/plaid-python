@@ -152,7 +152,7 @@ class Employee(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            marital_status (str, none_type): Marital status of the employee - either `single` or `married`.. [optional]  # noqa: E501
+            marital_status (str, none_type): Marital status of the employee.. [optional]  # noqa: E501
             taxpayer_id (TaxpayerID): [optional]  # noqa: E501
         """
 

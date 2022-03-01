@@ -114,10 +114,10 @@ class Transfer(ModelNormal):
             'failure_reason': (TransferFailure,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
-            'guarantee_decision': (TransferAuthorizationGuaranteeDecision,),  # noqa: E501
-            'guarantee_decision_rationale': (TransferAuthorizationGuaranteeDecisionRationale,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'sweep_status': (TransferSweepStatus,),  # noqa: E501
+            'guarantee_decision': (TransferAuthorizationGuaranteeDecision,),  # noqa: E501
+            'guarantee_decision_rationale': (TransferAuthorizationGuaranteeDecisionRationale,),  # noqa: E501
         }
 
     @cached_property
@@ -140,10 +140,10 @@ class Transfer(ModelNormal):
         'failure_reason': 'failure_reason',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
-        'guarantee_decision': 'guarantee_decision',  # noqa: E501
-        'guarantee_decision_rationale': 'guarantee_decision_rationale',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'sweep_status': 'sweep_status',  # noqa: E501
+        'guarantee_decision': 'guarantee_decision',  # noqa: E501
+        'guarantee_decision_rationale': 'guarantee_decision_rationale',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,7 +158,7 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, iso_currency_code, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
@@ -176,8 +176,6 @@ class Transfer(ModelNormal):
             failure_reason (TransferFailure):
             metadata (TransferMetadata):
             origination_account_id (str): Plaid’s unique identifier for the origination account that was used for this transfer.
-            guarantee_decision (TransferAuthorizationGuaranteeDecision):
-            guarantee_decision_rationale (TransferAuthorizationGuaranteeDecisionRationale):
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
 
         Keyword Args:
@@ -212,6 +210,8 @@ class Transfer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             sweep_status (TransferSweepStatus): [optional]  # noqa: E501
+            guarantee_decision (TransferAuthorizationGuaranteeDecision): [optional]  # noqa: E501
+            guarantee_decision_rationale (TransferAuthorizationGuaranteeDecisionRationale): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -251,8 +251,6 @@ class Transfer(ModelNormal):
         self.failure_reason = failure_reason
         self.metadata = metadata
         self.origination_account_id = origination_account_id
-        self.guarantee_decision = guarantee_decision
-        self.guarantee_decision_rationale = guarantee_decision_rationale
         self.iso_currency_code = iso_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
