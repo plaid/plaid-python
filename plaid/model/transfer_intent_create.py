@@ -27,12 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.ach_class import ACHClass
     from plaid.model.transfer_intent_create_mode import TransferIntentCreateMode
-    from plaid.model.transfer_intent_status import TransferIntentStatus
     from plaid.model.transfer_metadata import TransferMetadata
     from plaid.model.transfer_user_in_response import TransferUserInResponse
     globals()['ACHClass'] = ACHClass
     globals()['TransferIntentCreateMode'] = TransferIntentCreateMode
-    globals()['TransferIntentStatus'] = TransferIntentStatus
     globals()['TransferMetadata'] = TransferMetadata
     globals()['TransferUserInResponse'] = TransferUserInResponse
 
@@ -62,6 +60,11 @@ class TransferIntentCreate(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'PENDING': "PENDING",
+            'SUCCEEDED': "SUCCEEDED",
+            'FAILED': "FAILED",
+        },
     }
 
     validations = {
@@ -92,7 +95,7 @@ class TransferIntentCreate(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
-            'status': (TransferIntentStatus,),  # noqa: E501
+            'status': (str,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'mode': (TransferIntentCreateMode,),  # noqa: E501
@@ -142,7 +145,7 @@ class TransferIntentCreate(ModelNormal):
         Args:
             id (str): Plaid's unique identifier for the transfer intent object.
             created (datetime): The datetime the transfer was created. This will be of the form `2006-01-02T15:04:05Z`.
-            status (TransferIntentStatus):
+            status (str): The status of the transfer intent.  - `PENDING` – The transfer intent is pending. - `SUCCEEDED` – The transfer intent was successfully created. - `FAILED` – The transfer intent was unable to be created.
             origination_account_id (str): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             mode (TransferIntentCreateMode):

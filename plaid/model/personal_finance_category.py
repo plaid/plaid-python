@@ -107,7 +107,7 @@ class PersonalFinanceCategory(ModelNormal):
 
         Args:
             primary (str): A high level category that communicates the broad category of the transaction.
-            detailed (str): A granular category conveying the transaction's intent. This field can also be used as a unique identifier for the category.
+            detailed (str): Provides additional granularity to the primary categorization.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -114,7 +114,6 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             'wallet_id': (str, none_type,),  # noqa: E501
             'scheme': (PaymentScheme,),  # noqa: E501
             'adjusted_scheme': (PaymentScheme,),  # noqa: E501
-            'consent_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +138,6 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
         'wallet_id': 'wallet_id',  # noqa: E501
         'scheme': 'scheme',  # noqa: E501
         'adjusted_scheme': 'adjusted_scheme',  # noqa: E501
-        'consent_id': 'consent_id',  # noqa: E501
     }
 
     required_properties = set([
@@ -207,7 +205,6 @@ class PaymentInitiationPaymentGetResponse(ModelComposed):
             wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
             scheme (PaymentScheme): [optional]  # noqa: E501
             adjusted_scheme (PaymentScheme): [optional]  # noqa: E501
-            consent_id (str): The payment consent ID that this payment was initiated with. Is present only when payment was initiated using the payment consent.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

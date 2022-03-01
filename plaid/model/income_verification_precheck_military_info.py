@@ -50,6 +50,15 @@ class IncomeVerificationPrecheckMilitaryInfo(ModelNormal):
     """
 
     allowed_values = {
+        ('branch',): {
+            'None': None,
+            'AIR_FORCE': "AIR FORCE",
+            'ARMY': "ARMY",
+            'COAST_GUARD': "COAST GUARD",
+            'MARINES': "MARINES",
+            'NAVY': "NAVY",
+            'UNKNOWN': "UNKNOWN",
+        },
     }
 
     validations = {
@@ -131,7 +140,7 @@ class IncomeVerificationPrecheckMilitaryInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             is_active_duty (bool, none_type): Is the user currently active duty in the US military. [optional]  # noqa: E501
-            branch (str, none_type): If the user is currently serving in the US military, the branch of the military in which they are serving Valid values: 'AIR FORCE', 'ARMY', 'COAST GUARD', 'MARINES', 'NAVY', 'UNKNOWN'. [optional]  # noqa: E501
+            branch (str, none_type): If the user is currently serving in the US military, the branch of the military they are serving in. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

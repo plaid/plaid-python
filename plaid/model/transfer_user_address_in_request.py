@@ -144,7 +144,7 @@ class TransferUserAddressInRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             street (str): The street number and name (i.e., \"100 Market St.\").. [optional]  # noqa: E501
             city (str): Ex. \"San Francisco\". [optional]  # noqa: E501
-            region (str): The state or province (e.g., \"CA\").. [optional]  # noqa: E501
+            region (str): The state or province (e.g., \"California\").. [optional]  # noqa: E501
             postal_code (str): The postal code (e.g., \"94103\").. [optional]  # noqa: E501
             country (str): A two-letter country code (e.g., \"US\").. [optional]  # noqa: E501
         """
