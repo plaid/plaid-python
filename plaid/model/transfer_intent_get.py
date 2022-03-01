@@ -27,18 +27,14 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.ach_class import ACHClass
     from plaid.model.transfer_authorization_decision_rationale import TransferAuthorizationDecisionRationale
-    from plaid.model.transfer_intent_authorization_decision import TransferIntentAuthorizationDecision
     from plaid.model.transfer_intent_create_mode import TransferIntentCreateMode
     from plaid.model.transfer_intent_get_failure_reason import TransferIntentGetFailureReason
-    from plaid.model.transfer_intent_status import TransferIntentStatus
     from plaid.model.transfer_metadata import TransferMetadata
     from plaid.model.transfer_user_in_response import TransferUserInResponse
     globals()['ACHClass'] = ACHClass
     globals()['TransferAuthorizationDecisionRationale'] = TransferAuthorizationDecisionRationale
-    globals()['TransferIntentAuthorizationDecision'] = TransferIntentAuthorizationDecision
     globals()['TransferIntentCreateMode'] = TransferIntentCreateMode
     globals()['TransferIntentGetFailureReason'] = TransferIntentGetFailureReason
-    globals()['TransferIntentStatus'] = TransferIntentStatus
     globals()['TransferMetadata'] = TransferMetadata
     globals()['TransferUserInResponse'] = TransferUserInResponse
 
@@ -68,6 +64,17 @@ class TransferIntentGet(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'PENDING': "PENDING",
+            'SUCCEEDED': "SUCCEEDED",
+            'FAILED': "FAILED",
+        },
+        ('authorization_decision',): {
+            'None': None,
+            'APPROVED': "APPROVED",
+            'PERMITTED': "PERMITTED",
+            'DECLINED': "DECLINED",
+        },
     }
 
     validations = {
@@ -98,10 +105,10 @@ class TransferIntentGet(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
-            'status': (TransferIntentStatus,),  # noqa: E501
+            'status': (str,),  # noqa: E501
             'transfer_id': (str, none_type,),  # noqa: E501
             'failure_reason': (TransferIntentGetFailureReason,),  # noqa: E501
-            'authorization_decision': (TransferIntentAuthorizationDecision,),  # noqa: E501
+            'authorization_decision': (str, none_type,),  # noqa: E501
             'authorization_decision_rationale': (TransferAuthorizationDecisionRationale,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'amount': (str,),  # noqa: E501
@@ -156,10 +163,10 @@ class TransferIntentGet(ModelNormal):
         Args:
             id (str): Plaid's unique identifier for a transfer intent object.
             created (datetime): The datetime the transfer was created. This will be of the form `2006-01-02T15:04:05Z`.
-            status (TransferIntentStatus):
+            status (str): The status of the transfer intent.  - `PENDING` – The transfer intent is pending. - `SUCCEEDED` – The transfer intent was successfully created. - `FAILED` – The transfer intent was unable to be created.
             transfer_id (str, none_type): Plaid's unique identifier for the transfer created through the UI. Returned only if the transfer was successfully created. Null value otherwise.
             failure_reason (TransferIntentGetFailureReason):
-            authorization_decision (TransferIntentAuthorizationDecision):
+            authorization_decision (str, none_type):  A decision regarding the proposed transfer.  `APPROVED` – The proposed transfer has received the end user's consent and has been approved for processing. Plaid has also reviewed the proposed transfer and has approved it for processing.   `PERMITTED` – Plaid was unable to fetch the information required to approve or decline the proposed transfer. You may proceed with the transfer, but further review is recommended. Plaid is awaiting further instructions from the client.  `DECLINED` – Plaid reviewed the proposed transfer and declined processing. Refer to the `code` field in the `decision_rationale` object for details. Null value otherwise.
             authorization_decision_rationale (TransferAuthorizationDecisionRationale):
             origination_account_id (str): Plaid’s unique identifier for the origination account used for the transfer.
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").

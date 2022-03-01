@@ -14,7 +14,6 @@ from plaid.model.payment_initiation_recipient_get_request import PaymentInitiati
 from plaid.model.products import Products
 from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
 from plaid.model.payment_amount import PaymentAmount
-from plaid.model.payment_amount_currency import PaymentAmountCurrency
 
 from tests.integration.util import create_client
 
@@ -32,7 +31,7 @@ def payments_after_recipient_creation(client, recipient_id):
         recipient_id=recipient_id,
         reference='TestPayment',
         amount=PaymentAmount(
-            currency=PaymentAmountCurrency('GBP'),
+            currency='GBP',
             value=100.00
         )
     )

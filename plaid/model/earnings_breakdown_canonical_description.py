@@ -54,8 +54,6 @@ class EarningsBreakdownCanonicalDescription(ModelSimple):
             'PAID_TIME_OFF': "PAID TIME OFF",
             'REGULAR_PAY': "REGULAR PAY",
             'VACATION': "VACATION",
-            'BASIC_ALLOWANCE_HOUSING': "BASIC ALLOWANCE HOUSING",
-            'BASIC_ALLOWANCE_SUBSISTENCE': "BASIC ALLOWANCE SUBSISTENCE",
             'OTHER': "OTHER",
             'NULL': "null",
         },
@@ -107,10 +105,10 @@ class EarningsBreakdownCanonicalDescription(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Commonly used term to describe the earning line item.., must be one of ["BONUS", "COMMISSION", "OVERTIME", "PAID TIME OFF", "REGULAR PAY", "VACATION", "BASIC ALLOWANCE HOUSING", "BASIC ALLOWANCE SUBSISTENCE", "OTHER", "null", ]  # noqa: E501
+            args[0] (str): Commonly used term to describe the earning line item.., must be one of ["BONUS", "COMMISSION", "OVERTIME", "PAID TIME OFF", "REGULAR PAY", "VACATION", "OTHER", "null", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Commonly used term to describe the earning line item.., must be one of ["BONUS", "COMMISSION", "OVERTIME", "PAID TIME OFF", "REGULAR PAY", "VACATION", "BASIC ALLOWANCE HOUSING", "BASIC ALLOWANCE SUBSISTENCE", "OTHER", "null", ]  # noqa: E501
+            value (str): Commonly used term to describe the earning line item.., must be one of ["BONUS", "COMMISSION", "OVERTIME", "PAID TIME OFF", "REGULAR PAY", "VACATION", "OTHER", "null", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

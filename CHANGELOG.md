@@ -1,5 +1,9 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 8.12.0
+- Updating to OAS 2020-09-14_1.78.1
+- Python library 8.11.0 was erroneously released as a `minor` version; 8.12.0 changes will be re-released as a `major` version shortly.
+
 # 8.11.0
 - Updating to OAS 2020-09-14_1.77.1
 
