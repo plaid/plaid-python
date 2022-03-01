@@ -25,11 +25,7 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.bank_transfer_event_list_bank_transfer_type import BankTransferEventListBankTransferType
-    from plaid.model.bank_transfer_event_list_direction import BankTransferEventListDirection
     from plaid.model.bank_transfer_event_type import BankTransferEventType
-    globals()['BankTransferEventListBankTransferType'] = BankTransferEventListBankTransferType
-    globals()['BankTransferEventListDirection'] = BankTransferEventListDirection
     globals()['BankTransferEventType'] = BankTransferEventType
 
 
@@ -58,6 +54,18 @@ class BankTransferEventListRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('bank_transfer_type',): {
+            'None': None,
+            'DEBIT': "debit",
+            'CREDIT': "credit",
+            'NULL': "null",
+        },
+        ('direction',): {
+            'None': None,
+            'INBOUND': "inbound",
+            'OUTBOUND': "outbound",
+            'NULL': "null",
+        },
     }
 
     validations = {
@@ -92,12 +100,12 @@ class BankTransferEventListRequest(ModelNormal):
             'end_date': (datetime, none_type,),  # noqa: E501
             'bank_transfer_id': (str, none_type,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
-            'bank_transfer_type': (BankTransferEventListBankTransferType,),  # noqa: E501
+            'bank_transfer_type': (str, none_type,),  # noqa: E501
             'event_types': ([BankTransferEventType],),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
             'offset': (int, none_type,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
-            'direction': (BankTransferEventListDirection,),  # noqa: E501
+            'direction': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -172,12 +180,12 @@ class BankTransferEventListRequest(ModelNormal):
             end_date (datetime, none_type): The end datetime of bank transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
             bank_transfer_id (str, none_type): Plaid’s unique identifier for a bank transfer.. [optional]  # noqa: E501
             account_id (str, none_type): The account ID to get events for all transactions to/from an account.. [optional]  # noqa: E501
-            bank_transfer_type (BankTransferEventListBankTransferType): [optional]  # noqa: E501
+            bank_transfer_type (str, none_type): The type of bank transfer. This will be either `debit` or `credit`.  A `debit` indicates a transfer of money into your origination account; a `credit` indicates a transfer of money out of your origination account.. [optional]  # noqa: E501
             event_types ([BankTransferEventType]): Filter events by event type.. [optional]  # noqa: E501
             count (int, none_type): The maximum number of bank transfer events to return. If the number of events matching the above parameters is greater than `count`, the most recent events will be returned.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int, none_type): The offset into the list of bank transfer events. When `count`=25 and `offset`=0, the first 25 events will be returned. When `count`=25 and `offset`=25, the next 25 bank transfer events will be returned.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             origination_account_id (str, none_type): The origination account ID to get events for transfers from a specific origination account.. [optional]  # noqa: E501
-            direction (BankTransferEventListDirection): [optional]  # noqa: E501
+            direction (str, none_type): Indicates the direction of the transfer: `outbound`: for API-initiated transfers `inbound`: for payments received by the FBO account.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

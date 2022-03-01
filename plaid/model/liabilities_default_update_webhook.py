@@ -25,9 +25,7 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.liabilities_account_ids_with_updated_liabilities import LiabilitiesAccountIdsWithUpdatedLiabilities
     from plaid.model.plaid_error import PlaidError
-    globals()['LiabilitiesAccountIdsWithUpdatedLiabilities'] = LiabilitiesAccountIdsWithUpdatedLiabilities
     globals()['PlaidError'] = PlaidError
 
 
@@ -82,7 +80,7 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
             'item_id': (str,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
             'account_ids_with_new_liabilities': ([str],),  # noqa: E501
-            'account_ids_with_updated_liabilities': (LiabilitiesAccountIdsWithUpdatedLiabilities,),  # noqa: E501
+            'account_ids_with_updated_liabilities': ({str: ([str],)},),  # noqa: E501
         }
 
     @cached_property
@@ -119,8 +117,8 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
             webhook_code (str): `DEFAULT_UPDATE`
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
             error (PlaidError):
-            account_ids_with_new_liabilities ([str]): An array of `account_id`'s for accounts that contain new liabilities.'
-            account_ids_with_updated_liabilities (LiabilitiesAccountIdsWithUpdatedLiabilities):
+            account_ids_with_new_liabilities ([str]): An array of `account_id`'s for accounts that contain new liabilities.
+            account_ids_with_updated_liabilities ({str: ([str],)}): An object with keys of `account_id`'s that are mapped to their respective liabilities fields that changed.  Example: `{ \"XMBvvyMGQ1UoLbKByoMqH3nXMj84ALSdE5B58\": [\"past_amount_due\"] }` 
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

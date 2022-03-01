@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.account_filter import AccountFilter
     from plaid.model.account_selection_cardinality import AccountSelectionCardinality
+    from plaid.model.product_access import ProductAccess
     globals()['AccountFilter'] = AccountFilter
     globals()['AccountSelectionCardinality'] = AccountSelectionCardinality
+    globals()['ProductAccess'] = ProductAccess
 
 
 class RequestedScopes(ModelNormal):
@@ -77,6 +79,8 @@ class RequestedScopes(ModelNormal):
         """
         lazy_import()
         return {
+            'required_product_access': (ProductAccess,),  # noqa: E501
+            'optional_product_access': (ProductAccess,),  # noqa: E501
             'account_selection_cardinality': (AccountSelectionCardinality,),  # noqa: E501
             'account_filters': (AccountFilter,),  # noqa: E501
         }
@@ -87,6 +91,8 @@ class RequestedScopes(ModelNormal):
 
 
     attribute_map = {
+        'required_product_access': 'required_product_access',  # noqa: E501
+        'optional_product_access': 'optional_product_access',  # noqa: E501
         'account_selection_cardinality': 'account_selection_cardinality',  # noqa: E501
         'account_filters': 'account_filters',  # noqa: E501
     }
@@ -103,10 +109,12 @@ class RequestedScopes(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_selection_cardinality, *args, **kwargs):  # noqa: E501
+    def __init__(self, required_product_access, optional_product_access, account_selection_cardinality, *args, **kwargs):  # noqa: E501
         """RequestedScopes - a model defined in OpenAPI
 
         Args:
+            required_product_access (ProductAccess):
+            optional_product_access (ProductAccess):
             account_selection_cardinality (AccountSelectionCardinality):
 
         Keyword Args:
@@ -166,6 +174,8 @@ class RequestedScopes(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.required_product_access = required_product_access
+        self.optional_product_access = optional_product_access
         self.account_selection_cardinality = account_selection_cardinality
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.credit_account_subtypes import CreditAccountSubtypes
-    globals()['CreditAccountSubtypes'] = CreditAccountSubtypes
+    from plaid.model.account_subtypes import AccountSubtypes
+    globals()['AccountSubtypes'] = AccountSubtypes
 
 
 class CreditFilter(ModelNormal):
@@ -82,7 +82,7 @@ class CreditFilter(ModelNormal):
         """
         lazy_import()
         return {
-            'account_subtypes': (CreditAccountSubtypes,),  # noqa: E501
+            'account_subtypes': (AccountSubtypes,),  # noqa: E501
         }
 
     @cached_property
@@ -110,7 +110,7 @@ class CreditFilter(ModelNormal):
         """CreditFilter - a model defined in OpenAPI
 
         Args:
-            account_subtypes (CreditAccountSubtypes):
+            account_subtypes (AccountSubtypes):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

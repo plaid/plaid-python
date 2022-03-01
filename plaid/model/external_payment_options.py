@@ -96,6 +96,7 @@ class ExternalPaymentOptions(ModelNormal):
             'bacs': (PaymentInitiationOptionalRestrictionBacs,),  # noqa: E501
             'wallet_id': (str, none_type,),  # noqa: E501
             'scheme': (PaymentScheme,),  # noqa: E501
+            'scheme_automatic_downgrade': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -109,6 +110,7 @@ class ExternalPaymentOptions(ModelNormal):
         'bacs': 'bacs',  # noqa: E501
         'wallet_id': 'wallet_id',  # noqa: E501
         'scheme': 'scheme',  # noqa: E501
+        'scheme_automatic_downgrade': 'scheme_automatic_downgrade',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,6 +164,7 @@ class ExternalPaymentOptions(ModelNormal):
             bacs (PaymentInitiationOptionalRestrictionBacs): [optional]  # noqa: E501
             wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
             scheme (PaymentScheme): [optional]  # noqa: E501
+            scheme_automatic_downgrade (bool, none_type): When `true`, Plaid will attempt to automatically downgrade payment `scheme` (e.g. `SEPA_CREDIT_TRANSFER_INSTANT` to `SEPA_CREDIT_TRANSFER`) when the requested scheme is not supported by the bank.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

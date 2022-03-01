@@ -108,7 +108,7 @@ class BankTransferUser(ModelNormal):
         """BankTransferUser - a model defined in OpenAPI
 
         Args:
-            legal_name (str): The account holder’s full legal name. If the transfer `ach_class` is `ccd`, this should be the business name of the account holder.
+            legal_name (str): The account holder’s full legal name. If the transfer description is `ccd`, this should be the business name of the account holder.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

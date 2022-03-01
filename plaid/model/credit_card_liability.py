@@ -85,11 +85,11 @@ class CreditCardLiability(ModelNormal):
             'account_id': (str, none_type,),  # noqa: E501
             'aprs': ([APR],),  # noqa: E501
             'is_overdue': (bool, none_type,),  # noqa: E501
-            'last_payment_amount': (float, none_type,),  # noqa: E501
+            'last_payment_amount': (float,),  # noqa: E501
             'last_payment_date': (date, none_type,),  # noqa: E501
-            'last_statement_issue_date': (date, none_type,),  # noqa: E501
-            'last_statement_balance': (float, none_type,),  # noqa: E501
-            'minimum_payment_amount': (float, none_type,),  # noqa: E501
+            'last_statement_issue_date': (date,),  # noqa: E501
+            'last_statement_balance': (float,),  # noqa: E501
+            'minimum_payment_amount': (float,),  # noqa: E501
             'next_payment_due_date': (date, none_type,),  # noqa: E501
         }
 
@@ -127,13 +127,13 @@ class CreditCardLiability(ModelNormal):
 
         Args:
             account_id (str, none_type): The ID of the account that this liability belongs to.
-            aprs ([APR]): The various interest rates that apply to the account. APR information is not provided by all card issuers; if APR data is not available, this array will be empty.
+            aprs ([APR]): The various interest rates that apply to the account.
             is_overdue (bool, none_type): true if a payment is currently overdue. Availability for this field is limited.
-            last_payment_amount (float, none_type): The amount of the last payment.
+            last_payment_amount (float): The amount of the last payment.
             last_payment_date (date, none_type): The date of the last payment. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). Availability for this field is limited.
-            last_statement_issue_date (date, none_type): The date of the last statement. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD).
-            last_statement_balance (float, none_type): The total amount owed as of the last statement issued
-            minimum_payment_amount (float, none_type): The minimum payment due for the next billing cycle.
+            last_statement_issue_date (date): The date of the last statement. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD).
+            last_statement_balance (float): The total amount owed as of the last statement issued
+            minimum_payment_amount (float): The minimum payment due for the next billing cycle.
             next_payment_due_date (date, none_type): The due date for the next payment. The due date is `null` if a payment is not expected. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD).
 
         Keyword Args:

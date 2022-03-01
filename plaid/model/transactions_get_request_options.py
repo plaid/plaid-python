@@ -82,7 +82,6 @@ class TransactionsGetRequestOptions(ModelNormal):
             'offset': (int,),  # noqa: E501
             'include_original_description': (bool, none_type,),  # noqa: E501
             'include_personal_finance_category_beta': (bool,),  # noqa: E501
-            'include_personal_finance_category': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -96,7 +95,6 @@ class TransactionsGetRequestOptions(ModelNormal):
         'offset': 'offset',  # noqa: E501
         'include_original_description': 'include_original_description',  # noqa: E501
         'include_personal_finance_category_beta': 'include_personal_finance_category_beta',  # noqa: E501
-        'include_personal_finance_category': 'include_personal_finance_category',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,8 +147,7 @@ class TransactionsGetRequestOptions(ModelNormal):
             count (int): The number of transactions to fetch.. [optional] if omitted the server will use the default value of 100  # noqa: E501
             offset (int): The number of transactions to skip. The default value is 0.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             include_original_description (bool, none_type): Include the raw unparsed transaction description from the financial institution. This field is disabled by default. If you need this information in addition to the parsed data provided, contact your Plaid Account Manager.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            include_personal_finance_category_beta (bool): Please use [`include_personal_finance_category`](https://plaid.com/docs/api/products/#transactions-get-request-options-include-personal-finance-category) instead.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            include_personal_finance_category (bool): Include the [`personal_finance_category`](https://plaid.com/docs/api/products/#transactions-get-response-transactions-personal-finance-category) object in the response.  See the [`taxonomy csv file`](https://plaid.com/documents/transactions-personal-finance-category-taxonomy.csv) for a full list of personal finance categories.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_personal_finance_category_beta (bool): Include the `personal_finance_category` object in the response. This feature is currently in beta – to request access, contact transactions-feedback@plaid.com.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
