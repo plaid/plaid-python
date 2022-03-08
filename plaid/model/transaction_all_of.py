@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.personal_finance_category import PersonalFinanceCategory
     from plaid.model.transaction_code import TransactionCode
+    globals()['PersonalFinanceCategory'] = PersonalFinanceCategory
     globals()['TransactionCode'] = TransactionCode
 
 
@@ -85,7 +87,7 @@ class TransactionAllOf(ModelNormal):
             'authorized_datetime': (datetime, none_type,),  # noqa: E501
             'datetime': (datetime, none_type,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
-            'personal_finance_category': (object, none_type,),  # noqa: E501
+            'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
         }
 
     @cached_property
@@ -155,7 +157,7 @@ class TransactionAllOf(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            personal_finance_category (object, none_type): [optional]  # noqa: E501
+            personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

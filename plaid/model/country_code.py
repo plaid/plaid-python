@@ -55,6 +55,7 @@ class CountryCode(ModelSimple):
             'IE': "IE",
             'CA': "CA",
             'DE': "DE",
+            'IT': "IT",
         },
     }
 
@@ -104,10 +105,10 @@ class CountryCode(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): ISO-3166-1 alpha-2 country code standard.., must be one of ["US", "GB", "ES", "NL", "FR", "IE", "CA", "DE", ]  # noqa: E501
+            args[0] (str): ISO-3166-1 alpha-2 country code standard.., must be one of ["US", "GB", "ES", "NL", "FR", "IE", "CA", "DE", "IT", ]  # noqa: E501
 
         Keyword Args:
-            value (str): ISO-3166-1 alpha-2 country code standard.., must be one of ["US", "GB", "ES", "NL", "FR", "IE", "CA", "DE", ]  # noqa: E501
+            value (str): ISO-3166-1 alpha-2 country code standard.., must be one of ["US", "GB", "ES", "NL", "FR", "IE", "CA", "DE", "IT", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

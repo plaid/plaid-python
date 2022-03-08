@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.credit_bank_income_item import CreditBankIncomeItem
     from plaid.model.credit_bank_income_summary import CreditBankIncomeSummary
+    from plaid.model.credit_bank_income_warning import CreditBankIncomeWarning
     globals()['CreditBankIncomeItem'] = CreditBankIncomeItem
     globals()['CreditBankIncomeSummary'] = CreditBankIncomeSummary
+    globals()['CreditBankIncomeWarning'] = CreditBankIncomeWarning
 
 
 class CreditBankIncome(ModelNormal):
@@ -82,6 +84,7 @@ class CreditBankIncome(ModelNormal):
             'days_requested': (int,),  # noqa: E501
             'items': ([CreditBankIncomeItem],),  # noqa: E501
             'bank_income_summary': (CreditBankIncomeSummary,),  # noqa: E501
+            'warnings': ([CreditBankIncomeWarning],),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +98,7 @@ class CreditBankIncome(ModelNormal):
         'days_requested': 'days_requested',  # noqa: E501
         'items': 'items',  # noqa: E501
         'bank_income_summary': 'bank_income_summary',  # noqa: E501
+        'warnings': 'warnings',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +152,7 @@ class CreditBankIncome(ModelNormal):
             days_requested (int): The number of days requested by the customer for the Bank Income Report.. [optional]  # noqa: E501
             items ([CreditBankIncomeItem]): The list of Items in the report along with the associated metadata about the Item.. [optional]  # noqa: E501
             bank_income_summary (CreditBankIncomeSummary): [optional]  # noqa: E501
+            warnings ([CreditBankIncomeWarning]): If data from the Bank Income report was unable to be retrieved, the warnings will contain information about the error that caused the data to be incomplete.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

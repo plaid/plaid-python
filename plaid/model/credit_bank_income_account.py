@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.credit_bank_income_account_type import CreditBankIncomeAccountType
     from plaid.model.depository_account_subtype import DepositoryAccountSubtype
+    from plaid.model.owner import Owner
     globals()['CreditBankIncomeAccountType'] = CreditBankIncomeAccountType
     globals()['DepositoryAccountSubtype'] = DepositoryAccountSubtype
+    globals()['Owner'] = Owner
 
 
 class CreditBankIncomeAccount(ModelNormal):
@@ -83,6 +85,7 @@ class CreditBankIncomeAccount(ModelNormal):
             'official_name': (str, none_type,),  # noqa: E501
             'subtype': (DepositoryAccountSubtype,),  # noqa: E501
             'type': (CreditBankIncomeAccountType,),  # noqa: E501
+            'owners': ([Owner],),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +100,7 @@ class CreditBankIncomeAccount(ModelNormal):
         'official_name': 'official_name',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
         'type': 'type',  # noqa: E501
+        'owners': 'owners',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,6 +155,7 @@ class CreditBankIncomeAccount(ModelNormal):
             official_name (str, none_type): The official name of the bank account.. [optional]  # noqa: E501
             subtype (DepositoryAccountSubtype): [optional]  # noqa: E501
             type (CreditBankIncomeAccountType): [optional]  # noqa: E501
+            owners ([Owner]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

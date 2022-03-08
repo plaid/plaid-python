@@ -207,6 +207,12 @@ from plaid.model.transactions_recurring_get_request import TransactionsRecurring
 from plaid.model.transactions_recurring_get_response import TransactionsRecurringGetResponse
 from plaid.model.transactions_refresh_request import TransactionsRefreshRequest
 from plaid.model.transactions_refresh_response import TransactionsRefreshResponse
+from plaid.model.transactions_rules_create_request import TransactionsRulesCreateRequest
+from plaid.model.transactions_rules_create_response import TransactionsRulesCreateResponse
+from plaid.model.transactions_rules_list_request import TransactionsRulesListRequest
+from plaid.model.transactions_rules_list_response import TransactionsRulesListResponse
+from plaid.model.transactions_rules_remove_request import TransactionsRulesRemoveRequest
+from plaid.model.transactions_rules_remove_response import TransactionsRulesRemoveResponse
 from plaid.model.transactions_sync_request import TransactionsSyncRequest
 from plaid.model.transactions_sync_response import TransactionsSyncResponse
 from plaid.model.transfer_authorization_create_request import TransferAuthorizationCreateRequest
@@ -235,6 +241,8 @@ from plaid.model.transfer_sweep_get_request import TransferSweepGetRequest
 from plaid.model.transfer_sweep_get_response import TransferSweepGetResponse
 from plaid.model.transfer_sweep_list_request import TransferSweepListRequest
 from plaid.model.transfer_sweep_list_response import TransferSweepListResponse
+from plaid.model.user_create_request import UserCreateRequest
+from plaid.model.user_create_response import UserCreateResponse
 from plaid.model.wallet_get_request import WalletGetRequest
 from plaid.model.wallet_get_response import WalletGetResponse
 from plaid.model.wallet_transaction_execute_request import WalletTransactionExecuteRequest
@@ -4652,7 +4660,7 @@ class PlaidApi(object):
         ):
             """Retrieve identity data  # noqa: E501
 
-            The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  Note: This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  # noqa: E501
+            The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails, phone numbers, and addresses. Only name data is guaranteed to be returned; other fields will be empty arrays if not provided by the institution.  This request may take some time to complete if identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  Note: In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12087,6 +12095,372 @@ class PlaidApi(object):
             callable=__transactions_refresh
         )
 
+        def __transactions_rules_create(
+            self,
+            transactions_rules_create_request,
+            **kwargs
+        ):
+            """Create transaction category rule  # noqa: E501
+
+            The `/transactions/rules/create` endpoint creates transaction categorization rules.  Rules will be applied on the Item's transactions returned in `/transactions/get` response.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_rules_create(transactions_rules_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_rules_create_request (TransactionsRulesCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsRulesCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_rules_create_request'] = \
+                transactions_rules_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_rules_create = _Endpoint(
+            settings={
+                'response_type': (TransactionsRulesCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/beta/transactions/rules/create',
+                'operation_id': 'transactions_rules_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_rules_create_request',
+                ],
+                'required': [
+                    'transactions_rules_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_rules_create_request':
+                        (TransactionsRulesCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_rules_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_rules_create
+        )
+
+        def __transactions_rules_list(
+            self,
+            transactions_rules_list_request,
+            **kwargs
+        ):
+            """Return a list of rules created for the Item associated with the access token.  # noqa: E501
+
+            The `/transactions/rules/list` returns a list of transaction rules created for the Item associated with the access token.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_rules_list(transactions_rules_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_rules_list_request (TransactionsRulesListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsRulesListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_rules_list_request'] = \
+                transactions_rules_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_rules_list = _Endpoint(
+            settings={
+                'response_type': (TransactionsRulesListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/beta/transactions/rules/list',
+                'operation_id': 'transactions_rules_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_rules_list_request',
+                ],
+                'required': [
+                    'transactions_rules_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_rules_list_request':
+                        (TransactionsRulesListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_rules_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_rules_list
+        )
+
+        def __transactions_rules_remove(
+            self,
+            transactions_rules_remove_request,
+            **kwargs
+        ):
+            """Remove transaction rule  # noqa: E501
+
+            The `/transactions/rules/remove` endpoint is used to remove a transaction rule.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_rules_remove(transactions_rules_remove_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_rules_remove_request (TransactionsRulesRemoveRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsRulesRemoveResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_rules_remove_request'] = \
+                transactions_rules_remove_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_rules_remove = _Endpoint(
+            settings={
+                'response_type': (TransactionsRulesRemoveResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/beta/transactions/rules/remove',
+                'operation_id': 'transactions_rules_remove',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_rules_remove_request',
+                ],
+                'required': [
+                    'transactions_rules_remove_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_rules_remove_request':
+                        (TransactionsRulesRemoveRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_rules_remove_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_rules_remove
+        )
+
         def __transactions_sync(
             self,
             transactions_sync_request,
@@ -12216,7 +12590,7 @@ class PlaidApi(object):
         ):
             """Create a transfer authorization  # noqa: E501
 
-            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's sandbox environment the decisions will be returned as follows:    - To approve a transfer, make an authorization request with an `amount` less than the available balance in the account.    - To decline a transfer with the rationale code `NSF`, the available balance on the account must be less than the authorization `amount`. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To decline a transfer with the rationale code `RISK`, the available balance on the account must be exactly $0. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To permit a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).    - To permit a transfer with the rationale code `LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).  All username/password combinations other than the ones listed above will result in a decision of permitted and rationale code `ERROR`.  # noqa: E501
+            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's sandbox environment the decisions will be returned as follows:    - To approve a transfer with null rationale code, make an authorization request with an `amount` less than the available balance in the account.    - To approve a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).      - To approve a transfer with the rationale code `LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).      - To decline a transfer with the rationale code `NSF`, the available balance on the account must be less than the authorization `amount`. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To decline a transfer with the rationale code `RISK`, the available balance on the account must be exactly $0. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -13793,6 +14167,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transfer_sweep_list
+        )
+
+        def __user_create(
+            self,
+            user_create_request,
+            **kwargs
+        ):
+            """Create user  # noqa: E501
+
+            Note: As of February 2022, the `/user/create` endpoint is in beta. Unless you have been opted-in, you will not have access to this endpoint.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.user_create(user_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                user_create_request (UserCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                UserCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['user_create_request'] = \
+                user_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.user_create = _Endpoint(
+            settings={
+                'response_type': (UserCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/user/create',
+                'operation_id': 'user_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'user_create_request',
+                ],
+                'required': [
+                    'user_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'user_create_request':
+                        (UserCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'user_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__user_create
         )
 
         def __wallet_get(
