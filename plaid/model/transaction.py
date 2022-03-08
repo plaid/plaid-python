@@ -27,11 +27,13 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.location import Location
     from plaid.model.payment_meta import PaymentMeta
+    from plaid.model.personal_finance_category import PersonalFinanceCategory
     from plaid.model.transaction_all_of import TransactionAllOf
     from plaid.model.transaction_base import TransactionBase
     from plaid.model.transaction_code import TransactionCode
     globals()['Location'] = Location
     globals()['PaymentMeta'] = PaymentMeta
+    globals()['PersonalFinanceCategory'] = PersonalFinanceCategory
     globals()['TransactionAllOf'] = TransactionAllOf
     globals()['TransactionBase'] = TransactionBase
     globals()['TransactionCode'] = TransactionCode
@@ -124,7 +126,7 @@ class Transaction(ModelComposed):
             'original_description': (str, none_type,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
-            'personal_finance_category': (object, none_type,),  # noqa: E501
+            'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
         }
 
     @cached_property
@@ -231,7 +233,7 @@ class Transaction(ModelComposed):
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
-            personal_finance_category (object, none_type): [optional]  # noqa: E501
+            personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

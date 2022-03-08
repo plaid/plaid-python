@@ -129,6 +129,8 @@ plaid/model/credit_bank_income.py
 plaid/model/credit_bank_income_account.py
 plaid/model/credit_bank_income_account_type.py
 plaid/model/credit_bank_income_category.py
+plaid/model/credit_bank_income_cause.py
+plaid/model/credit_bank_income_error_type.py
 plaid/model/credit_bank_income_get_request.py
 plaid/model/credit_bank_income_get_request_options.py
 plaid/model/credit_bank_income_get_response.py
@@ -138,6 +140,9 @@ plaid/model/credit_bank_income_pay_frequency.py
 plaid/model/credit_bank_income_source.py
 plaid/model/credit_bank_income_summary.py
 plaid/model/credit_bank_income_transaction.py
+plaid/model/credit_bank_income_warning.py
+plaid/model/credit_bank_income_warning_code.py
+plaid/model/credit_bank_income_warning_type.py
 plaid/model/credit_card_liability.py
 plaid/model/credit_filter.py
 plaid/model/customer_initiated_return_risk.py
@@ -212,6 +217,7 @@ plaid/model/income_verification_create_request.py
 plaid/model/income_verification_create_request_options.py
 plaid/model/income_verification_create_response.py
 plaid/model/income_verification_documents_download_request.py
+plaid/model/income_verification_payroll_flow_type.py
 plaid/model/income_verification_paystubs_get_request.py
 plaid/model/income_verification_paystubs_get_response.py
 plaid/model/income_verification_precheck_confidence.py
@@ -224,6 +230,7 @@ plaid/model/income_verification_precheck_response.py
 plaid/model/income_verification_precheck_user.py
 plaid/model/income_verification_refresh_request.py
 plaid/model/income_verification_refresh_response.py
+plaid/model/income_verification_source_type.py
 plaid/model/income_verification_status_webhook.py
 plaid/model/income_verification_taxforms_get_request.py
 plaid/model/income_verification_taxforms_get_response.py
@@ -305,6 +312,8 @@ plaid/model/link_token_create_request_account_subtypes.py
 plaid/model/link_token_create_request_auth.py
 plaid/model/link_token_create_request_deposit_switch.py
 plaid/model/link_token_create_request_income_verification.py
+plaid/model/link_token_create_request_income_verification_bank_income.py
+plaid/model/link_token_create_request_income_verification_payroll_income.py
 plaid/model/link_token_create_request_payment_initiation.py
 plaid/model/link_token_create_request_transfer.py
 plaid/model/link_token_create_request_update.py
@@ -508,6 +517,7 @@ plaid/model/transaction_data.py
 plaid/model/transaction_override.py
 plaid/model/transaction_stream.py
 plaid/model/transaction_stream_amount.py
+plaid/model/transactions_category_rule.py
 plaid/model/transactions_enhance_get_request.py
 plaid/model/transactions_enhance_get_response.py
 plaid/model/transactions_get_request.py
@@ -518,6 +528,15 @@ plaid/model/transactions_recurring_get_response.py
 plaid/model/transactions_refresh_request.py
 plaid/model/transactions_refresh_response.py
 plaid/model/transactions_removed_webhook.py
+plaid/model/transactions_rule_details.py
+plaid/model/transactions_rule_field.py
+plaid/model/transactions_rule_type.py
+plaid/model/transactions_rules_create_request.py
+plaid/model/transactions_rules_create_response.py
+plaid/model/transactions_rules_list_request.py
+plaid/model/transactions_rules_list_response.py
+plaid/model/transactions_rules_remove_request.py
+plaid/model/transactions_rules_remove_response.py
 plaid/model/transactions_sync_request.py
 plaid/model/transactions_sync_response.py
 plaid/model/transfer.py
@@ -579,6 +598,8 @@ plaid/model/transfer_user_address_in_request.py
 plaid/model/transfer_user_address_in_response.py
 plaid/model/transfer_user_in_request.py
 plaid/model/transfer_user_in_response.py
+plaid/model/user_create_request.py
+plaid/model/user_create_response.py
 plaid/model/user_custom_password.py
 plaid/model/user_permission_revoked_webhook.py
 plaid/model/verification_attribute.py

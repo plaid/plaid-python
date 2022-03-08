@@ -113,7 +113,7 @@ class TransferAuthorizationDecisionRationale(ModelNormal):
 
         Args:
             code (TransferAuthorizationDecisionRationaleCode):
-            description (str): A human-readable description of the code associated with a permitted transfer or transfer decline.
+            description (str): A human-readable description of the code associated with a transfer approval or transfer decline.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
