@@ -77,6 +77,7 @@ class AssetReportRelayRefreshResponse(ModelNormal):
         """
         return {
             'asset_relay_token': (str,),  # noqa: E501
+            'asset_report_id': (str,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -87,6 +88,7 @@ class AssetReportRelayRefreshResponse(ModelNormal):
 
     attribute_map = {
         'asset_relay_token': 'asset_relay_token',  # noqa: E501
+        'asset_report_id': 'asset_report_id',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
     }
 
@@ -102,11 +104,12 @@ class AssetReportRelayRefreshResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, asset_relay_token, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, asset_relay_token, asset_report_id, request_id, *args, **kwargs):  # noqa: E501
         """AssetReportRelayRefreshResponse - a model defined in OpenAPI
 
         Args:
             asset_relay_token (str):
+            asset_report_id (str): A unique ID identifying an Asset Report. Like all Plaid identifiers, this ID is case sensitive.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -166,6 +169,7 @@ class AssetReportRelayRefreshResponse(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.asset_relay_token = asset_relay_token
+        self.asset_report_id = asset_report_id
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

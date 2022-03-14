@@ -151,7 +151,7 @@ class CreditBankIncomeSummary(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             total_amount (float): Total amount of earnings across all the income sources in the end user's Items for the days requested by the client.. [optional]  # noqa: E501
             iso_currency_code (str, none_type): The ISO 4217 currency code of the amount or balance.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the amount or balance. Always `null` if iso_currency_code is non-null. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.. [optional]  # noqa: E501
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the amount or balance. Always `null` if `iso_currency_code` is non-null. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.. [optional]  # noqa: E501
             start_date (date): The earliest date within the days requested in which all income sources identified by Plaid appear in a user's account. The date will be returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             end_date (date): The latest date in which all income sources identified by Plaid appear in the user's account. The date will be returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             income_sources_count (int): Number of income sources per end user.. [optional]  # noqa: E501

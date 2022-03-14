@@ -142,7 +142,7 @@ class CreditBankIncomeCause(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             error_type (CreditBankIncomeErrorType): [optional]  # noqa: E501
-            error_code (str): We use standard HTTP response codes for success and failure notifications, and our errors are further classified by error_type.  In general, 200 HTTP codes correspond to success, 40X codes are for developer- or user-related failures, and 50X codes are for Plaid-related issues.   Error fields will be null if no error has occurred.. [optional]  # noqa: E501
+            error_code (str): We use standard HTTP response codes for success and failure notifications, and our errors are further classified by `error_type`. In general, 200 HTTP codes correspond to success, 40X codes are for developer- or user-related failures, and 50X codes are for Plaid-related issues. Error fields will be `null` if no error has occurred.. [optional]  # noqa: E501
             error_message (str): A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.. [optional]  # noqa: E501
             display_message (str): A user-friendly representation of the error code. null if the error is not related to user action. This may change over time and is not safe for programmatic use.. [optional]  # noqa: E501
             item_id (str): The `item_id` of the Item associated with this warning.. [optional]  # noqa: E501

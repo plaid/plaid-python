@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
     from plaid.model.transaction_stream_amount import TransactionStreamAmount
+    from plaid.model.transaction_stream_status import TransactionStreamStatus
     globals()['RecurringTransactionFrequency'] = RecurringTransactionFrequency
     globals()['TransactionStreamAmount'] = TransactionStreamAmount
+    globals()['TransactionStreamStatus'] = TransactionStreamStatus
 
 
 class TransactionStream(ModelNormal):
@@ -89,12 +91,15 @@ class TransactionStream(ModelNormal):
             'category_id': (str,),  # noqa: E501
             'category': ([str],),  # noqa: E501
             'description': (str,),  # noqa: E501
+            'merchant_name': (str,),  # noqa: E501
             'first_date': (date,),  # noqa: E501
             'last_date': (date,),  # noqa: E501
             'frequency': (RecurringTransactionFrequency,),  # noqa: E501
             'transaction_ids': ([str],),  # noqa: E501
             'average_amount': (TransactionStreamAmount,),  # noqa: E501
+            'last_amount': (TransactionStreamAmount,),  # noqa: E501
             'is_active': (bool,),  # noqa: E501
+            'status': (TransactionStreamStatus,),  # noqa: E501
         }
 
     @cached_property
@@ -108,12 +113,15 @@ class TransactionStream(ModelNormal):
         'category_id': 'category_id',  # noqa: E501
         'category': 'category',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
         'first_date': 'first_date',  # noqa: E501
         'last_date': 'last_date',  # noqa: E501
         'frequency': 'frequency',  # noqa: E501
         'transaction_ids': 'transaction_ids',  # noqa: E501
         'average_amount': 'average_amount',  # noqa: E501
+        'last_amount': 'last_amount',  # noqa: E501
         'is_active': 'is_active',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -128,7 +136,7 @@ class TransactionStream(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, stream_id, category_id, category, description, first_date, last_date, frequency, transaction_ids, average_amount, is_active, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, stream_id, category_id, category, description, merchant_name, first_date, last_date, frequency, transaction_ids, average_amount, last_amount, is_active, status, *args, **kwargs):  # noqa: E501
         """TransactionStream - a model defined in OpenAPI
 
         Args:
@@ -137,12 +145,15 @@ class TransactionStream(ModelNormal):
             category_id (str): The ID of the category to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).
             category ([str]): A hierarchical array of the categories to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).
             description (str): A description of the transaction stream.
+            merchant_name (str): The merchant associated with the transaction stream.
             first_date (date): The posted date of the earliest transaction in the stream.
             last_date (date): The posted date of the latest transaction in the stream.
             frequency (RecurringTransactionFrequency):
             transaction_ids ([str]): An array of Plaid transaction IDs belonging to the stream, sorted by posted date.
             average_amount (TransactionStreamAmount):
-            is_active (bool): indicates whether the transaction stream is still live.
+            last_amount (TransactionStreamAmount):
+            is_active (bool): Indicates whether the transaction stream is still live.
+            status (TransactionStreamStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -205,12 +216,15 @@ class TransactionStream(ModelNormal):
         self.category_id = category_id
         self.category = category
         self.description = description
+        self.merchant_name = merchant_name
         self.first_date = first_date
         self.last_date = last_date
         self.frequency = frequency
         self.transaction_ids = transaction_ids
         self.average_amount = average_amount
+        self.last_amount = last_amount
         self.is_active = is_active
+        self.status = status
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

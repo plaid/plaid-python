@@ -141,7 +141,7 @@ class CreditBankIncomeGetRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            user_token (str): [optional]  # noqa: E501
+            user_token (str): The user token associated with the User data is being requested for.. [optional]  # noqa: E501
             options (CreditBankIncomeGetRequestOptions): [optional]  # noqa: E501
         """
 

@@ -124,6 +124,7 @@ from plaid.model.cause import Cause
 from plaid.model.client_provided_enhanced_transaction import ClientProvidedEnhancedTransaction
 from plaid.model.client_provided_raw_transaction import ClientProvidedRawTransaction
 from plaid.model.connected_application import ConnectedApplication
+from plaid.model.connected_application_status import ConnectedApplicationStatus
 from plaid.model.consent_payment_idempotency_key import ConsentPaymentIdempotencyKey
 from plaid.model.country_code import CountryCode
 from plaid.model.credit_account_subtype import CreditAccountSubtype
@@ -520,6 +521,7 @@ from plaid.model.transaction_data import TransactionData
 from plaid.model.transaction_override import TransactionOverride
 from plaid.model.transaction_stream import TransactionStream
 from plaid.model.transaction_stream_amount import TransactionStreamAmount
+from plaid.model.transaction_stream_status import TransactionStreamStatus
 from plaid.model.transactions_category_rule import TransactionsCategoryRule
 from plaid.model.transactions_enhance_get_request import TransactionsEnhanceGetRequest
 from plaid.model.transactions_enhance_get_response import TransactionsEnhanceGetResponse

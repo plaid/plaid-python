@@ -119,6 +119,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'auth': (LinkTokenCreateRequestAuth,),  # noqa: E501
             'transfer': (LinkTokenCreateRequestTransfer,),  # noqa: E501
             'update': (LinkTokenCreateRequestUpdate,),  # noqa: E501
+            'user_token': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -148,6 +149,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'auth': 'auth',  # noqa: E501
         'transfer': 'transfer',  # noqa: E501
         'update': 'update',  # noqa: E501
+        'user_token': 'user_token',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -219,6 +221,7 @@ class LinkTokenCreateRequest(ModelNormal):
             auth (LinkTokenCreateRequestAuth): [optional]  # noqa: E501
             transfer (LinkTokenCreateRequestTransfer): [optional]  # noqa: E501
             update (LinkTokenCreateRequestUpdate): [optional]  # noqa: E501
+            user_token (str): A user token generated using /user/create. Any item created during the link session will be associated with the user.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
