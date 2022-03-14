@@ -138,7 +138,7 @@ class TransactionStreamAmount(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            amount (float): represents the numerical value of an amount.. [optional]  # noqa: E501
+            amount (float): Represents the numerical value of an amount.. [optional]  # noqa: E501
             iso_currency_code (str, none_type): The ISO-4217 currency code of the amount. Always `null` if `unofficial_currency_code` is non-`null`.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.. [optional]  # noqa: E501
             unofficial_currency_code (str, none_type): The unofficial currency code of the amount. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.. [optional]  # noqa: E501
         """

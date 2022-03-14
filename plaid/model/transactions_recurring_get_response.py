@@ -84,6 +84,7 @@ class TransactionsRecurringGetResponse(ModelNormal):
         return {
             'inflow_streams': ([TransactionStream],),  # noqa: E501
             'outflow_streams': ([TransactionStream],),  # noqa: E501
+            'updated_datetime': (datetime,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -95,6 +96,7 @@ class TransactionsRecurringGetResponse(ModelNormal):
     attribute_map = {
         'inflow_streams': 'inflow_streams',  # noqa: E501
         'outflow_streams': 'outflow_streams',  # noqa: E501
+        'updated_datetime': 'updated_datetime',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
     }
 
@@ -110,12 +112,13 @@ class TransactionsRecurringGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, inflow_streams, outflow_streams, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, inflow_streams, outflow_streams, updated_datetime, request_id, *args, **kwargs):  # noqa: E501
         """TransactionsRecurringGetResponse - a model defined in OpenAPI
 
         Args:
             inflow_streams ([TransactionStream]): An array of depository transaction streams.
             outflow_streams ([TransactionStream]): An array of expense transaction streams.
+            updated_datetime (datetime): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the last time transaction streams for the given account were updated on
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -176,6 +179,7 @@ class TransactionsRecurringGetResponse(ModelNormal):
 
         self.inflow_streams = inflow_streams
         self.outflow_streams = outflow_streams
+        self.updated_datetime = updated_datetime
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

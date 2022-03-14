@@ -1,5 +1,24 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 9.1.1
+- Updating to OAS 2020-09-14_1.84.5
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.84.5
+- Added missing `asset_report_id` field to `/asset_report/relay/refresh`
+
+### 2020-09-14_1.84.4
+- Change summary description and url for `/credit/bank_income/get`
+
+### 2020-09-14_1.84.3
+- Slight wording change for `/credit/bank_income/get` response fields
+
+### 2020-09-14_1.84.3
+- Move `user_token` to top level of `link/token/create` request 
+
+### 2020-09-14_1.84.2
+- Correct typo in enum value for Investment subtypes (`person` -> `pension`)
+
 # 9.1.0
 - Updating to OAS 2020-09-14_1.84.1
 

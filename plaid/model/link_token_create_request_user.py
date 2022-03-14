@@ -71,7 +71,6 @@ class LinkTokenCreateRequestUser(ModelNormal):
         """
         return {
             'client_user_id': (str,),  # noqa: E501
-            'user_token': (str,),  # noqa: E501
             'legal_name': (str,),  # noqa: E501
             'phone_number': (str,),  # noqa: E501
             'phone_number_verified_time': (datetime,),  # noqa: E501
@@ -88,7 +87,6 @@ class LinkTokenCreateRequestUser(ModelNormal):
 
     attribute_map = {
         'client_user_id': 'client_user_id',  # noqa: E501
-        'user_token': 'user_token',  # noqa: E501
         'legal_name': 'legal_name',  # noqa: E501
         'phone_number': 'phone_number',  # noqa: E501
         'phone_number_verified_time': 'phone_number_verified_time',  # noqa: E501
@@ -147,7 +145,6 @@ class LinkTokenCreateRequestUser(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            user_token (str): A user token generated using /user/create. Any item created during the link session will be associated with the user.. [optional]  # noqa: E501
             legal_name (str): The user's full legal name. This is an optional field used in the [returning user experience](https://plaid.com/docs/link/returning-user) to associate Items to the user.. [optional]  # noqa: E501
             phone_number (str): The user's phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format. This field is optional, but required to enable the [returning user experience](https://plaid.com/docs/link/returning-user).. [optional]  # noqa: E501
             phone_number_verified_time (datetime): The date and time the phone number was verified in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDThh:mm:ssZ`). This field is optional, but required to enable any [returning user experience](https://plaid.com/docs/link/returning-user).   Only pass a verification time for a phone number that you have verified. If you have performed verification but don’t have the time, you may supply a signal value of the start of the UNIX epoch.   Example: `2020-01-01T00:00:00Z` . [optional]  # noqa: E501

@@ -121,6 +121,7 @@ plaid/model/cause.py
 plaid/model/client_provided_enhanced_transaction.py
 plaid/model/client_provided_raw_transaction.py
 plaid/model/connected_application.py
+plaid/model/connected_application_status.py
 plaid/model/consent_payment_idempotency_key.py
 plaid/model/country_code.py
 plaid/model/credit_account_subtype.py
@@ -517,6 +518,7 @@ plaid/model/transaction_data.py
 plaid/model/transaction_override.py
 plaid/model/transaction_stream.py
 plaid/model/transaction_stream_amount.py
+plaid/model/transaction_stream_status.py
 plaid/model/transactions_category_rule.py
 plaid/model/transactions_enhance_get_request.py
 plaid/model/transactions_enhance_get_response.py

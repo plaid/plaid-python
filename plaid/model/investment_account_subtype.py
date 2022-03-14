@@ -72,7 +72,7 @@ class InvestmentAccountSubtype(ModelSimple):
             'OTHER': "other",
             'OTHER_ANNUITY': "other annuity",
             'OTHER_INSURANCE': "other insurance",
-            'PERSON': "person",
+            'PENSION': "pension",
             'PRIF': "prif",
             'PROFIT_SHARING_PLAN': "profit sharing plan",
             'QSHR': "qshr",
@@ -144,10 +144,10 @@ class InvestmentAccountSubtype(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Valid account subtypes for investment accounts. For a list containing descriptions of each subtype, see [Account schemas](https://plaid.com/docs/api/accounts/#StandaloneAccountType-investment).., must be one of ["529", "401a", "401k", "403B", "457b", "brokerage", "cash isa", "education savings account", "fixed annuity", "gic", "health reimbursement arrangement", "hsa", "ira", "isa", "keogh", "lif", "life insurance", "lira", "lrif", "lrsp", "mutual fund", "non-taxable brokerage account", "other", "other annuity", "other insurance", "person", "prif", "profit sharing plan", "qshr", "rdsp", "resp", "retirement", "rlif", "roth", "roth 401k", "rrif", "rrsp", "sarsep", "sep ira", "simple ira", "sipp", "stock plan", "tfsa", "trust", "ugma", "utma", "variable annuity", "all", ]  # noqa: E501
+            args[0] (str): Valid account subtypes for investment accounts. For a list containing descriptions of each subtype, see [Account schemas](https://plaid.com/docs/api/accounts/#StandaloneAccountType-investment).., must be one of ["529", "401a", "401k", "403B", "457b", "brokerage", "cash isa", "education savings account", "fixed annuity", "gic", "health reimbursement arrangement", "hsa", "ira", "isa", "keogh", "lif", "life insurance", "lira", "lrif", "lrsp", "mutual fund", "non-taxable brokerage account", "other", "other annuity", "other insurance", "pension", "prif", "profit sharing plan", "qshr", "rdsp", "resp", "retirement", "rlif", "roth", "roth 401k", "rrif", "rrsp", "sarsep", "sep ira", "simple ira", "sipp", "stock plan", "tfsa", "trust", "ugma", "utma", "variable annuity", "all", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Valid account subtypes for investment accounts. For a list containing descriptions of each subtype, see [Account schemas](https://plaid.com/docs/api/accounts/#StandaloneAccountType-investment).., must be one of ["529", "401a", "401k", "403B", "457b", "brokerage", "cash isa", "education savings account", "fixed annuity", "gic", "health reimbursement arrangement", "hsa", "ira", "isa", "keogh", "lif", "life insurance", "lira", "lrif", "lrsp", "mutual fund", "non-taxable brokerage account", "other", "other annuity", "other insurance", "person", "prif", "profit sharing plan", "qshr", "rdsp", "resp", "retirement", "rlif", "roth", "roth 401k", "rrif", "rrsp", "sarsep", "sep ira", "simple ira", "sipp", "stock plan", "tfsa", "trust", "ugma", "utma", "variable annuity", "all", ]  # noqa: E501
+            value (str): Valid account subtypes for investment accounts. For a list containing descriptions of each subtype, see [Account schemas](https://plaid.com/docs/api/accounts/#StandaloneAccountType-investment).., must be one of ["529", "401a", "401k", "403B", "457b", "brokerage", "cash isa", "education savings account", "fixed annuity", "gic", "health reimbursement arrangement", "hsa", "ira", "isa", "keogh", "lif", "life insurance", "lira", "lrif", "lrsp", "mutual fund", "non-taxable brokerage account", "other", "other annuity", "other insurance", "pension", "prif", "profit sharing plan", "qshr", "rdsp", "resp", "retirement", "rlif", "roth", "roth 401k", "rrif", "rrsp", "sarsep", "sep ira", "simple ira", "sipp", "stock plan", "tfsa", "trust", "ugma", "utma", "variable annuity", "all", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

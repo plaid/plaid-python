@@ -3804,9 +3804,9 @@ class PlaidApi(object):
             credit_bank_income_get_request,
             **kwargs
         ):
-            """Get bank income report(s) for a user  # noqa: E501
+            """Retrieve information from the bank accounts used for income verification  # noqa: E501
 
-            This endpoint gets the bank income report(s) for a specified user.  # noqa: E501
+            `/credit/bank_income/get` returns the bank income report(s) for a specified user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
