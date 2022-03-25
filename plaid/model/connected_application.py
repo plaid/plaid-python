@@ -22,14 +22,13 @@ from plaid.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
+    OpenApiModel
 )
+from plaid.exceptions import ApiAttributeError
+
 
 def lazy_import():
-    from plaid.model.connected_application_status import ConnectedApplicationStatus
-    from plaid.model.requested_scopes import RequestedScopes
     from plaid.model.scopes_nullable import ScopesNullable
-    globals()['ConnectedApplicationStatus'] = ConnectedApplicationStatus
-    globals()['RequestedScopes'] = RequestedScopes
     globals()['ScopesNullable'] = ScopesNullable
 
 
@@ -58,17 +57,19 @@ class ConnectedApplication(ModelNormal):
     """
 
     allowed_values = {
-        ('product_data_types',): {
-            'BALANCE': "ACCOUNT_BALANCE",
-            'USER_INFO': "ACCOUNT_USER_INFO",
-            'TRANSACTIONS': "ACCOUNT_TRANSACTIONS",
-        },
     }
 
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -86,16 +87,11 @@ class ConnectedApplication(ModelNormal):
         return {
             'application_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'logo': (str, none_type,),  # noqa: E501
+            'created_at': (date,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
-            'created_at': (date,),  # noqa: E501
-            'join_date': (date,),  # noqa: E501
-            'product_data_types': ([str],),  # noqa: E501
-            'status': (ConnectedApplicationStatus,),  # noqa: E501
             'scopes': (ScopesNullable,),  # noqa: E501
-            'requested_scopes': (RequestedScopes,),  # noqa: E501
         }
 
     @cached_property
@@ -106,44 +102,27 @@ class ConnectedApplication(ModelNormal):
     attribute_map = {
         'application_id': 'application_id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'logo': 'logo',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
-        'created_at': 'created_at',  # noqa: E501
-        'join_date': 'join_date',  # noqa: E501
-        'product_data_types': 'product_data_types',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'scopes': 'scopes',  # noqa: E501
-        'requested_scopes': 'requested_scopes',  # noqa: E501
+    }
+
+    read_only_vars = {
     }
 
     _composed_schemas = {}
 
-    required_properties = set([
-        '_data_store',
-        '_check_type',
-        '_spec_property_naming',
-        '_path_to_item',
-        '_configuration',
-        '_visited_composed_classes',
-    ])
-
+    @classmethod
     @convert_js_args_to_python_args
-    def __init__(self, application_id, name, logo, logo_url, application_url, reason_for_access, created_at, join_date, product_data_types, status, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, application_id, name, created_at, *args, **kwargs):  # noqa: E501
         """ConnectedApplication - a model defined in OpenAPI
 
         Args:
             application_id (str): This field will map to the application ID that is returned from /item/applications/list, or provided to the institution in an oauth redirect.
             name (str): The name of the application
-            logo (str, none_type): A URL that links to the application logo image (will be deprecated in the future, please use logo_url).
-            logo_url (str, none_type): A URL that links to the application logo image.
-            application_url (str, none_type): The URL for the application's website
-            reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
             created_at (date): The date this application was linked in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
-            join_date (date): The date this application was granted production access at Plaid in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
-            product_data_types ([str]): (Deprecated) A list of enums representing the data collected and products enabled for this connected application.
-            status (ConnectedApplicationStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -176,8 +155,103 @@ class ConnectedApplication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            logo_url (str, none_type): A URL that links to the application logo image.. [optional]  # noqa: E501
+            application_url (str, none_type): The URL for the application's website. [optional]  # noqa: E501
+            reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.. [optional]  # noqa: E501
             scopes (ScopesNullable): [optional]  # noqa: E501
-            requested_scopes (RequestedScopes): [optional]  # noqa: E501
+        """
+
+        _check_type = kwargs.pop('_check_type', True)
+        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
+        _path_to_item = kwargs.pop('_path_to_item', ())
+        _configuration = kwargs.pop('_configuration', None)
+        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+
+        self = super(OpenApiModel, cls).__new__(cls)
+
+        if args:
+            raise ApiTypeError(
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                    args,
+                    self.__class__.__name__,
+                ),
+                path_to_item=_path_to_item,
+                valid_classes=(self.__class__,),
+            )
+
+        self._data_store = {}
+        self._check_type = _check_type
+        self._spec_property_naming = _spec_property_naming
+        self._path_to_item = _path_to_item
+        self._configuration = _configuration
+        self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
+        self.application_id = application_id
+        self.name = name
+        self.created_at = created_at
+        for var_name, var_value in kwargs.items():
+            if var_name not in self.attribute_map and \
+                        self._configuration is not None and \
+                        self._configuration.discard_unknown_keys and \
+                        self.additional_properties_type is None:
+                # discard variable.
+                continue
+            setattr(self, var_name, var_value)
+        return self
+
+    required_properties = set([
+        '_data_store',
+        '_check_type',
+        '_spec_property_naming',
+        '_path_to_item',
+        '_configuration',
+        '_visited_composed_classes',
+    ])
+
+    @convert_js_args_to_python_args
+    def __init__(self, application_id, name, created_at, *args, **kwargs):  # noqa: E501
+        """ConnectedApplication - a model defined in OpenAPI
+
+        Args:
+            application_id (str): This field will map to the application ID that is returned from /item/applications/list, or provided to the institution in an oauth redirect.
+            name (str): The name of the application
+            created_at (date): The date this application was linked in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
+
+        Keyword Args:
+            _check_type (bool): if True, values for parameters in openapi_types
+                                will be type checked and a TypeError will be
+                                raised if the wrong type is input.
+                                Defaults to True
+            _path_to_item (tuple/list): This is a list of keys or values to
+                                drill down to the model in received_data
+                                when deserializing a response
+            _spec_property_naming (bool): True if the variable names in the input data
+                                are serialized names, as specified in the OpenAPI document.
+                                False if the variable names in the input data
+                                are pythonic names, e.g. snake case (default)
+            _configuration (Configuration): the instance to use when
+                                deserializing a file_type parameter.
+                                If passed, type conversion is attempted
+                                If omitted no type conversion is done.
+            _visited_composed_classes (tuple): This stores a tuple of
+                                classes that we have traveled through so that
+                                if we see that class again we will not use its
+                                discriminator again.
+                                When traveling through a discriminator, the
+                                composed schema that is
+                                is traveled through is added to this set.
+                                For example if Animal has a discriminator
+                                petType and we pass in "Dog", and the class Dog
+                                allOf includes Animal, we move through Animal
+                                once using the discriminator, and pick Dog.
+                                Then in Dog, we will make an instance of the
+                                Animal class but this time we won't travel
+                                through its discriminator because we passed in
+                                _visited_composed_classes = (Animal,)
+            logo_url (str, none_type): A URL that links to the application logo image.. [optional]  # noqa: E501
+            application_url (str, none_type): The URL for the application's website. [optional]  # noqa: E501
+            reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.. [optional]  # noqa: E501
+            scopes (ScopesNullable): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -205,14 +279,7 @@ class ConnectedApplication(ModelNormal):
 
         self.application_id = application_id
         self.name = name
-        self.logo = logo
-        self.logo_url = logo_url
-        self.application_url = application_url
-        self.reason_for_access = reason_for_access
         self.created_at = created_at
-        self.join_date = join_date
-        self.product_data_types = product_data_types
-        self.status = status
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -221,3 +288,6 @@ class ConnectedApplication(ModelNormal):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
+            if var_name in self.read_only_vars:
+                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                                     f"class with read only attributes.")

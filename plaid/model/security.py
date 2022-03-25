@@ -22,7 +22,10 @@ from plaid.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
+    OpenApiModel
 )
+from plaid.exceptions import ApiAttributeError
+
 
 
 class Security(ModelNormal):
@@ -116,7 +119,115 @@ class Security(ModelNormal):
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
     }
 
+    read_only_vars = {
+    }
+
     _composed_schemas = {}
+
+    @classmethod
+    @convert_js_args_to_python_args
+    def _from_openapi_data(cls, security_id, isin, cusip, sedol, institution_security_id, institution_id, proxy_security_id, name, ticker_symbol, is_cash_equivalent, type, close_price, close_price_as_of, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
+        """Security - a model defined in OpenAPI
+
+        Args:
+            security_id (str): A unique, Plaid-specific identifier for the security, used to associate securities with holdings. Like all Plaid identifiers, the `security_id` is case sensitive.
+            isin (str, none_type): 12-character ISIN, a globally unique securities identifier.
+            cusip (str, none_type): 9-character CUSIP, an identifier assigned to North American securities.
+            sedol (str, none_type): 7-character SEDOL, an identifier assigned to securities in the UK.
+            institution_security_id (str, none_type): An identifier given to the security by the institution
+            institution_id (str, none_type): If `institution_security_id` is present, this field indicates the Plaid `institution_id` of the institution to whom the identifier belongs.
+            proxy_security_id (str, none_type): In certain cases, Plaid will provide the ID of another security whose performance resembles this security, typically when the original security has low volume, or when a private security can be modeled with a publicly traded security.
+            name (str, none_type): A descriptive name for the security, suitable for display.
+            ticker_symbol (str, none_type): The security’s trading symbol for publicly traded securities, and otherwise a short identifier if available.
+            is_cash_equivalent (bool, none_type): Indicates that a security is a highly liquid asset and can be treated like cash.
+            type (str, none_type): The security type of the holding. Valid security types are:  `cash`: Cash, currency, and money market funds  `derivative`: Options, warrants, and other derivative instruments  `equity`: Domestic and foreign equities  `etf`: Multi-asset exchange-traded investment funds  `fixed income`: Bonds and certificates of deposit (CDs)  `loan`: Loans and loan receivables.  `mutual fund`: Open- and closed-end vehicles pooling funds of multiple investors.  `other`: Unknown or other investment types
+            close_price (float, none_type): Price of the security at the close of the previous trading session. `null` for non-public securities. If the security is a foreign currency or a cryptocurrency this field will be updated daily and will be priced in USD.
+            close_price_as_of (date, none_type): Date for which `close_price` is accurate. Always `null` if `close_price` is `null`.
+            iso_currency_code (str, none_type): The ISO-4217 currency code of the price given. Always `null` if `unofficial_currency_code` is non-`null`.
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
+
+        Keyword Args:
+            _check_type (bool): if True, values for parameters in openapi_types
+                                will be type checked and a TypeError will be
+                                raised if the wrong type is input.
+                                Defaults to True
+            _path_to_item (tuple/list): This is a list of keys or values to
+                                drill down to the model in received_data
+                                when deserializing a response
+            _spec_property_naming (bool): True if the variable names in the input data
+                                are serialized names, as specified in the OpenAPI document.
+                                False if the variable names in the input data
+                                are pythonic names, e.g. snake case (default)
+            _configuration (Configuration): the instance to use when
+                                deserializing a file_type parameter.
+                                If passed, type conversion is attempted
+                                If omitted no type conversion is done.
+            _visited_composed_classes (tuple): This stores a tuple of
+                                classes that we have traveled through so that
+                                if we see that class again we will not use its
+                                discriminator again.
+                                When traveling through a discriminator, the
+                                composed schema that is
+                                is traveled through is added to this set.
+                                For example if Animal has a discriminator
+                                petType and we pass in "Dog", and the class Dog
+                                allOf includes Animal, we move through Animal
+                                once using the discriminator, and pick Dog.
+                                Then in Dog, we will make an instance of the
+                                Animal class but this time we won't travel
+                                through its discriminator because we passed in
+                                _visited_composed_classes = (Animal,)
+        """
+
+        _check_type = kwargs.pop('_check_type', True)
+        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
+        _path_to_item = kwargs.pop('_path_to_item', ())
+        _configuration = kwargs.pop('_configuration', None)
+        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+
+        self = super(OpenApiModel, cls).__new__(cls)
+
+        if args:
+            raise ApiTypeError(
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                    args,
+                    self.__class__.__name__,
+                ),
+                path_to_item=_path_to_item,
+                valid_classes=(self.__class__,),
+            )
+
+        self._data_store = {}
+        self._check_type = _check_type
+        self._spec_property_naming = _spec_property_naming
+        self._path_to_item = _path_to_item
+        self._configuration = _configuration
+        self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
+
+        self.security_id = security_id
+        self.isin = isin
+        self.cusip = cusip
+        self.sedol = sedol
+        self.institution_security_id = institution_security_id
+        self.institution_id = institution_id
+        self.proxy_security_id = proxy_security_id
+        self.name = name
+        self.ticker_symbol = ticker_symbol
+        self.is_cash_equivalent = is_cash_equivalent
+        self.type = type
+        self.close_price = close_price
+        self.close_price_as_of = close_price_as_of
+        self.iso_currency_code = iso_currency_code
+        self.unofficial_currency_code = unofficial_currency_code
+        for var_name, var_value in kwargs.items():
+            if var_name not in self.attribute_map and \
+                        self._configuration is not None and \
+                        self._configuration.discard_unknown_keys and \
+                        self.additional_properties_type is None:
+                # discard variable.
+                continue
+            setattr(self, var_name, var_value)
+        return self
 
     required_properties = set([
         '_data_store',
@@ -227,3 +338,6 @@ class Security(ModelNormal):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
+            if var_name in self.read_only_vars:
+                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                                     f"class with read only attributes.")
