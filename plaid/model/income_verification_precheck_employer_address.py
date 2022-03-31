@@ -83,10 +83,10 @@ class IncomeVerificationPrecheckEmployerAddress(ModelComposed):
         lazy_import()
         return {
             'city': (str,),  # noqa: E501
+            'country': (str,),  # noqa: E501
+            'postal_code': (str,),  # noqa: E501
             'region': (str,),  # noqa: E501
             'street': (str,),  # noqa: E501
-            'postal_code': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -96,10 +96,10 @@ class IncomeVerificationPrecheckEmployerAddress(ModelComposed):
 
     attribute_map = {
         'city': 'city',  # noqa: E501
+        'country': 'country',  # noqa: E501
+        'postal_code': 'postal_code',  # noqa: E501
         'region': 'region',  # noqa: E501
         'street': 'street',  # noqa: E501
-        'postal_code': 'postal_code',  # noqa: E501
-        'country': 'country',  # noqa: E501
     }
 
     required_properties = set([
@@ -150,10 +150,10 @@ class IncomeVerificationPrecheckEmployerAddress(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             city (str): The full city name. [optional]  # noqa: E501
+            country (str): The ISO 3166-1 alpha-2 country code. [optional]  # noqa: E501
+            postal_code (str): The postal code. In API versions 2018-05-22 and earlier, this field is called `zip`.. [optional]  # noqa: E501
             region (str): The region or state. In API versions 2018-05-22 and earlier, this field is called `state`. Example: `\"NC\"`. [optional]  # noqa: E501
             street (str): The full street address Example: `\"564 Main Street, APT 15\"`. [optional]  # noqa: E501
-            postal_code (str): The postal code. In API versions 2018-05-22 and earlier, this field is called `zip`.. [optional]  # noqa: E501
-            country (str): The ISO 3166-1 alpha-2 country code. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

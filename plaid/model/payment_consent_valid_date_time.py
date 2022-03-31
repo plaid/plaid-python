@@ -63,7 +63,7 @@ class PaymentConsentValidDateTime(ModelNormal):
         """
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = False
+    _nullable = True
 
     @cached_property
     def openapi_types():
@@ -76,8 +76,8 @@ class PaymentConsentValidDateTime(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            '_from': (datetime,),  # noqa: E501
-            'to': (datetime,),  # noqa: E501
+            '_from': (datetime, none_type,),  # noqa: E501
+            'to': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -136,8 +136,8 @@ class PaymentConsentValidDateTime(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            _from (datetime): The date and time from which the consent should be active, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.. [optional]  # noqa: E501
-            to (datetime): The date and time at which the consent expires, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.. [optional]  # noqa: E501
+            _from (datetime, none_type): The date and time from which the consent should be active, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.. [optional]  # noqa: E501
+            to (datetime, none_type): The date and time at which the consent expires, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

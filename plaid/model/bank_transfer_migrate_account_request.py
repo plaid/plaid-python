@@ -75,6 +75,7 @@ class BankTransferMigrateAccountRequest(ModelNormal):
             'account_type': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'wire_routing_number': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -88,6 +89,7 @@ class BankTransferMigrateAccountRequest(ModelNormal):
         'account_type': 'account_type',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'wire_routing_number': 'wire_routing_number',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +145,7 @@ class BankTransferMigrateAccountRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            wire_routing_number (str): The user's wire transfer routing number. This is the ABA number; for some institutions, this may differ from the ACH number used in `routing_number`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

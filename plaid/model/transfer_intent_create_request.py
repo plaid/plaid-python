@@ -65,6 +65,7 @@ class TransferIntentCreateRequest(ModelNormal):
     validations = {
         ('description',): {
             'max_length': 8,
+            'min_length': 1,
         },
     }
 

@@ -127,8 +127,8 @@ class Enhancements(ModelNormal):
 
         Args:
             payment_channel (PaymentChannel):
-            category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/#categoriesget).
-            category ([str]): A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/#categoriesget).
+            category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).
+            category ([str]): A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).
             location (Location):
 
         Keyword Args:

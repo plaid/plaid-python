@@ -76,6 +76,12 @@ class Application(ModelNormal):
             'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
+            'use_case': (str, none_type,),  # noqa: E501
+            'company_legal_name': (str, none_type,),  # noqa: E501
+            'city': (str, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
+            'postal_code': (str, none_type,),  # noqa: E501
+            'country_code': (str, none_type,),  # noqa: E501
             'created_at': (date,),  # noqa: E501
         }
 
@@ -91,6 +97,12 @@ class Application(ModelNormal):
         'logo_url': 'logo_url',  # noqa: E501
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
+        'use_case': 'use_case',  # noqa: E501
+        'company_legal_name': 'company_legal_name',  # noqa: E501
+        'city': 'city',  # noqa: E501
+        'region': 'region',  # noqa: E501
+        'postal_code': 'postal_code',  # noqa: E501
+        'country_code': 'country_code',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
     }
 
@@ -106,7 +118,7 @@ class Application(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, application_id, name, join_date, logo_url, application_url, reason_for_access, *args, **kwargs):  # noqa: E501
+    def __init__(self, application_id, name, join_date, logo_url, application_url, reason_for_access, use_case, company_legal_name, city, region, postal_code, country_code, *args, **kwargs):  # noqa: E501
         """Application - a model defined in OpenAPI
 
         Args:
@@ -116,6 +128,12 @@ class Application(ModelNormal):
             logo_url (str, none_type): A URL that links to the application logo image.
             application_url (str, none_type): The URL for the application's website
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
+            use_case (str, none_type): A string representing client’s broad use case as assessed by Plaid.
+            company_legal_name (str, none_type): A string representing the name of client’s legal entity.
+            city (str, none_type): A string representing the city of the client’s headquarters.
+            region (str, none_type): A string representing the region of the client’s headquarters.
+            postal_code (str, none_type): A string representing the postal code of the client’s headquarters.
+            country_code (str, none_type): A string representing the country code of the client’s headquarters.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,6 +198,12 @@ class Application(ModelNormal):
         self.logo_url = logo_url
         self.application_url = application_url
         self.reason_for_access = reason_for_access
+        self.use_case = use_case
+        self.company_legal_name = company_legal_name
+        self.city = city
+        self.region = region
+        self.postal_code = postal_code
+        self.country_code = country_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
