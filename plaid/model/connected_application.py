@@ -25,11 +25,7 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.connected_application_status import ConnectedApplicationStatus
-    from plaid.model.requested_scopes import RequestedScopes
     from plaid.model.scopes_nullable import ScopesNullable
-    globals()['ConnectedApplicationStatus'] = ConnectedApplicationStatus
-    globals()['RequestedScopes'] = RequestedScopes
     globals()['ScopesNullable'] = ScopesNullable
 
 
@@ -58,11 +54,6 @@ class ConnectedApplication(ModelNormal):
     """
 
     allowed_values = {
-        ('product_data_types',): {
-            'BALANCE': "ACCOUNT_BALANCE",
-            'USER_INFO': "ACCOUNT_USER_INFO",
-            'TRANSACTIONS': "ACCOUNT_TRANSACTIONS",
-        },
     }
 
     validations = {
@@ -86,16 +77,11 @@ class ConnectedApplication(ModelNormal):
         return {
             'application_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'logo': (str, none_type,),  # noqa: E501
+            'created_at': (date,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
-            'created_at': (date,),  # noqa: E501
-            'join_date': (date,),  # noqa: E501
-            'product_data_types': ([str],),  # noqa: E501
-            'status': (ConnectedApplicationStatus,),  # noqa: E501
             'scopes': (ScopesNullable,),  # noqa: E501
-            'requested_scopes': (RequestedScopes,),  # noqa: E501
         }
 
     @cached_property
@@ -106,16 +92,11 @@ class ConnectedApplication(ModelNormal):
     attribute_map = {
         'application_id': 'application_id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'logo': 'logo',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
-        'created_at': 'created_at',  # noqa: E501
-        'join_date': 'join_date',  # noqa: E501
-        'product_data_types': 'product_data_types',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'scopes': 'scopes',  # noqa: E501
-        'requested_scopes': 'requested_scopes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -130,20 +111,13 @@ class ConnectedApplication(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, application_id, name, logo, logo_url, application_url, reason_for_access, created_at, join_date, product_data_types, status, *args, **kwargs):  # noqa: E501
+    def __init__(self, application_id, name, created_at, *args, **kwargs):  # noqa: E501
         """ConnectedApplication - a model defined in OpenAPI
 
         Args:
             application_id (str): This field will map to the application ID that is returned from /item/applications/list, or provided to the institution in an oauth redirect.
             name (str): The name of the application
-            logo (str, none_type): A URL that links to the application logo image (will be deprecated in the future, please use logo_url).
-            logo_url (str, none_type): A URL that links to the application logo image.
-            application_url (str, none_type): The URL for the application's website
-            reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.
             created_at (date): The date this application was linked in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
-            join_date (date): The date this application was granted production access at Plaid in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format in UTC.
-            product_data_types ([str]): (Deprecated) A list of enums representing the data collected and products enabled for this connected application.
-            status (ConnectedApplicationStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -176,8 +150,10 @@ class ConnectedApplication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            logo_url (str, none_type): A URL that links to the application logo image.. [optional]  # noqa: E501
+            application_url (str, none_type): The URL for the application's website. [optional]  # noqa: E501
+            reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.. [optional]  # noqa: E501
             scopes (ScopesNullable): [optional]  # noqa: E501
-            requested_scopes (RequestedScopes): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -205,14 +181,7 @@ class ConnectedApplication(ModelNormal):
 
         self.application_id = application_id
         self.name = name
-        self.logo = logo
-        self.logo_url = logo_url
-        self.application_url = application_url
-        self.reason_for_access = reason_for_access
         self.created_at = created_at
-        self.join_date = join_date
-        self.product_data_types = product_data_types
-        self.status = status
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

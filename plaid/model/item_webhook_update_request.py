@@ -139,7 +139,7 @@ class ItemWebhookUpdateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            webhook (str, none_type): The new webhook URL to associate with the Item.. [optional]  # noqa: E501
+            webhook (str, none_type): The new webhook URL to associate with the Item. To remove a webhook from an Item, set to `null`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

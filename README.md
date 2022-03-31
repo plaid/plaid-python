@@ -64,7 +64,7 @@ This release only supports the latest Plaid API version, `2020-09-14`.
 
 For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
 
-The plaid-python client library is typically updated on a biweekly basis. The canonical source for the latest version number is the [client library changelog](https://github.com/plaid/plaid-python/blob/master/CHANGELOG.md).
+The plaid-python client library is typically updated on a monthly basis. The canonical source for the latest version number is the [client library changelog](https://github.com/plaid/plaid-python/blob/master/CHANGELOG.md).
 
 ### Errors
 

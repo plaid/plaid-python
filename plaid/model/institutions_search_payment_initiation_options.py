@@ -77,6 +77,7 @@ class InstitutionsSearchPaymentInitiationOptions(ModelNormal):
         """
         return {
             'payment_id': (str, none_type,),  # noqa: E501
+            'consent_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,6 +87,7 @@ class InstitutionsSearchPaymentInitiationOptions(ModelNormal):
 
     attribute_map = {
         'payment_id': 'payment_id',  # noqa: E501
+        'consent_id': 'consent_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -135,6 +137,7 @@ class InstitutionsSearchPaymentInitiationOptions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             payment_id (str, none_type): A unique ID identifying the payment. [optional]  # noqa: E501
+            consent_id (str, none_type): A unique ID identifying the payment consent. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

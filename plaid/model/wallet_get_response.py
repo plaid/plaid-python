@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.wallet_balance import WalletBalance
+    from plaid.model.wallet_numbers import WalletNumbers
     globals()['WalletBalance'] = WalletBalance
+    globals()['WalletNumbers'] = WalletNumbers
 
 
 class WalletGetResponse(ModelNormal):
@@ -85,6 +87,7 @@ class WalletGetResponse(ModelNormal):
             'wallet_id': (str,),  # noqa: E501
             'balance': (WalletBalance,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'numbers': (WalletNumbers,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class WalletGetResponse(ModelNormal):
         'wallet_id': 'wallet_id',  # noqa: E501
         'balance': 'balance',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'numbers': 'numbers',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,6 +153,7 @@ class WalletGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            numbers (WalletNumbers): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

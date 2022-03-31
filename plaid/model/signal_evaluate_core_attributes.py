@@ -105,6 +105,35 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             'email_change_count_90d': (int, none_type,),  # noqa: E501
             'address_change_count_28d': (int, none_type,),  # noqa: E501
             'address_change_count_90d': (int, none_type,),  # noqa: E501
+            'plaid_non_oauth_authentication_attempts_count_3d': (int, none_type,),  # noqa: E501
+            'plaid_non_oauth_authentication_attempts_count_7d': (int, none_type,),  # noqa: E501
+            'plaid_non_oauth_authentication_attempts_count_30d': (int, none_type,),  # noqa: E501
+            'failed_plaid_non_oauth_authentication_attempts_count_3d': (int, none_type,),  # noqa: E501
+            'failed_plaid_non_oauth_authentication_attempts_count_7d': (int, none_type,),  # noqa: E501
+            'failed_plaid_non_oauth_authentication_attempts_count_30d': (int, none_type,),  # noqa: E501
+            'debit_transactions_count_10d': (int, none_type,),  # noqa: E501
+            'credit_transactions_count_10d': (int, none_type,),  # noqa: E501
+            'debit_transactions_count_30d': (int, none_type,),  # noqa: E501
+            'credit_transactions_count_30d': (int, none_type,),  # noqa: E501
+            'debit_transactions_count_60d': (int, none_type,),  # noqa: E501
+            'credit_transactions_count_60d': (int, none_type,),  # noqa: E501
+            'debit_transactions_count_90d': (int, none_type,),  # noqa: E501
+            'credit_transactions_count_90d': (int, none_type,),  # noqa: E501
+            'total_debit_transactions_amount_30d': (float, none_type,),  # noqa: E501
+            'total_credit_transactions_amount_30d': (float, none_type,),  # noqa: E501
+            'total_debit_transactions_amount_60d': (float, none_type,),  # noqa: E501
+            'total_credit_transactions_amount_60d': (float, none_type,),  # noqa: E501
+            'total_debit_transactions_amount_90d': (float, none_type,),  # noqa: E501
+            'total_credit_transactions_amount_90d': (float, none_type,),  # noqa: E501
+            'p50_eod_balance_30d': (float, none_type,),  # noqa: E501
+            'p50_eod_balance_60d': (float, none_type,),  # noqa: E501
+            'p50_eod_balance_90d': (float, none_type,),  # noqa: E501
+            'p50_eod_balance_31d_to_60d': (float, none_type,),  # noqa: E501
+            'p50_eod_balance_61d_to_90d': (float, none_type,),  # noqa: E501
+            'p90_eod_balance_31d_to_60d': (float, none_type,),  # noqa: E501
+            'p90_eod_balance_61d_to_90d': (float, none_type,),  # noqa: E501
+            'p10_eod_balance_31d_to_60d': (float, none_type,),  # noqa: E501
+            'p10_eod_balance_61d_to_90d': (float, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -148,6 +177,35 @@ class SignalEvaluateCoreAttributes(ModelNormal):
         'email_change_count_90d': 'email_change_count_90d',  # noqa: E501
         'address_change_count_28d': 'address_change_count_28d',  # noqa: E501
         'address_change_count_90d': 'address_change_count_90d',  # noqa: E501
+        'plaid_non_oauth_authentication_attempts_count_3d': 'plaid_non_oauth_authentication_attempts_count_3d',  # noqa: E501
+        'plaid_non_oauth_authentication_attempts_count_7d': 'plaid_non_oauth_authentication_attempts_count_7d',  # noqa: E501
+        'plaid_non_oauth_authentication_attempts_count_30d': 'plaid_non_oauth_authentication_attempts_count_30d',  # noqa: E501
+        'failed_plaid_non_oauth_authentication_attempts_count_3d': 'failed_plaid_non_oauth_authentication_attempts_count_3d',  # noqa: E501
+        'failed_plaid_non_oauth_authentication_attempts_count_7d': 'failed_plaid_non_oauth_authentication_attempts_count_7d',  # noqa: E501
+        'failed_plaid_non_oauth_authentication_attempts_count_30d': 'failed_plaid_non_oauth_authentication_attempts_count_30d',  # noqa: E501
+        'debit_transactions_count_10d': 'debit_transactions_count_10d',  # noqa: E501
+        'credit_transactions_count_10d': 'credit_transactions_count_10d',  # noqa: E501
+        'debit_transactions_count_30d': 'debit_transactions_count_30d',  # noqa: E501
+        'credit_transactions_count_30d': 'credit_transactions_count_30d',  # noqa: E501
+        'debit_transactions_count_60d': 'debit_transactions_count_60d',  # noqa: E501
+        'credit_transactions_count_60d': 'credit_transactions_count_60d',  # noqa: E501
+        'debit_transactions_count_90d': 'debit_transactions_count_90d',  # noqa: E501
+        'credit_transactions_count_90d': 'credit_transactions_count_90d',  # noqa: E501
+        'total_debit_transactions_amount_30d': 'total_debit_transactions_amount_30d',  # noqa: E501
+        'total_credit_transactions_amount_30d': 'total_credit_transactions_amount_30d',  # noqa: E501
+        'total_debit_transactions_amount_60d': 'total_debit_transactions_amount_60d',  # noqa: E501
+        'total_credit_transactions_amount_60d': 'total_credit_transactions_amount_60d',  # noqa: E501
+        'total_debit_transactions_amount_90d': 'total_debit_transactions_amount_90d',  # noqa: E501
+        'total_credit_transactions_amount_90d': 'total_credit_transactions_amount_90d',  # noqa: E501
+        'p50_eod_balance_30d': 'p50_eod_balance_30d',  # noqa: E501
+        'p50_eod_balance_60d': 'p50_eod_balance_60d',  # noqa: E501
+        'p50_eod_balance_90d': 'p50_eod_balance_90d',  # noqa: E501
+        'p50_eod_balance_31d_to_60d': 'p50_eod_balance_31d_to_60d',  # noqa: E501
+        'p50_eod_balance_61d_to_90d': 'p50_eod_balance_61d_to_90d',  # noqa: E501
+        'p90_eod_balance_31d_to_60d': 'p90_eod_balance_31d_to_60d',  # noqa: E501
+        'p90_eod_balance_61d_to_90d': 'p90_eod_balance_61d_to_90d',  # noqa: E501
+        'p10_eod_balance_31d_to_60d': 'p10_eod_balance_31d_to_60d',  # noqa: E501
+        'p10_eod_balance_61d_to_90d': 'p10_eod_balance_61d_to_90d',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -231,6 +289,35 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             email_change_count_90d (int, none_type): The number of times the account's email addresses on file have changed over the past 90 days. [optional]  # noqa: E501
             address_change_count_28d (int, none_type): The number of times the account's addresses on file have changed over the past 28 days. [optional]  # noqa: E501
             address_change_count_90d (int, none_type): The number of times the account's addresses on file have changed over the past 90 days. [optional]  # noqa: E501
+            plaid_non_oauth_authentication_attempts_count_3d (int, none_type): The number of non-OAuth authentication attempts via Plaid for this bank account over the past 3 days. [optional]  # noqa: E501
+            plaid_non_oauth_authentication_attempts_count_7d (int, none_type): The number of non-OAuth authentication attempts via Plaid for this bank account over the past 7 days. [optional]  # noqa: E501
+            plaid_non_oauth_authentication_attempts_count_30d (int, none_type): The number of non-OAuth authentication attempts via Plaid for this bank account over the past 30 days. [optional]  # noqa: E501
+            failed_plaid_non_oauth_authentication_attempts_count_3d (int, none_type): The number of failed non-OAuth authentication attempts via Plaid for this bank account over the past 3 days. [optional]  # noqa: E501
+            failed_plaid_non_oauth_authentication_attempts_count_7d (int, none_type): The number of failed non-OAuth authentication attempts via Plaid for this bank account over the past 7 days. [optional]  # noqa: E501
+            failed_plaid_non_oauth_authentication_attempts_count_30d (int, none_type): The number of failed non-OAuth authentication attempts via Plaid for this bank account over the past 30 days. [optional]  # noqa: E501
+            debit_transactions_count_10d (int, none_type): The total number of debit (outflow) transactions over the past 10 days from the account that will be debited. [optional]  # noqa: E501
+            credit_transactions_count_10d (int, none_type): The total number of credit (inflow) transactions over the past 10 days from the account that will be debited. [optional]  # noqa: E501
+            debit_transactions_count_30d (int, none_type): The total number of debit (outflow) transactions over the past 30 days from the account that will be debited. [optional]  # noqa: E501
+            credit_transactions_count_30d (int, none_type): The total number of credit (inflow) transactions over the past 30 days from the account that will be debited. [optional]  # noqa: E501
+            debit_transactions_count_60d (int, none_type): The total number of debit (outflow) transactions over the past 60 days from the account that will be debited. [optional]  # noqa: E501
+            credit_transactions_count_60d (int, none_type): The total number of credit (inflow) transactions over the past 60 days from the account that will be debited. [optional]  # noqa: E501
+            debit_transactions_count_90d (int, none_type): The total number of debit (outflow) transactions over the past 90 days from the account that will be debited. [optional]  # noqa: E501
+            credit_transactions_count_90d (int, none_type): The total number of credit (inflow) transactions over the past 90 days from the account that will be debited. [optional]  # noqa: E501
+            total_debit_transactions_amount_30d (float, none_type): The total debit (outflow) transaction amount over the past 30 days from the account that will be debited. [optional]  # noqa: E501
+            total_credit_transactions_amount_30d (float, none_type): The total credit (inflow) transaction amount over the past 30 days from the account that will be debited. [optional]  # noqa: E501
+            total_debit_transactions_amount_60d (float, none_type): The total debit (outflow) transaction amount over the past 60 days from the account that will be debited. [optional]  # noqa: E501
+            total_credit_transactions_amount_60d (float, none_type): The total credit (inflow) transaction amount over the past 60 days from the account that will be debited. [optional]  # noqa: E501
+            total_debit_transactions_amount_90d (float, none_type): The total debit (outflow) transaction amount over the past 90 days from the account that will be debited. [optional]  # noqa: E501
+            total_credit_transactions_amount_90d (float, none_type): The total credit (inflow) transaction amount over the past 90 days from the account that will be debited. [optional]  # noqa: E501
+            p50_eod_balance_30d (float, none_type): The 50th percentile of the end-of-day available balance over the past 30 days of the account that will be debited. [optional]  # noqa: E501
+            p50_eod_balance_60d (float, none_type): The 50th percentile of the end-of-day available balance over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            p50_eod_balance_90d (float, none_type): The 50th percentile of the end-of-day available balance over the past 90 days of the account that will be debited. [optional]  # noqa: E501
+            p50_eod_balance_31d_to_60d (float, none_type): The 50th percentile of the end-of-day available balance between day 31 and day 60 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            p50_eod_balance_61d_to_90d (float, none_type): The 50th percentile of the end-of-day available balance between day 61 and day 90 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            p90_eod_balance_31d_to_60d (float, none_type): The 90th percentile of the end-of-day available balance between day 31 and day 60 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            p90_eod_balance_61d_to_90d (float, none_type): The 90th percentile of the end-of-day available balance between day 61 and day 90 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            p10_eod_balance_31d_to_60d (float, none_type): The 10th percentile of the end-of-day available balance between day 31 and day 60 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            p10_eod_balance_61d_to_90d (float, none_type): The 10th percentile of the end-of-day available balance between day 61 and day 90 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
