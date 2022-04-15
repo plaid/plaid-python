@@ -8,7 +8,7 @@
 """
 
 
-__version__ = "9.2.0"
+__version__ = "9.3.0"
 
 # import ApiClient
 from plaid.api_client import ApiClient

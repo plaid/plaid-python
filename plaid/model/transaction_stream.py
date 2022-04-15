@@ -25,9 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.personal_finance_category import PersonalFinanceCategory
     from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
     from plaid.model.transaction_stream_amount import TransactionStreamAmount
     from plaid.model.transaction_stream_status import TransactionStreamStatus
+    globals()['PersonalFinanceCategory'] = PersonalFinanceCategory
     globals()['RecurringTransactionFrequency'] = RecurringTransactionFrequency
     globals()['TransactionStreamAmount'] = TransactionStreamAmount
     globals()['TransactionStreamStatus'] = TransactionStreamStatus
@@ -100,6 +102,7 @@ class TransactionStream(ModelNormal):
             'last_amount': (TransactionStreamAmount,),  # noqa: E501
             'is_active': (bool,),  # noqa: E501
             'status': (TransactionStreamStatus,),  # noqa: E501
+            'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
         }
 
     @cached_property
@@ -122,6 +125,7 @@ class TransactionStream(ModelNormal):
         'last_amount': 'last_amount',  # noqa: E501
         'is_active': 'is_active',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'personal_finance_category': 'personal_finance_category',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -186,6 +190,7 @@ class TransactionStream(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

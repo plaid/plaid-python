@@ -26,13 +26,13 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.credit_document_metadata import CreditDocumentMetadata
-    from plaid.model.pay_stub_employee import PayStubEmployee
-    from plaid.model.pay_stub_employer import PayStubEmployer
+    from plaid.model.credit_pay_stub_employee import CreditPayStubEmployee
+    from plaid.model.credit_pay_stub_employer import CreditPayStubEmployer
     from plaid.model.w2_box12 import W2Box12
     from plaid.model.w2_state_and_local_wages import W2StateAndLocalWages
     globals()['CreditDocumentMetadata'] = CreditDocumentMetadata
-    globals()['PayStubEmployee'] = PayStubEmployee
-    globals()['PayStubEmployer'] = PayStubEmployer
+    globals()['CreditPayStubEmployee'] = CreditPayStubEmployee
+    globals()['CreditPayStubEmployer'] = CreditPayStubEmployer
     globals()['W2Box12'] = W2Box12
     globals()['W2StateAndLocalWages'] = W2StateAndLocalWages
 
@@ -92,8 +92,8 @@ class CreditW2(ModelNormal):
         return {
             'document_metadata': (CreditDocumentMetadata,),  # noqa: E501
             'document_id': (str,),  # noqa: E501
-            'employer': (PayStubEmployer,),  # noqa: E501
-            'employee': (PayStubEmployee,),  # noqa: E501
+            'employer': (CreditPayStubEmployer,),  # noqa: E501
+            'employee': (CreditPayStubEmployee,),  # noqa: E501
             'tax_year': (str, none_type,),  # noqa: E501
             'employer_id_number': (str, none_type,),  # noqa: E501
             'wages_tips_other_comp': (str, none_type,),  # noqa: E501
@@ -164,8 +164,8 @@ class CreditW2(ModelNormal):
         Args:
             document_metadata (CreditDocumentMetadata):
             document_id (str): An identifier of the document referenced by the document metadata.
-            employer (PayStubEmployer):
-            employee (PayStubEmployee):
+            employer (CreditPayStubEmployer):
+            employee (CreditPayStubEmployee):
             tax_year (str, none_type): The tax year of the W2 document.
             employer_id_number (str, none_type): An employee identification number or EIN.
             wages_tips_other_comp (str, none_type): Wages from tips and other compensation.

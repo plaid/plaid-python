@@ -76,6 +76,7 @@ class ProcessorTokenCreateRequest(ModelNormal):
             'MARQETA': "marqeta",
             'CHECKOUT': "checkout",
             'SOLID': "solid",
+            'HIGHNOTE': "highnote",
             'APEX_CLEARING': "apex_clearing",
         },
     }
