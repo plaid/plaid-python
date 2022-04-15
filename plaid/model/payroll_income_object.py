@@ -25,10 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.credit_pay_stub import CreditPayStub
     from plaid.model.credit_w2 import CreditW2
-    from plaid.model.pay_stub import PayStub
+    globals()['CreditPayStub'] = CreditPayStub
     globals()['CreditW2'] = CreditW2
-    globals()['PayStub'] = PayStub
 
 
 class PayrollIncomeObject(ModelNormal):
@@ -85,7 +85,7 @@ class PayrollIncomeObject(ModelNormal):
         lazy_import()
         return {
             'account_id': (str, none_type,),  # noqa: E501
-            'pay_stubs': ([PayStub],),  # noqa: E501
+            'pay_stubs': ([CreditPayStub],),  # noqa: E501
             'w2s': ([CreditW2],),  # noqa: E501
         }
 
@@ -117,7 +117,7 @@ class PayrollIncomeObject(ModelNormal):
 
         Args:
             account_id (str, none_type): ID of the payroll provider account.
-            pay_stubs ([PayStub]): Array of pay stubs for the user.
+            pay_stubs ([CreditPayStub]): Array of pay stubs for the user.
             w2s ([CreditW2]): Array of tax form W-2s.
 
         Keyword Args:

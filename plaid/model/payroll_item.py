@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.payroll_income_object import PayrollIncomeObject
+    from plaid.model.payroll_item_status import PayrollItemStatus
     globals()['PayrollIncomeObject'] = PayrollIncomeObject
+    globals()['PayrollItemStatus'] = PayrollItemStatus
 
 
 class PayrollItem(ModelNormal):
@@ -77,6 +79,7 @@ class PayrollItem(ModelNormal):
         return {
             'item_id': (str,),  # noqa: E501
             'payroll_income': ([PayrollIncomeObject],),  # noqa: E501
+            'status': (PayrollItemStatus,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +90,7 @@ class PayrollItem(ModelNormal):
     attribute_map = {
         'item_id': 'item_id',  # noqa: E501
         'payroll_income': 'payroll_income',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +105,13 @@ class PayrollItem(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_id, payroll_income, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_id, payroll_income, status, *args, **kwargs):  # noqa: E501
         """PayrollItem - a model defined in OpenAPI
 
         Args:
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
             payroll_income ([PayrollIncomeObject]):
+            status (PayrollItemStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,6 +171,7 @@ class PayrollItem(ModelNormal):
 
         self.item_id = item_id
         self.payroll_income = payroll_income
+        self.status = status
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

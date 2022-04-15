@@ -173,7 +173,7 @@ def poll_for_asset_report(client, asset_report_token, retries=20):
     except plaid.ApiException as e:
         response = json.loads(e.body)
         if response['error_code'] == 'PRODUCT_NOT_READY' and retries > 0:
-            time.sleep(1)
+            time.sleep(2)
             return poll_for_asset_report(
                 client,
                 asset_report_token,

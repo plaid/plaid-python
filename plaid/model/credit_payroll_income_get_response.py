@@ -86,7 +86,6 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
         return {
             'items': ([PayrollItem],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'payroll_income_id': (str,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
         }
 
@@ -98,7 +97,6 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
     attribute_map = {
         'items': 'items',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
-        'payroll_income_id': 'payroll_income_id',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -152,7 +150,6 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            payroll_income_id (str): The unique identifier associated with the payroll income response.. [optional]  # noqa: E501
             error (PlaidError): [optional]  # noqa: E501
         """
 
