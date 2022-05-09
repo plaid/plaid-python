@@ -111,9 +111,9 @@ json_string = json.dumps(response.to_dict())
 
 Dates and date-times in requests and responses, which are represented as strings in the API and in previous client library versions, are represented in this version of the library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme. For more information on the Python's `datetime` module, see [Python's official documentation](https://docs.python.org/3/library/datetime.html).
 
-Note that the `datetime.strptime` method [will silently remove timezone information](https://www.enricozini.org/blog/2009/debian/using-python-datetime/). Timezone information is required by some fields across several Plaid endpoints. For these fields, not including timezone information (or passing in a string, instead of a `datetime.date` or `datetime.datetime` object) will result in an error. See the following sections for guidance.
+Note that the `datetime.strptime` method [will silently remove timezone information](https://www.enricozini.org/blog/2009/debian/using-python-datetime/). Timezone information is required for some fields in request payloads across several Plaid endpoints. For these fields, not including timezone information (or passing in a string, instead of a `datetime.date` or `datetime.datetime` object) will result in an error. See the following sections for guidance.
 
-#### **Endpoints with fields that require `datetime.date` objects**
+#### **Endpoints with request fields that require `datetime.date` objects**
 
 * **/transactions/get** – Applicable fields: `start_date`, `end_date`.
 
@@ -134,7 +134,7 @@ b = date.fromisoformat('2022-05-05')
 c = date.fromisoformat('2022-05-05')
 ```
 
-#### **Endpoints with fields that require `datetime.datetime` objects**
+#### **Endpoints with fields request that require `datetime.datetime` objects**
 
 * **/accounts/balance/get** – Applicable fields: `min_last_updated_time`.
 
