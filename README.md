@@ -109,7 +109,46 @@ json_string = json.dumps(response.to_dict())
 
 ### Dates
 
-Dates and date times in requests and responses, which are represented as strings in the API and in previous client library versions, are represented in this version of the library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme.
+Dates and date-times in requests and responses, which are represented as strings in the API and in previous client library versions, are represented in this version of the library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme. For more information on the Python's `datetime` module, see [Python's official documentation](https://docs.python.org/3/library/datetime.html).
+
+Note that the `datetime.strptime` method [will silently remove timezone information](https://www.enricozini.org/blog/2009/debian/using-python-datetime/). Timezone information is required by some fields across several Plaid endpoints. For these fields, not including timezone information (or passing in a string, instead of a `datetime.date` or `datetime.datetime` object) will result in an error. See the following sections for guidance.
+
+#### **Endpoints with fields that require `datetime.date` objects**
+
+* **/transactions/get** – Applicable fields: `start_date`, `end_date`.
+
+* **/investment/transactions/get** – Applicable fields: `start_date`, `end_date`.
+
+* **/payment_initiation/payment/create**. Applicable fields: `schedule.start_date`, `schedule.end_date`, `schedule.adjusted_start_date`.
+
+```py
+from datetime import date
+
+# For fields that do not request a format and require 'YYYY-MM-DD' formatting, either of the following are acceptable:
+
+a = date(2022, 5, 5)
+b = date.fromisoformat('2022-05-05')
+
+# For fields that request ISO 8601 format and require 'YYYY-MM-formatting' format, the following is acceptable:
+
+c = date.fromisoformat('2022-05-05')
+```
+
+#### **Endpoints with fields that require `datetime.datetime` objects**
+
+* **/accounts/balance/get** – Applicable fields: `min_last_updated_time`.
+
+* **/payment_initiation/payment/list** – Applicable fields:`cursor`.
+
+* All **/transfer/*** endpoints.
+
+```py
+from datetime import datetime
+
+# For fields that request ISO 8601 or RFC 3339 format and require 'YYYY-MM-DDTHH:mm:ssZ' formatting, the following is acceptable:
+
+a = datetime(2019, 12, 6, 22, 35, 49, tzinfo=datetime.timezone.utc)
+```
 
 ### Enums
 While the API and previous library versions represent enums using strings, this current library uses Python classes with restricted values.
