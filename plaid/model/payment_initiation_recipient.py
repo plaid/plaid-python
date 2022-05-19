@@ -89,7 +89,6 @@ class PaymentInitiationRecipient(ModelNormal):
             'address': (PaymentInitiationAddress,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
             'bacs': (RecipientBACSNullable,),  # noqa: E501
-            'emi_recipient_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,7 +102,6 @@ class PaymentInitiationRecipient(ModelNormal):
         'address': 'address',  # noqa: E501
         'iban': 'iban',  # noqa: E501
         'bacs': 'bacs',  # noqa: E501
-        'emi_recipient_id': 'emi_recipient_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,7 +157,6 @@ class PaymentInitiationRecipient(ModelNormal):
             address (PaymentInitiationAddress): [optional]  # noqa: E501
             iban (str, none_type): The International Bank Account Number (IBAN) for the recipient.. [optional]  # noqa: E501
             bacs (RecipientBACSNullable): [optional]  # noqa: E501
-            emi_recipient_id (str, none_type): The EMI (E-Money Institution) recipient that this recipient is associated with, if any. This EMI recipient is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

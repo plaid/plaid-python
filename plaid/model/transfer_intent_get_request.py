@@ -76,9 +76,9 @@ class TransferIntentGetRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'transfer_intent_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'transfer_intent_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +87,9 @@ class TransferIntentGetRequest(ModelNormal):
 
 
     attribute_map = {
+        'transfer_intent_id': 'transfer_intent_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'transfer_intent_id': 'transfer_intent_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -104,12 +104,10 @@ class TransferIntentGetRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, secret, transfer_intent_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, transfer_intent_id, *args, **kwargs):  # noqa: E501
         """TransferIntentGetRequest - a model defined in OpenAPI
 
         Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
             transfer_intent_id (str): Plaid's unique identifier for a transfer intent object.
 
         Keyword Args:
@@ -143,6 +141,8 @@ class TransferIntentGetRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -168,8 +168,6 @@ class TransferIntentGetRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
-        self.secret = secret
         self.transfer_intent_id = transfer_intent_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

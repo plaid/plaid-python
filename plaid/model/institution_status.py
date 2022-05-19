@@ -124,15 +124,11 @@ class InstitutionStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_logins, transactions_updates, auth, identity, investments_updates, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_logins, *args, **kwargs):  # noqa: E501
         """InstitutionStatus - a model defined in OpenAPI
 
         Args:
             item_logins (ProductStatus):
-            transactions_updates (ProductStatus):
-            auth (ProductStatus):
-            identity (ProductStatus):
-            investments_updates (ProductStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,6 +161,10 @@ class InstitutionStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            transactions_updates (ProductStatus): [optional]  # noqa: E501
+            auth (ProductStatus): [optional]  # noqa: E501
+            identity (ProductStatus): [optional]  # noqa: E501
+            investments_updates (ProductStatus): [optional]  # noqa: E501
             liabilities_updates (ProductStatus): [optional]  # noqa: E501
             liabilities (ProductStatus): [optional]  # noqa: E501
             investments (ProductStatus): [optional]  # noqa: E501
@@ -195,10 +195,6 @@ class InstitutionStatus(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.item_logins = item_logins
-        self.transactions_updates = transactions_updates
-        self.auth = auth
-        self.identity = identity
-        self.investments_updates = investments_updates
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

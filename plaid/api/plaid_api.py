@@ -70,14 +70,22 @@ from plaid.model.bank_transfer_sweep_get_response import BankTransferSweepGetRes
 from plaid.model.bank_transfer_sweep_list_request import BankTransferSweepListRequest
 from plaid.model.bank_transfer_sweep_list_response import BankTransferSweepListResponse
 from plaid.model.categories_get_response import CategoriesGetResponse
+from plaid.model.create_entity_screening_request import CreateEntityScreeningRequest
+from plaid.model.create_entity_watchlist_screening_review_request import CreateEntityWatchlistScreeningReviewRequest
+from plaid.model.create_individual_watchlist_screening_review_request import CreateIndividualWatchlistScreeningReviewRequest
 from plaid.model.credit_bank_income_get_request import CreditBankIncomeGetRequest
 from plaid.model.credit_bank_income_get_response import CreditBankIncomeGetResponse
+from plaid.model.credit_bank_income_refresh_request import CreditBankIncomeRefreshRequest
+from plaid.model.credit_bank_income_refresh_response import CreditBankIncomeRefreshResponse
 from plaid.model.credit_employment_get_request import CreditEmploymentGetRequest
 from plaid.model.credit_employment_get_response import CreditEmploymentGetResponse
 from plaid.model.credit_payroll_income_get_request import CreditPayrollIncomeGetRequest
 from plaid.model.credit_payroll_income_get_response import CreditPayrollIncomeGetResponse
 from plaid.model.credit_payroll_income_precheck_request import CreditPayrollIncomePrecheckRequest
 from plaid.model.credit_payroll_income_precheck_response import CreditPayrollIncomePrecheckResponse
+from plaid.model.credit_payroll_income_refresh_request import CreditPayrollIncomeRefreshRequest
+from plaid.model.credit_payroll_income_refresh_response import CreditPayrollIncomeRefreshResponse
+from plaid.model.dashboard_user import DashboardUser
 from plaid.model.deposit_switch_alt_create_request import DepositSwitchAltCreateRequest
 from plaid.model.deposit_switch_alt_create_response import DepositSwitchAltCreateResponse
 from plaid.model.deposit_switch_create_request import DepositSwitchCreateRequest
@@ -90,9 +98,21 @@ from plaid.model.employers_search_request import EmployersSearchRequest
 from plaid.model.employers_search_response import EmployersSearchResponse
 from plaid.model.employment_verification_get_request import EmploymentVerificationGetRequest
 from plaid.model.employment_verification_get_response import EmploymentVerificationGetResponse
+from plaid.model.entity_watchlist_program import EntityWatchlistProgram
+from plaid.model.entity_watchlist_screening import EntityWatchlistScreening
+from plaid.model.entity_watchlist_screening_review import EntityWatchlistScreeningReview
 from plaid.model.error import Error
+from plaid.model.get_dashboard_user_request import GetDashboardUserRequest
+from plaid.model.get_entity_watchlist_screening_request import GetEntityWatchlistScreeningRequest
+from plaid.model.get_identity_verification_request import GetIdentityVerificationRequest
+from plaid.model.get_individual_watchlist_screening_request import GetIndividualWatchlistScreeningRequest
+from plaid.model.get_watchlist_screening_entity_program_request import GetWatchlistScreeningEntityProgramRequest
+from plaid.model.get_watchlist_screening_individual_program_request import GetWatchlistScreeningIndividualProgramRequest
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_response import IdentityGetResponse
+from plaid.model.identity_verification import IdentityVerification
+from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
+from plaid.model.identity_verification_retry_request import IdentityVerificationRetryRequest
 from plaid.model.income_verification_create_request import IncomeVerificationCreateRequest
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
 from plaid.model.income_verification_documents_download_request import IncomeVerificationDocumentsDownloadRequest
@@ -104,6 +124,7 @@ from plaid.model.income_verification_refresh_request import IncomeVerificationRe
 from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
 from plaid.model.income_verification_taxforms_get_request import IncomeVerificationTaxformsGetRequest
 from plaid.model.income_verification_taxforms_get_response import IncomeVerificationTaxformsGetResponse
+from plaid.model.individual_watchlist_program import IndividualWatchlistProgram
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
 from plaid.model.institutions_get_by_id_response import InstitutionsGetByIdResponse
 from plaid.model.institutions_get_request import InstitutionsGetRequest
@@ -138,6 +159,28 @@ from plaid.model.link_token_create_request import LinkTokenCreateRequest
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_get_request import LinkTokenGetRequest
 from plaid.model.link_token_get_response import LinkTokenGetResponse
+from plaid.model.list_dashboard_user_request import ListDashboardUserRequest
+from plaid.model.list_entity_watchlist_screening_request import ListEntityWatchlistScreeningRequest
+from plaid.model.list_identity_verification_request import ListIdentityVerificationRequest
+from plaid.model.list_individual_watchlist_screening_request import ListIndividualWatchlistScreeningRequest
+from plaid.model.list_watchlist_screening_entity_history_request import ListWatchlistScreeningEntityHistoryRequest
+from plaid.model.list_watchlist_screening_entity_hit_request import ListWatchlistScreeningEntityHitRequest
+from plaid.model.list_watchlist_screening_entity_programs_request import ListWatchlistScreeningEntityProgramsRequest
+from plaid.model.list_watchlist_screening_entity_reviews_request import ListWatchlistScreeningEntityReviewsRequest
+from plaid.model.list_watchlist_screening_individual_history_request import ListWatchlistScreeningIndividualHistoryRequest
+from plaid.model.list_watchlist_screening_individual_hit_request import ListWatchlistScreeningIndividualHitRequest
+from plaid.model.list_watchlist_screening_individual_programs_request import ListWatchlistScreeningIndividualProgramsRequest
+from plaid.model.list_watchlist_screening_individual_reviews_request import ListWatchlistScreeningIndividualReviewsRequest
+from plaid.model.paginated_dashboard_user_list import PaginatedDashboardUserList
+from plaid.model.paginated_entity_watchlist_program_list import PaginatedEntityWatchlistProgramList
+from plaid.model.paginated_entity_watchlist_screening_hit_list import PaginatedEntityWatchlistScreeningHitList
+from plaid.model.paginated_entity_watchlist_screening_list import PaginatedEntityWatchlistScreeningList
+from plaid.model.paginated_entity_watchlist_screening_review_list import PaginatedEntityWatchlistScreeningReviewList
+from plaid.model.paginated_identity_verification_paginated_list import PaginatedIdentityVerificationPaginatedList
+from plaid.model.paginated_individual_watchlist_program_list import PaginatedIndividualWatchlistProgramList
+from plaid.model.paginated_individual_watchlist_screening_hit_list import PaginatedIndividualWatchlistScreeningHitList
+from plaid.model.paginated_individual_watchlist_screening_list import PaginatedIndividualWatchlistScreeningList
+from plaid.model.paginated_individual_watchlist_screening_review_list import PaginatedIndividualWatchlistScreeningReviewList
 from plaid.model.payment_initiation_consent_create_request import PaymentInitiationConsentCreateRequest
 from plaid.model.payment_initiation_consent_create_response import PaymentInitiationConsentCreateResponse
 from plaid.model.payment_initiation_consent_get_request import PaymentInitiationConsentGetRequest
@@ -205,6 +248,8 @@ from plaid.model.signal_decision_report_request import SignalDecisionReportReque
 from plaid.model.signal_decision_report_response import SignalDecisionReportResponse
 from plaid.model.signal_evaluate_request import SignalEvaluateRequest
 from plaid.model.signal_evaluate_response import SignalEvaluateResponse
+from plaid.model.signal_prepare_request import SignalPrepareRequest
+from plaid.model.signal_prepare_response import SignalPrepareResponse
 from plaid.model.signal_return_report_request import SignalReturnReportRequest
 from plaid.model.signal_return_report_response import SignalReturnReportResponse
 from plaid.model.transactions_enhance_get_request import TransactionsEnhanceGetRequest
@@ -251,14 +296,23 @@ from plaid.model.transfer_sweep_get_request import TransferSweepGetRequest
 from plaid.model.transfer_sweep_get_response import TransferSweepGetResponse
 from plaid.model.transfer_sweep_list_request import TransferSweepListRequest
 from plaid.model.transfer_sweep_list_response import TransferSweepListResponse
+from plaid.model.update_entity_screening_request import UpdateEntityScreeningRequest
+from plaid.model.update_individual_screening_request import UpdateIndividualScreeningRequest
 from plaid.model.user_create_request import UserCreateRequest
 from plaid.model.user_create_response import UserCreateResponse
+from plaid.model.wallet_create_request import WalletCreateRequest
+from plaid.model.wallet_create_response import WalletCreateResponse
 from plaid.model.wallet_get_request import WalletGetRequest
 from plaid.model.wallet_get_response import WalletGetResponse
 from plaid.model.wallet_transaction_execute_request import WalletTransactionExecuteRequest
 from plaid.model.wallet_transaction_execute_response import WalletTransactionExecuteResponse
+from plaid.model.wallet_transaction_get_request import WalletTransactionGetRequest
+from plaid.model.wallet_transaction_get_response import WalletTransactionGetResponse
 from plaid.model.wallet_transactions_list_request import WalletTransactionsListRequest
 from plaid.model.wallet_transactions_list_response import WalletTransactionsListResponse
+from plaid.model.watchlist_screening_create_request import WatchlistScreeningCreateRequest
+from plaid.model.watchlist_screening_individual import WatchlistScreeningIndividual
+from plaid.model.watchlist_screening_review import WatchlistScreeningReview
 from plaid.model.webhook_verification_key_get_request import WebhookVerificationKeyGetRequest
 from plaid.model.webhook_verification_key_get_response import WebhookVerificationKeyGetResponse
 
@@ -3931,6 +3985,128 @@ class PlaidApi(object):
             callable=__credit_bank_income_get
         )
 
+        def __credit_bank_income_refresh(
+            self,
+            credit_bank_income_refresh_request,
+            **kwargs
+        ):
+            """Refresh a user's bank income information  # noqa: E501
+
+            `/credit/bank_income/refresh` refreshes the bank income report data for a specific user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_bank_income_refresh(credit_bank_income_refresh_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                credit_bank_income_refresh_request (CreditBankIncomeRefreshRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreditBankIncomeRefreshResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['credit_bank_income_refresh_request'] = \
+                credit_bank_income_refresh_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_bank_income_refresh = _Endpoint(
+            settings={
+                'response_type': (CreditBankIncomeRefreshResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/bank_income/refresh',
+                'operation_id': 'credit_bank_income_refresh',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'credit_bank_income_refresh_request',
+                ],
+                'required': [
+                    'credit_bank_income_refresh_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'credit_bank_income_refresh_request':
+                        (CreditBankIncomeRefreshRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'credit_bank_income_refresh_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_bank_income_refresh
+        )
+
         def __credit_employment_get(
             self,
             credit_employment_get_request,
@@ -3938,7 +4114,7 @@ class PlaidApi(object):
         ):
             """Retrieve a summary of an individual's employment information  # noqa: E501
 
-            `/credit/employment/get` returns a list of employments through a user payroll that was verified by an end user.  # noqa: E501
+            `/credit/employment/get` returns a list of items with employment information from a user's payroll provider that was verified by an end user.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4295,6 +4471,372 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__credit_payroll_income_precheck
+        )
+
+        def __credit_payroll_income_refresh(
+            self,
+            credit_payroll_income_refresh_request,
+            **kwargs
+        ):
+            """Refresh a digital payroll income verification  # noqa: E501
+
+            `/credit/payroll_income/refresh` refreshes a given digital payroll income verification.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_payroll_income_refresh(credit_payroll_income_refresh_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                credit_payroll_income_refresh_request (CreditPayrollIncomeRefreshRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreditPayrollIncomeRefreshResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['credit_payroll_income_refresh_request'] = \
+                credit_payroll_income_refresh_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_payroll_income_refresh = _Endpoint(
+            settings={
+                'response_type': (CreditPayrollIncomeRefreshResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/payroll_income/refresh',
+                'operation_id': 'credit_payroll_income_refresh',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'credit_payroll_income_refresh_request',
+                ],
+                'required': [
+                    'credit_payroll_income_refresh_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'credit_payroll_income_refresh_request':
+                        (CreditPayrollIncomeRefreshRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'credit_payroll_income_refresh_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_payroll_income_refresh
+        )
+
+        def __dashboard_user_list(
+            self,
+            list_dashboard_user_request,
+            **kwargs
+        ):
+            """List dashboard users  # noqa: E501
+
+            List all dashboard users associated with your account.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.dashboard_user_list(list_dashboard_user_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_dashboard_user_request (ListDashboardUserRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedDashboardUserList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_dashboard_user_request'] = \
+                list_dashboard_user_request
+            return self.call_with_http_info(**kwargs)
+
+        self.dashboard_user_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedDashboardUserList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/dashboard_user/list',
+                'operation_id': 'dashboard_user_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_dashboard_user_request',
+                ],
+                'required': [
+                    'list_dashboard_user_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_dashboard_user_request':
+                        (ListDashboardUserRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_dashboard_user_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__dashboard_user_list
+        )
+
+        def __dashobard_user_get(
+            self,
+            get_dashboard_user_request,
+            **kwargs
+        ):
+            """Retrieve a dashboard user  # noqa: E501
+
+            Retrieve information about a dashboard user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.dashobard_user_get(get_dashboard_user_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                get_dashboard_user_request (GetDashboardUserRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DashboardUser
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['get_dashboard_user_request'] = \
+                get_dashboard_user_request
+            return self.call_with_http_info(**kwargs)
+
+        self.dashobard_user_get = _Endpoint(
+            settings={
+                'response_type': (DashboardUser,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/dashboard_user/get',
+                'operation_id': 'dashobard_user_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'get_dashboard_user_request',
+                ],
+                'required': [
+                    'get_dashboard_user_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'get_dashboard_user_request':
+                        (GetDashboardUserRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'get_dashboard_user_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__dashobard_user_get
         )
 
         def __deposit_switch_alt_create(
@@ -5149,6 +5691,494 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__identity_get
+        )
+
+        def __identity_verification_create(
+            self,
+            identity_verification_create_request,
+            **kwargs
+        ):
+            """Create a new identity verification  # noqa: E501
+
+            Create a new Identity Verification for the user specified by the `client_user_id` field. The requirements and behavior of the verification are determined by the `template_id` provided. If you don't know whether the associated user already has an active Identity Verification, you can specify `\"idempotent\": true` in the request body. With idempotency enabled, a new Identity Verification will only be created if one does not already exist for the associated `client_user_id` and `template_id`. If an Identity Verification is found, it will be returned unmodified with an `200 OK` HTTP status code.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.identity_verification_create(identity_verification_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                identity_verification_create_request (IdentityVerificationCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityVerification
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['identity_verification_create_request'] = \
+                identity_verification_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.identity_verification_create = _Endpoint(
+            settings={
+                'response_type': (IdentityVerification,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/identity_verification/create',
+                'operation_id': 'identity_verification_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'identity_verification_create_request',
+                ],
+                'required': [
+                    'identity_verification_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'identity_verification_create_request':
+                        (IdentityVerificationCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'identity_verification_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__identity_verification_create
+        )
+
+        def __identity_verification_get(
+            self,
+            get_identity_verification_request,
+            **kwargs
+        ):
+            """Retrieve Identity Verification  # noqa: E501
+
+            Retrieve a previously created identity verification  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.identity_verification_get(get_identity_verification_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                get_identity_verification_request (GetIdentityVerificationRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityVerification
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['get_identity_verification_request'] = \
+                get_identity_verification_request
+            return self.call_with_http_info(**kwargs)
+
+        self.identity_verification_get = _Endpoint(
+            settings={
+                'response_type': (IdentityVerification,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/identity_verification/get',
+                'operation_id': 'identity_verification_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'get_identity_verification_request',
+                ],
+                'required': [
+                    'get_identity_verification_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'get_identity_verification_request':
+                        (GetIdentityVerificationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'get_identity_verification_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__identity_verification_get
+        )
+
+        def __identity_verification_list(
+            self,
+            list_identity_verification_request,
+            **kwargs
+        ):
+            """List Identity Verifications  # noqa: E501
+
+            Filter and list Identity Verifications created by your account  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.identity_verification_list(list_identity_verification_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_identity_verification_request (ListIdentityVerificationRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedIdentityVerificationPaginatedList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_identity_verification_request'] = \
+                list_identity_verification_request
+            return self.call_with_http_info(**kwargs)
+
+        self.identity_verification_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedIdentityVerificationPaginatedList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/identity_verification/list',
+                'operation_id': 'identity_verification_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_identity_verification_request',
+                ],
+                'required': [
+                    'list_identity_verification_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_identity_verification_request':
+                        (ListIdentityVerificationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_identity_verification_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__identity_verification_list
+        )
+
+        def __identity_verification_retry(
+            self,
+            identity_verification_retry_request,
+            **kwargs
+        ):
+            """Retry an Identity Verification  # noqa: E501
+
+            Allow a customer to retry their identity verification  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.identity_verification_retry(identity_verification_retry_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                identity_verification_retry_request (IdentityVerificationRetryRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityVerification
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['identity_verification_retry_request'] = \
+                identity_verification_retry_request
+            return self.call_with_http_info(**kwargs)
+
+        self.identity_verification_retry = _Endpoint(
+            settings={
+                'response_type': (IdentityVerification,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/identity_verification/retry',
+                'operation_id': 'identity_verification_retry',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'identity_verification_retry_request',
+                ],
+                'required': [
+                    'identity_verification_retry_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'identity_verification_retry_request':
+                        (IdentityVerificationRetryRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'identity_verification_retry_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__identity_verification_retry
         )
 
         def __income_verification_create(
@@ -10526,7 +11556,7 @@ class PlaidApi(object):
         ):
             """Fire a test webhook  # noqa: E501
 
-            The `/sandbox/item/fire_webhook` endpoint is used to test that code correctly handles webhooks. This endpoint can trigger the following webhooks: `DEFAULT_UPDATE`: Transactions update webhook to be fired for a given Sandbox Item. If the Item does not support Transactions, a `SANDBOX_PRODUCT_NOT_ENABLED` error will result.  `NEW_ACCOUNTS_AVAILABLE`: Webhook to be fired for a given Sandbox Item created with Account Select v2.  `AUTH_DATA_UPDATE`: Webhook to be fired for a given Sandbox Item created with Auth as an enabled product.  Note that this endpoint is provided for developer ease-of-use and is not required for testing webhooks; webhooks will also fire in Sandbox under the same conditions that they would in Production or Development'  # noqa: E501
+            The `/sandbox/item/fire_webhook` endpoint is used to test that code correctly handles webhooks. This endpoint can trigger the following webhooks:  `DEFAULT_UPDATE`: Transactions update webhook to be fired for a given Sandbox Item. If the Item does not support Transactions, a `SANDBOX_PRODUCT_NOT_ENABLED` error will result.  `NEW_ACCOUNTS_AVAILABLE`: Webhook to be fired for a given Sandbox Item created with Account Select v2.  `AUTH_DATA_UPDATE`: Webhook to be fired for a given Sandbox Item created with Auth as an enabled product.  Note that this endpoint is provided for developer ease-of-use and is not required for testing webhooks; webhooks will also fire in Sandbox under the same conditions that they would in Production or Development'  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11983,6 +13013,128 @@ class PlaidApi(object):
             callable=__signal_evaluate
         )
 
+        def __signal_prepare(
+            self,
+            signal_prepare_request,
+            **kwargs
+        ):
+            """Prepare the Signal product before calling `/signal/evaluate`  # noqa: E501
+
+            Call `/signal/prepare` with Plaid-linked bank account information at least 10 seconds before calling `/signal/evaluate` or as soon as an end-user enters the ACH deposit flow in your application.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.signal_prepare(signal_prepare_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                signal_prepare_request (SignalPrepareRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SignalPrepareResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['signal_prepare_request'] = \
+                signal_prepare_request
+            return self.call_with_http_info(**kwargs)
+
+        self.signal_prepare = _Endpoint(
+            settings={
+                'response_type': (SignalPrepareResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/signal/prepare',
+                'operation_id': 'signal_prepare',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'signal_prepare_request',
+                ],
+                'required': [
+                    'signal_prepare_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'signal_prepare_request':
+                        (SignalPrepareRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'signal_prepare_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__signal_prepare
+        )
+
         def __signal_return_report(
             self,
             signal_return_report_request,
@@ -12354,9 +13506,9 @@ class PlaidApi(object):
             transactions_recurring_get_request,
             **kwargs
         ):
-            """Get streams of recurring transactions  # noqa: E501
+            """Fetch recurring transaction streams  # noqa: E501
 
-            The `/transactions/recurring/get` endpoint identifies and returns groups of transactions that occur on a regular basis for the inputted Item and accounts.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
+            The `/transactions/recurring/get` endpoint allows developers to receive a summary of the recurring outflow and inflow streams (expenses and deposits) from a user’s checking, savings or credit card accounts. Additionally, Plaid provides key insights about each recurring stream including the category, merchant, last amount, and more. Developers can use these insights to build tools and experiences that help their users better manage cash flow, monitor subscriptions, reduce spend, and stay on track with bill payments.  This endpoint is not included by default as part of Transactions. To request access to this endpoint and learn more about pricing, contact your Plaid account manager.  Note that unlike `/transactions/get`, `/transactions/recurring/get` will not initialize an Item with Transactions. The Item must already have been initialized with Transactions (either during Link, by specifying it in `/link/token/create`, or after Link, by calling `/transactions/get`) before calling this endpoint. Data is available to `/transactions/recurring/get` approximately 5 seconds after the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook has fired (about 1-2 minutes after initialization).  After the initial call, you can call `/transactions/recurring/get` endpoint at any point in the future to retrieve the latest summary of recurring streams. Since recurring streams do not change often, it will typically not be necessary to call this endpoint more than once per day.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12600,7 +13752,7 @@ class PlaidApi(object):
         ):
             """Create transaction category rule  # noqa: E501
 
-            The `/transactions/rules/create` endpoint creates transaction categorization rules.  Rules will be applied on the Item's transactions returned in `/transactions/get` response.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
+            The `/transactions/rules/v1/create` endpoint creates transaction categorization rules.  Rules will be applied on the Item's transactions returned in `/transactions/get` response.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12667,7 +13819,7 @@ class PlaidApi(object):
                     'plaidVersion',
                     'secret'
                 ],
-                'endpoint_path': '/beta/transactions/rules/create',
+                'endpoint_path': '/beta/transactions/rules/v1/create',
                 'operation_id': 'transactions_rules_create',
                 'http_method': 'POST',
                 'servers': None,
@@ -12722,7 +13874,7 @@ class PlaidApi(object):
         ):
             """Return a list of rules created for the Item associated with the access token.  # noqa: E501
 
-            The `/transactions/rules/list` returns a list of transaction rules created for the Item associated with the access token.  # noqa: E501
+            The `/transactions/rules/v1/list` returns a list of transaction rules created for the Item associated with the access token.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12789,7 +13941,7 @@ class PlaidApi(object):
                     'plaidVersion',
                     'secret'
                 ],
-                'endpoint_path': '/beta/transactions/rules/list',
+                'endpoint_path': '/beta/transactions/rules/v1/list',
                 'operation_id': 'transactions_rules_list',
                 'http_method': 'POST',
                 'servers': None,
@@ -12844,7 +13996,7 @@ class PlaidApi(object):
         ):
             """Remove transaction rule  # noqa: E501
 
-            The `/transactions/rules/remove` endpoint is used to remove a transaction rule.  # noqa: E501
+            The `/transactions/rules/v1/remove` endpoint is used to remove a transaction rule.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12911,7 +14063,7 @@ class PlaidApi(object):
                     'plaidVersion',
                     'secret'
                 ],
-                'endpoint_path': '/beta/transactions/rules/remove',
+                'endpoint_path': '/beta/transactions/rules/v1/remove',
                 'operation_id': 'transactions_rules_remove',
                 'http_method': 'POST',
                 'servers': None,
@@ -12966,7 +14118,7 @@ class PlaidApi(object):
         ):
             """Get incremental transaction updates on an Item  # noqa: E501
 
-            The `/transactions/sync` endpoint returns item transactions as a set of delta updates. Subsequent calls to the endpoint using the cursor returned in the response will return new added, modified, and removed transactions since the last call to the endpoint  The product is currently in beta. To request access, contact transactions-feedback@plaid.com.  # noqa: E501
+            This endpoint replaces `/transactions/get` and its associated webhooks for most common use-cases.  The `/transactions/sync` endpoint allows developers to subscribe to all transactions associated with an Item and get updates synchronously in a stream-like manner, using a cursor to track which updates have already been seen. `/transactions/sync` provides the same functionality as `/transactions/get` and can be used instead of `/transactions/get` to simplify the process of tracking transactions updates.  This endpoint provides user-authorized transaction data for `credit`, `depository`, and some loan-type accounts (only those with account subtype `student`; coverage may be limited). For transaction history from `investments` accounts, use `/investments/transactions/get` instead.  Returned transactions data is grouped into three types of update, indicating whether the transaction was added, removed, or modified since the last call to the API.  In the first call to `/transactions/sync` for an Item, the endpoint will return all historical transactions data associated with that Item up until the time of the API call (as \"adds\"), which then generates a `latest_cursor` for that Item. In subsequent calls, send the `latest_cursor` to receive only the changes that have occurred since the previous call.  Due to the potentially large number of transactions associated with an Item, results are paginated. The `has_more` field specifies if additional calls are necessary to fetch all available transaction updates.  Whenever new or updated transaction data becomes available, `/transactions/sync` will provide these updates. Plaid typically checks for new data multiple times a day, but these checks may occur less frequently, such as once a day, depending on the institution. An Item's `status.transactions.last_successful_update` field will show the timestamp of the most recent successful update. To force Plaid to check for new transactions, use the `/transactions/refresh` endpoint.  Note that for newly created Items, data may not be immediately available to `/transactions/sync`. Plaid begins preparing transactions data when the Item is created, but the process can take anywhere from a few seconds to several minutes to complete, depending on the number of transactions available.  To be alerted when new data is available, listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#sync_updates_available) webhook.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -14911,6 +16063,128 @@ class PlaidApi(object):
             callable=__user_create
         )
 
+        def __wallet_create(
+            self,
+            wallet_create_request,
+            **kwargs
+        ):
+            """Create an e-wallet  # noqa: E501
+
+            Create an e-wallet. The response is the newly created e-wallet object.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.wallet_create(wallet_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                wallet_create_request (WalletCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WalletCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['wallet_create_request'] = \
+                wallet_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.wallet_create = _Endpoint(
+            settings={
+                'response_type': (WalletCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/wallet/create',
+                'operation_id': 'wallet_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'wallet_create_request',
+                ],
+                'required': [
+                    'wallet_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'wallet_create_request':
+                        (WalletCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'wallet_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__wallet_create
+        )
+
         def __wallet_get(
             self,
             wallet_get_request,
@@ -14918,7 +16192,7 @@ class PlaidApi(object):
         ):
             """Fetch an e-wallet  # noqa: E501
 
-            Fetch an e-wallet. The response includes the current balance.   # noqa: E501
+            Fetch an e-wallet. The response includes the current balance.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15040,7 +16314,7 @@ class PlaidApi(object):
         ):
             """Execute a transaction using an e-wallet  # noqa: E501
 
-            Execute a transaction using the specified e-wallet. Specify the e-wallet to debit from, the counterparty to credit to, the idempotency key to prevent duplicate payouts, the amount and reference for the payout. The payouts are executed over the Faster Payment rails, where settlement usually only takes a few seconds.   # noqa: E501
+            Execute a transaction using the specified e-wallet. Specify the e-wallet to debit from, the counterparty to credit to, the idempotency key to prevent duplicate payouts, the amount and reference for the payout. The payouts are executed over the Faster Payment rails, where settlement usually only takes a few seconds.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15155,6 +16429,128 @@ class PlaidApi(object):
             callable=__wallet_transaction_execute
         )
 
+        def __wallet_transaction_get(
+            self,
+            wallet_transaction_get_request,
+            **kwargs
+        ):
+            """wallet_transaction_get  # noqa: E501
+
+            Fetch a specific e-wallet transaction  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.wallet_transaction_get(wallet_transaction_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                wallet_transaction_get_request (WalletTransactionGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WalletTransactionGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['wallet_transaction_get_request'] = \
+                wallet_transaction_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.wallet_transaction_get = _Endpoint(
+            settings={
+                'response_type': (WalletTransactionGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/wallet/transaction/get',
+                'operation_id': 'wallet_transaction_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'wallet_transaction_get_request',
+                ],
+                'required': [
+                    'wallet_transaction_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'wallet_transaction_get_request':
+                        (WalletTransactionGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'wallet_transaction_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__wallet_transaction_get
+        )
+
         def __wallet_transactions_list(
             self,
             wallet_transactions_list_request,
@@ -15162,7 +16558,7 @@ class PlaidApi(object):
         ):
             """List e-wallet transactions  # noqa: E501
 
-            This endpoint lists the latest transactions of the specified e-wallet. Transactions are returned in descending order by the `created_at` time.   # noqa: E501
+            This endpoint lists the latest transactions of the specified e-wallet. Transactions are returned in descending order by the `created_at` time.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15275,6 +16671,2446 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__wallet_transactions_list
+        )
+
+        def __watchlist_screening_entity_create(
+            self,
+            create_entity_screening_request,
+            **kwargs
+        ):
+            """Create a watchlist screening for an entity  # noqa: E501
+
+            Create a new entity watchlist screening to check your customer against watchlists defined in the associated entity watchlist program. If your associated program has ongoing screening enabled, this is the profile information that will be used to monitor your customer over time.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_create(create_entity_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                create_entity_screening_request (CreateEntityScreeningRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                EntityWatchlistScreening
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['create_entity_screening_request'] = \
+                create_entity_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_create = _Endpoint(
+            settings={
+                'response_type': (EntityWatchlistScreening,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/create',
+                'operation_id': 'watchlist_screening_entity_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'create_entity_screening_request',
+                ],
+                'required': [
+                    'create_entity_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'create_entity_screening_request':
+                        (CreateEntityScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'create_entity_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_create
+        )
+
+        def __watchlist_screening_entity_get(
+            self,
+            get_entity_watchlist_screening_request,
+            **kwargs
+        ):
+            """Get an entity screening  # noqa: E501
+
+            Retrieve an entity watchlist screening.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_get(get_entity_watchlist_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                get_entity_watchlist_screening_request (GetEntityWatchlistScreeningRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                EntityWatchlistScreening
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['get_entity_watchlist_screening_request'] = \
+                get_entity_watchlist_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_get = _Endpoint(
+            settings={
+                'response_type': (EntityWatchlistScreening,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/get',
+                'operation_id': 'watchlist_screening_entity_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'get_entity_watchlist_screening_request',
+                ],
+                'required': [
+                    'get_entity_watchlist_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'get_entity_watchlist_screening_request':
+                        (GetEntityWatchlistScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'get_entity_watchlist_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_get
+        )
+
+        def __watchlist_screening_entity_history_list(
+            self,
+            list_watchlist_screening_entity_history_request,
+            **kwargs
+        ):
+            """List history for entity watchlist screenings  # noqa: E501
+
+            List all changes to the entity watchlist screening in reverse-chronological order. If the watchlist screening has not been edited, no history will be returned.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_history_list(list_watchlist_screening_entity_history_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_entity_history_request (ListWatchlistScreeningEntityHistoryRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedEntityWatchlistScreeningList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_entity_history_request'] = \
+                list_watchlist_screening_entity_history_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_history_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedEntityWatchlistScreeningList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/history/list',
+                'operation_id': 'watchlist_screening_entity_history_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_entity_history_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_entity_history_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_entity_history_request':
+                        (ListWatchlistScreeningEntityHistoryRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_entity_history_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_history_list
+        )
+
+        def __watchlist_screening_entity_hits_list(
+            self,
+            list_watchlist_screening_entity_hit_request,
+            **kwargs
+        ):
+            """List hits for entity watchlist screenings  # noqa: E501
+
+            List all hits for the entity watchlist screening.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_hits_list(list_watchlist_screening_entity_hit_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_entity_hit_request (ListWatchlistScreeningEntityHitRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedEntityWatchlistScreeningHitList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_entity_hit_request'] = \
+                list_watchlist_screening_entity_hit_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_hits_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedEntityWatchlistScreeningHitList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/hit/list',
+                'operation_id': 'watchlist_screening_entity_hits_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_entity_hit_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_entity_hit_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_entity_hit_request':
+                        (ListWatchlistScreeningEntityHitRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_entity_hit_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_hits_list
+        )
+
+        def __watchlist_screening_entity_list(
+            self,
+            list_entity_watchlist_screening_request,
+            **kwargs
+        ):
+            """List entity watchlist screenings  # noqa: E501
+
+            List all entity screenings.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_list(list_entity_watchlist_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_entity_watchlist_screening_request (ListEntityWatchlistScreeningRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedEntityWatchlistScreeningList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_entity_watchlist_screening_request'] = \
+                list_entity_watchlist_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedEntityWatchlistScreeningList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/list',
+                'operation_id': 'watchlist_screening_entity_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_entity_watchlist_screening_request',
+                ],
+                'required': [
+                    'list_entity_watchlist_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_entity_watchlist_screening_request':
+                        (ListEntityWatchlistScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_entity_watchlist_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_list
+        )
+
+        def __watchlist_screening_entity_program_get(
+            self,
+            get_watchlist_screening_entity_program_request,
+            **kwargs
+        ):
+            """Get entity watchlist screening program  # noqa: E501
+
+            Get an entity watchlist screening program  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_program_get(get_watchlist_screening_entity_program_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                get_watchlist_screening_entity_program_request (GetWatchlistScreeningEntityProgramRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                EntityWatchlistProgram
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['get_watchlist_screening_entity_program_request'] = \
+                get_watchlist_screening_entity_program_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_program_get = _Endpoint(
+            settings={
+                'response_type': (EntityWatchlistProgram,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/program/get',
+                'operation_id': 'watchlist_screening_entity_program_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'get_watchlist_screening_entity_program_request',
+                ],
+                'required': [
+                    'get_watchlist_screening_entity_program_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'get_watchlist_screening_entity_program_request':
+                        (GetWatchlistScreeningEntityProgramRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'get_watchlist_screening_entity_program_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_program_get
+        )
+
+        def __watchlist_screening_entity_program_list(
+            self,
+            list_watchlist_screening_entity_programs_request,
+            **kwargs
+        ):
+            """List entity watchlist screening programs  # noqa: E501
+
+            List all entity watchlist screening programs  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_program_list(list_watchlist_screening_entity_programs_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_entity_programs_request (ListWatchlistScreeningEntityProgramsRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedEntityWatchlistProgramList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_entity_programs_request'] = \
+                list_watchlist_screening_entity_programs_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_program_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedEntityWatchlistProgramList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/program/list',
+                'operation_id': 'watchlist_screening_entity_program_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_entity_programs_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_entity_programs_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_entity_programs_request':
+                        (ListWatchlistScreeningEntityProgramsRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_entity_programs_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_program_list
+        )
+
+        def __watchlist_screening_entity_review_create(
+            self,
+            create_entity_watchlist_screening_review_request,
+            **kwargs
+        ):
+            """Create a review for an entity watchlist screening  # noqa: E501
+
+            Create a review for an entity watchlist screening. Reviews are compliance reports created by users in your organization regarding the relevance of potential hits found by Plaid.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_review_create(create_entity_watchlist_screening_review_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                create_entity_watchlist_screening_review_request (CreateEntityWatchlistScreeningReviewRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                EntityWatchlistScreeningReview
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['create_entity_watchlist_screening_review_request'] = \
+                create_entity_watchlist_screening_review_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_review_create = _Endpoint(
+            settings={
+                'response_type': (EntityWatchlistScreeningReview,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/review/create',
+                'operation_id': 'watchlist_screening_entity_review_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'create_entity_watchlist_screening_review_request',
+                ],
+                'required': [
+                    'create_entity_watchlist_screening_review_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'create_entity_watchlist_screening_review_request':
+                        (CreateEntityWatchlistScreeningReviewRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'create_entity_watchlist_screening_review_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_review_create
+        )
+
+        def __watchlist_screening_entity_review_list(
+            self,
+            list_watchlist_screening_entity_reviews_request,
+            **kwargs
+        ):
+            """List reviews for entity watchlist screenings  # noqa: E501
+
+            List all reviews for a particular entity watchlist screening. Reviews are compliance reports created by users in your organization regarding the relevance of potential hits found by Plaid.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_review_list(list_watchlist_screening_entity_reviews_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_entity_reviews_request (ListWatchlistScreeningEntityReviewsRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedEntityWatchlistScreeningReviewList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_entity_reviews_request'] = \
+                list_watchlist_screening_entity_reviews_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_review_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedEntityWatchlistScreeningReviewList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/review/list',
+                'operation_id': 'watchlist_screening_entity_review_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_entity_reviews_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_entity_reviews_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_entity_reviews_request':
+                        (ListWatchlistScreeningEntityReviewsRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_entity_reviews_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_review_list
+        )
+
+        def __watchlist_screening_entity_update(
+            self,
+            update_entity_screening_request,
+            **kwargs
+        ):
+            """Update an entity screening  # noqa: E501
+
+            Update an entity watchlist screening.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_entity_update(update_entity_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                update_entity_screening_request (UpdateEntityScreeningRequest): The entity screening was successfully updated.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                EntityWatchlistScreening
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['update_entity_screening_request'] = \
+                update_entity_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_entity_update = _Endpoint(
+            settings={
+                'response_type': (EntityWatchlistScreening,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/entity/update',
+                'operation_id': 'watchlist_screening_entity_update',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'update_entity_screening_request',
+                ],
+                'required': [
+                    'update_entity_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'update_entity_screening_request':
+                        (UpdateEntityScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'update_entity_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_entity_update
+        )
+
+        def __watchlist_screening_individual_create(
+            self,
+            watchlist_screening_create_request,
+            **kwargs
+        ):
+            """Create a watchlist screening for a person  # noqa: E501
+
+            Create a new Watchlist Screening to check your customer against watchlists defined in the associated Watchlist Program. If your associated program has ongoing screening enabled, this is the profile information that will be used to monitor your customer over time.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_create(watchlist_screening_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                watchlist_screening_create_request (WatchlistScreeningCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WatchlistScreeningIndividual
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['watchlist_screening_create_request'] = \
+                watchlist_screening_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_create = _Endpoint(
+            settings={
+                'response_type': (WatchlistScreeningIndividual,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/create',
+                'operation_id': 'watchlist_screening_individual_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'watchlist_screening_create_request',
+                ],
+                'required': [
+                    'watchlist_screening_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'watchlist_screening_create_request':
+                        (WatchlistScreeningCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'watchlist_screening_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_create
+        )
+
+        def __watchlist_screening_individual_get(
+            self,
+            get_individual_watchlist_screening_request,
+            **kwargs
+        ):
+            """Retrieve an individual watchlist screening  # noqa: E501
+
+            Retrieve a previously created individual watchlist screening  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_get(get_individual_watchlist_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                get_individual_watchlist_screening_request (GetIndividualWatchlistScreeningRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WatchlistScreeningIndividual
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['get_individual_watchlist_screening_request'] = \
+                get_individual_watchlist_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_get = _Endpoint(
+            settings={
+                'response_type': (WatchlistScreeningIndividual,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/get',
+                'operation_id': 'watchlist_screening_individual_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'get_individual_watchlist_screening_request',
+                ],
+                'required': [
+                    'get_individual_watchlist_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'get_individual_watchlist_screening_request':
+                        (GetIndividualWatchlistScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'get_individual_watchlist_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_get
+        )
+
+        def __watchlist_screening_individual_history_list(
+            self,
+            list_watchlist_screening_individual_history_request,
+            **kwargs
+        ):
+            """List history for individual watchlist screenings  # noqa: E501
+
+            List all changes to the individual watchlist screening in reverse-chronological order. If the watchlist screening has not been edited, no history will be returned.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_history_list(list_watchlist_screening_individual_history_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_individual_history_request (ListWatchlistScreeningIndividualHistoryRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedIndividualWatchlistScreeningList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_individual_history_request'] = \
+                list_watchlist_screening_individual_history_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_history_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedIndividualWatchlistScreeningList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/history/list',
+                'operation_id': 'watchlist_screening_individual_history_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_individual_history_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_individual_history_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_individual_history_request':
+                        (ListWatchlistScreeningIndividualHistoryRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_individual_history_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_history_list
+        )
+
+        def __watchlist_screening_individual_hit_list(
+            self,
+            list_watchlist_screening_individual_hit_request,
+            **kwargs
+        ):
+            """List hits for individual watchlist screening  # noqa: E501
+
+            List all hits found by Plaid for a particular individual watchlist screening.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_hit_list(list_watchlist_screening_individual_hit_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_individual_hit_request (ListWatchlistScreeningIndividualHitRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedIndividualWatchlistScreeningHitList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_individual_hit_request'] = \
+                list_watchlist_screening_individual_hit_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_hit_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedIndividualWatchlistScreeningHitList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/hit/list',
+                'operation_id': 'watchlist_screening_individual_hit_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_individual_hit_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_individual_hit_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_individual_hit_request':
+                        (ListWatchlistScreeningIndividualHitRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_individual_hit_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_hit_list
+        )
+
+        def __watchlist_screening_individual_list(
+            self,
+            list_individual_watchlist_screening_request,
+            **kwargs
+        ):
+            """List Individual Watchlist Screenings  # noqa: E501
+
+            List previously created watchlist screenings for individuals  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_list(list_individual_watchlist_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_individual_watchlist_screening_request (ListIndividualWatchlistScreeningRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedIndividualWatchlistScreeningList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_individual_watchlist_screening_request'] = \
+                list_individual_watchlist_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedIndividualWatchlistScreeningList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/list',
+                'operation_id': 'watchlist_screening_individual_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_individual_watchlist_screening_request',
+                ],
+                'required': [
+                    'list_individual_watchlist_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_individual_watchlist_screening_request':
+                        (ListIndividualWatchlistScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_individual_watchlist_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_list
+        )
+
+        def __watchlist_screening_individual_program_get(
+            self,
+            get_watchlist_screening_individual_program_request,
+            **kwargs
+        ):
+            """Get individual watchlist screening program  # noqa: E501
+
+            Get an individual watchlist screening program  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_program_get(get_watchlist_screening_individual_program_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                get_watchlist_screening_individual_program_request (GetWatchlistScreeningIndividualProgramRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IndividualWatchlistProgram
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['get_watchlist_screening_individual_program_request'] = \
+                get_watchlist_screening_individual_program_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_program_get = _Endpoint(
+            settings={
+                'response_type': (IndividualWatchlistProgram,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/program/get',
+                'operation_id': 'watchlist_screening_individual_program_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'get_watchlist_screening_individual_program_request',
+                ],
+                'required': [
+                    'get_watchlist_screening_individual_program_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'get_watchlist_screening_individual_program_request':
+                        (GetWatchlistScreeningIndividualProgramRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'get_watchlist_screening_individual_program_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_program_get
+        )
+
+        def __watchlist_screening_individual_program_list(
+            self,
+            list_watchlist_screening_individual_programs_request,
+            **kwargs
+        ):
+            """List individual watchlist screening programs  # noqa: E501
+
+            List all individual watchlist screening programs  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_program_list(list_watchlist_screening_individual_programs_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_individual_programs_request (ListWatchlistScreeningIndividualProgramsRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedIndividualWatchlistProgramList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_individual_programs_request'] = \
+                list_watchlist_screening_individual_programs_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_program_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedIndividualWatchlistProgramList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/program/list',
+                'operation_id': 'watchlist_screening_individual_program_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_individual_programs_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_individual_programs_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_individual_programs_request':
+                        (ListWatchlistScreeningIndividualProgramsRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_individual_programs_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_program_list
+        )
+
+        def __watchlist_screening_individual_review_create(
+            self,
+            create_individual_watchlist_screening_review_request,
+            **kwargs
+        ):
+            """Create a review for an individual watchlist screening  # noqa: E501
+
+            Create a review for the individual watchlist screening. Reviews are compliance reports created by users in your organization regarding the relevance of potential hits found by Plaid.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_review_create(create_individual_watchlist_screening_review_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                create_individual_watchlist_screening_review_request (CreateIndividualWatchlistScreeningReviewRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WatchlistScreeningReview
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['create_individual_watchlist_screening_review_request'] = \
+                create_individual_watchlist_screening_review_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_review_create = _Endpoint(
+            settings={
+                'response_type': (WatchlistScreeningReview,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/review/create',
+                'operation_id': 'watchlist_screening_individual_review_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'create_individual_watchlist_screening_review_request',
+                ],
+                'required': [
+                    'create_individual_watchlist_screening_review_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'create_individual_watchlist_screening_review_request':
+                        (CreateIndividualWatchlistScreeningReviewRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'create_individual_watchlist_screening_review_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_review_create
+        )
+
+        def __watchlist_screening_individual_reviews_list(
+            self,
+            list_watchlist_screening_individual_reviews_request,
+            **kwargs
+        ):
+            """List reviews for individual watchlist screenings  # noqa: E501
+
+            List all reviews for the individual watchlist screening.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_reviews_list(list_watchlist_screening_individual_reviews_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                list_watchlist_screening_individual_reviews_request (ListWatchlistScreeningIndividualReviewsRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaginatedIndividualWatchlistScreeningReviewList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['list_watchlist_screening_individual_reviews_request'] = \
+                list_watchlist_screening_individual_reviews_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_reviews_list = _Endpoint(
+            settings={
+                'response_type': (PaginatedIndividualWatchlistScreeningReviewList,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/review/list',
+                'operation_id': 'watchlist_screening_individual_reviews_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'list_watchlist_screening_individual_reviews_request',
+                ],
+                'required': [
+                    'list_watchlist_screening_individual_reviews_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'list_watchlist_screening_individual_reviews_request':
+                        (ListWatchlistScreeningIndividualReviewsRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'list_watchlist_screening_individual_reviews_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_reviews_list
+        )
+
+        def __watchlist_screening_individual_update(
+            self,
+            update_individual_screening_request,
+            **kwargs
+        ):
+            """Update individual watchlist screening  # noqa: E501
+
+            Update a specific individual watchlist screening. This endpoint can be used to add additional customer information, correct outdated information, add a reference id, assign the individual to a reviewer, and update which program it is associated with. Please note that you may not update `search_terms` and `status` at the same time since editing `search_terms` may trigger an automatic `status` change.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.watchlist_screening_individual_update(update_individual_screening_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                update_individual_screening_request (UpdateIndividualScreeningRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WatchlistScreeningIndividual
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['update_individual_screening_request'] = \
+                update_individual_screening_request
+            return self.call_with_http_info(**kwargs)
+
+        self.watchlist_screening_individual_update = _Endpoint(
+            settings={
+                'response_type': (WatchlistScreeningIndividual,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/watchlist_screening/individual/update',
+                'operation_id': 'watchlist_screening_individual_update',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'update_individual_screening_request',
+                ],
+                'required': [
+                    'update_individual_screening_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'update_individual_screening_request':
+                        (UpdateIndividualScreeningRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'update_individual_screening_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__watchlist_screening_individual_update
         )
 
         def __webhook_verification_key_get(

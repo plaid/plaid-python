@@ -84,6 +84,7 @@ class CreditEmploymentVerification(ModelNormal):
         """
         lazy_import()
         return {
+            'account_id': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'start_date': (date, none_type,),  # noqa: E501
             'end_date': (date, none_type,),  # noqa: E501
@@ -98,6 +99,7 @@ class CreditEmploymentVerification(ModelNormal):
 
 
     attribute_map = {
+        'account_id': 'account_id',  # noqa: E501
         'status': 'status',  # noqa: E501
         'start_date': 'start_date',  # noqa: E501
         'end_date': 'end_date',  # noqa: E501
@@ -118,10 +120,11 @@ class CreditEmploymentVerification(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, status, start_date, end_date, employer, title, platform_ids, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, status, start_date, end_date, employer, title, platform_ids, *args, **kwargs):  # noqa: E501
         """CreditEmploymentVerification - a model defined in OpenAPI
 
         Args:
+            account_id (str, none_type): ID of the payroll provider account.
             status (str, none_type): Current employment status.
             start_date (date, none_type): Start of employment in ISO 8601 format (YYYY-MM-DD).
             end_date (date, none_type): End of employment, if applicable. Provided in ISO 8601 format (YYY-MM-DD).
@@ -185,6 +188,7 @@ class CreditEmploymentVerification(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.account_id = account_id
         self.status = status
         self.start_date = start_date
         self.end_date = end_date

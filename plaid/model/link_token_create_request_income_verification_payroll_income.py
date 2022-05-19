@@ -76,6 +76,7 @@ class LinkTokenCreateRequestIncomeVerificationPayrollIncome(ModelNormal):
         lazy_import()
         return {
             'flow_types': ([IncomeVerificationPayrollFlowType], none_type,),  # noqa: E501
+            'is_update_mode': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -85,6 +86,7 @@ class LinkTokenCreateRequestIncomeVerificationPayrollIncome(ModelNormal):
 
     attribute_map = {
         'flow_types': 'flow_types',  # noqa: E501
+        'is_update_mode': 'is_update_mode',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,6 +136,7 @@ class LinkTokenCreateRequestIncomeVerificationPayrollIncome(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             flow_types ([IncomeVerificationPayrollFlowType], none_type): The types of payroll income verification to enable for the link session. If none are specified, then users will see both document and digital payroll income.. [optional]  # noqa: E501
+            is_update_mode (bool): An identifier to indicate whether the income verification link token will be used for an update or not. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

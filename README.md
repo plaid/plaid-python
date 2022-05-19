@@ -106,12 +106,32 @@ response = ... # type TransactionsGetResponse
 # to_dict makes it first a python dictionary, and then we turn it into a string JSON.
 json_string = json.dumps(response.to_dict())
 ```
-
 ### Dates
 
-Dates and date times in requests and responses, which are represented as strings in the API and in previous client library versions, are represented in this version of the library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme.
+Dates and datetimes in requests, which are represented as strings in the API and in previous client library versions, are represented in this version of the Python client library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme. For more information on the Python's `datetime` module, see [Python's official documentation](https://docs.python.org/3/library/datetime.html).
+
+Note that the `datetime.strptime` method [will silently remove time zone information](https://www.enricozini.org/blog/2009/debian/using-python-datetime/). Time zone information is required for request fields that accept datetimes. Failing to include time zone information (or passing in a string, instead of a `datetime.datetime` object) will result in an error. See the following examples for guidance on `datetime.date` and `datetime.datetime` usage.
+
+If the API reference documentation for a field specifies `format: date`, either of following are acceptable:
+
+```py
+from datetime import date
+
+a = date(2022, 5, 5)
+b = date.fromisoformat('2022-05-05')
+```
+
+If the API reference documentation for a field specifies `format: date-time`, the following is acceptable:
+
+
+```py
+from datetime import datetime
+
+a = datetime(2022, 5, 5, 22, 35, 49, tzinfo=datetime.timezone.utc)
+```
 
 ### Enums
+
 While the API and previous library versions represent enums using strings, this current library uses Python classes with restricted values.
 
 Old:

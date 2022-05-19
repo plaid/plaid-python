@@ -85,6 +85,7 @@ class PaymentInitiationMetadata(ModelNormal):
         lazy_import()
         return {
             'supports_international_payments': (bool,),  # noqa: E501
+            'supports_sepa_instant': (bool,),  # noqa: E501
             'maximum_payment_amount': (PaymentInitiationMaximumPaymentAmount,),  # noqa: E501
             'supports_refund_details': (bool,),  # noqa: E501
             'standing_order_metadata': (PaymentInitiationStandingOrderMetadata,),  # noqa: E501
@@ -97,6 +98,7 @@ class PaymentInitiationMetadata(ModelNormal):
 
     attribute_map = {
         'supports_international_payments': 'supports_international_payments',  # noqa: E501
+        'supports_sepa_instant': 'supports_sepa_instant',  # noqa: E501
         'maximum_payment_amount': 'maximum_payment_amount',  # noqa: E501
         'supports_refund_details': 'supports_refund_details',  # noqa: E501
         'standing_order_metadata': 'standing_order_metadata',  # noqa: E501
@@ -114,11 +116,12 @@ class PaymentInitiationMetadata(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, supports_international_payments, maximum_payment_amount, supports_refund_details, standing_order_metadata, *args, **kwargs):  # noqa: E501
+    def __init__(self, supports_international_payments, supports_sepa_instant, maximum_payment_amount, supports_refund_details, standing_order_metadata, *args, **kwargs):  # noqa: E501
         """PaymentInitiationMetadata - a model defined in OpenAPI
 
         Args:
             supports_international_payments (bool): Indicates whether the institution supports payments from a different country.
+            supports_sepa_instant (bool): Indicates whether the institution supports SEPA Instant payments.
             maximum_payment_amount (PaymentInitiationMaximumPaymentAmount):
             supports_refund_details (bool): Indicates whether the institution supports returning refund details when initiating a payment.
             standing_order_metadata (PaymentInitiationStandingOrderMetadata):
@@ -180,6 +183,7 @@ class PaymentInitiationMetadata(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.supports_international_payments = supports_international_payments
+        self.supports_sepa_instant = supports_sepa_instant
         self.maximum_payment_amount = maximum_payment_amount
         self.supports_refund_details = supports_refund_details
         self.standing_order_metadata = standing_order_metadata

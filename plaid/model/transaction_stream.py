@@ -93,7 +93,7 @@ class TransactionStream(ModelNormal):
             'category_id': (str,),  # noqa: E501
             'category': ([str],),  # noqa: E501
             'description': (str,),  # noqa: E501
-            'merchant_name': (str,),  # noqa: E501
+            'merchant_name': (str, none_type,),  # noqa: E501
             'first_date': (date,),  # noqa: E501
             'last_date': (date,),  # noqa: E501
             'frequency': (RecurringTransactionFrequency,),  # noqa: E501
@@ -149,7 +149,7 @@ class TransactionStream(ModelNormal):
             category_id (str): The ID of the category to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).
             category ([str]): A hierarchical array of the categories to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).
             description (str): A description of the transaction stream.
-            merchant_name (str): The merchant associated with the transaction stream.
+            merchant_name (str, none_type): The merchant associated with the transaction stream.
             first_date (date): The posted date of the earliest transaction in the stream.
             last_date (date): The posted date of the latest transaction in the stream.
             frequency (RecurringTransactionFrequency):

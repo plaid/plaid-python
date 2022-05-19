@@ -117,7 +117,7 @@ class SandboxItemFireWebhookRequest(ModelNormal):
 
         Args:
             access_token (str): The access token associated with the Item data is being requested for.
-            webhook_code (str): The following values for `webhook_code` are supported:  * `DEFAULT_UPDATE` * `NEW_ACCOUNTS_AVAILABLE` * `AUTH_DATA_UPDATE`
+            webhook_code (str): The webhook codes that can be fired by this test endpoint.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

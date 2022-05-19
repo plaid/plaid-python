@@ -59,7 +59,10 @@ class WalletTransaction(ModelNormal):
 
     allowed_values = {
         ('type',): {
+            'BANK_TRANSFER': "BANK_TRANSFER",
             'PAYOUT': "PAYOUT",
+            'PIS_PAY_IN': "PIS_PAY_IN",
+            'REFUND': "REFUND",
         },
     }
 
@@ -125,19 +128,19 @@ class WalletTransaction(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, transaction_id, reference, amount, counterparty, status, created_at, *args, **kwargs):  # noqa: E501
+    def __init__(self, transaction_id, reference, type, amount, counterparty, status, created_at, *args, **kwargs):  # noqa: E501
         """WalletTransaction - a model defined in OpenAPI
 
         Args:
             transaction_id (str): A unique ID identifying the transaction
             reference (str): A reference for the transaction
+            type (str): The type of the transaction. The supported transaction types that are returned are: `BANK_TRANSFER:` a transaction which credits an e-wallet through an external bank transfer.  `PAYOUT:` a transaction which debits an e-wallet by disbursing funds to a counterparty.  `PIS_PAY_IN:` a payment which credits an e-wallet through Plaid's Payment Initiation Services (PIS) APIs. For more information see the [Payment Initiation endpoints](https://plaid.com/docs/api/products/payment-initiation/).  `REFUND:` a transaction which debits an e-wallet by refunding a previously initated payment made through Plaid's [PIS APIs](https://plaid.com/docs/api/products/payment-initiation/).
             amount (WalletTransactionAmount):
             counterparty (WalletTransactionCounterparty):
             status (WalletTransactionStatus):
             created_at (datetime): Timestamp when the transaction was created, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
 
         Keyword Args:
-            type (str): The type of of the transaction. Currently, only `\"PAYOUT\"` is supported.. defaults to "PAYOUT", must be one of ["PAYOUT", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -170,7 +173,6 @@ class WalletTransaction(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        type = kwargs.get('type', "PAYOUT")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

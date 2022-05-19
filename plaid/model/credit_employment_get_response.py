@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.credit_employment_verification import CreditEmploymentVerification
-    globals()['CreditEmploymentVerification'] = CreditEmploymentVerification
+    from plaid.model.credit_employment_item import CreditEmploymentItem
+    globals()['CreditEmploymentItem'] = CreditEmploymentItem
 
 
 class CreditEmploymentGetResponse(ModelNormal):
@@ -82,7 +82,7 @@ class CreditEmploymentGetResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'employments': ([CreditEmploymentVerification],),  # noqa: E501
+            'items': ([CreditEmploymentItem],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -92,7 +92,7 @@ class CreditEmploymentGetResponse(ModelNormal):
 
 
     attribute_map = {
-        'employments': 'employments',  # noqa: E501
+        'items': 'items',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
     }
 
@@ -108,11 +108,11 @@ class CreditEmploymentGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, employments, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, items, request_id, *args, **kwargs):  # noqa: E501
         """CreditEmploymentGetResponse - a model defined in OpenAPI
 
         Args:
-            employments ([CreditEmploymentVerification]): A list of employment verification summaries.
+            items ([CreditEmploymentItem]): Array of employment items.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -171,7 +171,7 @@ class CreditEmploymentGetResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.employments = employments
+        self.items = items
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
