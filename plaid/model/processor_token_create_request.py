@@ -78,6 +78,7 @@ class ProcessorTokenCreateRequest(ModelNormal):
             'SOLID': "solid",
             'HIGHNOTE': "highnote",
             'APEX_CLEARING': "apex_clearing",
+            'GUSTO': "gusto",
         },
     }
 

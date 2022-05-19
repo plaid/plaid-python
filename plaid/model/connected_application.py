@@ -78,6 +78,7 @@ class ConnectedApplication(ModelNormal):
             'application_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'created_at': (date,),  # noqa: E501
+            'display_name': (str, none_type,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
             'application_url': (str, none_type,),  # noqa: E501
             'reason_for_access': (str, none_type,),  # noqa: E501
@@ -93,6 +94,7 @@ class ConnectedApplication(ModelNormal):
         'application_id': 'application_id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
+        'display_name': 'display_name',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
         'application_url': 'application_url',  # noqa: E501
         'reason_for_access': 'reason_for_access',  # noqa: E501
@@ -150,6 +152,7 @@ class ConnectedApplication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            display_name (str, none_type): A human-readable name of the application for display purposes. [optional]  # noqa: E501
             logo_url (str, none_type): A URL that links to the application logo image.. [optional]  # noqa: E501
             application_url (str, none_type): The URL for the application's website. [optional]  # noqa: E501
             reason_for_access (str, none_type): A string provided by the connected app stating why they use their respective enabled products.. [optional]  # noqa: E501

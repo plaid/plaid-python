@@ -120,7 +120,7 @@ class AssetReportCreateRequest(ModelNormal):
 
         Args:
             access_tokens ([str]): An array of access tokens corresponding to the Items that will be included in the report. The `assets` product must have been initialized for the Items during link; the Assets product cannot be added after initialization.
-            days_requested (int): The maximum integer number of days of history to include in the Asset Report. If using Fannie Mae Day 1 Certainty, `days_requested` must be at least 61 for new originations or at least 31 for refinancings.
+            days_requested (int): The maximum integer number of days of history to include in the Asset Report. If using Fannie Mae Day 1 Certainty, `days_requested` must be at least 61 for new originations or at least 31 for refinancings.  An Asset Report requested with \"Additional History\" (that is, with more than 61 days of transaction history) will incur an Additional History fee.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

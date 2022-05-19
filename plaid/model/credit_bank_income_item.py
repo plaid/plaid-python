@@ -81,7 +81,7 @@ class CreditBankIncomeItem(ModelNormal):
             'bank_income_sources': ([CreditBankIncomeSource],),  # noqa: E501
             'last_updated_time': (datetime,),  # noqa: E501
             'institution_id': (str,),  # noqa: E501
-            'insitution_name': (str,),  # noqa: E501
+            'institution_name': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
         }
 
@@ -95,7 +95,7 @@ class CreditBankIncomeItem(ModelNormal):
         'bank_income_sources': 'bank_income_sources',  # noqa: E501
         'last_updated_time': 'last_updated_time',  # noqa: E501
         'institution_id': 'institution_id',  # noqa: E501
-        'insitution_name': 'insitution_name',  # noqa: E501
+        'institution_name': 'institution_name',  # noqa: E501
         'item_id': 'item_id',  # noqa: E501
     }
 
@@ -149,7 +149,7 @@ class CreditBankIncomeItem(ModelNormal):
             bank_income_sources ([CreditBankIncomeSource]): The income sources for this Item. Each entry in the array is a single income source.. [optional]  # noqa: E501
             last_updated_time (datetime): The time when this Item's data was last retrieved from the financial institution.. [optional]  # noqa: E501
             institution_id (str): The unique identifier of the institution associated with the Item.. [optional]  # noqa: E501
-            insitution_name (str): The name of the institution associated with the Item.. [optional]  # noqa: E501
+            institution_name (str): The name of the institution associated with the Item.. [optional]  # noqa: E501
             item_id (str): The unique identifier for the Item.. [optional]  # noqa: E501
         """
 

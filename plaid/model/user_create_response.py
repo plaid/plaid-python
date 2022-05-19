@@ -109,7 +109,7 @@ class UserCreateResponse(ModelNormal):
 
         Args:
             user_token (str): The user token associated with the User data is being requested for.
-            user_id (str):
+            user_id (str): The Plaid `user_id` of the User associated with this webhook, warning, or error.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

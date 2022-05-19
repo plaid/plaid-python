@@ -71,6 +71,7 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
         """
         return {
             'days_requested': (int,),  # noqa: E501
+            'enable_multiple_items': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -80,6 +81,7 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
 
     attribute_map = {
         'days_requested': 'days_requested',  # noqa: E501
+        'enable_multiple_items': 'enable_multiple_items',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -129,6 +131,7 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             days_requested (int): The number of days of data to request for the Bank Income product. [optional]  # noqa: E501
+            enable_multiple_items (bool, none_type): Whether to enable multiple items to be added in the link session. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

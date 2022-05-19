@@ -108,7 +108,7 @@ class Cause(ModelComposed):
             'causes': ([bool, date, datetime, dict, float, int, list, str, none_type],),  # noqa: E501
             'status': (float, none_type,),  # noqa: E501
             'documentation_url': (str,),  # noqa: E501
-            'suggested_action': (str,),  # noqa: E501
+            'suggested_action': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -187,7 +187,7 @@ class Cause(ModelComposed):
             causes ([bool, date, datetime, dict, float, int, list, str, none_type]): In the Assets product, a request can pertain to more than one Item. If an error is returned for such a request, `causes` will return an array of errors containing a breakdown of these errors on the individual Item level, if any can be identified.  `causes` will only be provided for the `error_type` `ASSET_REPORT_ERROR`. `causes` will also not be populated inside an error nested within a `warning` object.. [optional]  # noqa: E501
             status (float, none_type): The HTTP status code associated with the error. This will only be returned in the response body when the error information is provided via a webhook.. [optional]  # noqa: E501
             documentation_url (str): The URL of a Plaid documentation page with more information about the error. [optional]  # noqa: E501
-            suggested_action (str): Suggested steps for resolving the error. [optional]  # noqa: E501
+            suggested_action (str, none_type): Suggested steps for resolving the error. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

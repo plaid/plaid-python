@@ -80,6 +80,7 @@ class IncomeVerificationStatusWebhook(ModelNormal):
             'webhook_code': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
             'verification_status': (str,),  # noqa: E501
+            'user_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -92,6 +93,7 @@ class IncomeVerificationStatusWebhook(ModelNormal):
         'webhook_code': 'webhook_code',  # noqa: E501
         'item_id': 'item_id',  # noqa: E501
         'verification_status': 'verification_status',  # noqa: E501
+        'user_id': 'user_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,6 +148,7 @@ class IncomeVerificationStatusWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            user_id (str): The Plaid `user_id` of the User associated with this webhook, warning, or error.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -102,6 +102,7 @@ class TransferIntentCreate(ModelNormal):
             'iso_currency_code': (str,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
+            'require_guarantee': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -122,6 +123,7 @@ class TransferIntentCreate(ModelNormal):
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
+        'require_guarantee': 'require_guarantee',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -184,6 +186,7 @@ class TransferIntentCreate(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             account_id (str, none_type): The Plaid `account_id` for the account that will be debited or credited. Returned only if `account_id` was set on intent creation.. [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
+            require_guarantee (bool, none_type): When `true`, the transfer requires a `GUARANTEED` decision by Plaid to proceed (Guaranteed ACH customers only).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
