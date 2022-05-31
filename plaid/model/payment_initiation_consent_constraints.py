@@ -61,6 +61,9 @@ class PaymentInitiationConsentConstraints(ModelNormal):
     }
 
     validations = {
+        ('periodic_amounts',): {
+            'min_items': 1,
+        },
     }
 
     @cached_property
@@ -86,9 +89,9 @@ class PaymentInitiationConsentConstraints(ModelNormal):
         """
         lazy_import()
         return {
-            'valid_date_time': (PaymentConsentValidDateTime,),  # noqa: E501
             'max_payment_amount': (PaymentConsentMaxPaymentAmount,),  # noqa: E501
             'periodic_amounts': ([PaymentConsentPeriodicAmount],),  # noqa: E501
+            'valid_date_time': (PaymentConsentValidDateTime,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +100,9 @@ class PaymentInitiationConsentConstraints(ModelNormal):
 
 
     attribute_map = {
-        'valid_date_time': 'valid_date_time',  # noqa: E501
         'max_payment_amount': 'max_payment_amount',  # noqa: E501
         'periodic_amounts': 'periodic_amounts',  # noqa: E501
+        'valid_date_time': 'valid_date_time',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,8 +117,12 @@ class PaymentInitiationConsentConstraints(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, max_payment_amount, periodic_amounts, *args, **kwargs):  # noqa: E501
         """PaymentInitiationConsentConstraints - a model defined in OpenAPI
+
+        Args:
+            max_payment_amount (PaymentConsentMaxPaymentAmount):
+            periodic_amounts ([PaymentConsentPeriodicAmount]): A list of amount limitations per period of time.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,8 +156,6 @@ class PaymentInitiationConsentConstraints(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             valid_date_time (PaymentConsentValidDateTime): [optional]  # noqa: E501
-            max_payment_amount (PaymentConsentMaxPaymentAmount): [optional]  # noqa: E501
-            periodic_amounts ([PaymentConsentPeriodicAmount]): A list of amount limitations per period of time.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -176,6 +181,8 @@ class PaymentInitiationConsentConstraints(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.max_payment_amount = max_payment_amount
+        self.periodic_amounts = periodic_amounts
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

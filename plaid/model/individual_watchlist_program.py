@@ -85,12 +85,12 @@ class IndividualWatchlistProgram(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
-            'enabled': (bool,),  # noqa: E501
+            'is_rescanning_enabled': (bool,),  # noqa: E501
             'lists_enabled': ([IndividualWatchlistCode],),  # noqa: E501
             'name': (IndividualWatchlistScreeningProgramName,),  # noqa: E501
             'name_sensitivity': (ProgramNameSensitivity,),  # noqa: E501
             'audit_trail': (WatchlistScreeningAuditTrail,),  # noqa: E501
-            'archived': (bool,),  # noqa: E501
+            'is_archived': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -101,12 +101,12 @@ class IndividualWatchlistProgram(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
-        'enabled': 'enabled',  # noqa: E501
+        'is_rescanning_enabled': 'is_rescanning_enabled',  # noqa: E501
         'lists_enabled': 'lists_enabled',  # noqa: E501
         'name': 'name',  # noqa: E501
         'name_sensitivity': 'name_sensitivity',  # noqa: E501
         'audit_trail': 'audit_trail',  # noqa: E501
-        'archived': 'archived',  # noqa: E501
+        'is_archived': 'is_archived',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -121,18 +121,18 @@ class IndividualWatchlistProgram(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created_at, enabled, lists_enabled, name, name_sensitivity, audit_trail, archived, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, created_at, is_rescanning_enabled, lists_enabled, name, name_sensitivity, audit_trail, is_archived, *args, **kwargs):  # noqa: E501
         """IndividualWatchlistProgram - a model defined in OpenAPI
 
         Args:
             id (str): ID of the associated program.
             created_at (datetime): An ISO8601 formatted timestamp.
-            enabled (bool): Indicator specifying whether the program is enabled and can be used to screen customers.
+            is_rescanning_enabled (bool): Indicator specifying whether the program is enabled and will perform daily rescans.
             lists_enabled ([IndividualWatchlistCode]): Watchlists enabled for the associated program
             name (IndividualWatchlistScreeningProgramName):
             name_sensitivity (ProgramNameSensitivity):
             audit_trail (WatchlistScreeningAuditTrail):
-            archived (bool): Archived programs are read-only and cannot screen new customers nor participate in ongoing monitoring.
+            is_archived (bool): Archived programs are read-only and cannot screen new customers nor participate in ongoing monitoring.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -192,12 +192,12 @@ class IndividualWatchlistProgram(ModelNormal):
 
         self.id = id
         self.created_at = created_at
-        self.enabled = enabled
+        self.is_rescanning_enabled = is_rescanning_enabled
         self.lists_enabled = lists_enabled
         self.name = name
         self.name_sensitivity = name_sensitivity
         self.audit_trail = audit_trail
-        self.archived = archived
+        self.is_archived = is_archived
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

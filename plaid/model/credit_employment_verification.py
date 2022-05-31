@@ -91,6 +91,8 @@ class CreditEmploymentVerification(ModelNormal):
             'employer': (CreditEmployerVerification,),  # noqa: E501
             'title': (str, none_type,),  # noqa: E501
             'platform_ids': (CreditPlatformIds,),  # noqa: E501
+            'employee_type': (str, none_type,),  # noqa: E501
+            'last_paystub_date': (date, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +108,8 @@ class CreditEmploymentVerification(ModelNormal):
         'employer': 'employer',  # noqa: E501
         'title': 'title',  # noqa: E501
         'platform_ids': 'platform_ids',  # noqa: E501
+        'employee_type': 'employee_type',  # noqa: E501
+        'last_paystub_date': 'last_paystub_date',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,7 +124,7 @@ class CreditEmploymentVerification(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, status, start_date, end_date, employer, title, platform_ids, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, status, start_date, end_date, employer, title, platform_ids, employee_type, last_paystub_date, *args, **kwargs):  # noqa: E501
         """CreditEmploymentVerification - a model defined in OpenAPI
 
         Args:
@@ -131,6 +135,8 @@ class CreditEmploymentVerification(ModelNormal):
             employer (CreditEmployerVerification):
             title (str, none_type): Current title of employee.
             platform_ids (CreditPlatformIds):
+            employee_type (str, none_type): The type of employment for the individual. `\"FULL_TIME\"`: A full-time employee. `\"PART_TIME\"`: A part-time employee. `\"CONTRACTOR\"`: An employee typically hired externally through a contracting group. `\"TEMPORARY\"`: A temporary employee. `\"OTHER\"`: The employee type is not one of the above defined types.
+            last_paystub_date (date, none_type): The date of the employee's most recent paystub in ISO 8601 format (YYYY-MM-DD).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -195,6 +201,8 @@ class CreditEmploymentVerification(ModelNormal):
         self.employer = employer
         self.title = title
         self.platform_ids = platform_ids
+        self.employee_type = employee_type
+        self.last_paystub_date = last_paystub_date
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

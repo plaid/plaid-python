@@ -78,7 +78,7 @@ class WatchlistScreeningSearchTerms(ModelNormal):
             'watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (WatchlistScreeningIndividualName,),  # noqa: E501
             'date_of_birth': (object, none_type,),  # noqa: E501
-            'document': (object, none_type,),  # noqa: E501
+            'document_number': (object, none_type,),  # noqa: E501
             'country': (object, none_type,),  # noqa: E501
             'version': (float,),  # noqa: E501
         }
@@ -92,7 +92,7 @@ class WatchlistScreeningSearchTerms(ModelNormal):
         'watchlist_program_id': 'watchlist_program_id',  # noqa: E501
         'legal_name': 'legal_name',  # noqa: E501
         'date_of_birth': 'date_of_birth',  # noqa: E501
-        'document': 'document',  # noqa: E501
+        'document_number': 'document_number',  # noqa: E501
         'country': 'country',  # noqa: E501
         'version': 'version',  # noqa: E501
     }
@@ -109,14 +109,14 @@ class WatchlistScreeningSearchTerms(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, watchlist_program_id, legal_name, date_of_birth, document, country, version, *args, **kwargs):  # noqa: E501
+    def __init__(self, watchlist_program_id, legal_name, date_of_birth, document_number, country, version, *args, **kwargs):  # noqa: E501
         """WatchlistScreeningSearchTerms - a model defined in OpenAPI
 
         Args:
             watchlist_program_id (str): ID of the associated program.
             legal_name (WatchlistScreeningIndividualName):
             date_of_birth (object, none_type):
-            document (object, none_type):
+            document_number (object, none_type):
             country (object, none_type):
             version (float): The current version of the search terms. Starts at `1` and increments with each edit to `search_terms`.
 
@@ -179,7 +179,7 @@ class WatchlistScreeningSearchTerms(ModelNormal):
         self.watchlist_program_id = watchlist_program_id
         self.legal_name = legal_name
         self.date_of_birth = date_of_birth
-        self.document = document
+        self.document_number = document_number
         self.country = country
         self.version = version
         for var_name, var_value in kwargs.items():

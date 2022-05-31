@@ -74,7 +74,7 @@ class UpdateEntityScreeningRequestSearchTerms(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'legal_name': (object, none_type,),  # noqa: E501
-            'document': (object, none_type,),  # noqa: E501
+            'document_number': (object, none_type,),  # noqa: E501
             'email_address': (object, none_type,),  # noqa: E501
             'country': (object, none_type,),  # noqa: E501
             'phone_number': (object, none_type,),  # noqa: E501
@@ -91,7 +91,7 @@ class UpdateEntityScreeningRequestSearchTerms(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'legal_name': 'legal_name',  # noqa: E501
-        'document': 'document',  # noqa: E501
+        'document_number': 'document_number',  # noqa: E501
         'email_address': 'email_address',  # noqa: E501
         'country': 'country',  # noqa: E501
         'phone_number': 'phone_number',  # noqa: E501
@@ -150,7 +150,7 @@ class UpdateEntityScreeningRequestSearchTerms(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             legal_name (object, none_type): [optional]  # noqa: E501
-            document (object, none_type): [optional]  # noqa: E501
+            document_number (object, none_type): [optional]  # noqa: E501
             email_address (object, none_type): [optional]  # noqa: E501
             country (object, none_type): [optional]  # noqa: E501
             phone_number (object, none_type): [optional]  # noqa: E501

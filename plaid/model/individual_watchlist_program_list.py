@@ -75,7 +75,7 @@ class IndividualWatchlistProgramList(ModelNormal):
         """
         lazy_import()
         return {
-            'individual_watchlist_programs': ([IndividualWatchlistProgram],),  # noqa: E501
+            'watchlist_programs': ([IndividualWatchlistProgram],),  # noqa: E501
         }
 
     @cached_property
@@ -84,7 +84,7 @@ class IndividualWatchlistProgramList(ModelNormal):
 
 
     attribute_map = {
-        'individual_watchlist_programs': 'individual_watchlist_programs',  # noqa: E501
+        'watchlist_programs': 'watchlist_programs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -99,11 +99,11 @@ class IndividualWatchlistProgramList(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, individual_watchlist_programs, *args, **kwargs):  # noqa: E501
+    def __init__(self, watchlist_programs, *args, **kwargs):  # noqa: E501
         """IndividualWatchlistProgramList - a model defined in OpenAPI
 
         Args:
-            individual_watchlist_programs ([IndividualWatchlistProgram]): List of individual watchlist screening programs
+            watchlist_programs ([IndividualWatchlistProgram]): List of individual watchlist screening programs
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -161,7 +161,7 @@ class IndividualWatchlistProgramList(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.individual_watchlist_programs = individual_watchlist_programs
+        self.watchlist_programs = watchlist_programs
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -86,9 +86,9 @@ class EntityWatchlistScreeningHit(ModelNormal):
             'id': (str,),  # noqa: E501
             'review_status': (WatchlistScreeningHitStatus,),  # noqa: E501
             'first_active': (datetime,),  # noqa: E501
-            'inactive_since': (object, none_type,),  # noqa: E501
-            'historical_since': (object, none_type,),  # noqa: E501
-            'entity_list_code': (EntityWatchlistCode,),  # noqa: E501
+            'inactive_since': (datetime, none_type,),  # noqa: E501
+            'historical_since': (datetime, none_type,),  # noqa: E501
+            'list_code': (EntityWatchlistCode,),  # noqa: E501
             'plaid_uid': (str,),  # noqa: E501
             'source_uid': (SourceUID,),  # noqa: E501
             'analysis': (EntityScreeningHitAnalysis,),  # noqa: E501
@@ -106,7 +106,7 @@ class EntityWatchlistScreeningHit(ModelNormal):
         'first_active': 'first_active',  # noqa: E501
         'inactive_since': 'inactive_since',  # noqa: E501
         'historical_since': 'historical_since',  # noqa: E501
-        'entity_list_code': 'entity_list_code',  # noqa: E501
+        'list_code': 'list_code',  # noqa: E501
         'plaid_uid': 'plaid_uid',  # noqa: E501
         'source_uid': 'source_uid',  # noqa: E501
         'analysis': 'analysis',  # noqa: E501
@@ -125,16 +125,16 @@ class EntityWatchlistScreeningHit(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, review_status, first_active, inactive_since, historical_since, entity_list_code, plaid_uid, source_uid, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, review_status, first_active, inactive_since, historical_since, list_code, plaid_uid, source_uid, *args, **kwargs):  # noqa: E501
         """EntityWatchlistScreeningHit - a model defined in OpenAPI
 
         Args:
             id (str): ID of the associated entity screening hit.
             review_status (WatchlistScreeningHitStatus):
             first_active (datetime): An ISO8601 formatted timestamp.
-            inactive_since (object, none_type):
-            historical_since (object, none_type):
-            entity_list_code (EntityWatchlistCode):
+            inactive_since (datetime, none_type): An ISO8601 formatted timestamp.
+            historical_since (datetime, none_type): An ISO8601 formatted timestamp.
+            list_code (EntityWatchlistCode):
             plaid_uid (str): A universal identifier for a watchlist individual that is stable across searches and updates.
             source_uid (SourceUID):
 
@@ -201,7 +201,7 @@ class EntityWatchlistScreeningHit(ModelNormal):
         self.first_active = first_active
         self.inactive_since = inactive_since
         self.historical_since = historical_since
-        self.entity_list_code = entity_list_code
+        self.list_code = list_code
         self.plaid_uid = plaid_uid
         self.source_uid = source_uid
         for var_name, var_value in kwargs.items():

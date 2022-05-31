@@ -73,6 +73,8 @@ from plaid.model.categories_get_response import CategoriesGetResponse
 from plaid.model.create_entity_screening_request import CreateEntityScreeningRequest
 from plaid.model.create_entity_watchlist_screening_review_request import CreateEntityWatchlistScreeningReviewRequest
 from plaid.model.create_individual_watchlist_screening_review_request import CreateIndividualWatchlistScreeningReviewRequest
+from plaid.model.credit_audit_copy_token_create_request import CreditAuditCopyTokenCreateRequest
+from plaid.model.credit_audit_copy_token_create_response import CreditAuditCopyTokenCreateResponse
 from plaid.model.credit_bank_income_get_request import CreditBankIncomeGetRequest
 from plaid.model.credit_bank_income_get_response import CreditBankIncomeGetResponse
 from plaid.model.credit_bank_income_refresh_request import CreditBankIncomeRefreshRequest
@@ -304,6 +306,8 @@ from plaid.model.wallet_create_request import WalletCreateRequest
 from plaid.model.wallet_create_response import WalletCreateResponse
 from plaid.model.wallet_get_request import WalletGetRequest
 from plaid.model.wallet_get_response import WalletGetResponse
+from plaid.model.wallet_list_request import WalletListRequest
+from plaid.model.wallet_list_response import WalletListResponse
 from plaid.model.wallet_transaction_execute_request import WalletTransactionExecuteRequest
 from plaid.model.wallet_transaction_execute_response import WalletTransactionExecuteResponse
 from plaid.model.wallet_transaction_get_request import WalletTransactionGetRequest
@@ -3863,6 +3867,128 @@ class PlaidApi(object):
             callable=__create_payment_token
         )
 
+        def __credit_audit_copy_token_create(
+            self,
+            credit_audit_copy_token_create_request,
+            **kwargs
+        ):
+            """Create Asset or Income Report Audit Copy Token  # noqa: E501
+
+            Plaid can provide an Audit Copy token of an Asset Report and/or Income Report directly to a participating third party on your behalf. For example, Plaid can supply an Audit Copy token directly to Fannie Mae on your behalf if you participate in the Day 1 Certainty™ program. An Audit Copy token contains the same underlying data as the Asset Report and/or Income Report (result of /credit/payroll_income/get).  To grant access to an Audit Copy token, use the `/credit/audit_copy_token/create` endpoint to create an `audit_copy_token` and then pass that token to the third party who needs access. Each third party has its own `auditor_id`, for example `fannie_mae`. You’ll need to create a separate Audit Copy for each third party to whom you want to grant access to the Report.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_audit_copy_token_create(credit_audit_copy_token_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                credit_audit_copy_token_create_request (CreditAuditCopyTokenCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreditAuditCopyTokenCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['credit_audit_copy_token_create_request'] = \
+                credit_audit_copy_token_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_audit_copy_token_create = _Endpoint(
+            settings={
+                'response_type': (CreditAuditCopyTokenCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/audit_copy_token/create',
+                'operation_id': 'credit_audit_copy_token_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'credit_audit_copy_token_create_request',
+                ],
+                'required': [
+                    'credit_audit_copy_token_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'credit_audit_copy_token_create_request':
+                        (CreditAuditCopyTokenCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'credit_audit_copy_token_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_audit_copy_token_create
+        )
+
         def __credit_bank_income_get(
             self,
             credit_bank_income_get_request,
@@ -5700,7 +5826,7 @@ class PlaidApi(object):
         ):
             """Create a new identity verification  # noqa: E501
 
-            Create a new Identity Verification for the user specified by the `client_user_id` field. The requirements and behavior of the verification are determined by the `template_id` provided. If you don't know whether the associated user already has an active Identity Verification, you can specify `\"idempotent\": true` in the request body. With idempotency enabled, a new Identity Verification will only be created if one does not already exist for the associated `client_user_id` and `template_id`. If an Identity Verification is found, it will be returned unmodified with an `200 OK` HTTP status code.   # noqa: E501
+            Create a new Identity Verification for the user specified by the `client_user_id` field. The requirements and behavior of the verification are determined by the `template_id` provided. If you don't know whether the associated user already has an active Identity Verification, you can specify `\"is_idempotent\": true` in the request body. With idempotency enabled, a new Identity Verification will only be created if one does not already exist for the associated `client_user_id` and `template_id`. If an Identity Verification is found, it will be returned unmodified with an `200 OK` HTTP status code.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12654,7 +12780,7 @@ class PlaidApi(object):
         ):
             """Simulate creating a sweep  # noqa: E501
 
-            Use the `/sandbox/transfer/sweep/simulate` endpoint to create a sweep and associated events in the Sandbox environment. Upon calling this endpoint, all `posted` or `pending` transfers with a sweep status of `unswept` will become `swept`, and all `reversed` transfers with a sweep status of `swept` will become `reverse_swept`.  # noqa: E501
+            Use the `/sandbox/transfer/sweep/simulate` endpoint to create a sweep and associated events in the Sandbox environment. Upon calling this endpoint, all `posted` or `pending` transfers with a sweep status of `unswept` will become `swept`, and all `returned` transfers with a sweep status of `swept` will become `return_swept`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -16305,6 +16431,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__wallet_get
+        )
+
+        def __wallet_list(
+            self,
+            wallet_list_request,
+            **kwargs
+        ):
+            """Fetch a list of e-wallets  # noqa: E501
+
+            This endpoint lists all e-wallets in descending order of creation.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.wallet_list(wallet_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                wallet_list_request (WalletListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                WalletListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['wallet_list_request'] = \
+                wallet_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.wallet_list = _Endpoint(
+            settings={
+                'response_type': (WalletListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/wallet/list',
+                'operation_id': 'wallet_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'wallet_list_request',
+                ],
+                'required': [
+                    'wallet_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'wallet_list_request':
+                        (WalletListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'wallet_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__wallet_list
         )
 
         def __wallet_transaction_execute(

@@ -78,7 +78,7 @@ class WatchlistScreeningRequestSearchTerms(ModelNormal):
             'watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (WatchlistScreeningIndividualName,),  # noqa: E501
             'date_of_birth': (object, none_type,),  # noqa: E501
-            'document': (object, none_type,),  # noqa: E501
+            'document_number': (object, none_type,),  # noqa: E501
             'country': (object, none_type,),  # noqa: E501
         }
 
@@ -91,7 +91,7 @@ class WatchlistScreeningRequestSearchTerms(ModelNormal):
         'watchlist_program_id': 'watchlist_program_id',  # noqa: E501
         'legal_name': 'legal_name',  # noqa: E501
         'date_of_birth': 'date_of_birth',  # noqa: E501
-        'document': 'document',  # noqa: E501
+        'document_number': 'document_number',  # noqa: E501
         'country': 'country',  # noqa: E501
     }
 
@@ -146,7 +146,7 @@ class WatchlistScreeningRequestSearchTerms(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             date_of_birth (object, none_type): [optional]  # noqa: E501
-            document (object, none_type): [optional]  # noqa: E501
+            document_number (object, none_type): [optional]  # noqa: E501
             country (object, none_type): [optional]  # noqa: E501
         """
 

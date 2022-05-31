@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.update_entity_screening_request_resettable_field_list import UpdateEntityScreeningRequestResettableFieldList
     from plaid.model.update_entity_screening_request_search_terms import UpdateEntityScreeningRequestSearchTerms
+    globals()['UpdateEntityScreeningRequestResettableFieldList'] = UpdateEntityScreeningRequestResettableFieldList
     globals()['UpdateEntityScreeningRequestSearchTerms'] = UpdateEntityScreeningRequestSearchTerms
 
 
@@ -82,6 +84,7 @@ class UpdateEntityScreeningRequest(ModelNormal):
             'client_user_id': (object, none_type,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'reset_fields': (UpdateEntityScreeningRequestResettableFieldList,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +100,7 @@ class UpdateEntityScreeningRequest(ModelNormal):
         'client_user_id': 'client_user_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'reset_fields': 'reset_fields',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +158,7 @@ class UpdateEntityScreeningRequest(ModelNormal):
             client_user_id (object, none_type): [optional]  # noqa: E501
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            reset_fields (UpdateEntityScreeningRequestResettableFieldList): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

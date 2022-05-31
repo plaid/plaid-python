@@ -78,7 +78,7 @@ class EntityDocument(ModelNormal):
         lazy_import()
         return {
             'type': (EntityDocumentType,),  # noqa: E501
-            'value': (WatchlistScreeningDocumentValue,),  # noqa: E501
+            'number': (WatchlistScreeningDocumentValue,),  # noqa: E501
         }
 
     @cached_property
@@ -88,7 +88,7 @@ class EntityDocument(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'value': 'value',  # noqa: E501
+        'number': 'number',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,12 +103,12 @@ class EntityDocument(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, type, value, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, number, *args, **kwargs):  # noqa: E501
         """EntityDocument - a model defined in OpenAPI
 
         Args:
             type (EntityDocumentType):
-            value (WatchlistScreeningDocumentValue):
+            number (WatchlistScreeningDocumentValue):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -167,7 +167,7 @@ class EntityDocument(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.type = type
-        self.value = value
+        self.number = number
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
