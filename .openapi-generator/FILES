@@ -131,6 +131,8 @@ plaid/model/create_entity_watchlist_screening_review_request.py
 plaid/model/create_individual_watchlist_screening_review_request.py
 plaid/model/credit_account_subtype.py
 plaid/model/credit_account_subtypes.py
+plaid/model/credit_audit_copy_token_create_request.py
+plaid/model/credit_audit_copy_token_create_response.py
 plaid/model/credit_bank_income.py
 plaid/model/credit_bank_income_account.py
 plaid/model/credit_bank_income_account_type.py
@@ -779,8 +781,12 @@ plaid/model/transfer_user_address_in_response.py
 plaid/model/transfer_user_in_request.py
 plaid/model/transfer_user_in_response.py
 plaid/model/update_entity_screening_request.py
+plaid/model/update_entity_screening_request_resettable_field.py
+plaid/model/update_entity_screening_request_resettable_field_list.py
 plaid/model/update_entity_screening_request_search_terms.py
 plaid/model/update_individual_screening_request.py
+plaid/model/update_individual_screening_request_resettable_field.py
+plaid/model/update_individual_screening_request_resettable_field_list.py
 plaid/model/update_individual_screening_request_search_terms.py
 plaid/model/user_address.py
 plaid/model/user_create_request.py
@@ -803,6 +809,8 @@ plaid/model/wallet_create_response.py
 plaid/model/wallet_get_request.py
 plaid/model/wallet_get_response.py
 plaid/model/wallet_iso_currency_code.py
+plaid/model/wallet_list_request.py
+plaid/model/wallet_list_response.py
 plaid/model/wallet_numbers.py
 plaid/model/wallet_transaction.py
 plaid/model/wallet_transaction_amount.py

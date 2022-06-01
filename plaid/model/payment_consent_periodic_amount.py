@@ -114,12 +114,13 @@ class PaymentConsentPeriodicAmount(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount, interval, *args, **kwargs):  # noqa: E501
+    def __init__(self, amount, interval, alignment, *args, **kwargs):  # noqa: E501
         """PaymentConsentPeriodicAmount - a model defined in OpenAPI
 
         Args:
             amount (PaymentConsentPeriodicAmountAmount):
             interval (PaymentConsentPeriodicInterval):
+            alignment (PaymentConsentPeriodicAlignment):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,7 +153,6 @@ class PaymentConsentPeriodicAmount(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            alignment (PaymentConsentPeriodicAlignment): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -180,6 +180,7 @@ class PaymentConsentPeriodicAmount(ModelNormal):
 
         self.amount = amount
         self.interval = interval
+        self.alignment = alignment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

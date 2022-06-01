@@ -77,7 +77,7 @@ class EntityWatchlistScreeningSearchTerms(ModelNormal):
         return {
             'entity_watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (EntityWatchlistScreeningName,),  # noqa: E501
-            'document': (object, none_type,),  # noqa: E501
+            'document_number': (object, none_type,),  # noqa: E501
             'email_address': (object, none_type,),  # noqa: E501
             'country': (object, none_type,),  # noqa: E501
             'phone_number': (object, none_type,),  # noqa: E501
@@ -93,7 +93,7 @@ class EntityWatchlistScreeningSearchTerms(ModelNormal):
     attribute_map = {
         'entity_watchlist_program_id': 'entity_watchlist_program_id',  # noqa: E501
         'legal_name': 'legal_name',  # noqa: E501
-        'document': 'document',  # noqa: E501
+        'document_number': 'document_number',  # noqa: E501
         'email_address': 'email_address',  # noqa: E501
         'country': 'country',  # noqa: E501
         'phone_number': 'phone_number',  # noqa: E501
@@ -113,13 +113,13 @@ class EntityWatchlistScreeningSearchTerms(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, entity_watchlist_program_id, legal_name, document, email_address, country, phone_number, url, version, *args, **kwargs):  # noqa: E501
+    def __init__(self, entity_watchlist_program_id, legal_name, document_number, email_address, country, phone_number, url, version, *args, **kwargs):  # noqa: E501
         """EntityWatchlistScreeningSearchTerms - a model defined in OpenAPI
 
         Args:
             entity_watchlist_program_id (str): ID of the associated entity program.
             legal_name (EntityWatchlistScreeningName):
-            document (object, none_type):
+            document_number (object, none_type):
             email_address (object, none_type):
             country (object, none_type):
             phone_number (object, none_type):
@@ -184,7 +184,7 @@ class EntityWatchlistScreeningSearchTerms(ModelNormal):
 
         self.entity_watchlist_program_id = entity_watchlist_program_id
         self.legal_name = legal_name
-        self.document = document
+        self.document_number = document_number
         self.email_address = email_address
         self.country = country
         self.phone_number = phone_number

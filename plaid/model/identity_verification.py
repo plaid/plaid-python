@@ -90,7 +90,7 @@ class IdentityVerification(ModelNormal):
             'id': (str,),  # noqa: E501
             'client_user_id': (ClientUserID,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
-            'completed_at': (object, none_type,),  # noqa: E501
+            'completed_at': (datetime, none_type,),  # noqa: E501
             'previous_attempt_id': (str, none_type,),  # noqa: E501
             'shareable_url': (str, none_type,),  # noqa: E501
             'template': (IdentityVerificationTemplateReference,),  # noqa: E501
@@ -144,7 +144,7 @@ class IdentityVerification(ModelNormal):
             id (str): ID of the associated Identity Verification attempt.
             client_user_id (ClientUserID):
             created_at (datetime): An ISO8601 formatted timestamp.
-            completed_at (object, none_type):
+            completed_at (datetime, none_type): An ISO8601 formatted timestamp.
             previous_attempt_id (str, none_type): The ID for the Identity Verification preceding this session. This field will only be filled if the current Identity Verification is a retry of a previous attempt.
             shareable_url (str, none_type): A shareable URL that can be sent directly to the user to complete verification
             template (IdentityVerificationTemplateReference):

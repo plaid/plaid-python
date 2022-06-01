@@ -77,7 +77,7 @@ class EntityWatchlistSearchTerms(ModelNormal):
         return {
             'entity_watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (EntityWatchlistScreeningName,),  # noqa: E501
-            'document': (object, none_type,),  # noqa: E501
+            'document_number': (object, none_type,),  # noqa: E501
             'email_address': (object, none_type,),  # noqa: E501
             'country': (object, none_type,),  # noqa: E501
             'phone_number': (object, none_type,),  # noqa: E501
@@ -92,7 +92,7 @@ class EntityWatchlistSearchTerms(ModelNormal):
     attribute_map = {
         'entity_watchlist_program_id': 'entity_watchlist_program_id',  # noqa: E501
         'legal_name': 'legal_name',  # noqa: E501
-        'document': 'document',  # noqa: E501
+        'document_number': 'document_number',  # noqa: E501
         'email_address': 'email_address',  # noqa: E501
         'country': 'country',  # noqa: E501
         'phone_number': 'phone_number',  # noqa: E501
@@ -149,7 +149,7 @@ class EntityWatchlistSearchTerms(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            document (object, none_type): [optional]  # noqa: E501
+            document_number (object, none_type): [optional]  # noqa: E501
             email_address (object, none_type): [optional]  # noqa: E501
             country (object, none_type): [optional]  # noqa: E501
             phone_number (object, none_type): [optional]  # noqa: E501

@@ -114,7 +114,7 @@ class TransferRepaymentReturn(ModelNormal):
 
         Args:
             transfer_id (str): The unique identifier of the guaranteed transfer that was returned.
-            event_id (int): The unique identifier of the corresponding `reversed` transfer event.
+            event_id (int): The unique identifier of the corresponding `returned` transfer event.
             amount (str): The value of the returned transfer.
             iso_currency_code (str): The currency of the repayment, e.g. \"USD\".
 

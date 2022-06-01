@@ -134,7 +134,7 @@ class PayrollItemStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            processing_status (str, none_type): Denotes the processing status for the verification.  `UNKNOWN`: The processing status could not be determined.  `PROCESSING_COMPLETE`: The processing has completed and the data is available to be retrieved.  `PROCESSING`: The verification is still processing. The data is not available yet.  `UPLOADED`: The user uploaded a document. The document has not yet begun processing.  `CREATED`: The verification has been created but no data is associated with it yet.  `FAILED`: The processing failed to complete successfully.  `APPROVAL_STATUS_PENDING`: The user has not yet approved the sharing of the data.  `APPROVAL_STATUS_APPROVED`: The user has approved the sharing of the data.. [optional]  # noqa: E501
+            processing_status (str, none_type): Denotes the processing status for the verification.  `UNKNOWN`: The processing status could not be determined.  `PROCESSING_COMPLETE`: The processing has completed and the user has approved for sharing. The data is available to be retrieved.  `PROCESSING`: The verification is still processing. The data is not available yet.  `FAILED`: The processing failed to complete successfully.  `APPROVAL_STATUS_PENDING`: The processing has completed but the user has not yet approved the sharing of the data.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

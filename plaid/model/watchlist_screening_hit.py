@@ -86,8 +86,8 @@ class WatchlistScreeningHit(ModelNormal):
             'id': (str,),  # noqa: E501
             'review_status': (WatchlistScreeningHitStatus,),  # noqa: E501
             'first_active': (datetime,),  # noqa: E501
-            'inactive_since': (object, none_type,),  # noqa: E501
-            'historical_since': (object, none_type,),  # noqa: E501
+            'inactive_since': (datetime, none_type,),  # noqa: E501
+            'historical_since': (datetime, none_type,),  # noqa: E501
             'list_code': (IndividualWatchlistCode,),  # noqa: E501
             'plaid_uid': (str,),  # noqa: E501
             'source_uid': (SourceUID,),  # noqa: E501
@@ -132,8 +132,8 @@ class WatchlistScreeningHit(ModelNormal):
             id (str): ID of the associated screening hit.
             review_status (WatchlistScreeningHitStatus):
             first_active (datetime): An ISO8601 formatted timestamp.
-            inactive_since (object, none_type):
-            historical_since (object, none_type):
+            inactive_since (datetime, none_type): An ISO8601 formatted timestamp.
+            historical_since (datetime, none_type): An ISO8601 formatted timestamp.
             list_code (IndividualWatchlistCode):
             plaid_uid (str): A universal identifier for a watchlist individual that is stable across searches and updates.
             source_uid (SourceUID):

@@ -52,6 +52,7 @@ class TransferSweepStatus(ModelSimple):
             'UNSWEPT': "unswept",
             'SWEPT': "swept",
             'REVERSE_SWEPT': "reverse_swept",
+            'RETURN_SWEPT': "return_swept",
         },
     }
 
@@ -101,10 +102,10 @@ class TransferSweepStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The status of the sweep for the transfer. `unswept`: The transfer hasn't been swept yet. `swept`: The transfer was swept to the sweep account. `reverse_swept`: The transfer was reversed, funds were pulled back or pushed back to the sweep account. `null`: The transfer will never be swept (e.g. if the transfer is cancelled or reversed before being swept)., must be one of ["null", "unswept", "swept", "reverse_swept", ]  # noqa: E501
+            args[0] (str): The status of the sweep for the transfer. `unswept`: The transfer hasn't been swept yet. `swept`: The transfer was swept to the sweep account. `return_swept`: The transfer was returned, funds were pulled back or pushed back to the sweep account. `null`: The transfer will never be swept (e.g. if the transfer is cancelled or returned before being swept)., must be one of ["null", "unswept", "swept", "reverse_swept", "return_swept", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The status of the sweep for the transfer. `unswept`: The transfer hasn't been swept yet. `swept`: The transfer was swept to the sweep account. `reverse_swept`: The transfer was reversed, funds were pulled back or pushed back to the sweep account. `null`: The transfer will never be swept (e.g. if the transfer is cancelled or reversed before being swept)., must be one of ["null", "unswept", "swept", "reverse_swept", ]  # noqa: E501
+            value (str): The status of the sweep for the transfer. `unswept`: The transfer hasn't been swept yet. `swept`: The transfer was swept to the sweep account. `return_swept`: The transfer was returned, funds were pulled back or pushed back to the sweep account. `null`: The transfer will never be swept (e.g. if the transfer is cancelled or returned before being swept)., must be one of ["null", "unswept", "swept", "reverse_swept", "return_swept", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -147,7 +147,7 @@ class TransferEvent(ModelNormal):
             transfer_amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             failure_reason (TransferFailure):
             sweep_id (str, none_type): Plaid’s unique identifier for a sweep.
-            sweep_amount (str, none_type): A signed amount of how much was `swept` or `reverse_swept` (decimal string with two digits of precision e.g. \"-5.50\").
+            sweep_amount (str, none_type): A signed amount of how much was `swept` or `return_swept` (decimal string with two digits of precision e.g. \"-5.50\").
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

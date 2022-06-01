@@ -86,7 +86,7 @@ class PaginatedIndividualWatchlistProgramList(ModelComposed):
         """
         lazy_import()
         return {
-            'individual_watchlist_programs': ([IndividualWatchlistProgram],),  # noqa: E501
+            'watchlist_programs': ([IndividualWatchlistProgram],),  # noqa: E501
             'next_cursor': (str, none_type,),  # noqa: E501
         }
 
@@ -96,7 +96,7 @@ class PaginatedIndividualWatchlistProgramList(ModelComposed):
 
 
     attribute_map = {
-        'individual_watchlist_programs': 'individual_watchlist_programs',  # noqa: E501
+        'watchlist_programs': 'watchlist_programs',  # noqa: E501
         'next_cursor': 'next_cursor',  # noqa: E501
     }
 
@@ -113,11 +113,11 @@ class PaginatedIndividualWatchlistProgramList(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, individual_watchlist_programs, next_cursor, *args, **kwargs):  # noqa: E501
+    def __init__(self, watchlist_programs, next_cursor, *args, **kwargs):  # noqa: E501
         """PaginatedIndividualWatchlistProgramList - a model defined in OpenAPI
 
         Args:
-            individual_watchlist_programs ([IndividualWatchlistProgram]): List of individual watchlist screening programs
+            watchlist_programs ([IndividualWatchlistProgram]): List of individual watchlist screening programs
             next_cursor (str, none_type): An identifier that determines which page of results you receive.
 
         Keyword Args:
@@ -184,7 +184,7 @@ class PaginatedIndividualWatchlistProgramList(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'individual_watchlist_programs': individual_watchlist_programs,
+            'watchlist_programs': watchlist_programs,
             'next_cursor': next_cursor,
         }
         model_args = {}

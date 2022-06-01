@@ -75,13 +75,13 @@ class IdentityVerificationCreateRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'shareable': (bool,),  # noqa: E501
+            'is_shareable': (bool,),  # noqa: E501
             'template_id': (str,),  # noqa: E501
-            'consent': (bool,),  # noqa: E501
+            'gave_consent': (bool,),  # noqa: E501
             'user': (IdentityVerificationRequestUser,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'idempotent': (bool, none_type,),  # noqa: E501
+            'is_idempotent': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,13 +90,13 @@ class IdentityVerificationCreateRequest(ModelNormal):
 
 
     attribute_map = {
-        'shareable': 'shareable',  # noqa: E501
+        'is_shareable': 'is_shareable',  # noqa: E501
         'template_id': 'template_id',  # noqa: E501
-        'consent': 'consent',  # noqa: E501
+        'gave_consent': 'gave_consent',  # noqa: E501
         'user': 'user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'idempotent': 'idempotent',  # noqa: E501
+        'is_idempotent': 'is_idempotent',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,16 +111,16 @@ class IdentityVerificationCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, shareable, template_id, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, is_shareable, template_id, user, *args, **kwargs):  # noqa: E501
         """IdentityVerificationCreateRequest - a model defined in OpenAPI
 
         Args:
-            shareable (bool): A flag specifying whether you would like Plaid to expose a shareable URL for the verification being created.
+            is_shareable (bool): A flag specifying whether you would like Plaid to expose a shareable URL for the verification being created.
             template_id (str): ID of the associated Identity Verification template.
             user (IdentityVerificationRequestUser):
 
         Keyword Args:
-            consent (bool): A flag specifying whether the end user has already agreed to a privacy policy specifying that their data will be shared with Plaid for verification purposes.  If `consent` is set to `true`, the `accept_tos` step will be marked as `skipped` and the end user's session will start at the next step requirement.. defaults to True  # noqa: E501
+            gave_consent (bool): A flag specifying whether the end user has already agreed to a privacy policy specifying that their data will be shared with Plaid for verification purposes.  If `gave_consent` is set to `true`, the `accept_tos` step will be marked as `skipped` and the end user's session will start at the next step requirement.. defaults to True  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -153,10 +153,10 @@ class IdentityVerificationCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            idempotent (bool, none_type): An optional flag specifying how you would like Plaid to handle attempts to create an Identity Verification when an Identity Verification already exists for the provided `client_user_id` and `template_id`. If idempotency is enabled, Plaid will return the existing Identity Verification. If idempotency is disabled, Plaid will reject the request with a `400 Bad Request` status code if an Identity Verification already exists for the supplied `client_user_id` and `template_id`.. [optional]  # noqa: E501
+            is_idempotent (bool, none_type): An optional flag specifying how you would like Plaid to handle attempts to create an Identity Verification when an Identity Verification already exists for the provided `client_user_id` and `template_id`. If idempotency is enabled, Plaid will return the existing Identity Verification. If idempotency is disabled, Plaid will reject the request with a `400 Bad Request` status code if an Identity Verification already exists for the supplied `client_user_id` and `template_id`.. [optional]  # noqa: E501
         """
 
-        consent = kwargs.get('consent', True)
+        gave_consent = kwargs.get('gave_consent', True)
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -180,9 +180,9 @@ class IdentityVerificationCreateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.shareable = shareable
+        self.is_shareable = is_shareable
         self.template_id = template_id
-        self.consent = consent
+        self.gave_consent = gave_consent
         self.user = user
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

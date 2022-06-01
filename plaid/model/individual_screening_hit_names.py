@@ -76,7 +76,7 @@ class IndividualScreeningHitNames(ModelNormal):
         lazy_import()
         return {
             'full': (str,),  # noqa: E501
-            'primary': (bool,),  # noqa: E501
+            'is_primary': (bool,),  # noqa: E501
             'weak_alias_determination': (WeakAliasDetermination,),  # noqa: E501
         }
 
@@ -87,7 +87,7 @@ class IndividualScreeningHitNames(ModelNormal):
 
     attribute_map = {
         'full': 'full',  # noqa: E501
-        'primary': 'primary',  # noqa: E501
+        'is_primary': 'is_primary',  # noqa: E501
         'weak_alias_determination': 'weak_alias_determination',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class IndividualScreeningHitNames(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, full, primary, weak_alias_determination, *args, **kwargs):  # noqa: E501
+    def __init__(self, full, is_primary, weak_alias_determination, *args, **kwargs):  # noqa: E501
         """IndividualScreeningHitNames - a model defined in OpenAPI
 
         Args:
             full (str): The full name of the individual, including all parts.
-            primary (bool): Primary names are those most commonly used to refer to this person. Only one name will ever be marked as primary.
+            is_primary (bool): Primary names are those most commonly used to refer to this person. Only one name will ever be marked as primary.
             weak_alias_determination (WeakAliasDetermination):
 
         Keyword Args:
@@ -168,7 +168,7 @@ class IndividualScreeningHitNames(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.full = full
-        self.primary = primary
+        self.is_primary = is_primary
         self.weak_alias_determination = weak_alias_determination
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
