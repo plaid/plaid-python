@@ -91,6 +91,8 @@ class Enhancements(ModelNormal):
             'category': ([str],),  # noqa: E501
             'location': (Location,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
+            'merchant_website': (str, none_type,),  # noqa: E501
+            'merchant_logo_url': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
         }
@@ -106,6 +108,8 @@ class Enhancements(ModelNormal):
         'category': 'category',  # noqa: E501
         'location': 'location',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
+        'merchant_website': 'merchant_website',  # noqa: E501
+        'merchant_logo_url': 'merchant_logo_url',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
     }
@@ -163,6 +167,8 @@ class Enhancements(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the raw description.. [optional]  # noqa: E501
+            merchant_website (str, none_type): The merchant website.. [optional]  # noqa: E501
+            merchant_logo_url (str, none_type): A link to the merchant logo. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
         """

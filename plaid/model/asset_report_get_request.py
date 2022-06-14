@@ -74,6 +74,7 @@ class AssetReportGetRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'include_insights': (bool,),  # noqa: E501
+            'fast_report': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -86,6 +87,7 @@ class AssetReportGetRequest(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'include_insights': 'include_insights',  # noqa: E501
+        'fast_report': 'fast_report',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +142,7 @@ class AssetReportGetRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             include_insights (bool): `true` if you would like to retrieve the Asset Report with Insights, `false` otherwise. This field defaults to `false` if omitted.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            fast_report (bool): `true` to fetch \"fast\" version of asset report. Defaults to false if omitted.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
