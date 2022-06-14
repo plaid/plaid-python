@@ -30,6 +30,7 @@ def lazy_import():
     from plaid.model.link_token_create_institution_data import LinkTokenCreateInstitutionData
     from plaid.model.link_token_create_request_auth import LinkTokenCreateRequestAuth
     from plaid.model.link_token_create_request_deposit_switch import LinkTokenCreateRequestDepositSwitch
+    from plaid.model.link_token_create_request_identity_verification import LinkTokenCreateRequestIdentityVerification
     from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
     from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
     from plaid.model.link_token_create_request_transfer import LinkTokenCreateRequestTransfer
@@ -42,6 +43,7 @@ def lazy_import():
     globals()['LinkTokenCreateInstitutionData'] = LinkTokenCreateInstitutionData
     globals()['LinkTokenCreateRequestAuth'] = LinkTokenCreateRequestAuth
     globals()['LinkTokenCreateRequestDepositSwitch'] = LinkTokenCreateRequestDepositSwitch
+    globals()['LinkTokenCreateRequestIdentityVerification'] = LinkTokenCreateRequestIdentityVerification
     globals()['LinkTokenCreateRequestIncomeVerification'] = LinkTokenCreateRequestIncomeVerification
     globals()['LinkTokenCreateRequestPaymentInitiation'] = LinkTokenCreateRequestPaymentInitiation
     globals()['LinkTokenCreateRequestTransfer'] = LinkTokenCreateRequestTransfer
@@ -123,6 +125,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'auth': (LinkTokenCreateRequestAuth,),  # noqa: E501
             'transfer': (LinkTokenCreateRequestTransfer,),  # noqa: E501
             'update': (LinkTokenCreateRequestUpdate,),  # noqa: E501
+            'identity_verification': (LinkTokenCreateRequestIdentityVerification,),  # noqa: E501
             'user_token': (str,),  # noqa: E501
         }
 
@@ -155,6 +158,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'auth': 'auth',  # noqa: E501
         'transfer': 'transfer',  # noqa: E501
         'update': 'update',  # noqa: E501
+        'identity_verification': 'identity_verification',  # noqa: E501
         'user_token': 'user_token',  # noqa: E501
     }
 
@@ -229,6 +233,7 @@ class LinkTokenCreateRequest(ModelNormal):
             auth (LinkTokenCreateRequestAuth): [optional]  # noqa: E501
             transfer (LinkTokenCreateRequestTransfer): [optional]  # noqa: E501
             update (LinkTokenCreateRequestUpdate): [optional]  # noqa: E501
+            identity_verification (LinkTokenCreateRequestIdentityVerification): [optional]  # noqa: E501
             user_token (str): A user token generated using /user/create. Any item created during the link session will be associated with the user.. [optional]  # noqa: E501
         """
 
