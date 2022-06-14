@@ -73,6 +73,10 @@ class LinkTokenCreateRequestAuth(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'auth_type_select_enabled': (bool,),  # noqa: E501
+            'automated_microdeposits_enabled': (bool,),  # noqa: E501
+            'instant_match_enabled': (bool,),  # noqa: E501
+            'same_day_microdeposits_enabled': (bool,),  # noqa: E501
             'flow_type': (str,),  # noqa: E501
         }
 
@@ -82,6 +86,10 @@ class LinkTokenCreateRequestAuth(ModelNormal):
 
 
     attribute_map = {
+        'auth_type_select_enabled': 'auth_type_select_enabled',  # noqa: E501
+        'automated_microdeposits_enabled': 'automated_microdeposits_enabled',  # noqa: E501
+        'instant_match_enabled': 'instant_match_enabled',  # noqa: E501
+        'same_day_microdeposits_enabled': 'same_day_microdeposits_enabled',  # noqa: E501
         'flow_type': 'flow_type',  # noqa: E501
     }
 
@@ -100,10 +108,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
     def __init__(self, *args, **kwargs):  # noqa: E501
         """LinkTokenCreateRequestAuth - a model defined in OpenAPI
 
-        Args:
-
         Keyword Args:
-            flow_type (str): The optional Auth flow to use. Currently only used to enable Flexible Auth.. defaults to "FLEXIBLE_AUTH", must be one of ["FLEXIBLE_AUTH", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -134,9 +139,13 @@ class LinkTokenCreateRequestAuth(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            auth_type_select_enabled (bool): Specifies whether Auth Type Select is enabled for the Link session, allowing the end user to choose between linking instantly or manually prior to selecting their financial institution. Note that this can only be true if `same_day_microdeposits_enabled` is set to true.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            automated_microdeposits_enabled (bool): Specifies whether the Link session is enabled for the Automated Micro-deposits flow.. [optional]  # noqa: E501
+            instant_match_enabled (bool): Specifies whether the Link session is enabled for the Instant Match flow.. [optional]  # noqa: E501
+            same_day_microdeposits_enabled (bool): Specifies whether the Link session is enabled for the Same Day Micro-deposits flow.. [optional]  # noqa: E501
+            flow_type (str): This field has been deprecated in favor of `auth_type_select_enabled`.. [optional] if omitted the server will use the default value of "FLEXIBLE_AUTH"  # noqa: E501
         """
 
-        flow_type = kwargs.get('flow_type', "FLEXIBLE_AUTH")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -160,7 +169,6 @@ class LinkTokenCreateRequestAuth(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.flow_type = flow_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

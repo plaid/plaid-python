@@ -56,6 +56,9 @@ class LinkTokenCreateRequestPaymentInitiation(ModelNormal):
         ('payment_id',): {
             'min_length': 1,
         },
+        ('consent_id',): {
+            'min_length': 1,
+        },
     }
 
     additional_properties_type = None
@@ -74,6 +77,7 @@ class LinkTokenCreateRequestPaymentInitiation(ModelNormal):
         """
         return {
             'payment_id': (str,),  # noqa: E501
+            'consent_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -83,6 +87,7 @@ class LinkTokenCreateRequestPaymentInitiation(ModelNormal):
 
     attribute_map = {
         'payment_id': 'payment_id',  # noqa: E501
+        'consent_id': 'consent_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,6 +139,7 @@ class LinkTokenCreateRequestPaymentInitiation(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            consent_id (str): The `consent_id` provided by the `/payment_initiation/consent/create` endpoint.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

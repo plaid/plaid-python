@@ -87,7 +87,9 @@ from plaid.model.credit_payroll_income_precheck_request import CreditPayrollInco
 from plaid.model.credit_payroll_income_precheck_response import CreditPayrollIncomePrecheckResponse
 from plaid.model.credit_payroll_income_refresh_request import CreditPayrollIncomeRefreshRequest
 from plaid.model.credit_payroll_income_refresh_response import CreditPayrollIncomeRefreshResponse
-from plaid.model.dashboard_user import DashboardUser
+from plaid.model.credit_relay_create_request import CreditRelayCreateRequest
+from plaid.model.credit_relay_create_response import CreditRelayCreateResponse
+from plaid.model.dashboard_user_response import DashboardUserResponse
 from plaid.model.deposit_switch_alt_create_request import DepositSwitchAltCreateRequest
 from plaid.model.deposit_switch_alt_create_response import DepositSwitchAltCreateResponse
 from plaid.model.deposit_switch_create_request import DepositSwitchCreateRequest
@@ -100,9 +102,9 @@ from plaid.model.employers_search_request import EmployersSearchRequest
 from plaid.model.employers_search_response import EmployersSearchResponse
 from plaid.model.employment_verification_get_request import EmploymentVerificationGetRequest
 from plaid.model.employment_verification_get_response import EmploymentVerificationGetResponse
-from plaid.model.entity_watchlist_program import EntityWatchlistProgram
-from plaid.model.entity_watchlist_screening import EntityWatchlistScreening
-from plaid.model.entity_watchlist_screening_review import EntityWatchlistScreeningReview
+from plaid.model.entity_watchlist_program_response import EntityWatchlistProgramResponse
+from plaid.model.entity_watchlist_screening_response import EntityWatchlistScreeningResponse
+from plaid.model.entity_watchlist_screening_review_response import EntityWatchlistScreeningReviewResponse
 from plaid.model.error import Error
 from plaid.model.get_dashboard_user_request import GetDashboardUserRequest
 from plaid.model.get_entity_watchlist_screening_request import GetEntityWatchlistScreeningRequest
@@ -112,8 +114,8 @@ from plaid.model.get_watchlist_screening_entity_program_request import GetWatchl
 from plaid.model.get_watchlist_screening_individual_program_request import GetWatchlistScreeningIndividualProgramRequest
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_response import IdentityGetResponse
-from plaid.model.identity_verification import IdentityVerification
 from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
+from plaid.model.identity_verification_response import IdentityVerificationResponse
 from plaid.model.identity_verification_retry_request import IdentityVerificationRetryRequest
 from plaid.model.income_verification_create_request import IncomeVerificationCreateRequest
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
@@ -126,7 +128,7 @@ from plaid.model.income_verification_refresh_request import IncomeVerificationRe
 from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
 from plaid.model.income_verification_taxforms_get_request import IncomeVerificationTaxformsGetRequest
 from plaid.model.income_verification_taxforms_get_response import IncomeVerificationTaxformsGetResponse
-from plaid.model.individual_watchlist_program import IndividualWatchlistProgram
+from plaid.model.individual_watchlist_program_response import IndividualWatchlistProgramResponse
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
 from plaid.model.institutions_get_by_id_response import InstitutionsGetByIdResponse
 from plaid.model.institutions_get_request import InstitutionsGetRequest
@@ -173,16 +175,16 @@ from plaid.model.list_watchlist_screening_individual_history_request import List
 from plaid.model.list_watchlist_screening_individual_hit_request import ListWatchlistScreeningIndividualHitRequest
 from plaid.model.list_watchlist_screening_individual_programs_request import ListWatchlistScreeningIndividualProgramsRequest
 from plaid.model.list_watchlist_screening_individual_reviews_request import ListWatchlistScreeningIndividualReviewsRequest
-from plaid.model.paginated_dashboard_user_list import PaginatedDashboardUserList
-from plaid.model.paginated_entity_watchlist_program_list import PaginatedEntityWatchlistProgramList
-from plaid.model.paginated_entity_watchlist_screening_hit_list import PaginatedEntityWatchlistScreeningHitList
-from plaid.model.paginated_entity_watchlist_screening_list import PaginatedEntityWatchlistScreeningList
-from plaid.model.paginated_entity_watchlist_screening_review_list import PaginatedEntityWatchlistScreeningReviewList
-from plaid.model.paginated_identity_verification_paginated_list import PaginatedIdentityVerificationPaginatedList
-from plaid.model.paginated_individual_watchlist_program_list import PaginatedIndividualWatchlistProgramList
-from plaid.model.paginated_individual_watchlist_screening_hit_list import PaginatedIndividualWatchlistScreeningHitList
-from plaid.model.paginated_individual_watchlist_screening_list import PaginatedIndividualWatchlistScreeningList
-from plaid.model.paginated_individual_watchlist_screening_review_list import PaginatedIndividualWatchlistScreeningReviewList
+from plaid.model.paginated_dashboard_user_list_response import PaginatedDashboardUserListResponse
+from plaid.model.paginated_entity_watchlist_program_list_response import PaginatedEntityWatchlistProgramListResponse
+from plaid.model.paginated_entity_watchlist_screening_hit_list_response import PaginatedEntityWatchlistScreeningHitListResponse
+from plaid.model.paginated_entity_watchlist_screening_list_response import PaginatedEntityWatchlistScreeningListResponse
+from plaid.model.paginated_entity_watchlist_screening_review_list_response import PaginatedEntityWatchlistScreeningReviewListResponse
+from plaid.model.paginated_identity_verification_list_response import PaginatedIdentityVerificationListResponse
+from plaid.model.paginated_individual_watchlist_program_list_response import PaginatedIndividualWatchlistProgramListResponse
+from plaid.model.paginated_individual_watchlist_screening_hit_list_response import PaginatedIndividualWatchlistScreeningHitListResponse
+from plaid.model.paginated_individual_watchlist_screening_list_response import PaginatedIndividualWatchlistScreeningListResponse
+from plaid.model.paginated_individual_watchlist_screening_review_list_response import PaginatedIndividualWatchlistScreeningReviewListResponse
 from plaid.model.payment_initiation_consent_create_request import PaymentInitiationConsentCreateRequest
 from plaid.model.payment_initiation_consent_create_response import PaymentInitiationConsentCreateResponse
 from plaid.model.payment_initiation_consent_get_request import PaymentInitiationConsentGetRequest
@@ -315,8 +317,8 @@ from plaid.model.wallet_transaction_get_response import WalletTransactionGetResp
 from plaid.model.wallet_transactions_list_request import WalletTransactionsListRequest
 from plaid.model.wallet_transactions_list_response import WalletTransactionsListResponse
 from plaid.model.watchlist_screening_create_request import WatchlistScreeningCreateRequest
-from plaid.model.watchlist_screening_individual import WatchlistScreeningIndividual
-from plaid.model.watchlist_screening_review import WatchlistScreeningReview
+from plaid.model.watchlist_screening_individual_response import WatchlistScreeningIndividualResponse
+from plaid.model.watchlist_screening_review_response import WatchlistScreeningReviewResponse
 from plaid.model.webhook_verification_key_get_request import WebhookVerificationKeyGetRequest
 from plaid.model.webhook_verification_key_get_response import WebhookVerificationKeyGetResponse
 
@@ -4721,6 +4723,128 @@ class PlaidApi(object):
             callable=__credit_payroll_income_refresh
         )
 
+        def __credit_relay_create(
+            self,
+            credit_relay_create_request,
+            **kwargs
+        ):
+            """Create a `relay_token` to share an Asset Report with a partner client  # noqa: E501
+
+            Plaid can share an Asset Report directly with a participating third party on your behalf. The shared Asset Report is the exact same Asset Report originally created in `/asset_report/create`.  To grant access to an Asset Report to a third party, use the `/credit/relay/create` endpoint to create a `relay_token` and then pass that token to the third party who needs access. Each third party has its own `secondary_client_id`, for example `ce5bd328dcd34123456`. You'll need to create a separate `relay_token` for each third party to whom you want to grant access to the Report.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_relay_create(credit_relay_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                credit_relay_create_request (CreditRelayCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreditRelayCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['credit_relay_create_request'] = \
+                credit_relay_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_relay_create = _Endpoint(
+            settings={
+                'response_type': (CreditRelayCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/relay/create',
+                'operation_id': 'credit_relay_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'credit_relay_create_request',
+                ],
+                'required': [
+                    'credit_relay_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'credit_relay_create_request':
+                        (CreditRelayCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'credit_relay_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_relay_create
+        )
+
         def __dashboard_user_list(
             self,
             list_dashboard_user_request,
@@ -4760,7 +4884,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedDashboardUserList
+                PaginatedDashboardUserListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -4789,7 +4913,7 @@ class PlaidApi(object):
 
         self.dashboard_user_list = _Endpoint(
             settings={
-                'response_type': (PaginatedDashboardUserList,),
+                'response_type': (PaginatedDashboardUserListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -4882,7 +5006,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                DashboardUser
+                DashboardUserResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -4911,7 +5035,7 @@ class PlaidApi(object):
 
         self.dashobard_user_get = _Endpoint(
             settings={
-                'response_type': (DashboardUser,),
+                'response_type': (DashboardUserResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -5858,7 +5982,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IdentityVerification
+                IdentityVerificationResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -5887,7 +6011,7 @@ class PlaidApi(object):
 
         self.identity_verification_create = _Endpoint(
             settings={
-                'response_type': (IdentityVerification,),
+                'response_type': (IdentityVerificationResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -5980,7 +6104,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IdentityVerification
+                IdentityVerificationResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6009,7 +6133,7 @@ class PlaidApi(object):
 
         self.identity_verification_get = _Endpoint(
             settings={
-                'response_type': (IdentityVerification,),
+                'response_type': (IdentityVerificationResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -6102,7 +6226,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIdentityVerificationPaginatedList
+                PaginatedIdentityVerificationListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6131,7 +6255,7 @@ class PlaidApi(object):
 
         self.identity_verification_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIdentityVerificationPaginatedList,),
+                'response_type': (PaginatedIdentityVerificationListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -6224,7 +6348,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IdentityVerification
+                IdentityVerificationResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6253,7 +6377,7 @@ class PlaidApi(object):
 
         self.identity_verification_retry = _Endpoint(
             settings={
-                'response_type': (IdentityVerification,),
+                'response_type': (IdentityVerificationResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -7534,7 +7658,7 @@ class PlaidApi(object):
         ):
             """Get investment transactions  # noqa: E501
 
-            The `/investments/transactions/get` endpoint allows developers to retrieve user-authorized transaction data for investment accounts.  Transactions are returned in reverse-chronological order, and the sequence of transaction ordering is stable and will not shift.  Due to the potentially large number of investment transactions associated with an Item, results are paginated. Manipulate the count and offset parameters in conjunction with the `total_investment_transactions` response body field to fetch all available investment transactions.  # noqa: E501
+            The `/investments/transactions/get` endpoint allows developers to retrieve up to 24 months of user-authorized transaction data for investment accounts.  Transactions are returned in reverse-chronological order, and the sequence of transaction ordering is stable and will not shift.  Due to the potentially large number of investment transactions associated with an Item, results are paginated. Manipulate the count and offset parameters in conjunction with the `total_investment_transactions` response body field to fetch all available investment transactions.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -16960,7 +17084,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreening
+                EntityWatchlistScreeningResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -16989,7 +17113,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_create = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreening,),
+                'response_type': (EntityWatchlistScreeningResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17082,7 +17206,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreening
+                EntityWatchlistScreeningResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17111,7 +17235,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_get = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreening,),
+                'response_type': (EntityWatchlistScreeningResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17204,7 +17328,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningList
+                PaginatedEntityWatchlistScreeningListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17233,7 +17357,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_history_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningList,),
+                'response_type': (PaginatedEntityWatchlistScreeningListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17326,7 +17450,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningHitList
+                PaginatedEntityWatchlistScreeningHitListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17355,7 +17479,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_hits_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningHitList,),
+                'response_type': (PaginatedEntityWatchlistScreeningHitListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17448,7 +17572,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningList
+                PaginatedEntityWatchlistScreeningListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17477,7 +17601,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningList,),
+                'response_type': (PaginatedEntityWatchlistScreeningListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17570,7 +17694,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistProgram
+                EntityWatchlistProgramResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17599,7 +17723,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_program_get = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistProgram,),
+                'response_type': (EntityWatchlistProgramResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17692,7 +17816,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistProgramList
+                PaginatedEntityWatchlistProgramListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17721,7 +17845,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_program_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistProgramList,),
+                'response_type': (PaginatedEntityWatchlistProgramListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17814,7 +17938,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreeningReview
+                EntityWatchlistScreeningReviewResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17843,7 +17967,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_review_create = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreeningReview,),
+                'response_type': (EntityWatchlistScreeningReviewResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -17936,7 +18060,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningReviewList
+                PaginatedEntityWatchlistScreeningReviewListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -17965,7 +18089,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_review_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningReviewList,),
+                'response_type': (PaginatedEntityWatchlistScreeningReviewListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18058,7 +18182,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreening
+                EntityWatchlistScreeningResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18087,7 +18211,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_entity_update = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreening,),
+                'response_type': (EntityWatchlistScreeningResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18180,7 +18304,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningIndividual
+                WatchlistScreeningIndividualResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18209,7 +18333,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_create = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningIndividual,),
+                'response_type': (WatchlistScreeningIndividualResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18302,7 +18426,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningIndividual
+                WatchlistScreeningIndividualResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18331,7 +18455,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_get = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningIndividual,),
+                'response_type': (WatchlistScreeningIndividualResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18424,7 +18548,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningList
+                PaginatedIndividualWatchlistScreeningListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18453,7 +18577,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_history_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningList,),
+                'response_type': (PaginatedIndividualWatchlistScreeningListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18546,7 +18670,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningHitList
+                PaginatedIndividualWatchlistScreeningHitListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18575,7 +18699,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_hit_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningHitList,),
+                'response_type': (PaginatedIndividualWatchlistScreeningHitListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18668,7 +18792,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningList
+                PaginatedIndividualWatchlistScreeningListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18697,7 +18821,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningList,),
+                'response_type': (PaginatedIndividualWatchlistScreeningListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18790,7 +18914,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IndividualWatchlistProgram
+                IndividualWatchlistProgramResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18819,7 +18943,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_program_get = _Endpoint(
             settings={
-                'response_type': (IndividualWatchlistProgram,),
+                'response_type': (IndividualWatchlistProgramResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18912,7 +19036,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistProgramList
+                PaginatedIndividualWatchlistProgramListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18941,7 +19065,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_program_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistProgramList,),
+                'response_type': (PaginatedIndividualWatchlistProgramListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19034,7 +19158,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningReview
+                WatchlistScreeningReviewResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19063,7 +19187,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_review_create = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningReview,),
+                'response_type': (WatchlistScreeningReviewResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19156,7 +19280,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningReviewList
+                PaginatedIndividualWatchlistScreeningReviewListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19185,7 +19309,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_reviews_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningReviewList,),
+                'response_type': (PaginatedIndividualWatchlistScreeningReviewListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19278,7 +19402,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningIndividual
+                WatchlistScreeningIndividualResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19307,7 +19431,7 @@ class PlaidApi(object):
 
         self.watchlist_screening_individual_update = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningIndividual,),
+                'response_type': (WatchlistScreeningIndividualResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
