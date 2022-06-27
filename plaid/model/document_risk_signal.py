@@ -88,6 +88,7 @@ class DocumentRiskSignal(ModelNormal):
             'institution_metadata': (DocumentRiskSignalInstitutionMetadata,),  # noqa: E501
             'expected_value': (str, none_type,),  # noqa: E501
             'actual_value': (str, none_type,),  # noqa: E501
+            'signal_description': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +103,7 @@ class DocumentRiskSignal(ModelNormal):
         'institution_metadata': 'institution_metadata',  # noqa: E501
         'expected_value': 'expected_value',  # noqa: E501
         'actual_value': 'actual_value',  # noqa: E501
+        'signal_description': 'signal_description',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -116,8 +118,17 @@ class DocumentRiskSignal(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, field, has_fraud_risk, institution_metadata, expected_value, actual_value, signal_description, *args, **kwargs):  # noqa: E501
         """DocumentRiskSignal - a model defined in OpenAPI
+
+        Args:
+            type (str, none_type): The result from the risk signal check.
+            field (str, none_type): The field which the risk signal was computed for
+            has_fraud_risk (bool, none_type): A flag used to quickly identify if the signal indicates that this field is authentic or fraudulent
+            institution_metadata (DocumentRiskSignalInstitutionMetadata):
+            expected_value (str, none_type): The expected value of the field, as seen on the document
+            actual_value (str, none_type): The derived value obtained in the risk signal calculation process for this field
+            signal_description (str, none_type): A human-readable explanation providing more detail into the particular risk signal
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,12 +161,6 @@ class DocumentRiskSignal(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str, none_type): The result from the risk signal check.. [optional]  # noqa: E501
-            field (str, none_type): The field which the risk signal was computed for. [optional]  # noqa: E501
-            has_fraud_risk (bool, none_type): A flag used to quickly identify if the signal indicates that this field is authentic or fraudulent. [optional]  # noqa: E501
-            institution_metadata (DocumentRiskSignalInstitutionMetadata): [optional]  # noqa: E501
-            expected_value (str, none_type): The expected value of the field, as seen on the document. [optional]  # noqa: E501
-            actual_value (str, none_type): The derived value obtained in the risk signal calculation process for this field. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,6 +186,13 @@ class DocumentRiskSignal(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.type = type
+        self.field = field
+        self.has_fraud_risk = has_fraud_risk
+        self.institution_metadata = institution_metadata
+        self.expected_value = expected_value
+        self.actual_value = actual_value
+        self.signal_description = signal_description
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
