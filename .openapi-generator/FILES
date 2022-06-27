@@ -474,6 +474,8 @@ plaid/model/numbers_bacs.py
 plaid/model/numbers_bacs_nullable.py
 plaid/model/numbers_eft.py
 plaid/model/numbers_eft_nullable.py
+plaid/model/numbers_iban.py
+plaid/model/numbers_iban_nullable.py
 plaid/model/numbers_international.py
 plaid/model/numbers_international_nullable.py
 plaid/model/override_account_type.py

@@ -70,21 +70,21 @@ class SignalEvaluateCoreAttributes(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'unauthorized_transactions_count_7d': (int,),  # noqa: E501
-            'unauthorized_transactions_count_30d': (int,),  # noqa: E501
-            'unauthorized_transactions_count_60d': (int,),  # noqa: E501
-            'unauthorized_transactions_count_90d': (int,),  # noqa: E501
-            'nsf_overdraft_transactions_count_7d': (int,),  # noqa: E501
-            'nsf_overdraft_transactions_count_30d': (int,),  # noqa: E501
-            'nsf_overdraft_transactions_count_60d': (int,),  # noqa: E501
-            'nsf_overdraft_transactions_count_90d': (int,),  # noqa: E501
+            'unauthorized_transactions_count_7d': (int, none_type,),  # noqa: E501
+            'unauthorized_transactions_count_30d': (int, none_type,),  # noqa: E501
+            'unauthorized_transactions_count_60d': (int, none_type,),  # noqa: E501
+            'unauthorized_transactions_count_90d': (int, none_type,),  # noqa: E501
+            'nsf_overdraft_transactions_count_7d': (int, none_type,),  # noqa: E501
+            'nsf_overdraft_transactions_count_30d': (int, none_type,),  # noqa: E501
+            'nsf_overdraft_transactions_count_60d': (int, none_type,),  # noqa: E501
+            'nsf_overdraft_transactions_count_90d': (int, none_type,),  # noqa: E501
             'days_since_first_plaid_connection': (int, none_type,),  # noqa: E501
             'plaid_connections_count_7d': (int, none_type,),  # noqa: E501
             'plaid_connections_count_30d': (int, none_type,),  # noqa: E501
             'total_plaid_connections_count': (int, none_type,),  # noqa: E501
             'is_savings_or_money_market_account': (bool,),  # noqa: E501
-            'total_credit_transactions_amount_10d': (float,),  # noqa: E501
-            'total_debit_transactions_amount_10d': (float,),  # noqa: E501
+            'total_credit_transactions_amount_10d': (float, none_type,),  # noqa: E501
+            'total_debit_transactions_amount_10d': (float, none_type,),  # noqa: E501
             'p50_credit_transactions_amount_28d': (float, none_type,),  # noqa: E501
             'p50_debit_transactions_amount_28d': (float, none_type,),  # noqa: E501
             'p95_credit_transactions_amount_28d': (float, none_type,),  # noqa: E501
@@ -254,21 +254,21 @@ class SignalEvaluateCoreAttributes(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            unauthorized_transactions_count_7d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 7 days from the account that will be debited.. [optional]  # noqa: E501
-            unauthorized_transactions_count_30d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 30 days from the account that will be debited.. [optional]  # noqa: E501
-            unauthorized_transactions_count_60d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 60 days from the account that will be debited.. [optional]  # noqa: E501
-            unauthorized_transactions_count_90d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 90 days from the account that will be debited.. [optional]  # noqa: E501
-            nsf_overdraft_transactions_count_7d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 7 days from the account that will be debited.. [optional]  # noqa: E501
-            nsf_overdraft_transactions_count_30d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 30 days from the account that will be debited.. [optional]  # noqa: E501
-            nsf_overdraft_transactions_count_60d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 60 days from the account that will be debited.. [optional]  # noqa: E501
-            nsf_overdraft_transactions_count_90d (int): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 90 days from the account that will be debited.. [optional]  # noqa: E501
+            unauthorized_transactions_count_7d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 7 days from the account that will be debited.. [optional]  # noqa: E501
+            unauthorized_transactions_count_30d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 30 days from the account that will be debited.. [optional]  # noqa: E501
+            unauthorized_transactions_count_60d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 60 days from the account that will be debited.. [optional]  # noqa: E501
+            unauthorized_transactions_count_90d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to unauthorized transactions over the past 90 days from the account that will be debited.. [optional]  # noqa: E501
+            nsf_overdraft_transactions_count_7d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 7 days from the account that will be debited.. [optional]  # noqa: E501
+            nsf_overdraft_transactions_count_30d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 30 days from the account that will be debited.. [optional]  # noqa: E501
+            nsf_overdraft_transactions_count_60d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 60 days from the account that will be debited.. [optional]  # noqa: E501
+            nsf_overdraft_transactions_count_90d (int, none_type): We parse and analyze historical transaction metadata to identify the number of possible past returns due to non-sufficient funds/overdrafts over the past 90 days from the account that will be debited.. [optional]  # noqa: E501
             days_since_first_plaid_connection (int, none_type): The number of days since the first time the Item was connected to an application via Plaid. [optional]  # noqa: E501
             plaid_connections_count_7d (int, none_type): The number of times the Item has been connected to applications via Plaid over the past 7 days. [optional]  # noqa: E501
             plaid_connections_count_30d (int, none_type): The number of times the Item has been connected to applications via Plaid over the past 30 days. [optional]  # noqa: E501
             total_plaid_connections_count (int, none_type): The total number of times the Item has been connected to applications via Plaid. [optional]  # noqa: E501
             is_savings_or_money_market_account (bool): Indicates if the ACH transaction funding account is a savings/money market account. [optional]  # noqa: E501
-            total_credit_transactions_amount_10d (float): The total credit (inflow) transaction amount over the past 10 days from the account that will be debited. [optional]  # noqa: E501
-            total_debit_transactions_amount_10d (float): The total debit (outflow) transaction amount over the past 10 days from the account that will be debited. [optional]  # noqa: E501
+            total_credit_transactions_amount_10d (float, none_type): The total credit (inflow) transaction amount over the past 10 days from the account that will be debited. [optional]  # noqa: E501
+            total_debit_transactions_amount_10d (float, none_type): The total debit (outflow) transaction amount over the past 10 days from the account that will be debited. [optional]  # noqa: E501
             p50_credit_transactions_amount_28d (float, none_type): The 50th percentile of all credit (inflow) transaction amounts over the past 28 days from the account that will be debited. [optional]  # noqa: E501
             p50_debit_transactions_amount_28d (float, none_type): The 50th percentile of all debit (outflow) transaction amounts over the past 28 days from the account that will be debited. [optional]  # noqa: E501
             p95_credit_transactions_amount_28d (float, none_type): The 95th percentile of all credit (inflow) transaction amounts over the past 28 days from the account that will be debited. [optional]  # noqa: E501

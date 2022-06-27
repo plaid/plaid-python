@@ -477,6 +477,8 @@ from plaid.model.numbers_bacs import NumbersBACS
 from plaid.model.numbers_bacs_nullable import NumbersBACSNullable
 from plaid.model.numbers_eft import NumbersEFT
 from plaid.model.numbers_eft_nullable import NumbersEFTNullable
+from plaid.model.numbers_iban import NumbersIBAN
+from plaid.model.numbers_iban_nullable import NumbersIBANNullable
 from plaid.model.numbers_international import NumbersInternational
 from plaid.model.numbers_international_nullable import NumbersInternationalNullable
 from plaid.model.override_account_type import OverrideAccountType
