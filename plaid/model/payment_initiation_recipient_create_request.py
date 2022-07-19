@@ -122,7 +122,7 @@ class PaymentInitiationRecipientCreateRequest(ModelNormal):
         """PaymentInitiationRecipientCreateRequest - a model defined in OpenAPI
 
         Args:
-            name (str): The name of the recipient
+            name (str): The name of the recipient. We recommend using strings of length 18 or less and avoid special characters to ensure compatibility with all institutions.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

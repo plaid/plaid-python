@@ -120,7 +120,7 @@ class IdentityVerificationCreateRequest(ModelNormal):
             user (IdentityVerificationRequestUser):
 
         Keyword Args:
-            gave_consent (bool): A flag specifying whether the end user has already agreed to a privacy policy specifying that their data will be shared with Plaid for verification purposes.  If `gave_consent` is set to `true`, the `accept_tos` step will be marked as `skipped` and the end user's session will start at the next step requirement.. defaults to True  # noqa: E501
+            gave_consent (bool): A flag specifying whether the end user has already agreed to a privacy policy specifying that their data will be shared with Plaid for verification purposes.  If `gave_consent` is set to `true`, the `accept_tos` step will be marked as `skipped` and the end user's session will start at the next step requirement.. defaults to False  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -156,7 +156,7 @@ class IdentityVerificationCreateRequest(ModelNormal):
             is_idempotent (bool, none_type): An optional flag specifying how you would like Plaid to handle attempts to create an Identity Verification when an Identity Verification already exists for the provided `client_user_id` and `template_id`. If idempotency is enabled, Plaid will return the existing Identity Verification. If idempotency is disabled, Plaid will reject the request with a `400 Bad Request` status code if an Identity Verification already exists for the supplied `client_user_id` and `template_id`.. [optional]  # noqa: E501
         """
 
-        gave_consent = kwargs.get('gave_consent', True)
+        gave_consent = kwargs.get('gave_consent', False)
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

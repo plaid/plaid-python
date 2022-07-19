@@ -85,6 +85,7 @@ class Holding(ModelNormal):
             'quantity': (float,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'institution_price_datetime': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +103,7 @@ class Holding(ModelNormal):
         'quantity': 'quantity',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'institution_price_datetime': 'institution_price_datetime',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,6 +163,7 @@ class Holding(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            institution_price_datetime (datetime, none_type): Date and time at which `institution_price` was current, in ISO 8601 format (YYYY-MM-DDTHH:mm:ssZ).  This field is returned for select financial institutions and comes as provided by the institution. It may contain default time values (such as 00:00:00). . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

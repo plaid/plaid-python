@@ -75,6 +75,8 @@ from plaid.model.create_entity_watchlist_screening_review_request import CreateE
 from plaid.model.create_individual_watchlist_screening_review_request import CreateIndividualWatchlistScreeningReviewRequest
 from plaid.model.credit_audit_copy_token_create_request import CreditAuditCopyTokenCreateRequest
 from plaid.model.credit_audit_copy_token_create_response import CreditAuditCopyTokenCreateResponse
+from plaid.model.credit_audit_copy_token_remove_request import CreditAuditCopyTokenRemoveRequest
+from plaid.model.credit_audit_copy_token_remove_response import CreditAuditCopyTokenRemoveResponse
 from plaid.model.credit_bank_income_get_request import CreditBankIncomeGetRequest
 from plaid.model.credit_bank_income_get_response import CreditBankIncomeGetResponse
 from plaid.model.credit_bank_income_refresh_request import CreditBankIncomeRefreshRequest
@@ -114,6 +116,8 @@ from plaid.model.get_watchlist_screening_entity_program_request import GetWatchl
 from plaid.model.get_watchlist_screening_individual_program_request import GetWatchlistScreeningIndividualProgramRequest
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_response import IdentityGetResponse
+from plaid.model.identity_match_request import IdentityMatchRequest
+from plaid.model.identity_match_response import IdentityMatchResponse
 from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
 from plaid.model.identity_verification_response import IdentityVerificationResponse
 from plaid.model.identity_verification_retry_request import IdentityVerificationRetryRequest
@@ -209,6 +213,12 @@ from plaid.model.payment_initiation_recipient_get_request import PaymentInitiati
 from plaid.model.payment_initiation_recipient_get_response import PaymentInitiationRecipientGetResponse
 from plaid.model.payment_initiation_recipient_list_request import PaymentInitiationRecipientListRequest
 from plaid.model.payment_initiation_recipient_list_response import PaymentInitiationRecipientListResponse
+from plaid.model.payment_profile_create_request import PaymentProfileCreateRequest
+from plaid.model.payment_profile_create_response import PaymentProfileCreateResponse
+from plaid.model.payment_profile_get_request import PaymentProfileGetRequest
+from plaid.model.payment_profile_get_response import PaymentProfileGetResponse
+from plaid.model.payment_profile_remove_request import PaymentProfileRemoveRequest
+from plaid.model.payment_profile_remove_response import PaymentProfileRemoveResponse
 from plaid.model.processor_apex_processor_token_create_request import ProcessorApexProcessorTokenCreateRequest
 from plaid.model.processor_auth_get_request import ProcessorAuthGetRequest
 from plaid.model.processor_auth_get_response import ProcessorAuthGetResponse
@@ -4845,6 +4855,128 @@ class PlaidApi(object):
             callable=__credit_relay_create
         )
 
+        def __credit_report_audit_copy_remove(
+            self,
+            credit_audit_copy_token_remove_request,
+            **kwargs
+        ):
+            """Remove an Audit Copy token  # noqa: E501
+
+            The `/credit/audit_copy_token/remove` endpoint allows you to remove an Audit Copy. Removing an Audit Copy invalidates the `audit_copy_token` associated with it, meaning both you and any third parties holding the token will no longer be able to use it to access Report data. Items associated with the Report data and other Audit Copies of it are not affected and will remain accessible after removing the given Audit Copy.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_report_audit_copy_remove(credit_audit_copy_token_remove_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                credit_audit_copy_token_remove_request (CreditAuditCopyTokenRemoveRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreditAuditCopyTokenRemoveResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['credit_audit_copy_token_remove_request'] = \
+                credit_audit_copy_token_remove_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_report_audit_copy_remove = _Endpoint(
+            settings={
+                'response_type': (CreditAuditCopyTokenRemoveResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/audit_copy_token/remove',
+                'operation_id': 'credit_report_audit_copy_remove',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'credit_audit_copy_token_remove_request',
+                ],
+                'required': [
+                    'credit_audit_copy_token_remove_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'credit_audit_copy_token_remove_request':
+                        (CreditAuditCopyTokenRemoveRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'credit_audit_copy_token_remove_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_report_audit_copy_remove
+        )
+
         def __dashboard_user_list(
             self,
             list_dashboard_user_request,
@@ -5941,6 +6073,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__identity_get
+        )
+
+        def __identity_match(
+            self,
+            identity_match_request,
+            **kwargs
+        ):
+            """Retrieve identity match score  # noqa: E501
+
+            The `/identity/match` endpoint generates a match score, which indicates how well the provided identity data matches the identity information on file with the account holder's financial institution.  This request may take some time to complete if Identity was not specified as an initial product when creating the Item. This is because Plaid must communicate directly with the institution to retrieve the data.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.identity_match(identity_match_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                identity_match_request (IdentityMatchRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityMatchResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['identity_match_request'] = \
+                identity_match_request
+            return self.call_with_http_info(**kwargs)
+
+        self.identity_match = _Endpoint(
+            settings={
+                'response_type': (IdentityMatchResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/identity/match',
+                'operation_id': 'identity_match',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'identity_match_request',
+                ],
+                'required': [
+                    'identity_match_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'identity_match_request':
+                        (IdentityMatchRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'identity_match_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__identity_match
         )
 
         def __identity_verification_create(
@@ -10577,6 +10831,372 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__payment_initiation_recipient_list
+        )
+
+        def __payment_profile_create(
+            self,
+            payment_profile_create_request,
+            **kwargs
+        ):
+            """Create payment profile  # noqa: E501
+
+            Use `/payment_profile/create` endpoint to create a new payment profile, the return value is a Payment Profile ID. Attach it to the link token create request and the link workflow will then \"activate\" this Payment Profile if the linkage is successful. It can then be used to create Transfers using `/transfer/authorization/create` and /transfer/create`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_profile_create(payment_profile_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_profile_create_request (PaymentProfileCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentProfileCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_profile_create_request'] = \
+                payment_profile_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_profile_create = _Endpoint(
+            settings={
+                'response_type': (PaymentProfileCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_profile/create',
+                'operation_id': 'payment_profile_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_profile_create_request',
+                ],
+                'required': [
+                    'payment_profile_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_profile_create_request':
+                        (PaymentProfileCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_profile_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_profile_create
+        )
+
+        def __payment_profile_get(
+            self,
+            payment_profile_get_request,
+            **kwargs
+        ):
+            """Get payment profile  # noqa: E501
+
+            Use the `/payment_profile/get` endpoint to get the status of a given Payment Profile.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_profile_get(payment_profile_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_profile_get_request (PaymentProfileGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentProfileGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_profile_get_request'] = \
+                payment_profile_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_profile_get = _Endpoint(
+            settings={
+                'response_type': (PaymentProfileGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_profile/get',
+                'operation_id': 'payment_profile_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_profile_get_request',
+                ],
+                'required': [
+                    'payment_profile_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_profile_get_request':
+                        (PaymentProfileGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_profile_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_profile_get
+        )
+
+        def __payment_profile_remove(
+            self,
+            payment_profile_remove_request,
+            **kwargs
+        ):
+            """Remove payment profile  # noqa: E501
+
+            Use the `/payment_profile/remove` endpoint to remove a given Payment Profile. Once it’s removed, it can no longer be used to create transfers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.payment_profile_remove(payment_profile_remove_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                payment_profile_remove_request (PaymentProfileRemoveRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PaymentProfileRemoveResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['payment_profile_remove_request'] = \
+                payment_profile_remove_request
+            return self.call_with_http_info(**kwargs)
+
+        self.payment_profile_remove = _Endpoint(
+            settings={
+                'response_type': (PaymentProfileRemoveResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/payment_profile/remove',
+                'operation_id': 'payment_profile_remove',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_profile_remove_request',
+                ],
+                'required': [
+                    'payment_profile_remove_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_profile_remove_request':
+                        (PaymentProfileRemoveRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'payment_profile_remove_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__payment_profile_remove
         )
 
         def __processor_apex_processor_token_create(
@@ -16198,7 +16818,7 @@ class PlaidApi(object):
         ):
             """Create user  # noqa: E501
 
-            This endpoint should be called for each of your end users before they begin a Plaid income flow. This provides you a single token to access all income data associated with the user. You should only create one per end user.  If you call the endpoint multiple times with the same client_user_id, the first creation call will succeed and the rest will fail with an error message indicating that the user has been created for the given client_user_id.  # noqa: E501
+            This endpoint should be called for each of your end users before they begin a Plaid income flow. This provides you a single token to access all income data associated with the user. You should only create one per end user.  If you call the endpoint multiple times with the same `client_user_id`, the first creation call will succeed and the rest will fail with an error message indicating that the user has been created for the given `client_user_id`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
