@@ -78,6 +78,7 @@ class AssetReportCreateRequestOptions(ModelNormal):
             'client_report_id': (str, none_type,),  # noqa: E501
             'webhook': (str, none_type,),  # noqa: E501
             'include_fast_report': (bool, none_type,),  # noqa: E501
+            'products': ([str],),  # noqa: E501
             'user': (AssetReportUser,),  # noqa: E501
         }
 
@@ -90,6 +91,7 @@ class AssetReportCreateRequestOptions(ModelNormal):
         'client_report_id': 'client_report_id',  # noqa: E501
         'webhook': 'webhook',  # noqa: E501
         'include_fast_report': 'include_fast_report',  # noqa: E501
+        'products': 'products',  # noqa: E501
         'user': 'user',  # noqa: E501
     }
 
@@ -142,6 +144,7 @@ class AssetReportCreateRequestOptions(ModelNormal):
             client_report_id (str, none_type): Client-generated identifier, which can be used by lenders to track loan applications.. [optional]  # noqa: E501
             webhook (str, none_type): URL to which Plaid will send Assets webhooks, for example when the requested Asset Report is ready.. [optional]  # noqa: E501
             include_fast_report (bool, none_type): true to return balance and identity earlier as a fast report. Defaults to false if omitted.. [optional]  # noqa: E501
+            products ([str]): Additional information that can be included in the asset report. Possible values: `\"investments\"`. [optional]  # noqa: E501
             user (AssetReportUser): [optional]  # noqa: E501
         """
 

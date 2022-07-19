@@ -86,7 +86,6 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
         return {
             'items': ([PayrollItem],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'income_report_token': (str,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
         }
 
@@ -98,7 +97,6 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
     attribute_map = {
         'items': 'items',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
-        'income_report_token': 'income_report_token',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -114,13 +112,12 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, items, request_id, income_report_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, items, request_id, *args, **kwargs):  # noqa: E501
         """CreditPayrollIncomeGetResponse - a model defined in OpenAPI
 
         Args:
             items ([PayrollItem]): Array of payroll items.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
-            income_report_token (str): A token to reference what payroll data was returned from this endpoint
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -181,7 +178,6 @@ class CreditPayrollIncomeGetResponse(ModelNormal):
 
         self.items = items
         self.request_id = request_id
-        self.income_report_token = income_report_token
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

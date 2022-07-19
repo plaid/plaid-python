@@ -144,7 +144,7 @@ class CreditBankIncomeTransaction(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            amount (float): The settled value of the transaction, denominated in the account's currency as stated in `iso_currency_code` or `unofficial_currency_code`. Positive values when money moves out of the account; negative values when money moves in. For example, credit card purchases are positive; credit card payment, direct deposits, and refunds are negative.. [optional]  # noqa: E501
+            amount (float): The settled value of the transaction, denominated in the transactions's currency as stated in `iso_currency_code` or `unofficial_currency_code`. Positive values when money moves out of the account; negative values when money moves in. For example, credit card purchases are positive; credit card payment, direct deposits, and refunds are negative.. [optional]  # noqa: E501
             date (date): For pending transactions, the date that the transaction occurred; for posted transactions, the date that the transaction posted. Both dates are returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             name (str): The merchant name or transaction description.. [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction.. [optional]  # noqa: E501
