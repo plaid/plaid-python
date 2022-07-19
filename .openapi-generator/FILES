@@ -133,6 +133,8 @@ plaid/model/credit_account_subtype.py
 plaid/model/credit_account_subtypes.py
 plaid/model/credit_audit_copy_token_create_request.py
 plaid/model/credit_audit_copy_token_create_response.py
+plaid/model/credit_audit_copy_token_remove_request.py
+plaid/model/credit_audit_copy_token_remove_response.py
 plaid/model/credit_bank_income.py
 plaid/model/credit_bank_income_account.py
 plaid/model/credit_bank_income_account_type.py
@@ -292,6 +294,10 @@ plaid/model/identity_default_update_webhook.py
 plaid/model/identity_get_request.py
 plaid/model/identity_get_request_options.py
 plaid/model/identity_get_response.py
+plaid/model/identity_match_request.py
+plaid/model/identity_match_request_options.py
+plaid/model/identity_match_response.py
+plaid/model/identity_match_user.py
 plaid/model/identity_update_types.py
 plaid/model/identity_verification.py
 plaid/model/identity_verification_create_request.py
@@ -436,6 +442,7 @@ plaid/model/link_token_create_request_payment_initiation.py
 plaid/model/link_token_create_request_transfer.py
 plaid/model/link_token_create_request_update.py
 plaid/model/link_token_create_request_user.py
+plaid/model/link_token_create_request_user_stated_income_source.py
 plaid/model/link_token_create_response.py
 plaid/model/link_token_eu_config.py
 plaid/model/link_token_get_metadata_response.py
@@ -477,6 +484,7 @@ plaid/model/numbers_eft_nullable.py
 plaid/model/numbers_iban.py
 plaid/model/numbers_iban_nullable.py
 plaid/model/numbers_international.py
+plaid/model/numbers_international_iban.py
 plaid/model/numbers_international_nullable.py
 plaid/model/override_account_type.py
 plaid/model/override_accounts.py
@@ -553,6 +561,13 @@ plaid/model/payment_initiation_recipient_list_response.py
 plaid/model/payment_initiation_refund_status.py
 plaid/model/payment_initiation_standing_order_metadata.py
 plaid/model/payment_meta.py
+plaid/model/payment_profile_create_request.py
+plaid/model/payment_profile_create_response.py
+plaid/model/payment_profile_get_request.py
+plaid/model/payment_profile_get_response.py
+plaid/model/payment_profile_remove_request.py
+plaid/model/payment_profile_remove_response.py
+plaid/model/payment_profile_status.py
 plaid/model/payment_schedule_interval.py
 plaid/model/payment_scheme.py
 plaid/model/payment_status_update_webhook.py
@@ -802,6 +817,9 @@ plaid/model/user_custom_password.py
 plaid/model/user_id_number.py
 plaid/model/user_name.py
 plaid/model/user_permission_revoked_webhook.py
+plaid/model/user_stated_income_source_category.py
+plaid/model/user_stated_income_source_frequency.py
+plaid/model/user_stated_income_source_pay_type.py
 plaid/model/verification_attribute.py
 plaid/model/verification_expired_webhook.py
 plaid/model/verification_refresh_status.py
@@ -823,6 +841,7 @@ plaid/model/wallet_transaction.py
 plaid/model/wallet_transaction_amount.py
 plaid/model/wallet_transaction_counterparty.py
 plaid/model/wallet_transaction_counterparty_bacs.py
+plaid/model/wallet_transaction_counterparty_international.py
 plaid/model/wallet_transaction_counterparty_numbers.py
 plaid/model/wallet_transaction_execute_request.py
 plaid/model/wallet_transaction_execute_response.py

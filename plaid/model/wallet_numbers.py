@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.numbers_international_iban import NumbersInternationalIBAN
     from plaid.model.recipient_bacs import RecipientBACS
+    globals()['NumbersInternationalIBAN'] = NumbersInternationalIBAN
     globals()['RecipientBACS'] = RecipientBACS
 
 
@@ -83,6 +85,7 @@ class WalletNumbers(ModelNormal):
         lazy_import()
         return {
             'bacs': (RecipientBACS,),  # noqa: E501
+            'international': (NumbersInternationalIBAN,),  # noqa: E501
         }
 
     @cached_property
@@ -92,6 +95,7 @@ class WalletNumbers(ModelNormal):
 
     attribute_map = {
         'bacs': 'bacs',  # noqa: E501
+        'international': 'international',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,6 +145,7 @@ class WalletNumbers(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             bacs (RecipientBACS): [optional]  # noqa: E501
+            international (NumbersInternationalIBAN): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

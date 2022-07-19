@@ -124,11 +124,8 @@ class InstitutionStatus(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_logins, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """InstitutionStatus - a model defined in OpenAPI
-
-        Args:
-            item_logins (ProductStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -161,6 +158,7 @@ class InstitutionStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            item_logins (ProductStatus): [optional]  # noqa: E501
             transactions_updates (ProductStatus): [optional]  # noqa: E501
             auth (ProductStatus): [optional]  # noqa: E501
             identity (ProductStatus): [optional]  # noqa: E501
@@ -194,7 +192,6 @@ class InstitutionStatus(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.item_logins = item_logins
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

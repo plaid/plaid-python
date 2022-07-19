@@ -84,6 +84,7 @@ class CreditEmploymentItem(ModelNormal):
         return {
             'item_id': (str,),  # noqa: E501
             'employments': ([CreditEmploymentVerification],),  # noqa: E501
+            'pull_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +95,7 @@ class CreditEmploymentItem(ModelNormal):
     attribute_map = {
         'item_id': 'item_id',  # noqa: E501
         'employments': 'employments',  # noqa: E501
+        'pull_id': 'pull_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,12 +110,13 @@ class CreditEmploymentItem(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_id, employments, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_id, employments, pull_id, *args, **kwargs):  # noqa: E501
         """CreditEmploymentItem - a model defined in OpenAPI
 
         Args:
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
             employments ([CreditEmploymentVerification]):
+            pull_id (str): A reference id to reference what payroll data was returned from this endpoint
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,6 +176,7 @@ class CreditEmploymentItem(ModelNormal):
 
         self.item_id = item_id
         self.employments = employments
+        self.pull_id = pull_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
