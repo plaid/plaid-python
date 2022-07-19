@@ -25,10 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.numbers_iban_nullable import NumbersIBANNullable
     from plaid.model.wallet_transaction_counterparty_bacs import WalletTransactionCounterpartyBACS
-    globals()['NumbersIBANNullable'] = NumbersIBANNullable
+    from plaid.model.wallet_transaction_counterparty_international import WalletTransactionCounterpartyInternational
     globals()['WalletTransactionCounterpartyBACS'] = WalletTransactionCounterpartyBACS
+    globals()['WalletTransactionCounterpartyInternational'] = WalletTransactionCounterpartyInternational
 
 
 class WalletTransactionCounterpartyNumbers(ModelNormal):
@@ -61,7 +61,14 @@ class WalletTransactionCounterpartyNumbers(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -78,7 +85,7 @@ class WalletTransactionCounterpartyNumbers(ModelNormal):
         lazy_import()
         return {
             'bacs': (WalletTransactionCounterpartyBACS,),  # noqa: E501
-            'iban': (NumbersIBANNullable,),  # noqa: E501
+            'international': (WalletTransactionCounterpartyInternational,),  # noqa: E501
         }
 
     @cached_property
@@ -88,7 +95,7 @@ class WalletTransactionCounterpartyNumbers(ModelNormal):
 
     attribute_map = {
         'bacs': 'bacs',  # noqa: E501
-        'iban': 'iban',  # noqa: E501
+        'international': 'international',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,7 +145,7 @@ class WalletTransactionCounterpartyNumbers(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             bacs (WalletTransactionCounterpartyBACS): [optional]  # noqa: E501
-            iban (NumbersIBANNullable): [optional]  # noqa: E501
+            international (WalletTransactionCounterpartyInternational): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

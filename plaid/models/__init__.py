@@ -136,6 +136,8 @@ from plaid.model.credit_account_subtype import CreditAccountSubtype
 from plaid.model.credit_account_subtypes import CreditAccountSubtypes
 from plaid.model.credit_audit_copy_token_create_request import CreditAuditCopyTokenCreateRequest
 from plaid.model.credit_audit_copy_token_create_response import CreditAuditCopyTokenCreateResponse
+from plaid.model.credit_audit_copy_token_remove_request import CreditAuditCopyTokenRemoveRequest
+from plaid.model.credit_audit_copy_token_remove_response import CreditAuditCopyTokenRemoveResponse
 from plaid.model.credit_bank_income import CreditBankIncome
 from plaid.model.credit_bank_income_account import CreditBankIncomeAccount
 from plaid.model.credit_bank_income_account_type import CreditBankIncomeAccountType
@@ -295,6 +297,10 @@ from plaid.model.identity_default_update_webhook import IdentityDefaultUpdateWeb
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_request_options import IdentityGetRequestOptions
 from plaid.model.identity_get_response import IdentityGetResponse
+from plaid.model.identity_match_request import IdentityMatchRequest
+from plaid.model.identity_match_request_options import IdentityMatchRequestOptions
+from plaid.model.identity_match_response import IdentityMatchResponse
+from plaid.model.identity_match_user import IdentityMatchUser
 from plaid.model.identity_update_types import IdentityUpdateTypes
 from plaid.model.identity_verification import IdentityVerification
 from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
@@ -439,6 +445,7 @@ from plaid.model.link_token_create_request_payment_initiation import LinkTokenCr
 from plaid.model.link_token_create_request_transfer import LinkTokenCreateRequestTransfer
 from plaid.model.link_token_create_request_update import LinkTokenCreateRequestUpdate
 from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
+from plaid.model.link_token_create_request_user_stated_income_source import LinkTokenCreateRequestUserStatedIncomeSource
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_eu_config import LinkTokenEUConfig
 from plaid.model.link_token_get_metadata_response import LinkTokenGetMetadataResponse
@@ -480,6 +487,7 @@ from plaid.model.numbers_eft_nullable import NumbersEFTNullable
 from plaid.model.numbers_iban import NumbersIBAN
 from plaid.model.numbers_iban_nullable import NumbersIBANNullable
 from plaid.model.numbers_international import NumbersInternational
+from plaid.model.numbers_international_iban import NumbersInternationalIBAN
 from plaid.model.numbers_international_nullable import NumbersInternationalNullable
 from plaid.model.override_account_type import OverrideAccountType
 from plaid.model.override_accounts import OverrideAccounts
@@ -558,6 +566,13 @@ from plaid.model.payment_initiation_recipient_list_response import PaymentInitia
 from plaid.model.payment_initiation_refund_status import PaymentInitiationRefundStatus
 from plaid.model.payment_initiation_standing_order_metadata import PaymentInitiationStandingOrderMetadata
 from plaid.model.payment_meta import PaymentMeta
+from plaid.model.payment_profile_create_request import PaymentProfileCreateRequest
+from plaid.model.payment_profile_create_response import PaymentProfileCreateResponse
+from plaid.model.payment_profile_get_request import PaymentProfileGetRequest
+from plaid.model.payment_profile_get_response import PaymentProfileGetResponse
+from plaid.model.payment_profile_remove_request import PaymentProfileRemoveRequest
+from plaid.model.payment_profile_remove_response import PaymentProfileRemoveResponse
+from plaid.model.payment_profile_status import PaymentProfileStatus
 from plaid.model.payment_schedule_interval import PaymentScheduleInterval
 from plaid.model.payment_scheme import PaymentScheme
 from plaid.model.payment_status_update_webhook import PaymentStatusUpdateWebhook
@@ -805,6 +820,9 @@ from plaid.model.user_custom_password import UserCustomPassword
 from plaid.model.user_id_number import UserIDNumber
 from plaid.model.user_name import UserName
 from plaid.model.user_permission_revoked_webhook import UserPermissionRevokedWebhook
+from plaid.model.user_stated_income_source_category import UserStatedIncomeSourceCategory
+from plaid.model.user_stated_income_source_frequency import UserStatedIncomeSourceFrequency
+from plaid.model.user_stated_income_source_pay_type import UserStatedIncomeSourcePayType
 from plaid.model.verification_attribute import VerificationAttribute
 from plaid.model.verification_expired_webhook import VerificationExpiredWebhook
 from plaid.model.verification_refresh_status import VerificationRefreshStatus
@@ -826,6 +844,7 @@ from plaid.model.wallet_transaction import WalletTransaction
 from plaid.model.wallet_transaction_amount import WalletTransactionAmount
 from plaid.model.wallet_transaction_counterparty import WalletTransactionCounterparty
 from plaid.model.wallet_transaction_counterparty_bacs import WalletTransactionCounterpartyBACS
+from plaid.model.wallet_transaction_counterparty_international import WalletTransactionCounterpartyInternational
 from plaid.model.wallet_transaction_counterparty_numbers import WalletTransactionCounterpartyNumbers
 from plaid.model.wallet_transaction_execute_request import WalletTransactionExecuteRequest
 from plaid.model.wallet_transaction_execute_response import WalletTransactionExecuteResponse
