@@ -91,6 +91,7 @@ class Security(ModelNormal):
             'close_price_as_of': (date, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'update_datetime': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +115,7 @@ class Security(ModelNormal):
         'close_price_as_of': 'close_price_as_of',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'update_datetime': 'update_datetime',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,8 +144,8 @@ class Security(ModelNormal):
             name (str, none_type): A descriptive name for the security, suitable for display.
             ticker_symbol (str, none_type): The security’s trading symbol for publicly traded securities, and otherwise a short identifier if available.
             is_cash_equivalent (bool, none_type): Indicates that a security is a highly liquid asset and can be treated like cash.
-            type (str, none_type): The security type of the holding. Valid security types are:  `cash`: Cash, currency, and money market funds  `derivative`: Options, warrants, and other derivative instruments  `equity`: Domestic and foreign equities  `etf`: Multi-asset exchange-traded investment funds  `fixed income`: Bonds and certificates of deposit (CDs)  `loan`: Loans and loan receivables.  `mutual fund`: Open- and closed-end vehicles pooling funds of multiple investors.  `other`: Unknown or other investment types
-            close_price (float, none_type): Price of the security at the close of the previous trading session. `null` for non-public securities. If the security is a foreign currency or a cryptocurrency this field will be updated daily and will be priced in USD.
+            type (str, none_type): The security type of the holding. Valid security types are:  `cash`: Cash, currency, and money market funds  `cryptocurrency`: Digital or virtual currencies  `derivative`: Options, warrants, and other derivative instruments  `equity`: Domestic and foreign equities  `etf`: Multi-asset exchange-traded investment funds  `fixed income`: Bonds and certificates of deposit (CDs)  `loan`: Loans and loan receivables  `mutual fund`: Open- and closed-end vehicles pooling funds of multiple investors  `other`: Unknown or other investment types
+            close_price (float, none_type): Price of the security at the close of the previous trading session. Null for non-public securities.   If the security is a foreign currency this field will be updated daily and will be priced in USD.   If the security is a cryptocurrency, this field will be updated multiple times a day. As crypto prices can fluctuate quickly and data may become stale sooner than other asset classes, please refer to update_datetime with the time when the price was last updated. 
             close_price_as_of (date, none_type): Date for which `close_price` is accurate. Always `null` if `close_price` is `null`.
             iso_currency_code (str, none_type): The ISO-4217 currency code of the price given. Always `null` if `unofficial_currency_code` is non-`null`.
             unofficial_currency_code (str, none_type): The unofficial currency code associated with the security. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
@@ -179,6 +181,7 @@ class Security(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            update_datetime (datetime, none_type): Date and time at which close_price is accurate, in ISO 8601 format (YYYY-MM-DDTHH:mm:ssZ). Always null if close_price is null.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

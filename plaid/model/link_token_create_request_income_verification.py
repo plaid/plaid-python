@@ -28,9 +28,11 @@ def lazy_import():
     from plaid.model.income_verification_source_type import IncomeVerificationSourceType
     from plaid.model.link_token_create_request_income_verification_bank_income import LinkTokenCreateRequestIncomeVerificationBankIncome
     from plaid.model.link_token_create_request_income_verification_payroll_income import LinkTokenCreateRequestIncomeVerificationPayrollIncome
+    from plaid.model.link_token_create_request_user_stated_income_source import LinkTokenCreateRequestUserStatedIncomeSource
     globals()['IncomeVerificationSourceType'] = IncomeVerificationSourceType
     globals()['LinkTokenCreateRequestIncomeVerificationBankIncome'] = LinkTokenCreateRequestIncomeVerificationBankIncome
     globals()['LinkTokenCreateRequestIncomeVerificationPayrollIncome'] = LinkTokenCreateRequestIncomeVerificationPayrollIncome
+    globals()['LinkTokenCreateRequestUserStatedIncomeSource'] = LinkTokenCreateRequestUserStatedIncomeSource
 
 
 class LinkTokenCreateRequestIncomeVerification(ModelNormal):
@@ -86,6 +88,7 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
             'income_source_types': ([IncomeVerificationSourceType],),  # noqa: E501
             'bank_income': (LinkTokenCreateRequestIncomeVerificationBankIncome,),  # noqa: E501
             'payroll_income': (LinkTokenCreateRequestIncomeVerificationPayrollIncome,),  # noqa: E501
+            'stated_income_sources': ([LinkTokenCreateRequestUserStatedIncomeSource],),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +104,7 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
         'income_source_types': 'income_source_types',  # noqa: E501
         'bank_income': 'bank_income',  # noqa: E501
         'payroll_income': 'payroll_income',  # noqa: E501
+        'stated_income_sources': 'stated_income_sources',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,6 +160,7 @@ class LinkTokenCreateRequestIncomeVerification(ModelNormal):
             income_source_types ([IncomeVerificationSourceType]): The types of source income data that users will be permitted to share. Options include `bank` and `payroll`. Currently you can only specify one of these options.. [optional]  # noqa: E501
             bank_income (LinkTokenCreateRequestIncomeVerificationBankIncome): [optional]  # noqa: E501
             payroll_income (LinkTokenCreateRequestIncomeVerificationPayrollIncome): [optional]  # noqa: E501
+            stated_income_sources ([LinkTokenCreateRequestUserStatedIncomeSource]): A list of user stated income sources. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
