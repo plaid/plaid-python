@@ -95,7 +95,7 @@ def test_remove():
         client.item_remove(ir_request)
     except plaid.ApiException as e:
         response = json.loads(e.body)
-        assert response['error_code'] == 'INVALID_ACCESS_TOKEN'
+        assert response['error_code'] == 'ITEM_NOT_FOUND'
 
 
 def test_import():

@@ -71,6 +71,7 @@ class LinkTokenCreateRequestTransfer(ModelNormal):
         """
         return {
             'intent_id': (str,),  # noqa: E501
+            'payment_profile_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -80,6 +81,7 @@ class LinkTokenCreateRequestTransfer(ModelNormal):
 
     attribute_map = {
         'intent_id': 'intent_id',  # noqa: E501
+        'payment_profile_id': 'payment_profile_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -129,6 +131,7 @@ class LinkTokenCreateRequestTransfer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             intent_id (str): The `id` returned by the `/transfer/intent/create` endpoint.. [optional]  # noqa: E501
+            payment_profile_id (str): The `payment_profile_id` returned by the `/payment_profile/create` endpoint.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

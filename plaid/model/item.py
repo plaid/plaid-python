@@ -25,9 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.error import Error
+    from plaid.model.plaid_error import PlaidError
     from plaid.model.products import Products
-    globals()['Error'] = Error
+    globals()['PlaidError'] = PlaidError
     globals()['Products'] = Products
 
 
@@ -90,7 +90,7 @@ class Item(ModelNormal):
         return {
             'item_id': (str,),  # noqa: E501
             'webhook': (str, none_type,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
+            'error': (PlaidError,),  # noqa: E501
             'available_products': ([Products],),  # noqa: E501
             'billed_products': ([Products],),  # noqa: E501
             'consent_expiration_time': (datetime, none_type,),  # noqa: E501
@@ -136,7 +136,7 @@ class Item(ModelNormal):
         Args:
             item_id (str): The Plaid Item ID. The `item_id` is always unique; linking the same account at the same institution twice will result in two Items with different `item_id` values. Like all Plaid identifiers, the `item_id` is case-sensitive.
             webhook (str, none_type): The URL registered to receive webhooks for the Item.
-            error (Error):
+            error (PlaidError):
             available_products ([Products]): A list of products available for the Item that have not yet been accessed. The contents of this array will be mutually exclusive with `billed_products`.
             billed_products ([Products]): A list of products that have been billed for the Item. The contents of this array will be mutually exclusive with `available_products`. Note - `billed_products` is populated in all environments but only requests in Production are billed. Also note that products that are billed on a pay-per-call basis rather than a pay-per-Item basis, such as `balance`, will not appear here. 
             consent_expiration_time (datetime, none_type): The RFC 3339 timestamp after which the consent provided by the end user will expire. Upon consent expiration, the item will enter the `ITEM_LOGIN_REQUIRED` error state. To circumvent the `ITEM_LOGIN_REQUIRED` error and maintain continuous consent, the end user can reauthenticate via Link’s update mode in advance of the consent expiration time.  Note - This is only relevant for certain OAuth-based institutions. For all other institutions, this field will be null. 
