@@ -129,6 +129,10 @@ plaid/model/country_code.py
 plaid/model/create_entity_screening_request.py
 plaid/model/create_entity_watchlist_screening_review_request.py
 plaid/model/create_individual_watchlist_screening_review_request.py
+plaid/model/credit1099.py
+plaid/model/credit1099_filer.py
+plaid/model/credit1099_payer.py
+plaid/model/credit1099_recipient.py
 plaid/model/credit_account_subtype.py
 plaid/model/credit_account_subtypes.py
 plaid/model/credit_audit_copy_token_create_request.py
@@ -147,6 +151,7 @@ plaid/model/credit_bank_income_get_response.py
 plaid/model/credit_bank_income_historical_summary.py
 plaid/model/credit_bank_income_item.py
 plaid/model/credit_bank_income_pay_frequency.py
+plaid/model/credit_bank_income_pdf_get_request.py
 plaid/model/credit_bank_income_refresh_request.py
 plaid/model/credit_bank_income_refresh_request_options.py
 plaid/model/credit_bank_income_refresh_response.py
@@ -183,6 +188,11 @@ plaid/model/credit_payroll_income_risk_signals_get_response.py
 plaid/model/credit_platform_ids.py
 plaid/model/credit_relay_create_request.py
 plaid/model/credit_relay_create_response.py
+plaid/model/credit_relay_get_request.py
+plaid/model/credit_relay_refresh_request.py
+plaid/model/credit_relay_refresh_response.py
+plaid/model/credit_relay_remove_request.py
+plaid/model/credit_relay_remove_response.py
 plaid/model/credit_w2.py
 plaid/model/customer_initiated_return_risk.py
 plaid/model/customer_initiated_risk_tier.py
@@ -275,6 +285,7 @@ plaid/model/external_payment_refund_details.py
 plaid/model/external_payment_schedule_base.py
 plaid/model/external_payment_schedule_get.py
 plaid/model/external_payment_schedule_request.py
+plaid/model/form1099_type.py
 plaid/model/generic_country_code.py
 plaid/model/generic_screening_hit_location_items.py
 plaid/model/get_dashboard_user_request.py
@@ -500,6 +511,9 @@ plaid/model/paginated_individual_watchlist_program_list_response.py
 plaid/model/paginated_individual_watchlist_screening_hit_list_response.py
 plaid/model/paginated_individual_watchlist_screening_list_response.py
 plaid/model/paginated_individual_watchlist_screening_review_list_response.py
+plaid/model/partner_customers_create_request.py
+plaid/model/partner_customers_create_response.py
+plaid/model/partner_end_customer_client.py
 plaid/model/pay.py
 plaid/model/pay_frequency.py
 plaid/model/pay_frequency_value.py
@@ -628,9 +642,11 @@ plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
 plaid/model/recurring_transaction_frequency.py
+plaid/model/recurring_transactions_update_webhook.py
 plaid/model/relay_event.py
 plaid/model/removed_transaction.py
 plaid/model/report_token.py
+plaid/model/report_type.py
 plaid/model/review_comment.py
 plaid/model/risk_signal_document_reference.py
 plaid/model/sandbox_bank_transfer_fire_webhook_request.py
@@ -752,6 +768,7 @@ plaid/model/transfer_authorization_guarantee_decision.py
 plaid/model/transfer_authorization_guarantee_decision_rationale.py
 plaid/model/transfer_authorization_guarantee_decision_rationale_code.py
 plaid/model/transfer_authorization_proposed_transfer.py
+plaid/model/transfer_authorization_user_in_request.py
 plaid/model/transfer_cancel_request.py
 plaid/model/transfer_cancel_response.py
 plaid/model/transfer_create_idempotency_key.py

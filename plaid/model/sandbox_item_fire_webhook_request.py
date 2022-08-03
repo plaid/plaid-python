@@ -58,6 +58,7 @@ class SandboxItemFireWebhookRequest(ModelNormal):
             'DEFAULT_UPDATE': "DEFAULT_UPDATE",
             'NEW_ACCOUNTS_AVAILABLE': "NEW_ACCOUNTS_AVAILABLE",
             'AUTH_DATA_UPDATE': "AUTH_DATA_UPDATE",
+            'RECURRING_TRANSACTIONS_UPDATE': "RECURRING_TRANSACTIONS_UPDATE",
         },
     }
 

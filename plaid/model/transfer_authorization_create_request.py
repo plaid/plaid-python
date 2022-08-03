@@ -27,14 +27,14 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.ach_class import ACHClass
     from plaid.model.transfer_authorization_device import TransferAuthorizationDevice
+    from plaid.model.transfer_authorization_user_in_request import TransferAuthorizationUserInRequest
     from plaid.model.transfer_network import TransferNetwork
     from plaid.model.transfer_type import TransferType
-    from plaid.model.transfer_user_in_request import TransferUserInRequest
     globals()['ACHClass'] = ACHClass
     globals()['TransferAuthorizationDevice'] = TransferAuthorizationDevice
+    globals()['TransferAuthorizationUserInRequest'] = TransferAuthorizationUserInRequest
     globals()['TransferNetwork'] = TransferNetwork
     globals()['TransferType'] = TransferType
-    globals()['TransferUserInRequest'] = TransferUserInRequest
 
 
 class TransferAuthorizationCreateRequest(ModelNormal):
@@ -83,18 +83,20 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'access_token': (str,),  # noqa: E501
-            'account_id': (str,),  # noqa: E501
             'type': (TransferType,),  # noqa: E501
             'network': (TransferNetwork,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
-            'user': (TransferUserInRequest,),  # noqa: E501
+            'user': (TransferAuthorizationUserInRequest,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'access_token': (str,),  # noqa: E501
+            'account_id': (str,),  # noqa: E501
             'device': (TransferAuthorizationDevice,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
+            'user_present': (bool, none_type,),  # noqa: E501
+            'payment_profile_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -103,8 +105,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
 
 
     attribute_map = {
-        'access_token': 'access_token',  # noqa: E501
-        'account_id': 'account_id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'network': 'network',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -112,9 +112,13 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         'user': 'user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'access_token': 'access_token',  # noqa: E501
+        'account_id': 'account_id',  # noqa: E501
         'device': 'device',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
+        'user_present': 'user_present',  # noqa: E501
+        'payment_profile_id': 'payment_profile_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -129,17 +133,15 @@ class TransferAuthorizationCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_token, account_id, type, network, amount, ach_class, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, network, amount, ach_class, user, *args, **kwargs):  # noqa: E501
         """TransferAuthorizationCreateRequest - a model defined in OpenAPI
 
         Args:
-            access_token (str): The Plaid `access_token` for the account that will be debited or credited.
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited.
             type (TransferType):
             network (TransferNetwork):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             ach_class (ACHClass):
-            user (TransferUserInRequest):
+            user (TransferAuthorizationUserInRequest):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,9 +176,13 @@ class TransferAuthorizationCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            access_token (str): The Plaid `access_token` for the account that will be debited or credited.. [optional]  # noqa: E501
+            account_id (str): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
             device (TransferAuthorizationDevice): [optional]  # noqa: E501
             origination_account_id (str): Plaid's unique identifier for the origination account for this authorization. If not specified, the default account will be used.. [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
+            user_present (bool, none_type): Required for guaranteed ACH customers. If the end user is initiating the specific transfer themselves via an interactive UI, this should be `true`; for automatic recurring payments where the end user is not actually initiating each individual transfer, it should be `false`.. [optional]  # noqa: E501
+            payment_profile_id (str): Plaid’s unique identifier for a payment profile.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,8 +208,6 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.access_token = access_token
-        self.account_id = account_id
         self.type = type
         self.network = network
         self.amount = amount

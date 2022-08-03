@@ -25,8 +25,10 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.credit1099 import Credit1099
     from plaid.model.credit_pay_stub import CreditPayStub
     from plaid.model.credit_w2 import CreditW2
+    globals()['Credit1099'] = Credit1099
     globals()['CreditPayStub'] = CreditPayStub
     globals()['CreditW2'] = CreditW2
 
@@ -87,6 +89,7 @@ class PayrollIncomeObject(ModelNormal):
             'account_id': (str, none_type,),  # noqa: E501
             'pay_stubs': ([CreditPayStub],),  # noqa: E501
             'w2s': ([CreditW2],),  # noqa: E501
+            'form1099s': ([Credit1099],),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +101,7 @@ class PayrollIncomeObject(ModelNormal):
         'account_id': 'account_id',  # noqa: E501
         'pay_stubs': 'pay_stubs',  # noqa: E501
         'w2s': 'w2s',  # noqa: E501
+        'form1099s': 'form1099s',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,13 +116,14 @@ class PayrollIncomeObject(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, pay_stubs, w2s, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, pay_stubs, w2s, form1099s, *args, **kwargs):  # noqa: E501
         """PayrollIncomeObject - a model defined in OpenAPI
 
         Args:
             account_id (str, none_type): ID of the payroll provider account.
             pay_stubs ([CreditPayStub]): Array of pay stubs for the user.
             w2s ([CreditW2]): Array of tax form W-2s.
+            form1099s ([Credit1099]): Array of tax form 1099s.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,6 +184,7 @@ class PayrollIncomeObject(ModelNormal):
         self.account_id = account_id
         self.pay_stubs = pay_stubs
         self.w2s = w2s
+        self.form1099s = form1099s
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

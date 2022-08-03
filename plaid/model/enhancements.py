@@ -95,6 +95,7 @@ class Enhancements(ModelNormal):
             'logo_url': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
+            'personal_finance_category_icon_url': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +113,7 @@ class Enhancements(ModelNormal):
         'logo_url': 'logo_url',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
+        'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -171,6 +173,7 @@ class Enhancements(ModelNormal):
             logo_url (str, none_type): A link to the logo associated with this transaction. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
+            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
