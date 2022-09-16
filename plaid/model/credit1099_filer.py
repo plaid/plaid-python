@@ -149,7 +149,7 @@ class Credit1099Filer(ModelNormal):
             address (CreditPayStubAddress): [optional]  # noqa: E501
             name (str, none_type): Name of filer.. [optional]  # noqa: E501
             tin (str, none_type): Tax identification number of filer.. [optional]  # noqa: E501
-            type (str, none_type): One of the following values will be provided: Payment Settlement Entity (PSE), Electronic Payment Fecilitator (EPF), Other Third Party. [optional]  # noqa: E501
+            type (str, none_type): One of the following values will be provided: Payment Settlement Entity (PSE), Electronic Payment Facilitator (EPF), Other Third Party. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

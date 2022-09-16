@@ -64,6 +64,7 @@ class Error(ModelNormal):
             'PAYMENT_ERROR': "PAYMENT_ERROR",
             'BANK_TRANSFER_ERROR': "BANK_TRANSFER_ERROR",
             'INCOME_VERIFICATION_ERROR': "INCOME_VERIFICATION_ERROR",
+            'MICRODEPOSITS_ERROR': "MICRODEPOSITS_ERROR",
         },
     }
 

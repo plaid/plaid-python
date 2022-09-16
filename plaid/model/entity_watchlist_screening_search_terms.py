@@ -26,7 +26,11 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.entity_watchlist_screening_name import EntityWatchlistScreeningName
+    from plaid.model.generic_country_code_nullable import GenericCountryCodeNullable
+    from plaid.model.watchlist_screening_document_value_nullable import WatchlistScreeningDocumentValueNullable
     globals()['EntityWatchlistScreeningName'] = EntityWatchlistScreeningName
+    globals()['GenericCountryCodeNullable'] = GenericCountryCodeNullable
+    globals()['WatchlistScreeningDocumentValueNullable'] = WatchlistScreeningDocumentValueNullable
 
 
 class EntityWatchlistScreeningSearchTerms(ModelNormal):
@@ -77,11 +81,11 @@ class EntityWatchlistScreeningSearchTerms(ModelNormal):
         return {
             'entity_watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (EntityWatchlistScreeningName,),  # noqa: E501
-            'document_number': (object, none_type,),  # noqa: E501
-            'email_address': (object, none_type,),  # noqa: E501
-            'country': (object, none_type,),  # noqa: E501
-            'phone_number': (object, none_type,),  # noqa: E501
-            'url': (object, none_type,),  # noqa: E501
+            'document_number': (WatchlistScreeningDocumentValueNullable,),  # noqa: E501
+            'email_address': (str, none_type,),  # noqa: E501
+            'country': (GenericCountryCodeNullable,),  # noqa: E501
+            'phone_number': (str, none_type,),  # noqa: E501
+            'url': (str, none_type,),  # noqa: E501
             'version': (float,),  # noqa: E501
         }
 
@@ -119,11 +123,11 @@ class EntityWatchlistScreeningSearchTerms(ModelNormal):
         Args:
             entity_watchlist_program_id (str): ID of the associated entity program.
             legal_name (EntityWatchlistScreeningName):
-            document_number (object, none_type):
-            email_address (object, none_type):
-            country (object, none_type):
-            phone_number (object, none_type):
-            url (object, none_type):
+            document_number (WatchlistScreeningDocumentValueNullable):
+            email_address (str, none_type): A valid email address.
+            country (GenericCountryCodeNullable):
+            phone_number (str, none_type): A phone number in E.164 format.
+            url (str, none_type): An 'http' or 'https' URL (must begin with either of those).
             version (float): The current version of the search terms. Starts at `1` and increments with each edit to `search_terms`.
 
         Keyword Args:

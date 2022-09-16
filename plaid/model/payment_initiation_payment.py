@@ -103,7 +103,7 @@ class PaymentInitiationPayment(ModelNormal):
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
-            'refund_ids': ([str],),  # noqa: E501
+            'refund_ids': ([str], none_type,),  # noqa: E501
             'wallet_id': (str, none_type,),  # noqa: E501
             'scheme': (PaymentScheme,),  # noqa: E501
             'adjusted_scheme': (PaymentScheme,),  # noqa: E501
@@ -193,7 +193,7 @@ class PaymentInitiationPayment(ModelNormal):
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
-            refund_ids ([str]): Refund IDs associated with the payment.. [optional]  # noqa: E501
+            refund_ids ([str], none_type): Refund IDs associated with the payment.. [optional]  # noqa: E501
             wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
             scheme (PaymentScheme): [optional]  # noqa: E501
             adjusted_scheme (PaymentScheme): [optional]  # noqa: E501

@@ -51,9 +51,6 @@ class EntityWatchlistScreeningName(ModelSimple):
     validations = {
         ('value',): {
             'min_length': 1,
-            'regex': {
-                'pattern': r'',  # noqa: E501
-            },
         },
     }
 

@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.transfer_authorization import TransferAuthorization
+    from plaid.model.transfer_authorization_idempotency_key import TransferAuthorizationIdempotencyKey
     globals()['TransferAuthorization'] = TransferAuthorization
+    globals()['TransferAuthorizationIdempotencyKey'] = TransferAuthorizationIdempotencyKey
 
 
 class TransferAuthorizationCreateResponse(ModelNormal):
@@ -84,6 +86,7 @@ class TransferAuthorizationCreateResponse(ModelNormal):
         return {
             'authorization': (TransferAuthorization,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'idempotency_key': (TransferAuthorizationIdempotencyKey,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +97,7 @@ class TransferAuthorizationCreateResponse(ModelNormal):
     attribute_map = {
         'authorization': 'authorization',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'idempotency_key': 'idempotency_key',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,6 +150,7 @@ class TransferAuthorizationCreateResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            idempotency_key (TransferAuthorizationIdempotencyKey): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
