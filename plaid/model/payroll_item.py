@@ -83,7 +83,7 @@ class PayrollItem(ModelNormal):
             'accounts': ([PayrollIncomeAccountData],),  # noqa: E501
             'payroll_income': ([PayrollIncomeObject],),  # noqa: E501
             'status': (PayrollItemStatus,),  # noqa: E501
-            'pull_id': (str,),  # noqa: E501
+            'updated_at': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,7 +96,7 @@ class PayrollItem(ModelNormal):
         'accounts': 'accounts',  # noqa: E501
         'payroll_income': 'payroll_income',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'pull_id': 'pull_id',  # noqa: E501
+        'updated_at': 'updated_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,7 +111,7 @@ class PayrollItem(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_id, accounts, payroll_income, status, pull_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_id, accounts, payroll_income, status, updated_at, *args, **kwargs):  # noqa: E501
         """PayrollItem - a model defined in OpenAPI
 
         Args:
@@ -119,7 +119,7 @@ class PayrollItem(ModelNormal):
             accounts ([PayrollIncomeAccountData]):
             payroll_income ([PayrollIncomeObject]):
             status (PayrollItemStatus):
-            pull_id (str): A reference id to reference what payroll data was returned from this endpoint
+            updated_at (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DDTHH:mm:ssZ) indicating the last time that the Item was updated.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -181,7 +181,7 @@ class PayrollItem(ModelNormal):
         self.accounts = accounts
         self.payroll_income = payroll_income
         self.status = status
-        self.pull_id = pull_id
+        self.updated_at = updated_at
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

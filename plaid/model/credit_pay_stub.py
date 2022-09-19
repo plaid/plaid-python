@@ -31,7 +31,6 @@ def lazy_import():
     from plaid.model.credit_pay_stub_employee import CreditPayStubEmployee
     from plaid.model.credit_pay_stub_employer import CreditPayStubEmployer
     from plaid.model.credit_pay_stub_net_pay import CreditPayStubNetPay
-    from plaid.model.credit_pay_stub_verification import CreditPayStubVerification
     from plaid.model.pay_stub_pay_period_details import PayStubPayPeriodDetails
     globals()['CreditDocumentMetadata'] = CreditDocumentMetadata
     globals()['CreditPayStubDeductions'] = CreditPayStubDeductions
@@ -39,7 +38,6 @@ def lazy_import():
     globals()['CreditPayStubEmployee'] = CreditPayStubEmployee
     globals()['CreditPayStubEmployer'] = CreditPayStubEmployer
     globals()['CreditPayStubNetPay'] = CreditPayStubNetPay
-    globals()['CreditPayStubVerification'] = CreditPayStubVerification
     globals()['PayStubPayPeriodDetails'] = PayStubPayPeriodDetails
 
 
@@ -104,7 +102,6 @@ class CreditPayStub(ModelNormal):
             'employer': (CreditPayStubEmployer,),  # noqa: E501
             'net_pay': (CreditPayStubNetPay,),  # noqa: E501
             'pay_period_details': (PayStubPayPeriodDetails,),  # noqa: E501
-            'verification': (CreditPayStubVerification,),  # noqa: E501
         }
 
     @cached_property
@@ -121,7 +118,6 @@ class CreditPayStub(ModelNormal):
         'employer': 'employer',  # noqa: E501
         'net_pay': 'net_pay',  # noqa: E501
         'pay_period_details': 'pay_period_details',  # noqa: E501
-        'verification': 'verification',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,7 +132,7 @@ class CreditPayStub(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, deductions, document_id, document_metadata, earnings, employee, employer, net_pay, pay_period_details, verification, *args, **kwargs):  # noqa: E501
+    def __init__(self, deductions, document_id, document_metadata, earnings, employee, employer, net_pay, pay_period_details, *args, **kwargs):  # noqa: E501
         """CreditPayStub - a model defined in OpenAPI
 
         Args:
@@ -148,7 +144,6 @@ class CreditPayStub(ModelNormal):
             employer (CreditPayStubEmployer):
             net_pay (CreditPayStubNetPay):
             pay_period_details (PayStubPayPeriodDetails):
-            verification (CreditPayStubVerification):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -214,7 +209,6 @@ class CreditPayStub(ModelNormal):
         self.employer = employer
         self.net_pay = net_pay
         self.pay_period_details = pay_period_details
-        self.verification = verification
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

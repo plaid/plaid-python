@@ -51,9 +51,10 @@ class TransferEventType(ModelSimple):
             'CANCELLED': "cancelled",
             'FAILED': "failed",
             'POSTED': "posted",
+            'SETTLED': "settled",
             'RETURNED': "returned",
             'SWEPT': "swept",
-            'REVERSE_SWEPT': "reverse_swept",
+            'SWEPT_SETTLED': "swept_settled",
             'RETURN_SWEPT': "return_swept",
         },
     }
@@ -104,10 +105,10 @@ class TransferEventType(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `returned`: A posted transfer was returned.  `swept`: The transfer was swept to / from the sweep account.  `return_swept`: Due to the transfer being returned, funds were pulled from or pushed back to the sweep account.., must be one of ["pending", "cancelled", "failed", "posted", "returned", "swept", "reverse_swept", "return_swept", ]  # noqa: E501
+            args[0] (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `settled`: Credits are available to be withdrawn or debits have been deducted from the Plaid linked account.  `returned`: A posted transfer was returned.  `swept`: The transfer was swept to / from the sweep account.  `swept_settled`: Credits are available to be withdrawn or debits have been deducted from the customer’s business checking account.  `return_swept`: Due to the transfer being returned, funds were pulled from or pushed back to the sweep account.., must be one of ["pending", "cancelled", "failed", "posted", "settled", "returned", "swept", "swept_settled", "return_swept", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `returned`: A posted transfer was returned.  `swept`: The transfer was swept to / from the sweep account.  `return_swept`: Due to the transfer being returned, funds were pulled from or pushed back to the sweep account.., must be one of ["pending", "cancelled", "failed", "posted", "returned", "swept", "reverse_swept", "return_swept", ]  # noqa: E501
+            value (str): The type of event that this transfer represents.  `pending`: A new transfer was created; it is in the pending state.  `cancelled`: The transfer was cancelled by the client.  `failed`: The transfer failed, no funds were moved.  `posted`: The transfer has been successfully submitted to the payment network.  `settled`: Credits are available to be withdrawn or debits have been deducted from the Plaid linked account.  `returned`: A posted transfer was returned.  `swept`: The transfer was swept to / from the sweep account.  `swept_settled`: Credits are available to be withdrawn or debits have been deducted from the customer’s business checking account.  `return_swept`: Due to the transfer being returned, funds were pulled from or pushed back to the sweep account.., must be one of ["pending", "cancelled", "failed", "posted", "settled", "returned", "swept", "swept_settled", "return_swept", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

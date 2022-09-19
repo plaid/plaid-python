@@ -165,7 +165,7 @@ class LiabilityOverride(ModelNormal):
             type (str): The type of the liability object, either `credit` or `student`. Mortgages are not currently supported in the custom Sandbox.
             purchase_apr (float): The purchase APR percentage value. For simplicity, this is the only interest rate used to calculate interest charges. Can only be set if `type` is `credit`.
             cash_apr (float): The cash APR percentage value. Can only be set if `type` is `credit`.
-            balance_transfer_apr (float): The balance transfer APR percentage value. Can only be set if `type` is `credit`. Can only be set if `type` is `credit`.
+            balance_transfer_apr (float): The balance transfer APR percentage value. Can only be set if `type` is `credit`.
             special_apr (float): The special APR percentage value. Can only be set if `type` is `credit`.
             last_payment_amount (float): Override the `last_payment_amount` field. Can only be set if `type` is `credit`.
             minimum_payment_amount (float): Override the `minimum_payment_amount` field. Can only be set if `type` is `credit` or `student`.

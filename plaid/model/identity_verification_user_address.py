@@ -75,11 +75,11 @@ class IdentityVerificationUserAddress(ModelNormal):
         """
         lazy_import()
         return {
-            'street': (object, none_type,),  # noqa: E501
+            'street': (str, none_type,),  # noqa: E501
             'street2': (str, none_type,),  # noqa: E501
-            'city': (object, none_type,),  # noqa: E501
-            'region': (object, none_type,),  # noqa: E501
-            'postal_code': (object, none_type,),  # noqa: E501
+            'city': (str, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
+            'postal_code': (str, none_type,),  # noqa: E501
             'country': (GenericCountryCode,),  # noqa: E501
         }
 
@@ -113,11 +113,11 @@ class IdentityVerificationUserAddress(ModelNormal):
         """IdentityVerificationUserAddress - a model defined in OpenAPI
 
         Args:
-            street (object, none_type):
+            street (str, none_type): The primary street portion of an address. If the user has submitted their address, this field will always be filled.
             street2 (str, none_type): Extra street information, like an apartment or suite number.
-            city (object, none_type):
-            region (object, none_type):
-            postal_code (object, none_type):
+            city (str, none_type): City from the end user's address
+            region (str, none_type): An ISO 3166-2 subdivision code. Related terms would be \"state\", \"province\", \"prefecture\", \"zone\", \"subdivision\", etc.
+            postal_code (str, none_type): The postal code for the associated address. Between 2 and 10 alphanumeric characters. For US-based addresses this must be 5 numeric digits.
             country (GenericCountryCode):
 
         Keyword Args:

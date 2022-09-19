@@ -112,7 +112,7 @@ class SandboxTransferSimulateRequest(ModelNormal):
 
         Args:
             transfer_id (str): Plaid’s unique identifier for a transfer.
-            event_type (str): The asynchronous event to be simulated. May be: `posted`, `failed`, or `returned`.  An error will be returned if the event type is incompatible with the current transfer status. Compatible status --> event type transitions include:  `pending` --> `failed`  `pending` --> `posted`  `posted` --> `returned` 
+            event_type (str): The asynchronous event to be simulated. May be: `posted`, `settled`, `failed`, or `returned`.  An error will be returned if the event type is incompatible with the current transfer status. Compatible status --> event type transitions include:  `pending` --> `failed`  `pending` --> `posted`  `posted` --> `returned`  `posted` --> `settled` 
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

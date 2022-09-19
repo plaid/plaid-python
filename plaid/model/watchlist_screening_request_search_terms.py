@@ -25,7 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.generic_country_code import GenericCountryCode
+    from plaid.model.watchlist_screening_document_value import WatchlistScreeningDocumentValue
     from plaid.model.watchlist_screening_individual_name import WatchlistScreeningIndividualName
+    globals()['GenericCountryCode'] = GenericCountryCode
+    globals()['WatchlistScreeningDocumentValue'] = WatchlistScreeningDocumentValue
     globals()['WatchlistScreeningIndividualName'] = WatchlistScreeningIndividualName
 
 
@@ -77,9 +81,9 @@ class WatchlistScreeningRequestSearchTerms(ModelNormal):
         return {
             'watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (WatchlistScreeningIndividualName,),  # noqa: E501
-            'date_of_birth': (object, none_type,),  # noqa: E501
-            'document_number': (object, none_type,),  # noqa: E501
-            'country': (object, none_type,),  # noqa: E501
+            'date_of_birth': (date,),  # noqa: E501
+            'document_number': (WatchlistScreeningDocumentValue,),  # noqa: E501
+            'country': (GenericCountryCode,),  # noqa: E501
         }
 
     @cached_property
@@ -145,9 +149,9 @@ class WatchlistScreeningRequestSearchTerms(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            date_of_birth (object, none_type): [optional]  # noqa: E501
-            document_number (object, none_type): [optional]  # noqa: E501
-            country (object, none_type): [optional]  # noqa: E501
+            date_of_birth (date): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).. [optional]  # noqa: E501
+            document_number (WatchlistScreeningDocumentValue): [optional]  # noqa: E501
+            country (GenericCountryCode): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

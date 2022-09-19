@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.webhook_environment_values import WebhookEnvironmentValues
     globals()['PlaidError'] = PlaidError
+    globals()['WebhookEnvironmentValues'] = WebhookEnvironmentValues
 
 
 class TransactionsRemovedWebhook(ModelNormal):
@@ -86,6 +88,7 @@ class TransactionsRemovedWebhook(ModelNormal):
             'webhook_code': (str,),  # noqa: E501
             'removed_transactions': ([str],),  # noqa: E501
             'item_id': (str,),  # noqa: E501
+            'environment': (WebhookEnvironmentValues,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
         }
 
@@ -99,6 +102,7 @@ class TransactionsRemovedWebhook(ModelNormal):
         'webhook_code': 'webhook_code',  # noqa: E501
         'removed_transactions': 'removed_transactions',  # noqa: E501
         'item_id': 'item_id',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -114,7 +118,7 @@ class TransactionsRemovedWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, webhook_type, webhook_code, removed_transactions, item_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, removed_transactions, item_id, environment, *args, **kwargs):  # noqa: E501
         """TransactionsRemovedWebhook - a model defined in OpenAPI
 
         Args:
@@ -122,6 +126,7 @@ class TransactionsRemovedWebhook(ModelNormal):
             webhook_code (str): `TRANSACTIONS_REMOVED`
             removed_transactions ([str]): An array of `transaction_ids` corresponding to the removed transactions
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
+            environment (WebhookEnvironmentValues):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,6 +189,7 @@ class TransactionsRemovedWebhook(ModelNormal):
         self.webhook_code = webhook_code
         self.removed_transactions = removed_transactions
         self.item_id = item_id
+        self.environment = environment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -47,8 +47,10 @@ class WalletTransactionStatus(ModelSimple):
 
     allowed_values = {
         ('value',): {
+            'AUTHORISING': "AUTHORISING",
             'INITIATED': "INITIATED",
             'EXECUTED': "EXECUTED",
+            'SETTLED': "SETTLED",
             'BLOCKED': "BLOCKED",
             'FAILED': "FAILED",
         },
@@ -100,10 +102,10 @@ class WalletTransactionStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The status of the transaction.  `INITIATED`: This is the initial state of all transactions. It indicates that the transaction has been initiated and is currently being processed.  `EXECUTED`: The transaction has been successfully executed.  `FAILED`: The transaction failed to process successfully. This is a terminal status.  `BLOCKED`: The transaction has been blocked for violating compliance rules. This is a terminal status.., must be one of ["INITIATED", "EXECUTED", "BLOCKED", "FAILED", ]  # noqa: E501
+            args[0] (str): The status of the transaction.  `AUTHORISING`: The transaction is being processed for validation and compliance.  `INITIATED`: The transaction has been initiated and is currently being processed.  `EXECUTED`: The transaction has been successfully executed and is considered complete. This is only applicable for debit transactions.  `SETTLED`: The transaction has settled and funds are available for use. This is only applicable for credit transactions. A transaction will typically settle within seconds to several days, depending on which payment rail is used.  `FAILED`: The transaction failed to process successfully. This is a terminal status.  `BLOCKED`: The transaction has been blocked for violating compliance rules. This is a terminal status.., must be one of ["AUTHORISING", "INITIATED", "EXECUTED", "SETTLED", "BLOCKED", "FAILED", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The status of the transaction.  `INITIATED`: This is the initial state of all transactions. It indicates that the transaction has been initiated and is currently being processed.  `EXECUTED`: The transaction has been successfully executed.  `FAILED`: The transaction failed to process successfully. This is a terminal status.  `BLOCKED`: The transaction has been blocked for violating compliance rules. This is a terminal status.., must be one of ["INITIATED", "EXECUTED", "BLOCKED", "FAILED", ]  # noqa: E501
+            value (str): The status of the transaction.  `AUTHORISING`: The transaction is being processed for validation and compliance.  `INITIATED`: The transaction has been initiated and is currently being processed.  `EXECUTED`: The transaction has been successfully executed and is considered complete. This is only applicable for debit transactions.  `SETTLED`: The transaction has settled and funds are available for use. This is only applicable for credit transactions. A transaction will typically settle within seconds to several days, depending on which payment rail is used.  `FAILED`: The transaction failed to process successfully. This is a terminal status.  `BLOCKED`: The transaction has been blocked for violating compliance rules. This is a terminal status.., must be one of ["AUTHORISING", "INITIATED", "EXECUTED", "SETTLED", "BLOCKED", "FAILED", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
