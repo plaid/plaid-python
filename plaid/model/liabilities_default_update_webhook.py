@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.liabilities_account_ids_with_updated_liabilities import LiabilitiesAccountIdsWithUpdatedLiabilities
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.webhook_environment_values import WebhookEnvironmentValues
     globals()['LiabilitiesAccountIdsWithUpdatedLiabilities'] = LiabilitiesAccountIdsWithUpdatedLiabilities
     globals()['PlaidError'] = PlaidError
+    globals()['WebhookEnvironmentValues'] = WebhookEnvironmentValues
 
 
 class LiabilitiesDefaultUpdateWebhook(ModelNormal):
@@ -83,6 +85,7 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
             'error': (PlaidError,),  # noqa: E501
             'account_ids_with_new_liabilities': ([str],),  # noqa: E501
             'account_ids_with_updated_liabilities': (LiabilitiesAccountIdsWithUpdatedLiabilities,),  # noqa: E501
+            'environment': (WebhookEnvironmentValues,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +100,7 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
         'error': 'error',  # noqa: E501
         'account_ids_with_new_liabilities': 'account_ids_with_new_liabilities',  # noqa: E501
         'account_ids_with_updated_liabilities': 'account_ids_with_updated_liabilities',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,7 +115,7 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, webhook_type, webhook_code, item_id, error, account_ids_with_new_liabilities, account_ids_with_updated_liabilities, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, item_id, error, account_ids_with_new_liabilities, account_ids_with_updated_liabilities, environment, *args, **kwargs):  # noqa: E501
         """LiabilitiesDefaultUpdateWebhook - a model defined in OpenAPI
 
         Args:
@@ -121,6 +125,7 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
             error (PlaidError):
             account_ids_with_new_liabilities ([str]): An array of `account_id`'s for accounts that contain new liabilities.'
             account_ids_with_updated_liabilities (LiabilitiesAccountIdsWithUpdatedLiabilities):
+            environment (WebhookEnvironmentValues):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,6 +189,7 @@ class LiabilitiesDefaultUpdateWebhook(ModelNormal):
         self.error = error
         self.account_ids_with_new_liabilities = account_ids_with_new_liabilities
         self.account_ids_with_updated_liabilities = account_ids_with_updated_liabilities
+        self.environment = environment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

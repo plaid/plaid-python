@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.webhook_environment_values import WebhookEnvironmentValues
     globals()['PlaidError'] = PlaidError
+    globals()['WebhookEnvironmentValues'] = WebhookEnvironmentValues
 
 
 class ItemErrorWebhook(ModelNormal):
@@ -86,6 +88,7 @@ class ItemErrorWebhook(ModelNormal):
             'webhook_code': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
+            'environment': (WebhookEnvironmentValues,),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +101,7 @@ class ItemErrorWebhook(ModelNormal):
         'webhook_code': 'webhook_code',  # noqa: E501
         'item_id': 'item_id',  # noqa: E501
         'error': 'error',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,7 +116,7 @@ class ItemErrorWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, webhook_type, webhook_code, item_id, error, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, item_id, error, environment, *args, **kwargs):  # noqa: E501
         """ItemErrorWebhook - a model defined in OpenAPI
 
         Args:
@@ -120,6 +124,7 @@ class ItemErrorWebhook(ModelNormal):
             webhook_code (str): `ERROR`
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
             error (PlaidError):
+            environment (WebhookEnvironmentValues):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -181,6 +186,7 @@ class ItemErrorWebhook(ModelNormal):
         self.webhook_code = webhook_code
         self.item_id = item_id
         self.error = error
+        self.environment = environment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

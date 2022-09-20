@@ -26,12 +26,10 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.client_user_id import ClientUserID
-    from plaid.model.identity_verification_user_phone_number import IdentityVerificationUserPhoneNumber
     from plaid.model.user_address import UserAddress
     from plaid.model.user_id_number import UserIDNumber
     from plaid.model.user_name import UserName
     globals()['ClientUserID'] = ClientUserID
-    globals()['IdentityVerificationUserPhoneNumber'] = IdentityVerificationUserPhoneNumber
     globals()['UserAddress'] = UserAddress
     globals()['UserIDNumber'] = UserIDNumber
     globals()['UserName'] = UserName
@@ -84,8 +82,8 @@ class IdentityVerificationRequestUser(ModelNormal):
         lazy_import()
         return {
             'client_user_id': (ClientUserID,),  # noqa: E501
-            'email_address': (object, none_type,),  # noqa: E501
-            'phone_number': (IdentityVerificationUserPhoneNumber,),  # noqa: E501
+            'email_address': (str,),  # noqa: E501
+            'phone_number': (str, none_type,),  # noqa: E501
             'date_of_birth': (date, none_type,),  # noqa: E501
             'name': (UserName,),  # noqa: E501
             'address': (UserAddress,),  # noqa: E501
@@ -156,8 +154,8 @@ class IdentityVerificationRequestUser(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            email_address (object, none_type): [optional]  # noqa: E501
-            phone_number (IdentityVerificationUserPhoneNumber): [optional]  # noqa: E501
+            email_address (str): A valid email address.. [optional]  # noqa: E501
+            phone_number (str, none_type): A phone number in E.164 format.. [optional]  # noqa: E501
             date_of_birth (date, none_type): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).. [optional]  # noqa: E501
             name (UserName): [optional]  # noqa: E501
             address (UserAddress): [optional]  # noqa: E501

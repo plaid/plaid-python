@@ -51,9 +51,6 @@ class WatchlistScreeningDocumentValue(ModelSimple):
     validations = {
         ('value',): {
             'min_length': 4,
-            'regex': {
-                'pattern': r'',  # noqa: E501
-            },
         },
     }
 

@@ -51,9 +51,6 @@ class GenericCountryCode(ModelSimple):
     validations = {
         ('value',): {
             'min_length': 2,
-            'regex': {
-                'pattern': r'',  # noqa: E501
-            },
         },
     }
 

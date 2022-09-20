@@ -49,6 +49,7 @@ class TransferStatus(ModelSimple):
         ('value',): {
             'PENDING': "pending",
             'POSTED': "posted",
+            'SETTLED': "settled",
             'CANCELLED': "cancelled",
             'FAILED': "failed",
             'RETURNED': "returned",
@@ -101,10 +102,10 @@ class TransferStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The status of the transfer.., must be one of ["pending", "posted", "cancelled", "failed", "returned", ]  # noqa: E501
+            args[0] (str): The status of the transfer.  `pending`: A new transfer was created; it is in the pending state. `posted`: The transfer has been successfully submitted to the payment network. `settled`: Credits are available to be withdrawn or debits have been deducted from the Plaid linked account. `cancelled`: The transfer was cancelled by the client. `failed`: The transfer failed, no funds were moved. `returned`: A posted transfer was returned.., must be one of ["pending", "posted", "settled", "cancelled", "failed", "returned", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The status of the transfer.., must be one of ["pending", "posted", "cancelled", "failed", "returned", ]  # noqa: E501
+            value (str): The status of the transfer.  `pending`: A new transfer was created; it is in the pending state. `posted`: The transfer has been successfully submitted to the payment network. `settled`: Credits are available to be withdrawn or debits have been deducted from the Plaid linked account. `cancelled`: The transfer was cancelled by the client. `failed`: The transfer failed, no funds were moved. `returned`: A posted transfer was returned.., must be one of ["pending", "posted", "settled", "cancelled", "failed", "returned", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

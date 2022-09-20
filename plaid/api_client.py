@@ -74,7 +74,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'Plaid Python v9.9.0'
+        self.user_agent = 'Plaid Python v10.0.0'
 
     def __enter__(self):
         return self

@@ -50,8 +50,8 @@ class SignalScore(ModelSimple):
 
     validations = {
         ('value',): {
-            'inclusive_maximum': 100,
-            'inclusive_minimum': 0,
+            'inclusive_maximum': 99,
+            'inclusive_minimum': 1,
         },
     }
 
@@ -98,10 +98,10 @@ class SignalScore(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (int): A score from 0-99 that indicates the transaction return risk: a higher risk score suggests a higher return likelihood..  # noqa: E501
+            args[0] (int): A score from 1-99 that indicates the transaction return risk: a higher risk score suggests a higher return likelihood..  # noqa: E501
 
         Keyword Args:
-            value (int): A score from 0-99 that indicates the transaction return risk: a higher risk score suggests a higher return likelihood..  # noqa: E501
+            value (int): A score from 1-99 that indicates the transaction return risk: a higher risk score suggests a higher return likelihood..  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

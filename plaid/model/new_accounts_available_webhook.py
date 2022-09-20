@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.webhook_environment_values import WebhookEnvironmentValues
     globals()['PlaidError'] = PlaidError
+    globals()['WebhookEnvironmentValues'] = WebhookEnvironmentValues
 
 
 class NewAccountsAvailableWebhook(ModelNormal):
@@ -79,6 +81,7 @@ class NewAccountsAvailableWebhook(ModelNormal):
             'webhook_code': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
+            'environment': (WebhookEnvironmentValues,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +94,7 @@ class NewAccountsAvailableWebhook(ModelNormal):
         'webhook_code': 'webhook_code',  # noqa: E501
         'item_id': 'item_id',  # noqa: E501
         'error': 'error',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +147,7 @@ class NewAccountsAvailableWebhook(ModelNormal):
             webhook_code (str): `NEW_ACCOUNTS_AVAILABLE`. [optional]  # noqa: E501
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error. [optional]  # noqa: E501
             error (PlaidError): [optional]  # noqa: E501
+            environment (WebhookEnvironmentValues): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

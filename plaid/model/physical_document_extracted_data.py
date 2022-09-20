@@ -27,10 +27,8 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.generic_country_code import GenericCountryCode
     from plaid.model.physical_document_category import PhysicalDocumentCategory
-    from plaid.model.physical_document_id_number import PhysicalDocumentIDNumber
     globals()['GenericCountryCode'] = GenericCountryCode
     globals()['PhysicalDocumentCategory'] = PhysicalDocumentCategory
-    globals()['PhysicalDocumentIDNumber'] = PhysicalDocumentIDNumber
 
 
 class PhysicalDocumentExtractedData(ModelNormal):
@@ -79,10 +77,11 @@ class PhysicalDocumentExtractedData(ModelNormal):
         """
         lazy_import()
         return {
-            'id_number': (PhysicalDocumentIDNumber,),  # noqa: E501
+            'id_number': (str, none_type,),  # noqa: E501
             'category': (PhysicalDocumentCategory,),  # noqa: E501
-            'expiration_date': (object, none_type,),  # noqa: E501
+            'expiration_date': (date, none_type,),  # noqa: E501
             'issuing_country': (GenericCountryCode,),  # noqa: E501
+            'issuing_region': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +94,7 @@ class PhysicalDocumentExtractedData(ModelNormal):
         'category': 'category',  # noqa: E501
         'expiration_date': 'expiration_date',  # noqa: E501
         'issuing_country': 'issuing_country',  # noqa: E501
+        'issuing_region': 'issuing_region',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -109,14 +109,15 @@ class PhysicalDocumentExtractedData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id_number, category, expiration_date, issuing_country, *args, **kwargs):  # noqa: E501
+    def __init__(self, id_number, category, expiration_date, issuing_country, issuing_region, *args, **kwargs):  # noqa: E501
         """PhysicalDocumentExtractedData - a model defined in OpenAPI
 
         Args:
-            id_number (PhysicalDocumentIDNumber):
+            id_number (str, none_type): Alpha-numeric ID number extracted via OCR from the user's document image.
             category (PhysicalDocumentCategory):
-            expiration_date (object, none_type):
+            expiration_date (date, none_type): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).
             issuing_country (GenericCountryCode):
+            issuing_region (str, none_type): An ISO 3166-2 subdivision code. Related terms would be \"state\", \"province\", \"prefecture\", \"zone\", \"subdivision\", etc.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -178,6 +179,7 @@ class PhysicalDocumentExtractedData(ModelNormal):
         self.category = category
         self.expiration_date = expiration_date
         self.issuing_country = issuing_country
+        self.issuing_region = issuing_region
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

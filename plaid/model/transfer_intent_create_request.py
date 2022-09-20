@@ -178,7 +178,7 @@ class TransferIntentCreateRequest(ModelNormal):
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.. [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\". [optional]  # noqa: E501
-            require_guarantee (bool, none_type): When `true`, the transfer requires a `GUARANTEED` decision by Plaid to proceed (Guaranteed ACH customers only).. [optional] if omitted the server will use the default value of False  # noqa: E501
+            require_guarantee (bool, none_type): When `true`, the transfer requires a `GUARANTEED` decision by Plaid to proceed (Guarantee customers only).. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

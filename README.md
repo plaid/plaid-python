@@ -97,12 +97,12 @@ For more information on Plaid response codes, head to the [docs][3].
 
 ### Converting the response to a JSON
 
-As this is a common question, we've included this in the README. `plaid-python` uses models like `TransactionsGetResponse` to encapsulate API responses. If you want to convert this to a JSON, do something like this:
+As this is a common question, we've included this in the README. `plaid-python` uses models like `TransactionsSyncResponse` to encapsulate API responses. If you want to convert this to a JSON, do something like this:
 
 ```python
 import json
 ...
-response = ... # type TransactionsGetResponse
+response = ... # type TransactionsSyncResponse
 # to_dict makes it first a python dictionary, and then we turn it into a string JSON.
 json_string = json.dumps(response.to_dict())
 ```
@@ -198,7 +198,30 @@ request = ItemRemoveRequest(
 response = client.item_remove(request)
 ```
 
-### Retrieve Transactions
+### Retrieve Transactions (preferred method)
+```python
+import plaid
+from plaid.model.transactions_sync_request import TransactionsSyncRequest
+
+request = TransactionsSyncRequest(
+    access_token=access_token,
+)
+response = client.transactions_sync(request)
+transactions = response['transactions']
+
+# the transactions in the response are paginated, so make multiple calls while incrementing the cursor to
+# retrieve all transactions
+while (response['has_more']):
+    request = TransactionsSyncRequest(
+        access_token=access_token,
+        cursor=response['next_cursor']
+    )
+    response = client.transactions_sync(request)
+    transactions += response['transactions']
+```
+
+
+### Retrieve Transactions (older method)
 ```python
 import plaid
 from plaid.model.transactions_get_request_options import TransactionsGetRequestOptions

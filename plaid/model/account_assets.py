@@ -33,6 +33,7 @@ def lazy_import():
     from plaid.model.asset_report_transaction import AssetReportTransaction
     from plaid.model.historical_balance import HistoricalBalance
     from plaid.model.owner import Owner
+    from plaid.model.ownership_type import OwnershipType
     globals()['AccountAssetsAllOf'] = AccountAssetsAllOf
     globals()['AccountBalance'] = AccountBalance
     globals()['AccountBase'] = AccountBase
@@ -41,6 +42,7 @@ def lazy_import():
     globals()['AssetReportTransaction'] = AssetReportTransaction
     globals()['HistoricalBalance'] = HistoricalBalance
     globals()['Owner'] = Owner
+    globals()['OwnershipType'] = OwnershipType
 
 
 class AccountAssets(ModelComposed):
@@ -116,6 +118,7 @@ class AccountAssets(ModelComposed):
             'owners': ([Owner],),  # noqa: E501
             'historical_balances': ([HistoricalBalance],),  # noqa: E501
             'verification_status': (str,),  # noqa: E501
+            'ownership_type': (OwnershipType,),  # noqa: E501
         }
 
     @cached_property
@@ -136,6 +139,7 @@ class AccountAssets(ModelComposed):
         'owners': 'owners',  # noqa: E501
         'historical_balances': 'historical_balances',  # noqa: E501
         'verification_status': 'verification_status',  # noqa: E501
+        'ownership_type': 'ownership_type',  # noqa: E501
     }
 
     required_properties = set([
@@ -199,6 +203,7 @@ class AccountAssets(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             verification_status (str): The current verification status of an Auth Item initiated through Automated or Manual micro-deposits.  Returned for Auth Items only.  `pending_automatic_verification`: The Item is pending automatic verification  `pending_manual_verification`: The Item is pending manual micro-deposit verification. Items remain in this state until the user successfully verifies the two amounts.  `automatically_verified`: The Item has successfully been automatically verified   `manually_verified`: The Item has successfully been manually verified  `verification_expired`: Plaid was unable to automatically verify the deposit within 7 calendar days and will no longer attempt to validate the Item. Users may retry by submitting their information again through Link.  `verification_failed`: The Item failed manual micro-deposit verification because the user exhausted all 3 verification attempts. Users may retry by submitting their information again through Link.   . [optional]  # noqa: E501
+            ownership_type (OwnershipType): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
