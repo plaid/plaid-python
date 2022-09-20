@@ -27,9 +27,11 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.income_verification_precheck_employer import IncomeVerificationPrecheckEmployer
     from plaid.model.income_verification_precheck_military_info import IncomeVerificationPrecheckMilitaryInfo
+    from plaid.model.income_verification_precheck_payroll_institution import IncomeVerificationPrecheckPayrollInstitution
     from plaid.model.income_verification_precheck_user import IncomeVerificationPrecheckUser
     globals()['IncomeVerificationPrecheckEmployer'] = IncomeVerificationPrecheckEmployer
     globals()['IncomeVerificationPrecheckMilitaryInfo'] = IncomeVerificationPrecheckMilitaryInfo
+    globals()['IncomeVerificationPrecheckPayrollInstitution'] = IncomeVerificationPrecheckPayrollInstitution
     globals()['IncomeVerificationPrecheckUser'] = IncomeVerificationPrecheckUser
 
 
@@ -83,6 +85,7 @@ class IncomeVerificationPrecheckRequest(ModelNormal):
             'secret': (str,),  # noqa: E501
             'user': (IncomeVerificationPrecheckUser,),  # noqa: E501
             'employer': (IncomeVerificationPrecheckEmployer,),  # noqa: E501
+            'payroll_institution': (IncomeVerificationPrecheckPayrollInstitution,),  # noqa: E501
             'transactions_access_token': (object,),  # noqa: E501
             'transactions_access_tokens': ([str],),  # noqa: E501
             'us_military_info': (IncomeVerificationPrecheckMilitaryInfo,),  # noqa: E501
@@ -98,6 +101,7 @@ class IncomeVerificationPrecheckRequest(ModelNormal):
         'secret': 'secret',  # noqa: E501
         'user': 'user',  # noqa: E501
         'employer': 'employer',  # noqa: E501
+        'payroll_institution': 'payroll_institution',  # noqa: E501
         'transactions_access_token': 'transactions_access_token',  # noqa: E501
         'transactions_access_tokens': 'transactions_access_tokens',  # noqa: E501
         'us_military_info': 'us_military_info',  # noqa: E501
@@ -153,6 +157,7 @@ class IncomeVerificationPrecheckRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             user (IncomeVerificationPrecheckUser): [optional]  # noqa: E501
             employer (IncomeVerificationPrecheckEmployer): [optional]  # noqa: E501
+            payroll_institution (IncomeVerificationPrecheckPayrollInstitution): [optional]  # noqa: E501
             transactions_access_token (object): [optional]  # noqa: E501
             transactions_access_tokens ([str]): An array of access tokens corresponding to Items belonging to the user whose eligibility is being checked. Note that if the Items specified here are not already initialized with `transactions`, providing them in this field will cause these Items to be initialized with (and billed for) the Transactions product.. [optional]  # noqa: E501
             us_military_info (IncomeVerificationPrecheckMilitaryInfo): [optional]  # noqa: E501

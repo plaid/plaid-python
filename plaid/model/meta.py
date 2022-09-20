@@ -53,6 +53,13 @@ class Meta(ModelNormal):
     }
 
     validations = {
+        ('mask',): {
+            'max_length': 4,
+            'min_length': 2,
+            'regex': {
+                'pattern': r'^[A-Za-z0-9]{2,4}$',  # noqa: E501
+            },
+        },
     }
 
     @cached_property
@@ -79,6 +86,7 @@ class Meta(ModelNormal):
             'name': (str,),  # noqa: E501
             'official_name': (str,),  # noqa: E501
             'limit': (float,),  # noqa: E501
+            'mask': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +98,7 @@ class Meta(ModelNormal):
         'name': 'name',  # noqa: E501
         'official_name': 'official_name',  # noqa: E501
         'limit': 'limit',  # noqa: E501
+        'mask': 'mask',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -104,13 +113,14 @@ class Meta(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, official_name, limit, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, official_name, limit, mask, *args, **kwargs):  # noqa: E501
         """Meta - a model defined in OpenAPI
 
         Args:
             name (str): The account's name
             official_name (str): The account's official name
             limit (float): The account's limit
+            mask (str): The account's mask. Should be a string of 2-4 alphanumeric characters. This allows you to model a mask which does not match the account number (such as with a virtual account number).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -171,6 +181,7 @@ class Meta(ModelNormal):
         self.name = name
         self.official_name = official_name
         self.limit = limit
+        self.mask = mask
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

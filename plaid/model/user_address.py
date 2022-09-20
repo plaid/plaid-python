@@ -116,7 +116,7 @@ class UserAddress(ModelNormal):
             street (str): The primary street portion of an address. If the user has submitted their address, this field will always be filled.
             city (str): City from the end user's address
             region (str): An ISO 3166-2 subdivision code. Related terms would be \"state\", \"province\", \"prefecture\", \"zone\", \"subdivision\", etc.
-            postal_code (str): The postal code for the associated address. Between 2 and 10 alphanumeric characters.
+            postal_code (str): The postal code for the associated address. Between 2 and 10 alphanumeric characters. For US-based addresses this must be 5 numeric digits.
             country (GenericCountryCode):
 
         Keyword Args:

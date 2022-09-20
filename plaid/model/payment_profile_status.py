@@ -99,10 +99,10 @@ class PaymentProfileStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The status of the given Payment Profile.  `READY`: This Payment Profile is ready to be used to create transfers using `/transfer/authorization/create` and /transfer/create`.  `PENDING`: This Payment Profile is not ready to be used. You’ll need to call `/link/token/create` and provide the Payment Profile ID in the `transfer.payment_profile_id` field and go through the account linking flow to activate it.  `REMOVED`: This Payment Profile has been removed.., must be one of ["PENDING", "READY", "REMOVED", ]  # noqa: E501
+            args[0] (str): The status of the given Payment Profile.  `READY`: This Payment Profile is ready to be used to create transfers using `/transfer/authorization/create` and `/transfer/create`.  `PENDING`: This Payment Profile is not ready to be used. You’ll need to call `/link/token/create` and provide the Payment Profile ID in the `transfer.payment_profile_id` field to initiate the account linking experience.  `REMOVED`: This Payment Profile has been removed.., must be one of ["PENDING", "READY", "REMOVED", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The status of the given Payment Profile.  `READY`: This Payment Profile is ready to be used to create transfers using `/transfer/authorization/create` and /transfer/create`.  `PENDING`: This Payment Profile is not ready to be used. You’ll need to call `/link/token/create` and provide the Payment Profile ID in the `transfer.payment_profile_id` field and go through the account linking flow to activate it.  `REMOVED`: This Payment Profile has been removed.., must be one of ["PENDING", "READY", "REMOVED", ]  # noqa: E501
+            value (str): The status of the given Payment Profile.  `READY`: This Payment Profile is ready to be used to create transfers using `/transfer/authorization/create` and `/transfer/create`.  `PENDING`: This Payment Profile is not ready to be used. You’ll need to call `/link/token/create` and provide the Payment Profile ID in the `transfer.payment_profile_id` field to initiate the account linking experience.  `REMOVED`: This Payment Profile has been removed.., must be one of ["PENDING", "READY", "REMOVED", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

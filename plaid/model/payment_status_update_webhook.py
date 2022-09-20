@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.payment_initiation_payment_status import PaymentInitiationPaymentStatus
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.webhook_environment_values import WebhookEnvironmentValues
     globals()['PaymentInitiationPaymentStatus'] = PaymentInitiationPaymentStatus
     globals()['PlaidError'] = PlaidError
+    globals()['WebhookEnvironmentValues'] = WebhookEnvironmentValues
 
 
 class PaymentStatusUpdateWebhook(ModelNormal):
@@ -93,6 +95,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             'original_start_date': (date, none_type,),  # noqa: E501
             'adjusted_start_date': (date, none_type,),  # noqa: E501
             'timestamp': (datetime,),  # noqa: E501
+            'environment': (WebhookEnvironmentValues,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
         }
@@ -112,6 +115,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
         'original_start_date': 'original_start_date',  # noqa: E501
         'adjusted_start_date': 'adjusted_start_date',  # noqa: E501
         'timestamp': 'timestamp',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
@@ -128,7 +132,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, webhook_type, webhook_code, payment_id, new_payment_status, old_payment_status, original_reference, original_start_date, adjusted_start_date, timestamp, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, payment_id, new_payment_status, old_payment_status, original_reference, original_start_date, adjusted_start_date, timestamp, environment, *args, **kwargs):  # noqa: E501
         """PaymentStatusUpdateWebhook - a model defined in OpenAPI
 
         Args:
@@ -141,6 +145,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             original_start_date (date, none_type): The original value of the `start_date` provided during the creation of a standing order. If the payment is not a standing order, this field will be `null`.
             adjusted_start_date (date, none_type): The start date sent to the bank after adjusting for holidays or weekends.  Will be provided in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). If the start date did not require adjustment, or if the payment is not a standing order, this field will be `null`.
             timestamp (datetime): The timestamp of the update, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format, e.g. `\"2017-09-14T14:42:19.350Z\"`
+            environment (WebhookEnvironmentValues):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -209,6 +214,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
         self.original_start_date = original_start_date
         self.adjusted_start_date = adjusted_start_date
         self.timestamp = timestamp
+        self.environment = environment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

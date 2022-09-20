@@ -26,11 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.identity_verification_user_address import IdentityVerificationUserAddress
-    from plaid.model.identity_verification_user_phone_number import IdentityVerificationUserPhoneNumber
     from plaid.model.user_id_number import UserIDNumber
     from plaid.model.user_name import UserName
     globals()['IdentityVerificationUserAddress'] = IdentityVerificationUserAddress
-    globals()['IdentityVerificationUserPhoneNumber'] = IdentityVerificationUserPhoneNumber
     globals()['UserIDNumber'] = UserIDNumber
     globals()['UserName'] = UserName
 
@@ -81,13 +79,13 @@ class IdentityVerificationUserData(ModelNormal):
         """
         lazy_import()
         return {
-            'phone_number': (IdentityVerificationUserPhoneNumber,),  # noqa: E501
             'date_of_birth': (date, none_type,),  # noqa: E501
             'ip_address': (str, none_type,),  # noqa: E501
-            'email_address': (object, none_type,),  # noqa: E501
+            'email_address': (str, none_type,),  # noqa: E501
             'name': (UserName,),  # noqa: E501
             'address': (IdentityVerificationUserAddress,),  # noqa: E501
             'id_number': (UserIDNumber,),  # noqa: E501
+            'phone_number': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,13 +94,13 @@ class IdentityVerificationUserData(ModelNormal):
 
 
     attribute_map = {
-        'phone_number': 'phone_number',  # noqa: E501
         'date_of_birth': 'date_of_birth',  # noqa: E501
         'ip_address': 'ip_address',  # noqa: E501
         'email_address': 'email_address',  # noqa: E501
         'name': 'name',  # noqa: E501
         'address': 'address',  # noqa: E501
         'id_number': 'id_number',  # noqa: E501
+        'phone_number': 'phone_number',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -117,14 +115,13 @@ class IdentityVerificationUserData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, phone_number, date_of_birth, ip_address, email_address, name, address, id_number, *args, **kwargs):  # noqa: E501
+    def __init__(self, date_of_birth, ip_address, email_address, name, address, id_number, *args, **kwargs):  # noqa: E501
         """IdentityVerificationUserData - a model defined in OpenAPI
 
         Args:
-            phone_number (IdentityVerificationUserPhoneNumber):
             date_of_birth (date, none_type): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).
             ip_address (str, none_type): An IPv4 or IPV6 address.
-            email_address (object, none_type):
+            email_address (str, none_type): A valid email address.
             name (UserName):
             address (IdentityVerificationUserAddress):
             id_number (UserIDNumber):
@@ -160,6 +157,7 @@ class IdentityVerificationUserData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            phone_number (str, none_type): A phone number in E.164 format.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -185,7 +183,6 @@ class IdentityVerificationUserData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.phone_number = phone_number
         self.date_of_birth = date_of_birth
         self.ip_address = ip_address
         self.email_address = email_address

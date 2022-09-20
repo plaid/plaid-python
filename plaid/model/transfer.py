@@ -117,6 +117,8 @@ class Transfer(ModelNormal):
             'guarantee_decision': (TransferAuthorizationGuaranteeDecision,),  # noqa: E501
             'guarantee_decision_rationale': (TransferAuthorizationGuaranteeDecisionRationale,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
+            'standard_return_window': (date, none_type,),  # noqa: E501
+            'unauthorized_return_window': (date, none_type,),  # noqa: E501
             'sweep_status': (TransferSweepStatus,),  # noqa: E501
         }
 
@@ -143,6 +145,8 @@ class Transfer(ModelNormal):
         'guarantee_decision': 'guarantee_decision',  # noqa: E501
         'guarantee_decision_rationale': 'guarantee_decision_rationale',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
+        'standard_return_window': 'standard_return_window',  # noqa: E501
+        'unauthorized_return_window': 'unauthorized_return_window',  # noqa: E501
         'sweep_status': 'sweep_status',  # noqa: E501
     }
 
@@ -158,7 +162,7 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
@@ -179,6 +183,8 @@ class Transfer(ModelNormal):
             guarantee_decision (TransferAuthorizationGuaranteeDecision):
             guarantee_decision_rationale (TransferAuthorizationGuaranteeDecisionRationale):
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
+            standard_return_window (date, none_type): The date 3 business days from settlement date indicating the following ACH returns can no longer happen: R01, R02, R03, R29. This will be of the form YYYY-MM-DD.
+            unauthorized_return_window (date, none_type): The date 61 business days from settlement date indicating the following ACH returns can no longer happen: R05, R07, R10, R11, R51, R33, R37, R38, R51, R52, R53. This will be of the form YYYY-MM-DD.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -254,6 +260,8 @@ class Transfer(ModelNormal):
         self.guarantee_decision = guarantee_decision
         self.guarantee_decision_rationale = guarantee_decision_rationale
         self.iso_currency_code = iso_currency_code
+        self.standard_return_window = standard_return_window
+        self.unauthorized_return_window = unauthorized_return_window
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

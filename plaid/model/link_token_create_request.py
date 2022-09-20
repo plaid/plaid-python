@@ -37,6 +37,7 @@ def lazy_import():
     from plaid.model.link_token_create_request_update import LinkTokenCreateRequestUpdate
     from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
     from plaid.model.link_token_eu_config import LinkTokenEUConfig
+    from plaid.model.link_token_investments import LinkTokenInvestments
     from plaid.model.products import Products
     globals()['CountryCode'] = CountryCode
     globals()['LinkTokenAccountFilters'] = LinkTokenAccountFilters
@@ -50,6 +51,7 @@ def lazy_import():
     globals()['LinkTokenCreateRequestUpdate'] = LinkTokenCreateRequestUpdate
     globals()['LinkTokenCreateRequestUser'] = LinkTokenCreateRequestUser
     globals()['LinkTokenEUConfig'] = LinkTokenEUConfig
+    globals()['LinkTokenInvestments'] = LinkTokenInvestments
     globals()['Products'] = Products
 
 
@@ -127,6 +129,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'update': (LinkTokenCreateRequestUpdate,),  # noqa: E501
             'identity_verification': (LinkTokenCreateRequestIdentityVerification,),  # noqa: E501
             'user_token': (str,),  # noqa: E501
+            'investments': (LinkTokenInvestments,),  # noqa: E501
         }
 
     @cached_property
@@ -160,6 +163,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'update': 'update',  # noqa: E501
         'identity_verification': 'identity_verification',  # noqa: E501
         'user_token': 'user_token',  # noqa: E501
+        'investments': 'investments',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -235,6 +239,7 @@ class LinkTokenCreateRequest(ModelNormal):
             update (LinkTokenCreateRequestUpdate): [optional]  # noqa: E501
             identity_verification (LinkTokenCreateRequestIdentityVerification): [optional]  # noqa: E501
             user_token (str): A user token generated using `/user/create`. Any item created during the link session will be associated with the user.. [optional]  # noqa: E501
+            investments (LinkTokenInvestments): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

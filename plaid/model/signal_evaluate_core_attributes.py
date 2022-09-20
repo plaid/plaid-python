@@ -82,7 +82,7 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             'plaid_connections_count_7d': (int, none_type,),  # noqa: E501
             'plaid_connections_count_30d': (int, none_type,),  # noqa: E501
             'total_plaid_connections_count': (int, none_type,),  # noqa: E501
-            'is_savings_or_money_market_account': (bool,),  # noqa: E501
+            'is_savings_or_money_market_account': (bool, none_type,),  # noqa: E501
             'total_credit_transactions_amount_10d': (float, none_type,),  # noqa: E501
             'total_debit_transactions_amount_10d': (float, none_type,),  # noqa: E501
             'p50_credit_transactions_amount_28d': (float, none_type,),  # noqa: E501
@@ -266,7 +266,7 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             plaid_connections_count_7d (int, none_type): The number of times the Item has been connected to applications via Plaid over the past 7 days. [optional]  # noqa: E501
             plaid_connections_count_30d (int, none_type): The number of times the Item has been connected to applications via Plaid over the past 30 days. [optional]  # noqa: E501
             total_plaid_connections_count (int, none_type): The total number of times the Item has been connected to applications via Plaid. [optional]  # noqa: E501
-            is_savings_or_money_market_account (bool): Indicates if the ACH transaction funding account is a savings/money market account. [optional]  # noqa: E501
+            is_savings_or_money_market_account (bool, none_type): Indicates if the ACH transaction funding account is a savings/money market account. [optional]  # noqa: E501
             total_credit_transactions_amount_10d (float, none_type): The total credit (inflow) transaction amount over the past 10 days from the account that will be debited. [optional]  # noqa: E501
             total_debit_transactions_amount_10d (float, none_type): The total debit (outflow) transaction amount over the past 10 days from the account that will be debited. [optional]  # noqa: E501
             p50_credit_transactions_amount_28d (float, none_type): The 50th percentile of all credit (inflow) transaction amounts over the past 28 days from the account that will be debited. [optional]  # noqa: E501

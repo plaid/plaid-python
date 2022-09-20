@@ -136,8 +136,8 @@ class TransferAuthorizationDevice(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            ip_address (str): The IP address of the device being used to initiate the authorization. Required for guaranteed ACH customers.. [optional]  # noqa: E501
-            user_agent (str): The user agent of the device being used to initiate the authorization. Required for guaranteed ACH customers.. [optional]  # noqa: E501
+            ip_address (str): The IP address of the device being used to initiate the authorization. Required for Guarantee.. [optional]  # noqa: E501
+            user_agent (str): The user agent of the device being used to initiate the authorization. Required for Guarantee.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -76,7 +76,7 @@ class WatchlistScreeningAuditTrail(ModelNormal):
         lazy_import()
         return {
             'source': (Source,),  # noqa: E501
-            'dashboard_user_id': (object, none_type,),  # noqa: E501
+            'dashboard_user_id': (str, none_type,),  # noqa: E501
             'timestamp': (datetime,),  # noqa: E501
         }
 
@@ -108,7 +108,7 @@ class WatchlistScreeningAuditTrail(ModelNormal):
 
         Args:
             source (Source):
-            dashboard_user_id (object, none_type):
+            dashboard_user_id (str, none_type): ID of the associated user.
             timestamp (datetime): An ISO8601 formatted timestamp.
 
         Keyword Args:

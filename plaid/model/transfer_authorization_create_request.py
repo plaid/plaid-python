@@ -27,11 +27,13 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.ach_class import ACHClass
     from plaid.model.transfer_authorization_device import TransferAuthorizationDevice
+    from plaid.model.transfer_authorization_idempotency_key import TransferAuthorizationIdempotencyKey
     from plaid.model.transfer_authorization_user_in_request import TransferAuthorizationUserInRequest
     from plaid.model.transfer_network import TransferNetwork
     from plaid.model.transfer_type import TransferType
     globals()['ACHClass'] = ACHClass
     globals()['TransferAuthorizationDevice'] = TransferAuthorizationDevice
+    globals()['TransferAuthorizationIdempotencyKey'] = TransferAuthorizationIdempotencyKey
     globals()['TransferAuthorizationUserInRequest'] = TransferAuthorizationUserInRequest
     globals()['TransferNetwork'] = TransferNetwork
     globals()['TransferType'] = TransferType
@@ -91,11 +93,13 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
+            'idempotency_key': (TransferAuthorizationIdempotencyKey,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'device': (TransferAuthorizationDevice,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'user_present': (bool, none_type,),  # noqa: E501
+            'with_guarantee': (bool, none_type,),  # noqa: E501
             'payment_profile_id': (str,),  # noqa: E501
         }
 
@@ -113,11 +117,13 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
+        'idempotency_key': 'idempotency_key',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'device': 'device',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'user_present': 'user_present',  # noqa: E501
+        'with_guarantee': 'with_guarantee',  # noqa: E501
         'payment_profile_id': 'payment_profile_id',  # noqa: E501
     }
 
@@ -177,11 +183,13 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             access_token (str): The Plaid `access_token` for the account that will be debited or credited.. [optional]  # noqa: E501
+            idempotency_key (TransferAuthorizationIdempotencyKey): [optional]  # noqa: E501
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
             device (TransferAuthorizationDevice): [optional]  # noqa: E501
             origination_account_id (str): Plaid's unique identifier for the origination account for this authorization. If not specified, the default account will be used.. [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
-            user_present (bool, none_type): Required for guaranteed ACH customers. If the end user is initiating the specific transfer themselves via an interactive UI, this should be `true`; for automatic recurring payments where the end user is not actually initiating each individual transfer, it should be `false`.. [optional]  # noqa: E501
+            user_present (bool, none_type): Required for Guarantee. If the end user is initiating the specific transfer themselves via an interactive UI, this should be `true`; for automatic recurring payments where the end user is not actually initiating each individual transfer, it should be `false`.. [optional]  # noqa: E501
+            with_guarantee (bool, none_type): If set to `false`, Plaid will not offer a `guarantee_decision` for this request(Guarantee customers only).. [optional] if omitted the server will use the default value of True  # noqa: E501
             payment_profile_id (str): Plaid’s unique identifier for a payment profile.. [optional]  # noqa: E501
         """
 
