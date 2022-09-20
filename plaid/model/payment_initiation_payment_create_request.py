@@ -127,7 +127,7 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
 
         Args:
             recipient_id (str): The ID of the recipient the payment is for.
-            reference (str): A reference for the payment. This must be an alphanumeric string with at most 18 characters and must not contain any special characters (since not all institutions support them).
+            reference (str): A reference for the payment. This must be an alphanumeric string with at most 18 characters and must not contain any special characters (since not all institutions support them). In order to track settlement via Payment Confirmation, each payment must have a unique reference. If the reference provided through the API is not unique, Plaid will adjust it. Both the originally provided and automatically adjusted references (if any) can be found in the `reference` and `adjusted_reference` fields, respectively.
             amount (PaymentAmount):
 
         Keyword Args:

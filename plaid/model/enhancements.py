@@ -25,9 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.counterparty import Counterparty
     from plaid.model.location import Location
     from plaid.model.payment_channel import PaymentChannel
     from plaid.model.personal_finance_category import PersonalFinanceCategory
+    globals()['Counterparty'] = Counterparty
     globals()['Location'] = Location
     globals()['PaymentChannel'] = PaymentChannel
     globals()['PersonalFinanceCategory'] = PersonalFinanceCategory
@@ -96,6 +98,7 @@ class Enhancements(ModelNormal):
             'check_number': (str, none_type,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
             'personal_finance_category_icon_url': (str,),  # noqa: E501
+            'counterparties': ([Counterparty],),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +117,7 @@ class Enhancements(ModelNormal):
         'check_number': 'check_number',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
         'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
+        'counterparties': 'counterparties',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,12 +172,13 @@ class Enhancements(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the raw description.. [optional]  # noqa: E501
+            merchant_name (str, none_type): The name of the primary counterparty, such as the merchant or the financial institution, as extracted by Plaid from the raw description.. [optional]  # noqa: E501
             website (str, none_type): The website associated with this transaction.. [optional]  # noqa: E501
             logo_url (str, none_type): A link to the logo associated with this transaction. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
             personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
+            counterparties ([Counterparty]): The counterparties present in the transaction. Counterparties, such as the merchant or the financial institution, are extracted by Plaid from the raw description.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

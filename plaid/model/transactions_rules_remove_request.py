@@ -70,10 +70,10 @@ class TransactionsRulesRemoveRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'client_id': (str,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
-            'secret': (str,),  # noqa: E501
             'rule_id': (str,),  # noqa: E501
+            'client_id': (str,),  # noqa: E501
+            'secret': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -82,10 +82,10 @@ class TransactionsRulesRemoveRequest(ModelNormal):
 
 
     attribute_map = {
-        'client_id': 'client_id',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
-        'secret': 'secret',  # noqa: E501
         'rule_id': 'rule_id',  # noqa: E501
+        'client_id': 'client_id',  # noqa: E501
+        'secret': 'secret',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -100,13 +100,11 @@ class TransactionsRulesRemoveRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, access_token, secret, rule_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, rule_id, *args, **kwargs):  # noqa: E501
         """TransactionsRulesRemoveRequest - a model defined in OpenAPI
 
         Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
             access_token (str): The access token associated with the Item data is being requested for.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
             rule_id (str): A rule's unique identifier
 
         Keyword Args:
@@ -140,6 +138,8 @@ class TransactionsRulesRemoveRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -165,9 +165,7 @@ class TransactionsRulesRemoveRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
         self.access_token = access_token
-        self.secret = secret
         self.rule_id = rule_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

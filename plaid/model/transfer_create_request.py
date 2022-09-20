@@ -25,18 +25,12 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.ach_class import ACHClass
     from plaid.model.transfer_create_idempotency_key import TransferCreateIdempotencyKey
     from plaid.model.transfer_metadata import TransferMetadata
-    from plaid.model.transfer_network import TransferNetwork
-    from plaid.model.transfer_type import TransferType
-    from plaid.model.transfer_user_in_request import TransferUserInRequest
-    globals()['ACHClass'] = ACHClass
+    from plaid.model.transfer_user_in_request_deprecated import TransferUserInRequestDeprecated
     globals()['TransferCreateIdempotencyKey'] = TransferCreateIdempotencyKey
     globals()['TransferMetadata'] = TransferMetadata
-    globals()['TransferNetwork'] = TransferNetwork
-    globals()['TransferType'] = TransferType
-    globals()['TransferUserInRequest'] = TransferUserInRequest
+    globals()['TransferUserInRequestDeprecated'] = TransferUserInRequestDeprecated
 
 
 class TransferCreateRequest(ModelNormal):
@@ -89,17 +83,17 @@ class TransferCreateRequest(ModelNormal):
         lazy_import()
         return {
             'authorization_id': (str,),  # noqa: E501
-            'type': (TransferType,),  # noqa: E501
-            'network': (TransferNetwork,),  # noqa: E501
-            'amount': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
-            'ach_class': (ACHClass,),  # noqa: E501
-            'user': (TransferUserInRequest,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'idempotency_key': (TransferCreateIdempotencyKey,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
+            'type': (object,),  # noqa: E501
+            'network': (object,),  # noqa: E501
+            'amount': (str,),  # noqa: E501
+            'ach_class': (object,),  # noqa: E501
+            'user': (TransferUserInRequestDeprecated,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
@@ -113,17 +107,17 @@ class TransferCreateRequest(ModelNormal):
 
     attribute_map = {
         'authorization_id': 'authorization_id',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'network': 'network',  # noqa: E501
-        'amount': 'amount',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'ach_class': 'ach_class',  # noqa: E501
-        'user': 'user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'idempotency_key': 'idempotency_key',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'network': 'network',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
+        'ach_class': 'ach_class',  # noqa: E501
+        'user': 'user',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
@@ -142,17 +136,12 @@ class TransferCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, authorization_id, type, network, amount, description, ach_class, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, authorization_id, description, *args, **kwargs):  # noqa: E501
         """TransferCreateRequest - a model defined in OpenAPI
 
         Args:
             authorization_id (str): Plaid’s unique identifier for a transfer authorization. This parameter also serves the purpose of acting as an idempotency identifier.
-            type (TransferType):
-            network (TransferNetwork):
-            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             description (str): The transfer description. Maximum of 10 characters.
-            ach_class (ACHClass):
-            user (TransferUserInRequest):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -190,6 +179,11 @@ class TransferCreateRequest(ModelNormal):
             idempotency_key (TransferCreateIdempotencyKey): [optional]  # noqa: E501
             access_token (str): The Plaid `access_token` for the account that will be debited or credited.. [optional]  # noqa: E501
             account_id (str): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
+            type (object): [optional]  # noqa: E501
+            network (object): [optional]  # noqa: E501
+            amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").. [optional]  # noqa: E501
+            ach_class (object): [optional]  # noqa: E501
+            user (TransferUserInRequestDeprecated): [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for this transfer. If you have more than one origination account, this value must be specified. Otherwise, this field should be left blank.. [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
@@ -220,12 +214,7 @@ class TransferCreateRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.authorization_id = authorization_id
-        self.type = type
-        self.network = network
-        self.amount = amount
         self.description = description
-        self.ach_class = ach_class
-        self.user = user
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

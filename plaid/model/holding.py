@@ -79,12 +79,12 @@ class Holding(ModelNormal):
             'account_id': (str,),  # noqa: E501
             'security_id': (str,),  # noqa: E501
             'institution_price': (float,),  # noqa: E501
-            'institution_price_as_of': (date, none_type,),  # noqa: E501
             'institution_value': (float,),  # noqa: E501
             'cost_basis': (float, none_type,),  # noqa: E501
             'quantity': (float,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'institution_price_as_of': (date, none_type,),  # noqa: E501
             'institution_price_datetime': (datetime, none_type,),  # noqa: E501
         }
 
@@ -97,12 +97,12 @@ class Holding(ModelNormal):
         'account_id': 'account_id',  # noqa: E501
         'security_id': 'security_id',  # noqa: E501
         'institution_price': 'institution_price',  # noqa: E501
-        'institution_price_as_of': 'institution_price_as_of',  # noqa: E501
         'institution_value': 'institution_value',  # noqa: E501
         'cost_basis': 'cost_basis',  # noqa: E501
         'quantity': 'quantity',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'institution_price_as_of': 'institution_price_as_of',  # noqa: E501
         'institution_price_datetime': 'institution_price_datetime',  # noqa: E501
     }
 
@@ -118,14 +118,13 @@ class Holding(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, security_id, institution_price, institution_price_as_of, institution_value, cost_basis, quantity, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, security_id, institution_price, institution_value, cost_basis, quantity, iso_currency_code, unofficial_currency_code, *args, **kwargs):  # noqa: E501
         """Holding - a model defined in OpenAPI
 
         Args:
             account_id (str): The Plaid `account_id` associated with the holding.
             security_id (str): The Plaid `security_id` associated with the holding.
             institution_price (float): The last price given by the institution for this security.
-            institution_price_as_of (date, none_type): The date at which `institution_price` was current.
             institution_value (float): The value of the holding, as reported by the institution.
             cost_basis (float, none_type): The original total value or the purchase price per share of the holding. This field is an aggregate on a per holding basis and dependent on the information provided by the institution.
             quantity (float): The total quantity of the asset held, as reported by the financial institution. If the security is an option, `quantity` will reflect the total number of options (typically the number of contracts multiplied by 100), not the number of contracts.
@@ -163,6 +162,7 @@ class Holding(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            institution_price_as_of (date, none_type): The date at which `institution_price` was current.. [optional]  # noqa: E501
             institution_price_datetime (datetime, none_type): Date and time at which `institution_price` was current, in ISO 8601 format (YYYY-MM-DDTHH:mm:ssZ).  This field is returned for select financial institutions and comes as provided by the institution. It may contain default time values (such as 00:00:00). . [optional]  # noqa: E501
         """
 
@@ -192,7 +192,6 @@ class Holding(ModelNormal):
         self.account_id = account_id
         self.security_id = security_id
         self.institution_price = institution_price
-        self.institution_price_as_of = institution_price_as_of
         self.institution_value = institution_value
         self.cost_basis = cost_basis
         self.quantity = quantity

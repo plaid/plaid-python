@@ -57,6 +57,9 @@ class CreditBankIncomeCategory(ModelSimple):
             'RETIREMENT': "RETIREMENT",
             'LONG_TERM_DISABILITY': "LONG_TERM_DISABILITY",
             'BANK_INTEREST': "BANK_INTEREST",
+            'CASH_DEPOSIT': "CASH_DEPOSIT",
+            'TRANSFER_FROM_APPLICATION': "TRANSFER_FROM_APPLICATION",
+            'TAX_REFUND': "TAX_REFUND",
             'OTHER': "OTHER",
         },
     }
@@ -107,10 +110,10 @@ class CreditBankIncomeCategory(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The income category.., must be one of ["SALARY", "UNEMPLOYMENT", "CASH", "GIG_ECONOMY", "RENTAL", "CHILD_SUPPORT", "MILITARY", "RETIREMENT", "LONG_TERM_DISABILITY", "BANK_INTEREST", "OTHER", ]  # noqa: E501
+            args[0] (str): The income category.., must be one of ["SALARY", "UNEMPLOYMENT", "CASH", "GIG_ECONOMY", "RENTAL", "CHILD_SUPPORT", "MILITARY", "RETIREMENT", "LONG_TERM_DISABILITY", "BANK_INTEREST", "CASH_DEPOSIT", "TRANSFER_FROM_APPLICATION", "TAX_REFUND", "OTHER", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The income category.., must be one of ["SALARY", "UNEMPLOYMENT", "CASH", "GIG_ECONOMY", "RENTAL", "CHILD_SUPPORT", "MILITARY", "RETIREMENT", "LONG_TERM_DISABILITY", "BANK_INTEREST", "OTHER", ]  # noqa: E501
+            value (str): The income category.., must be one of ["SALARY", "UNEMPLOYMENT", "CASH", "GIG_ECONOMY", "RENTAL", "CHILD_SUPPORT", "MILITARY", "RETIREMENT", "LONG_TERM_DISABILITY", "BANK_INTEREST", "CASH_DEPOSIT", "TRANSFER_FROM_APPLICATION", "TAX_REFUND", "OTHER", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

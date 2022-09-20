@@ -18,7 +18,7 @@ def test_get():
     request = InstitutionsGetRequest(
         country_codes=[CountryCode('US')],
         count=3,
-        offset=1
+        offset=4
     )
     response = client.institutions_get(request)
     assert len(response['institutions']) == 3
@@ -29,7 +29,7 @@ def test_get_with_include_optional_metadata():
     request = InstitutionsGetRequest(
         country_codes=[CountryCode('US')],
         count=3,
-        offset=1,
+        offset=4,
         options=InstitutionsGetRequestOptions(
             include_optional_metadata=True
         )

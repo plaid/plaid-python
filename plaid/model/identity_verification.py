@@ -99,7 +99,7 @@ class IdentityVerification(ModelNormal):
             'steps': (IdentityVerificationStepSummary,),  # noqa: E501
             'documentary_verification': (DocumentaryVerification,),  # noqa: E501
             'kyc_check': (KYCCheckDetails,),  # noqa: E501
-            'watchlist_screening_id': (object, none_type,),  # noqa: E501
+            'watchlist_screening_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +151,7 @@ class IdentityVerification(ModelNormal):
             steps (IdentityVerificationStepSummary):
             documentary_verification (DocumentaryVerification):
             kyc_check (KYCCheckDetails):
-            watchlist_screening_id (object, none_type):
+            watchlist_screening_id (str, none_type): ID of the associated screening.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

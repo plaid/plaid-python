@@ -26,7 +26,11 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.entity_watchlist_screening_name import EntityWatchlistScreeningName
+    from plaid.model.generic_country_code_nullable import GenericCountryCodeNullable
+    from plaid.model.watchlist_screening_document_value_nullable import WatchlistScreeningDocumentValueNullable
     globals()['EntityWatchlistScreeningName'] = EntityWatchlistScreeningName
+    globals()['GenericCountryCodeNullable'] = GenericCountryCodeNullable
+    globals()['WatchlistScreeningDocumentValueNullable'] = WatchlistScreeningDocumentValueNullable
 
 
 class EntityWatchlistSearchTerms(ModelNormal):
@@ -77,11 +81,11 @@ class EntityWatchlistSearchTerms(ModelNormal):
         return {
             'entity_watchlist_program_id': (str,),  # noqa: E501
             'legal_name': (EntityWatchlistScreeningName,),  # noqa: E501
-            'document_number': (object, none_type,),  # noqa: E501
-            'email_address': (object, none_type,),  # noqa: E501
-            'country': (object, none_type,),  # noqa: E501
-            'phone_number': (object, none_type,),  # noqa: E501
-            'url': (object, none_type,),  # noqa: E501
+            'document_number': (WatchlistScreeningDocumentValueNullable,),  # noqa: E501
+            'email_address': (str, none_type,),  # noqa: E501
+            'country': (GenericCountryCodeNullable,),  # noqa: E501
+            'phone_number': (str, none_type,),  # noqa: E501
+            'url': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -149,11 +153,11 @@ class EntityWatchlistSearchTerms(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            document_number (object, none_type): [optional]  # noqa: E501
-            email_address (object, none_type): [optional]  # noqa: E501
-            country (object, none_type): [optional]  # noqa: E501
-            phone_number (object, none_type): [optional]  # noqa: E501
-            url (object, none_type): [optional]  # noqa: E501
+            document_number (WatchlistScreeningDocumentValueNullable): [optional]  # noqa: E501
+            email_address (str, none_type): A valid email address.. [optional]  # noqa: E501
+            country (GenericCountryCodeNullable): [optional]  # noqa: E501
+            phone_number (str, none_type): A phone number in E.164 format.. [optional]  # noqa: E501
+            url (str, none_type): An 'http' or 'https' URL (must begin with either of those).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

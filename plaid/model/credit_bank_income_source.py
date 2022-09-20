@@ -158,7 +158,7 @@ class CreditBankIncomeSource(ModelNormal):
             income_source_id (str): A unique identifier for an income source.. [optional]  # noqa: E501
             income_description (str): The most common name or original description for the underlying income transactions.. [optional]  # noqa: E501
             income_category (CreditBankIncomeCategory): [optional]  # noqa: E501
-            account_id (str): Plaid's unique idenfier for the account.. [optional]  # noqa: E501
+            account_id (str): Plaid's unique identifier for the account.. [optional]  # noqa: E501
             start_date (date): Minimum of all dates within the specific income sources in the user's bank account for days requested by the client. The date will be returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             end_date (date): Maximum of all dates within the specific income sources in the user’s bank account for days requested by the client. The date will be returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             pay_frequency (CreditBankIncomePayFrequency): [optional]  # noqa: E501
