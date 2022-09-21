@@ -26,9 +26,7 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.phone_type import PhoneType
-    from plaid.model.watchlist_screening_phone_number import WatchlistScreeningPhoneNumber
     globals()['PhoneType'] = PhoneType
-    globals()['WatchlistScreeningPhoneNumber'] = WatchlistScreeningPhoneNumber
 
 
 class EntityScreeningHitPhoneNumbers(ModelNormal):
@@ -78,7 +76,7 @@ class EntityScreeningHitPhoneNumbers(ModelNormal):
         lazy_import()
         return {
             'type': (PhoneType,),  # noqa: E501
-            'phone_number': (WatchlistScreeningPhoneNumber,),  # noqa: E501
+            'phone_number': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -108,7 +106,7 @@ class EntityScreeningHitPhoneNumbers(ModelNormal):
 
         Args:
             type (PhoneType):
-            phone_number (WatchlistScreeningPhoneNumber):
+            phone_number (str): A phone number in E.164 format.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

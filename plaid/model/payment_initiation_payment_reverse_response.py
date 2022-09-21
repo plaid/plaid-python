@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.payment_initiation_refund_status import PaymentInitiationRefundStatus
-    globals()['PaymentInitiationRefundStatus'] = PaymentInitiationRefundStatus
+    from plaid.model.wallet_transaction_status import WalletTransactionStatus
+    globals()['WalletTransactionStatus'] = WalletTransactionStatus
 
 
 class PaymentInitiationPaymentReverseResponse(ModelNormal):
@@ -83,7 +83,7 @@ class PaymentInitiationPaymentReverseResponse(ModelNormal):
         lazy_import()
         return {
             'refund_id': (str,),  # noqa: E501
-            'status': (PaymentInitiationRefundStatus,),  # noqa: E501
+            'status': (WalletTransactionStatus,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -115,7 +115,7 @@ class PaymentInitiationPaymentReverseResponse(ModelNormal):
 
         Args:
             refund_id (str): A unique ID identifying the refund
-            status (PaymentInitiationRefundStatus):
+            status (WalletTransactionStatus):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

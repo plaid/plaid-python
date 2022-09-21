@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.webhook_environment_values import WebhookEnvironmentValues
     globals()['PlaidError'] = PlaidError
+    globals()['WebhookEnvironmentValues'] = WebhookEnvironmentValues
 
 
 class WebhookUpdateAcknowledgedWebhook(ModelNormal):
@@ -86,6 +88,7 @@ class WebhookUpdateAcknowledgedWebhook(ModelNormal):
             'webhook_code': (str,),  # noqa: E501
             'item_id': (str,),  # noqa: E501
             'new_webhook_url': (str,),  # noqa: E501
+            'environment': (WebhookEnvironmentValues,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
         }
 
@@ -99,6 +102,7 @@ class WebhookUpdateAcknowledgedWebhook(ModelNormal):
         'webhook_code': 'webhook_code',  # noqa: E501
         'item_id': 'item_id',  # noqa: E501
         'new_webhook_url': 'new_webhook_url',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -114,7 +118,7 @@ class WebhookUpdateAcknowledgedWebhook(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, webhook_type, webhook_code, item_id, new_webhook_url, *args, **kwargs):  # noqa: E501
+    def __init__(self, webhook_type, webhook_code, item_id, new_webhook_url, environment, *args, **kwargs):  # noqa: E501
         """WebhookUpdateAcknowledgedWebhook - a model defined in OpenAPI
 
         Args:
@@ -122,6 +126,7 @@ class WebhookUpdateAcknowledgedWebhook(ModelNormal):
             webhook_code (str): `WEBHOOK_UPDATE_ACKNOWLEDGED`
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
             new_webhook_url (str): The new webhook URL
+            environment (WebhookEnvironmentValues):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,6 +189,7 @@ class WebhookUpdateAcknowledgedWebhook(ModelNormal):
         self.webhook_code = webhook_code
         self.item_id = item_id
         self.new_webhook_url = new_webhook_url
+        self.environment = environment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

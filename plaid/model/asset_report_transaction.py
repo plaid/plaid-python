@@ -26,10 +26,12 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.asset_report_transaction_all_of import AssetReportTransactionAllOf
+    from plaid.model.credit_category import CreditCategory
     from plaid.model.location import Location
     from plaid.model.payment_meta import PaymentMeta
     from plaid.model.transaction_base import TransactionBase
     globals()['AssetReportTransactionAllOf'] = AssetReportTransactionAllOf
+    globals()['CreditCategory'] = CreditCategory
     globals()['Location'] = Location
     globals()['PaymentMeta'] = PaymentMeta
     globals()['TransactionBase'] = TransactionBase
@@ -113,6 +115,7 @@ class AssetReportTransaction(ModelComposed):
             'merchant_name': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
             'date_transacted': (str, none_type,),  # noqa: E501
+            'credit_category': (CreditCategory,),  # noqa: E501
         }
 
     @cached_property
@@ -140,6 +143,7 @@ class AssetReportTransaction(ModelComposed):
         'merchant_name': 'merchant_name',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
         'date_transacted': 'date_transacted',  # noqa: E501
+        'credit_category': 'credit_category',  # noqa: E501
     }
 
     required_properties = set([
@@ -210,6 +214,7 @@ class AssetReportTransaction(ModelComposed):
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             date_transacted (str, none_type): The date on which the transaction took place, in IS0 8601 format.. [optional]  # noqa: E501
+            credit_category (CreditCategory): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

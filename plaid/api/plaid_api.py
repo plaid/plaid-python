@@ -33,18 +33,13 @@ from plaid.model.asset_report_create_request import AssetReportCreateRequest
 from plaid.model.asset_report_create_response import AssetReportCreateResponse
 from plaid.model.asset_report_filter_request import AssetReportFilterRequest
 from plaid.model.asset_report_filter_response import AssetReportFilterResponse
+from plaid.model.asset_report_freddie_get_request import AssetReportFreddieGetRequest
+from plaid.model.asset_report_freddie_get_response import AssetReportFreddieGetResponse
 from plaid.model.asset_report_get_request import AssetReportGetRequest
 from plaid.model.asset_report_get_response import AssetReportGetResponse
 from plaid.model.asset_report_pdf_get_request import AssetReportPDFGetRequest
 from plaid.model.asset_report_refresh_request import AssetReportRefreshRequest
 from plaid.model.asset_report_refresh_response import AssetReportRefreshResponse
-from plaid.model.asset_report_relay_create_request import AssetReportRelayCreateRequest
-from plaid.model.asset_report_relay_create_response import AssetReportRelayCreateResponse
-from plaid.model.asset_report_relay_get_request import AssetReportRelayGetRequest
-from plaid.model.asset_report_relay_refresh_request import AssetReportRelayRefreshRequest
-from plaid.model.asset_report_relay_refresh_response import AssetReportRelayRefreshResponse
-from plaid.model.asset_report_relay_remove_request import AssetReportRelayRemoveRequest
-from plaid.model.asset_report_relay_remove_response import AssetReportRelayRemoveResponse
 from plaid.model.asset_report_remove_request import AssetReportRemoveRequest
 from plaid.model.asset_report_remove_response import AssetReportRemoveResponse
 from plaid.model.auth_get_request import AuthGetRequest
@@ -70,9 +65,6 @@ from plaid.model.bank_transfer_sweep_get_response import BankTransferSweepGetRes
 from plaid.model.bank_transfer_sweep_list_request import BankTransferSweepListRequest
 from plaid.model.bank_transfer_sweep_list_response import BankTransferSweepListResponse
 from plaid.model.categories_get_response import CategoriesGetResponse
-from plaid.model.create_entity_screening_request import CreateEntityScreeningRequest
-from plaid.model.create_entity_watchlist_screening_review_request import CreateEntityWatchlistScreeningReviewRequest
-from plaid.model.create_individual_watchlist_screening_review_request import CreateIndividualWatchlistScreeningReviewRequest
 from plaid.model.credit_audit_copy_token_create_request import CreditAuditCopyTokenCreateRequest
 from plaid.model.credit_audit_copy_token_create_response import CreditAuditCopyTokenCreateResponse
 from plaid.model.credit_audit_copy_token_remove_request import CreditAuditCopyTokenRemoveRequest
@@ -97,7 +89,12 @@ from plaid.model.credit_relay_refresh_request import CreditRelayRefreshRequest
 from plaid.model.credit_relay_refresh_response import CreditRelayRefreshResponse
 from plaid.model.credit_relay_remove_request import CreditRelayRemoveRequest
 from plaid.model.credit_relay_remove_response import CreditRelayRemoveResponse
-from plaid.model.dashboard_user_response import DashboardUserResponse
+from plaid.model.credit_sessions_get_request import CreditSessionsGetRequest
+from plaid.model.credit_sessions_get_response import CreditSessionsGetResponse
+from plaid.model.dashboard_user_get_request import DashboardUserGetRequest
+from plaid.model.dashboard_user_get_response import DashboardUserGetResponse
+from plaid.model.dashboard_user_list_request import DashboardUserListRequest
+from plaid.model.dashboard_user_list_response import DashboardUserListResponse
 from plaid.model.deposit_switch_alt_create_request import DepositSwitchAltCreateRequest
 from plaid.model.deposit_switch_alt_create_response import DepositSwitchAltCreateResponse
 from plaid.model.deposit_switch_create_request import DepositSwitchCreateRequest
@@ -110,23 +107,19 @@ from plaid.model.employers_search_request import EmployersSearchRequest
 from plaid.model.employers_search_response import EmployersSearchResponse
 from plaid.model.employment_verification_get_request import EmploymentVerificationGetRequest
 from plaid.model.employment_verification_get_response import EmploymentVerificationGetResponse
-from plaid.model.entity_watchlist_program_response import EntityWatchlistProgramResponse
-from plaid.model.entity_watchlist_screening_response import EntityWatchlistScreeningResponse
-from plaid.model.entity_watchlist_screening_review_response import EntityWatchlistScreeningReviewResponse
 from plaid.model.error import Error
-from plaid.model.get_dashboard_user_request import GetDashboardUserRequest
-from plaid.model.get_entity_watchlist_screening_request import GetEntityWatchlistScreeningRequest
-from plaid.model.get_identity_verification_request import GetIdentityVerificationRequest
-from plaid.model.get_individual_watchlist_screening_request import GetIndividualWatchlistScreeningRequest
-from plaid.model.get_watchlist_screening_entity_program_request import GetWatchlistScreeningEntityProgramRequest
-from plaid.model.get_watchlist_screening_individual_program_request import GetWatchlistScreeningIndividualProgramRequest
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_response import IdentityGetResponse
 from plaid.model.identity_match_request import IdentityMatchRequest
 from plaid.model.identity_match_response import IdentityMatchResponse
 from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
-from plaid.model.identity_verification_response import IdentityVerificationResponse
+from plaid.model.identity_verification_create_response import IdentityVerificationCreateResponse
+from plaid.model.identity_verification_get_request import IdentityVerificationGetRequest
+from plaid.model.identity_verification_get_response import IdentityVerificationGetResponse
+from plaid.model.identity_verification_list_request import IdentityVerificationListRequest
+from plaid.model.identity_verification_list_response import IdentityVerificationListResponse
 from plaid.model.identity_verification_retry_request import IdentityVerificationRetryRequest
+from plaid.model.identity_verification_retry_response import IdentityVerificationRetryResponse
 from plaid.model.income_verification_create_request import IncomeVerificationCreateRequest
 from plaid.model.income_verification_create_response import IncomeVerificationCreateResponse
 from plaid.model.income_verification_documents_download_request import IncomeVerificationDocumentsDownloadRequest
@@ -138,7 +131,6 @@ from plaid.model.income_verification_refresh_request import IncomeVerificationRe
 from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
 from plaid.model.income_verification_taxforms_get_request import IncomeVerificationTaxformsGetRequest
 from plaid.model.income_verification_taxforms_get_response import IncomeVerificationTaxformsGetResponse
-from plaid.model.individual_watchlist_program_response import IndividualWatchlistProgramResponse
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
 from plaid.model.institutions_get_by_id_response import InstitutionsGetByIdResponse
 from plaid.model.institutions_get_request import InstitutionsGetRequest
@@ -169,34 +161,18 @@ from plaid.model.item_webhook_update_request import ItemWebhookUpdateRequest
 from plaid.model.item_webhook_update_response import ItemWebhookUpdateResponse
 from plaid.model.liabilities_get_request import LiabilitiesGetRequest
 from plaid.model.liabilities_get_response import LiabilitiesGetResponse
+from plaid.model.link_delivery_create_request import LinkDeliveryCreateRequest
+from plaid.model.link_delivery_create_response import LinkDeliveryCreateResponse
+from plaid.model.link_delivery_get_request import LinkDeliveryGetRequest
+from plaid.model.link_delivery_get_response import LinkDeliveryGetResponse
 from plaid.model.link_token_create_request import LinkTokenCreateRequest
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_get_request import LinkTokenGetRequest
 from plaid.model.link_token_get_response import LinkTokenGetResponse
-from plaid.model.list_dashboard_user_request import ListDashboardUserRequest
-from plaid.model.list_entity_watchlist_screening_request import ListEntityWatchlistScreeningRequest
-from plaid.model.list_identity_verification_request import ListIdentityVerificationRequest
-from plaid.model.list_individual_watchlist_screening_request import ListIndividualWatchlistScreeningRequest
-from plaid.model.list_watchlist_screening_entity_history_request import ListWatchlistScreeningEntityHistoryRequest
-from plaid.model.list_watchlist_screening_entity_hit_request import ListWatchlistScreeningEntityHitRequest
-from plaid.model.list_watchlist_screening_entity_programs_request import ListWatchlistScreeningEntityProgramsRequest
-from plaid.model.list_watchlist_screening_entity_reviews_request import ListWatchlistScreeningEntityReviewsRequest
-from plaid.model.list_watchlist_screening_individual_history_request import ListWatchlistScreeningIndividualHistoryRequest
-from plaid.model.list_watchlist_screening_individual_hit_request import ListWatchlistScreeningIndividualHitRequest
-from plaid.model.list_watchlist_screening_individual_programs_request import ListWatchlistScreeningIndividualProgramsRequest
-from plaid.model.list_watchlist_screening_individual_reviews_request import ListWatchlistScreeningIndividualReviewsRequest
-from plaid.model.paginated_dashboard_user_list_response import PaginatedDashboardUserListResponse
-from plaid.model.paginated_entity_watchlist_program_list_response import PaginatedEntityWatchlistProgramListResponse
-from plaid.model.paginated_entity_watchlist_screening_hit_list_response import PaginatedEntityWatchlistScreeningHitListResponse
-from plaid.model.paginated_entity_watchlist_screening_list_response import PaginatedEntityWatchlistScreeningListResponse
-from plaid.model.paginated_entity_watchlist_screening_review_list_response import PaginatedEntityWatchlistScreeningReviewListResponse
-from plaid.model.paginated_identity_verification_list_response import PaginatedIdentityVerificationListResponse
-from plaid.model.paginated_individual_watchlist_program_list_response import PaginatedIndividualWatchlistProgramListResponse
-from plaid.model.paginated_individual_watchlist_screening_hit_list_response import PaginatedIndividualWatchlistScreeningHitListResponse
-from plaid.model.paginated_individual_watchlist_screening_list_response import PaginatedIndividualWatchlistScreeningListResponse
-from plaid.model.paginated_individual_watchlist_screening_review_list_response import PaginatedIndividualWatchlistScreeningReviewListResponse
-from plaid.model.partner_customers_create_request import PartnerCustomersCreateRequest
-from plaid.model.partner_customers_create_response import PartnerCustomersCreateResponse
+from plaid.model.partner_customer_create_request import PartnerCustomerCreateRequest
+from plaid.model.partner_customer_create_response import PartnerCustomerCreateResponse
+from plaid.model.partner_customer_get_request import PartnerCustomerGetRequest
+from plaid.model.partner_customer_get_response import PartnerCustomerGetResponse
 from plaid.model.payment_initiation_consent_create_request import PaymentInitiationConsentCreateRequest
 from plaid.model.payment_initiation_consent_create_response import PaymentInitiationConsentCreateResponse
 from plaid.model.payment_initiation_consent_get_request import PaymentInitiationConsentGetRequest
@@ -318,8 +294,6 @@ from plaid.model.transfer_sweep_get_request import TransferSweepGetRequest
 from plaid.model.transfer_sweep_get_response import TransferSweepGetResponse
 from plaid.model.transfer_sweep_list_request import TransferSweepListRequest
 from plaid.model.transfer_sweep_list_response import TransferSweepListResponse
-from plaid.model.update_entity_screening_request import UpdateEntityScreeningRequest
-from plaid.model.update_individual_screening_request import UpdateIndividualScreeningRequest
 from plaid.model.user_create_request import UserCreateRequest
 from plaid.model.user_create_response import UserCreateResponse
 from plaid.model.wallet_create_request import WalletCreateRequest
@@ -334,9 +308,46 @@ from plaid.model.wallet_transaction_get_request import WalletTransactionGetReque
 from plaid.model.wallet_transaction_get_response import WalletTransactionGetResponse
 from plaid.model.wallet_transactions_list_request import WalletTransactionsListRequest
 from plaid.model.wallet_transactions_list_response import WalletTransactionsListResponse
-from plaid.model.watchlist_screening_create_request import WatchlistScreeningCreateRequest
-from plaid.model.watchlist_screening_individual_response import WatchlistScreeningIndividualResponse
-from plaid.model.watchlist_screening_review_response import WatchlistScreeningReviewResponse
+from plaid.model.watchlist_screening_entity_create_request import WatchlistScreeningEntityCreateRequest
+from plaid.model.watchlist_screening_entity_create_response import WatchlistScreeningEntityCreateResponse
+from plaid.model.watchlist_screening_entity_get_request import WatchlistScreeningEntityGetRequest
+from plaid.model.watchlist_screening_entity_get_response import WatchlistScreeningEntityGetResponse
+from plaid.model.watchlist_screening_entity_history_list_request import WatchlistScreeningEntityHistoryListRequest
+from plaid.model.watchlist_screening_entity_history_list_response import WatchlistScreeningEntityHistoryListResponse
+from plaid.model.watchlist_screening_entity_hit_list_request import WatchlistScreeningEntityHitListRequest
+from plaid.model.watchlist_screening_entity_hit_list_response import WatchlistScreeningEntityHitListResponse
+from plaid.model.watchlist_screening_entity_list_request import WatchlistScreeningEntityListRequest
+from plaid.model.watchlist_screening_entity_list_response import WatchlistScreeningEntityListResponse
+from plaid.model.watchlist_screening_entity_program_get_request import WatchlistScreeningEntityProgramGetRequest
+from plaid.model.watchlist_screening_entity_program_get_response import WatchlistScreeningEntityProgramGetResponse
+from plaid.model.watchlist_screening_entity_program_list_request import WatchlistScreeningEntityProgramListRequest
+from plaid.model.watchlist_screening_entity_program_list_response import WatchlistScreeningEntityProgramListResponse
+from plaid.model.watchlist_screening_entity_review_create_request import WatchlistScreeningEntityReviewCreateRequest
+from plaid.model.watchlist_screening_entity_review_create_response import WatchlistScreeningEntityReviewCreateResponse
+from plaid.model.watchlist_screening_entity_review_list_request import WatchlistScreeningEntityReviewListRequest
+from plaid.model.watchlist_screening_entity_review_list_response import WatchlistScreeningEntityReviewListResponse
+from plaid.model.watchlist_screening_entity_update_request import WatchlistScreeningEntityUpdateRequest
+from plaid.model.watchlist_screening_entity_update_response import WatchlistScreeningEntityUpdateResponse
+from plaid.model.watchlist_screening_individual_create_request import WatchlistScreeningIndividualCreateRequest
+from plaid.model.watchlist_screening_individual_create_response import WatchlistScreeningIndividualCreateResponse
+from plaid.model.watchlist_screening_individual_get_request import WatchlistScreeningIndividualGetRequest
+from plaid.model.watchlist_screening_individual_get_response import WatchlistScreeningIndividualGetResponse
+from plaid.model.watchlist_screening_individual_history_list_request import WatchlistScreeningIndividualHistoryListRequest
+from plaid.model.watchlist_screening_individual_history_list_response import WatchlistScreeningIndividualHistoryListResponse
+from plaid.model.watchlist_screening_individual_hit_list_request import WatchlistScreeningIndividualHitListRequest
+from plaid.model.watchlist_screening_individual_hit_list_response import WatchlistScreeningIndividualHitListResponse
+from plaid.model.watchlist_screening_individual_list_request import WatchlistScreeningIndividualListRequest
+from plaid.model.watchlist_screening_individual_list_response import WatchlistScreeningIndividualListResponse
+from plaid.model.watchlist_screening_individual_program_get_request import WatchlistScreeningIndividualProgramGetRequest
+from plaid.model.watchlist_screening_individual_program_get_response import WatchlistScreeningIndividualProgramGetResponse
+from plaid.model.watchlist_screening_individual_program_list_request import WatchlistScreeningIndividualProgramListRequest
+from plaid.model.watchlist_screening_individual_program_list_response import WatchlistScreeningIndividualProgramListResponse
+from plaid.model.watchlist_screening_individual_review_create_request import WatchlistScreeningIndividualReviewCreateRequest
+from plaid.model.watchlist_screening_individual_review_create_response import WatchlistScreeningIndividualReviewCreateResponse
+from plaid.model.watchlist_screening_individual_review_list_request import WatchlistScreeningIndividualReviewListRequest
+from plaid.model.watchlist_screening_individual_review_list_response import WatchlistScreeningIndividualReviewListResponse
+from plaid.model.watchlist_screening_individual_update_request import WatchlistScreeningIndividualUpdateRequest
+from plaid.model.watchlist_screening_individual_update_response import WatchlistScreeningIndividualUpdateResponse
 from plaid.model.webhook_verification_key_get_request import WebhookVerificationKeyGetRequest
 from plaid.model.webhook_verification_key_get_response import WebhookVerificationKeyGetResponse
 
@@ -1693,494 +1704,6 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__asset_report_refresh
-        )
-
-        def __asset_report_relay_create(
-            self,
-            asset_report_relay_create_request,
-            **kwargs
-        ):
-            """Create an `asset_relay_token` to share an Asset Report with a partner client  # noqa: E501
-
-            Plaid can share an Asset Report directly with a participating third party on your behalf. The shared Asset Report is the exact same Asset Report originally created in `/asset_report/create`.  To grant access to an Asset Report to a third party, use the `/asset_report/relay/create` endpoint to create an `asset_relay_token` and then pass that token to the third party who needs access. Each third party has its own `secondary_client_id`, for example `ce5bd328dcd34123456`. You'll need to create a separate `asset_relay_token` for each third party to whom you want to grant access to the Report.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.asset_report_relay_create(asset_report_relay_create_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                asset_report_relay_create_request (AssetReportRelayCreateRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                AssetReportRelayCreateResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['asset_report_relay_create_request'] = \
-                asset_report_relay_create_request
-            return self.call_with_http_info(**kwargs)
-
-        self.asset_report_relay_create = _Endpoint(
-            settings={
-                'response_type': (AssetReportRelayCreateResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/asset_report/relay/create',
-                'operation_id': 'asset_report_relay_create',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'asset_report_relay_create_request',
-                ],
-                'required': [
-                    'asset_report_relay_create_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'asset_report_relay_create_request':
-                        (AssetReportRelayCreateRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'asset_report_relay_create_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__asset_report_relay_create
-        )
-
-        def __asset_report_relay_get(
-            self,
-            asset_report_relay_get_request,
-            **kwargs
-        ):
-            """Retrieve an Asset Report that was shared with you  # noqa: E501
-
-            `/asset_report/relay/get` allows third parties to get an Asset Report that was shared with them, using an `asset_relay_token` that was created by the report owner.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.asset_report_relay_get(asset_report_relay_get_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                asset_report_relay_get_request (AssetReportRelayGetRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                AssetReportGetResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['asset_report_relay_get_request'] = \
-                asset_report_relay_get_request
-            return self.call_with_http_info(**kwargs)
-
-        self.asset_report_relay_get = _Endpoint(
-            settings={
-                'response_type': (AssetReportGetResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/asset_report/relay/get',
-                'operation_id': 'asset_report_relay_get',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'asset_report_relay_get_request',
-                ],
-                'required': [
-                    'asset_report_relay_get_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'asset_report_relay_get_request':
-                        (AssetReportRelayGetRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'asset_report_relay_get_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__asset_report_relay_get
-        )
-
-        def __asset_report_relay_refresh(
-            self,
-            asset_report_relay_refresh_request,
-            **kwargs
-        ):
-            """Refresh a Relay Token's Asset Report  # noqa: E501
-
-            The `/asset_report/relay/refresh` endpoint allows third parties to refresh an Asset Report that was relayed to them, using an `asset_relay_token` that was created by the report owner. A new Asset Report will be created based on the old one, but with the most recent data available.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.asset_report_relay_refresh(asset_report_relay_refresh_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                asset_report_relay_refresh_request (AssetReportRelayRefreshRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                AssetReportRelayRefreshResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['asset_report_relay_refresh_request'] = \
-                asset_report_relay_refresh_request
-            return self.call_with_http_info(**kwargs)
-
-        self.asset_report_relay_refresh = _Endpoint(
-            settings={
-                'response_type': (AssetReportRelayRefreshResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/asset_report/relay/refresh',
-                'operation_id': 'asset_report_relay_refresh',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'asset_report_relay_refresh_request',
-                ],
-                'required': [
-                    'asset_report_relay_refresh_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'asset_report_relay_refresh_request':
-                        (AssetReportRelayRefreshRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'asset_report_relay_refresh_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__asset_report_relay_refresh
-        )
-
-        def __asset_report_relay_remove(
-            self,
-            asset_report_relay_remove_request,
-            **kwargs
-        ):
-            """Remove Asset Report Relay Token  # noqa: E501
-
-            The `/asset_report/relay/remove` endpoint allows you to invalidate an `asset_relay_token`, meaning the third party holding the token will no longer be able to use it to access the Asset Report to which the `asset_relay_token` gives access to. The Asset Report, Items associated with it, and other Asset Relay Tokens that provide access to the same Asset Report are not affected and will remain accessible after removing the given `asset_relay_token.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.asset_report_relay_remove(asset_report_relay_remove_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                asset_report_relay_remove_request (AssetReportRelayRemoveRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                AssetReportRelayRemoveResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['asset_report_relay_remove_request'] = \
-                asset_report_relay_remove_request
-            return self.call_with_http_info(**kwargs)
-
-        self.asset_report_relay_remove = _Endpoint(
-            settings={
-                'response_type': (AssetReportRelayRemoveResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/asset_report/relay/remove',
-                'operation_id': 'asset_report_relay_remove',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'asset_report_relay_remove_request',
-                ],
-                'required': [
-                    'asset_report_relay_remove_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'asset_report_relay_remove_request':
-                        (AssetReportRelayRemoveRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'asset_report_relay_remove_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__asset_report_relay_remove
         )
 
         def __asset_report_remove(
@@ -3887,6 +3410,128 @@ class PlaidApi(object):
             callable=__create_payment_token
         )
 
+        def __credit_asset_report_freddie_mac_get(
+            self,
+            asset_report_freddie_get_request,
+            **kwargs
+        ):
+            """Retrieve an Asset Report with Freddie Mac format. Only Freddie Mac can use this endpoint.  # noqa: E501
+
+            The `credit/asset_report/freddie_mac/get` endpoint retrieves the Asset Report in Freddie Mac's JSON format.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.credit_asset_report_freddie_mac_get(asset_report_freddie_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                asset_report_freddie_get_request (AssetReportFreddieGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AssetReportFreddieGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['asset_report_freddie_get_request'] = \
+                asset_report_freddie_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.credit_asset_report_freddie_mac_get = _Endpoint(
+            settings={
+                'response_type': (AssetReportFreddieGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/credit/asset_report/freddie_mac/get',
+                'operation_id': 'credit_asset_report_freddie_mac_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'asset_report_freddie_get_request',
+                ],
+                'required': [
+                    'asset_report_freddie_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'asset_report_freddie_get_request':
+                        (AssetReportFreddieGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'asset_report_freddie_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_asset_report_freddie_mac_get
+        )
+
         def __credit_audit_copy_token_create(
             self,
             credit_audit_copy_token_create_request,
@@ -4626,7 +4271,7 @@ class PlaidApi(object):
         ):
             """Check income verification eligibility and optimize conversion  # noqa: E501
 
-            `/credit/payroll_income/precheck` is an optional endpoint that can be called before initializing a Link session for income verification. It evaluates whether a given user is supportable by digital income verification. If the user is eligible for digital verification, that information will be associated with the user token, and in this way will generate a Link UI optimized for the end user and their specific employer. If the user cannot be confirmed as eligible, the user can still use the income verification flow, but they may be required to manually upload a paystub to verify their income.  While all request fields are optional, providing `employer` data will increase the chance of receiving a useful result.  # noqa: E501
+            `/credit/payroll_income/precheck` is an optional endpoint that can be called before initializing a Link session for income verification. It evaluates whether a given user is supportable by digital income verification. If the user is eligible for digital verification, that information will be associated with the user token, and in this way will generate a Link UI optimized for the end user and their specific employer. If the user cannot be confirmed as eligible, the user can still use the income verification flow, but they may be required to manually upload a paystub to verify their income.  While all request fields are optional, providing `employer` data will increase the chance of receiving a useful result.  When testing in Sandbox, you can control the results by providing special test values in the `employer` and `access_tokens` fields. `employer_good` and `employer_bad` will result in `HIGH` and `LOW` confidence values, respectively. `employer_multi` will result in a `HIGH` confidence with multiple payroll options. Likewise, `access_good` and `access_bad` will result in `HIGH` and `LOW` confidence values, respectively. Any other value for `employer` and `access_tokens` in Sandbox will result in `UNKNOWN` confidence.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -5473,22 +5118,22 @@ class PlaidApi(object):
             callable=__credit_report_audit_copy_remove
         )
 
-        def __dashboard_user_list(
+        def __credit_sessions_get(
             self,
-            list_dashboard_user_request,
+            credit_sessions_get_request,
             **kwargs
         ):
-            """List dashboard users  # noqa: E501
+            """Retrieve Link Sessions For Your User  # noqa: E501
 
-            List all dashboard users associated with your account.  # noqa: E501
+            This endpoint can be used for your end users after they complete the Link flow. This endpoint returns a list of Link sessions that your user completed, where each session includes the results from the Link flow.   These results include details about the Item that was created and some product related metadata(for e.g. whether the user finished the bank income verification step).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.dashboard_user_list(list_dashboard_user_request, async_req=True)
+            >>> thread = api.credit_sessions_get(credit_sessions_get_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_dashboard_user_request (ListDashboardUserRequest):
+                credit_sessions_get_request (CreditSessionsGetRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -5512,7 +5157,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedDashboardUserListResponse
+                CreditSessionsGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -5535,29 +5180,29 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_dashboard_user_request'] = \
-                list_dashboard_user_request
+            kwargs['credit_sessions_get_request'] = \
+                credit_sessions_get_request
             return self.call_with_http_info(**kwargs)
 
-        self.dashboard_user_list = _Endpoint(
+        self.credit_sessions_get = _Endpoint(
             settings={
-                'response_type': (PaginatedDashboardUserListResponse,),
+                'response_type': (CreditSessionsGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
                     'secret'
                 ],
-                'endpoint_path': '/dashboard_user/list',
-                'operation_id': 'dashboard_user_list',
+                'endpoint_path': '/credit/sessions/get',
+                'operation_id': 'credit_sessions_get',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'list_dashboard_user_request',
+                    'credit_sessions_get_request',
                 ],
                 'required': [
-                    'list_dashboard_user_request',
+                    'credit_sessions_get_request',
                 ],
                 'nullable': [
                 ],
@@ -5572,13 +5217,257 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_dashboard_user_request':
-                        (ListDashboardUserRequest,),
+                    'credit_sessions_get_request':
+                        (CreditSessionsGetRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_dashboard_user_request': 'body',
+                    'credit_sessions_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__credit_sessions_get
+        )
+
+        def __dashboard_user_get(
+            self,
+            dashboard_user_get_request,
+            **kwargs
+        ):
+            """Retrieve a dashboard user  # noqa: E501
+
+            Retrieve information about a dashboard user.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.dashboard_user_get(dashboard_user_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                dashboard_user_get_request (DashboardUserGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DashboardUserGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['dashboard_user_get_request'] = \
+                dashboard_user_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.dashboard_user_get = _Endpoint(
+            settings={
+                'response_type': (DashboardUserGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/dashboard_user/get',
+                'operation_id': 'dashboard_user_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'dashboard_user_get_request',
+                ],
+                'required': [
+                    'dashboard_user_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'dashboard_user_get_request':
+                        (DashboardUserGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'dashboard_user_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__dashboard_user_get
+        )
+
+        def __dashboard_user_list(
+            self,
+            dashboard_user_list_request,
+            **kwargs
+        ):
+            """List dashboard users  # noqa: E501
+
+            List all dashboard users associated with your account.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.dashboard_user_list(dashboard_user_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                dashboard_user_list_request (DashboardUserListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DashboardUserListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['dashboard_user_list_request'] = \
+                dashboard_user_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.dashboard_user_list = _Endpoint(
+            settings={
+                'response_type': (DashboardUserListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/dashboard_user/list',
+                'operation_id': 'dashboard_user_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'dashboard_user_list_request',
+                ],
+                'required': [
+                    'dashboard_user_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'dashboard_user_list_request':
+                        (DashboardUserListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'dashboard_user_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -5593,128 +5482,6 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__dashboard_user_list
-        )
-
-        def __dashobard_user_get(
-            self,
-            get_dashboard_user_request,
-            **kwargs
-        ):
-            """Retrieve a dashboard user  # noqa: E501
-
-            Retrieve information about a dashboard user.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.dashobard_user_get(get_dashboard_user_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                get_dashboard_user_request (GetDashboardUserRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                DashboardUserResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['get_dashboard_user_request'] = \
-                get_dashboard_user_request
-            return self.call_with_http_info(**kwargs)
-
-        self.dashobard_user_get = _Endpoint(
-            settings={
-                'response_type': (DashboardUserResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/dashboard_user/get',
-                'operation_id': 'dashobard_user_get',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'get_dashboard_user_request',
-                ],
-                'required': [
-                    'get_dashboard_user_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'get_dashboard_user_request':
-                        (GetDashboardUserRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'get_dashboard_user_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__dashobard_user_get
         )
 
         def __deposit_switch_alt_create(
@@ -6732,7 +6499,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IdentityVerificationResponse
+                IdentityVerificationCreateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6761,7 +6528,7 @@ class PlaidApi(object):
 
         self.identity_verification_create = _Endpoint(
             settings={
-                'response_type': (IdentityVerificationResponse,),
+                'response_type': (IdentityVerificationCreateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -6817,7 +6584,7 @@ class PlaidApi(object):
 
         def __identity_verification_get(
             self,
-            get_identity_verification_request,
+            identity_verification_get_request,
             **kwargs
         ):
             """Retrieve Identity Verification  # noqa: E501
@@ -6826,11 +6593,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.identity_verification_get(get_identity_verification_request, async_req=True)
+            >>> thread = api.identity_verification_get(identity_verification_get_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                get_identity_verification_request (GetIdentityVerificationRequest):
+                identity_verification_get_request (IdentityVerificationGetRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -6854,7 +6621,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IdentityVerificationResponse
+                IdentityVerificationGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6877,13 +6644,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['get_identity_verification_request'] = \
-                get_identity_verification_request
+            kwargs['identity_verification_get_request'] = \
+                identity_verification_get_request
             return self.call_with_http_info(**kwargs)
 
         self.identity_verification_get = _Endpoint(
             settings={
-                'response_type': (IdentityVerificationResponse,),
+                'response_type': (IdentityVerificationGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -6896,10 +6663,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'get_identity_verification_request',
+                    'identity_verification_get_request',
                 ],
                 'required': [
-                    'get_identity_verification_request',
+                    'identity_verification_get_request',
                 ],
                 'nullable': [
                 ],
@@ -6914,13 +6681,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'get_identity_verification_request':
-                        (GetIdentityVerificationRequest,),
+                    'identity_verification_get_request':
+                        (IdentityVerificationGetRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'get_identity_verification_request': 'body',
+                    'identity_verification_get_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -6939,7 +6706,7 @@ class PlaidApi(object):
 
         def __identity_verification_list(
             self,
-            list_identity_verification_request,
+            identity_verification_list_request,
             **kwargs
         ):
             """List Identity Verifications  # noqa: E501
@@ -6948,11 +6715,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.identity_verification_list(list_identity_verification_request, async_req=True)
+            >>> thread = api.identity_verification_list(identity_verification_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_identity_verification_request (ListIdentityVerificationRequest):
+                identity_verification_list_request (IdentityVerificationListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -6976,7 +6743,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIdentityVerificationListResponse
+                IdentityVerificationListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6999,13 +6766,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_identity_verification_request'] = \
-                list_identity_verification_request
+            kwargs['identity_verification_list_request'] = \
+                identity_verification_list_request
             return self.call_with_http_info(**kwargs)
 
         self.identity_verification_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIdentityVerificationListResponse,),
+                'response_type': (IdentityVerificationListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -7018,10 +6785,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_identity_verification_request',
+                    'identity_verification_list_request',
                 ],
                 'required': [
-                    'list_identity_verification_request',
+                    'identity_verification_list_request',
                 ],
                 'nullable': [
                 ],
@@ -7036,13 +6803,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_identity_verification_request':
-                        (ListIdentityVerificationRequest,),
+                    'identity_verification_list_request':
+                        (IdentityVerificationListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_identity_verification_request': 'body',
+                    'identity_verification_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -7098,7 +6865,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IdentityVerificationResponse
+                IdentityVerificationRetryResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -7127,7 +6894,7 @@ class PlaidApi(object):
 
         self.identity_verification_retry = _Endpoint(
             settings={
-                'response_type': (IdentityVerificationResponse,),
+                'response_type': (IdentityVerificationRetryResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -9743,6 +9510,250 @@ class PlaidApi(object):
             callable=__liabilities_get
         )
 
+        def __link_delivery_create(
+            self,
+            link_delivery_create_request,
+            **kwargs
+        ):
+            """Create link delivery session  # noqa: E501
+
+            Use the `/link_delivery/create` endpoint to create a Link Delivery session.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.link_delivery_create(link_delivery_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                link_delivery_create_request (LinkDeliveryCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                LinkDeliveryCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['link_delivery_create_request'] = \
+                link_delivery_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.link_delivery_create = _Endpoint(
+            settings={
+                'response_type': (LinkDeliveryCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/link_delivery/create',
+                'operation_id': 'link_delivery_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'link_delivery_create_request',
+                ],
+                'required': [
+                    'link_delivery_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'link_delivery_create_request':
+                        (LinkDeliveryCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'link_delivery_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__link_delivery_create
+        )
+
+        def __link_delivery_get(
+            self,
+            link_delivery_get_request,
+            **kwargs
+        ):
+            """Get link delivery session  # noqa: E501
+
+            Use the `/link_delivery/get` endpoint to get the status of a Link Delivery session.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.link_delivery_get(link_delivery_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                link_delivery_get_request (LinkDeliveryGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                LinkDeliveryGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['link_delivery_get_request'] = \
+                link_delivery_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.link_delivery_get = _Endpoint(
+            settings={
+                'response_type': (LinkDeliveryGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/link_delivery/get',
+                'operation_id': 'link_delivery_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'link_delivery_get_request',
+                ],
+                'required': [
+                    'link_delivery_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'link_delivery_get_request':
+                        (LinkDeliveryGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'link_delivery_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__link_delivery_get
+        )
+
         def __link_token_create(
             self,
             link_token_create_request,
@@ -9987,22 +9998,22 @@ class PlaidApi(object):
             callable=__link_token_get
         )
 
-        def __partner_customers_create(
+        def __partner_customer_create(
             self,
-            partner_customers_create_request,
+            partner_customer_create_request,
             **kwargs
         ):
-            """Creates a new client for a reseller partner end customer.  # noqa: E501
+            """Creates a new end customer for a Plaid reseller.  # noqa: E501
 
-            The `/partner/v1/customers/create` endpoint is used by reseller partners to create an end customer client.  # noqa: E501
+            The `/partner/customer/create` endpoint is used by reseller partners to create end customers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.partner_customers_create(partner_customers_create_request, async_req=True)
+            >>> thread = api.partner_customer_create(partner_customer_create_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                partner_customers_create_request (PartnerCustomersCreateRequest):
+                partner_customer_create_request (PartnerCustomerCreateRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -10026,7 +10037,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PartnerCustomersCreateResponse
+                PartnerCustomerCreateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -10049,29 +10060,29 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['partner_customers_create_request'] = \
-                partner_customers_create_request
+            kwargs['partner_customer_create_request'] = \
+                partner_customer_create_request
             return self.call_with_http_info(**kwargs)
 
-        self.partner_customers_create = _Endpoint(
+        self.partner_customer_create = _Endpoint(
             settings={
-                'response_type': (PartnerCustomersCreateResponse,),
+                'response_type': (PartnerCustomerCreateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
                     'secret'
                 ],
-                'endpoint_path': '/beta/partner/v1/customers/create',
-                'operation_id': 'partner_customers_create',
+                'endpoint_path': '/partner/customer/create',
+                'operation_id': 'partner_customer_create',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'partner_customers_create_request',
+                    'partner_customer_create_request',
                 ],
                 'required': [
-                    'partner_customers_create_request',
+                    'partner_customer_create_request',
                 ],
                 'nullable': [
                 ],
@@ -10086,13 +10097,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'partner_customers_create_request':
-                        (PartnerCustomersCreateRequest,),
+                    'partner_customer_create_request':
+                        (PartnerCustomerCreateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'partner_customers_create_request': 'body',
+                    'partner_customer_create_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -10106,7 +10117,129 @@ class PlaidApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__partner_customers_create
+            callable=__partner_customer_create
+        )
+
+        def __partner_customer_get(
+            self,
+            partner_customer_get_request,
+            **kwargs
+        ):
+            """Returns a Plaid reseller's end customer.  # noqa: E501
+
+            The `/partner/customer/get` endpoint is used by reseller partners to retrieve data about a single end customer.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.partner_customer_get(partner_customer_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                partner_customer_get_request (PartnerCustomerGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PartnerCustomerGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['partner_customer_get_request'] = \
+                partner_customer_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.partner_customer_get = _Endpoint(
+            settings={
+                'response_type': (PartnerCustomerGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/partner/customer/get',
+                'operation_id': 'partner_customer_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'partner_customer_get_request',
+                ],
+                'required': [
+                    'partner_customer_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'partner_customer_get_request':
+                        (PartnerCustomerGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'partner_customer_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__partner_customer_get
         )
 
         def __payment_initiation_consent_create(
@@ -10970,7 +11103,7 @@ class PlaidApi(object):
         ):
             """Reverse an existing payment  # noqa: E501
 
-            Reverse a previously initiated payment.  A payment can only be reversed once and will be refunded to the original sender's account.   # noqa: E501
+            Reverse a previously settled payment from a Plaid virtual account.  The original payment must be in a settled state to be refunded and only full payment refunds are currently supported. To power partial refunds, use `/wallet/transaction/execute`, where you can specify the exact amount for a payout to an end user.  A payment can only be reversed once and will be refunded back to the same source account that initiated the payment. The original payment must have been initiated to a Plaid virtual account. The refund will be initiated from the same virtual account that the payment was paid into.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11092,7 +11225,7 @@ class PlaidApi(object):
         ):
             """Create payment recipient  # noqa: E501
 
-            Create a payment recipient for payment initiation.  The recipient must be in Europe, within a country that is a member of the Single Euro Payment Area (SEPA).  For a standing order (recurring) payment, the recipient must be in the UK.  The endpoint is idempotent: if a developer has already made a request with the same payment details, Plaid will return the same `recipient_id`.   # noqa: E501
+            Create a payment recipient for payment initiation.  The recipient must be in Europe, within a country that is a member of the Single Euro Payment Area (SEPA).  For a standing order (recurring) payment, the recipient must be in the UK.  It is recommended to use `bacs` in the UK and `iban` in EU.  The endpoint is idempotent: if a developer has already made a request with the same payment details, Plaid will return the same `recipient_id`.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11458,7 +11591,7 @@ class PlaidApi(object):
         ):
             """Create payment profile  # noqa: E501
 
-            Use `/payment_profile/create` endpoint to create a new payment profile, the return value is a Payment Profile ID. Attach it to the link token create request and the link workflow will then \"activate\" this Payment Profile if the linkage is successful. It can then be used to create Transfers using `/transfer/authorization/create` and /transfer/create`.  # noqa: E501
+            Use `/payment_profile/create` endpoint to create a new payment profile, identified by a Payment Profile ID. To initiate the account linking experience, call `/link/token/create` and provide the Payment Profile ID in the `transfer.payment_profile_id` field. You can then use the Payment Profile ID when creating transfers using `/transfer/authorization/create` and `/transfer/create`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11580,7 +11713,7 @@ class PlaidApi(object):
         ):
             """Get payment profile  # noqa: E501
 
-            Use the `/payment_profile/get` endpoint to get the status of a given Payment Profile.  # noqa: E501
+            Use `/payment_profile/get` endpoint to get the status of a given Payment Profile.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12434,7 +12567,7 @@ class PlaidApi(object):
         ):
             """Create Stripe bank account token  # noqa: E501
 
-            Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/). Bank account tokens can also be revoked, using `/item/remove`.  # noqa: E501
+             Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/).   Note that the Stripe bank account token is a one-time use token. To store bank account information for later use, you can use a Stripe customer object and create an associated bank account from the token, or you can use a Stripe Custom account and create an associated external bank account from the token. This bank account information should work indefinitely, unless the user's bank account information changes or they revoke Plaid's permissions to access their account. Stripe bank account information cannot be modified once the bank account token has been created. If you ever need to change the bank account details used by Stripe for a specific customer, have the user go through Link again and create a new bank account token from the new `access_token`.    Bank account tokens can also be revoked, using `/item/remove`.'  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12556,7 +12689,7 @@ class PlaidApi(object):
         ):
             """Create processor token  # noqa: E501
 
-            Used to create a token suitable for sending to one of Plaid's partners to enable integrations. Note that Stripe partnerships use bank account tokens instead; see `/processor/stripe/bank_account_token/create` for creating tokens for use with Stripe integrations. Processor tokens can also be revoked, using `/item/remove`.  # noqa: E501
+            Used to create a token suitable for sending to one of Plaid's partners to enable integrations. Note that Stripe partnerships use bank account tokens instead; see `/processor/stripe/bank_account_token/create` for creating tokens for use with Stripe integrations. Once created, a processor token for a given Item cannot be modified or updated. If the account must be linked to a new or different partner resource, create a new Item by having the user go through the Link flow again; a new processor token can then be created from the new `access_token`. Processor tokens can also be revoked, using `/item/remove`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15728,7 +15861,7 @@ class PlaidApi(object):
         ):
             """Create a transfer authorization  # noqa: E501
 
-            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's sandbox environment the decisions will be returned as follows:    - To approve a transfer with null rationale code, make an authorization request with an `amount` less than the available balance in the account.    - To approve a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).    - To approve a transfer with the rationale code `LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).    - To decline a transfer with the rationale code `NSF`, the available balance on the account must be less than the authorization `amount`. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To decline a transfer with the rationale code `RISK`, the available balance on the account must be exactly $0. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.  For guaranteed ACH customers, the following fields are required : `user.phone_number` (optional if `email_address` provided), `user.email_address` (optional if `phone_number` provided), `device.ip_address`, `device.user_agent`, and `user_present`.  # noqa: E501
+            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's Sandbox environment the decisions will be returned as follows:    - To approve a transfer with null rationale code, make an authorization request with an `amount` less than the available balance in the account.    - To approve a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).    - To approve a transfer with the rationale code `LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).    - To decline a transfer with the rationale code `NSF`, the available balance on the account must be less than the authorization `amount`. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To decline a transfer with the rationale code `RISK`, the available balance on the account must be exactly $0. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.  For [Guarantee](https://www.plaid.com/docs//transfer/guarantee/), the following fields are required : `idempotency_key`, `user.phone_number` (optional if `email_address` provided), `user.email_address` (optional if `phone_number` provided), `device.ip_address`, `device.user_agent`, and `user_present`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15850,7 +15983,7 @@ class PlaidApi(object):
         ):
             """Cancel a transfer  # noqa: E501
 
-            Use the `/transfer/cancel` endpoint to cancel a transfer.  A transfer is eligible for cancelation if the `cancellable` property returned by `/transfer/get` is `true`.  # noqa: E501
+            Use the `/transfer/cancel` endpoint to cancel a transfer.  A transfer is eligible for cancellation if the `cancellable` property returned by `/transfer/get` is `true`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -17436,7 +17569,7 @@ class PlaidApi(object):
         ):
             """Create user  # noqa: E501
 
-            This endpoint should be called for each of your end users before they begin a Plaid income flow. This provides you a single token to access all income data associated with the user. You should only create one per end user.  If you call the endpoint multiple times with the same `client_user_id`, the first creation call will succeed and the rest will fail with an error message indicating that the user has been created for the given `client_user_id`.  # noqa: E501
+            This endpoint should be called for each of your end users before they begin a Plaid income flow. This provides you a single token to access all income data associated with the user. You should only create one per end user.  If you call the endpoint multiple times with the same `client_user_id`, the first creation call will succeed and the rest will fail with an error message indicating that the user has been created for the given `client_user_id`.  Ensure that you store the `user_token` along with your user's identifier in your database, as it is not possible to retrieve a previously created `user_token`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -17924,7 +18057,7 @@ class PlaidApi(object):
         ):
             """Execute a transaction using an e-wallet  # noqa: E501
 
-            Execute a transaction using the specified e-wallet. Specify the e-wallet to debit from, the counterparty to credit to, the idempotency key to prevent duplicate payouts, the amount and reference for the payout. The payouts are executed over the Faster Payment rails, where settlement usually only takes a few seconds.  # noqa: E501
+            Execute a transaction using the specified e-wallet. Specify the e-wallet to debit from, the counterparty to credit to, the idempotency key to prevent duplicate transactions, the amount and reference for the transaction. Transactions will settle in seconds to several days, depending on the underlying payment rail.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -18044,7 +18177,7 @@ class PlaidApi(object):
             wallet_transaction_get_request,
             **kwargs
         ):
-            """wallet_transaction_get  # noqa: E501
+            """Fetch an e-wallet transaction  # noqa: E501
 
             Fetch a specific e-wallet transaction  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -18285,7 +18418,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_create(
             self,
-            create_entity_screening_request,
+            watchlist_screening_entity_create_request,
             **kwargs
         ):
             """Create a watchlist screening for an entity  # noqa: E501
@@ -18294,11 +18427,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_create(create_entity_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_create(watchlist_screening_entity_create_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                create_entity_screening_request (CreateEntityScreeningRequest):
+                watchlist_screening_entity_create_request (WatchlistScreeningEntityCreateRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -18322,7 +18455,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreeningResponse
+                WatchlistScreeningEntityCreateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18345,13 +18478,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['create_entity_screening_request'] = \
-                create_entity_screening_request
+            kwargs['watchlist_screening_entity_create_request'] = \
+                watchlist_screening_entity_create_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_create = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreeningResponse,),
+                'response_type': (WatchlistScreeningEntityCreateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18364,10 +18497,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'create_entity_screening_request',
+                    'watchlist_screening_entity_create_request',
                 ],
                 'required': [
-                    'create_entity_screening_request',
+                    'watchlist_screening_entity_create_request',
                 ],
                 'nullable': [
                 ],
@@ -18382,13 +18515,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'create_entity_screening_request':
-                        (CreateEntityScreeningRequest,),
+                    'watchlist_screening_entity_create_request':
+                        (WatchlistScreeningEntityCreateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'create_entity_screening_request': 'body',
+                    'watchlist_screening_entity_create_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -18407,7 +18540,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_get(
             self,
-            get_entity_watchlist_screening_request,
+            watchlist_screening_entity_get_request,
             **kwargs
         ):
             """Get an entity screening  # noqa: E501
@@ -18416,11 +18549,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_get(get_entity_watchlist_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_get(watchlist_screening_entity_get_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                get_entity_watchlist_screening_request (GetEntityWatchlistScreeningRequest):
+                watchlist_screening_entity_get_request (WatchlistScreeningEntityGetRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -18444,7 +18577,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreeningResponse
+                WatchlistScreeningEntityGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18467,13 +18600,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['get_entity_watchlist_screening_request'] = \
-                get_entity_watchlist_screening_request
+            kwargs['watchlist_screening_entity_get_request'] = \
+                watchlist_screening_entity_get_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_get = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreeningResponse,),
+                'response_type': (WatchlistScreeningEntityGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18486,10 +18619,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'get_entity_watchlist_screening_request',
+                    'watchlist_screening_entity_get_request',
                 ],
                 'required': [
-                    'get_entity_watchlist_screening_request',
+                    'watchlist_screening_entity_get_request',
                 ],
                 'nullable': [
                 ],
@@ -18504,13 +18637,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'get_entity_watchlist_screening_request':
-                        (GetEntityWatchlistScreeningRequest,),
+                    'watchlist_screening_entity_get_request':
+                        (WatchlistScreeningEntityGetRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'get_entity_watchlist_screening_request': 'body',
+                    'watchlist_screening_entity_get_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -18529,7 +18662,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_history_list(
             self,
-            list_watchlist_screening_entity_history_request,
+            watchlist_screening_entity_history_list_request,
             **kwargs
         ):
             """List history for entity watchlist screenings  # noqa: E501
@@ -18538,11 +18671,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_history_list(list_watchlist_screening_entity_history_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_history_list(watchlist_screening_entity_history_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_entity_history_request (ListWatchlistScreeningEntityHistoryRequest):
+                watchlist_screening_entity_history_list_request (WatchlistScreeningEntityHistoryListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -18566,7 +18699,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningListResponse
+                WatchlistScreeningEntityHistoryListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18589,13 +18722,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_entity_history_request'] = \
-                list_watchlist_screening_entity_history_request
+            kwargs['watchlist_screening_entity_history_list_request'] = \
+                watchlist_screening_entity_history_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_history_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningListResponse,),
+                'response_type': (WatchlistScreeningEntityHistoryListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18608,10 +18741,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_entity_history_request',
+                    'watchlist_screening_entity_history_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_entity_history_request',
+                    'watchlist_screening_entity_history_list_request',
                 ],
                 'nullable': [
                 ],
@@ -18626,13 +18759,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_entity_history_request':
-                        (ListWatchlistScreeningEntityHistoryRequest,),
+                    'watchlist_screening_entity_history_list_request':
+                        (WatchlistScreeningEntityHistoryListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_entity_history_request': 'body',
+                    'watchlist_screening_entity_history_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -18649,9 +18782,9 @@ class PlaidApi(object):
             callable=__watchlist_screening_entity_history_list
         )
 
-        def __watchlist_screening_entity_hits_list(
+        def __watchlist_screening_entity_hit_list(
             self,
-            list_watchlist_screening_entity_hit_request,
+            watchlist_screening_entity_hit_list_request,
             **kwargs
         ):
             """List hits for entity watchlist screenings  # noqa: E501
@@ -18660,11 +18793,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_hits_list(list_watchlist_screening_entity_hit_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_hit_list(watchlist_screening_entity_hit_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_entity_hit_request (ListWatchlistScreeningEntityHitRequest):
+                watchlist_screening_entity_hit_list_request (WatchlistScreeningEntityHitListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -18688,7 +18821,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningHitListResponse
+                WatchlistScreeningEntityHitListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18711,29 +18844,29 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_entity_hit_request'] = \
-                list_watchlist_screening_entity_hit_request
+            kwargs['watchlist_screening_entity_hit_list_request'] = \
+                watchlist_screening_entity_hit_list_request
             return self.call_with_http_info(**kwargs)
 
-        self.watchlist_screening_entity_hits_list = _Endpoint(
+        self.watchlist_screening_entity_hit_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningHitListResponse,),
+                'response_type': (WatchlistScreeningEntityHitListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
                     'secret'
                 ],
                 'endpoint_path': '/watchlist_screening/entity/hit/list',
-                'operation_id': 'watchlist_screening_entity_hits_list',
+                'operation_id': 'watchlist_screening_entity_hit_list',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_entity_hit_request',
+                    'watchlist_screening_entity_hit_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_entity_hit_request',
+                    'watchlist_screening_entity_hit_list_request',
                 ],
                 'nullable': [
                 ],
@@ -18748,13 +18881,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_entity_hit_request':
-                        (ListWatchlistScreeningEntityHitRequest,),
+                    'watchlist_screening_entity_hit_list_request':
+                        (WatchlistScreeningEntityHitListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_entity_hit_request': 'body',
+                    'watchlist_screening_entity_hit_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -18768,12 +18901,12 @@ class PlaidApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__watchlist_screening_entity_hits_list
+            callable=__watchlist_screening_entity_hit_list
         )
 
         def __watchlist_screening_entity_list(
             self,
-            list_entity_watchlist_screening_request,
+            watchlist_screening_entity_list_request,
             **kwargs
         ):
             """List entity watchlist screenings  # noqa: E501
@@ -18782,11 +18915,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_list(list_entity_watchlist_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_list(watchlist_screening_entity_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_entity_watchlist_screening_request (ListEntityWatchlistScreeningRequest):
+                watchlist_screening_entity_list_request (WatchlistScreeningEntityListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -18810,7 +18943,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningListResponse
+                WatchlistScreeningEntityListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18833,13 +18966,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_entity_watchlist_screening_request'] = \
-                list_entity_watchlist_screening_request
+            kwargs['watchlist_screening_entity_list_request'] = \
+                watchlist_screening_entity_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningListResponse,),
+                'response_type': (WatchlistScreeningEntityListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18852,10 +18985,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_entity_watchlist_screening_request',
+                    'watchlist_screening_entity_list_request',
                 ],
                 'required': [
-                    'list_entity_watchlist_screening_request',
+                    'watchlist_screening_entity_list_request',
                 ],
                 'nullable': [
                 ],
@@ -18870,13 +19003,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_entity_watchlist_screening_request':
-                        (ListEntityWatchlistScreeningRequest,),
+                    'watchlist_screening_entity_list_request':
+                        (WatchlistScreeningEntityListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_entity_watchlist_screening_request': 'body',
+                    'watchlist_screening_entity_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -18895,7 +19028,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_program_get(
             self,
-            get_watchlist_screening_entity_program_request,
+            watchlist_screening_entity_program_get_request,
             **kwargs
         ):
             """Get entity watchlist screening program  # noqa: E501
@@ -18904,11 +19037,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_program_get(get_watchlist_screening_entity_program_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_program_get(watchlist_screening_entity_program_get_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                get_watchlist_screening_entity_program_request (GetWatchlistScreeningEntityProgramRequest):
+                watchlist_screening_entity_program_get_request (WatchlistScreeningEntityProgramGetRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -18932,7 +19065,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistProgramResponse
+                WatchlistScreeningEntityProgramGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -18955,13 +19088,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['get_watchlist_screening_entity_program_request'] = \
-                get_watchlist_screening_entity_program_request
+            kwargs['watchlist_screening_entity_program_get_request'] = \
+                watchlist_screening_entity_program_get_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_program_get = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistProgramResponse,),
+                'response_type': (WatchlistScreeningEntityProgramGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -18974,10 +19107,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'get_watchlist_screening_entity_program_request',
+                    'watchlist_screening_entity_program_get_request',
                 ],
                 'required': [
-                    'get_watchlist_screening_entity_program_request',
+                    'watchlist_screening_entity_program_get_request',
                 ],
                 'nullable': [
                 ],
@@ -18992,13 +19125,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'get_watchlist_screening_entity_program_request':
-                        (GetWatchlistScreeningEntityProgramRequest,),
+                    'watchlist_screening_entity_program_get_request':
+                        (WatchlistScreeningEntityProgramGetRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'get_watchlist_screening_entity_program_request': 'body',
+                    'watchlist_screening_entity_program_get_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19017,7 +19150,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_program_list(
             self,
-            list_watchlist_screening_entity_programs_request,
+            watchlist_screening_entity_program_list_request,
             **kwargs
         ):
             """List entity watchlist screening programs  # noqa: E501
@@ -19026,11 +19159,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_program_list(list_watchlist_screening_entity_programs_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_program_list(watchlist_screening_entity_program_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_entity_programs_request (ListWatchlistScreeningEntityProgramsRequest):
+                watchlist_screening_entity_program_list_request (WatchlistScreeningEntityProgramListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19054,7 +19187,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistProgramListResponse
+                WatchlistScreeningEntityProgramListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19077,13 +19210,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_entity_programs_request'] = \
-                list_watchlist_screening_entity_programs_request
+            kwargs['watchlist_screening_entity_program_list_request'] = \
+                watchlist_screening_entity_program_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_program_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistProgramListResponse,),
+                'response_type': (WatchlistScreeningEntityProgramListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19096,10 +19229,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_entity_programs_request',
+                    'watchlist_screening_entity_program_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_entity_programs_request',
+                    'watchlist_screening_entity_program_list_request',
                 ],
                 'nullable': [
                 ],
@@ -19114,13 +19247,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_entity_programs_request':
-                        (ListWatchlistScreeningEntityProgramsRequest,),
+                    'watchlist_screening_entity_program_list_request':
+                        (WatchlistScreeningEntityProgramListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_entity_programs_request': 'body',
+                    'watchlist_screening_entity_program_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19139,7 +19272,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_review_create(
             self,
-            create_entity_watchlist_screening_review_request,
+            watchlist_screening_entity_review_create_request,
             **kwargs
         ):
             """Create a review for an entity watchlist screening  # noqa: E501
@@ -19148,11 +19281,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_review_create(create_entity_watchlist_screening_review_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_review_create(watchlist_screening_entity_review_create_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                create_entity_watchlist_screening_review_request (CreateEntityWatchlistScreeningReviewRequest):
+                watchlist_screening_entity_review_create_request (WatchlistScreeningEntityReviewCreateRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19176,7 +19309,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreeningReviewResponse
+                WatchlistScreeningEntityReviewCreateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19199,13 +19332,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['create_entity_watchlist_screening_review_request'] = \
-                create_entity_watchlist_screening_review_request
+            kwargs['watchlist_screening_entity_review_create_request'] = \
+                watchlist_screening_entity_review_create_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_review_create = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreeningReviewResponse,),
+                'response_type': (WatchlistScreeningEntityReviewCreateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19218,10 +19351,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'create_entity_watchlist_screening_review_request',
+                    'watchlist_screening_entity_review_create_request',
                 ],
                 'required': [
-                    'create_entity_watchlist_screening_review_request',
+                    'watchlist_screening_entity_review_create_request',
                 ],
                 'nullable': [
                 ],
@@ -19236,13 +19369,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'create_entity_watchlist_screening_review_request':
-                        (CreateEntityWatchlistScreeningReviewRequest,),
+                    'watchlist_screening_entity_review_create_request':
+                        (WatchlistScreeningEntityReviewCreateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'create_entity_watchlist_screening_review_request': 'body',
+                    'watchlist_screening_entity_review_create_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19261,7 +19394,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_review_list(
             self,
-            list_watchlist_screening_entity_reviews_request,
+            watchlist_screening_entity_review_list_request,
             **kwargs
         ):
             """List reviews for entity watchlist screenings  # noqa: E501
@@ -19270,11 +19403,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_review_list(list_watchlist_screening_entity_reviews_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_review_list(watchlist_screening_entity_review_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_entity_reviews_request (ListWatchlistScreeningEntityReviewsRequest):
+                watchlist_screening_entity_review_list_request (WatchlistScreeningEntityReviewListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19298,7 +19431,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedEntityWatchlistScreeningReviewListResponse
+                WatchlistScreeningEntityReviewListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19321,13 +19454,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_entity_reviews_request'] = \
-                list_watchlist_screening_entity_reviews_request
+            kwargs['watchlist_screening_entity_review_list_request'] = \
+                watchlist_screening_entity_review_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_review_list = _Endpoint(
             settings={
-                'response_type': (PaginatedEntityWatchlistScreeningReviewListResponse,),
+                'response_type': (WatchlistScreeningEntityReviewListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19340,10 +19473,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_entity_reviews_request',
+                    'watchlist_screening_entity_review_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_entity_reviews_request',
+                    'watchlist_screening_entity_review_list_request',
                 ],
                 'nullable': [
                 ],
@@ -19358,13 +19491,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_entity_reviews_request':
-                        (ListWatchlistScreeningEntityReviewsRequest,),
+                    'watchlist_screening_entity_review_list_request':
+                        (WatchlistScreeningEntityReviewListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_entity_reviews_request': 'body',
+                    'watchlist_screening_entity_review_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19383,7 +19516,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_entity_update(
             self,
-            update_entity_screening_request,
+            watchlist_screening_entity_update_request,
             **kwargs
         ):
             """Update an entity screening  # noqa: E501
@@ -19392,11 +19525,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_entity_update(update_entity_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_entity_update(watchlist_screening_entity_update_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                update_entity_screening_request (UpdateEntityScreeningRequest): The entity screening was successfully updated.
+                watchlist_screening_entity_update_request (WatchlistScreeningEntityUpdateRequest): The entity screening was successfully updated.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19420,7 +19553,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                EntityWatchlistScreeningResponse
+                WatchlistScreeningEntityUpdateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19443,13 +19576,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['update_entity_screening_request'] = \
-                update_entity_screening_request
+            kwargs['watchlist_screening_entity_update_request'] = \
+                watchlist_screening_entity_update_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_entity_update = _Endpoint(
             settings={
-                'response_type': (EntityWatchlistScreeningResponse,),
+                'response_type': (WatchlistScreeningEntityUpdateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19462,10 +19595,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'update_entity_screening_request',
+                    'watchlist_screening_entity_update_request',
                 ],
                 'required': [
-                    'update_entity_screening_request',
+                    'watchlist_screening_entity_update_request',
                 ],
                 'nullable': [
                 ],
@@ -19480,13 +19613,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'update_entity_screening_request':
-                        (UpdateEntityScreeningRequest,),
+                    'watchlist_screening_entity_update_request':
+                        (WatchlistScreeningEntityUpdateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'update_entity_screening_request': 'body',
+                    'watchlist_screening_entity_update_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19505,7 +19638,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_create(
             self,
-            watchlist_screening_create_request,
+            watchlist_screening_individual_create_request,
             **kwargs
         ):
             """Create a watchlist screening for a person  # noqa: E501
@@ -19514,11 +19647,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_create(watchlist_screening_create_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_create(watchlist_screening_individual_create_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                watchlist_screening_create_request (WatchlistScreeningCreateRequest):
+                watchlist_screening_individual_create_request (WatchlistScreeningIndividualCreateRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19542,7 +19675,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningIndividualResponse
+                WatchlistScreeningIndividualCreateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19565,13 +19698,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['watchlist_screening_create_request'] = \
-                watchlist_screening_create_request
+            kwargs['watchlist_screening_individual_create_request'] = \
+                watchlist_screening_individual_create_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_create = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningIndividualResponse,),
+                'response_type': (WatchlistScreeningIndividualCreateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19584,10 +19717,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'watchlist_screening_create_request',
+                    'watchlist_screening_individual_create_request',
                 ],
                 'required': [
-                    'watchlist_screening_create_request',
+                    'watchlist_screening_individual_create_request',
                 ],
                 'nullable': [
                 ],
@@ -19602,13 +19735,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'watchlist_screening_create_request':
-                        (WatchlistScreeningCreateRequest,),
+                    'watchlist_screening_individual_create_request':
+                        (WatchlistScreeningIndividualCreateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'watchlist_screening_create_request': 'body',
+                    'watchlist_screening_individual_create_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19627,7 +19760,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_get(
             self,
-            get_individual_watchlist_screening_request,
+            watchlist_screening_individual_get_request,
             **kwargs
         ):
             """Retrieve an individual watchlist screening  # noqa: E501
@@ -19636,11 +19769,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_get(get_individual_watchlist_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_get(watchlist_screening_individual_get_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                get_individual_watchlist_screening_request (GetIndividualWatchlistScreeningRequest):
+                watchlist_screening_individual_get_request (WatchlistScreeningIndividualGetRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19664,7 +19797,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningIndividualResponse
+                WatchlistScreeningIndividualGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19687,13 +19820,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['get_individual_watchlist_screening_request'] = \
-                get_individual_watchlist_screening_request
+            kwargs['watchlist_screening_individual_get_request'] = \
+                watchlist_screening_individual_get_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_get = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningIndividualResponse,),
+                'response_type': (WatchlistScreeningIndividualGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19706,10 +19839,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'get_individual_watchlist_screening_request',
+                    'watchlist_screening_individual_get_request',
                 ],
                 'required': [
-                    'get_individual_watchlist_screening_request',
+                    'watchlist_screening_individual_get_request',
                 ],
                 'nullable': [
                 ],
@@ -19724,13 +19857,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'get_individual_watchlist_screening_request':
-                        (GetIndividualWatchlistScreeningRequest,),
+                    'watchlist_screening_individual_get_request':
+                        (WatchlistScreeningIndividualGetRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'get_individual_watchlist_screening_request': 'body',
+                    'watchlist_screening_individual_get_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19749,7 +19882,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_history_list(
             self,
-            list_watchlist_screening_individual_history_request,
+            watchlist_screening_individual_history_list_request,
             **kwargs
         ):
             """List history for individual watchlist screenings  # noqa: E501
@@ -19758,11 +19891,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_history_list(list_watchlist_screening_individual_history_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_history_list(watchlist_screening_individual_history_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_individual_history_request (ListWatchlistScreeningIndividualHistoryRequest):
+                watchlist_screening_individual_history_list_request (WatchlistScreeningIndividualHistoryListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19786,7 +19919,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningListResponse
+                WatchlistScreeningIndividualHistoryListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19809,13 +19942,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_individual_history_request'] = \
-                list_watchlist_screening_individual_history_request
+            kwargs['watchlist_screening_individual_history_list_request'] = \
+                watchlist_screening_individual_history_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_history_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningListResponse,),
+                'response_type': (WatchlistScreeningIndividualHistoryListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19828,10 +19961,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_individual_history_request',
+                    'watchlist_screening_individual_history_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_individual_history_request',
+                    'watchlist_screening_individual_history_list_request',
                 ],
                 'nullable': [
                 ],
@@ -19846,13 +19979,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_individual_history_request':
-                        (ListWatchlistScreeningIndividualHistoryRequest,),
+                    'watchlist_screening_individual_history_list_request':
+                        (WatchlistScreeningIndividualHistoryListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_individual_history_request': 'body',
+                    'watchlist_screening_individual_history_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19871,7 +20004,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_hit_list(
             self,
-            list_watchlist_screening_individual_hit_request,
+            watchlist_screening_individual_hit_list_request,
             **kwargs
         ):
             """List hits for individual watchlist screening  # noqa: E501
@@ -19880,11 +20013,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_hit_list(list_watchlist_screening_individual_hit_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_hit_list(watchlist_screening_individual_hit_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_individual_hit_request (ListWatchlistScreeningIndividualHitRequest):
+                watchlist_screening_individual_hit_list_request (WatchlistScreeningIndividualHitListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -19908,7 +20041,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningHitListResponse
+                WatchlistScreeningIndividualHitListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -19931,13 +20064,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_individual_hit_request'] = \
-                list_watchlist_screening_individual_hit_request
+            kwargs['watchlist_screening_individual_hit_list_request'] = \
+                watchlist_screening_individual_hit_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_hit_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningHitListResponse,),
+                'response_type': (WatchlistScreeningIndividualHitListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -19950,10 +20083,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_individual_hit_request',
+                    'watchlist_screening_individual_hit_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_individual_hit_request',
+                    'watchlist_screening_individual_hit_list_request',
                 ],
                 'nullable': [
                 ],
@@ -19968,13 +20101,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_individual_hit_request':
-                        (ListWatchlistScreeningIndividualHitRequest,),
+                    'watchlist_screening_individual_hit_list_request':
+                        (WatchlistScreeningIndividualHitListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_individual_hit_request': 'body',
+                    'watchlist_screening_individual_hit_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -19993,7 +20126,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_list(
             self,
-            list_individual_watchlist_screening_request,
+            watchlist_screening_individual_list_request,
             **kwargs
         ):
             """List Individual Watchlist Screenings  # noqa: E501
@@ -20002,11 +20135,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_list(list_individual_watchlist_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_list(watchlist_screening_individual_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_individual_watchlist_screening_request (ListIndividualWatchlistScreeningRequest):
+                watchlist_screening_individual_list_request (WatchlistScreeningIndividualListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -20030,7 +20163,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningListResponse
+                WatchlistScreeningIndividualListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -20053,13 +20186,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_individual_watchlist_screening_request'] = \
-                list_individual_watchlist_screening_request
+            kwargs['watchlist_screening_individual_list_request'] = \
+                watchlist_screening_individual_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningListResponse,),
+                'response_type': (WatchlistScreeningIndividualListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -20072,10 +20205,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_individual_watchlist_screening_request',
+                    'watchlist_screening_individual_list_request',
                 ],
                 'required': [
-                    'list_individual_watchlist_screening_request',
+                    'watchlist_screening_individual_list_request',
                 ],
                 'nullable': [
                 ],
@@ -20090,13 +20223,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_individual_watchlist_screening_request':
-                        (ListIndividualWatchlistScreeningRequest,),
+                    'watchlist_screening_individual_list_request':
+                        (WatchlistScreeningIndividualListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_individual_watchlist_screening_request': 'body',
+                    'watchlist_screening_individual_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -20115,7 +20248,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_program_get(
             self,
-            get_watchlist_screening_individual_program_request,
+            watchlist_screening_individual_program_get_request,
             **kwargs
         ):
             """Get individual watchlist screening program  # noqa: E501
@@ -20124,11 +20257,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_program_get(get_watchlist_screening_individual_program_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_program_get(watchlist_screening_individual_program_get_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                get_watchlist_screening_individual_program_request (GetWatchlistScreeningIndividualProgramRequest):
+                watchlist_screening_individual_program_get_request (WatchlistScreeningIndividualProgramGetRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -20152,7 +20285,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                IndividualWatchlistProgramResponse
+                WatchlistScreeningIndividualProgramGetResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -20175,13 +20308,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['get_watchlist_screening_individual_program_request'] = \
-                get_watchlist_screening_individual_program_request
+            kwargs['watchlist_screening_individual_program_get_request'] = \
+                watchlist_screening_individual_program_get_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_program_get = _Endpoint(
             settings={
-                'response_type': (IndividualWatchlistProgramResponse,),
+                'response_type': (WatchlistScreeningIndividualProgramGetResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -20194,10 +20327,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'get_watchlist_screening_individual_program_request',
+                    'watchlist_screening_individual_program_get_request',
                 ],
                 'required': [
-                    'get_watchlist_screening_individual_program_request',
+                    'watchlist_screening_individual_program_get_request',
                 ],
                 'nullable': [
                 ],
@@ -20212,13 +20345,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'get_watchlist_screening_individual_program_request':
-                        (GetWatchlistScreeningIndividualProgramRequest,),
+                    'watchlist_screening_individual_program_get_request':
+                        (WatchlistScreeningIndividualProgramGetRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'get_watchlist_screening_individual_program_request': 'body',
+                    'watchlist_screening_individual_program_get_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -20237,7 +20370,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_program_list(
             self,
-            list_watchlist_screening_individual_programs_request,
+            watchlist_screening_individual_program_list_request,
             **kwargs
         ):
             """List individual watchlist screening programs  # noqa: E501
@@ -20246,11 +20379,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_program_list(list_watchlist_screening_individual_programs_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_program_list(watchlist_screening_individual_program_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_individual_programs_request (ListWatchlistScreeningIndividualProgramsRequest):
+                watchlist_screening_individual_program_list_request (WatchlistScreeningIndividualProgramListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -20274,7 +20407,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistProgramListResponse
+                WatchlistScreeningIndividualProgramListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -20297,13 +20430,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_individual_programs_request'] = \
-                list_watchlist_screening_individual_programs_request
+            kwargs['watchlist_screening_individual_program_list_request'] = \
+                watchlist_screening_individual_program_list_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_program_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistProgramListResponse,),
+                'response_type': (WatchlistScreeningIndividualProgramListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -20316,10 +20449,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_individual_programs_request',
+                    'watchlist_screening_individual_program_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_individual_programs_request',
+                    'watchlist_screening_individual_program_list_request',
                 ],
                 'nullable': [
                 ],
@@ -20334,13 +20467,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_individual_programs_request':
-                        (ListWatchlistScreeningIndividualProgramsRequest,),
+                    'watchlist_screening_individual_program_list_request':
+                        (WatchlistScreeningIndividualProgramListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_individual_programs_request': 'body',
+                    'watchlist_screening_individual_program_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -20359,7 +20492,7 @@ class PlaidApi(object):
 
         def __watchlist_screening_individual_review_create(
             self,
-            create_individual_watchlist_screening_review_request,
+            watchlist_screening_individual_review_create_request,
             **kwargs
         ):
             """Create a review for an individual watchlist screening  # noqa: E501
@@ -20368,11 +20501,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_review_create(create_individual_watchlist_screening_review_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_review_create(watchlist_screening_individual_review_create_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                create_individual_watchlist_screening_review_request (CreateIndividualWatchlistScreeningReviewRequest):
+                watchlist_screening_individual_review_create_request (WatchlistScreeningIndividualReviewCreateRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -20396,7 +20529,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningReviewResponse
+                WatchlistScreeningIndividualReviewCreateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -20419,13 +20552,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['create_individual_watchlist_screening_review_request'] = \
-                create_individual_watchlist_screening_review_request
+            kwargs['watchlist_screening_individual_review_create_request'] = \
+                watchlist_screening_individual_review_create_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_review_create = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningReviewResponse,),
+                'response_type': (WatchlistScreeningIndividualReviewCreateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -20438,10 +20571,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'create_individual_watchlist_screening_review_request',
+                    'watchlist_screening_individual_review_create_request',
                 ],
                 'required': [
-                    'create_individual_watchlist_screening_review_request',
+                    'watchlist_screening_individual_review_create_request',
                 ],
                 'nullable': [
                 ],
@@ -20456,13 +20589,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'create_individual_watchlist_screening_review_request':
-                        (CreateIndividualWatchlistScreeningReviewRequest,),
+                    'watchlist_screening_individual_review_create_request':
+                        (WatchlistScreeningIndividualReviewCreateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'create_individual_watchlist_screening_review_request': 'body',
+                    'watchlist_screening_individual_review_create_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -20479,9 +20612,9 @@ class PlaidApi(object):
             callable=__watchlist_screening_individual_review_create
         )
 
-        def __watchlist_screening_individual_reviews_list(
+        def __watchlist_screening_individual_review_list(
             self,
-            list_watchlist_screening_individual_reviews_request,
+            watchlist_screening_individual_review_list_request,
             **kwargs
         ):
             """List reviews for individual watchlist screenings  # noqa: E501
@@ -20490,11 +20623,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_reviews_list(list_watchlist_screening_individual_reviews_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_review_list(watchlist_screening_individual_review_list_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                list_watchlist_screening_individual_reviews_request (ListWatchlistScreeningIndividualReviewsRequest):
+                watchlist_screening_individual_review_list_request (WatchlistScreeningIndividualReviewListRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -20518,7 +20651,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                PaginatedIndividualWatchlistScreeningReviewListResponse
+                WatchlistScreeningIndividualReviewListResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -20541,29 +20674,29 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['list_watchlist_screening_individual_reviews_request'] = \
-                list_watchlist_screening_individual_reviews_request
+            kwargs['watchlist_screening_individual_review_list_request'] = \
+                watchlist_screening_individual_review_list_request
             return self.call_with_http_info(**kwargs)
 
-        self.watchlist_screening_individual_reviews_list = _Endpoint(
+        self.watchlist_screening_individual_review_list = _Endpoint(
             settings={
-                'response_type': (PaginatedIndividualWatchlistScreeningReviewListResponse,),
+                'response_type': (WatchlistScreeningIndividualReviewListResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
                     'secret'
                 ],
                 'endpoint_path': '/watchlist_screening/individual/review/list',
-                'operation_id': 'watchlist_screening_individual_reviews_list',
+                'operation_id': 'watchlist_screening_individual_review_list',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'list_watchlist_screening_individual_reviews_request',
+                    'watchlist_screening_individual_review_list_request',
                 ],
                 'required': [
-                    'list_watchlist_screening_individual_reviews_request',
+                    'watchlist_screening_individual_review_list_request',
                 ],
                 'nullable': [
                 ],
@@ -20578,13 +20711,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'list_watchlist_screening_individual_reviews_request':
-                        (ListWatchlistScreeningIndividualReviewsRequest,),
+                    'watchlist_screening_individual_review_list_request':
+                        (WatchlistScreeningIndividualReviewListRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'list_watchlist_screening_individual_reviews_request': 'body',
+                    'watchlist_screening_individual_review_list_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -20598,12 +20731,12 @@ class PlaidApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__watchlist_screening_individual_reviews_list
+            callable=__watchlist_screening_individual_review_list
         )
 
         def __watchlist_screening_individual_update(
             self,
-            update_individual_screening_request,
+            watchlist_screening_individual_update_request,
             **kwargs
         ):
             """Update individual watchlist screening  # noqa: E501
@@ -20612,11 +20745,11 @@ class PlaidApi(object):
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.watchlist_screening_individual_update(update_individual_screening_request, async_req=True)
+            >>> thread = api.watchlist_screening_individual_update(watchlist_screening_individual_update_request, async_req=True)
             >>> result = thread.get()
 
             Args:
-                update_individual_screening_request (UpdateIndividualScreeningRequest):
+                watchlist_screening_individual_update_request (WatchlistScreeningIndividualUpdateRequest):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -20640,7 +20773,7 @@ class PlaidApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                WatchlistScreeningIndividualResponse
+                WatchlistScreeningIndividualUpdateResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -20663,13 +20796,13 @@ class PlaidApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['update_individual_screening_request'] = \
-                update_individual_screening_request
+            kwargs['watchlist_screening_individual_update_request'] = \
+                watchlist_screening_individual_update_request
             return self.call_with_http_info(**kwargs)
 
         self.watchlist_screening_individual_update = _Endpoint(
             settings={
-                'response_type': (WatchlistScreeningIndividualResponse,),
+                'response_type': (WatchlistScreeningIndividualUpdateResponse,),
                 'auth': [
                     'clientId',
                     'plaidVersion',
@@ -20682,10 +20815,10 @@ class PlaidApi(object):
             },
             params_map={
                 'all': [
-                    'update_individual_screening_request',
+                    'watchlist_screening_individual_update_request',
                 ],
                 'required': [
-                    'update_individual_screening_request',
+                    'watchlist_screening_individual_update_request',
                 ],
                 'nullable': [
                 ],
@@ -20700,13 +20833,13 @@ class PlaidApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'update_individual_screening_request':
-                        (UpdateIndividualScreeningRequest,),
+                    'watchlist_screening_individual_update_request':
+                        (WatchlistScreeningIndividualUpdateRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'update_individual_screening_request': 'body',
+                    'watchlist_screening_individual_update_request': 'body',
                 },
                 'collection_format_map': {
                 }

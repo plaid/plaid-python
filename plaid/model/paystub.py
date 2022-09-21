@@ -34,7 +34,6 @@ def lazy_import():
     from plaid.model.pay_period_details import PayPeriodDetails
     from plaid.model.paystub_details import PaystubDetails
     from plaid.model.paystub_employer import PaystubEmployer
-    from plaid.model.paystub_verification import PaystubVerification
     from plaid.model.paystub_ytd_details import PaystubYTDDetails
     globals()['Deductions'] = Deductions
     globals()['Earnings'] = Earnings
@@ -45,7 +44,6 @@ def lazy_import():
     globals()['PayPeriodDetails'] = PayPeriodDetails
     globals()['PaystubDetails'] = PaystubDetails
     globals()['PaystubEmployer'] = PaystubEmployer
-    globals()['PaystubVerification'] = PaystubVerification
     globals()['PaystubYTDDetails'] = PaystubYTDDetails
 
 
@@ -109,7 +107,6 @@ class Paystub(ModelNormal):
             'employer': (PaystubEmployer,),  # noqa: E501
             'net_pay': (NetPay,),  # noqa: E501
             'pay_period_details': (PayPeriodDetails,),  # noqa: E501
-            'verification': (PaystubVerification,),  # noqa: E501
             'employment_details': (EmploymentDetails,),  # noqa: E501
             'paystub_details': (PaystubDetails,),  # noqa: E501
             'income_breakdown': ([IncomeBreakdown],),  # noqa: E501
@@ -129,7 +126,6 @@ class Paystub(ModelNormal):
         'employer': 'employer',  # noqa: E501
         'net_pay': 'net_pay',  # noqa: E501
         'pay_period_details': 'pay_period_details',  # noqa: E501
-        'verification': 'verification',  # noqa: E501
         'employment_details': 'employment_details',  # noqa: E501
         'paystub_details': 'paystub_details',  # noqa: E501
         'income_breakdown': 'income_breakdown',  # noqa: E501
@@ -148,7 +144,7 @@ class Paystub(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, deductions, doc_id, earnings, employee, employer, net_pay, pay_period_details, verification, *args, **kwargs):  # noqa: E501
+    def __init__(self, deductions, doc_id, earnings, employee, employer, net_pay, pay_period_details, *args, **kwargs):  # noqa: E501
         """Paystub - a model defined in OpenAPI
 
         Args:
@@ -159,7 +155,6 @@ class Paystub(ModelNormal):
             employer (PaystubEmployer):
             net_pay (NetPay):
             pay_period_details (PayPeriodDetails):
-            verification (PaystubVerification):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -228,7 +223,6 @@ class Paystub(ModelNormal):
         self.employer = employer
         self.net_pay = net_pay
         self.pay_period_details = pay_period_details
-        self.verification = verification
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

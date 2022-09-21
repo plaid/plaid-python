@@ -70,9 +70,9 @@ class CreditEmploymentGetRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'user_token': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'user_token': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -81,9 +81,9 @@ class CreditEmploymentGetRequest(ModelNormal):
 
 
     attribute_map = {
+        'user_token': 'user_token',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'user_token': 'user_token',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -98,12 +98,10 @@ class CreditEmploymentGetRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, secret, user_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, user_token, *args, **kwargs):  # noqa: E501
         """CreditEmploymentGetRequest - a model defined in OpenAPI
 
         Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
             user_token (str): The user token associated with the User data is being requested for.
 
         Keyword Args:
@@ -137,6 +135,8 @@ class CreditEmploymentGetRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -162,8 +162,6 @@ class CreditEmploymentGetRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
-        self.secret = secret
         self.user_token = user_token
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

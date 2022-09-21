@@ -87,6 +87,7 @@ class Wallet(ModelNormal):
             'wallet_id': (str,),  # noqa: E501
             'balance': (WalletBalance,),  # noqa: E501
             'numbers': (WalletNumbers,),  # noqa: E501
+            'recipient_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +99,7 @@ class Wallet(ModelNormal):
         'wallet_id': 'wallet_id',  # noqa: E501
         'balance': 'balance',  # noqa: E501
         'numbers': 'numbers',  # noqa: E501
+        'recipient_id': 'recipient_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,6 +153,7 @@ class Wallet(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            recipient_id (str): The ID of the recipient that corresponds to the e-wallet account numbers. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

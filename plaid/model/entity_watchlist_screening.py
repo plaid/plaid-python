@@ -25,9 +25,11 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.client_user_id_nullable import ClientUserIDNullable
     from plaid.model.entity_watchlist_screening_search_terms import EntityWatchlistScreeningSearchTerms
     from plaid.model.watchlist_screening_audit_trail import WatchlistScreeningAuditTrail
     from plaid.model.watchlist_screening_status import WatchlistScreeningStatus
+    globals()['ClientUserIDNullable'] = ClientUserIDNullable
     globals()['EntityWatchlistScreeningSearchTerms'] = EntityWatchlistScreeningSearchTerms
     globals()['WatchlistScreeningAuditTrail'] = WatchlistScreeningAuditTrail
     globals()['WatchlistScreeningStatus'] = WatchlistScreeningStatus
@@ -81,9 +83,9 @@ class EntityWatchlistScreening(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'search_terms': (EntityWatchlistScreeningSearchTerms,),  # noqa: E501
-            'assignee': (object, none_type,),  # noqa: E501
+            'assignee': (str, none_type,),  # noqa: E501
             'status': (WatchlistScreeningStatus,),  # noqa: E501
-            'client_user_id': (object, none_type,),  # noqa: E501
+            'client_user_id': (ClientUserIDNullable,),  # noqa: E501
             'audit_trail': (WatchlistScreeningAuditTrail,),  # noqa: E501
         }
 
@@ -119,9 +121,9 @@ class EntityWatchlistScreening(ModelNormal):
         Args:
             id (str): ID of the associated entity screening.
             search_terms (EntityWatchlistScreeningSearchTerms):
-            assignee (object, none_type):
+            assignee (str, none_type): ID of the associated user.
             status (WatchlistScreeningStatus):
-            client_user_id (object, none_type):
+            client_user_id (ClientUserIDNullable):
             audit_trail (WatchlistScreeningAuditTrail):
 
         Keyword Args:
