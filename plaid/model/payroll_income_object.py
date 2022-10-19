@@ -88,8 +88,8 @@ class PayrollIncomeObject(ModelNormal):
         return {
             'account_id': (str, none_type,),  # noqa: E501
             'pay_stubs': ([CreditPayStub],),  # noqa: E501
-            'w2s': ([CreditW2],),  # noqa: E501
-            'form1099s': ([Credit1099],),  # noqa: E501
+            'w2s': ([CreditW2], none_type),  # noqa: E501
+            'form1099s': ([Credit1099], none_type),  # noqa: E501
         }
 
     @cached_property

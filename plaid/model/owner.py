@@ -87,8 +87,8 @@ class Owner(ModelNormal):
         lazy_import()
         return {
             'names': ([str],),  # noqa: E501
-            'phone_numbers': ([PhoneNumber],),  # noqa: E501
-            'emails': ([Email],),  # noqa: E501
+            'phone_numbers': ([PhoneNumber], none_type),  # noqa: E501
+            'emails': ([Email], none_type),  # noqa: E501
             'addresses': ([Address],),  # noqa: E501
         }
 

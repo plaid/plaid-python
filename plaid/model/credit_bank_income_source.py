@@ -86,7 +86,7 @@ class CreditBankIncomeSource(ModelNormal):
             'start_date': (date,),  # noqa: E501
             'end_date': (date,),  # noqa: E501
             'pay_frequency': (CreditBankIncomePayFrequency,),  # noqa: E501
-            'total_amount': (float,),  # noqa: E501
+            'total_amount': (float, none_type),  # noqa: E501
             'transaction_count': (int,),  # noqa: E501
             'historical_summary': ([CreditBankIncomeHistoricalSummary],),  # noqa: E501
         }

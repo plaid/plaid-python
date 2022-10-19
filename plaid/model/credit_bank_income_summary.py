@@ -75,7 +75,7 @@ class CreditBankIncomeSummary(ModelNormal):
         """
         lazy_import()
         return {
-            'total_amount': (float,),  # noqa: E501
+            'total_amount': (float, none_type),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
             'start_date': (date,),  # noqa: E501

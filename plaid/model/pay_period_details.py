@@ -92,7 +92,7 @@ class PayPeriodDetails(ModelNormal):
         lazy_import()
         return {
             'check_amount': (float, none_type,),  # noqa: E501
-            'distribution_breakdown': ([DistributionBreakdown],),  # noqa: E501
+            'distribution_breakdown': ([DistributionBreakdown], none_type),  # noqa: E501
             'end_date': (date, none_type,),  # noqa: E501
             'gross_earnings': (float, none_type,),  # noqa: E501
             'pay_date': (date, none_type,),  # noqa: E501

@@ -83,7 +83,7 @@ class PayStubPayPeriodDetails(ModelNormal):
         lazy_import()
         return {
             'pay_amount': (float, none_type,),  # noqa: E501
-            'distribution_breakdown': ([PayStubDistributionBreakdown],),  # noqa: E501
+            'distribution_breakdown': ([PayStubDistributionBreakdown],none_type),  # noqa: E501
             'end_date': (date, none_type,),  # noqa: E501
             'gross_earnings': (float, none_type,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
