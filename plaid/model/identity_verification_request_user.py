@@ -84,7 +84,7 @@ class IdentityVerificationRequestUser(ModelNormal):
             'client_user_id': (ClientUserID,),  # noqa: E501
             'email_address': (str,),  # noqa: E501
             'phone_number': (str, none_type,),  # noqa: E501
-            'date_of_birth': (date, none_type,),  # noqa: E501
+            'date_of_birth': (date,),  # noqa: E501
             'name': (UserName,),  # noqa: E501
             'address': (UserAddress,),  # noqa: E501
             'id_number': (UserIDNumber,),  # noqa: E501
@@ -156,7 +156,7 @@ class IdentityVerificationRequestUser(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             email_address (str): A valid email address.. [optional]  # noqa: E501
             phone_number (str, none_type): A phone number in E.164 format.. [optional]  # noqa: E501
-            date_of_birth (date, none_type): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).. [optional]  # noqa: E501
+            date_of_birth (date): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).. [optional]  # noqa: E501
             name (UserName): [optional]  # noqa: E501
             address (UserAddress): [optional]  # noqa: E501
             id_number (UserIDNumber): [optional]  # noqa: E501

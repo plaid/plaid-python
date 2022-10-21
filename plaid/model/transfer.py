@@ -101,7 +101,6 @@ class Transfer(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'ach_class': (ACHClass,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'type': (TransferType,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
@@ -119,6 +118,7 @@ class Transfer(ModelNormal):
             'iso_currency_code': (str,),  # noqa: E501
             'standard_return_window': (date, none_type,),  # noqa: E501
             'unauthorized_return_window': (date, none_type,),  # noqa: E501
+            'ach_class': (ACHClass,),  # noqa: E501
             'sweep_status': (TransferSweepStatus,),  # noqa: E501
         }
 
@@ -129,7 +129,6 @@ class Transfer(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'ach_class': 'ach_class',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'user': 'user',  # noqa: E501
@@ -147,6 +146,7 @@ class Transfer(ModelNormal):
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'standard_return_window': 'standard_return_window',  # noqa: E501
         'unauthorized_return_window': 'unauthorized_return_window',  # noqa: E501
+        'ach_class': 'ach_class',  # noqa: E501
         'sweep_status': 'sweep_status',  # noqa: E501
     }
 
@@ -162,12 +162,11 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, ach_class, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
             id (str): Plaid’s unique identifier for a transfer.
-            ach_class (ACHClass):
             account_id (str): The account ID that should be credited/debited for this transfer.
             type (TransferType):
             user (TransferUserInResponse):
@@ -217,6 +216,7 @@ class Transfer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            ach_class (ACHClass): [optional]  # noqa: E501
             sweep_status (TransferSweepStatus): [optional]  # noqa: E501
         """
 
@@ -244,7 +244,6 @@ class Transfer(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
-        self.ach_class = ach_class
         self.account_id = account_id
         self.type = type
         self.user = user

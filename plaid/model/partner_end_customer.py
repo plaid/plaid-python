@@ -144,7 +144,7 @@ class PartnerEndCustomer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            client_id (str): [optional]  # noqa: E501
             company_name (str): [optional]  # noqa: E501
             status (PartnerEndCustomerStatus): [optional]  # noqa: E501
         """
