@@ -178,7 +178,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             create_link_customization (bool): If true, the end customer's default Link customization will be set to match the partner's.. [optional]  # noqa: E501
-            logo (str): Base64-encoded representation of the end customer's logo. Defaults to the partner's logo if omitted.. [optional]  # noqa: E501
+            logo (str): Base64-encoded representation of the end customer's logo. Must be a PNG of size 1024x1024 under 4MB. Defaults to the partner's logo if omitted.. [optional]  # noqa: E501
             technical_contact (PartnerEndCustomerTechnicalContact): [optional]  # noqa: E501
             billing_contact (PartnerEndCustomerBillingContact): [optional]  # noqa: E501
         """

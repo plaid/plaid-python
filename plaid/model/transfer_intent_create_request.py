@@ -88,11 +88,11 @@ class TransferIntentCreateRequest(ModelNormal):
             'mode': (TransferIntentCreateMode,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
-            'ach_class': (ACHClass,),  # noqa: E501
             'user': (TransferUserInRequest,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
+            'ach_class': (ACHClass,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
@@ -108,11 +108,11 @@ class TransferIntentCreateRequest(ModelNormal):
         'mode': 'mode',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'ach_class': 'ach_class',  # noqa: E501
         'user': 'user',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'ach_class': 'ach_class',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
@@ -131,14 +131,13 @@ class TransferIntentCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, mode, amount, description, ach_class, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, mode, amount, description, user, *args, **kwargs):  # noqa: E501
         """TransferIntentCreateRequest - a model defined in OpenAPI
 
         Args:
             mode (TransferIntentCreateMode):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             description (str): A description for the underlying transfer. Maximum of 8 characters.
-            ach_class (ACHClass):
             user (TransferUserInRequest):
 
         Keyword Args:
@@ -175,6 +174,7 @@ class TransferIntentCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             account_id (str, none_type): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
+            ach_class (ACHClass): [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.. [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\". [optional]  # noqa: E501
@@ -207,7 +207,6 @@ class TransferIntentCreateRequest(ModelNormal):
         self.mode = mode
         self.amount = amount
         self.description = description
-        self.ach_class = ach_class
         self.user = user
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

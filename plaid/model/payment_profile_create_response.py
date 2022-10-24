@@ -76,7 +76,7 @@ class PaymentProfileCreateResponse(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'payment_profile_id': (str,),  # noqa: E501
+            'payment_profile_token': (str,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -86,7 +86,7 @@ class PaymentProfileCreateResponse(ModelNormal):
 
 
     attribute_map = {
-        'payment_profile_id': 'payment_profile_id',  # noqa: E501
+        'payment_profile_token': 'payment_profile_token',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
     }
 
@@ -102,11 +102,11 @@ class PaymentProfileCreateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_profile_id, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_profile_token, request_id, *args, **kwargs):  # noqa: E501
         """PaymentProfileCreateResponse - a model defined in OpenAPI
 
         Args:
-            payment_profile_id (str): Plaid’s unique identifier for a payment profile.
+            payment_profile_token (str): A payment profile token associated with the Payment Profile data that is being requested.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -165,7 +165,7 @@ class PaymentProfileCreateResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.payment_profile_id = payment_profile_id
+        self.payment_profile_token = payment_profile_token
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -89,6 +89,7 @@ class TransferCreateRequest(ModelNormal):
             'idempotency_key': (TransferCreateIdempotencyKey,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
+            'payment_profile_token': (str,),  # noqa: E501
             'type': (object,),  # noqa: E501
             'network': (object,),  # noqa: E501
             'amount': (str,),  # noqa: E501
@@ -97,7 +98,6 @@ class TransferCreateRequest(ModelNormal):
             'metadata': (TransferMetadata,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
-            'payment_profile_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -113,6 +113,7 @@ class TransferCreateRequest(ModelNormal):
         'idempotency_key': 'idempotency_key',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'payment_profile_token': 'payment_profile_token',  # noqa: E501
         'type': 'type',  # noqa: E501
         'network': 'network',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -121,7 +122,6 @@ class TransferCreateRequest(ModelNormal):
         'metadata': 'metadata',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
-        'payment_profile_id': 'payment_profile_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -177,8 +177,9 @@ class TransferCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             idempotency_key (TransferCreateIdempotencyKey): [optional]  # noqa: E501
-            access_token (str): The Plaid `access_token` for the account that will be debited or credited.. [optional]  # noqa: E501
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
+            access_token (str): The Plaid `access_token` for the account that will be debited or credited. Required if not using `payment_profile_token`.. [optional]  # noqa: E501
+            account_id (str): The Plaid `account_id` for the account that will be debited or credited. Required if not using `payment_profile_token`.. [optional]  # noqa: E501
+            payment_profile_token (str): The payment profile token associated with the Payment Profile that will be debited or credited. Required if not using `access_token`.. [optional]  # noqa: E501
             type (object): [optional]  # noqa: E501
             network (object): [optional]  # noqa: E501
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").. [optional]  # noqa: E501
@@ -187,7 +188,6 @@ class TransferCreateRequest(ModelNormal):
             metadata (TransferMetadata): [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for this transfer. If you have more than one origination account, this value must be specified. Otherwise, this field should be left blank.. [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
-            payment_profile_id (str): Plaid’s unique identifier for a payment profile.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
