@@ -70,8 +70,8 @@ class CreditSessionItemAddResult(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'item_id': (str,),  # noqa: E501
             'public_token': (str,),  # noqa: E501
+            'item_id': (str,),  # noqa: E501
             'institution_id': (str,),  # noqa: E501
         }
 
@@ -81,8 +81,8 @@ class CreditSessionItemAddResult(ModelNormal):
 
 
     attribute_map = {
-        'item_id': 'item_id',  # noqa: E501
         'public_token': 'public_token',  # noqa: E501
+        'item_id': 'item_id',  # noqa: E501
         'institution_id': 'institution_id',  # noqa: E501
     }
 
@@ -132,9 +132,9 @@ class CreditSessionItemAddResult(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            item_id (str): [optional]  # noqa: E501
-            public_token (str): [optional]  # noqa: E501
-            institution_id (str): [optional]  # noqa: E501
+            public_token (str): Returned once a user has successfully linked their Item.. [optional]  # noqa: E501
+            item_id (str): The Plaid Item ID. The `item_id` is always unique; linking the same account at the same institution twice will result in two Items with different `item_id` values. Like all Plaid identifiers, the `item_id` is case-sensitive.. [optional]  # noqa: E501
+            institution_id (str): The Plaid Institution ID associated with the Item.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

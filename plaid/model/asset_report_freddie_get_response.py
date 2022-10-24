@@ -84,6 +84,7 @@ class AssetReportFreddieGetResponse(ModelNormal):
         return {
             'deal': (AssetReportFreddie,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'schema_version': (float,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +95,7 @@ class AssetReportFreddieGetResponse(ModelNormal):
     attribute_map = {
         'deal': 'DEAL',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'schema_version': 'SchemaVersion',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,12 +110,13 @@ class AssetReportFreddieGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, deal, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, deal, request_id, schema_version, *args, **kwargs):  # noqa: E501
         """AssetReportFreddieGetResponse - a model defined in OpenAPI
 
         Args:
             deal (AssetReportFreddie):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
+            schema_version (float): The Verification Of Assets (aka VOA or Freddie Mac Schema) schema version.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,6 +176,7 @@ class AssetReportFreddieGetResponse(ModelNormal):
 
         self.deal = deal
         self.request_id = request_id
+        self.schema_version = schema_version
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

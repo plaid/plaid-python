@@ -70,7 +70,7 @@ class PaymentProfileRemoveRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'payment_profile_id': (str,),  # noqa: E501
+            'payment_profile_token': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
         }
@@ -81,7 +81,7 @@ class PaymentProfileRemoveRequest(ModelNormal):
 
 
     attribute_map = {
-        'payment_profile_id': 'payment_profile_id',  # noqa: E501
+        'payment_profile_token': 'payment_profile_token',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
     }
@@ -98,11 +98,11 @@ class PaymentProfileRemoveRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_profile_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, payment_profile_token, *args, **kwargs):  # noqa: E501
         """PaymentProfileRemoveRequest - a model defined in OpenAPI
 
         Args:
-            payment_profile_id (str): Plaid’s unique identifier for a payment profile.
+            payment_profile_token (str): A payment profile token associated with the Payment Profile data that is being requested.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -162,7 +162,7 @@ class PaymentProfileRemoveRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.payment_profile_id = payment_profile_id
+        self.payment_profile_token = payment_profile_token
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
