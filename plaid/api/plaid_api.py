@@ -107,7 +107,7 @@ from plaid.model.employers_search_request import EmployersSearchRequest
 from plaid.model.employers_search_response import EmployersSearchResponse
 from plaid.model.employment_verification_get_request import EmploymentVerificationGetRequest
 from plaid.model.employment_verification_get_response import EmploymentVerificationGetResponse
-from plaid.model.error import Error
+from plaid.model.fdx_notification import FDXNotification
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_response import IdentityGetResponse
 from plaid.model.identity_match_request import IdentityMatchRequest
@@ -165,12 +165,16 @@ from plaid.model.link_delivery_create_request import LinkDeliveryCreateRequest
 from plaid.model.link_delivery_create_response import LinkDeliveryCreateResponse
 from plaid.model.link_delivery_get_request import LinkDeliveryGetRequest
 from plaid.model.link_delivery_get_response import LinkDeliveryGetResponse
+from plaid.model.link_o_auth_correlation_id_exchange_request import LinkOAuthCorrelationIdExchangeRequest
+from plaid.model.link_o_auth_correlation_id_exchange_response import LinkOAuthCorrelationIdExchangeResponse
 from plaid.model.link_token_create_request import LinkTokenCreateRequest
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_get_request import LinkTokenGetRequest
 from plaid.model.link_token_get_response import LinkTokenGetResponse
 from plaid.model.partner_customer_create_request import PartnerCustomerCreateRequest
 from plaid.model.partner_customer_create_response import PartnerCustomerCreateResponse
+from plaid.model.partner_customer_enable_request import PartnerCustomerEnableRequest
+from plaid.model.partner_customer_enable_response import PartnerCustomerEnableResponse
 from plaid.model.partner_customer_get_request import PartnerCustomerGetRequest
 from plaid.model.partner_customer_get_response import PartnerCustomerGetResponse
 from plaid.model.payment_initiation_consent_create_request import PaymentInitiationConsentCreateRequest
@@ -203,6 +207,7 @@ from plaid.model.payment_profile_get_request import PaymentProfileGetRequest
 from plaid.model.payment_profile_get_response import PaymentProfileGetResponse
 from plaid.model.payment_profile_remove_request import PaymentProfileRemoveRequest
 from plaid.model.payment_profile_remove_response import PaymentProfileRemoveResponse
+from plaid.model.plaid_error import PlaidError
 from plaid.model.processor_apex_processor_token_create_request import ProcessorApexProcessorTokenCreateRequest
 from plaid.model.processor_auth_get_request import ProcessorAuthGetRequest
 from plaid.model.processor_auth_get_response import ProcessorAuthGetResponse
@@ -230,6 +235,8 @@ from plaid.model.sandbox_item_set_verification_status_request import SandboxItem
 from plaid.model.sandbox_item_set_verification_status_response import SandboxItemSetVerificationStatusResponse
 from plaid.model.sandbox_oauth_select_accounts_request import SandboxOauthSelectAccountsRequest
 from plaid.model.sandbox_oauth_select_accounts_response import SandboxOauthSelectAccountsResponse
+from plaid.model.sandbox_payment_profile_reset_login_request import SandboxPaymentProfileResetLoginRequest
+from plaid.model.sandbox_payment_profile_reset_login_response import SandboxPaymentProfileResetLoginResponse
 from plaid.model.sandbox_processor_token_create_request import SandboxProcessorTokenCreateRequest
 from plaid.model.sandbox_processor_token_create_response import SandboxProcessorTokenCreateResponse
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
@@ -371,7 +378,7 @@ class PlaidApi(object):
         ):
             """Retrieve real-time balance data  # noqa: E501
 
-            The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item's accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link.  # noqa: E501
+            The `/accounts/balance/get` endpoint returns the real-time balance for each of an Item's accounts. While other endpoints may return a balance object, only `/accounts/balance/get` forces the available and current balance fields to be refreshed rather than cached. This endpoint can be used for existing Items that were added via any of Plaid’s other products. This endpoint can be used as long as Link has been initialized with any other product, `balance` itself is not a product that can be used to initialize Link. As this endpoint triggers a synchronous request for fresh data, latency may be higher than for other Plaid endpoints; if you encounter errors, you may find it necessary to adjust your timeout period when making requests.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3539,7 +3546,7 @@ class PlaidApi(object):
         ):
             """Create Asset or Income Report Audit Copy Token  # noqa: E501
 
-            Plaid can provide an Audit Copy token of an Asset Report and/or Income Report directly to a participating third party on your behalf. For example, Plaid can supply an Audit Copy token directly to Fannie Mae on your behalf if you participate in the Day 1 Certainty™ program. An Audit Copy token contains the same underlying data as the Asset Report and/or Income Report (result of /credit/payroll_income/get).  To grant access to an Audit Copy token, use the `/credit/audit_copy_token/create` endpoint to create an `audit_copy_token` and then pass that token to the third party who needs access. Each third party has its own `auditor_id`, for example `fannie_mae`. You’ll need to create a separate Audit Copy for each third party to whom you want to grant access to the Report.  # noqa: E501
+            Plaid can create an Audit Copy token of an Asset Report and/or Income Report to share with participating Government Sponsored Entity (GSE). If you participate in the Day 1 Certainty™ program, Plaid can supply an Audit Copy token directly to Fannie Mae on your behalf. An Audit Copy token contains the same underlying data as the Asset Report and/or Income Report (result of /credit/payroll_income/get).  Use the `/credit/audit_copy_token/create` endpoint to create an `audit_copy_token` and then pass that token to the GSE who needs access.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -5123,9 +5130,9 @@ class PlaidApi(object):
             credit_sessions_get_request,
             **kwargs
         ):
-            """Retrieve Link Sessions For Your User  # noqa: E501
+            """Retrieve Link sessions for your user  # noqa: E501
 
-            This endpoint can be used for your end users after they complete the Link flow. This endpoint returns a list of Link sessions that your user completed, where each session includes the results from the Link flow.   These results include details about the Item that was created and some product related metadata(for e.g. whether the user finished the bank income verification step).  # noqa: E501
+            This endpoint can be used for your end users after they complete the Link flow. This endpoint returns a list of Link sessions that your user completed, where each session includes the results from the Link flow.  These results include details about the Item that was created and some product related metadata (showing, for example, whether the user finished the bank income verification step).  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -6216,6 +6223,128 @@ class PlaidApi(object):
             callable=__employment_verification_get
         )
 
+        def __fdx_notifications(
+            self,
+            fdx_notification,
+            **kwargs
+        ):
+            """Webhook receiver for fdx notifications  # noqa: E501
+
+            A generic webhook receiver endpoint for FDX Event Notifications  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.fdx_notifications(fdx_notification, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                fdx_notification (FDXNotification):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['fdx_notification'] = \
+                fdx_notification
+            return self.call_with_http_info(**kwargs)
+
+        self.fdx_notifications = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/fdx/notifications',
+                'operation_id': 'fdx_notifications',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'fdx_notification',
+                ],
+                'required': [
+                    'fdx_notification',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'fdx_notification':
+                        (FDXNotification,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'fdx_notification': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__fdx_notifications
+        )
+
         def __identity_get(
             self,
             identity_get_request,
@@ -6589,7 +6718,7 @@ class PlaidApi(object):
         ):
             """Retrieve Identity Verification  # noqa: E501
 
-            Retrieve a previously created identity verification  # noqa: E501
+            Retrieve a previously created identity verification.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -9754,6 +9883,128 @@ class PlaidApi(object):
             callable=__link_delivery_get
         )
 
+        def __link_oauth_correlation_id_exchange(
+            self,
+            link_o_auth_correlation_id_exchange_request,
+            **kwargs
+        ):
+            """Exchange the Link Correlation Id for a Link Token  # noqa: E501
+
+            Exchange an OAuth `link_correlation_id` for the corresponding `link_token`. The `link_correlation_id` is only available for 'payment_initiation' products and is provided to the client via the OAuth `redirect_uri` as a query parameter. The `link_correlation_id` is ephemeral and expires in a brief period, after which it can no longer be exchanged for the 'link_token'.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.link_oauth_correlation_id_exchange(link_o_auth_correlation_id_exchange_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                link_o_auth_correlation_id_exchange_request (LinkOAuthCorrelationIdExchangeRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                LinkOAuthCorrelationIdExchangeResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['link_o_auth_correlation_id_exchange_request'] = \
+                link_o_auth_correlation_id_exchange_request
+            return self.call_with_http_info(**kwargs)
+
+        self.link_oauth_correlation_id_exchange = _Endpoint(
+            settings={
+                'response_type': (LinkOAuthCorrelationIdExchangeResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/link/oauth/correlation_id/exchange',
+                'operation_id': 'link_oauth_correlation_id_exchange',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'link_o_auth_correlation_id_exchange_request',
+                ],
+                'required': [
+                    'link_o_auth_correlation_id_exchange_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'link_o_auth_correlation_id_exchange_request':
+                        (LinkOAuthCorrelationIdExchangeRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'link_o_auth_correlation_id_exchange_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__link_oauth_correlation_id_exchange
+        )
+
         def __link_token_create(
             self,
             link_token_create_request,
@@ -10118,6 +10369,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__partner_customer_create
+        )
+
+        def __partner_customer_enable(
+            self,
+            partner_customer_enable_request,
+            **kwargs
+        ):
+            """Enables a Plaid reseller's end customer in the Production environment.  # noqa: E501
+
+            The `/partner/customer/enable` endpoint is used by reseller partners to enable an end customer in the Production environment.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.partner_customer_enable(partner_customer_enable_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                partner_customer_enable_request (PartnerCustomerEnableRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                PartnerCustomerEnableResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['partner_customer_enable_request'] = \
+                partner_customer_enable_request
+            return self.call_with_http_info(**kwargs)
+
+        self.partner_customer_enable = _Endpoint(
+            settings={
+                'response_type': (PartnerCustomerEnableResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/partner/customer/enable',
+                'operation_id': 'partner_customer_enable',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'partner_customer_enable_request',
+                ],
+                'required': [
+                    'partner_customer_enable_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'partner_customer_enable_request':
+                        (PartnerCustomerEnableRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'partner_customer_enable_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__partner_customer_enable
         )
 
         def __partner_customer_get(
@@ -11591,7 +11964,7 @@ class PlaidApi(object):
         ):
             """Create payment profile  # noqa: E501
 
-            Use `/payment_profile/create` endpoint to create a new payment profile, identified by a Payment Profile ID. To initiate the account linking experience, call `/link/token/create` and provide the Payment Profile ID in the `transfer.payment_profile_id` field. You can then use the Payment Profile ID when creating transfers using `/transfer/authorization/create` and `/transfer/create`.  # noqa: E501
+            Use `/payment_profile/create` endpoint to create a new payment profile. To initiate the account linking experience, call `/link/token/create` and provide the `payment_profile_token` in the `transfer.payment_profile_token` field. You can then use the `payment_profile_token` when creating transfers using `/transfer/authorization/create` and `/transfer/create`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -12567,7 +12940,7 @@ class PlaidApi(object):
         ):
             """Create Stripe bank account token  # noqa: E501
 
-             Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/).   Note that the Stripe bank account token is a one-time use token. To store bank account information for later use, you can use a Stripe customer object and create an associated bank account from the token, or you can use a Stripe Custom account and create an associated external bank account from the token. This bank account information should work indefinitely, unless the user's bank account information changes or they revoke Plaid's permissions to access their account. Stripe bank account information cannot be modified once the bank account token has been created. If you ever need to change the bank account details used by Stripe for a specific customer, have the user go through Link again and create a new bank account token from the new `access_token`.    Bank account tokens can also be revoked, using `/item/remove`.'  # noqa: E501
+             Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations. For a detailed guide on integrating Stripe, see [Add Stripe to your app](https://plaid.com/docs/auth/partnerships/stripe/).  Note that the Stripe bank account token is a one-time use token. To store bank account information for later use, you can use a Stripe customer object and create an associated bank account from the token, or you can use a Stripe Custom account and create an associated external bank account from the token. This bank account information should work indefinitely, unless the user's bank account information changes or they revoke Plaid's permissions to access their account. Stripe bank account information cannot be modified once the bank account token has been created. If you ever need to change the bank account details used by Stripe for a specific customer, have the user go through Link again and create a new bank account token from the new `access_token`.  Bank account tokens can also be revoked, using `/item/remove`.'  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -13656,6 +14029,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__sandbox_oauth_select_accounts
+        )
+
+        def __sandbox_payment_profile_reset_login(
+            self,
+            sandbox_payment_profile_reset_login_request,
+            **kwargs
+        ):
+            """Reset the login of a Payment Profile  # noqa: E501
+
+            `/sandbox/payment_profile/reset_login/` forces a Payment Profile into a state where the login is no longer valid. This makes it easy to test update mode for Payment Profile in the Sandbox environment.   After calling `/sandbox/payment_profile/reset_login`, calls to the `/transfer/authorization/create` with the Payment Profile will result in a decision_rationale `PAYMENT_PROFILE_LOGIN_REQUIRED``. You can then use update mode for Payment Profile to restore it into a good state.   In order to invoke this endpoint, you must first [create a Payment Profile](https://plaid.com/docs/transfer/add-to-app/#create-a-payment-profile-optional) and [go through the Link flow](https://plaid.com/docs/transfer/add-to-app/#create-a-link-token).  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_payment_profile_reset_login(sandbox_payment_profile_reset_login_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_payment_profile_reset_login_request (SandboxPaymentProfileResetLoginRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxPaymentProfileResetLoginResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_payment_profile_reset_login_request'] = \
+                sandbox_payment_profile_reset_login_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_payment_profile_reset_login = _Endpoint(
+            settings={
+                'response_type': (SandboxPaymentProfileResetLoginResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/payment_profile/reset_login',
+                'operation_id': 'sandbox_payment_profile_reset_login',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_payment_profile_reset_login_request',
+                ],
+                'required': [
+                    'sandbox_payment_profile_reset_login_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_payment_profile_reset_login_request':
+                        (SandboxPaymentProfileResetLoginRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_payment_profile_reset_login_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_payment_profile_reset_login
         )
 
         def __sandbox_processor_token_create(
@@ -15251,7 +15746,7 @@ class PlaidApi(object):
         ):
             """Refresh transaction data  # noqa: E501
 
-            `/transactions/refresh` is an optional endpoint for users of the Transactions product. It initiates an on-demand extraction to fetch the newest transactions for an Item. This on-demand extraction takes place in addition to the periodic extractions that automatically occur multiple times a day for any Transactions-enabled Item. If changes to transactions are discovered after calling `/transactions/refresh`, Plaid will fire a webhook: [`TRANSACTIONS_REMOVED`](https://plaid.com/docs/api/products/transactions/#transactions_removed) will be fired if any removed transactions are detected, and [`DEFAULT_UPDATE`](https://plaid.com/docs/api/products/transactions/#default_update) will be fired if any new transactions are detected. New transactions can be fetched by calling `/transactions/get`.  Access to `/transactions/refresh` in Production is specific to certain pricing plans. If you cannot access `/transactions/refresh` in Production, [contact Sales](https://www.plaid.com/contact) for assistance.  # noqa: E501
+            `/transactions/refresh` is an optional endpoint for users of the Transactions product. It initiates an on-demand extraction to fetch the newest transactions for an Item. This on-demand extraction takes place in addition to the periodic extractions that automatically occur multiple times a day for any Transactions-enabled Item. If changes to transactions are discovered after calling `/transactions/refresh`, Plaid will fire a webhook: for `/transactions/sync` users, [`SYNC_UDPATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#sync_updates_available) will be fired if there are any transactions updated, added, or removed. For users of both `/transactions/sync` and `/transactions/get`, [`TRANSACTIONS_REMOVED`](https://plaid.com/docs/api/products/transactions/#transactions_removed) will be fired if any removed transactions are detected, and [`DEFAULT_UPDATE`](https://plaid.com/docs/api/products/transactions/#default_update) will be fired if any new transactions are detected. New transactions can be fetched by calling `/transactions/get` or `/transactions/sync`.  Access to `/transactions/refresh` in Production is specific to certain pricing plans. If you cannot access `/transactions/refresh` in Production, [contact Sales](https://www.plaid.com/contact) for assistance.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15861,7 +16356,7 @@ class PlaidApi(object):
         ):
             """Create a transfer authorization  # noqa: E501
 
-            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's Sandbox environment the decisions will be returned as follows:    - To approve a transfer with null rationale code, make an authorization request with an `amount` less than the available balance in the account.    - To approve a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).    - To approve a transfer with the rationale code `LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).    - To decline a transfer with the rationale code `NSF`, the available balance on the account must be less than the authorization `amount`. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To decline a transfer with the rationale code `RISK`, the available balance on the account must be exactly $0. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.  For [Guarantee](https://www.plaid.com/docs//transfer/guarantee/), the following fields are required : `idempotency_key`, `user.phone_number` (optional if `email_address` provided), `user.email_address` (optional if `phone_number` provided), `device.ip_address`, `device.user_agent`, and `user_present`.  # noqa: E501
+            Use the `/transfer/authorization/create` endpoint to determine transfer failure risk.  In Plaid's Sandbox environment the decisions will be returned as follows:    - To approve a transfer with null rationale code, make an authorization request with an `amount` less than the available balance in the account.    - To approve a transfer with the rationale code `MANUALLY_VERIFIED_ITEM`, create an Item in Link through the [Same Day Micro-deposits flow](https://plaid.com/docs/auth/coverage/testing/#testing-same-day-micro-deposits).    - To approve a transfer with the rationale code `ITEM_LOGIN_REQUIRED`, [reset the login for an Item](https://plaid.com/docs/sandbox/#item_login_required).    - To decline a transfer with the rationale code `NSF`, the available balance on the account must be less than the authorization `amount`. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.    - To decline a transfer with the rationale code `RISK`, the available balance on the account must be exactly $0. See [Create Sandbox test data](https://plaid.com/docs/sandbox/user-custom/) for details on how to customize data in Sandbox.  `device.ip_address`, `device.user_agent` are required fields.  For [Guarantee](https://www.plaid.com/docs//transfer/guarantee/), the following fields are required : `idempotency_key`, `user.phone_number` (optional if `email_address` provided), `user.email_address` (optional if `phone_number` provided), `device.ip_address`, `device.user_agent`, and `user_present`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 

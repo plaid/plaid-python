@@ -76,7 +76,6 @@ class PartnerEndCustomerSecrets(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'production': (str,),  # noqa: E501
             'sandbox': (str,),  # noqa: E501
             'development': (str,),  # noqa: E501
         }
@@ -87,7 +86,6 @@ class PartnerEndCustomerSecrets(ModelNormal):
 
 
     attribute_map = {
-        'production': 'production',  # noqa: E501
         'sandbox': 'sandbox',  # noqa: E501
         'development': 'development',  # noqa: E501
     }
@@ -138,7 +136,6 @@ class PartnerEndCustomerSecrets(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            production (str): The end customer's secret key for the Production environment.. [optional]  # noqa: E501
             sandbox (str): The end customer's secret key for the Sandbox environment.. [optional]  # noqa: E501
             development (str): The end customer's secret key for the Development environment.. [optional]  # noqa: E501
         """
