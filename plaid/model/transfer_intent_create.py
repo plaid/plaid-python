@@ -96,11 +96,11 @@ class TransferIntentCreate(ModelNormal):
             'origination_account_id': (str,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'mode': (TransferIntentCreateMode,),  # noqa: E501
-            'ach_class': (ACHClass,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
+            'ach_class': (ACHClass,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'require_guarantee': (bool, none_type,),  # noqa: E501
         }
@@ -117,11 +117,11 @@ class TransferIntentCreate(ModelNormal):
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'mode': 'mode',  # noqa: E501
-        'ach_class': 'ach_class',  # noqa: E501
         'user': 'user',  # noqa: E501
         'description': 'description',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'ach_class': 'ach_class',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'require_guarantee': 'require_guarantee',  # noqa: E501
     }
@@ -138,7 +138,7 @@ class TransferIntentCreate(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created, status, origination_account_id, amount, mode, ach_class, user, description, iso_currency_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, created, status, origination_account_id, amount, mode, user, description, iso_currency_code, *args, **kwargs):  # noqa: E501
         """TransferIntentCreate - a model defined in OpenAPI
 
         Args:
@@ -148,7 +148,6 @@ class TransferIntentCreate(ModelNormal):
             origination_account_id (str): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             mode (TransferIntentCreateMode):
-            ach_class (ACHClass):
             user (TransferUserInResponse):
             description (str): A description for the underlying transfer. Maximum of 8 characters.
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
@@ -185,6 +184,7 @@ class TransferIntentCreate(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             account_id (str, none_type): The Plaid `account_id` for the account that will be debited or credited. Returned only if `account_id` was set on intent creation.. [optional]  # noqa: E501
+            ach_class (ACHClass): [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
             require_guarantee (bool, none_type): When `true`, the transfer requires a `GUARANTEED` decision by Plaid to proceed (Guarantee customers only).. [optional]  # noqa: E501
         """
@@ -218,7 +218,6 @@ class TransferIntentCreate(ModelNormal):
         self.origination_account_id = origination_account_id
         self.amount = amount
         self.mode = mode
-        self.ach_class = ach_class
         self.user = user
         self.description = description
         self.iso_currency_code = iso_currency_code

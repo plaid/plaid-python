@@ -53,6 +53,10 @@ class UserCreateRequest(ModelNormal):
     }
 
     validations = {
+        ('client_user_id',): {
+            'max_length': 128,
+            'min_length': 1,
+        },
     }
 
     additional_properties_type = None
@@ -102,7 +106,7 @@ class UserCreateRequest(ModelNormal):
         """UserCreateRequest - a model defined in OpenAPI
 
         Args:
-            client_user_id (str): A unique ID representing the end user. Typically this will be a user ID number from your application. Personally identifiable information, such as an email address or phone number, should not be used in the `client_user_id`.
+            client_user_id (str): A unique ID representing the end user. Maximum of 128 characters. Typically this will be a user ID number from your application. Personally identifiable information, such as an email address or phone number, should not be used in the `client_user_id`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

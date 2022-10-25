@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.cause_all_of import CauseAllOf
     from plaid.model.plaid_error import PlaidError
+    from plaid.model.plaid_error_type import PlaidErrorType
     globals()['CauseAllOf'] = CauseAllOf
     globals()['PlaidError'] = PlaidError
+    globals()['PlaidErrorType'] = PlaidErrorType
 
 
 class Cause(ModelComposed):
@@ -56,22 +58,6 @@ class Cause(ModelComposed):
     """
 
     allowed_values = {
-        ('error_type',): {
-            'INVALID_REQUEST': "INVALID_REQUEST",
-            'INVALID_RESULT': "INVALID_RESULT",
-            'INVALID_INPUT': "INVALID_INPUT",
-            'INSTITUTION_ERROR': "INSTITUTION_ERROR",
-            'RATE_LIMIT_EXCEEDED': "RATE_LIMIT_EXCEEDED",
-            'API_ERROR': "API_ERROR",
-            'ITEM_ERROR': "ITEM_ERROR",
-            'ASSET_REPORT_ERROR': "ASSET_REPORT_ERROR",
-            'RECAPTCHA_ERROR': "RECAPTCHA_ERROR",
-            'OAUTH_ERROR': "OAUTH_ERROR",
-            'PAYMENT_ERROR': "PAYMENT_ERROR",
-            'BANK_TRANSFER_ERROR': "BANK_TRANSFER_ERROR",
-            'INCOME_VERIFICATION_ERROR': "INCOME_VERIFICATION_ERROR",
-            'MICRODEPOSITS_ERROR': "MICRODEPOSITS_ERROR",
-        },
     }
 
     validations = {
@@ -100,7 +86,7 @@ class Cause(ModelComposed):
         """
         lazy_import()
         return {
-            'error_type': (str,),  # noqa: E501
+            'error_type': (PlaidErrorType,),  # noqa: E501
             'error_code': (str,),  # noqa: E501
             'error_message': (str,),  # noqa: E501
             'display_message': (str, none_type,),  # noqa: E501
@@ -147,7 +133,7 @@ class Cause(ModelComposed):
         """Cause - a model defined in OpenAPI
 
         Args:
-            error_type (str): A broad categorization of the error. Safe for programmatic use.
+            error_type (PlaidErrorType):
             error_code (str): The particular error code. Safe for programmatic use.
             error_message (str): A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
             display_message (str, none_type): A user-friendly representation of the error code. `null` if the error is not related to user action.  This may change over time and is not safe for programmatic use.

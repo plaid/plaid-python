@@ -123,10 +123,10 @@ class Holding(ModelNormal):
 
         Args:
             account_id (str): The Plaid `account_id` associated with the holding.
-            security_id (str): The Plaid `security_id` associated with the holding.
+            security_id (str): The Plaid `security_id` associated with the holding. The `security_id` may change if inherent details of the security change due to a corporate action, for example, in the event of a ticker symbol change or CUSIP change.
             institution_price (float): The last price given by the institution for this security.
             institution_value (float): The value of the holding, as reported by the institution.
-            cost_basis (float, none_type): The original total value or the purchase price per share of the holding. This field is an aggregate on a per holding basis and dependent on the information provided by the institution.
+            cost_basis (float, none_type): The original total value of the holding. The accuracy of this field is dependent on the information provided by the institution.
             quantity (float): The total quantity of the asset held, as reported by the financial institution. If the security is an option, `quantity` will reflect the total number of options (typically the number of contracts multiplied by 100), not the number of contracts.
             iso_currency_code (str, none_type): The ISO-4217 currency code of the holding. Always `null` if `unofficial_currency_code` is non-`null`.
             unofficial_currency_code (str, none_type): The unofficial currency code associated with the holding. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s. 

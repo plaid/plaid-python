@@ -145,7 +145,7 @@ class CreditSessionsGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sessions ([CreditSession]): [optional]  # noqa: E501
+            sessions ([CreditSession]): A list of Link sessions for the user. Sessions will be sorted in reverse chronological order.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -45,9 +45,6 @@ def test_identity_verification_create_and_retry():
     assert retry_response["shareable_url"] is not None
     assert retry_response["status"] == IdentityVerificationStatus("active")
 
-def test_identity_verification_list_and_get():
-    client = create_client()
-
     list_request = IdentityVerificationListRequest(
         template_id=TEMPLATE_ID,
         client_user_id=CLIENT_USER_ID
