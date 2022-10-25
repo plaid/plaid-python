@@ -49,6 +49,7 @@ class CreditSessionBankIncomeStatus(ModelSimple):
         ('value',): {
             'APPROVED': "APPROVED",
             'NO_DEPOSITS_FOUND': "NO_DEPOSITS_FOUND",
+            'USER_REPORTED_NO_INCOME': "USER_REPORTED_NO_INCOME",
         },
     }
 
@@ -98,10 +99,10 @@ class CreditSessionBankIncomeStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The terminal status of the bank income verification.  `APPROVED`: User has approved and verified their income  `NO_DEPOSITS_FOUND`: We were unable to find any income in the connected account.., must be one of ["APPROVED", "NO_DEPOSITS_FOUND", ]  # noqa: E501
+            args[0] (str): The terminal status of the bank income verification.  `APPROVED`: User has approved and verified their income  `NO_DEPOSITS_FOUND`: We attempted, but were unable to find any income in the connected account.  `USER_REPORTED_NO_INCOME`: The user explicitly indicated that they don't receive income in the connected account.., must be one of ["APPROVED", "NO_DEPOSITS_FOUND", "USER_REPORTED_NO_INCOME", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The terminal status of the bank income verification.  `APPROVED`: User has approved and verified their income  `NO_DEPOSITS_FOUND`: We were unable to find any income in the connected account.., must be one of ["APPROVED", "NO_DEPOSITS_FOUND", ]  # noqa: E501
+            value (str): The terminal status of the bank income verification.  `APPROVED`: User has approved and verified their income  `NO_DEPOSITS_FOUND`: We attempted, but were unable to find any income in the connected account.  `USER_REPORTED_NO_INCOME`: The user explicitly indicated that they don't receive income in the connected account.., must be one of ["APPROVED", "NO_DEPOSITS_FOUND", "USER_REPORTED_NO_INCOME", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

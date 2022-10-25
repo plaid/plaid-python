@@ -85,7 +85,7 @@ class HealthIncident(ModelNormal):
             'start_date': (datetime,),  # noqa: E501
             'title': (str,),  # noqa: E501
             'incident_updates': ([IncidentUpdate],),  # noqa: E501
-            'end_date': (datetime,),  # noqa: E501
+            'end_date': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +151,7 @@ class HealthIncident(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            end_date (datetime): The end date of the incident, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
+            end_date (datetime, none_type): The end date of the incident, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format, e.g. `\"2020-10-30T15:26:48Z\"`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

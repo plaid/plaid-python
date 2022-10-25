@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.sandbox_public_token_create_request_options_income_verification import SandboxPublicTokenCreateRequestOptionsIncomeVerification
     from plaid.model.sandbox_public_token_create_request_options_transactions import SandboxPublicTokenCreateRequestOptionsTransactions
+    globals()['SandboxPublicTokenCreateRequestOptionsIncomeVerification'] = SandboxPublicTokenCreateRequestOptionsIncomeVerification
     globals()['SandboxPublicTokenCreateRequestOptionsTransactions'] = SandboxPublicTokenCreateRequestOptionsTransactions
 
 
@@ -79,6 +81,7 @@ class SandboxPublicTokenCreateRequestOptions(ModelNormal):
             'override_username': (str, none_type,),  # noqa: E501
             'override_password': (str, none_type,),  # noqa: E501
             'transactions': (SandboxPublicTokenCreateRequestOptionsTransactions,),  # noqa: E501
+            'income_verification': (SandboxPublicTokenCreateRequestOptionsIncomeVerification,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +94,7 @@ class SandboxPublicTokenCreateRequestOptions(ModelNormal):
         'override_username': 'override_username',  # noqa: E501
         'override_password': 'override_password',  # noqa: E501
         'transactions': 'transactions',  # noqa: E501
+        'income_verification': 'income_verification',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +147,7 @@ class SandboxPublicTokenCreateRequestOptions(ModelNormal):
             override_username (str, none_type): Test username to use for the creation of the Sandbox Item. Default value is `user_good`.. [optional] if omitted the server will use the default value of "user_good"  # noqa: E501
             override_password (str, none_type): Test password to use for the creation of the Sandbox Item. Default value is `pass_good`.. [optional] if omitted the server will use the default value of "pass_good"  # noqa: E501
             transactions (SandboxPublicTokenCreateRequestOptionsTransactions): [optional]  # noqa: E501
+            income_verification (SandboxPublicTokenCreateRequestOptionsIncomeVerification): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
