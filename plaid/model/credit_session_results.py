@@ -26,9 +26,13 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.credit_session_bank_income_result import CreditSessionBankIncomeResult
+    from plaid.model.credit_session_document_income_result import CreditSessionDocumentIncomeResult
     from plaid.model.credit_session_item_add_result import CreditSessionItemAddResult
+    from plaid.model.credit_session_payroll_income_result import CreditSessionPayrollIncomeResult
     globals()['CreditSessionBankIncomeResult'] = CreditSessionBankIncomeResult
+    globals()['CreditSessionDocumentIncomeResult'] = CreditSessionDocumentIncomeResult
     globals()['CreditSessionItemAddResult'] = CreditSessionItemAddResult
+    globals()['CreditSessionPayrollIncomeResult'] = CreditSessionPayrollIncomeResult
 
 
 class CreditSessionResults(ModelNormal):
@@ -79,6 +83,8 @@ class CreditSessionResults(ModelNormal):
         return {
             'item_add_results': ([CreditSessionItemAddResult],),  # noqa: E501
             'bank_income_results': ([CreditSessionBankIncomeResult],),  # noqa: E501
+            'payroll_income_results': ([CreditSessionPayrollIncomeResult],),  # noqa: E501
+            'document_income_results': (CreditSessionDocumentIncomeResult,),  # noqa: E501
         }
 
     @cached_property
@@ -89,6 +95,8 @@ class CreditSessionResults(ModelNormal):
     attribute_map = {
         'item_add_results': 'item_add_results',  # noqa: E501
         'bank_income_results': 'bank_income_results',  # noqa: E501
+        'payroll_income_results': 'payroll_income_results',  # noqa: E501
+        'document_income_results': 'document_income_results',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -137,8 +145,10 @@ class CreditSessionResults(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            item_add_results ([CreditSessionItemAddResult]): [optional]  # noqa: E501
-            bank_income_results ([CreditSessionBankIncomeResult]): [optional]  # noqa: E501
+            item_add_results ([CreditSessionItemAddResult]): The set of item adds for the Link session.. [optional]  # noqa: E501
+            bank_income_results ([CreditSessionBankIncomeResult]): The set of bank income verifications for the Link session.. [optional]  # noqa: E501
+            payroll_income_results ([CreditSessionPayrollIncomeResult]): The set of payroll income verifications for the Link session.. [optional]  # noqa: E501
+            document_income_results (CreditSessionDocumentIncomeResult): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

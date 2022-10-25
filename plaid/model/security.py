@@ -134,7 +134,7 @@ class Security(ModelNormal):
         """Security - a model defined in OpenAPI
 
         Args:
-            security_id (str): A unique, Plaid-specific identifier for the security, used to associate securities with holdings. Like all Plaid identifiers, the `security_id` is case sensitive.
+            security_id (str): A unique, Plaid-specific identifier for the security, used to associate securities with holdings. Like all Plaid identifiers, the `security_id` is case sensitive. The `security_id` may change if inherent details of the security change due to a corporate action, for example, in the event of a ticker symbol change or CUSIP change.
             isin (str, none_type): 12-character ISIN, a globally unique securities identifier.
             cusip (str, none_type): 9-character CUSIP, an identifier assigned to North American securities.
             sedol (str, none_type): 7-character SEDOL, an identifier assigned to securities in the UK.

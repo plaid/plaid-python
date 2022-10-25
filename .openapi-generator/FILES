@@ -210,7 +210,10 @@ plaid/model/credit_relay_remove_response.py
 plaid/model/credit_session.py
 plaid/model/credit_session_bank_income_result.py
 plaid/model/credit_session_bank_income_status.py
+plaid/model/credit_session_document_income_result.py
+plaid/model/credit_session_error.py
 plaid/model/credit_session_item_add_result.py
+plaid/model/credit_session_payroll_income_result.py
 plaid/model/credit_session_results.py
 plaid/model/credit_sessions_get_request.py
 plaid/model/credit_sessions_get_response.py
@@ -299,7 +302,6 @@ plaid/model/entity_watchlist_screening_program_name.py
 plaid/model/entity_watchlist_screening_review.py
 plaid/model/entity_watchlist_screening_search_terms.py
 plaid/model/entity_watchlist_search_terms.py
-plaid/model/error.py
 plaid/model/expiration_date.py
 plaid/model/external_payment_initiation_consent_options.py
 plaid/model/external_payment_options.py
@@ -477,6 +479,8 @@ plaid/model/link_delivery_delivery_method.py
 plaid/model/link_delivery_get_request.py
 plaid/model/link_delivery_get_response.py
 plaid/model/link_delivery_session_status.py
+plaid/model/link_o_auth_correlation_id_exchange_request.py
+plaid/model/link_o_auth_correlation_id_exchange_response.py
 plaid/model/link_token_account_filters.py
 plaid/model/link_token_create_credit_filter.py
 plaid/model/link_token_create_depository_filter.py
@@ -542,6 +546,8 @@ plaid/model/ownership_type.py
 plaid/model/parties.py
 plaid/model/partner_customer_create_request.py
 plaid/model/partner_customer_create_response.py
+plaid/model/partner_customer_enable_request.py
+plaid/model/partner_customer_enable_response.py
 plaid/model/partner_customer_get_request.py
 plaid/model/partner_customer_get_response.py
 plaid/model/partner_end_customer.py
@@ -551,6 +557,7 @@ plaid/model/partner_end_customer_secrets.py
 plaid/model/partner_end_customer_status.py
 plaid/model/partner_end_customer_technical_contact.py
 plaid/model/partner_end_customer_with_secrets.py
+plaid/model/partner_end_customer_with_secrets_all_of.py
 plaid/model/party.py
 plaid/model/party_individual.py
 plaid/model/party_role_type.py
@@ -650,6 +657,7 @@ plaid/model/physical_document_extracted_data.py
 plaid/model/physical_document_extracted_data_analysis.py
 plaid/model/physical_document_images.py
 plaid/model/plaid_error.py
+plaid/model/plaid_error_type.py
 plaid/model/platform_ids.py
 plaid/model/po_box_status.py
 plaid/model/processor_apex_processor_token_create_request.py
@@ -701,11 +709,15 @@ plaid/model/sandbox_item_set_verification_status_request.py
 plaid/model/sandbox_item_set_verification_status_response.py
 plaid/model/sandbox_oauth_select_accounts_request.py
 plaid/model/sandbox_oauth_select_accounts_response.py
+plaid/model/sandbox_payment_profile_reset_login_request.py
+plaid/model/sandbox_payment_profile_reset_login_response.py
 plaid/model/sandbox_processor_token_create_request.py
 plaid/model/sandbox_processor_token_create_request_options.py
 plaid/model/sandbox_processor_token_create_response.py
 plaid/model/sandbox_public_token_create_request.py
+plaid/model/sandbox_public_token_create_request_income_verification_bank_income.py
 plaid/model/sandbox_public_token_create_request_options.py
+plaid/model/sandbox_public_token_create_request_options_income_verification.py
 plaid/model/sandbox_public_token_create_request_options_transactions.py
 plaid/model/sandbox_public_token_create_response.py
 plaid/model/sandbox_transfer_fire_webhook_request.py

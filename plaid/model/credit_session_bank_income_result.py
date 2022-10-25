@@ -138,8 +138,8 @@ class CreditSessionBankIncomeResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             status (CreditSessionBankIncomeStatus): [optional]  # noqa: E501
-            item_id (str): [optional]  # noqa: E501
-            institution_id (str): [optional]  # noqa: E501
+            item_id (str): The Plaid Item ID. The `item_id` is always unique; linking the same account at the same institution twice will result in two Items with different `item_id` values. Like all Plaid identifiers, the `item_id` is case-sensitive.. [optional]  # noqa: E501
+            institution_id (str): The Plaid Institution ID associated with the Item.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

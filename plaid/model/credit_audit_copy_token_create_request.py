@@ -71,7 +71,6 @@ class CreditAuditCopyTokenCreateRequest(ModelNormal):
         """
         return {
             'report_tokens': ([str],),  # noqa: E501
-            'auditor_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
         }
@@ -83,7 +82,6 @@ class CreditAuditCopyTokenCreateRequest(ModelNormal):
 
     attribute_map = {
         'report_tokens': 'report_tokens',  # noqa: E501
-        'auditor_id': 'auditor_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
     }
@@ -100,12 +98,11 @@ class CreditAuditCopyTokenCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, report_tokens, auditor_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, report_tokens, *args, **kwargs):  # noqa: E501
         """CreditAuditCopyTokenCreateRequest - a model defined in OpenAPI
 
         Args:
             report_tokens ([str]): List of report tokens; can include both Asset Report tokens and Income Report tokens.
-            auditor_id (str): The `auditor_id` of the third party with whom you would like to share the Asset Report and/or Income Report.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,7 +163,6 @@ class CreditAuditCopyTokenCreateRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.report_tokens = report_tokens
-        self.auditor_id = auditor_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

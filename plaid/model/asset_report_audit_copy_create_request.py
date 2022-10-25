@@ -71,9 +71,9 @@ class AssetReportAuditCopyCreateRequest(ModelNormal):
         """
         return {
             'asset_report_token': (str,),  # noqa: E501
-            'auditor_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'auditor_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -83,9 +83,9 @@ class AssetReportAuditCopyCreateRequest(ModelNormal):
 
     attribute_map = {
         'asset_report_token': 'asset_report_token',  # noqa: E501
-        'auditor_id': 'auditor_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'auditor_id': 'auditor_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -100,12 +100,11 @@ class AssetReportAuditCopyCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, asset_report_token, auditor_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, asset_report_token, *args, **kwargs):  # noqa: E501
         """AssetReportAuditCopyCreateRequest - a model defined in OpenAPI
 
         Args:
             asset_report_token (str): A token that can be provided to endpoints such as `/asset_report/get` or `/asset_report/pdf/get` to fetch or update an Asset Report.
-            auditor_id (str): The `auditor_id` of the third party with whom you would like to share the Asset Report.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,6 +139,7 @@ class AssetReportAuditCopyCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            auditor_id (str): The `auditor_id` of the third party with whom you would like to share the Asset Report.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,7 +166,6 @@ class AssetReportAuditCopyCreateRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.asset_report_token = asset_report_token
-        self.auditor_id = auditor_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
