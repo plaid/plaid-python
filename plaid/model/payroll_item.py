@@ -84,6 +84,8 @@ class PayrollItem(ModelNormal):
             'payroll_income': ([PayrollIncomeObject],),  # noqa: E501
             'status': (PayrollItemStatus,),  # noqa: E501
             'updated_at': (datetime, none_type,),  # noqa: E501
+            'institution_id': (str, none_type),  # noqa: E501
+            'institution_name': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +99,8 @@ class PayrollItem(ModelNormal):
         'payroll_income': 'payroll_income',  # noqa: E501
         'status': 'status',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
+        'institution_id': 'institution_id',  # noqa: E501
+        'institution_name': 'institution_name',  # noqa: E501
     }
 
     _composed_schemas = {}
