@@ -26,8 +26,10 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.document_risk_signal import DocumentRiskSignal
+    from plaid.model.document_risk_summary import DocumentRiskSummary
     from plaid.model.risk_signal_document_reference import RiskSignalDocumentReference
     globals()['DocumentRiskSignal'] = DocumentRiskSignal
+    globals()['DocumentRiskSummary'] = DocumentRiskSummary
     globals()['RiskSignalDocumentReference'] = RiskSignalDocumentReference
 
 
@@ -86,6 +88,7 @@ class SingleDocumentRiskSignal(ModelNormal):
         return {
             'document_reference': (RiskSignalDocumentReference,),  # noqa: E501
             'risk_signals': ([DocumentRiskSignal],),  # noqa: E501
+            'risk_summary': (DocumentRiskSummary,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class SingleDocumentRiskSignal(ModelNormal):
     attribute_map = {
         'document_reference': 'document_reference',  # noqa: E501
         'risk_signals': 'risk_signals',  # noqa: E501
+        'risk_summary': 'risk_summary',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,12 +114,13 @@ class SingleDocumentRiskSignal(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, document_reference, risk_signals, *args, **kwargs):  # noqa: E501
+    def __init__(self, document_reference, risk_signals, risk_summary, *args, **kwargs):  # noqa: E501
         """SingleDocumentRiskSignal - a model defined in OpenAPI
 
         Args:
             document_reference (RiskSignalDocumentReference):
             risk_signals ([DocumentRiskSignal]): Array of attributes that indicate whether or not there is fraud risk with a document
+            risk_summary (DocumentRiskSummary):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,6 +180,7 @@ class SingleDocumentRiskSignal(ModelNormal):
 
         self.document_reference = document_reference
         self.risk_signals = risk_signals
+        self.risk_summary = risk_summary
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

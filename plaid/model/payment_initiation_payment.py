@@ -28,12 +28,14 @@ def lazy_import():
     from plaid.model.external_payment_refund_details import ExternalPaymentRefundDetails
     from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
     from plaid.model.payment_amount import PaymentAmount
+    from plaid.model.payment_amount_refunded import PaymentAmountRefunded
     from plaid.model.payment_initiation_payment_status import PaymentInitiationPaymentStatus
     from plaid.model.payment_scheme import PaymentScheme
     from plaid.model.sender_bacs_nullable import SenderBACSNullable
     globals()['ExternalPaymentRefundDetails'] = ExternalPaymentRefundDetails
     globals()['ExternalPaymentScheduleGet'] = ExternalPaymentScheduleGet
     globals()['PaymentAmount'] = PaymentAmount
+    globals()['PaymentAmountRefunded'] = PaymentAmountRefunded
     globals()['PaymentInitiationPaymentStatus'] = PaymentInitiationPaymentStatus
     globals()['PaymentScheme'] = PaymentScheme
     globals()['SenderBACSNullable'] = SenderBACSNullable
@@ -104,10 +106,12 @@ class PaymentInitiationPayment(ModelNormal):
             'schedule': (ExternalPaymentScheduleGet,),  # noqa: E501
             'refund_details': (ExternalPaymentRefundDetails,),  # noqa: E501
             'refund_ids': ([str], none_type,),  # noqa: E501
+            'amount_refunded': (PaymentAmountRefunded,),  # noqa: E501
             'wallet_id': (str, none_type,),  # noqa: E501
             'scheme': (PaymentScheme,),  # noqa: E501
             'adjusted_scheme': (PaymentScheme,),  # noqa: E501
             'consent_id': (str, none_type,),  # noqa: E501
+            'transaction_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -128,10 +132,12 @@ class PaymentInitiationPayment(ModelNormal):
         'schedule': 'schedule',  # noqa: E501
         'refund_details': 'refund_details',  # noqa: E501
         'refund_ids': 'refund_ids',  # noqa: E501
+        'amount_refunded': 'amount_refunded',  # noqa: E501
         'wallet_id': 'wallet_id',  # noqa: E501
         'scheme': 'scheme',  # noqa: E501
         'adjusted_scheme': 'adjusted_scheme',  # noqa: E501
         'consent_id': 'consent_id',  # noqa: E501
+        'transaction_id': 'transaction_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -194,10 +200,12 @@ class PaymentInitiationPayment(ModelNormal):
             schedule (ExternalPaymentScheduleGet): [optional]  # noqa: E501
             refund_details (ExternalPaymentRefundDetails): [optional]  # noqa: E501
             refund_ids ([str], none_type): Refund IDs associated with the payment.. [optional]  # noqa: E501
+            amount_refunded (PaymentAmountRefunded): [optional]  # noqa: E501
             wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
             scheme (PaymentScheme): [optional]  # noqa: E501
             adjusted_scheme (PaymentScheme): [optional]  # noqa: E501
             consent_id (str, none_type): The payment consent ID that this payment was initiated with. Is present only when payment was initiated using the payment consent.. [optional]  # noqa: E501
+            transaction_id (str, none_type): The transaction ID that this payment is associated with, if any. This is present only when a payment was initiated using virtual accounts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

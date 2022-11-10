@@ -102,6 +102,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             'user_present': (bool, none_type,),  # noqa: E501
             'with_guarantee': (bool, none_type,),  # noqa: E501
             'beacon_session_id': (str, none_type,),  # noqa: E501
+            'originator_client_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -127,6 +128,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         'user_present': 'user_present',  # noqa: E501
         'with_guarantee': 'with_guarantee',  # noqa: E501
         'beacon_session_id': 'beacon_session_id',  # noqa: E501
+        'originator_client_id': 'originator_client_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -194,6 +196,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             user_present (bool, none_type): Required for Guarantee. If the end user is initiating the specific transfer themselves via an interactive UI, this should be `true`; for automatic recurring payments where the end user is not actually initiating each individual transfer, it should be `false`.. [optional]  # noqa: E501
             with_guarantee (bool, none_type): If set to `false`, Plaid will not offer a `guarantee_decision` for this request(Guarantee customers only).. [optional] if omitted the server will use the default value of True  # noqa: E501
             beacon_session_id (str, none_type): The unique identifier returned by Plaid's [beacon](https://plaid.com/docs/transfer/guarantee/#using-a-beacon) when it is run on your webpage. Required for Guarantee customers who are not using [Transfer UI](https://plaid.com/docs/transfer/using-transfer-ui/) and have a web checkout experience.. [optional]  # noqa: E501
+            originator_client_id (str, none_type): The Plaid client ID that is the originator of this transfer. Only needed if creating transfers on behalf of another client as a third-party sender (TPS).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
