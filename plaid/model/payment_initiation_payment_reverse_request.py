@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.payment_amount_to_refund import PaymentAmountToRefund
     from plaid.model.wallet_transaction_idempotency_key import WalletTransactionIdempotencyKey
+    globals()['PaymentAmountToRefund'] = PaymentAmountToRefund
     globals()['WalletTransactionIdempotencyKey'] = WalletTransactionIdempotencyKey
 
 
@@ -87,6 +89,7 @@ class PaymentInitiationPaymentReverseRequest(ModelNormal):
             'reference': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'amount': (PaymentAmountToRefund,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +103,7 @@ class PaymentInitiationPaymentReverseRequest(ModelNormal):
         'reference': 'reference',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,6 +159,7 @@ class PaymentInitiationPaymentReverseRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            amount (PaymentAmountToRefund): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

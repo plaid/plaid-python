@@ -134,6 +134,7 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             'p90_eod_balance_61d_to_90d': (float, none_type,),  # noqa: E501
             'p10_eod_balance_31d_to_60d': (float, none_type,),  # noqa: E501
             'p10_eod_balance_61d_to_90d': (float, none_type,),  # noqa: E501
+            'transactions_last_updated': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -206,6 +207,7 @@ class SignalEvaluateCoreAttributes(ModelNormal):
         'p90_eod_balance_61d_to_90d': 'p90_eod_balance_61d_to_90d',  # noqa: E501
         'p10_eod_balance_31d_to_60d': 'p10_eod_balance_31d_to_60d',  # noqa: E501
         'p10_eod_balance_61d_to_90d': 'p10_eod_balance_61d_to_90d',  # noqa: E501
+        'transactions_last_updated': 'transactions_last_updated',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -318,6 +320,7 @@ class SignalEvaluateCoreAttributes(ModelNormal):
             p90_eod_balance_61d_to_90d (float, none_type): The 90th percentile of the end-of-day available balance between day 61 and day 90 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
             p10_eod_balance_31d_to_60d (float, none_type): The 10th percentile of the end-of-day available balance between day 31 and day 60 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
             p10_eod_balance_61d_to_90d (float, none_type): The 10th percentile of the end-of-day available balance between day 61 and day 90 over the past 60 days of the account that will be debited. [optional]  # noqa: E501
+            transactions_last_updated (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DDTHH:mm:ssZ) indicating the last time that the transactions for the given account have been updated.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

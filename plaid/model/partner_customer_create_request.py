@@ -26,10 +26,12 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.partner_end_customer_address import PartnerEndCustomerAddress
+    from plaid.model.partner_end_customer_assets_under_management import PartnerEndCustomerAssetsUnderManagement
     from plaid.model.partner_end_customer_billing_contact import PartnerEndCustomerBillingContact
     from plaid.model.partner_end_customer_technical_contact import PartnerEndCustomerTechnicalContact
     from plaid.model.products import Products
     globals()['PartnerEndCustomerAddress'] = PartnerEndCustomerAddress
+    globals()['PartnerEndCustomerAssetsUnderManagement'] = PartnerEndCustomerAssetsUnderManagement
     globals()['PartnerEndCustomerBillingContact'] = PartnerEndCustomerBillingContact
     globals()['PartnerEndCustomerTechnicalContact'] = PartnerEndCustomerTechnicalContact
     globals()['Products'] = Products
@@ -95,6 +97,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
             'logo': (str,),  # noqa: E501
             'technical_contact': (PartnerEndCustomerTechnicalContact,),  # noqa: E501
             'billing_contact': (PartnerEndCustomerBillingContact,),  # noqa: E501
+            'assets_under_management': (PartnerEndCustomerAssetsUnderManagement,),  # noqa: E501
         }
 
     @cached_property
@@ -117,6 +120,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
         'logo': 'logo',  # noqa: E501
         'technical_contact': 'technical_contact',  # noqa: E501
         'billing_contact': 'billing_contact',  # noqa: E501
+        'assets_under_management': 'assets_under_management',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -178,9 +182,10 @@ class PartnerCustomerCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             create_link_customization (bool): If true, the end customer's default Link customization will be set to match the partner's.. [optional]  # noqa: E501
-            logo (str): Base64-encoded representation of the end customer's logo. Must be a PNG of size 1024x1024 under 4MB. Defaults to the partner's logo if omitted.. [optional]  # noqa: E501
+            logo (str): Base64-encoded representation of the end customer's logo. Must be a PNG of size 1024x1024 under 4MB. The logo will be shared with financial institutions and shown to the end user during Link flows. A logo is required if `create_link_customization` is `true`. If `create_link_customization` is `false` and the logo is omitted, a stock logo will be used.. [optional]  # noqa: E501
             technical_contact (PartnerEndCustomerTechnicalContact): [optional]  # noqa: E501
             billing_contact (PartnerEndCustomerBillingContact): [optional]  # noqa: E501
+            assets_under_management (PartnerEndCustomerAssetsUnderManagement): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

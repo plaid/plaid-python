@@ -109,7 +109,7 @@ class SignalReturnReportRequest(ModelNormal):
 
         Args:
             client_transaction_id (str): Must be the same as the `client_transaction_id` supplied when calling `/signal/evaluate`
-            return_code (str): Must be a valid ACH return code (e.g. \"R01\")
+            return_code (str): Must be a valid ACH return code (e.g. \"R01\")  If formatted incorrectly, this will result in an [`INVALID_FIELD`](/docs/errors/invalid-request/#invalid_field) error.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -99,6 +99,8 @@ class WalletTransaction(ModelNormal):
             'counterparty': (WalletTransactionCounterparty,),  # noqa: E501
             'status': (WalletTransactionStatus,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
+            'last_status_update': (datetime,),  # noqa: E501
+            'payment_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +116,8 @@ class WalletTransaction(ModelNormal):
         'counterparty': 'counterparty',  # noqa: E501
         'status': 'status',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
+        'last_status_update': 'last_status_update',  # noqa: E501
+        'payment_id': 'payment_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -128,17 +132,18 @@ class WalletTransaction(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, transaction_id, reference, type, amount, counterparty, status, created_at, *args, **kwargs):  # noqa: E501
+    def __init__(self, transaction_id, reference, type, amount, counterparty, status, created_at, last_status_update, *args, **kwargs):  # noqa: E501
         """WalletTransaction - a model defined in OpenAPI
 
         Args:
             transaction_id (str): A unique ID identifying the transaction
             reference (str): A reference for the transaction
-            type (str): The type of the transaction. The supported transaction types that are returned are: `BANK_TRANSFER:` a transaction which credits an e-wallet through an external bank transfer.  `PAYOUT:` a transaction which debits an e-wallet by disbursing funds to a counterparty.  `PIS_PAY_IN:` a payment which credits an e-wallet through Plaid's Payment Initiation Services (PIS) APIs. For more information see the [Payment Initiation endpoints](https://plaid.com/docs/api/products/payment-initiation/).  `REFUND:` a transaction which debits an e-wallet by refunding a previously initated payment made through Plaid's [PIS APIs](https://plaid.com/docs/api/products/payment-initiation/).
+            type (str): The type of the transaction. The supported transaction types that are returned are: `BANK_TRANSFER:` a transaction which credits an e-wallet through an external bank transfer.  `PAYOUT:` a transaction which debits an e-wallet by disbursing funds to a counterparty.  `PIS_PAY_IN:` a payment which credits an e-wallet through Plaid's Payment Initiation Services (PIS) APIs. For more information see the [Payment Initiation endpoints](https://plaid.com/docs/api/products/payment-initiation/).  `REFUND:` a transaction which debits an e-wallet by refunding a previously initiated payment made through Plaid's [PIS APIs](https://plaid.com/docs/api/products/payment-initiation/).
             amount (WalletTransactionAmount):
             counterparty (WalletTransactionCounterparty):
             status (WalletTransactionStatus):
             created_at (datetime): Timestamp when the transaction was created, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format.
+            last_status_update (datetime): The date and time of the last time the `status` was updated, in IS0 8601 format
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -171,6 +176,7 @@ class WalletTransaction(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payment_id (str, none_type): The payment id that this transaction is associated with, if any. This is present only for transaction types `PIS_PAY_IN` and `REFUND`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -203,6 +209,7 @@ class WalletTransaction(ModelNormal):
         self.counterparty = counterparty
         self.status = status
         self.created_at = created_at
+        self.last_status_update = last_status_update
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

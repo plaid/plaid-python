@@ -247,6 +247,7 @@ plaid/model/deposit_switch_token_create_response.py
 plaid/model/depository_account_subtype.py
 plaid/model/depository_account_subtypes.py
 plaid/model/depository_filter.py
+plaid/model/disbursement_limits.py
 plaid/model/distribution_breakdown.py
 plaid/model/doc_type.py
 plaid/model/document_analysis.py
@@ -257,6 +258,7 @@ plaid/model/document_name_match_code.py
 plaid/model/document_risk_signal.py
 plaid/model/document_risk_signal_institution_metadata.py
 plaid/model/document_risk_signals_object.py
+plaid/model/document_risk_summary.py
 plaid/model/document_status.py
 plaid/model/documentary_verification.py
 plaid/model/documentary_verification_document.py
@@ -538,6 +540,7 @@ plaid/model/numbers_iban_nullable.py
 plaid/model/numbers_international.py
 plaid/model/numbers_international_iban.py
 plaid/model/numbers_international_nullable.py
+plaid/model/originator.py
 plaid/model/override_account_type.py
 plaid/model/override_accounts.py
 plaid/model/owner.py
@@ -550,8 +553,11 @@ plaid/model/partner_customer_enable_request.py
 plaid/model/partner_customer_enable_response.py
 plaid/model/partner_customer_get_request.py
 plaid/model/partner_customer_get_response.py
+plaid/model/partner_customer_remove_request.py
+plaid/model/partner_customer_remove_response.py
 plaid/model/partner_end_customer.py
 plaid/model/partner_end_customer_address.py
+plaid/model/partner_end_customer_assets_under_management.py
 plaid/model/partner_end_customer_billing_contact.py
 plaid/model/partner_end_customer_secrets.py
 plaid/model/partner_end_customer_status.py
@@ -574,6 +580,9 @@ plaid/model/pay_stub_pay_period_details.py
 plaid/model/pay_stub_taxpayer_id.py
 plaid/model/payment_amount.py
 plaid/model/payment_amount_currency.py
+plaid/model/payment_amount_nullable.py
+plaid/model/payment_amount_refunded.py
+plaid/model/payment_amount_to_refund.py
 plaid/model/payment_channel.py
 plaid/model/payment_consent_max_payment_amount.py
 plaid/model/payment_consent_periodic_alignment.py
@@ -619,6 +628,7 @@ plaid/model/payment_initiation_recipient_get_response_all_of.py
 plaid/model/payment_initiation_recipient_list_request.py
 plaid/model/payment_initiation_recipient_list_response.py
 plaid/model/payment_initiation_standing_order_metadata.py
+plaid/model/payment_limits.py
 plaid/model/payment_meta.py
 plaid/model/payment_profile_create_request.py
 plaid/model/payment_profile_create_response.py
@@ -788,6 +798,7 @@ plaid/model/transaction_all_of.py
 plaid/model/transaction_base.py
 plaid/model/transaction_code.py
 plaid/model/transaction_data.py
+plaid/model/transaction_frequency.py
 plaid/model/transaction_override.py
 plaid/model/transaction_stream.py
 plaid/model/transaction_stream_amount.py
@@ -835,6 +846,7 @@ plaid/model/transfer_cancel_response.py
 plaid/model/transfer_create_idempotency_key.py
 plaid/model/transfer_create_request.py
 plaid/model/transfer_create_response.py
+plaid/model/transfer_diligence_status.py
 plaid/model/transfer_event.py
 plaid/model/transfer_event_list_request.py
 plaid/model/transfer_event_list_response.py
@@ -862,6 +874,23 @@ plaid/model/transfer_metadata.py
 plaid/model/transfer_migrate_account_request.py
 plaid/model/transfer_migrate_account_response.py
 plaid/model/transfer_network.py
+plaid/model/transfer_originator_create_request.py
+plaid/model/transfer_originator_create_response.py
+plaid/model/transfer_originator_get_request.py
+plaid/model/transfer_originator_get_response.py
+plaid/model/transfer_originator_list_request.py
+plaid/model/transfer_originator_list_response.py
+plaid/model/transfer_questionnaire_create_request.py
+plaid/model/transfer_questionnaire_create_response.py
+plaid/model/transfer_refund.py
+plaid/model/transfer_refund_cancel_request.py
+plaid/model/transfer_refund_cancel_response.py
+plaid/model/transfer_refund_create_request.py
+plaid/model/transfer_refund_create_response.py
+plaid/model/transfer_refund_get_request.py
+plaid/model/transfer_refund_get_response.py
+plaid/model/transfer_refund_idempotency_key.py
+plaid/model/transfer_refund_status.py
 plaid/model/transfer_repayment.py
 plaid/model/transfer_repayment_list_request.py
 plaid/model/transfer_repayment_list_response.py
@@ -924,10 +953,12 @@ plaid/model/wallet_transaction_execute_response.py
 plaid/model/wallet_transaction_get_request.py
 plaid/model/wallet_transaction_get_response.py
 plaid/model/wallet_transaction_idempotency_key.py
+plaid/model/wallet_transaction_list_request.py
+plaid/model/wallet_transaction_list_request_options.py
+plaid/model/wallet_transaction_list_response.py
 plaid/model/wallet_transaction_status.py
 plaid/model/wallet_transaction_status_update_webhook.py
 plaid/model/wallet_transactions_list_request.py
-plaid/model/wallet_transactions_list_response.py
 plaid/model/warning.py
 plaid/model/watchlist_screening_audit_trail.py
 plaid/model/watchlist_screening_document.py
