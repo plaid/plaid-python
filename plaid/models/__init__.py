@@ -250,6 +250,7 @@ from plaid.model.deposit_switch_token_create_response import DepositSwitchTokenC
 from plaid.model.depository_account_subtype import DepositoryAccountSubtype
 from plaid.model.depository_account_subtypes import DepositoryAccountSubtypes
 from plaid.model.depository_filter import DepositoryFilter
+from plaid.model.disbursement_limits import DisbursementLimits
 from plaid.model.distribution_breakdown import DistributionBreakdown
 from plaid.model.doc_type import DocType
 from plaid.model.document_analysis import DocumentAnalysis
@@ -260,6 +261,7 @@ from plaid.model.document_name_match_code import DocumentNameMatchCode
 from plaid.model.document_risk_signal import DocumentRiskSignal
 from plaid.model.document_risk_signal_institution_metadata import DocumentRiskSignalInstitutionMetadata
 from plaid.model.document_risk_signals_object import DocumentRiskSignalsObject
+from plaid.model.document_risk_summary import DocumentRiskSummary
 from plaid.model.document_status import DocumentStatus
 from plaid.model.documentary_verification import DocumentaryVerification
 from plaid.model.documentary_verification_document import DocumentaryVerificationDocument
@@ -541,6 +543,7 @@ from plaid.model.numbers_iban_nullable import NumbersIBANNullable
 from plaid.model.numbers_international import NumbersInternational
 from plaid.model.numbers_international_iban import NumbersInternationalIBAN
 from plaid.model.numbers_international_nullable import NumbersInternationalNullable
+from plaid.model.originator import Originator
 from plaid.model.override_account_type import OverrideAccountType
 from plaid.model.override_accounts import OverrideAccounts
 from plaid.model.owner import Owner
@@ -555,8 +558,11 @@ from plaid.model.partner_customer_enable_request import PartnerCustomerEnableReq
 from plaid.model.partner_customer_enable_response import PartnerCustomerEnableResponse
 from plaid.model.partner_customer_get_request import PartnerCustomerGetRequest
 from plaid.model.partner_customer_get_response import PartnerCustomerGetResponse
+from plaid.model.partner_customer_remove_request import PartnerCustomerRemoveRequest
+from plaid.model.partner_customer_remove_response import PartnerCustomerRemoveResponse
 from plaid.model.partner_end_customer import PartnerEndCustomer
 from plaid.model.partner_end_customer_address import PartnerEndCustomerAddress
+from plaid.model.partner_end_customer_assets_under_management import PartnerEndCustomerAssetsUnderManagement
 from plaid.model.partner_end_customer_billing_contact import PartnerEndCustomerBillingContact
 from plaid.model.partner_end_customer_secrets import PartnerEndCustomerSecrets
 from plaid.model.partner_end_customer_status import PartnerEndCustomerStatus
@@ -579,6 +585,9 @@ from plaid.model.pay_stub_pay_period_details import PayStubPayPeriodDetails
 from plaid.model.pay_stub_taxpayer_id import PayStubTaxpayerID
 from plaid.model.payment_amount import PaymentAmount
 from plaid.model.payment_amount_currency import PaymentAmountCurrency
+from plaid.model.payment_amount_nullable import PaymentAmountNullable
+from plaid.model.payment_amount_refunded import PaymentAmountRefunded
+from plaid.model.payment_amount_to_refund import PaymentAmountToRefund
 from plaid.model.payment_channel import PaymentChannel
 from plaid.model.payment_consent_max_payment_amount import PaymentConsentMaxPaymentAmount
 from plaid.model.payment_consent_periodic_alignment import PaymentConsentPeriodicAlignment
@@ -624,6 +633,7 @@ from plaid.model.payment_initiation_recipient_get_response_all_of import Payment
 from plaid.model.payment_initiation_recipient_list_request import PaymentInitiationRecipientListRequest
 from plaid.model.payment_initiation_recipient_list_response import PaymentInitiationRecipientListResponse
 from plaid.model.payment_initiation_standing_order_metadata import PaymentInitiationStandingOrderMetadata
+from plaid.model.payment_limits import PaymentLimits
 from plaid.model.payment_meta import PaymentMeta
 from plaid.model.payment_profile_create_request import PaymentProfileCreateRequest
 from plaid.model.payment_profile_create_response import PaymentProfileCreateResponse
@@ -791,6 +801,7 @@ from plaid.model.transaction_all_of import TransactionAllOf
 from plaid.model.transaction_base import TransactionBase
 from plaid.model.transaction_code import TransactionCode
 from plaid.model.transaction_data import TransactionData
+from plaid.model.transaction_frequency import TransactionFrequency
 from plaid.model.transaction_override import TransactionOverride
 from plaid.model.transaction_stream import TransactionStream
 from plaid.model.transaction_stream_amount import TransactionStreamAmount
@@ -838,6 +849,7 @@ from plaid.model.transfer_cancel_response import TransferCancelResponse
 from plaid.model.transfer_create_idempotency_key import TransferCreateIdempotencyKey
 from plaid.model.transfer_create_request import TransferCreateRequest
 from plaid.model.transfer_create_response import TransferCreateResponse
+from plaid.model.transfer_diligence_status import TransferDiligenceStatus
 from plaid.model.transfer_event import TransferEvent
 from plaid.model.transfer_event_list_request import TransferEventListRequest
 from plaid.model.transfer_event_list_response import TransferEventListResponse
@@ -865,6 +877,23 @@ from plaid.model.transfer_metadata import TransferMetadata
 from plaid.model.transfer_migrate_account_request import TransferMigrateAccountRequest
 from plaid.model.transfer_migrate_account_response import TransferMigrateAccountResponse
 from plaid.model.transfer_network import TransferNetwork
+from plaid.model.transfer_originator_create_request import TransferOriginatorCreateRequest
+from plaid.model.transfer_originator_create_response import TransferOriginatorCreateResponse
+from plaid.model.transfer_originator_get_request import TransferOriginatorGetRequest
+from plaid.model.transfer_originator_get_response import TransferOriginatorGetResponse
+from plaid.model.transfer_originator_list_request import TransferOriginatorListRequest
+from plaid.model.transfer_originator_list_response import TransferOriginatorListResponse
+from plaid.model.transfer_questionnaire_create_request import TransferQuestionnaireCreateRequest
+from plaid.model.transfer_questionnaire_create_response import TransferQuestionnaireCreateResponse
+from plaid.model.transfer_refund import TransferRefund
+from plaid.model.transfer_refund_cancel_request import TransferRefundCancelRequest
+from plaid.model.transfer_refund_cancel_response import TransferRefundCancelResponse
+from plaid.model.transfer_refund_create_request import TransferRefundCreateRequest
+from plaid.model.transfer_refund_create_response import TransferRefundCreateResponse
+from plaid.model.transfer_refund_get_request import TransferRefundGetRequest
+from plaid.model.transfer_refund_get_response import TransferRefundGetResponse
+from plaid.model.transfer_refund_idempotency_key import TransferRefundIdempotencyKey
+from plaid.model.transfer_refund_status import TransferRefundStatus
 from plaid.model.transfer_repayment import TransferRepayment
 from plaid.model.transfer_repayment_list_request import TransferRepaymentListRequest
 from plaid.model.transfer_repayment_list_response import TransferRepaymentListResponse
@@ -927,10 +956,12 @@ from plaid.model.wallet_transaction_execute_response import WalletTransactionExe
 from plaid.model.wallet_transaction_get_request import WalletTransactionGetRequest
 from plaid.model.wallet_transaction_get_response import WalletTransactionGetResponse
 from plaid.model.wallet_transaction_idempotency_key import WalletTransactionIdempotencyKey
+from plaid.model.wallet_transaction_list_request import WalletTransactionListRequest
+from plaid.model.wallet_transaction_list_request_options import WalletTransactionListRequestOptions
+from plaid.model.wallet_transaction_list_response import WalletTransactionListResponse
 from plaid.model.wallet_transaction_status import WalletTransactionStatus
 from plaid.model.wallet_transaction_status_update_webhook import WalletTransactionStatusUpdateWebhook
 from plaid.model.wallet_transactions_list_request import WalletTransactionsListRequest
-from plaid.model.wallet_transactions_list_response import WalletTransactionsListResponse
 from plaid.model.warning import Warning
 from plaid.model.watchlist_screening_audit_trail import WatchlistScreeningAuditTrail
 from plaid.model.watchlist_screening_document import WatchlistScreeningDocument

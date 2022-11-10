@@ -141,7 +141,7 @@ class LinkTokenCreateRequestAuth(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             auth_type_select_enabled (bool): Specifies whether Auth Type Select is enabled for the Link session, allowing the end user to choose between linking instantly or manually prior to selecting their financial institution. Note that this can only be true if `same_day_microdeposits_enabled` is set to true.. [optional] if omitted the server will use the default value of False  # noqa: E501
             automated_microdeposits_enabled (bool): Specifies whether the Link session is enabled for the Automated Micro-deposits flow.. [optional]  # noqa: E501
-            instant_match_enabled (bool): Specifies whether the Link session is enabled for the Instant Match flow. As of October 5th, 2022, Instant Match has been enabled by default for all new customers; this field is only necessary to enable Instant Match for customers who enabled auth before October 5th, 2022 and who have not previously enabled Instant Match via their Account Manager.. [optional]  # noqa: E501
+            instant_match_enabled (bool): Specifies whether the Link session is enabled for the Instant Match flow. As of November 2022, Instant Match will be enabled by default. Instant Match can be disabled by setting this field to `false`.. [optional]  # noqa: E501
             same_day_microdeposits_enabled (bool): Specifies whether the Link session is enabled for the Same Day Micro-deposits flow.. [optional]  # noqa: E501
             flow_type (str): This field has been deprecated in favor of `auth_type_select_enabled`.. [optional] if omitted the server will use the default value of "FLEXIBLE_AUTH"  # noqa: E501
         """

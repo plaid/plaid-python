@@ -86,14 +86,15 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
         """
         lazy_import()
         return {
-            'account_id': (str,),  # noqa: E501
             'type': (TransferType,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'network': (str,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
+            'originator_client_id': (str, none_type,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
+            'account_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -102,14 +103,15 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
 
 
     attribute_map = {
-        'account_id': 'account_id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'user': 'user',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'network': 'network',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
+        'originator_client_id': 'originator_client_id',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
+        'account_id': 'account_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -124,17 +126,17 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, type, user, amount, network, origination_account_id, iso_currency_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, user, amount, network, origination_account_id, iso_currency_code, originator_client_id, *args, **kwargs):  # noqa: E501
         """TransferAuthorizationProposedTransfer - a model defined in OpenAPI
 
         Args:
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited.
             type (TransferType):
             user (TransferUserInResponse):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             network (str): The network or rails used for the transfer.
             origination_account_id (str): Plaid's unique identifier for the origination account that was used for this transfer.
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".
+            originator_client_id (str, none_type): The Plaid client ID that is the originator of this transfer. Only present if created on behalf of another client as a third-party sender (TPS).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -168,6 +170,7 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             ach_class (ACHClass): [optional]  # noqa: E501
+            account_id (str): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,13 +196,13 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.account_id = account_id
         self.type = type
         self.user = user
         self.amount = amount
         self.network = network
         self.origination_account_id = origination_account_id
         self.iso_currency_code = iso_currency_code
+        self.originator_client_id = originator_client_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

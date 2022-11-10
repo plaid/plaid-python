@@ -89,6 +89,7 @@ class DocumentRiskSignal(ModelNormal):
             'expected_value': (str, none_type,),  # noqa: E501
             'actual_value': (str, none_type,),  # noqa: E501
             'signal_description': (str, none_type,),  # noqa: E501
+            'page_number': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +105,7 @@ class DocumentRiskSignal(ModelNormal):
         'expected_value': 'expected_value',  # noqa: E501
         'actual_value': 'actual_value',  # noqa: E501
         'signal_description': 'signal_description',  # noqa: E501
+        'page_number': 'page_number',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -118,7 +120,7 @@ class DocumentRiskSignal(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, type, field, has_fraud_risk, institution_metadata, expected_value, actual_value, signal_description, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, field, has_fraud_risk, institution_metadata, expected_value, actual_value, signal_description, page_number, *args, **kwargs):  # noqa: E501
         """DocumentRiskSignal - a model defined in OpenAPI
 
         Args:
@@ -129,6 +131,7 @@ class DocumentRiskSignal(ModelNormal):
             expected_value (str, none_type): The expected value of the field, as seen on the document
             actual_value (str, none_type): The derived value obtained in the risk signal calculation process for this field
             signal_description (str, none_type): A human-readable explanation providing more detail into the particular risk signal
+            page_number (int, none_type): The relevant page associated with the risk signal
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,6 +196,7 @@ class DocumentRiskSignal(ModelNormal):
         self.expected_value = expected_value
         self.actual_value = actual_value
         self.signal_description = signal_description
+        self.page_number = page_number
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

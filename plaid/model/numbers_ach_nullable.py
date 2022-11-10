@@ -86,6 +86,8 @@ class NumbersACHNullable(ModelComposed):
             'account': (str,),  # noqa: E501
             'routing': (str,),  # noqa: E501
             'wire_routing': (str, none_type,),  # noqa: E501
+            'can_transfer_in': (bool, none_type,),  # noqa: E501
+            'can_transfer_out': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +100,8 @@ class NumbersACHNullable(ModelComposed):
         'account': 'account',  # noqa: E501
         'routing': 'routing',  # noqa: E501
         'wire_routing': 'wire_routing',  # noqa: E501
+        'can_transfer_in': 'can_transfer_in',  # noqa: E501
+        'can_transfer_out': 'can_transfer_out',  # noqa: E501
     }
 
     required_properties = set([
@@ -153,6 +157,8 @@ class NumbersACHNullable(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            can_transfer_in (bool, none_type): Whether the account supports ACH transfers into the account. [optional]  # noqa: E501
+            can_transfer_out (bool, none_type): Whether the account supports ACH transfers out of the account. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -84,6 +84,7 @@ class PaymentProfileGetResponse(ModelNormal):
         return {
             'updated_at': (datetime,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
+            'deleted_at': (datetime, none_type,),  # noqa: E501
             'status': (PaymentProfileStatus,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
@@ -96,6 +97,7 @@ class PaymentProfileGetResponse(ModelNormal):
     attribute_map = {
         'updated_at': 'updated_at',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
+        'deleted_at': 'deleted_at',  # noqa: E501
         'status': 'status',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
     }
@@ -112,12 +114,13 @@ class PaymentProfileGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, updated_at, created_at, status, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, updated_at, created_at, deleted_at, status, request_id, *args, **kwargs):  # noqa: E501
         """PaymentProfileGetResponse - a model defined in OpenAPI
 
         Args:
             updated_at (datetime): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the last time the given Payment Profile was updated at
             created_at (datetime): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Payment Profile was created at
+            deleted_at (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Payment Profile was deleted at. Always `null` if the Payment Profile has not been deleted
             status (PaymentProfileStatus):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
@@ -179,6 +182,7 @@ class PaymentProfileGetResponse(ModelNormal):
 
         self.updated_at = updated_at
         self.created_at = created_at
+        self.deleted_at = deleted_at
         self.status = status
         self.request_id = request_id
         for var_name, var_value in kwargs.items():

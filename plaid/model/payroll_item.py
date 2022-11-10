@@ -80,6 +80,8 @@ class PayrollItem(ModelNormal):
         lazy_import()
         return {
             'item_id': (str,),  # noqa: E501
+            'institution_id': (str,),  # noqa: E501
+            'institution_name': (str,),  # noqa: E501
             'accounts': ([PayrollIncomeAccountData],),  # noqa: E501
             'payroll_income': ([PayrollIncomeObject],),  # noqa: E501
             'status': (PayrollItemStatus,),  # noqa: E501
@@ -93,6 +95,8 @@ class PayrollItem(ModelNormal):
 
     attribute_map = {
         'item_id': 'item_id',  # noqa: E501
+        'institution_id': 'institution_id',  # noqa: E501
+        'institution_name': 'institution_name',  # noqa: E501
         'accounts': 'accounts',  # noqa: E501
         'payroll_income': 'payroll_income',  # noqa: E501
         'status': 'status',  # noqa: E501
@@ -111,11 +115,13 @@ class PayrollItem(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, item_id, accounts, payroll_income, status, updated_at, *args, **kwargs):  # noqa: E501
+    def __init__(self, item_id, institution_id, institution_name, accounts, payroll_income, status, updated_at, *args, **kwargs):  # noqa: E501
         """PayrollItem - a model defined in OpenAPI
 
         Args:
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
+            institution_id (str): The unique identifier of the institution associated with the Item.
+            institution_name (str): The name of the institution associated with the Item.
             accounts ([PayrollIncomeAccountData]):
             payroll_income ([PayrollIncomeObject]):
             status (PayrollItemStatus):
@@ -178,6 +184,8 @@ class PayrollItem(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.item_id = item_id
+        self.institution_id = institution_id
+        self.institution_name = institution_name
         self.accounts = accounts
         self.payroll_income = payroll_income
         self.status = status

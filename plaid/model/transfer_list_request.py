@@ -84,6 +84,7 @@ class TransferListRequest(ModelNormal):
             'count': (int,),  # noqa: E501
             'offset': (int,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
+            'originator_client_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +100,7 @@ class TransferListRequest(ModelNormal):
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
+        'originator_client_id': 'originator_client_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +156,7 @@ class TransferListRequest(ModelNormal):
             count (int): The maximum number of transfers to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int): The number of transfers to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             origination_account_id (str, none_type): Filter transfers to only those originated through the specified origination account.. [optional]  # noqa: E501
+            originator_client_id (str, none_type): Filter transfers to only those with the specified originator client.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

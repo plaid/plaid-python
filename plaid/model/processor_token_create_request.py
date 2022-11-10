@@ -80,6 +80,7 @@ class ProcessorTokenCreateRequest(ModelNormal):
             'APEX_CLEARING': "apex_clearing",
             'GUSTO': "gusto",
             'ADYEN': "adyen",
+            'ATOMIC': "atomic",
         },
     }
 

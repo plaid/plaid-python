@@ -100,6 +100,8 @@ class TransferEvent(ModelNormal):
             'failure_reason': (TransferFailure,),  # noqa: E501
             'sweep_id': (str, none_type,),  # noqa: E501
             'sweep_amount': (str, none_type,),  # noqa: E501
+            'refund_id': (str, none_type,),  # noqa: E501
+            'originator_client_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -119,6 +121,8 @@ class TransferEvent(ModelNormal):
         'failure_reason': 'failure_reason',  # noqa: E501
         'sweep_id': 'sweep_id',  # noqa: E501
         'sweep_amount': 'sweep_amount',  # noqa: E501
+        'refund_id': 'refund_id',  # noqa: E501
+        'originator_client_id': 'originator_client_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -133,7 +137,7 @@ class TransferEvent(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, sweep_id, sweep_amount, *args, **kwargs):  # noqa: E501
+    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, sweep_id, sweep_amount, refund_id, originator_client_id, *args, **kwargs):  # noqa: E501
         """TransferEvent - a model defined in OpenAPI
 
         Args:
@@ -148,6 +152,8 @@ class TransferEvent(ModelNormal):
             failure_reason (TransferFailure):
             sweep_id (str, none_type): Plaid’s unique identifier for a sweep.
             sweep_amount (str, none_type): A signed amount of how much was `swept` or `return_swept` (decimal string with two digits of precision e.g. \"-5.50\").
+            refund_id (str, none_type): Plaid’s unique identifier for a refund. A non-null value indicates the event is for the associated refund of the transfer.
+            originator_client_id (str, none_type): The Plaid client ID that is the originator of the transfer that this event applies to. Only present if the transfer was created on behalf of another client as a third-party sender (TPS).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -216,6 +222,8 @@ class TransferEvent(ModelNormal):
         self.failure_reason = failure_reason
         self.sweep_id = sweep_id
         self.sweep_amount = sweep_amount
+        self.refund_id = refund_id
+        self.originator_client_id = originator_client_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

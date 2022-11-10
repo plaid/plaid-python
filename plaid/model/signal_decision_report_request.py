@@ -114,7 +114,7 @@ class SignalDecisionReportRequest(ModelNormal):
 
         Args:
             client_transaction_id (str): Must be the same as the `client_transaction_id` supplied when calling `/signal/evaluate`
-            initiated (bool): `true` if the ACH transaction was initiated, `false` otherwise.
+            initiated (bool): `true` if the ACH transaction was initiated, `false` otherwise.  This field must be returned as a boolean. If formatted incorrectly, this will result in an [`INVALID_FIELD`](/docs/errors/invalid-request/#invalid_field) error.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,7 +149,7 @@ class SignalDecisionReportRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            days_funds_on_hold (int, none_type): The actual number of days (hold time) since the ACH debit transaction that you wait before making funds available to your customers. The holding time could affect the ACH return rate. For example, use 0 if you make funds available to your customers instantly or the same day following the debit transaction, or 1 if you make funds available the next day following the debit initialization.. [optional]  # noqa: E501
+            days_funds_on_hold (int, none_type): The actual number of days (hold time) since the ACH debit transaction that you wait before making funds available to your customers. The holding time could affect the ACH return rate.  For example, use 0 if you make funds available to your customers instantly or the same day following the debit transaction, or 1 if you make funds available the next day following the debit initialization.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
