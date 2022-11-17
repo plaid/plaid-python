@@ -1,5 +1,37 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 11.2.0
+- Updating to OAS 2020-09-14_1.205.3
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.205.3
+- Update description for `/signal/evaluate` endpoint
+
+### 2020-09-14_1.205.2
+- Update response examples, descriptions, and formatting for `/transactions/enrich` endpoint
+
+### 2020-09-14_1.205.1
+- Update descriptions for `CUSIP` and `ISIN` fields in the investments `Security` type to reflect CGS license requirements
+
+### 2020-09-14_1.205.0
+- Add `/transactions/enrich` endpoint, the EA version of `/beta/transactions/v1/enhance`.
+
+### 2020-09-14_1.204.0
+- Remove `/income/verification/refresh` endpoint
+
+### 2020-09-14_1.203.0
+- Add 7 brand new recurring transfer APIs
+- Add `/transfer/recurring/create`
+- Add `/transfer/recurring/list`
+- Add `/transfer/recurring/get`
+- Add `/transfer/recurring/cancel`
+- Add `/sandbox/transfer/test_clock/create`
+- Add `/sandbox/transfer/test_clock/advance`
+- Add `/sandbox/transfer/test_clock/get`
+
+### 2020-09-14_1.202.6
+- IdentityMatchResponse `PhoneNumberMatchScore` and `EmailAddressMatchScore` use `score` instead of `scores`
+
 # 11.1.0
 - Updating to OAS 2020-09-14_1.202.5
 

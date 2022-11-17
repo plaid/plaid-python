@@ -127,8 +127,6 @@ from plaid.model.income_verification_paystubs_get_request import IncomeVerificat
 from plaid.model.income_verification_paystubs_get_response import IncomeVerificationPaystubsGetResponse
 from plaid.model.income_verification_precheck_request import IncomeVerificationPrecheckRequest
 from plaid.model.income_verification_precheck_response import IncomeVerificationPrecheckResponse
-from plaid.model.income_verification_refresh_request import IncomeVerificationRefreshRequest
-from plaid.model.income_verification_refresh_response import IncomeVerificationRefreshResponse
 from plaid.model.income_verification_taxforms_get_request import IncomeVerificationTaxformsGetRequest
 from plaid.model.income_verification_taxforms_get_response import IncomeVerificationTaxformsGetResponse
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
@@ -251,6 +249,12 @@ from plaid.model.sandbox_transfer_simulate_request import SandboxTransferSimulat
 from plaid.model.sandbox_transfer_simulate_response import SandboxTransferSimulateResponse
 from plaid.model.sandbox_transfer_sweep_simulate_request import SandboxTransferSweepSimulateRequest
 from plaid.model.sandbox_transfer_sweep_simulate_response import SandboxTransferSweepSimulateResponse
+from plaid.model.sandbox_transfer_test_clock_advance_request import SandboxTransferTestClockAdvanceRequest
+from plaid.model.sandbox_transfer_test_clock_advance_response import SandboxTransferTestClockAdvanceResponse
+from plaid.model.sandbox_transfer_test_clock_create_request import SandboxTransferTestClockCreateRequest
+from plaid.model.sandbox_transfer_test_clock_create_response import SandboxTransferTestClockCreateResponse
+from plaid.model.sandbox_transfer_test_clock_get_request import SandboxTransferTestClockGetRequest
+from plaid.model.sandbox_transfer_test_clock_get_response import SandboxTransferTestClockGetResponse
 from plaid.model.signal_decision_report_request import SignalDecisionReportRequest
 from plaid.model.signal_decision_report_response import SignalDecisionReportResponse
 from plaid.model.signal_evaluate_request import SignalEvaluateRequest
@@ -261,6 +265,8 @@ from plaid.model.signal_return_report_request import SignalReturnReportRequest
 from plaid.model.signal_return_report_response import SignalReturnReportResponse
 from plaid.model.transactions_enhance_get_request import TransactionsEnhanceGetRequest
 from plaid.model.transactions_enhance_get_response import TransactionsEnhanceGetResponse
+from plaid.model.transactions_enrich_get_request import TransactionsEnrichGetRequest
+from plaid.model.transactions_enrich_get_response import TransactionsEnrichGetResponse
 from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_response import TransactionsGetResponse
 from plaid.model.transactions_recurring_get_request import TransactionsRecurringGetRequest
@@ -303,6 +309,14 @@ from plaid.model.transfer_originator_list_request import TransferOriginatorListR
 from plaid.model.transfer_originator_list_response import TransferOriginatorListResponse
 from plaid.model.transfer_questionnaire_create_request import TransferQuestionnaireCreateRequest
 from plaid.model.transfer_questionnaire_create_response import TransferQuestionnaireCreateResponse
+from plaid.model.transfer_recurring_cancel_request import TransferRecurringCancelRequest
+from plaid.model.transfer_recurring_cancel_response import TransferRecurringCancelResponse
+from plaid.model.transfer_recurring_create_request import TransferRecurringCreateRequest
+from plaid.model.transfer_recurring_create_response import TransferRecurringCreateResponse
+from plaid.model.transfer_recurring_get_request import TransferRecurringGetRequest
+from plaid.model.transfer_recurring_get_response import TransferRecurringGetResponse
+from plaid.model.transfer_recurring_list_request import TransferRecurringListRequest
+from plaid.model.transfer_recurring_list_response import TransferRecurringListResponse
 from plaid.model.transfer_refund_cancel_request import TransferRefundCancelRequest
 from plaid.model.transfer_refund_cancel_response import TransferRefundCancelResponse
 from plaid.model.transfer_refund_create_request import TransferRefundCreateRequest
@@ -7582,128 +7596,6 @@ class PlaidApi(object):
             callable=__income_verification_precheck
         )
 
-        def __income_verification_refresh(
-            self,
-            income_verification_refresh_request,
-            **kwargs
-        ):
-            """(Deprecated) Refresh an income verification  # noqa: E501
-
-            `/income/verification/refresh` refreshes a given income verification.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.income_verification_refresh(income_verification_refresh_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                income_verification_refresh_request (IncomeVerificationRefreshRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                IncomeVerificationRefreshResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['income_verification_refresh_request'] = \
-                income_verification_refresh_request
-            return self.call_with_http_info(**kwargs)
-
-        self.income_verification_refresh = _Endpoint(
-            settings={
-                'response_type': (IncomeVerificationRefreshResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/income/verification/refresh',
-                'operation_id': 'income_verification_refresh',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'income_verification_refresh_request',
-                ],
-                'required': [
-                    'income_verification_refresh_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'income_verification_refresh_request':
-                        (IncomeVerificationRefreshRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'income_verification_refresh_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__income_verification_refresh
-        )
-
         def __income_verification_taxforms_get(
             self,
             income_verification_taxforms_get_request,
@@ -10639,7 +10531,7 @@ class PlaidApi(object):
         ):
             """Removes a Plaid reseller's end customer.  # noqa: E501
 
-            The `/partner/customer/remove` endpoint is used by reseller partners to remove an end customer. Removing an end customer will remove it from view in the Plaid Dashboard and deactivate its API keys.  # noqa: E501
+            The `/partner/customer/remove` endpoint is used by reseller partners to remove an end customer. Removing an end customer will remove it from view in the Plaid Dashboard and deactivate its API keys. This endpoint can only be used to remove an end customer that has not yet been enabled in Production.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15024,6 +14916,372 @@ class PlaidApi(object):
             callable=__sandbox_transfer_sweep_simulate
         )
 
+        def __sandbox_transfer_test_clock_advance(
+            self,
+            sandbox_transfer_test_clock_advance_request,
+            **kwargs
+        ):
+            """Advance a test clock  # noqa: E501
+
+            Use the `/sandbox/transfer/test_clock/advance` endpoint to advance a `test_clock` in the Sandbox environment.   A test clock object represents an independent timeline and has a `frozen_timestamp` field indicating the current timestamp of the timeline. A test clock can be advanced by incrementing `frozen_timestamp`, but may never go back to a lower `frozen_timestamp`.  If a test clock is advanced from T1 to T2, we will simulate the changes that ought to occur during the period of (T1, T2].  For instance, a client creates a weekly recurring transfer with a test clock set at t. When the client advances the test clock by setting `frozen_timestamp` = t + 15 days, 2 new originations should be created, along with the webhook events. The timestamps of the objects and webhook events created/updated in step 2 should also fall in (T1, T2] time range.  The advancement of the test clock from its current `frozen_timestamp` should be limited such that there are no more than 20 originations resulted from the advance operation on each `recurring_transfer` associated with this `test_clock`.  For instance, if the recurring transfer associated with this test clock originates once every 4 weeks, you can advance the `frozen_timestamp` up to 80 weeks on each advance call.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_test_clock_advance(sandbox_transfer_test_clock_advance_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_test_clock_advance_request (SandboxTransferTestClockAdvanceRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferTestClockAdvanceResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_test_clock_advance_request'] = \
+                sandbox_transfer_test_clock_advance_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_test_clock_advance = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferTestClockAdvanceResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/test_clock/advance',
+                'operation_id': 'sandbox_transfer_test_clock_advance',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_test_clock_advance_request',
+                ],
+                'required': [
+                    'sandbox_transfer_test_clock_advance_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_test_clock_advance_request':
+                        (SandboxTransferTestClockAdvanceRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_test_clock_advance_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_test_clock_advance
+        )
+
+        def __sandbox_transfer_test_clock_create(
+            self,
+            sandbox_transfer_test_clock_create_request,
+            **kwargs
+        ):
+            """Create a test clock  # noqa: E501
+
+            Use the `/sandbox/transfer/test_clock/create` endpoint to create a `test_clock` in the Sandbox environment.   A test clock object represents an independent timeline and has a `frozen_timestamp` field indicating the current timestamp of the timeline. Test clock allows clients to easily test and integrate with recurring transfer product in sandbox environment.  A test clock can be associated with up to 5 recurring transfers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_test_clock_create(sandbox_transfer_test_clock_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_test_clock_create_request (SandboxTransferTestClockCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferTestClockCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_test_clock_create_request'] = \
+                sandbox_transfer_test_clock_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_test_clock_create = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferTestClockCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/test_clock/create',
+                'operation_id': 'sandbox_transfer_test_clock_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_test_clock_create_request',
+                ],
+                'required': [
+                    'sandbox_transfer_test_clock_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_test_clock_create_request':
+                        (SandboxTransferTestClockCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_test_clock_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_test_clock_create
+        )
+
+        def __sandbox_transfer_test_clock_get(
+            self,
+            sandbox_transfer_test_clock_get_request,
+            **kwargs
+        ):
+            """Get a test clock  # noqa: E501
+
+            Use the `/sandbox/transfer/test_clock/get` endpoint to get a `test_clock` in the Sandbox environment.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_test_clock_get(sandbox_transfer_test_clock_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_test_clock_get_request (SandboxTransferTestClockGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferTestClockGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_test_clock_get_request'] = \
+                sandbox_transfer_test_clock_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_test_clock_get = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferTestClockGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/test_clock/get',
+                'operation_id': 'sandbox_transfer_test_clock_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_test_clock_get_request',
+                ],
+                'required': [
+                    'sandbox_transfer_test_clock_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_test_clock_get_request':
+                        (SandboxTransferTestClockGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_test_clock_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_test_clock_get
+        )
+
         def __signal_decision_report(
             self,
             signal_decision_report_request,
@@ -15632,6 +15890,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transactions_enhance
+        )
+
+        def __transactions_enrich(
+            self,
+            transactions_enrich_get_request,
+            **kwargs
+        ):
+            """Enrich locally-held transaction data  # noqa: E501
+
+            The '/transactions/enrich' endpoint enriches raw transaction data generated by your own banking products or retrieved from other non-Plaid sources.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transactions_enrich(transactions_enrich_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transactions_enrich_get_request (TransactionsEnrichGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransactionsEnrichGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transactions_enrich_get_request'] = \
+                transactions_enrich_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transactions_enrich = _Endpoint(
+            settings={
+                'response_type': (TransactionsEnrichGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transactions/enrich',
+                'operation_id': 'transactions_enrich',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transactions_enrich_get_request',
+                ],
+                'required': [
+                    'transactions_enrich_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transactions_enrich_get_request':
+                        (TransactionsEnrichGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transactions_enrich_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transactions_enrich
         )
 
         def __transactions_get(
@@ -18195,6 +18575,494 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transfer_questionnaire_create
+        )
+
+        def __transfer_recurring_cancel(
+            self,
+            transfer_recurring_cancel_request,
+            **kwargs
+        ):
+            """Cancel a recurring transfer.  # noqa: E501
+
+            Use the `/transfer/recurring/cancel` endpoint to cancel a recurring transfer.  Scheduled transfer that hasn't been submitted to bank will be cancelled.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_recurring_cancel(transfer_recurring_cancel_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_recurring_cancel_request (TransferRecurringCancelRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferRecurringCancelResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_recurring_cancel_request'] = \
+                transfer_recurring_cancel_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_recurring_cancel = _Endpoint(
+            settings={
+                'response_type': (TransferRecurringCancelResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/recurring/cancel',
+                'operation_id': 'transfer_recurring_cancel',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_recurring_cancel_request',
+                ],
+                'required': [
+                    'transfer_recurring_cancel_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_recurring_cancel_request':
+                        (TransferRecurringCancelRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_recurring_cancel_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_recurring_cancel
+        )
+
+        def __transfer_recurring_create(
+            self,
+            transfer_recurring_create_request,
+            **kwargs
+        ):
+            """Create a recurring transfer  # noqa: E501
+
+            Use the `/transfer/recurring/create` endpoint to initiate a new recurring transfer.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_recurring_create(transfer_recurring_create_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_recurring_create_request (TransferRecurringCreateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferRecurringCreateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_recurring_create_request'] = \
+                transfer_recurring_create_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_recurring_create = _Endpoint(
+            settings={
+                'response_type': (TransferRecurringCreateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/recurring/create',
+                'operation_id': 'transfer_recurring_create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_recurring_create_request',
+                ],
+                'required': [
+                    'transfer_recurring_create_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_recurring_create_request':
+                        (TransferRecurringCreateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_recurring_create_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_recurring_create
+        )
+
+        def __transfer_recurring_get(
+            self,
+            transfer_recurring_get_request,
+            **kwargs
+        ):
+            """Retrieve a recurring transfer  # noqa: E501
+
+            The `/transfer/recurring/get` fetches information about the recurring transfer corresponding to the given `recurring_transfer_id`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_recurring_get(transfer_recurring_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_recurring_get_request (TransferRecurringGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferRecurringGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_recurring_get_request'] = \
+                transfer_recurring_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_recurring_get = _Endpoint(
+            settings={
+                'response_type': (TransferRecurringGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/recurring/get',
+                'operation_id': 'transfer_recurring_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_recurring_get_request',
+                ],
+                'required': [
+                    'transfer_recurring_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_recurring_get_request':
+                        (TransferRecurringGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_recurring_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_recurring_get
+        )
+
+        def __transfer_recurring_list(
+            self,
+            transfer_recurring_list_request,
+            **kwargs
+        ):
+            """List recurring transfers  # noqa: E501
+
+            Use the `/transfer/recurring/list` endpoint to see a list of all your recurring transfers and their statuses. Results are paginated; use the `count` and `offset` query parameters to retrieve the desired recurring transfers.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_recurring_list(transfer_recurring_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_recurring_list_request (TransferRecurringListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferRecurringListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_recurring_list_request'] = \
+                transfer_recurring_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_recurring_list = _Endpoint(
+            settings={
+                'response_type': (TransferRecurringListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/recurring/list',
+                'operation_id': 'transfer_recurring_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_recurring_list_request',
+                ],
+                'required': [
+                    'transfer_recurring_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_recurring_list_request':
+                        (TransferRecurringListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_recurring_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_recurring_list
         )
 
         def __transfer_refund_cancel(

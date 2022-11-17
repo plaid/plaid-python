@@ -135,8 +135,8 @@ class Security(ModelNormal):
 
         Args:
             security_id (str): A unique, Plaid-specific identifier for the security, used to associate securities with holdings. Like all Plaid identifiers, the `security_id` is case sensitive. The `security_id` may change if inherent details of the security change due to a corporate action, for example, in the event of a ticker symbol change or CUSIP change.
-            isin (str, none_type): 12-character ISIN, a globally unique securities identifier.
-            cusip (str, none_type): 9-character CUSIP, an identifier assigned to North American securities.
+            isin (str, none_type): 12-character ISIN, a globally unique securities identifier. Please note that CGS requires Plaid's customers to hold a license directly from them to receive CUSIP & ISIN data. This field will be null by default for new customers. For existing customers, this field will be null by default starting on Sept 15, 2023. If you would like access to this field, please contact your Plaid Account Manager or reach out to investments-vendors@plaid.com.
+            cusip (str, none_type): 9-character CUSIP, an identifier assigned to North American securities. Please note that CGS requires Plaid's customers to hold a license directly from them to receive CUSIP & ISIN data. This field will be null by default for new customers. For existing customers, this field will be null by default starting on Sept 15, 2023. If you would like access to this field, please contact your Plaid Account Manager or reach out to investments-vendors@plaid.com.
             sedol (str, none_type): 7-character SEDOL, an identifier assigned to securities in the UK.
             institution_security_id (str, none_type): An identifier given to the security by the institution
             institution_id (str, none_type): If `institution_security_id` is present, this field indicates the Plaid `institution_id` of the institution to whom the identifier belongs.

@@ -135,7 +135,9 @@ plaid/model/category.py
 plaid/model/cause.py
 plaid/model/cause_all_of.py
 plaid/model/client_provided_enhanced_transaction.py
+plaid/model/client_provided_enriched_transaction.py
 plaid/model/client_provided_raw_transaction.py
+plaid/model/client_provided_transaction.py
 plaid/model/client_user_id.py
 plaid/model/client_user_id_nullable.py
 plaid/model/connected_application.py
@@ -281,6 +283,8 @@ plaid/model/employment_verification_get_request.py
 plaid/model/employment_verification_get_response.py
 plaid/model/employment_verification_status.py
 plaid/model/enhancements.py
+plaid/model/enrich_transaction_direction.py
+plaid/model/enrichments.py
 plaid/model/entity_document.py
 plaid/model/entity_document_type.py
 plaid/model/entity_screening_hit_analysis.py
@@ -389,8 +393,6 @@ plaid/model/income_verification_precheck_payroll_institution.py
 plaid/model/income_verification_precheck_request.py
 plaid/model/income_verification_precheck_response.py
 plaid/model/income_verification_precheck_user.py
-plaid/model/income_verification_refresh_request.py
-plaid/model/income_verification_refresh_response.py
 plaid/model/income_verification_source_type.py
 plaid/model/income_verification_status_webhook.py
 plaid/model/income_verification_taxforms_get_request.py
@@ -697,6 +699,7 @@ plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
 plaid/model/recurring_transaction_frequency.py
 plaid/model/recurring_transactions_update_webhook.py
+plaid/model/recurring_transfer.py
 plaid/model/removed_transaction.py
 plaid/model/report_type.py
 plaid/model/reporting_information.py
@@ -738,6 +741,12 @@ plaid/model/sandbox_transfer_simulate_request.py
 plaid/model/sandbox_transfer_simulate_response.py
 plaid/model/sandbox_transfer_sweep_simulate_request.py
 plaid/model/sandbox_transfer_sweep_simulate_response.py
+plaid/model/sandbox_transfer_test_clock_advance_request.py
+plaid/model/sandbox_transfer_test_clock_advance_response.py
+plaid/model/sandbox_transfer_test_clock_create_request.py
+plaid/model/sandbox_transfer_test_clock_create_response.py
+plaid/model/sandbox_transfer_test_clock_get_request.py
+plaid/model/sandbox_transfer_test_clock_get_response.py
 plaid/model/scopes.py
 plaid/model/scopes_context.py
 plaid/model/scopes_nullable.py
@@ -757,12 +766,14 @@ plaid/model/service_product_fulfillment_identifier.py
 plaid/model/servicer_address_data.py
 plaid/model/services.py
 plaid/model/signal_address_data.py
+plaid/model/signal_decision_outcome.py
 plaid/model/signal_decision_report_request.py
 plaid/model/signal_decision_report_response.py
 plaid/model/signal_device.py
 plaid/model/signal_evaluate_core_attributes.py
 plaid/model/signal_evaluate_request.py
 plaid/model/signal_evaluate_response.py
+plaid/model/signal_payment_method.py
 plaid/model/signal_person_name.py
 plaid/model/signal_prepare_request.py
 plaid/model/signal_prepare_response.py
@@ -806,6 +817,8 @@ plaid/model/transaction_stream_status.py
 plaid/model/transactions_category_rule.py
 plaid/model/transactions_enhance_get_request.py
 plaid/model/transactions_enhance_get_response.py
+plaid/model/transactions_enrich_get_request.py
+plaid/model/transactions_enrich_get_response.py
 plaid/model/transactions_get_request.py
 plaid/model/transactions_get_request_options.py
 plaid/model/transactions_get_response.py
@@ -846,6 +859,7 @@ plaid/model/transfer_cancel_response.py
 plaid/model/transfer_create_idempotency_key.py
 plaid/model/transfer_create_request.py
 plaid/model/transfer_create_response.py
+plaid/model/transfer_device.py
 plaid/model/transfer_diligence_status.py
 plaid/model/transfer_event.py
 plaid/model/transfer_event_list_request.py
@@ -882,6 +896,16 @@ plaid/model/transfer_originator_list_request.py
 plaid/model/transfer_originator_list_response.py
 plaid/model/transfer_questionnaire_create_request.py
 plaid/model/transfer_questionnaire_create_response.py
+plaid/model/transfer_recurring_cancel_request.py
+plaid/model/transfer_recurring_cancel_response.py
+plaid/model/transfer_recurring_create_request.py
+plaid/model/transfer_recurring_create_response.py
+plaid/model/transfer_recurring_get_request.py
+plaid/model/transfer_recurring_get_response.py
+plaid/model/transfer_recurring_list_request.py
+plaid/model/transfer_recurring_list_response.py
+plaid/model/transfer_recurring_schedule.py
+plaid/model/transfer_recurring_status.py
 plaid/model/transfer_refund.py
 plaid/model/transfer_refund_cancel_request.py
 plaid/model/transfer_refund_cancel_response.py
@@ -897,6 +921,7 @@ plaid/model/transfer_repayment_list_response.py
 plaid/model/transfer_repayment_return.py
 plaid/model/transfer_repayment_return_list_request.py
 plaid/model/transfer_repayment_return_list_response.py
+plaid/model/transfer_schedule_interval_unit.py
 plaid/model/transfer_status.py
 plaid/model/transfer_sweep.py
 plaid/model/transfer_sweep_get_request.py
@@ -904,6 +929,7 @@ plaid/model/transfer_sweep_get_response.py
 plaid/model/transfer_sweep_list_request.py
 plaid/model/transfer_sweep_list_response.py
 plaid/model/transfer_sweep_status.py
+plaid/model/transfer_test_clock.py
 plaid/model/transfer_type.py
 plaid/model/transfer_user_address_in_request.py
 plaid/model/transfer_user_address_in_response.py
