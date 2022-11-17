@@ -110,10 +110,10 @@ class ClientProvidedRawTransaction(ModelNormal):
         """ClientProvidedRawTransaction - a model defined in OpenAPI
 
         Args:
-            id (str): Unique transaction identifier to tie transactions back to clients' systems.
+            id (str): A unique ID for the transaction used to help you tie data back to your systems.
             description (str): The raw description of the transaction.
-            amount (float): The value of the transaction, denominated in the account's currency, as stated in `iso_currency_code`. Positive values when money moves out of the account; negative values when money moves in. For example, debit card purchases are positive; credit card payments, direct deposits, and refunds are negative.
-            iso_currency_code (str): The ISO-4217 currency code of the transaction.
+            amount (float): The value of the transaction with direction. (NOTE: this will affect enrichment results, so directions are important):.   Negative (-) for credits (e.g., incoming transfers, refunds)   Positive (+) for debits (e.g., purchases, fees, outgoing transfers)
+            iso_currency_code (str): The ISO-4217 currency code of the transaction, e.g., USD.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

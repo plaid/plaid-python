@@ -78,6 +78,7 @@ class SignalReturnReportRequest(ModelNormal):
             'return_code': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'returned_at': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +91,7 @@ class SignalReturnReportRequest(ModelNormal):
         'return_code': 'return_code',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'returned_at': 'returned_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,6 +146,7 @@ class SignalReturnReportRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            returned_at (datetime, none_type): Date and time when you receive the returns from your payment processors, in ISO 8601 format (`YYYY-MM-DDTHH:mm:ssZ`).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -92,6 +92,8 @@ class SignalEvaluateRequest(ModelNormal):
             'secret': (str,),  # noqa: E501
             'user_present': (bool, none_type,),  # noqa: E501
             'client_user_id': (str,),  # noqa: E501
+            'is_recurring': (bool, none_type,),  # noqa: E501
+            'default_payment_method': (str, none_type,),  # noqa: E501
             'user': (SignalUser,),  # noqa: E501
             'device': (SignalDevice,),  # noqa: E501
         }
@@ -110,6 +112,8 @@ class SignalEvaluateRequest(ModelNormal):
         'secret': 'secret',  # noqa: E501
         'user_present': 'user_present',  # noqa: E501
         'client_user_id': 'client_user_id',  # noqa: E501
+        'is_recurring': 'is_recurring',  # noqa: E501
+        'default_payment_method': 'default_payment_method',  # noqa: E501
         'user': 'user',  # noqa: E501
         'device': 'device',  # noqa: E501
     }
@@ -170,6 +174,8 @@ class SignalEvaluateRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             user_present (bool, none_type): `true` if the end user is present while initiating the ACH transfer and the endpoint is being called; `false` otherwise (for example, when the ACH transfer is scheduled and the end user is not present, or you call this endpoint after the ACH transfer but before submitting the Nacha file for ACH processing).. [optional]  # noqa: E501
             client_user_id (str): A unique ID that identifies the end user in your system. This ID is used to correlate requests by a user with multiple Items. The max length for this field is 36 characters. Personally identifiable information, such as an email address or phone number, should not be used in the `client_user_id`.. [optional]  # noqa: E501
+            is_recurring (bool, none_type): **true** if the ACH transaction is a recurring transaction; **false** otherwise . [optional]  # noqa: E501
+            default_payment_method (str, none_type): The default ACH or non-ACH payment method to complete the transaction. `SAME_DAY_ACH`: Same Day ACH by NACHA. The debit transaction is processed and settled on the same day `NEXT_DAY_ACH`: Next Day ACH settlement for debit transactions, offered by some payment processors  `STANDARD_ACH`: standard ACH by NACHA `REAL_TIME_PAYMENTS`: real-time payments such as RTP and FedNow `DEBIT_CARD`: if the default payment is over debit card networks `MULTIPLE_PAYMENT_METHODS`: if there is no default debit rail or there are multiple payment methods  Possible values:  `SAME_DAY_ACH`, `NEXT_DAY_ACH`, `STANDARD_ACH`, `REAL_TIME_PAYMENTS`, `DEBIT_CARD`, `MULTIPLE_PAYMENT_METHODS`. [optional]  # noqa: E501
             user (SignalUser): [optional]  # noqa: E501
             device (SignalDevice): [optional]  # noqa: E501
         """

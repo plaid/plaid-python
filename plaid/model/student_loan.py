@@ -179,7 +179,7 @@ class StudentLoan(ModelNormal):
             origination_date (date, none_type): The date on which the loan was initially lent. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (YYYY-MM-DD). 
             origination_principal_amount (float, none_type): The original principal balance of the loan.
             outstanding_interest_amount (float, none_type): The total dollar amount of the accrued interest balance. For Sallie Mae ( `ins_116944`), this amount is included in the current balance of the loan, so this field will return as `null`.
-            payment_reference_number (str, none_type): The relevant account number that should be used to reference this loan for payments. In the majority of cases, `payment_reference_number` will match a`ccount_number,` but in some institutions, such as Great Lakes (`ins_116861`), it will be different.
+            payment_reference_number (str, none_type): The relevant account number that should be used to reference this loan for payments. In the majority of cases, `payment_reference_number` will match `account_number,` but in some institutions, such as Great Lakes (`ins_116861`), it will be different.
             pslf_status (PSLFStatus):
             repayment_plan (StudentRepaymentPlan):
             sequence_number (str, none_type): The sequence number of the student loan. Heartland ECSI (`ins_116948`) does not make this field available.

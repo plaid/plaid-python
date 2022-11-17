@@ -76,7 +76,7 @@ class EmailAddressMatchScore(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'scores': (int, none_type,),  # noqa: E501
+            'score': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,7 +85,7 @@ class EmailAddressMatchScore(ModelNormal):
 
 
     attribute_map = {
-        'scores': 'scores',  # noqa: E501
+        'score': 'score',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,7 +134,7 @@ class EmailAddressMatchScore(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            scores (int, none_type): Match score for normalized email. 100 is a perfect match and 0 is a no match. If the email is missing from either the API or financial institution, this is empty.. [optional]  # noqa: E501
+            score (int, none_type): Match score for normalized email. 100 is a perfect match and 0 is a no match. If the email is missing from either the API or financial institution, this is empty.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
