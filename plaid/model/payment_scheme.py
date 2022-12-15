@@ -49,7 +49,8 @@ class PaymentScheme(ModelSimple):
         ('value',): {
             'None': None,
             'NULL': "null",
-            'FASTER_PAYMENTS': "FASTER_PAYMENTS",
+            'LOCAL_DEFAULT': "LOCAL_DEFAULT",
+            'LOCAL_INSTANT': "LOCAL_INSTANT",
             'SEPA_CREDIT_TRANSFER': "SEPA_CREDIT_TRANSFER",
             'SEPA_CREDIT_TRANSFER_INSTANT': "SEPA_CREDIT_TRANSFER_INSTANT",
         },
@@ -101,10 +102,10 @@ class PaymentScheme(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Payment scheme. If not specified - the default in the region will be used (e.g. `SEPA_CREDIT_TRANSFER` for EU). Using unsupported values will result in a failed payment.  `FASTER_PAYMENTS`: Enables payments to move quickly between UK bank accounts. Default value in the UK.  `SEPA_CREDIT_TRANSFER`: The standard payment to a beneficiary within the SEPA area.  `SEPA_CREDIT_TRANSFER_INSTANT`: Instant payment within the SEPA area. May involve additional fees and may not be available at some banks.., must be one of ["null", "FASTER_PAYMENTS", "SEPA_CREDIT_TRANSFER", "SEPA_CREDIT_TRANSFER_INSTANT", ]  # noqa: E501
+            args[0] (str): Payment scheme. If not specified - the default in the region will be used (e.g. `SEPA_CREDIT_TRANSFER` for EU). Using unsupported values will result in a failed payment.  `LOCAL_DEFAULT`: The default payment scheme for the selected market and currency will be used.  `LOCAL_INSTANT`: The instant payment scheme for the selected market and currency will be used (if applicable). Fees may be applied by the institution. If the market does not support an Instant Scheme (e.g. Denmark), the default in the region will be used.  `SEPA_CREDIT_TRANSFER`: The standard payment to a beneficiary within the SEPA area.  `SEPA_CREDIT_TRANSFER_INSTANT`: Instant payment within the SEPA area. May involve additional fees and may not be available at some banks.., must be one of ["null", "LOCAL_DEFAULT", "LOCAL_INSTANT", "SEPA_CREDIT_TRANSFER", "SEPA_CREDIT_TRANSFER_INSTANT", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Payment scheme. If not specified - the default in the region will be used (e.g. `SEPA_CREDIT_TRANSFER` for EU). Using unsupported values will result in a failed payment.  `FASTER_PAYMENTS`: Enables payments to move quickly between UK bank accounts. Default value in the UK.  `SEPA_CREDIT_TRANSFER`: The standard payment to a beneficiary within the SEPA area.  `SEPA_CREDIT_TRANSFER_INSTANT`: Instant payment within the SEPA area. May involve additional fees and may not be available at some banks.., must be one of ["null", "FASTER_PAYMENTS", "SEPA_CREDIT_TRANSFER", "SEPA_CREDIT_TRANSFER_INSTANT", ]  # noqa: E501
+            value (str): Payment scheme. If not specified - the default in the region will be used (e.g. `SEPA_CREDIT_TRANSFER` for EU). Using unsupported values will result in a failed payment.  `LOCAL_DEFAULT`: The default payment scheme for the selected market and currency will be used.  `LOCAL_INSTANT`: The instant payment scheme for the selected market and currency will be used (if applicable). Fees may be applied by the institution. If the market does not support an Instant Scheme (e.g. Denmark), the default in the region will be used.  `SEPA_CREDIT_TRANSFER`: The standard payment to a beneficiary within the SEPA area.  `SEPA_CREDIT_TRANSFER_INSTANT`: Instant payment within the SEPA area. May involve additional fees and may not be available at some banks.., must be one of ["null", "LOCAL_DEFAULT", "LOCAL_INSTANT", "SEPA_CREDIT_TRANSFER", "SEPA_CREDIT_TRANSFER_INSTANT", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.client_provided_transaction import ClientProvidedTransaction
+    from plaid.model.transactions_enrich_request_options import TransactionsEnrichRequestOptions
     globals()['ClientProvidedTransaction'] = ClientProvidedTransaction
+    globals()['TransactionsEnrichRequestOptions'] = TransactionsEnrichRequestOptions
 
 
 class TransactionsEnrichGetRequest(ModelNormal):
@@ -79,7 +81,7 @@ class TransactionsEnrichGetRequest(ModelNormal):
             'transactions': ([ClientProvidedTransaction],),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'include_legacy_categories': (bool,),  # noqa: E501
+            'options': (TransactionsEnrichRequestOptions,),  # noqa: E501
         }
 
     @cached_property
@@ -92,7 +94,7 @@ class TransactionsEnrichGetRequest(ModelNormal):
         'transactions': 'transactions',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'include_legacy_categories': 'include_legacy_categories',  # noqa: E501
+        'options': 'options',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,7 +149,7 @@ class TransactionsEnrichGetRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            include_legacy_categories (bool): Include legacy categories in Enrich responses. [optional] if omitted the server will use the default value of False  # noqa: E501
+            options (TransactionsEnrichRequestOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

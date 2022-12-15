@@ -70,9 +70,9 @@ class TransferRecurringGetRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'recurring_transfer_id': (str,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'recurring_transfer_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -81,9 +81,9 @@ class TransferRecurringGetRequest(ModelNormal):
 
 
     attribute_map = {
+        'recurring_transfer_id': 'recurring_transfer_id',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'recurring_transfer_id': 'recurring_transfer_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -98,12 +98,10 @@ class TransferRecurringGetRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, secret, recurring_transfer_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, recurring_transfer_id, *args, **kwargs):  # noqa: E501
         """TransferRecurringGetRequest - a model defined in OpenAPI
 
         Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
             recurring_transfer_id (str): Plaid’s unique identifier for a recurring transfer.
 
         Keyword Args:
@@ -137,6 +135,8 @@ class TransferRecurringGetRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -162,8 +162,6 @@ class TransferRecurringGetRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
-        self.secret = secret
         self.recurring_transfer_id = recurring_transfer_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

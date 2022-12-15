@@ -50,7 +50,8 @@ class CounterpartyType(ModelSimple):
             'MERCHANT': "merchant",
             'FINANCIAL_INSTITUTION': "financial_institution",
             'PAYMENT_APP': "payment_app",
-            'DELIVERY_MARKETPLACE': "delivery_marketplace",
+            'MARKETPLACE': "marketplace",
+            'PAYMENT_TERMINAL': "payment_terminal",
         },
     }
 
@@ -100,10 +101,10 @@ class CounterpartyType(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The counterparty type.  `merchant`: a provider of goods or services for purchase `financial_institution`: a financial entity (bank, credit union, BNPL, fintech) `payment_app`: a transfer or P2P app (e.g. Zelle) `delivery_marketplace`: a food delivery marketplace (e.g DoorDash)., must be one of ["merchant", "financial_institution", "payment_app", "delivery_marketplace", ]  # noqa: E501
+            args[0] (str): The counterparty type.  `merchant`: a provider of goods or services for purchase `financial_institution`: a financial entity (bank, credit union, BNPL, fintech) `payment_app`: a transfer or P2P app (e.g. Zelle) `marketplace`: a marketplace (e.g DoorDash, Google Play Store) `payment_terminal`: a point-of-sale payment terminal (e.g Square, Toast)., must be one of ["merchant", "financial_institution", "payment_app", "marketplace", "payment_terminal", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The counterparty type.  `merchant`: a provider of goods or services for purchase `financial_institution`: a financial entity (bank, credit union, BNPL, fintech) `payment_app`: a transfer or P2P app (e.g. Zelle) `delivery_marketplace`: a food delivery marketplace (e.g DoorDash)., must be one of ["merchant", "financial_institution", "payment_app", "delivery_marketplace", ]  # noqa: E501
+            value (str): The counterparty type.  `merchant`: a provider of goods or services for purchase `financial_institution`: a financial entity (bank, credit union, BNPL, fintech) `payment_app`: a transfer or P2P app (e.g. Zelle) `marketplace`: a marketplace (e.g DoorDash, Google Play Store) `payment_terminal`: a point-of-sale payment terminal (e.g Square, Toast)., must be one of ["merchant", "financial_institution", "payment_app", "marketplace", "payment_terminal", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

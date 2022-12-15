@@ -138,6 +138,7 @@ plaid/model/client_provided_enhanced_transaction.py
 plaid/model/client_provided_enriched_transaction.py
 plaid/model/client_provided_raw_transaction.py
 plaid/model/client_provided_transaction.py
+plaid/model/client_provided_transaction_location.py
 plaid/model/client_user_id.py
 plaid/model/client_user_id_nullable.py
 plaid/model/connected_application.py
@@ -151,6 +152,7 @@ plaid/model/credit1099_payer.py
 plaid/model/credit1099_recipient.py
 plaid/model/credit_account_subtype.py
 plaid/model/credit_account_subtypes.py
+plaid/model/credit_amount_with_currency.py
 plaid/model/credit_audit_copy_token_create_request.py
 plaid/model/credit_audit_copy_token_create_response.py
 plaid/model/credit_audit_copy_token_remove_request.py
@@ -193,6 +195,7 @@ plaid/model/credit_pay_stub_earnings.py
 plaid/model/credit_pay_stub_employee.py
 plaid/model/credit_pay_stub_employer.py
 plaid/model/credit_pay_stub_net_pay.py
+plaid/model/credit_pay_stub_pay_basis_type.py
 plaid/model/credit_payroll_income_get_request.py
 plaid/model/credit_payroll_income_get_response.py
 plaid/model/credit_payroll_income_precheck_request.py
@@ -249,7 +252,6 @@ plaid/model/deposit_switch_token_create_response.py
 plaid/model/depository_account_subtype.py
 plaid/model/depository_account_subtypes.py
 plaid/model/depository_filter.py
-plaid/model/disbursement_limits.py
 plaid/model/distribution_breakdown.py
 plaid/model/doc_type.py
 plaid/model/document_analysis.py
@@ -407,6 +409,7 @@ plaid/model/inflow_model.py
 plaid/model/initial_update_webhook.py
 plaid/model/institution.py
 plaid/model/institution_status.py
+plaid/model/institution_supported_networks.py
 plaid/model/institutions_get_by_id_request.py
 plaid/model/institutions_get_by_id_request_options.py
 plaid/model/institutions_get_by_id_response.py
@@ -561,6 +564,7 @@ plaid/model/partner_end_customer.py
 plaid/model/partner_end_customer_address.py
 plaid/model/partner_end_customer_assets_under_management.py
 plaid/model/partner_end_customer_billing_contact.py
+plaid/model/partner_end_customer_customer_support_info.py
 plaid/model/partner_end_customer_secrets.py
 plaid/model/partner_end_customer_status.py
 plaid/model/partner_end_customer_technical_contact.py
@@ -630,7 +634,6 @@ plaid/model/payment_initiation_recipient_get_response_all_of.py
 plaid/model/payment_initiation_recipient_list_request.py
 plaid/model/payment_initiation_recipient_list_response.py
 plaid/model/payment_initiation_standing_order_metadata.py
-plaid/model/payment_limits.py
 plaid/model/payment_meta.py
 plaid/model/payment_profile_create_request.py
 plaid/model/payment_profile_create_response.py
@@ -697,9 +700,13 @@ plaid/model/pslf_status.py
 plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
+plaid/model/recurring_cancelled_webhook.py
+plaid/model/recurring_new_transfer_webhook.py
 plaid/model/recurring_transaction_frequency.py
 plaid/model/recurring_transactions_update_webhook.py
 plaid/model/recurring_transfer.py
+plaid/model/recurring_transfer_nullable.py
+plaid/model/recurring_transfer_skipped_webhook.py
 plaid/model/removed_transaction.py
 plaid/model/report_type.py
 plaid/model/reporting_information.py
@@ -747,6 +754,8 @@ plaid/model/sandbox_transfer_test_clock_create_request.py
 plaid/model/sandbox_transfer_test_clock_create_response.py
 plaid/model/sandbox_transfer_test_clock_get_request.py
 plaid/model/sandbox_transfer_test_clock_get_response.py
+plaid/model/sandbox_transfer_test_clock_list_request.py
+plaid/model/sandbox_transfer_test_clock_list_response.py
 plaid/model/scopes.py
 plaid/model/scopes_context.py
 plaid/model/scopes_nullable.py
@@ -808,8 +817,8 @@ plaid/model/transaction.py
 plaid/model/transaction_all_of.py
 plaid/model/transaction_base.py
 plaid/model/transaction_code.py
+plaid/model/transaction_counterparty.py
 plaid/model/transaction_data.py
-plaid/model/transaction_frequency.py
 plaid/model/transaction_override.py
 plaid/model/transaction_stream.py
 plaid/model/transaction_stream_amount.py
@@ -819,6 +828,7 @@ plaid/model/transactions_enhance_get_request.py
 plaid/model/transactions_enhance_get_response.py
 plaid/model/transactions_enrich_get_request.py
 plaid/model/transactions_enrich_get_response.py
+plaid/model/transactions_enrich_request_options.py
 plaid/model/transactions_get_request.py
 plaid/model/transactions_get_request_options.py
 plaid/model/transactions_get_response.py
@@ -856,6 +866,9 @@ plaid/model/transfer_authorization_proposed_transfer.py
 plaid/model/transfer_authorization_user_in_request.py
 plaid/model/transfer_cancel_request.py
 plaid/model/transfer_cancel_response.py
+plaid/model/transfer_capabilities_get_request.py
+plaid/model/transfer_capabilities_get_response.py
+plaid/model/transfer_capabilities_get_rtp.py
 plaid/model/transfer_create_idempotency_key.py
 plaid/model/transfer_create_request.py
 plaid/model/transfer_create_response.py
@@ -902,6 +915,7 @@ plaid/model/transfer_recurring_create_request.py
 plaid/model/transfer_recurring_create_response.py
 plaid/model/transfer_recurring_get_request.py
 plaid/model/transfer_recurring_get_response.py
+plaid/model/transfer_recurring_idempotency_key.py
 plaid/model/transfer_recurring_list_request.py
 plaid/model/transfer_recurring_list_response.py
 plaid/model/transfer_recurring_schedule.py

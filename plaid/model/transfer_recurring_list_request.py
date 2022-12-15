@@ -79,8 +79,8 @@ class TransferRecurringListRequest(ModelNormal):
         return {
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'start_date': (datetime, none_type,),  # noqa: E501
-            'end_date': (datetime, none_type,),  # noqa: E501
+            'start_time': (datetime, none_type,),  # noqa: E501
+            'end_time': (datetime, none_type,),  # noqa: E501
             'count': (int,),  # noqa: E501
             'offset': (int,),  # noqa: E501
         }
@@ -93,8 +93,8 @@ class TransferRecurringListRequest(ModelNormal):
     attribute_map = {
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'start_date': 'start_date',  # noqa: E501
-        'end_date': 'end_date',  # noqa: E501
+        'start_time': 'start_time',  # noqa: E501
+        'end_time': 'end_time',  # noqa: E501
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
     }
@@ -111,12 +111,8 @@ class TransferRecurringListRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, secret, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """TransferRecurringListRequest - a model defined in OpenAPI
-
-        Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,10 +145,12 @@ class TransferRecurringListRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            start_date (datetime, none_type): The start datetime of recurring transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
-            end_date (datetime, none_type): The end datetime of recurring transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
-            count (int): The maximum number of transfers to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
-            offset (int): The number of transfers to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            start_time (datetime, none_type): The start datetime of recurring transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
+            end_time (datetime, none_type): The end datetime of recurring transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
+            count (int): The maximum number of recurring transfers to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
+            offset (int): The number of recurring transfers to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -178,8 +176,6 @@ class TransferRecurringListRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
-        self.secret = secret
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

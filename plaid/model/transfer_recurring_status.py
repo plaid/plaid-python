@@ -47,7 +47,6 @@ class TransferRecurringStatus(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'None': None,
             'ACTIVE': "active",
             'CANCELLED': "cancelled",
             'EXPIRED': "expired",
@@ -59,7 +58,7 @@ class TransferRecurringStatus(ModelSimple):
 
     additional_properties_type = None
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():

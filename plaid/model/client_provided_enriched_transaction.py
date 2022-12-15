@@ -125,7 +125,7 @@ class ClientProvidedEnrichedTransaction(ModelNormal):
             id (str): The unique ID for the transaction as provided by you in the request.
             description (str): The raw description of the transaction.
             amount (float): The absolute value of the transaction (>= 0)
-            iso_currency_code (str): The ISO-4217 currency code of the transaction, e.g., USD.
+            iso_currency_code (str): The ISO-4217 currency code of the transaction e.g. USD.
             enrichments (Enrichments):
 
         Keyword Args:

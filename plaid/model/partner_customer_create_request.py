@@ -28,11 +28,13 @@ def lazy_import():
     from plaid.model.partner_end_customer_address import PartnerEndCustomerAddress
     from plaid.model.partner_end_customer_assets_under_management import PartnerEndCustomerAssetsUnderManagement
     from plaid.model.partner_end_customer_billing_contact import PartnerEndCustomerBillingContact
+    from plaid.model.partner_end_customer_customer_support_info import PartnerEndCustomerCustomerSupportInfo
     from plaid.model.partner_end_customer_technical_contact import PartnerEndCustomerTechnicalContact
     from plaid.model.products import Products
     globals()['PartnerEndCustomerAddress'] = PartnerEndCustomerAddress
     globals()['PartnerEndCustomerAssetsUnderManagement'] = PartnerEndCustomerAssetsUnderManagement
     globals()['PartnerEndCustomerBillingContact'] = PartnerEndCustomerBillingContact
+    globals()['PartnerEndCustomerCustomerSupportInfo'] = PartnerEndCustomerCustomerSupportInfo
     globals()['PartnerEndCustomerTechnicalContact'] = PartnerEndCustomerTechnicalContact
     globals()['Products'] = Products
 
@@ -97,6 +99,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
             'logo': (str,),  # noqa: E501
             'technical_contact': (PartnerEndCustomerTechnicalContact,),  # noqa: E501
             'billing_contact': (PartnerEndCustomerBillingContact,),  # noqa: E501
+            'customer_support_info': (PartnerEndCustomerCustomerSupportInfo,),  # noqa: E501
             'assets_under_management': (PartnerEndCustomerAssetsUnderManagement,),  # noqa: E501
         }
 
@@ -120,6 +123,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
         'logo': 'logo',  # noqa: E501
         'technical_contact': 'technical_contact',  # noqa: E501
         'billing_contact': 'billing_contact',  # noqa: E501
+        'customer_support_info': 'customer_support_info',  # noqa: E501
         'assets_under_management': 'assets_under_management',  # noqa: E501
     }
 
@@ -139,12 +143,12 @@ class PartnerCustomerCreateRequest(ModelNormal):
         """PartnerCustomerCreateRequest - a model defined in OpenAPI
 
         Args:
-            company_name (str): The company name of the end customer being created.
+            company_name (str): The company name of the end customer being created. This will be used to display the end customer in the Plaid Dashboard. It will not be shown to end users.
             is_diligence_attested (bool): Denotes whether or not the partner has completed attestation of diligence for the end customer to be created.
             products ([Products]): The products to be enabled for the end customer.
-            legal_entity_name (str): The end customer's legal name.
+            legal_entity_name (str): The end customer's legal name. This will be shared with financial institutions as part of the OAuth registration process. It will not be shown to end users.
             website (str): The end customer's website.
-            application_name (str): The name of the end customer's application.
+            application_name (str): The name of the end customer's application. This will be shown to end users when they go through the Plaid Link flow.
             address (PartnerEndCustomerAddress):
             is_bank_addendum_completed (bool): Denotes whether the partner has forwarded the Plaid bank addendum to the end customer.
 
@@ -181,10 +185,11 @@ class PartnerCustomerCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            create_link_customization (bool): If true, the end customer's default Link customization will be set to match the partner's.. [optional]  # noqa: E501
+            create_link_customization (bool): If `true`, the end customer's default Link customization will be set to match the partner's. You can always change the end customer's Link customization in the Plaid Dashboard. See the [Link Customization docs](https://plaid.com/docs/link/customization/) for more information.. [optional]  # noqa: E501
             logo (str): Base64-encoded representation of the end customer's logo. Must be a PNG of size 1024x1024 under 4MB. The logo will be shared with financial institutions and shown to the end user during Link flows. A logo is required if `create_link_customization` is `true`. If `create_link_customization` is `false` and the logo is omitted, a stock logo will be used.. [optional]  # noqa: E501
             technical_contact (PartnerEndCustomerTechnicalContact): [optional]  # noqa: E501
             billing_contact (PartnerEndCustomerBillingContact): [optional]  # noqa: E501
+            customer_support_info (PartnerEndCustomerCustomerSupportInfo): [optional]  # noqa: E501
             assets_under_management (PartnerEndCustomerAssetsUnderManagement): [optional]  # noqa: E501
         """
 

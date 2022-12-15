@@ -173,11 +173,11 @@ class Enhancements(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             merchant_name (str, none_type): The name of the primary counterparty, such as the merchant or the financial institution, as extracted by Plaid from the raw description.. [optional]  # noqa: E501
-            website (str, none_type): The website associated with this transaction.. [optional]  # noqa: E501
-            logo_url (str, none_type): A link to the logo associated with this transaction. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
+            website (str, none_type): The website associated with this transaction, if available.. [optional]  # noqa: E501
+            logo_url (str, none_type): The URL of a logo associated with this transaction, if available. The logo is formatted as a 100x100 pixel PNG file.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
-            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
+            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 pixels.. [optional]  # noqa: E501
             counterparties ([Counterparty]): The counterparties present in the transaction. Counterparties, such as the merchant or the financial institution, are extracted by Plaid from the raw description.. [optional]  # noqa: E501
         """
 

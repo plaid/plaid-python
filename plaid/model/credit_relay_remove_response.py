@@ -106,7 +106,7 @@ class CreditRelayRemoveResponse(ModelNormal):
         """CreditRelayRemoveResponse - a model defined in OpenAPI
 
         Args:
-            removed (bool): `true` if the Relay token was successfully removed.
+            removed (bool): `true` if the relay token was successfully removed.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

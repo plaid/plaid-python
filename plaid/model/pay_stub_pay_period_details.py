@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.credit_pay_stub_pay_basis_type import CreditPayStubPayBasisType
     from plaid.model.pay_stub_distribution_breakdown import PayStubDistributionBreakdown
+    globals()['CreditPayStubPayBasisType'] = CreditPayStubPayBasisType
     globals()['PayStubDistributionBreakdown'] = PayStubDistributionBreakdown
 
 
@@ -91,6 +93,7 @@ class PayStubPayPeriodDetails(ModelNormal):
             'pay_frequency': (str, none_type,),  # noqa: E501
             'start_date': (date, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'pay_basis': (CreditPayStubPayBasisType,),  # noqa: E501
         }
 
     @cached_property
@@ -108,6 +111,7 @@ class PayStubPayPeriodDetails(ModelNormal):
         'pay_frequency': 'pay_frequency',  # noqa: E501
         'start_date': 'start_date',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'pay_basis': 'pay_basis',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,6 +171,7 @@ class PayStubPayPeriodDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            pay_basis (CreditPayStubPayBasisType): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

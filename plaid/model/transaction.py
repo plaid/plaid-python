@@ -31,12 +31,14 @@ def lazy_import():
     from plaid.model.transaction_all_of import TransactionAllOf
     from plaid.model.transaction_base import TransactionBase
     from plaid.model.transaction_code import TransactionCode
+    from plaid.model.transaction_counterparty import TransactionCounterparty
     globals()['Location'] = Location
     globals()['PaymentMeta'] = PaymentMeta
     globals()['PersonalFinanceCategory'] = PersonalFinanceCategory
     globals()['TransactionAllOf'] = TransactionAllOf
     globals()['TransactionBase'] = TransactionBase
     globals()['TransactionCode'] = TransactionCode
+    globals()['TransactionCounterparty'] = TransactionCounterparty
 
 
 class Transaction(ModelComposed):
@@ -125,8 +127,12 @@ class Transaction(ModelComposed):
             'transaction_type': (str,),  # noqa: E501
             'original_description': (str, none_type,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
+            'logo_url': (str, none_type,),  # noqa: E501
+            'website': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
+            'personal_finance_category_icon_url': (str,),  # noqa: E501
+            'counterparties': ([TransactionCounterparty],),  # noqa: E501
         }
 
     @cached_property
@@ -157,8 +163,12 @@ class Transaction(ModelComposed):
         'transaction_type': 'transaction_type',  # noqa: E501
         'original_description': 'original_description',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
+        'logo_url': 'logo_url',  # noqa: E501
+        'website': 'website',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
+        'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
+        'counterparties': 'counterparties',  # noqa: E501
     }
 
     required_properties = set([
@@ -232,8 +242,12 @@ class Transaction(ModelComposed):
             transaction_type (str): Please use the `payment_channel` field, `transaction_type` will be deprecated in the future.  `digital:` transactions that took place online.  `place:` transactions that were made at a physical location.  `special:` transactions that relate to banks, e.g. fees or deposits.  `unresolved:` transactions that do not fit into the other three types. . [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
+            logo_url (str, none_type): The logo associated with the merchant, if available. Formatted as a 100x100 pixels PNG file path.. [optional]  # noqa: E501
+            website (str, none_type): The website associated with the merchant, if available.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
+            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 pixels.. [optional]  # noqa: E501
+            counterparties ([TransactionCounterparty]): The counterparties present in the transaction. Counterparties, such as the financial institutions, are extracted by Plaid from the raw description.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -53,6 +53,9 @@ class TransferOriginatorCreateRequest(ModelNormal):
     }
 
     validations = {
+        ('company_name',): {
+            'min_length': 1,
+        },
     }
 
     additional_properties_type = None

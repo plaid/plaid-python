@@ -121,6 +121,7 @@ class Transfer(ModelNormal):
             'unauthorized_return_window': (date, none_type,),  # noqa: E501
             'originator_client_id': (str, none_type,),  # noqa: E501
             'refunds': ([TransferRefund],),  # noqa: E501
+            'recurring_transfer_id': (str, none_type,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'sweep_status': (TransferSweepStatus,),  # noqa: E501
@@ -151,6 +152,7 @@ class Transfer(ModelNormal):
         'unauthorized_return_window': 'unauthorized_return_window',  # noqa: E501
         'originator_client_id': 'originator_client_id',  # noqa: E501
         'refunds': 'refunds',  # noqa: E501
+        'recurring_transfer_id': 'recurring_transfer_id',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'sweep_status': 'sweep_status',  # noqa: E501
@@ -168,7 +170,7 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, originator_client_id, refunds, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, originator_client_id, refunds, recurring_transfer_id, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
@@ -191,6 +193,7 @@ class Transfer(ModelNormal):
             unauthorized_return_window (date, none_type): The date 61 business days from settlement date indicating the following ACH returns can no longer happen: R05, R07, R10, R11, R51, R33, R37, R38, R51, R52, R53. This will be of the form YYYY-MM-DD.
             originator_client_id (str, none_type): The Plaid client ID that is the originator of this transfer. Only present if created on behalf of another client as a third-party sender (TPS).
             refunds ([TransferRefund]): A list of refunds associated with this transfer.
+            recurring_transfer_id (str, none_type): The id of the recurring transfer if this transfer belongs to a recurring transfer.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -270,6 +273,7 @@ class Transfer(ModelNormal):
         self.unauthorized_return_window = unauthorized_return_window
         self.originator_client_id = originator_client_id
         self.refunds = refunds
+        self.recurring_transfer_id = recurring_transfer_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

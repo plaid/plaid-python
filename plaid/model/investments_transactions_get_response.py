@@ -130,7 +130,7 @@ class InvestmentsTransactionsGetResponse(ModelNormal):
             accounts ([AccountBase]): The accounts for which transaction history is being fetched.
             securities ([Security]): All securities for which there is a corresponding transaction being fetched.
             investment_transactions ([InvestmentTransaction]): The transactions being fetched
-            total_investment_transactions (int): The total number of transactions available within the date range specified. If `total_investment_transactions` is larger than the size of the `transactions` array, more transactions are available and can be fetched via manipulating the `offset` parameter.'
+            total_investment_transactions (int): The total number of transactions available within the date range specified. If `total_investment_transactions` is larger than the size of the `transactions` array, more transactions are available and can be fetched via manipulating the `offset` parameter.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

@@ -141,6 +141,7 @@ from plaid.model.client_provided_enhanced_transaction import ClientProvidedEnhan
 from plaid.model.client_provided_enriched_transaction import ClientProvidedEnrichedTransaction
 from plaid.model.client_provided_raw_transaction import ClientProvidedRawTransaction
 from plaid.model.client_provided_transaction import ClientProvidedTransaction
+from plaid.model.client_provided_transaction_location import ClientProvidedTransactionLocation
 from plaid.model.client_user_id import ClientUserID
 from plaid.model.client_user_id_nullable import ClientUserIDNullable
 from plaid.model.connected_application import ConnectedApplication
@@ -154,6 +155,7 @@ from plaid.model.credit1099_payer import Credit1099Payer
 from plaid.model.credit1099_recipient import Credit1099Recipient
 from plaid.model.credit_account_subtype import CreditAccountSubtype
 from plaid.model.credit_account_subtypes import CreditAccountSubtypes
+from plaid.model.credit_amount_with_currency import CreditAmountWithCurrency
 from plaid.model.credit_audit_copy_token_create_request import CreditAuditCopyTokenCreateRequest
 from plaid.model.credit_audit_copy_token_create_response import CreditAuditCopyTokenCreateResponse
 from plaid.model.credit_audit_copy_token_remove_request import CreditAuditCopyTokenRemoveRequest
@@ -196,6 +198,7 @@ from plaid.model.credit_pay_stub_earnings import CreditPayStubEarnings
 from plaid.model.credit_pay_stub_employee import CreditPayStubEmployee
 from plaid.model.credit_pay_stub_employer import CreditPayStubEmployer
 from plaid.model.credit_pay_stub_net_pay import CreditPayStubNetPay
+from plaid.model.credit_pay_stub_pay_basis_type import CreditPayStubPayBasisType
 from plaid.model.credit_payroll_income_get_request import CreditPayrollIncomeGetRequest
 from plaid.model.credit_payroll_income_get_response import CreditPayrollIncomeGetResponse
 from plaid.model.credit_payroll_income_precheck_request import CreditPayrollIncomePrecheckRequest
@@ -252,7 +255,6 @@ from plaid.model.deposit_switch_token_create_response import DepositSwitchTokenC
 from plaid.model.depository_account_subtype import DepositoryAccountSubtype
 from plaid.model.depository_account_subtypes import DepositoryAccountSubtypes
 from plaid.model.depository_filter import DepositoryFilter
-from plaid.model.disbursement_limits import DisbursementLimits
 from plaid.model.distribution_breakdown import DistributionBreakdown
 from plaid.model.doc_type import DocType
 from plaid.model.document_analysis import DocumentAnalysis
@@ -410,6 +412,7 @@ from plaid.model.inflow_model import InflowModel
 from plaid.model.initial_update_webhook import InitialUpdateWebhook
 from plaid.model.institution import Institution
 from plaid.model.institution_status import InstitutionStatus
+from plaid.model.institution_supported_networks import InstitutionSupportedNetworks
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
 from plaid.model.institutions_get_by_id_request_options import InstitutionsGetByIdRequestOptions
 from plaid.model.institutions_get_by_id_response import InstitutionsGetByIdResponse
@@ -566,6 +569,7 @@ from plaid.model.partner_end_customer import PartnerEndCustomer
 from plaid.model.partner_end_customer_address import PartnerEndCustomerAddress
 from plaid.model.partner_end_customer_assets_under_management import PartnerEndCustomerAssetsUnderManagement
 from plaid.model.partner_end_customer_billing_contact import PartnerEndCustomerBillingContact
+from plaid.model.partner_end_customer_customer_support_info import PartnerEndCustomerCustomerSupportInfo
 from plaid.model.partner_end_customer_secrets import PartnerEndCustomerSecrets
 from plaid.model.partner_end_customer_status import PartnerEndCustomerStatus
 from plaid.model.partner_end_customer_technical_contact import PartnerEndCustomerTechnicalContact
@@ -635,7 +639,6 @@ from plaid.model.payment_initiation_recipient_get_response_all_of import Payment
 from plaid.model.payment_initiation_recipient_list_request import PaymentInitiationRecipientListRequest
 from plaid.model.payment_initiation_recipient_list_response import PaymentInitiationRecipientListResponse
 from plaid.model.payment_initiation_standing_order_metadata import PaymentInitiationStandingOrderMetadata
-from plaid.model.payment_limits import PaymentLimits
 from plaid.model.payment_meta import PaymentMeta
 from plaid.model.payment_profile_create_request import PaymentProfileCreateRequest
 from plaid.model.payment_profile_create_response import PaymentProfileCreateResponse
@@ -700,9 +703,13 @@ from plaid.model.projected_income_summary_field_number import ProjectedIncomeSum
 from plaid.model.recaptcha_required_error import RecaptchaRequiredError
 from plaid.model.recipient_bacs import RecipientBACS
 from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
+from plaid.model.recurring_cancelled_webhook import RecurringCancelledWebhook
+from plaid.model.recurring_new_transfer_webhook import RecurringNewTransferWebhook
 from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
 from plaid.model.recurring_transactions_update_webhook import RecurringTransactionsUpdateWebhook
 from plaid.model.recurring_transfer import RecurringTransfer
+from plaid.model.recurring_transfer_nullable import RecurringTransferNullable
+from plaid.model.recurring_transfer_skipped_webhook import RecurringTransferSkippedWebhook
 from plaid.model.removed_transaction import RemovedTransaction
 from plaid.model.report_type import ReportType
 from plaid.model.reporting_information import ReportingInformation
@@ -750,6 +757,8 @@ from plaid.model.sandbox_transfer_test_clock_create_request import SandboxTransf
 from plaid.model.sandbox_transfer_test_clock_create_response import SandboxTransferTestClockCreateResponse
 from plaid.model.sandbox_transfer_test_clock_get_request import SandboxTransferTestClockGetRequest
 from plaid.model.sandbox_transfer_test_clock_get_response import SandboxTransferTestClockGetResponse
+from plaid.model.sandbox_transfer_test_clock_list_request import SandboxTransferTestClockListRequest
+from plaid.model.sandbox_transfer_test_clock_list_response import SandboxTransferTestClockListResponse
 from plaid.model.scopes import Scopes
 from plaid.model.scopes_context import ScopesContext
 from plaid.model.scopes_nullable import ScopesNullable
@@ -811,8 +820,8 @@ from plaid.model.transaction import Transaction
 from plaid.model.transaction_all_of import TransactionAllOf
 from plaid.model.transaction_base import TransactionBase
 from plaid.model.transaction_code import TransactionCode
+from plaid.model.transaction_counterparty import TransactionCounterparty
 from plaid.model.transaction_data import TransactionData
-from plaid.model.transaction_frequency import TransactionFrequency
 from plaid.model.transaction_override import TransactionOverride
 from plaid.model.transaction_stream import TransactionStream
 from plaid.model.transaction_stream_amount import TransactionStreamAmount
@@ -822,6 +831,7 @@ from plaid.model.transactions_enhance_get_request import TransactionsEnhanceGetR
 from plaid.model.transactions_enhance_get_response import TransactionsEnhanceGetResponse
 from plaid.model.transactions_enrich_get_request import TransactionsEnrichGetRequest
 from plaid.model.transactions_enrich_get_response import TransactionsEnrichGetResponse
+from plaid.model.transactions_enrich_request_options import TransactionsEnrichRequestOptions
 from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_request_options import TransactionsGetRequestOptions
 from plaid.model.transactions_get_response import TransactionsGetResponse
@@ -859,6 +869,9 @@ from plaid.model.transfer_authorization_proposed_transfer import TransferAuthori
 from plaid.model.transfer_authorization_user_in_request import TransferAuthorizationUserInRequest
 from plaid.model.transfer_cancel_request import TransferCancelRequest
 from plaid.model.transfer_cancel_response import TransferCancelResponse
+from plaid.model.transfer_capabilities_get_rtp import TransferCapabilitiesGetRTP
+from plaid.model.transfer_capabilities_get_request import TransferCapabilitiesGetRequest
+from plaid.model.transfer_capabilities_get_response import TransferCapabilitiesGetResponse
 from plaid.model.transfer_create_idempotency_key import TransferCreateIdempotencyKey
 from plaid.model.transfer_create_request import TransferCreateRequest
 from plaid.model.transfer_create_response import TransferCreateResponse
@@ -905,6 +918,7 @@ from plaid.model.transfer_recurring_create_request import TransferRecurringCreat
 from plaid.model.transfer_recurring_create_response import TransferRecurringCreateResponse
 from plaid.model.transfer_recurring_get_request import TransferRecurringGetRequest
 from plaid.model.transfer_recurring_get_response import TransferRecurringGetResponse
+from plaid.model.transfer_recurring_idempotency_key import TransferRecurringIdempotencyKey
 from plaid.model.transfer_recurring_list_request import TransferRecurringListRequest
 from plaid.model.transfer_recurring_list_response import TransferRecurringListResponse
 from plaid.model.transfer_recurring_schedule import TransferRecurringSchedule

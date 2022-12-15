@@ -84,6 +84,8 @@ class Counterparty(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'type': (CounterpartyType,),  # noqa: E501
+            'website': (str, none_type,),  # noqa: E501
+            'logo_url': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +96,8 @@ class Counterparty(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
+        'website': 'website',  # noqa: E501
+        'logo_url': 'logo_url',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,12 +112,14 @@ class Counterparty(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, type, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, type, website, logo_url, *args, **kwargs):  # noqa: E501
         """Counterparty - a model defined in OpenAPI
 
         Args:
             name (str): The name of the counterparty, such as the merchant or the financial institution, as extracted by Plaid from the raw description.
             type (CounterpartyType):
+            website (str, none_type): The website associated with the counterparty.
+            logo_url (str, none_type): The URL of a logo associated with the counterparty, if available. The logo is formatted as a 100x100 pixel PNG file.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,6 +179,8 @@ class Counterparty(ModelNormal):
 
         self.name = name
         self.type = type
+        self.website = website
+        self.logo_url = logo_url
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

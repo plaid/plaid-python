@@ -255,6 +255,8 @@ from plaid.model.sandbox_transfer_test_clock_create_request import SandboxTransf
 from plaid.model.sandbox_transfer_test_clock_create_response import SandboxTransferTestClockCreateResponse
 from plaid.model.sandbox_transfer_test_clock_get_request import SandboxTransferTestClockGetRequest
 from plaid.model.sandbox_transfer_test_clock_get_response import SandboxTransferTestClockGetResponse
+from plaid.model.sandbox_transfer_test_clock_list_request import SandboxTransferTestClockListRequest
+from plaid.model.sandbox_transfer_test_clock_list_response import SandboxTransferTestClockListResponse
 from plaid.model.signal_decision_report_request import SignalDecisionReportRequest
 from plaid.model.signal_decision_report_response import SignalDecisionReportResponse
 from plaid.model.signal_evaluate_request import SignalEvaluateRequest
@@ -285,6 +287,8 @@ from plaid.model.transfer_authorization_create_request import TransferAuthorizat
 from plaid.model.transfer_authorization_create_response import TransferAuthorizationCreateResponse
 from plaid.model.transfer_cancel_request import TransferCancelRequest
 from plaid.model.transfer_cancel_response import TransferCancelResponse
+from plaid.model.transfer_capabilities_get_request import TransferCapabilitiesGetRequest
+from plaid.model.transfer_capabilities_get_response import TransferCapabilitiesGetResponse
 from plaid.model.transfer_create_request import TransferCreateRequest
 from plaid.model.transfer_create_response import TransferCreateResponse
 from plaid.model.transfer_event_list_request import TransferEventListRequest
@@ -4551,9 +4555,9 @@ class PlaidApi(object):
             credit_relay_create_request,
             **kwargs
         ):
-            """Create a `relay_token` to share an Asset Report with a partner client  # noqa: E501
+            """Create a relay token to share an Asset Report with a partner client (beta)  # noqa: E501
 
-            Plaid can share an Asset Report directly with a participating third party on your behalf. The shared Asset Report is the exact same Asset Report originally created in `/asset_report/create`.  To grant access to an Asset Report to a third party, use the `/credit/relay/create` endpoint to create a `relay_token` and then pass that token to the third party who needs access. Each third party has its own `secondary_client_id`, for example `ce5bd328dcd34123456`. You'll need to create a separate `relay_token` for each third party to whom you want to grant access to the Report.  # noqa: E501
+            Plaid can share an Asset Report directly with a participating third party on your behalf. The shared Asset Report is the exact same Asset Report originally created in `/asset_report/create`.  To grant a third party access to an Asset Report, use the `/credit/relay/create` endpoint to create a `relay_token` and then pass that token to your third party. Each third party has its own `secondary_client_id`; for example, `ce5bd328dcd34123456`. You'll need to create a separate `relay_token` for each third party that needs access to the report on your behalf.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4673,9 +4677,9 @@ class PlaidApi(object):
             credit_relay_get_request,
             **kwargs
         ):
-            """Retrieve the reports associated with a Relay token that was shared with you  # noqa: E501
+            """Retrieve the reports associated with a relay token that was shared with you (beta)  # noqa: E501
 
-            `/credit/relay/get` allows third parties to get a report that was shared with them, using an `relay_token` that was created by the report owner.  # noqa: E501
+            `/credit/relay/get` allows third parties to receive a report that was shared with them, using a `relay_token` that was created by the report owner.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4795,9 +4799,9 @@ class PlaidApi(object):
             credit_relay_refresh_request,
             **kwargs
         ):
-            """Refresh a report of a Relay Token  # noqa: E501
+            """Refresh a report of a relay token (beta)  # noqa: E501
 
-            The `/credit/relay/refresh` endpoint allows third parties to refresh an report that was relayed to them, using a `relay_token` that was created by the report owner. A new report will be created based on the old one, but with the most recent data available.  # noqa: E501
+            The `/credit/relay/refresh` endpoint allows third parties to refresh a report that was relayed to them, using a `relay_token` that was created by the report owner. A new report will be created with the original report parameters, but with the most recent data available based on the `days_requested` value of the original report.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -4917,9 +4921,9 @@ class PlaidApi(object):
             credit_relay_remove_request,
             **kwargs
         ):
-            """Remove Credit Relay Token  # noqa: E501
+            """Remove relay token (beta)  # noqa: E501
 
-            The `/credit/relay/remove` endpoint allows you to invalidate a `relay_token`, meaning the third party holding the token will no longer be able to use it to access the reports to which the `relay_token` gives access to. The report, items associated with it, and other Relay tokens that provide access to the same report are not affected and will remain accessible after removing the given `relay_token.  # noqa: E501
+            The `/credit/relay/remove` endpoint allows you to invalidate a `relay_token`. The third party holding the token will no longer be able to access or refresh the reports which the `relay_token` gives access to. The original report, associated Items, and other relay tokens that provide access to the same report are not affected and will remain accessible after removing the given `relay_token`.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11141,7 +11145,7 @@ class PlaidApi(object):
         ):
             """Create a payment  # noqa: E501
 
-            After creating a payment recipient, you can use the `/payment_initiation/payment/create` endpoint to create a payment to that recipient.  Payments can be one-time or standing order (recurring) and can be denominated in either EUR or GBP.  If making domestic GBP-denominated payments, your recipient must have been created with BACS numbers. In general, EUR-denominated payments will be sent via SEPA Credit Transfer and GBP-denominated payments will be sent via the Faster Payments network, but the payment network used will be determined by the institution. Payments sent via Faster Payments will typically arrive immediately, while payments sent via SEPA Credit Transfer will typically arrive in one business day.  Standing orders (recurring payments) must be denominated in GBP and can only be sent to recipients in the UK. Once created, standing order payments cannot be modified or canceled via the API. An end user can cancel or modify a standing order directly on their banking application or website, or by contacting the bank. Standing orders will follow the payment rules of the underlying rails (Faster Payments in UK). Payments can be sent Monday to Friday, excluding bank holidays. If the pre-arranged date falls on a weekend or bank holiday, the payment is made on the next working day. It is not possible to guarantee the exact time the payment will reach the recipient’s account, although at least 90% of standing order payments are sent by 6am.  In the Development environment, payments must be below 5 GBP / EUR. For details on any payment limits in Production, contact your Plaid Account Manager.  # noqa: E501
+            After creating a payment recipient, you can use the `/payment_initiation/payment/create` endpoint to create a payment to that recipient.  Payments can be one-time or standing order (recurring) and can be denominated in either EUR, GBP or other chosen [currency](https://plaid.com/docs/api/products/payment-initiation/#payment_initiation-payment-create-request-amount-currency).  If making domestic GBP-denominated payments, your recipient must have been created with BACS numbers. In general, EUR-denominated payments will be sent via SEPA Credit Transfer, GBP-denominated payments will be sent via the Faster Payments network and for non-Eurozone markets typically via the local payment scheme, but the payment network used will be determined by the institution. Payments sent via Faster Payments will typically arrive immediately, while payments sent via SEPA Credit Transfer or other local payment schemes will typically arrive in one business day.  Standing orders (recurring payments) must be denominated in GBP and can only be sent to recipients in the UK. Once created, standing order payments cannot be modified or canceled via the API. An end user can cancel or modify a standing order directly on their banking application or website, or by contacting the bank. Standing orders will follow the payment rules of the underlying rails (Faster Payments in UK). Payments can be sent Monday to Friday, excluding bank holidays. If the pre-arranged date falls on a weekend or bank holiday, the payment is made on the next working day. It is not possible to guarantee the exact time the payment will reach the recipient’s account, although at least 90% of standing order payments are sent by 6am.  In the Development environment, payments must be below 5 GBP or other chosen [currency](https://plaid.com/docs/api/products/payment-initiation/#payment_initiation-payment-create-request-amount-currency). For details on any payment limits in Production, contact your Plaid Account Manager.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11507,7 +11511,7 @@ class PlaidApi(object):
         ):
             """Reverse an existing payment  # noqa: E501
 
-            Reverse a previously settled payment from a Plaid virtual account.  The original payment must be in a settled state to be refunded and only full payment refunds are currently supported. To power partial refunds, use `/wallet/transaction/execute`, where you can specify the exact amount for a payout to an end user.  A payment can only be reversed once and will be refunded back to the same source account that initiated the payment. The original payment must have been initiated to a Plaid virtual account. The refund will be initiated from the same virtual account that the payment was paid into.   # noqa: E501
+            Reverse a settled payment from a Plaid virtual account.  The original payment must be in a settled state to be refunded. To refund partially, specify the amount as part of the request. If the amount is not specified, the refund amount will be equal to all of the remaining payment amount that has not been refunded yet. If the remaining amount is less than one unit of currency (e.g. 1 GBP or 1 EUR), the refund will fail.  The refund will go back to the source account that initiated the payment. The original payment must have been initiated to a Plaid virtual account so that this account can be used to initiate the refund.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -11629,7 +11633,7 @@ class PlaidApi(object):
         ):
             """Create payment recipient  # noqa: E501
 
-            Create a payment recipient for payment initiation.  The recipient must be in Europe, within a country that is a member of the Single Euro Payment Area (SEPA).  For a standing order (recurring) payment, the recipient must be in the UK.  It is recommended to use `bacs` in the UK and `iban` in EU.  The endpoint is idempotent: if a developer has already made a request with the same payment details, Plaid will return the same `recipient_id`.   # noqa: E501
+            Create a payment recipient for payment initiation.  The recipient must be in Europe, within a country that is a member of the Single Euro Payment Area (SEPA) or a non-Eurozone country [supported](https://plaid.com/global) by Plaid. For a standing order (recurring) payment, the recipient must be in the UK.  It is recommended to use `bacs` in the UK and `iban` in EU.  The endpoint is idempotent: if a developer has already made a request with the same payment details, Plaid will return the same `recipient_id`.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -14923,7 +14927,7 @@ class PlaidApi(object):
         ):
             """Advance a test clock  # noqa: E501
 
-            Use the `/sandbox/transfer/test_clock/advance` endpoint to advance a `test_clock` in the Sandbox environment.   A test clock object represents an independent timeline and has a `frozen_timestamp` field indicating the current timestamp of the timeline. A test clock can be advanced by incrementing `frozen_timestamp`, but may never go back to a lower `frozen_timestamp`.  If a test clock is advanced from T1 to T2, we will simulate the changes that ought to occur during the period of (T1, T2].  For instance, a client creates a weekly recurring transfer with a test clock set at t. When the client advances the test clock by setting `frozen_timestamp` = t + 15 days, 2 new originations should be created, along with the webhook events. The timestamps of the objects and webhook events created/updated in step 2 should also fall in (T1, T2] time range.  The advancement of the test clock from its current `frozen_timestamp` should be limited such that there are no more than 20 originations resulted from the advance operation on each `recurring_transfer` associated with this `test_clock`.  For instance, if the recurring transfer associated with this test clock originates once every 4 weeks, you can advance the `frozen_timestamp` up to 80 weeks on each advance call.  # noqa: E501
+            Use the `/sandbox/transfer/test_clock/advance` endpoint to advance a `test_clock` in the Sandbox environment.  A test clock object represents an independent timeline and has a `virtual_time` field indicating the current timestamp of the timeline. A test clock can be advanced by incrementing `virtual_time`, but may never go back to a lower `virtual_time`.  If a test clock is advanced, we will simulate the changes that ought to occur during the time that elapsed. For instance, a client creates a weekly recurring transfer with a test clock set at t. When the client advances the test clock by setting `virtual_time` = t + 15 days, 2 new originations should be created, along with the webhook events.  The advancement of the test clock from its current `virtual_time` should be limited such that there are no more than 20 originations resulting from the advance operation on each `recurring_transfer` associated with the `test_clock`. For instance, if the recurring transfer associated with this test clock originates once every 4 weeks, you can advance the `virtual_time` up to 80 weeks on each API call.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15045,7 +15049,7 @@ class PlaidApi(object):
         ):
             """Create a test clock  # noqa: E501
 
-            Use the `/sandbox/transfer/test_clock/create` endpoint to create a `test_clock` in the Sandbox environment.   A test clock object represents an independent timeline and has a `frozen_timestamp` field indicating the current timestamp of the timeline. Test clock allows clients to easily test and integrate with recurring transfer product in sandbox environment.  A test clock can be associated with up to 5 recurring transfers.  # noqa: E501
+            Use the `/sandbox/transfer/test_clock/create` endpoint to create a `test_clock` in the Sandbox environment.  A test clock object represents an independent timeline and has a `virtual_time` field indicating the current timestamp of the timeline. Test clocks are used for testing recurring transfers in Sandbox.  A test clock can be associated with up to 5 recurring transfers.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15280,6 +15284,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__sandbox_transfer_test_clock_get
+        )
+
+        def __sandbox_transfer_test_clock_list(
+            self,
+            sandbox_transfer_test_clock_list_request,
+            **kwargs
+        ):
+            """List test clocks  # noqa: E501
+
+            Use the `/sandbox/transfer/test_clock/list` endpoint to see a list of all your test clocks in the Sandbox environment, by ascending `virtual_time`. Results are paginated; use the `count` and `offset` query parameters to retrieve the desired test clocks.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.sandbox_transfer_test_clock_list(sandbox_transfer_test_clock_list_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sandbox_transfer_test_clock_list_request (SandboxTransferTestClockListRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SandboxTransferTestClockListResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sandbox_transfer_test_clock_list_request'] = \
+                sandbox_transfer_test_clock_list_request
+            return self.call_with_http_info(**kwargs)
+
+        self.sandbox_transfer_test_clock_list = _Endpoint(
+            settings={
+                'response_type': (SandboxTransferTestClockListResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/sandbox/transfer/test_clock/list',
+                'operation_id': 'sandbox_transfer_test_clock_list',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sandbox_transfer_test_clock_list_request',
+                ],
+                'required': [
+                    'sandbox_transfer_test_clock_list_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sandbox_transfer_test_clock_list_request':
+                        (SandboxTransferTestClockListRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'sandbox_transfer_test_clock_list_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__sandbox_transfer_test_clock_list
         )
 
         def __signal_decision_report(
@@ -15777,7 +15903,7 @@ class PlaidApi(object):
         ):
             """enhance locally-held transaction data  # noqa: E501
 
-            The '/beta/transactions/v1/enhance' endpoint enriches raw transaction data provided directly by clients.  The product is currently in beta.  # noqa: E501
+            The `/beta/transactions/v1/enhance` endpoint enriches raw transaction data provided directly by clients.  The product is currently in beta.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -15899,7 +16025,7 @@ class PlaidApi(object):
         ):
             """Enrich locally-held transaction data  # noqa: E501
 
-            The '/transactions/enrich' endpoint enriches raw transaction data generated by your own banking products or retrieved from other non-Plaid sources.  The product is currently in beta. To request access, contact transactions-feedback@plaid.com  # noqa: E501
+            The `/transactions/enrich` endpoint enriches raw transaction data generated by your own banking products or retrieved from other non-Plaid sources.  The product is currently in beta. To request access, contact enrich-feedback@plaid.com  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -16143,7 +16269,7 @@ class PlaidApi(object):
         ):
             """Fetch recurring transaction streams  # noqa: E501
 
-            The `/transactions/recurring/get` endpoint allows developers to receive a summary of the recurring outflow and inflow streams (expenses and deposits) from a user’s checking, savings or credit card accounts. Additionally, Plaid provides key insights about each recurring stream including the category, merchant, last amount, and more. Developers can use these insights to build tools and experiences that help their users better manage cash flow, monitor subscriptions, reduce spend, and stay on track with bill payments.  This endpoint is not included by default as part of Transactions. To request access to this endpoint, submit a [product access request](https://dashboard.plaid.com/team/products) or contact your Plaid account manager.  Note that unlike `/transactions/get`, `/transactions/recurring/get` will not initialize an Item with Transactions. The Item must already have been initialized with Transactions (either during Link, by specifying it in `/link/token/create`, or after Link, by calling `/transactions/get`) before calling this endpoint. Data is available to `/transactions/recurring/get` approximately 5 seconds after the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook has fired (about 1-2 minutes after initialization).  After the initial call, you can call `/transactions/recurring/get` endpoint at any point in the future to retrieve the latest summary of recurring streams. Since recurring streams do not change often, it will typically not be necessary to call this endpoint more than once per day.  # noqa: E501
+            The `/transactions/recurring/get` endpoint allows developers to receive a summary of the recurring outflow and inflow streams (expenses and deposits) from a user’s checking, savings or credit card accounts. Additionally, Plaid provides key insights about each recurring stream including the category, merchant, last amount, and more. Developers can use these insights to build tools and experiences that help their users better manage cash flow, monitor subscriptions, reduce spend, and stay on track with bill payments.  This endpoint is not included by default as part of Transactions. To request access to this endpoint, submit a [product access request](https://dashboard.plaid.com/team/products) or contact your Plaid account manager.  This endpoint can only be called on an Item that has already been initialized with Transactions (either during Link, by specifying it in `/link/token/create`; or after Link, by calling `/transactions/get`). After the [`HISTORICAL_UPDATE`](https://plaid.com/docs/api/products/transactions/#historical_update) webhook has fired, call `/transactions/recurring/get` to receive the Recurring Transactions streams and subscribe to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook.  After the initial call, you can call `/transactions/recurring/get` endpoint at any point in the future to retrieve the latest summary of recurring streams. Listen to the [`RECURRING_TRANSACTIONS_UPDATE`](https://plaid.com/docs/api/products/transactions/#recurring_transactions_update) webhook to be notified when new updates are available.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -16753,7 +16879,7 @@ class PlaidApi(object):
         ):
             """Get incremental transaction updates on an Item  # noqa: E501
 
-            This endpoint replaces `/transactions/get` and its associated webhooks for most common use-cases.  The `/transactions/sync` endpoint allows developers to subscribe to all transactions associated with an Item and get updates synchronously in a stream-like manner, using a cursor to track which updates have already been seen. `/transactions/sync` provides the same functionality as `/transactions/get` and can be used instead of `/transactions/get` to simplify the process of tracking transactions updates.  This endpoint provides user-authorized transaction data for `credit`, `depository`, and some loan-type accounts (only those with account subtype `student`; coverage may be limited). For transaction history from `investments` accounts, use `/investments/transactions/get` instead.  Returned transactions data is grouped into three types of update, indicating whether the transaction was added, removed, or modified since the last call to the API.  In the first call to `/transactions/sync` for an Item, the endpoint will return all historical transactions data associated with that Item up until the time of the API call (as \"adds\"), which then generates a `next_cursor` for that Item. In subsequent calls, send the `next_cursor` to receive only the changes that have occurred since the previous call.  Due to the potentially large number of transactions associated with an Item, results are paginated. The `has_more` field specifies if additional calls are necessary to fetch all available transaction updates. Call `/transactions/sync` with the new cursor, pulling all updates, until `has_more` is `false`.   When retrieving paginated updates, track both the `next_cursor` from the latest response and the original cursor from the first call in which `has_more` was `true`; if a call to `/transactions/sync` fails when retrieving a paginated update, the entire pagination request loop must be restarted beginning with the cursor for the first page of the update, rather than retrying only the single request that failed.   Whenever new or updated transaction data becomes available, `/transactions/sync` will provide these updates. Plaid typically checks for new data multiple times a day, but these checks may occur less frequently, such as once a day, depending on the institution. An Item's `status.transactions.last_successful_update` field will show the timestamp of the most recent successful update. To force Plaid to check for new transactions, use the `/transactions/refresh` endpoint.  Note that for newly created Items, data may not be immediately available to `/transactions/sync`. Plaid begins preparing transactions data when the Item is created, but the process can take anywhere from a few seconds to several minutes to complete, depending on the number of transactions available.  To be alerted when new data is available, listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#sync_updates_available) webhook.  # noqa: E501
+            This endpoint replaces `/transactions/get` and its associated webhooks for most common use-cases.  The `/transactions/sync` endpoint allows developers to subscribe to all transactions associated with an Item and get updates synchronously in a stream-like manner, using a cursor to track which updates have already been seen. `/transactions/sync` provides the same functionality as `/transactions/get` and can be used instead of `/transactions/get` to simplify the process of tracking transactions updates.  This endpoint provides user-authorized transaction data for `credit`, `depository`, and some loan-type accounts (only those with account subtype `student`; coverage may be limited). For transaction history from `investments` accounts, use `/investments/transactions/get` instead.  Returned transactions data is grouped into three types of update, indicating whether the transaction was added, removed, or modified since the last call to the API.  In the first call to `/transactions/sync` for an Item, the endpoint will return all historical transactions data associated with that Item up until the time of the API call (as \"adds\"), which then generates a `next_cursor` for that Item. In subsequent calls, send the `next_cursor` to receive only the changes that have occurred since the previous call.  Due to the potentially large number of transactions associated with an Item, results are paginated. The `has_more` field specifies if additional calls are necessary to fetch all available transaction updates. Call `/transactions/sync` with the new cursor, pulling all updates, until `has_more` is `false`.  When retrieving paginated updates, track both the `next_cursor` from the latest response and the original cursor from the first call in which `has_more` was `true`; if a call to `/transactions/sync` fails when retrieving a paginated update, the entire pagination request loop must be restarted beginning with the cursor for the first page of the update, rather than retrying only the single request that failed.  Whenever new or updated transaction data becomes available, `/transactions/sync` will provide these updates. Plaid typically checks for new data multiple times a day, but these checks may occur less frequently, such as once a day, depending on the institution. An Item's `status.transactions.last_successful_update` field will show the timestamp of the most recent successful update. To force Plaid to check for new transactions, use the `/transactions/refresh` endpoint.  Note that for newly created Items, data may not be immediately available to `/transactions/sync`. Plaid begins preparing transactions data when the Item is created, but the process can take anywhere from a few seconds to several minutes to complete, depending on the number of transactions available.  To be alerted when new data is available, listen for the [`SYNC_UPDATES_AVAILABLE`](https://plaid.com/docs/api/products/transactions/#sync_updates_available) webhook.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -17110,6 +17236,128 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__transfer_cancel
+        )
+
+        def __transfer_capabilities_get(
+            self,
+            transfer_capabilities_get_request,
+            **kwargs
+        ):
+            """Get RTP eligibility information of a transfer  # noqa: E501
+
+            Use the `/transfer/capabilities/get` endpoint to determine the RTP eligibility information of a transfer.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.transfer_capabilities_get(transfer_capabilities_get_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                transfer_capabilities_get_request (TransferCapabilitiesGetRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TransferCapabilitiesGetResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['transfer_capabilities_get_request'] = \
+                transfer_capabilities_get_request
+            return self.call_with_http_info(**kwargs)
+
+        self.transfer_capabilities_get = _Endpoint(
+            settings={
+                'response_type': (TransferCapabilitiesGetResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/transfer/capabilities/get',
+                'operation_id': 'transfer_capabilities_get',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'transfer_capabilities_get_request',
+                ],
+                'required': [
+                    'transfer_capabilities_get_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'transfer_capabilities_get_request':
+                        (TransferCapabilitiesGetRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'transfer_capabilities_get_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__transfer_capabilities_get
         )
 
         def __transfer_create(

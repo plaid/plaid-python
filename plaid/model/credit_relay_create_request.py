@@ -107,7 +107,7 @@ class CreditRelayCreateRequest(ModelNormal):
 
         Args:
             report_tokens ([str]): List of report token strings, with at most one token of each report type. Currently only Asset Report token is supported.
-            secondary_client_id (str): The `secondary_client_id` is the client id of the third party with whom you would like to share the Relay Token.
+            secondary_client_id (str): The `secondary_client_id` is the client id of the third party with whom you would like to share the relay token.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

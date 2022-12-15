@@ -83,6 +83,7 @@ class TransactionsGetRequestOptions(ModelNormal):
             'include_original_description': (bool, none_type,),  # noqa: E501
             'include_personal_finance_category_beta': (bool,),  # noqa: E501
             'include_personal_finance_category': (bool,),  # noqa: E501
+            'include_logo_and_counterparty_beta': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +98,7 @@ class TransactionsGetRequestOptions(ModelNormal):
         'include_original_description': 'include_original_description',  # noqa: E501
         'include_personal_finance_category_beta': 'include_personal_finance_category_beta',  # noqa: E501
         'include_personal_finance_category': 'include_personal_finance_category',  # noqa: E501
+        'include_logo_and_counterparty_beta': 'include_logo_and_counterparty_beta',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,6 +153,7 @@ class TransactionsGetRequestOptions(ModelNormal):
             include_original_description (bool, none_type): Include the raw unparsed transaction description from the financial institution. This field is disabled by default. If you need this information in addition to the parsed data provided, contact your Plaid Account Manager.. [optional] if omitted the server will use the default value of False  # noqa: E501
             include_personal_finance_category_beta (bool): Please use [`include_personal_finance_category`](https://plaid.com/docs/api/products/transactions/#transactions-get-request-options-include-personal-finance-category) instead.. [optional] if omitted the server will use the default value of False  # noqa: E501
             include_personal_finance_category (bool): Include the [`personal_finance_category`](https://plaid.com/docs/api/products/transactions/#transactions-get-response-transactions-personal-finance-category) object in the response.  See the [`taxonomy csv file`](https://plaid.com/documents/transactions-personal-finance-category-taxonomy.csv) for a full list of personal finance categories.  We’re introducing Category Rules - a new beta endpoint that will enable you to change the `personal_finance_category` for a transaction based on your users’ needs. When rules are set, the selected category will override the Plaid provided category. To learn more, send a note to transactions-feedback@plaid.com.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_logo_and_counterparty_beta (bool): Include counterparties and extran merchant fields in the transaction. This field is disabled by default. If you need this information in addition to the parsed data provided, contact your Plaid Account Manager.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

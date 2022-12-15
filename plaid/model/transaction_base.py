@@ -107,6 +107,8 @@ class TransactionBase(ModelNormal):
             'name': (str,),  # noqa: E501
             'original_description': (str, none_type,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
+            'logo_url': (str, none_type,),  # noqa: E501
+            'website': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
         }
 
@@ -133,6 +135,8 @@ class TransactionBase(ModelNormal):
         'name': 'name',  # noqa: E501
         'original_description': 'original_description',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
+        'logo_url': 'logo_url',  # noqa: E501
+        'website': 'website',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
     }
 
@@ -201,6 +205,8 @@ class TransactionBase(ModelNormal):
             name (str): The merchant name or transaction description.  If the `transactions` object was returned by a Transactions endpoint such as `/transactions/get`, this field will always appear. If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
             merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
+            logo_url (str, none_type): The logo associated with the merchant, if available. Formatted as a 100x100 pixels PNG file path.. [optional]  # noqa: E501
+            website (str, none_type): The website associated with the merchant, if available.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
         """
 
