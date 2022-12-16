@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.personal_finance_category import PersonalFinanceCategory
     from plaid.model.transaction_code import TransactionCode
+    from plaid.model.transaction_counterparty import TransactionCounterparty
     globals()['PersonalFinanceCategory'] = PersonalFinanceCategory
     globals()['TransactionCode'] = TransactionCode
+    globals()['TransactionCounterparty'] = TransactionCounterparty
 
 
 class TransactionAllOf(ModelNormal):
@@ -88,6 +90,8 @@ class TransactionAllOf(ModelNormal):
             'datetime': (datetime, none_type,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
+            'personal_finance_category_icon_url': (str,),  # noqa: E501
+            'counterparties': ([TransactionCounterparty],),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +106,8 @@ class TransactionAllOf(ModelNormal):
         'datetime': 'datetime',  # noqa: E501
         'transaction_code': 'transaction_code',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
+        'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
+        'counterparties': 'counterparties',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,6 +164,8 @@ class TransactionAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
+            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 pixels.. [optional]  # noqa: E501
+            counterparties ([TransactionCounterparty]): The counterparties present in the transaction. Counterparties, such as the financial institutions, are extracted by Plaid from the raw description.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

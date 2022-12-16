@@ -25,8 +25,12 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.recurring_transfer import RecurringTransfer
-    globals()['RecurringTransfer'] = RecurringTransfer
+    from plaid.model.recurring_transfer_nullable import RecurringTransferNullable
+    from plaid.model.transfer_authorization_decision import TransferAuthorizationDecision
+    from plaid.model.transfer_authorization_decision_rationale import TransferAuthorizationDecisionRationale
+    globals()['RecurringTransferNullable'] = RecurringTransferNullable
+    globals()['TransferAuthorizationDecision'] = TransferAuthorizationDecision
+    globals()['TransferAuthorizationDecisionRationale'] = TransferAuthorizationDecisionRationale
 
 
 class TransferRecurringCreateResponse(ModelNormal):
@@ -82,8 +86,10 @@ class TransferRecurringCreateResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'recurring_transfer': (RecurringTransfer,),  # noqa: E501
+            'decision': (TransferAuthorizationDecision,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'recurring_transfer': (RecurringTransferNullable,),  # noqa: E501
+            'decision_rationale': (TransferAuthorizationDecisionRationale,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +98,10 @@ class TransferRecurringCreateResponse(ModelNormal):
 
 
     attribute_map = {
-        'recurring_transfer': 'recurring_transfer',  # noqa: E501
+        'decision': 'decision',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'recurring_transfer': 'recurring_transfer',  # noqa: E501
+        'decision_rationale': 'decision_rationale',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,11 +116,11 @@ class TransferRecurringCreateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recurring_transfer, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, decision, request_id, *args, **kwargs):  # noqa: E501
         """TransferRecurringCreateResponse - a model defined in OpenAPI
 
         Args:
-            recurring_transfer (RecurringTransfer):
+            decision (TransferAuthorizationDecision):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -146,6 +154,8 @@ class TransferRecurringCreateResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            recurring_transfer (RecurringTransferNullable): [optional]  # noqa: E501
+            decision_rationale (TransferAuthorizationDecisionRationale): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -171,7 +181,7 @@ class TransferRecurringCreateResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.recurring_transfer = recurring_transfer
+        self.decision = decision
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

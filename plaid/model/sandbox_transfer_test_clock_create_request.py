@@ -70,9 +70,9 @@ class SandboxTransferTestClockCreateRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'virtual_time': (datetime,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
-            'frozen_timestamp': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -81,9 +81,9 @@ class SandboxTransferTestClockCreateRequest(ModelNormal):
 
 
     attribute_map = {
+        'virtual_time': 'virtual_time',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
-        'frozen_timestamp': 'frozen_timestamp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -98,13 +98,11 @@ class SandboxTransferTestClockCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, secret, frozen_timestamp, *args, **kwargs):  # noqa: E501
+    def __init__(self, virtual_time, *args, **kwargs):  # noqa: E501
         """SandboxTransferTestClockCreateRequest - a model defined in OpenAPI
 
         Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
-            frozen_timestamp (datetime): The frozen timestamp on the test clock. This will be of the form `2006-01-02T15:04:05Z`.
+            virtual_time (datetime): The virtual timestamp on the test clock. This will be of the form `2006-01-02T15:04:05Z`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -137,6 +135,8 @@ class SandboxTransferTestClockCreateRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -162,9 +162,7 @@ class SandboxTransferTestClockCreateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
-        self.secret = secret
-        self.frozen_timestamp = frozen_timestamp
+        self.virtual_time = virtual_time
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

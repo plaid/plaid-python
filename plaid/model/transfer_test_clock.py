@@ -76,8 +76,8 @@ class TransferTestClock(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'test_clock_id': (str, none_type,),  # noqa: E501
-            'frozen_timestamp': (datetime,),  # noqa: E501
+            'test_clock_id': (str,),  # noqa: E501
+            'virtual_time': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -87,7 +87,7 @@ class TransferTestClock(ModelNormal):
 
     attribute_map = {
         'test_clock_id': 'test_clock_id',  # noqa: E501
-        'frozen_timestamp': 'frozen_timestamp',  # noqa: E501
+        'virtual_time': 'virtual_time',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -102,12 +102,12 @@ class TransferTestClock(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, test_clock_id, frozen_timestamp, *args, **kwargs):  # noqa: E501
+    def __init__(self, test_clock_id, virtual_time, *args, **kwargs):  # noqa: E501
         """TransferTestClock - a model defined in OpenAPI
 
         Args:
-            test_clock_id (str, none_type): Plaid’s unique identifier for a test clock.
-            frozen_timestamp (datetime): The frozen timestamp on the test clock. This will be of the form `2006-01-02T15:04:05Z`.
+            test_clock_id (str): Plaid’s unique identifier for a test clock.
+            virtual_time (datetime): The virtual timestamp on the test clock. This will be of the form `2006-01-02T15:04:05Z`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,7 +166,7 @@ class TransferTestClock(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.test_clock_id = test_clock_id
-        self.frozen_timestamp = frozen_timestamp
+        self.virtual_time = virtual_time
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.credit_amount_with_currency import CreditAmountWithCurrency
     from plaid.model.credit_bank_income_transaction import CreditBankIncomeTransaction
+    globals()['CreditAmountWithCurrency'] = CreditAmountWithCurrency
     globals()['CreditBankIncomeTransaction'] = CreditBankIncomeTransaction
 
 
@@ -59,7 +61,14 @@ class CreditBankIncomeHistoricalSummary(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -78,6 +87,7 @@ class CreditBankIncomeHistoricalSummary(ModelNormal):
             'total_amount': (float,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'total_amounts': ([CreditAmountWithCurrency],),  # noqa: E501
             'start_date': (date,),  # noqa: E501
             'end_date': (date,),  # noqa: E501
             'transactions': ([CreditBankIncomeTransaction],),  # noqa: E501
@@ -92,6 +102,7 @@ class CreditBankIncomeHistoricalSummary(ModelNormal):
         'total_amount': 'total_amount',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'total_amounts': 'total_amounts',  # noqa: E501
         'start_date': 'start_date',  # noqa: E501
         'end_date': 'end_date',  # noqa: E501
         'transactions': 'transactions',  # noqa: E501
@@ -143,9 +154,10 @@ class CreditBankIncomeHistoricalSummary(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            total_amount (float): Total amount of earnings for the income source(s) of the user for the month in the summary.. [optional]  # noqa: E501
-            iso_currency_code (str, none_type): The ISO 4217 currency code of the amount or balance.. [optional]  # noqa: E501
-            unofficial_currency_code (str, none_type): The unofficial currency code associated with the amount or balance. Always `null` if `iso_currency_code` is non-null. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.. [optional]  # noqa: E501
+            total_amount (float): Total amount of earnings for the income source(s) of the user for the month in the summary. This may return an incorrect value if the summary includes income sources in multiple currencies.  Please use [`total_amounts`](https://plaid.com/docs/api/products/income/#credit-bank_income-get-response-bank-income-items-bank-income-sources-historical-summary-total-amounts) instead.. [optional]  # noqa: E501
+            iso_currency_code (str, none_type): The ISO 4217 currency code of the amount or balance. Please use [`total_amounts`](https://plaid.com/docs/api/products/income/#credit-bank_income-get-response-bank-income-items-bank-income-sources-historical-summary-total-amounts) instead.. [optional]  # noqa: E501
+            unofficial_currency_code (str, none_type): The unofficial currency code associated with the amount or balance. Always `null` if `iso_currency_code` is non-null. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries. Please use [`total_amounts`](https://plaid.com/docs/api/products/income/#credit-bank_income-get-response-bank-income-items-bank-income-sources-historical-summary-total-amounts) instead.. [optional]  # noqa: E501
+            total_amounts ([CreditAmountWithCurrency]): Total amount of earnings for the income source(s) of the user for the month in the summary. This can contain multiple amounts, with each amount denominated in one unique currency.. [optional]  # noqa: E501
             start_date (date): The start date of the period covered in this monthly summary. This date will be the first day of the month, unless the month being covered is a partial month because it is the first month included in the summary and the date range being requested does not begin with the first day of the month. The date will be returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             end_date (date): The end date of the period included in this monthly summary. This date will be the last day of the month, unless the month being covered is a partial month because it is the last month included in the summary and the date range being requested does not end with the last day of the month. The date will be returned in an ISO 8601 format (YYYY-MM-DD).. [optional]  # noqa: E501
             transactions ([CreditBankIncomeTransaction]): [optional]  # noqa: E501

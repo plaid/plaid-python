@@ -25,7 +25,9 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.client_provided_transaction_location import ClientProvidedTransactionLocation
     from plaid.model.enrich_transaction_direction import EnrichTransactionDirection
+    globals()['ClientProvidedTransactionLocation'] = ClientProvidedTransactionLocation
     globals()['EnrichTransactionDirection'] = EnrichTransactionDirection
 
 
@@ -85,8 +87,11 @@ class ClientProvidedTransaction(ModelNormal):
             'id': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'amount': (float,),  # noqa: E501
-            'iso_currency_code': (str,),  # noqa: E501
             'direction': (EnrichTransactionDirection,),  # noqa: E501
+            'iso_currency_code': (str,),  # noqa: E501
+            'location': (ClientProvidedTransactionLocation,),  # noqa: E501
+            'mcc': (str,),  # noqa: E501
+            'date_posted': (date,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +103,11 @@ class ClientProvidedTransaction(ModelNormal):
         'id': 'id',  # noqa: E501
         'description': 'description',  # noqa: E501
         'amount': 'amount',  # noqa: E501
-        'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'direction': 'direction',  # noqa: E501
+        'iso_currency_code': 'iso_currency_code',  # noqa: E501
+        'location': 'location',  # noqa: E501
+        'mcc': 'mcc',  # noqa: E501
+        'date_posted': 'date_posted',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,14 +122,15 @@ class ClientProvidedTransaction(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, description, amount, iso_currency_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, description, amount, direction, iso_currency_code, *args, **kwargs):  # noqa: E501
         """ClientProvidedTransaction - a model defined in OpenAPI
 
         Args:
             id (str): A unique ID for the transaction used to help you tie data back to your systems.
             description (str): The raw description of the transaction.
             amount (float): The absolute value of the transaction (>= 0)
-            iso_currency_code (str): The ISO-4217 currency code of the transaction, e.g., USD.
+            direction (EnrichTransactionDirection):
+            iso_currency_code (str): The ISO-4217 currency code of the transaction e.g. USD.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -154,7 +163,9 @@ class ClientProvidedTransaction(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            direction (EnrichTransactionDirection): [optional]  # noqa: E501
+            location (ClientProvidedTransactionLocation): [optional]  # noqa: E501
+            mcc (str): Merchant category codes (MCCs) are four-digit numbers that describe a merchant's primary business activities.. [optional]  # noqa: E501
+            date_posted (date): The date the transaction posted, in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD) format.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -183,6 +194,7 @@ class ClientProvidedTransaction(ModelNormal):
         self.id = id
         self.description = description
         self.amount = amount
+        self.direction = direction
         self.iso_currency_code = iso_currency_code
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

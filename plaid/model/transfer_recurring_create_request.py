@@ -26,16 +26,16 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.ach_class import ACHClass
-    from plaid.model.transfer_authorization_idempotency_key import TransferAuthorizationIdempotencyKey
     from plaid.model.transfer_device import TransferDevice
     from plaid.model.transfer_network import TransferNetwork
+    from plaid.model.transfer_recurring_idempotency_key import TransferRecurringIdempotencyKey
     from plaid.model.transfer_recurring_schedule import TransferRecurringSchedule
     from plaid.model.transfer_type import TransferType
     from plaid.model.transfer_user_in_request import TransferUserInRequest
     globals()['ACHClass'] = ACHClass
-    globals()['TransferAuthorizationIdempotencyKey'] = TransferAuthorizationIdempotencyKey
     globals()['TransferDevice'] = TransferDevice
     globals()['TransferNetwork'] = TransferNetwork
+    globals()['TransferRecurringIdempotencyKey'] = TransferRecurringIdempotencyKey
     globals()['TransferRecurringSchedule'] = TransferRecurringSchedule
     globals()['TransferType'] = TransferType
     globals()['TransferUserInRequest'] = TransferUserInRequest
@@ -87,18 +87,19 @@ class TransferRecurringCreateRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'client_id': (str,),  # noqa: E501
-            'secret': (str,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
-            'idempotency_key': (TransferAuthorizationIdempotencyKey,),  # noqa: E501
+            'idempotency_key': (TransferRecurringIdempotencyKey,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'type': (TransferType,),  # noqa: E501
             'network': (TransferNetwork,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'user_present': (bool, none_type,),  # noqa: E501
+            'description': (str,),  # noqa: E501
             'schedule': (TransferRecurringSchedule,),  # noqa: E501
             'user': (TransferUserInRequest,),  # noqa: E501
             'device': (TransferDevice,),  # noqa: E501
+            'client_id': (str,),  # noqa: E501
+            'secret': (str,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'test_clock_id': (str, none_type,),  # noqa: E501
@@ -110,8 +111,6 @@ class TransferRecurringCreateRequest(ModelNormal):
 
 
     attribute_map = {
-        'client_id': 'client_id',  # noqa: E501
-        'secret': 'secret',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
         'idempotency_key': 'idempotency_key',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
@@ -119,9 +118,12 @@ class TransferRecurringCreateRequest(ModelNormal):
         'network': 'network',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'user_present': 'user_present',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
         'user': 'user',  # noqa: E501
         'device': 'device',  # noqa: E501
+        'client_id': 'client_id',  # noqa: E501
+        'secret': 'secret',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'test_clock_id': 'test_clock_id',  # noqa: E501
@@ -139,19 +141,18 @@ class TransferRecurringCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, secret, access_token, idempotency_key, account_id, type, network, amount, user_present, schedule, user, device, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, idempotency_key, account_id, type, network, amount, user_present, description, schedule, user, device, *args, **kwargs):  # noqa: E501
         """TransferRecurringCreateRequest - a model defined in OpenAPI
 
         Args:
-            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.
-            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.
             access_token (str): The Plaid `access_token` for the account that will be debited or credited. Required if not using `payment_profile_token`.
-            idempotency_key (TransferAuthorizationIdempotencyKey):
+            idempotency_key (TransferRecurringIdempotencyKey):
             account_id (str): The Plaid `account_id` for the account that will be debited or credited. Required if not using `payment_profile_token`.
             type (TransferType):
             network (TransferNetwork):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             user_present (bool, none_type): If the end user is initiating the specific transfer themselves via an interactive UI, this should be `true`; for automatic recurring payments where the end user is not actually initiating each individual transfer, it should be `false`.
+            description (str): The description of the recurring transfer.
             schedule (TransferRecurringSchedule):
             user (TransferUserInRequest):
             device (TransferDevice):
@@ -187,6 +188,8 @@ class TransferRecurringCreateRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
+            secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             ach_class (ACHClass): [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
             test_clock_id (str, none_type): Plaid’s unique identifier for a test clock.. [optional]  # noqa: E501
@@ -215,8 +218,6 @@ class TransferRecurringCreateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.client_id = client_id
-        self.secret = secret
         self.access_token = access_token
         self.idempotency_key = idempotency_key
         self.account_id = account_id
@@ -224,6 +225,7 @@ class TransferRecurringCreateRequest(ModelNormal):
         self.network = network
         self.amount = amount
         self.user_present = user_present
+        self.description = description
         self.schedule = schedule
         self.user = user
         self.device = device

@@ -113,7 +113,7 @@ class ClientProvidedRawTransaction(ModelNormal):
             id (str): A unique ID for the transaction used to help you tie data back to your systems.
             description (str): The raw description of the transaction.
             amount (float): The value of the transaction with direction. (NOTE: this will affect enrichment results, so directions are important):.   Negative (-) for credits (e.g., incoming transfers, refunds)   Positive (+) for debits (e.g., purchases, fees, outgoing transfers)
-            iso_currency_code (str): The ISO-4217 currency code of the transaction, e.g., USD.
+            iso_currency_code (str): The ISO-4217 currency code of the transaction e.g. USD.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

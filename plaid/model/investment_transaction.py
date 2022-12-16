@@ -143,7 +143,7 @@ class InvestmentTransaction(ModelNormal):
             security_id (str, none_type): The `security_id` to which this transaction is related.
             date (date): The [ISO 8601](https://wikipedia.org/wiki/ISO_8601) posting date for the transaction.
             name (str): The institution’s description of the transaction.
-            quantity (float): The number of units of the security involved in this transaction.
+            quantity (float): The number of units of the security involved in this transaction. Positive for buy transactions; negative for sell transactions.
             amount (float): The complete value of the transaction. Positive values when cash is debited, e.g. purchases of stock; negative values when cash is credited, e.g. sales of stock. Treatment remains the same for cash-only movements unassociated with securities.
             price (float): The price of the security at which this transaction occurred.
             fees (float, none_type): The combined value of all fees applied to this transaction

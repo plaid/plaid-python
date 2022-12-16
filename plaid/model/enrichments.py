@@ -88,17 +88,17 @@ class Enrichments(ModelNormal):
         """
         lazy_import()
         return {
-            'payment_channel': (PaymentChannel,),  # noqa: E501
+            'counterparties': ([Counterparty],),  # noqa: E501
             'location': (Location,),  # noqa: E501
+            'logo_url': (str, none_type,),  # noqa: E501
+            'merchant_name': (str, none_type,),  # noqa: E501
+            'payment_channel': (PaymentChannel,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
             'personal_finance_category_icon_url': (str,),  # noqa: E501
-            'merchant_name': (str, none_type,),  # noqa: E501
             'website': (str, none_type,),  # noqa: E501
-            'logo_url': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
             'legacy_category_id': (str, none_type,),  # noqa: E501
             'legacy_category': ([str],),  # noqa: E501
-            'counterparties': ([Counterparty],),  # noqa: E501
         }
 
     @cached_property
@@ -107,17 +107,17 @@ class Enrichments(ModelNormal):
 
 
     attribute_map = {
-        'payment_channel': 'payment_channel',  # noqa: E501
+        'counterparties': 'counterparties',  # noqa: E501
         'location': 'location',  # noqa: E501
+        'logo_url': 'logo_url',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
+        'payment_channel': 'payment_channel',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
         'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
-        'merchant_name': 'merchant_name',  # noqa: E501
         'website': 'website',  # noqa: E501
-        'logo_url': 'logo_url',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
         'legacy_category_id': 'legacy_category_id',  # noqa: E501
         'legacy_category': 'legacy_category',  # noqa: E501
-        'counterparties': 'counterparties',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -132,14 +132,18 @@ class Enrichments(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, payment_channel, location, personal_finance_category, personal_finance_category_icon_url, *args, **kwargs):  # noqa: E501
+    def __init__(self, counterparties, location, logo_url, merchant_name, payment_channel, personal_finance_category, personal_finance_category_icon_url, website, *args, **kwargs):  # noqa: E501
         """Enrichments - a model defined in OpenAPI
 
         Args:
-            payment_channel (PaymentChannel):
+            counterparties ([Counterparty]): The counterparties present in the transaction. Counterparties, such as the merchant or the financial institution, are extracted by Plaid from the raw description.
             location (Location):
+            logo_url (str, none_type): The URL of a logo associated with this transaction, if available. The logo is formatted as a 100x100 pixel PNG file.
+            merchant_name (str, none_type): The name of the primary counterparty, such as the merchant or the financial institution, as extracted by Plaid from the raw description.
+            payment_channel (PaymentChannel):
             personal_finance_category (PersonalFinanceCategory):
-            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 resolution.
+            personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 pixels.
+            website (str, none_type): The website associated with this transaction.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,13 +176,9 @@ class Enrichments(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            merchant_name (str, none_type): The name of the primary counterparty, such as the merchant or the financial institution, as extracted by Plaid from the raw description.. [optional]  # noqa: E501
-            website (str, none_type): The website associated with this transaction.. [optional]  # noqa: E501
-            logo_url (str, none_type): A link to the logo associated with this transaction. The logo will always be 100x100 resolution.. [optional]  # noqa: E501
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
-            legacy_category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).. [optional]  # noqa: E501
-            legacy_category ([str]): A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).. [optional]  # noqa: E501
-            counterparties ([Counterparty]): The counterparties present in the transaction. Counterparties, such as the merchant or the financial institution, are extracted by Plaid from the raw description.. [optional]  # noqa: E501
+            legacy_category_id (str, none_type): The ID of the legacy category to which this transaction belongs. For a full list of legacy categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  We recommend using the `personal_finance_category` for transaction categorization to obtain the best results.. [optional]  # noqa: E501
+            legacy_category ([str]): A hierarchical array of the legacy categories to which this transaction belongs. For a full list of legacy categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  We recommend using the `personal_finance_category` for transaction categorization to obtain the best results.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,10 +204,14 @@ class Enrichments(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.payment_channel = payment_channel
+        self.counterparties = counterparties
         self.location = location
+        self.logo_url = logo_url
+        self.merchant_name = merchant_name
+        self.payment_channel = payment_channel
         self.personal_finance_category = personal_finance_category
         self.personal_finance_category_icon_url = personal_finance_category_icon_url
+        self.website = website
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -147,7 +147,7 @@ class CreditRelayRefreshRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            webhook (str, none_type): The URL registered to receive webhooks when the report of a Relay Token has been refreshed.. [optional]  # noqa: E501
+            webhook (str, none_type): The URL registered to receive webhooks when the report of a relay token has been refreshed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
