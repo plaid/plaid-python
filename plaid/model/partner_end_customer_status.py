@@ -47,8 +47,8 @@ class PartnerEndCustomerStatus(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'UNDER_REVIEW': "UNDER REVIEW",
-            'READY_FOR_ENABLEMENT': "READY FOR ENABLEMENT",
+            'UNDER_REVIEW': "UNDER_REVIEW",
+            'PENDING_ENABLEMENT': "PENDING_ENABLEMENT",
             'ACTIVE': "ACTIVE",
             'DENIED': "DENIED",
         },
@@ -100,10 +100,10 @@ class PartnerEndCustomerStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The status of the given end customer.  `UNDER REVIEW`: The end customer has been created and enabled in the non-Production environments. The end customer must be manually reviewed by the Plaid team before it can be enabled in production, at which point its status will automatically transition to `READY FOR ENABLEMENT` or `DENIED`.  `READY FOR ENABLEMENT`: The end customer is ready to be enabled in the Production environment. Call the `/partner/customer/enable` endpoint to enable the end customer in Production.  `ACTIVE`: The end customer has been enabled in all environments.  `DENIED`: The end customer has been created and enabled in the non-Production environments, but it did not pass review by the Plaid team and therefore cannot be enabled in the Production environment. Talk to your Account Manager for more information.., must be one of ["UNDER REVIEW", "READY FOR ENABLEMENT", "ACTIVE", "DENIED", ]  # noqa: E501
+            args[0] (str): The status of the given end customer.  `UNDER_REVIEW`: The end customer has been created and enabled in the non-Production environments. The end customer must be manually reviewed by the Plaid team before it can be enabled in production, at which point its status will automatically transition to `PENDING_ENABLEMENT` or `DENIED`.  `PENDING_ENABLEMENT`: The end customer is ready to be enabled in the Production environment. Call the `/partner/customer/enable` endpoint to enable the end customer in Production.  `ACTIVE`: The end customer has been enabled in all environments.  `DENIED`: The end customer has been created and enabled in the non-Production environments, but it did not pass review by the Plaid team and therefore cannot be enabled in the Production environment. Talk to your Account Manager for more information.., must be one of ["UNDER_REVIEW", "PENDING_ENABLEMENT", "ACTIVE", "DENIED", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The status of the given end customer.  `UNDER REVIEW`: The end customer has been created and enabled in the non-Production environments. The end customer must be manually reviewed by the Plaid team before it can be enabled in production, at which point its status will automatically transition to `READY FOR ENABLEMENT` or `DENIED`.  `READY FOR ENABLEMENT`: The end customer is ready to be enabled in the Production environment. Call the `/partner/customer/enable` endpoint to enable the end customer in Production.  `ACTIVE`: The end customer has been enabled in all environments.  `DENIED`: The end customer has been created and enabled in the non-Production environments, but it did not pass review by the Plaid team and therefore cannot be enabled in the Production environment. Talk to your Account Manager for more information.., must be one of ["UNDER REVIEW", "READY FOR ENABLEMENT", "ACTIVE", "DENIED", ]  # noqa: E501
+            value (str): The status of the given end customer.  `UNDER_REVIEW`: The end customer has been created and enabled in the non-Production environments. The end customer must be manually reviewed by the Plaid team before it can be enabled in production, at which point its status will automatically transition to `PENDING_ENABLEMENT` or `DENIED`.  `PENDING_ENABLEMENT`: The end customer is ready to be enabled in the Production environment. Call the `/partner/customer/enable` endpoint to enable the end customer in Production.  `ACTIVE`: The end customer has been enabled in all environments.  `DENIED`: The end customer has been created and enabled in the non-Production environments, but it did not pass review by the Plaid team and therefore cannot be enabled in the Production environment. Talk to your Account Manager for more information.., must be one of ["UNDER_REVIEW", "PENDING_ENABLEMENT", "ACTIVE", "DENIED", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

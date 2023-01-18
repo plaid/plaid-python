@@ -48,6 +48,7 @@ class ServiceProductFulfillmentIdentifier(ModelSimple):
     allowed_values = {
         ('value',): {
             'VOA': "VOA",
+            'VOETRANSACTIONS': "VOETRANSACTIONS",
         },
     }
 
@@ -97,10 +98,10 @@ class ServiceProductFulfillmentIdentifier(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): No documentation available. if omitted defaults to "VOA", must be one of ["VOA", ]  # noqa: E501
+            args[0] (str): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.., must be one of ["VOA", "VOETRANSACTIONS", ]  # noqa: E501
 
         Keyword Args:
-            value (str): No documentation available. if omitted defaults to "VOA", must be one of ["VOA", ]  # noqa: E501
+            value (str): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.., must be one of ["VOA", "VOETRANSACTIONS", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -141,7 +142,11 @@ class ServiceProductFulfillmentIdentifier(ModelSimple):
             args = list(args)
             value = args.pop(0)
         else:
-            value = "VOA"
+            raise ApiTypeError(
+                "value is required, but not passed in args or kwargs and doesn't have default",
+                path_to_item=_path_to_item,
+                valid_classes=(self.__class__,),
+            )
 
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)

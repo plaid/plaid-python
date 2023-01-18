@@ -104,7 +104,7 @@ class ReportingInformation(ModelNormal):
         """ReportingInformation - a model defined in OpenAPI
 
         Args:
-            reporting_information_identifier (str): No documentation available
+            reporting_information_identifier (str): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -128,8 +128,8 @@ class AssetTransactionDetail(ModelNormal):
         """AssetTransactionDetail - a model defined in OpenAPI
 
         Args:
-            asset_transaction_unique_identifier (str): A vendor creadted unique Identifier.
-            asset_transaction_amount (float): AssetTransactionAmountName.
+            asset_transaction_unique_identifier (str): A vendor created unique Identifier.
+            asset_transaction_amount (float): Asset Transaction Amount.
             asset_transaction_date (date): Asset Transaction Date.
             asset_transaction_post_date (date): Asset Transaction Post Date.
             asset_transaction_type (AssetTransactionType):

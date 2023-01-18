@@ -54,13 +54,14 @@ class IndividualWatchlistCode(ModelSimple):
             'IZ_IPL': "IZ_IPL",
             'IZ_PEP': "IZ_PEP",
             'IZ_UNC': "IZ_UNC",
+            'IZ_WBK': "IZ_WBK",
             'UK_HMC': "UK_HMC",
             'US_DPL': "US_DPL",
             'US_DTC': "US_DTC",
             'US_FBI': "US_FBI",
             'US_FSE': "US_FSE",
             'US_ISN': "US_ISN",
-            'US_MBC': "US_MBC",
+            'US_MBS': "US_MBS",
             'US_PLC': "US_PLC",
             'US_SDN': "US_SDN",
             'US_SSI': "US_SSI",
@@ -69,6 +70,7 @@ class IndividualWatchlistCode(ModelSimple):
             'TR_DFD': "TR_DFD",
             'TR_FOR': "TR_FOR",
             'TR_WMD': "TR_WMD",
+            'TR_CMB': "TR_CMB",
         },
     }
 
@@ -118,10 +120,10 @@ class IndividualWatchlistCode(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Shorthand identifier for a specific screening list for individuals.., must be one of ["AU_CON", "CA_CON", "EU_CON", "IZ_CIA", "IZ_IPL", "IZ_PEP", "IZ_UNC", "UK_HMC", "US_DPL", "US_DTC", "US_FBI", "US_FSE", "US_ISN", "US_MBC", "US_PLC", "US_SDN", "US_SSI", "SG_SOF", "TR_TWL", "TR_DFD", "TR_FOR", "TR_WMD", ]  # noqa: E501
+            args[0] (str): Shorthand identifier for a specific screening list for individuals.., must be one of ["AU_CON", "CA_CON", "EU_CON", "IZ_CIA", "IZ_IPL", "IZ_PEP", "IZ_UNC", "IZ_WBK", "UK_HMC", "US_DPL", "US_DTC", "US_FBI", "US_FSE", "US_ISN", "US_MBS", "US_PLC", "US_SDN", "US_SSI", "SG_SOF", "TR_TWL", "TR_DFD", "TR_FOR", "TR_WMD", "TR_CMB", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Shorthand identifier for a specific screening list for individuals.., must be one of ["AU_CON", "CA_CON", "EU_CON", "IZ_CIA", "IZ_IPL", "IZ_PEP", "IZ_UNC", "UK_HMC", "US_DPL", "US_DTC", "US_FBI", "US_FSE", "US_ISN", "US_MBC", "US_PLC", "US_SDN", "US_SSI", "SG_SOF", "TR_TWL", "TR_DFD", "TR_FOR", "TR_WMD", ]  # noqa: E501
+            value (str): Shorthand identifier for a specific screening list for individuals.., must be one of ["AU_CON", "CA_CON", "EU_CON", "IZ_CIA", "IZ_IPL", "IZ_PEP", "IZ_UNC", "IZ_WBK", "UK_HMC", "US_DPL", "US_DTC", "US_FBI", "US_FSE", "US_ISN", "US_MBS", "US_PLC", "US_SDN", "US_SSI", "SG_SOF", "TR_TWL", "TR_DFD", "TR_FOR", "TR_WMD", "TR_CMB", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

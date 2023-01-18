@@ -51,6 +51,7 @@ class EntityWatchlistCode(ModelSimple):
             'EU_CON': "EU_CON",
             'IZ_SOE': "IZ_SOE",
             'IZ_UNC': "IZ_UNC",
+            'IZ_WBK': "IZ_WBK",
             'US_CAP': "US_CAP",
             'US_FSE': "US_FSE",
             'US_MBS': "US_MBS",
@@ -109,10 +110,10 @@ class EntityWatchlistCode(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Shorthand identifier for a specific screening list for entities.., must be one of ["CA_CON", "EU_CON", "IZ_SOE", "IZ_UNC", "US_CAP", "US_FSE", "US_MBS", "US_SDN", "US_SSI", "US_CMC", "US_UVL", "AU_CON", "UK_HMC", ]  # noqa: E501
+            args[0] (str): Shorthand identifier for a specific screening list for entities.., must be one of ["CA_CON", "EU_CON", "IZ_SOE", "IZ_UNC", "IZ_WBK", "US_CAP", "US_FSE", "US_MBS", "US_SDN", "US_SSI", "US_CMC", "US_UVL", "AU_CON", "UK_HMC", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Shorthand identifier for a specific screening list for entities.., must be one of ["CA_CON", "EU_CON", "IZ_SOE", "IZ_UNC", "US_CAP", "US_FSE", "US_MBS", "US_SDN", "US_SSI", "US_CMC", "US_UVL", "AU_CON", "UK_HMC", ]  # noqa: E501
+            value (str): Shorthand identifier for a specific screening list for entities.., must be one of ["CA_CON", "EU_CON", "IZ_SOE", "IZ_UNC", "IZ_WBK", "US_CAP", "US_FSE", "US_MBS", "US_SDN", "US_SSI", "US_CMC", "US_UVL", "AU_CON", "UK_HMC", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

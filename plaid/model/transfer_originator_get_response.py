@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.originator import Originator
-    globals()['Originator'] = Originator
+    from plaid.model.detailed_originator import DetailedOriginator
+    globals()['DetailedOriginator'] = DetailedOriginator
 
 
 class TransferOriginatorGetResponse(ModelNormal):
@@ -82,7 +82,7 @@ class TransferOriginatorGetResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'originator': (Originator,),  # noqa: E501
+            'originator': (DetailedOriginator,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
         }
 
@@ -112,7 +112,7 @@ class TransferOriginatorGetResponse(ModelNormal):
         """TransferOriginatorGetResponse - a model defined in OpenAPI
 
         Args:
-            originator (Originator):
+            originator (DetailedOriginator):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
