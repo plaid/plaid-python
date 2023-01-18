@@ -53,9 +53,6 @@ class TransferQuestionnaireCreateRequest(ModelNormal):
     }
 
     validations = {
-        ('redirect_uri',): {
-            'min_length': 1,
-        },
     }
 
     additional_properties_type = None

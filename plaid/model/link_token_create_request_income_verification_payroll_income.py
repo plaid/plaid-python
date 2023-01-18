@@ -135,8 +135,8 @@ class LinkTokenCreateRequestIncomeVerificationPayrollIncome(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            flow_types ([IncomeVerificationPayrollFlowType], none_type): The types of payroll income verification to enable for the link session. If none are specified, then users will see both document and digital payroll income.. [optional]  # noqa: E501
-            is_update_mode (bool): An identifier to indicate whether the income verification link token will be used for an update or not. [optional]  # noqa: E501
+            flow_types ([IncomeVerificationPayrollFlowType], none_type): The types of payroll income verification to enable for the Link session. If none are specified, then users will see both document and digital payroll income.. [optional]  # noqa: E501
+            is_update_mode (bool): An identifier to indicate whether the income verification Link token will be used for an update or not. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

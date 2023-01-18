@@ -115,7 +115,7 @@ class AssetTransaction(ModelNormal):
 
         Args:
             asset_transaction_detail (AssetTransactionDetail):
-            asset_transaction_descripton ([AssetTransactionDescription]): No documentation available
+            asset_transaction_descripton ([AssetTransactionDescription]): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

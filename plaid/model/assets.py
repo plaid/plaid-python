@@ -110,7 +110,7 @@ class Assets(ModelNormal):
         """Assets - a model defined in OpenAPI
 
         Args:
-            asset ([Asset]): No documentation available
+            asset ([Asset]): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

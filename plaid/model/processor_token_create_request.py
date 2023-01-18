@@ -82,6 +82,8 @@ class ProcessorTokenCreateRequest(ModelNormal):
             'ADYEN': "adyen",
             'ATOMIC': "atomic",
             'I2C': "i2c",
+            'WEPAY': "wepay",
+            'RISKIFIED': "riskified",
         },
     }
 

@@ -96,8 +96,11 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, days_requested, *args, **kwargs):  # noqa: E501
         """LinkTokenCreateRequestIncomeVerificationBankIncome - a model defined in OpenAPI
+
+        Args:
+            days_requested (int): The number of days of data to request for the Bank Income product
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -130,7 +133,6 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            days_requested (int): The number of days of data to request for the Bank Income product. [optional]  # noqa: E501
             enable_multiple_items (bool, none_type): Whether to enable multiple items to be added in the link session. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
@@ -157,6 +159,7 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.days_requested = days_requested
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -106,8 +106,8 @@ class ValidationSource(ModelNormal):
         """ValidationSource - a model defined in OpenAPI
 
         Args:
-            validation_source_name (str, none_type): No documentation available.
-            validation_source_reference_identifier (str, none_type): No documentation available.
+            validation_source_name (str, none_type): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.
+            validation_source_reference_identifier (str, none_type): Documentation not found in the MISMO model viewer and not provided by Freddie Mac.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -8,32 +8,32 @@ from tests.integration.util import create_client
 SAMPLE_TRANSACTIONS_TO_ENRICH = [
     ClientProvidedTransaction(
         id="1",
-        description="DDA PURCHASE *XXXX XXXXXXXX FAMILY DOLLAR",
+        description="TST *JETTIES BAGELS",
         amount=10.21,
         iso_currency_code="USD",
         location=ClientProvidedTransactionLocation(
-            city="Philadelphia",
-            region="PA",
+            city="Ipswich",
+            region="MA",
         ),
         direction=EnrichTransactionDirection(value="OUTFLOW")
     ),
     ClientProvidedTransaction(
         id="2",
-        description="PURCHASE JUNIATA SUPE PHILADELPHIA PA CARDXXXX",
+        description="AMAZON.COM*MJ3LO9AN2",
         amount=45.14,
         iso_currency_code="USD",
         direction=EnrichTransactionDirection(value="OUTFLOW")
     ),
     ClientProvidedTransaction(
         id="3",
-        description="DEBIT CARD PURCHASE",
+        description="GOOGLE *FRESHBOOKS",
         amount=25.15,
         iso_currency_code="USD",
         direction=EnrichTransactionDirection(value="OUTFLOW")
     ),
     ClientProvidedTransaction(
         id="4",
-        description="DIRECT DEP* UBER.COM",
+        description="EARNIN TRANSFER",
         amount=250.15,
         iso_currency_code="USD",
         direction=EnrichTransactionDirection(value="INFLOW")

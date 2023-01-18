@@ -123,7 +123,7 @@ class Holding(ModelNormal):
 
         Args:
             account_id (str): The Plaid `account_id` associated with the holding.
-            security_id (str): The Plaid `security_id` associated with the holding. The `security_id` may change if inherent details of the security change due to a corporate action, for example, in the event of a ticker symbol change or CUSIP change.
+            security_id (str): The Plaid `security_id` associated with the holding. Security data is not specific to a user's account; any user who held the same security at the same financial institution at the same time would have identical security data. The `security_id` for the same security will typically be the same across different institutions, but this is not guaranteed. The `security_id` does not typically change, but may change if inherent details of the security change due to a corporate action, for example, in the event of a ticker symbol change or CUSIP change.
             institution_price (float): The last price given by the institution for this security.
             institution_value (float): The value of the holding, as reported by the institution.
             cost_basis (float, none_type): The original total value of the holding. The accuracy of this field is dependent on the information provided by the institution.

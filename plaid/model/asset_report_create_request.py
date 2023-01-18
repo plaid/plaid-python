@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.asset_report_create_request_options import AssetReportCreateRequestOptions
+    from plaid.model.freddie_report_type import FreddieReportType
     globals()['AssetReportCreateRequestOptions'] = AssetReportCreateRequestOptions
+    globals()['FreddieReportType'] = FreddieReportType
 
 
 class AssetReportCreateRequest(ModelNormal):
@@ -88,6 +90,7 @@ class AssetReportCreateRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'options': (AssetReportCreateRequestOptions,),  # noqa: E501
+            'report_type': (FreddieReportType,),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +104,7 @@ class AssetReportCreateRequest(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'options': 'options',  # noqa: E501
+        'report_type': 'report_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,6 +160,7 @@ class AssetReportCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             options (AssetReportCreateRequestOptions): [optional]  # noqa: E501
+            report_type (FreddieReportType): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
