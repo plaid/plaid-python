@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.wallet_balance import WalletBalance
     from plaid.model.wallet_numbers import WalletNumbers
+    from plaid.model.wallet_status import WalletStatus
     globals()['WalletBalance'] = WalletBalance
     globals()['WalletNumbers'] = WalletNumbers
+    globals()['WalletStatus'] = WalletStatus
 
 
 class Wallet(ModelNormal):
@@ -87,6 +89,7 @@ class Wallet(ModelNormal):
             'wallet_id': (str,),  # noqa: E501
             'balance': (WalletBalance,),  # noqa: E501
             'numbers': (WalletNumbers,),  # noqa: E501
+            'status': (WalletStatus,),  # noqa: E501
             'recipient_id': (str,),  # noqa: E501
         }
 
@@ -99,6 +102,7 @@ class Wallet(ModelNormal):
         'wallet_id': 'wallet_id',  # noqa: E501
         'balance': 'balance',  # noqa: E501
         'numbers': 'numbers',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'recipient_id': 'recipient_id',  # noqa: E501
     }
 
@@ -114,13 +118,14 @@ class Wallet(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, wallet_id, balance, numbers, *args, **kwargs):  # noqa: E501
+    def __init__(self, wallet_id, balance, numbers, status, *args, **kwargs):  # noqa: E501
         """Wallet - a model defined in OpenAPI
 
         Args:
             wallet_id (str): A unique ID identifying the e-wallet
             balance (WalletBalance):
             numbers (WalletNumbers):
+            status (WalletStatus):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -182,6 +187,7 @@ class Wallet(ModelNormal):
         self.wallet_id = wallet_id
         self.balance = balance
         self.numbers = numbers
+        self.status = status
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

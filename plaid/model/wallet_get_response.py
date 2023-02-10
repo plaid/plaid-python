@@ -29,10 +29,12 @@ def lazy_import():
     from plaid.model.wallet import Wallet
     from plaid.model.wallet_balance import WalletBalance
     from plaid.model.wallet_numbers import WalletNumbers
+    from plaid.model.wallet_status import WalletStatus
     globals()['PaymentInitiationRecipientGetResponseAllOf'] = PaymentInitiationRecipientGetResponseAllOf
     globals()['Wallet'] = Wallet
     globals()['WalletBalance'] = WalletBalance
     globals()['WalletNumbers'] = WalletNumbers
+    globals()['WalletStatus'] = WalletStatus
 
 
 class WalletGetResponse(ModelComposed):
@@ -91,6 +93,7 @@ class WalletGetResponse(ModelComposed):
             'wallet_id': (str,),  # noqa: E501
             'balance': (WalletBalance,),  # noqa: E501
             'numbers': (WalletNumbers,),  # noqa: E501
+            'status': (WalletStatus,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'recipient_id': (str,),  # noqa: E501
         }
@@ -104,6 +107,7 @@ class WalletGetResponse(ModelComposed):
         'wallet_id': 'wallet_id',  # noqa: E501
         'balance': 'balance',  # noqa: E501
         'numbers': 'numbers',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'recipient_id': 'recipient_id',  # noqa: E501
     }
@@ -121,13 +125,14 @@ class WalletGetResponse(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, wallet_id, balance, numbers, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, wallet_id, balance, numbers, status, request_id, *args, **kwargs):  # noqa: E501
         """WalletGetResponse - a model defined in OpenAPI
 
         Args:
             wallet_id (str): A unique ID identifying the e-wallet
             balance (WalletBalance):
             numbers (WalletNumbers):
+            status (WalletStatus):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -198,6 +203,7 @@ class WalletGetResponse(ModelComposed):
             'wallet_id': wallet_id,
             'balance': balance,
             'numbers': numbers,
+            'status': status,
             'request_id': request_id,
         }
         model_args = {}

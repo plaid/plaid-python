@@ -27,10 +27,12 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.ach_class import ACHClass
     from plaid.model.transfer_intent_create_mode import TransferIntentCreateMode
+    from plaid.model.transfer_intent_create_network import TransferIntentCreateNetwork
     from plaid.model.transfer_metadata import TransferMetadata
     from plaid.model.transfer_user_in_request import TransferUserInRequest
     globals()['ACHClass'] = ACHClass
     globals()['TransferIntentCreateMode'] = TransferIntentCreateMode
+    globals()['TransferIntentCreateNetwork'] = TransferIntentCreateNetwork
     globals()['TransferMetadata'] = TransferMetadata
     globals()['TransferUserInRequest'] = TransferUserInRequest
 
@@ -92,6 +94,8 @@ class TransferIntentCreateRequest(ModelNormal):
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
+            'funding_account_id': (str, none_type,),  # noqa: E501
+            'network': (TransferIntentCreateNetwork,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
@@ -112,6 +116,8 @@ class TransferIntentCreateRequest(ModelNormal):
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
+        'network': 'network',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
@@ -173,7 +179,9 @@ class TransferIntentCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            account_id (str, none_type): The Plaid `account_id` for the account that will be debited or credited.. [optional]  # noqa: E501
+            account_id (str, none_type): The Plaid `account_id` corresponding to the end-user account that will be debited or credited.. [optional]  # noqa: E501
+            funding_account_id (str, none_type): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited. Defaults to the account configured during onboarding.. [optional]  # noqa: E501
+            network (TransferIntentCreateNetwork): [optional]  # noqa: E501
             ach_class (ACHClass): [optional]  # noqa: E501
             origination_account_id (str, none_type): Plaid’s unique identifier for the origination account for the intent. If not provided, the default account will be used.. [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501

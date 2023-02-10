@@ -53,12 +53,6 @@ class LinkTokenCreateRequestPaymentInitiation(ModelNormal):
     }
 
     validations = {
-        ('payment_id',): {
-            'min_length': 1,
-        },
-        ('consent_id',): {
-            'min_length': 1,
-        },
     }
 
     additional_properties_type = None

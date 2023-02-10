@@ -83,6 +83,7 @@ class CreditFreddieMacVerificationOfAssetsVOA24(ModelNormal):
         lazy_import()
         return {
             'deal': (CreditFreddieMacVerificationOfAssetsDealVOA24,),  # noqa: E501
+            'schema_version': (float,),  # noqa: E501
         }
 
     @cached_property
@@ -92,6 +93,7 @@ class CreditFreddieMacVerificationOfAssetsVOA24(ModelNormal):
 
     attribute_map = {
         'deal': 'DEAL',  # noqa: E501
+        'schema_version': 'SchemaVersion',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -106,8 +108,12 @@ class CreditFreddieMacVerificationOfAssetsVOA24(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, deal, schema_version, *args, **kwargs):  # noqa: E501
         """CreditFreddieMacVerificationOfAssetsVOA24 - a model defined in OpenAPI
+
+        Args:
+            deal (CreditFreddieMacVerificationOfAssetsDealVOA24):
+            schema_version (float): The Verification Of Assets (VOA) schema version.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,7 +146,6 @@ class CreditFreddieMacVerificationOfAssetsVOA24(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            deal (CreditFreddieMacVerificationOfAssetsDealVOA24): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,6 +171,8 @@ class CreditFreddieMacVerificationOfAssetsVOA24(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.deal = deal
+        self.schema_version = schema_version
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

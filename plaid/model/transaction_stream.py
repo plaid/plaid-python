@@ -90,8 +90,8 @@ class TransactionStream(ModelNormal):
         return {
             'account_id': (str,),  # noqa: E501
             'stream_id': (str,),  # noqa: E501
-            'category_id': (str,),  # noqa: E501
             'category': ([str],),  # noqa: E501
+            'category_id': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
             'first_date': (date,),  # noqa: E501
@@ -113,8 +113,8 @@ class TransactionStream(ModelNormal):
     attribute_map = {
         'account_id': 'account_id',  # noqa: E501
         'stream_id': 'stream_id',  # noqa: E501
-        'category_id': 'category_id',  # noqa: E501
         'category': 'category',  # noqa: E501
+        'category_id': 'category_id',  # noqa: E501
         'description': 'description',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
         'first_date': 'first_date',  # noqa: E501
@@ -140,14 +140,14 @@ class TransactionStream(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, account_id, stream_id, category_id, category, description, merchant_name, first_date, last_date, frequency, transaction_ids, average_amount, last_amount, is_active, status, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, stream_id, category, category_id, description, merchant_name, first_date, last_date, frequency, transaction_ids, average_amount, last_amount, is_active, status, *args, **kwargs):  # noqa: E501
         """TransactionStream - a model defined in OpenAPI
 
         Args:
             account_id (str): The ID of the account to which the stream belongs
             stream_id (str): A unique id for the stream
-            category_id (str): The ID of the category to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).
-            category ([str]): A hierarchical array of the categories to which this transaction belongs. See [Categories](https://plaid.com/docs/#category-overview).
+            category ([str]): A hierarchical array of the categories to which this transaction belongs. See [Categories](https://plaid.com/docs/api/products/transactions/#categoriesget).
+            category_id (str): The ID of the category to which this transaction belongs. See [Categories](https://plaid.com/docs/api/products/transactions/#categoriesget).
             description (str): A description of the transaction stream.
             merchant_name (str, none_type): The merchant associated with the transaction stream.
             first_date (date): The posted date of the earliest transaction in the stream.
@@ -218,8 +218,8 @@ class TransactionStream(ModelNormal):
 
         self.account_id = account_id
         self.stream_id = stream_id
-        self.category_id = category_id
         self.category = category
+        self.category_id = category_id
         self.description = description
         self.merchant_name = merchant_name
         self.first_date = first_date

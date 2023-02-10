@@ -85,8 +85,9 @@ class LinkDeliveryGetResponse(ModelNormal):
             'status': (LinkDeliverySessionStatus,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
-            'public_tokens': ([str],),  # noqa: E501
             'completed_at': (datetime, none_type,),  # noqa: E501
+            'access_tokens': ([str], none_type,),  # noqa: E501
+            'item_ids': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +99,9 @@ class LinkDeliveryGetResponse(ModelNormal):
         'status': 'status',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
-        'public_tokens': 'public_tokens',  # noqa: E501
         'completed_at': 'completed_at',  # noqa: E501
+        'access_tokens': 'access_tokens',  # noqa: E501
+        'item_ids': 'item_ids',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,8 +155,9 @@ class LinkDeliveryGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            public_tokens ([str]): The public tokens returned by the Link session upon completion. [optional]  # noqa: E501
             completed_at (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Link Delivery Session was completed at. [optional]  # noqa: E501
+            access_tokens ([str], none_type): An array of access tokens associated with the link delivery session. [optional]  # noqa: E501
+            item_ids ([str], none_type): An array of item ids associated with the link delivery session. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

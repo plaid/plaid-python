@@ -77,6 +77,7 @@ class TransferSweep(ModelNormal):
         """
         return {
             'id': (str,),  # noqa: E501
+            'funding_account_id': (str,),  # noqa: E501
             'created': (datetime,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
@@ -90,6 +91,7 @@ class TransferSweep(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'created': 'created',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
@@ -108,11 +110,12 @@ class TransferSweep(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created, amount, iso_currency_code, settled, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, funding_account_id, created, amount, iso_currency_code, settled, *args, **kwargs):  # noqa: E501
         """TransferSweep - a model defined in OpenAPI
 
         Args:
             id (str): Identifier of the sweep.
+            funding_account_id (str): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited.
             created (datetime): The datetime when the sweep occurred, in RFC 3339 format.
             amount (str): Signed decimal amount of the sweep as it appears on your sweep account ledger (e.g. \"-10.00\")  If amount is not present, the sweep was net-settled to zero and outstanding debits and credits between the sweep account and Plaid are balanced.
             iso_currency_code (str): The currency of the sweep, e.g. \"USD\".
@@ -175,6 +178,7 @@ class TransferSweep(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.funding_account_id = funding_account_id
         self.created = created
         self.amount = amount
         self.iso_currency_code = iso_currency_code
