@@ -30,6 +30,7 @@ def lazy_import():
     from plaid.model.link_token_create_institution_data import LinkTokenCreateInstitutionData
     from plaid.model.link_token_create_request_auth import LinkTokenCreateRequestAuth
     from plaid.model.link_token_create_request_deposit_switch import LinkTokenCreateRequestDepositSwitch
+    from plaid.model.link_token_create_request_employment import LinkTokenCreateRequestEmployment
     from plaid.model.link_token_create_request_identity_verification import LinkTokenCreateRequestIdentityVerification
     from plaid.model.link_token_create_request_income_verification import LinkTokenCreateRequestIncomeVerification
     from plaid.model.link_token_create_request_payment_initiation import LinkTokenCreateRequestPaymentInitiation
@@ -44,6 +45,7 @@ def lazy_import():
     globals()['LinkTokenCreateInstitutionData'] = LinkTokenCreateInstitutionData
     globals()['LinkTokenCreateRequestAuth'] = LinkTokenCreateRequestAuth
     globals()['LinkTokenCreateRequestDepositSwitch'] = LinkTokenCreateRequestDepositSwitch
+    globals()['LinkTokenCreateRequestEmployment'] = LinkTokenCreateRequestEmployment
     globals()['LinkTokenCreateRequestIdentityVerification'] = LinkTokenCreateRequestIdentityVerification
     globals()['LinkTokenCreateRequestIncomeVerification'] = LinkTokenCreateRequestIncomeVerification
     globals()['LinkTokenCreateRequestPaymentInitiation'] = LinkTokenCreateRequestPaymentInitiation
@@ -123,6 +125,7 @@ class LinkTokenCreateRequest(ModelNormal):
             'institution_id': (str,),  # noqa: E501
             'payment_initiation': (LinkTokenCreateRequestPaymentInitiation,),  # noqa: E501
             'deposit_switch': (LinkTokenCreateRequestDepositSwitch,),  # noqa: E501
+            'employment': (LinkTokenCreateRequestEmployment,),  # noqa: E501
             'income_verification': (LinkTokenCreateRequestIncomeVerification,),  # noqa: E501
             'auth': (LinkTokenCreateRequestAuth,),  # noqa: E501
             'transfer': (LinkTokenCreateRequestTransfer,),  # noqa: E501
@@ -157,6 +160,7 @@ class LinkTokenCreateRequest(ModelNormal):
         'institution_id': 'institution_id',  # noqa: E501
         'payment_initiation': 'payment_initiation',  # noqa: E501
         'deposit_switch': 'deposit_switch',  # noqa: E501
+        'employment': 'employment',  # noqa: E501
         'income_verification': 'income_verification',  # noqa: E501
         'auth': 'auth',  # noqa: E501
         'transfer': 'transfer',  # noqa: E501
@@ -220,7 +224,7 @@ class LinkTokenCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
-            products ([Products]): List of Plaid product(s) you wish to use. If launching Link in update mode, should be omitted; required otherwise.  `balance` is *not* a valid value, the Balance product does not require explicit initialization and will automatically be initialized when any other product is initialized.  The products specified here will determine which institutions will be available to your users in Link. Only institutions that support *all* requested products can be selected; a if a user attempts to select an institution that does not support a listed product, a \"Connectivity not supported\" error message will appear in Link. To maximize the number of institutions available, initialize Link with the minimal product set required for your use case. Additional products can be added after Link initialization by calling the relevant endpoints. For details and exceptions, see [Choosing when to initialize products](https://plaid.com/docs/link/best-practices/#choosing-when-to-initialize-products).  Note that, unless you have opted to disable Instant Match support, institutions that support Instant Match will also be shown in Link if `auth` is specified as a product, even though these institutions do not contain `auth` in their product array.  In Production, you will be billed for each product that you specify when initializing Link. Note that a product cannot be removed from an Item once the Item has been initialized with that product. To stop billing on an Item for subscription-based products, such as Liabilities, Investments, and Transactions, remove the Item via `/item/remove`.. [optional]  # noqa: E501
+            products ([Products]): List of Plaid product(s) you wish to use. If launching Link in update mode, should be omitted; required otherwise.  `balance` is *not* a valid value, the Balance product does not require explicit initialization and will automatically be initialized when any other product is initialized.  The products specified here will determine which institutions will be available to your users in Link. Only institutions that support *all* requested products can be selected; a if a user attempts to select an institution that does not support a listed product, a \"Connectivity not supported\" error message will appear in Link. To maximize the number of institutions available, initialize Link with the minimal product set required for your use case. Additional products can be added after Link initialization by calling the relevant endpoints. For details and exceptions, see [Choosing when to initialize products](https://plaid.com/docs/link/initializing-products/).  Note that, unless you have opted to disable Instant Match support, institutions that support Instant Match will also be shown in Link if `auth` is specified as a product, even though these institutions do not contain `auth` in their product array.  In Production, you will be billed for each product that you specify when initializing Link. Note that a product cannot be removed from an Item once the Item has been initialized with that product. To stop billing on an Item for subscription-based products, such as Liabilities, Investments, and Transactions, remove the Item via `/item/remove`.. [optional]  # noqa: E501
             additional_consented_products ([Products]): (Beta) This field has no effect unless you are participating in the Product Scope Transparency beta program. List of additional Plaid product(s) you wish to collect consent for. These products will not be billed until you start using them by calling the relevant endpoints.  `balance` is *not* a valid value, the Balance product does not require explicit initialization and will automatically have consent collected.  Institutions that do not support these products will still be shown in Link. [optional]  # noqa: E501
             webhook (str): The destination URL to which any webhooks should be sent.. [optional]  # noqa: E501
             access_token (str): The `access_token` associated with the Item to update or reference, used when updating, modifying, or accessing an existing `access_token`. Used when launching Link in update mode, when completing the Same-day (manual) Micro-deposit flow, or (optionally) when initializing Link for a returning user as part of the Transfer UI flow.. [optional]  # noqa: E501
@@ -233,6 +237,7 @@ class LinkTokenCreateRequest(ModelNormal):
             institution_id (str): Used for certain Europe-only configurations, as well as certain legacy use cases in other regions.. [optional]  # noqa: E501
             payment_initiation (LinkTokenCreateRequestPaymentInitiation): [optional]  # noqa: E501
             deposit_switch (LinkTokenCreateRequestDepositSwitch): [optional]  # noqa: E501
+            employment (LinkTokenCreateRequestEmployment): [optional]  # noqa: E501
             income_verification (LinkTokenCreateRequestIncomeVerification): [optional]  # noqa: E501
             auth (LinkTokenCreateRequestAuth): [optional]  # noqa: E501
             transfer (LinkTokenCreateRequestTransfer): [optional]  # noqa: E501

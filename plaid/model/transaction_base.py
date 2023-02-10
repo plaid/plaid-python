@@ -97,19 +97,19 @@ class TransactionBase(ModelNormal):
             'date': (date,),  # noqa: E501
             'pending': (bool,),  # noqa: E501
             'transaction_id': (str,),  # noqa: E501
-            'transaction_type': (str,),  # noqa: E501
-            'pending_transaction_id': (str, none_type,),  # noqa: E501
-            'category_id': (str, none_type,),  # noqa: E501
             'category': ([str], none_type,),  # noqa: E501
+            'category_id': (str, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
             'location': (Location,),  # noqa: E501
-            'payment_meta': (PaymentMeta,),  # noqa: E501
-            'account_owner': (str, none_type,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'original_description': (str, none_type,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
+            'original_description': (str, none_type,),  # noqa: E501
+            'payment_meta': (PaymentMeta,),  # noqa: E501
+            'pending_transaction_id': (str, none_type,),  # noqa: E501
+            'account_owner': (str, none_type,),  # noqa: E501
+            'transaction_type': (str,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
             'website': (str, none_type,),  # noqa: E501
-            'check_number': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -125,19 +125,19 @@ class TransactionBase(ModelNormal):
         'date': 'date',  # noqa: E501
         'pending': 'pending',  # noqa: E501
         'transaction_id': 'transaction_id',  # noqa: E501
-        'transaction_type': 'transaction_type',  # noqa: E501
-        'pending_transaction_id': 'pending_transaction_id',  # noqa: E501
-        'category_id': 'category_id',  # noqa: E501
         'category': 'category',  # noqa: E501
+        'category_id': 'category_id',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
         'location': 'location',  # noqa: E501
-        'payment_meta': 'payment_meta',  # noqa: E501
-        'account_owner': 'account_owner',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'original_description': 'original_description',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
+        'original_description': 'original_description',  # noqa: E501
+        'payment_meta': 'payment_meta',  # noqa: E501
+        'pending_transaction_id': 'pending_transaction_id',  # noqa: E501
+        'account_owner': 'account_owner',  # noqa: E501
+        'transaction_type': 'transaction_type',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
         'website': 'website',  # noqa: E501
-        'check_number': 'check_number',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -195,19 +195,19 @@ class TransactionBase(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            transaction_type (str): Please use the `payment_channel` field, `transaction_type` will be deprecated in the future.  `digital:` transactions that took place online.  `place:` transactions that were made at a physical location.  `special:` transactions that relate to banks, e.g. fees or deposits.  `unresolved:` transactions that do not fit into the other three types. . [optional]  # noqa: E501
-            pending_transaction_id (str, none_type): The ID of a posted transaction's associated pending transaction, where applicable.. [optional]  # noqa: E501
-            category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
             category ([str], none_type): A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
+            category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             location (Location): [optional]  # noqa: E501
-            payment_meta (PaymentMeta): [optional]  # noqa: E501
-            account_owner (str, none_type): The name of the account owner. This field is not typically populated and only relevant when dealing with sub-accounts.. [optional]  # noqa: E501
             name (str): The merchant name or transaction description.  If the `transactions` object was returned by a Transactions endpoint such as `/transactions/get`, this field will always appear. If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.. [optional]  # noqa: E501
+            merchant_name (str, none_type): The merchant name, as enriched by Plaid from the `name` field. This is typically a more human-readable version of the merchant counterparty in the transaction. For some bank transactions (such as checks or account transfers) where there is no meaningful merchant name, this value will be `null`.. [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
-            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
+            payment_meta (PaymentMeta): [optional]  # noqa: E501
+            pending_transaction_id (str, none_type): The ID of a posted transaction's associated pending transaction, where applicable.. [optional]  # noqa: E501
+            account_owner (str, none_type): The name of the account owner. This field is not typically populated and only relevant when dealing with sub-accounts.. [optional]  # noqa: E501
+            transaction_type (str): Please use the `payment_channel` field, `transaction_type` will be deprecated in the future.  `digital:` transactions that took place online.  `place:` transactions that were made at a physical location.  `special:` transactions that relate to banks, e.g. fees or deposits.  `unresolved:` transactions that do not fit into the other three types. . [optional]  # noqa: E501
             logo_url (str, none_type): The logo associated with the merchant, if available. Formatted as a 100x100 pixels PNG file path.. [optional]  # noqa: E501
             website (str, none_type): The website associated with the merchant, if available.. [optional]  # noqa: E501
-            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -94,6 +94,7 @@ class WalletTransaction(ModelNormal):
         lazy_import()
         return {
             'transaction_id': (str,),  # noqa: E501
+            'wallet_id': (str,),  # noqa: E501
             'reference': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'amount': (WalletTransactionAmount,),  # noqa: E501
@@ -111,6 +112,7 @@ class WalletTransaction(ModelNormal):
 
     attribute_map = {
         'transaction_id': 'transaction_id',  # noqa: E501
+        'wallet_id': 'wallet_id',  # noqa: E501
         'reference': 'reference',  # noqa: E501
         'type': 'type',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -133,11 +135,12 @@ class WalletTransaction(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, transaction_id, reference, type, amount, counterparty, status, created_at, last_status_update, *args, **kwargs):  # noqa: E501
+    def __init__(self, transaction_id, wallet_id, reference, type, amount, counterparty, status, created_at, last_status_update, *args, **kwargs):  # noqa: E501
         """WalletTransaction - a model defined in OpenAPI
 
         Args:
             transaction_id (str): A unique ID identifying the transaction
+            wallet_id (str): The EMI (E-Money Institution) wallet that this payment is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.
             reference (str): A reference for the transaction
             type (str): The type of the transaction. The supported transaction types that are returned are: `BANK_TRANSFER:` a transaction which credits an e-wallet through an external bank transfer.  `PAYOUT:` a transaction which debits an e-wallet by disbursing funds to a counterparty.  `PIS_PAY_IN:` a payment which credits an e-wallet through Plaid's Payment Initiation Services (PIS) APIs. For more information see the [Payment Initiation endpoints](https://plaid.com/docs/api/products/payment-initiation/).  `REFUND:` a transaction which debits an e-wallet by refunding a previously initiated payment made through Plaid's [PIS APIs](https://plaid.com/docs/api/products/payment-initiation/).  `FUNDS_SWEEP`: an automated transaction which debits funds from an e-wallet to a designated client-owned account.
             amount (WalletTransactionAmount):
@@ -204,6 +207,7 @@ class WalletTransaction(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.transaction_id = transaction_id
+        self.wallet_id = wallet_id
         self.reference = reference
         self.type = type
         self.amount = amount

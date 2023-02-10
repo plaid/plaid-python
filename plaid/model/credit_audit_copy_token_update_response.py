@@ -77,6 +77,7 @@ class CreditAuditCopyTokenUpdateResponse(ModelNormal):
         """
         return {
             'request_id': (str,),  # noqa: E501
+            'updated': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -86,6 +87,7 @@ class CreditAuditCopyTokenUpdateResponse(ModelNormal):
 
     attribute_map = {
         'request_id': 'request_id',  # noqa: E501
+        'updated': 'updated',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -100,11 +102,12 @@ class CreditAuditCopyTokenUpdateResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, request_id, updated, *args, **kwargs):  # noqa: E501
         """CreditAuditCopyTokenUpdateResponse - a model defined in OpenAPI
 
         Args:
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
+            updated (bool): `true` if the Audit Copy Token was successfully updated.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,6 +166,7 @@ class CreditAuditCopyTokenUpdateResponse(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.request_id = request_id
+        self.updated = updated
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

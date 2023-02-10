@@ -84,7 +84,7 @@ class IdentityVerificationStatusUpdatedWebhook(ModelNormal):
         return {
             'webhook_type': (str,),  # noqa: E501
             'webhook_code': (str,),  # noqa: E501
-            'identity_verification_id': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'identity_verification_id': (str,),  # noqa: E501
             'environment': (WebhookEnvironmentValues,),  # noqa: E501
         }
 
@@ -118,7 +118,7 @@ class IdentityVerificationStatusUpdatedWebhook(ModelNormal):
         Args:
             webhook_type (str): `IDENTITY_VERIFICATION`
             webhook_code (str): `STATUS_UPDATED`
-            identity_verification_id (bool, date, datetime, dict, float, int, list, str, none_type): The ID of the associated Identity Verification attempt.
+            identity_verification_id (str): The ID of the associated Identity Verification attempt.
             environment (WebhookEnvironmentValues):
 
         Keyword Args:

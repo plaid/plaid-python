@@ -86,6 +86,7 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
         """
         lazy_import()
         return {
+            'funding_account_id': (str,),  # noqa: E501
             'type': (TransferType,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'amount': (str,),  # noqa: E501
@@ -103,6 +104,7 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
 
 
     attribute_map = {
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'user': 'user',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -126,10 +128,11 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, type, user, amount, network, origination_account_id, iso_currency_code, originator_client_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, funding_account_id, type, user, amount, network, origination_account_id, iso_currency_code, originator_client_id, *args, **kwargs):  # noqa: E501
         """TransferAuthorizationProposedTransfer - a model defined in OpenAPI
 
         Args:
+            funding_account_id (str): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited.
             type (TransferType):
             user (TransferUserInResponse):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
@@ -196,6 +199,7 @@ class TransferAuthorizationProposedTransfer(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.funding_account_id = funding_account_id
         self.type = type
         self.user = user
         self.amount = amount

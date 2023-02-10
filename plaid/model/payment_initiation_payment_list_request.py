@@ -57,9 +57,6 @@ class PaymentInitiationPaymentListRequest(ModelNormal):
             'inclusive_maximum': 200,
             'inclusive_minimum': 1,
         },
-        ('consent_id',): {
-            'min_length': 1,
-        },
     }
 
     additional_properties_type = None

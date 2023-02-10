@@ -84,6 +84,7 @@ class TransferSweepListRequest(ModelNormal):
             'count': (int, none_type,),  # noqa: E501
             'offset': (int,),  # noqa: E501
             'originator_client_id': (str, none_type,),  # noqa: E501
+            'funding_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +100,7 @@ class TransferSweepListRequest(ModelNormal):
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
         'originator_client_id': 'originator_client_id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +156,7 @@ class TransferSweepListRequest(ModelNormal):
             count (int, none_type): The maximum number of sweeps to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int): The number of sweeps to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
             originator_client_id (str, none_type): Filter sweeps to only those with the specified originator client.. [optional]  # noqa: E501
+            funding_account_id (str, none_type): Filter sweeps to only those with the specified `funding_account_id`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

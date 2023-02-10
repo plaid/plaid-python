@@ -127,8 +127,8 @@ class ClientProvidedTransaction(ModelNormal):
 
         Args:
             id (str): A unique ID for the transaction used to help you tie data back to your systems.
-            description (str): The raw description of the transaction.
-            amount (float): The absolute value of the transaction (>= 0)
+            description (str): The raw description of the transaction. If you have location data in available an unstructured format, it may be appended to the `description` field.
+            amount (float): The absolute value of the transaction (>= 0). When testing Enrich, note that `amount` data should be realistic. Unrealistic or inaccurate `amount` data may result in reduced quality output.
             direction (EnrichTransactionDirection):
             iso_currency_code (str): The ISO-4217 currency code of the transaction e.g. USD.
 

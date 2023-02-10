@@ -178,7 +178,7 @@ class TransferCreateRequest(ModelNormal):
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             idempotency_key (TransferCreateIdempotencyKey): [optional]  # noqa: E501
             access_token (str): The Plaid `access_token` for the account that will be debited or credited. Required if not using `payment_profile_token`.. [optional]  # noqa: E501
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited. Required if not using `payment_profile_token`.. [optional]  # noqa: E501
+            account_id (str): The Plaid `account_id` corresponding to the end-user account that will be debited or credited. Returned only if `account_id` was set on intent creation.. [optional]  # noqa: E501
             payment_profile_token (str): The payment profile token associated with the Payment Profile that will be debited or credited. Required if not using `access_token`.. [optional]  # noqa: E501
             type (object): [optional]  # noqa: E501
             network (object): [optional]  # noqa: E501

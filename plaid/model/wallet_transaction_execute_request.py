@@ -66,7 +66,7 @@ class WalletTransactionExecuteRequest(ModelNormal):
         },
         ('reference',): {
             'max_length': 18,
-            'min_length': 1,
+            'min_length': 6,
         },
     }
 
@@ -130,7 +130,7 @@ class WalletTransactionExecuteRequest(ModelNormal):
             wallet_id (str): The ID of the e-wallet to debit from
             counterparty (WalletTransactionCounterparty):
             amount (WalletTransactionAmount):
-            reference (str): A reference for the transaction. This must be an alphanumeric string with at most 18 characters and must not contain any special characters or spaces. Ensure that the `reference` field is unique for each transaction.
+            reference (str): A reference for the transaction. This must be an alphanumeric string with 6 to 18 characters and must not contain any special characters or spaces. Ensure that the `reference` field is unique for each transaction.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

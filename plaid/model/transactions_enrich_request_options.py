@@ -128,7 +128,7 @@ class TransactionsEnrichRequestOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            include_legacy_category (bool): Include `legacy_category` and `legacy_category_id` in the response (in addition to the default `personal_finance_category`).   Categories are based on Plaid's legacy taxonomy. For a full list of legacy categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_legacy_category (bool): Include `legacy_category` and `legacy_category_id` in the response (in addition to the default `personal_finance_category`).  Categories are based on Plaid's legacy taxonomy. For a full list of legacy categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

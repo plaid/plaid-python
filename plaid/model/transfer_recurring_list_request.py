@@ -83,6 +83,7 @@ class TransferRecurringListRequest(ModelNormal):
             'end_time': (datetime, none_type,),  # noqa: E501
             'count': (int,),  # noqa: E501
             'offset': (int,),  # noqa: E501
+            'funding_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +98,7 @@ class TransferRecurringListRequest(ModelNormal):
         'end_time': 'end_time',  # noqa: E501
         'count': 'count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,6 +153,7 @@ class TransferRecurringListRequest(ModelNormal):
             end_time (datetime, none_type): The end datetime of recurring transfers to list. This should be in RFC 3339 format (i.e. `2019-12-06T22:35:49Z`). [optional]  # noqa: E501
             count (int): The maximum number of recurring transfers to return.. [optional] if omitted the server will use the default value of 25  # noqa: E501
             offset (int): The number of recurring transfers to skip before returning results.. [optional] if omitted the server will use the default value of 0  # noqa: E501
+            funding_account_id (str, none_type): Filter recurring transfers to only those with the specified `funding_account_id`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -107,8 +107,15 @@ class CreditBankIncomeCause(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, error_type, error_code, error_message, display_message, item_id, *args, **kwargs):  # noqa: E501
         """CreditBankIncomeCause - a model defined in OpenAPI
+
+        Args:
+            error_type (CreditBankIncomeErrorType):
+            error_code (str): We use standard HTTP response codes for success and failure notifications, and our errors are further classified by `error_type`. In general, 200 HTTP codes correspond to success, 40X codes are for developer- or user-related failures, and 50X codes are for Plaid-related issues. Error fields will be `null` if no error has occurred.
+            error_message (str): A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
+            display_message (str): A user-friendly representation of the error code. null if the error is not related to user action. This may change over time and is not safe for programmatic use.
+            item_id (str): The `item_id` of the Item associated with this warning.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -141,11 +148,6 @@ class CreditBankIncomeCause(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            error_type (CreditBankIncomeErrorType): [optional]  # noqa: E501
-            error_code (str): We use standard HTTP response codes for success and failure notifications, and our errors are further classified by `error_type`. In general, 200 HTTP codes correspond to success, 40X codes are for developer- or user-related failures, and 50X codes are for Plaid-related issues. Error fields will be `null` if no error has occurred.. [optional]  # noqa: E501
-            error_message (str): A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.. [optional]  # noqa: E501
-            display_message (str): A user-friendly representation of the error code. null if the error is not related to user action. This may change over time and is not safe for programmatic use.. [optional]  # noqa: E501
-            item_id (str): The `item_id` of the Item associated with this warning.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -171,6 +173,11 @@ class CreditBankIncomeCause(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.error_type = error_type
+        self.error_code = error_code
+        self.error_message = error_message
+        self.display_message = display_message
+        self.item_id = item_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

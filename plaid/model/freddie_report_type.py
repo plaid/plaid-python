@@ -97,10 +97,10 @@ class FreddieReportType(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): When set to VERIFICATION_OF_EMPLOYMENT and the Asset Report is added to an Audit Copy Token, the Asset Report will be retrieved by Freddie Mac in the Verification Of Employment (VOE) version instead of the default Verification Of Assets (VOA) version.. if omitted defaults to "VERIFICATION_OF_EMPLOYMENT", must be one of ["VERIFICATION_OF_EMPLOYMENT", ]  # noqa: E501
+            args[0] (str): When set to `VERIFICATION_OF_EMPLOYMENT` and the Asset Report is added to an Audit Copy Token, the Asset Report will be retrieved by Freddie Mac in the Verification Of Employment (VOE) version instead of the default Verification Of Assets (VOA) version.. if omitted defaults to "VERIFICATION_OF_EMPLOYMENT", must be one of ["VERIFICATION_OF_EMPLOYMENT", ]  # noqa: E501
 
         Keyword Args:
-            value (str): When set to VERIFICATION_OF_EMPLOYMENT and the Asset Report is added to an Audit Copy Token, the Asset Report will be retrieved by Freddie Mac in the Verification Of Employment (VOE) version instead of the default Verification Of Assets (VOA) version.. if omitted defaults to "VERIFICATION_OF_EMPLOYMENT", must be one of ["VERIFICATION_OF_EMPLOYMENT", ]  # noqa: E501
+            value (str): When set to `VERIFICATION_OF_EMPLOYMENT` and the Asset Report is added to an Audit Copy Token, the Asset Report will be retrieved by Freddie Mac in the Verification Of Employment (VOE) version instead of the default Verification Of Assets (VOA) version.. if omitted defaults to "VERIFICATION_OF_EMPLOYMENT", must be one of ["VERIFICATION_OF_EMPLOYMENT", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

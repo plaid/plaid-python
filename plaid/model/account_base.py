@@ -102,6 +102,7 @@ class AccountBase(ModelNormal):
             'type': (AccountType,),  # noqa: E501
             'subtype': (AccountSubtype,),  # noqa: E501
             'verification_status': (str,),  # noqa: E501
+            'persistent_account_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -118,6 +119,7 @@ class AccountBase(ModelNormal):
         'type': 'type',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
         'verification_status': 'verification_status',  # noqa: E501
+        'persistent_account_id': 'persistent_account_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -176,6 +178,7 @@ class AccountBase(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             verification_status (str): The current verification status of an Auth Item initiated through Automated or Manual micro-deposits.  Returned for Auth Items only.  `pending_automatic_verification`: The Item is pending automatic verification  `pending_manual_verification`: The Item is pending manual micro-deposit verification. Items remain in this state until the user successfully verifies the two amounts.  `automatically_verified`: The Item has successfully been automatically verified   `manually_verified`: The Item has successfully been manually verified  `verification_expired`: Plaid was unable to automatically verify the deposit within 7 calendar days and will no longer attempt to validate the Item. Users may retry by submitting their information again through Link.  `verification_failed`: The Item failed manual micro-deposit verification because the user exhausted all 3 verification attempts. Users may retry by submitting their information again through Link.   . [optional]  # noqa: E501
+            persistent_account_id (str): A unique and persistent identifier for accounts that can be used to trace multiple instances of the same account across different Items for depository accounts. This is currently an opt-in field and only supported for Chase Items.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

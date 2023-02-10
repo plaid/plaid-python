@@ -82,7 +82,7 @@ class AddressDataNullable(ModelComposed):
         """
         lazy_import()
         return {
-            'city': (str,),  # noqa: E501
+            'city': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
             'street': (str,),  # noqa: E501
             'postal_code': (str, none_type,),  # noqa: E501
@@ -119,7 +119,7 @@ class AddressDataNullable(ModelComposed):
         """AddressDataNullable - a model defined in OpenAPI
 
         Args:
-            city (str): The full city name
+            city (str, none_type): The full city name
             region (str, none_type): The region or state. In API versions 2018-05-22 and earlier, this field is called `state`. Example: `\"NC\"`
             street (str): The full street address Example: `\"564 Main Street, APT 15\"`
             postal_code (str, none_type): The postal code. In API versions 2018-05-22 and earlier, this field is called `zip`.
