@@ -93,6 +93,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             'secret': (str,),  # noqa: E501
             'access_token': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
+            'funding_account_id': (str, none_type,),  # noqa: E501
             'payment_profile_token': (str,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'device': (TransferAuthorizationDevice,),  # noqa: E501
@@ -119,6 +120,7 @@ class TransferAuthorizationCreateRequest(ModelNormal):
         'secret': 'secret',  # noqa: E501
         'access_token': 'access_token',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'payment_profile_token': 'payment_profile_token',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'device': 'device',  # noqa: E501
@@ -186,7 +188,8 @@ class TransferAuthorizationCreateRequest(ModelNormal):
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
             access_token (str): The Plaid `access_token` for the account that will be debited or credited. Required if not using `payment_profile_token`.. [optional]  # noqa: E501
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited. Required if not using `payment_profile_token`.. [optional]  # noqa: E501
+            account_id (str): The Plaid `account_id` corresponding to the end-user account that will be debited or credited. Returned only if `account_id` was set on intent creation.. [optional]  # noqa: E501
+            funding_account_id (str, none_type): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited. Defaults to the account configured during onboarding.. [optional]  # noqa: E501
             payment_profile_token (str): The payment profile token associated with the Payment Profile that will be debited or credited. Required if not using `access_token`.. [optional]  # noqa: E501
             ach_class (ACHClass): [optional]  # noqa: E501
             device (TransferAuthorizationDevice): [optional]  # noqa: E501

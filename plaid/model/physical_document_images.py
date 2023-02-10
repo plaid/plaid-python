@@ -70,7 +70,7 @@ class PhysicalDocumentImages(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'original_front': (str,),  # noqa: E501
+            'original_front': (str, none_type,),  # noqa: E501
             'original_back': (str, none_type,),  # noqa: E501
             'cropped_front': (str, none_type,),  # noqa: E501
             'cropped_back': (str, none_type,),  # noqa: E501
@@ -106,7 +106,7 @@ class PhysicalDocumentImages(ModelNormal):
         """PhysicalDocumentImages - a model defined in OpenAPI
 
         Args:
-            original_front (str): Temporary URL that expires after 60 seconds for downloading the uncropped original image of the front of the document.
+            original_front (str, none_type): Temporary URL that expires after 60 seconds for downloading the uncropped original image of the front of the document.
             original_back (str, none_type): Temporary URL that expires after 60 seconds for downloading the original image of the back of the document. Might be null if the back of the document was not collected.
             cropped_front (str, none_type): Temporary URL that expires after 60 seconds for downloading a cropped image containing just the front of the document.
             cropped_back (str, none_type): Temporary URL that expires after 60 seconds for downloading a cropped image containing just the back of the document. Might be null if the back of the document was not collected.

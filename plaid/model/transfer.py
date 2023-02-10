@@ -103,6 +103,7 @@ class Transfer(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
+            'funding_account_id': (str,),  # noqa: E501
             'type': (TransferType,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
             'amount': (str,),  # noqa: E501
@@ -119,6 +120,7 @@ class Transfer(ModelNormal):
             'iso_currency_code': (str,),  # noqa: E501
             'standard_return_window': (date, none_type,),  # noqa: E501
             'unauthorized_return_window': (date, none_type,),  # noqa: E501
+            'expected_settlement_date': (date, none_type,),  # noqa: E501
             'originator_client_id': (str, none_type,),  # noqa: E501
             'refunds': ([TransferRefund],),  # noqa: E501
             'recurring_transfer_id': (str, none_type,),  # noqa: E501
@@ -134,6 +136,7 @@ class Transfer(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'user': 'user',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -150,6 +153,7 @@ class Transfer(ModelNormal):
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'standard_return_window': 'standard_return_window',  # noqa: E501
         'unauthorized_return_window': 'unauthorized_return_window',  # noqa: E501
+        'expected_settlement_date': 'expected_settlement_date',  # noqa: E501
         'originator_client_id': 'originator_client_id',  # noqa: E501
         'refunds': 'refunds',  # noqa: E501
         'recurring_transfer_id': 'recurring_transfer_id',  # noqa: E501
@@ -170,11 +174,12 @@ class Transfer(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, originator_client_id, refunds, recurring_transfer_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, funding_account_id, type, user, amount, description, created, status, network, cancellable, failure_reason, metadata, origination_account_id, guarantee_decision, guarantee_decision_rationale, iso_currency_code, standard_return_window, unauthorized_return_window, expected_settlement_date, originator_client_id, refunds, recurring_transfer_id, *args, **kwargs):  # noqa: E501
         """Transfer - a model defined in OpenAPI
 
         Args:
             id (str): Plaid’s unique identifier for a transfer.
+            funding_account_id (str): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited.
             type (TransferType):
             user (TransferUserInResponse):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
@@ -191,6 +196,7 @@ class Transfer(ModelNormal):
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
             standard_return_window (date, none_type): The date 3 business days from settlement date indicating the following ACH returns can no longer happen: R01, R02, R03, R29. This will be of the form YYYY-MM-DD.
             unauthorized_return_window (date, none_type): The date 61 business days from settlement date indicating the following ACH returns can no longer happen: R05, R07, R10, R11, R51, R33, R37, R38, R51, R52, R53. This will be of the form YYYY-MM-DD.
+            expected_settlement_date (date, none_type): An estimation of the settlement date which can be useful when the transfer is `pending`. Only set for ACH transfers and is `null` for non-ACH transfers. This will be of the form YYYY-MM-DD.
             originator_client_id (str, none_type): The Plaid client ID that is the originator of this transfer. Only present if created on behalf of another client as a third-party sender (TPS).
             refunds ([TransferRefund]): A list of refunds associated with this transfer.
             recurring_transfer_id (str, none_type): The id of the recurring transfer if this transfer belongs to a recurring transfer.
@@ -227,7 +233,7 @@ class Transfer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             ach_class (ACHClass): [optional]  # noqa: E501
-            account_id (str): The account ID that should be credited/debited for this transfer.. [optional]  # noqa: E501
+            account_id (str): The Plaid `account_id` corresponding to the end-user account that will be debited or credited.. [optional]  # noqa: E501
             sweep_status (TransferSweepStatus): [optional]  # noqa: E501
         """
 
@@ -255,6 +261,7 @@ class Transfer(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.funding_account_id = funding_account_id
         self.type = type
         self.user = user
         self.amount = amount
@@ -271,6 +278,7 @@ class Transfer(ModelNormal):
         self.iso_currency_code = iso_currency_code
         self.standard_return_window = standard_return_window
         self.unauthorized_return_window = unauthorized_return_window
+        self.expected_settlement_date = expected_settlement_date
         self.originator_client_id = originator_client_id
         self.refunds = refunds
         self.recurring_transfer_id = recurring_transfer_id

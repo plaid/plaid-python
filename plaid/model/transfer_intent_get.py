@@ -31,6 +31,7 @@ def lazy_import():
     from plaid.model.transfer_authorization_guarantee_decision_rationale import TransferAuthorizationGuaranteeDecisionRationale
     from plaid.model.transfer_intent_authorization_decision import TransferIntentAuthorizationDecision
     from plaid.model.transfer_intent_create_mode import TransferIntentCreateMode
+    from plaid.model.transfer_intent_create_network import TransferIntentCreateNetwork
     from plaid.model.transfer_intent_get_failure_reason import TransferIntentGetFailureReason
     from plaid.model.transfer_intent_status import TransferIntentStatus
     from plaid.model.transfer_metadata import TransferMetadata
@@ -41,6 +42,7 @@ def lazy_import():
     globals()['TransferAuthorizationGuaranteeDecisionRationale'] = TransferAuthorizationGuaranteeDecisionRationale
     globals()['TransferIntentAuthorizationDecision'] = TransferIntentAuthorizationDecision
     globals()['TransferIntentCreateMode'] = TransferIntentCreateMode
+    globals()['TransferIntentCreateNetwork'] = TransferIntentCreateNetwork
     globals()['TransferIntentGetFailureReason'] = TransferIntentGetFailureReason
     globals()['TransferIntentStatus'] = TransferIntentStatus
     globals()['TransferMetadata'] = TransferMetadata
@@ -108,6 +110,7 @@ class TransferIntentGet(ModelNormal):
             'authorization_decision': (TransferIntentAuthorizationDecision,),  # noqa: E501
             'authorization_decision_rationale': (TransferAuthorizationDecisionRationale,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
+            'funding_account_id': (str,),  # noqa: E501
             'amount': (str,),  # noqa: E501
             'mode': (TransferIntentCreateMode,),  # noqa: E501
             'user': (TransferUserInResponse,),  # noqa: E501
@@ -116,6 +119,7 @@ class TransferIntentGet(ModelNormal):
             'guarantee_decision': (TransferAuthorizationGuaranteeDecision,),  # noqa: E501
             'guarantee_decision_rationale': (TransferAuthorizationGuaranteeDecisionRationale,),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
+            'network': (TransferIntentCreateNetwork,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'metadata': (TransferMetadata,),  # noqa: E501
             'require_guarantee': (bool, none_type,),  # noqa: E501
@@ -135,6 +139,7 @@ class TransferIntentGet(ModelNormal):
         'authorization_decision': 'authorization_decision',  # noqa: E501
         'authorization_decision_rationale': 'authorization_decision_rationale',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'mode': 'mode',  # noqa: E501
         'user': 'user',  # noqa: E501
@@ -143,6 +148,7 @@ class TransferIntentGet(ModelNormal):
         'guarantee_decision': 'guarantee_decision',  # noqa: E501
         'guarantee_decision_rationale': 'guarantee_decision_rationale',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'network': 'network',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'require_guarantee': 'require_guarantee',  # noqa: E501
@@ -160,7 +166,7 @@ class TransferIntentGet(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, created, status, transfer_id, failure_reason, authorization_decision, authorization_decision_rationale, origination_account_id, amount, mode, user, description, iso_currency_code, guarantee_decision, guarantee_decision_rationale, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, created, status, transfer_id, failure_reason, authorization_decision, authorization_decision_rationale, origination_account_id, funding_account_id, amount, mode, user, description, iso_currency_code, guarantee_decision, guarantee_decision_rationale, *args, **kwargs):  # noqa: E501
         """TransferIntentGet - a model defined in OpenAPI
 
         Args:
@@ -172,6 +178,7 @@ class TransferIntentGet(ModelNormal):
             authorization_decision (TransferIntentAuthorizationDecision):
             authorization_decision_rationale (TransferAuthorizationDecisionRationale):
             origination_account_id (str): Plaid’s unique identifier for the origination account used for the transfer.
+            funding_account_id (str): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited.
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
             mode (TransferIntentCreateMode):
             user (TransferUserInResponse):
@@ -212,6 +219,7 @@ class TransferIntentGet(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             account_id (str, none_type): The Plaid `account_id` for the account that will be debited or credited. Returned only if `account_id` was set on intent creation.. [optional]  # noqa: E501
+            network (TransferIntentCreateNetwork): [optional]  # noqa: E501
             ach_class (ACHClass): [optional]  # noqa: E501
             metadata (TransferMetadata): [optional]  # noqa: E501
             require_guarantee (bool, none_type): When `true`, the transfer requires a `GUARANTEED` decision by Plaid to proceed (Guarantee customers only).. [optional]  # noqa: E501
@@ -248,6 +256,7 @@ class TransferIntentGet(ModelNormal):
         self.authorization_decision = authorization_decision
         self.authorization_decision_rationale = authorization_decision_rationale
         self.origination_account_id = origination_account_id
+        self.funding_account_id = funding_account_id
         self.amount = amount
         self.mode = mode
         self.user = user

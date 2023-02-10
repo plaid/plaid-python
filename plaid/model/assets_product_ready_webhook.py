@@ -110,7 +110,7 @@ class AssetsProductReadyWebhook(ModelNormal):
         Args:
             webhook_type (str): `ASSETS`
             webhook_code (str): `PRODUCT_READY`
-            asset_report_id (str): The `asset_report_id` that can be provided to `/asset_report/get` to retrieve the Asset Report.
+            asset_report_id (str): The `asset_report_id` corresponding to the Asset Report the webhook has fired for.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

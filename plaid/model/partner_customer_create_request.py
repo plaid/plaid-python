@@ -101,6 +101,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
             'billing_contact': (PartnerEndCustomerBillingContact,),  # noqa: E501
             'customer_support_info': (PartnerEndCustomerCustomerSupportInfo,),  # noqa: E501
             'assets_under_management': (PartnerEndCustomerAssetsUnderManagement,),  # noqa: E501
+            'redirect_uris': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -125,6 +126,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
         'billing_contact': 'billing_contact',  # noqa: E501
         'customer_support_info': 'customer_support_info',  # noqa: E501
         'assets_under_management': 'assets_under_management',  # noqa: E501
+        'redirect_uris': 'redirect_uris',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -191,6 +193,7 @@ class PartnerCustomerCreateRequest(ModelNormal):
             billing_contact (PartnerEndCustomerBillingContact): [optional]  # noqa: E501
             customer_support_info (PartnerEndCustomerCustomerSupportInfo): [optional]  # noqa: E501
             assets_under_management (PartnerEndCustomerAssetsUnderManagement): [optional]  # noqa: E501
+            redirect_uris ([str]): A list of URIs indicating the destination(s) where a user can be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview. URIs should not contain any query parameters. When used in Production or Development, URIs must use https. To specify any subdomain, use `*` as a wildcard character, e.g. `https://*.example.com/oauth.html`. To modify redirect URIs for an end customer after creating them, go to the end customer's [API page](https://dashboard.plaid.com/team/api) in the Dashboard.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

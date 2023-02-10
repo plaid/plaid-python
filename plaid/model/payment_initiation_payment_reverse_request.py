@@ -59,12 +59,9 @@ class PaymentInitiationPaymentReverseRequest(ModelNormal):
     }
 
     validations = {
-        ('payment_id',): {
-            'min_length': 1,
-        },
         ('reference',): {
             'max_length': 18,
-            'min_length': 1,
+            'min_length': 6,
         },
     }
 
@@ -124,7 +121,7 @@ class PaymentInitiationPaymentReverseRequest(ModelNormal):
         Args:
             payment_id (str): The ID of the payment to reverse
             idempotency_key (WalletTransactionIdempotencyKey):
-            reference (str): A reference for the refund. This must be an alphanumeric string with at most 18 characters and must not contain any special characters or spaces.
+            reference (str): A reference for the refund. This must be an alphanumeric string with 6 to 18 characters and must not contain any special characters or spaces.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

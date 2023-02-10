@@ -65,7 +65,14 @@ class DocumentaryVerificationDocument(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -86,6 +93,7 @@ class DocumentaryVerificationDocument(ModelNormal):
             'images': (PhysicalDocumentImages,),  # noqa: E501
             'extracted_data': (PhysicalDocumentExtractedData,),  # noqa: E501
             'analysis': (DocumentAnalysis,),  # noqa: E501
+            'redacted_at': (datetime, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +107,7 @@ class DocumentaryVerificationDocument(ModelNormal):
         'images': 'images',  # noqa: E501
         'extracted_data': 'extracted_data',  # noqa: E501
         'analysis': 'analysis',  # noqa: E501
+        'redacted_at': 'redacted_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -113,7 +122,7 @@ class DocumentaryVerificationDocument(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, status, attempt, images, extracted_data, analysis, *args, **kwargs):  # noqa: E501
+    def __init__(self, status, attempt, images, extracted_data, analysis, redacted_at, *args, **kwargs):  # noqa: E501
         """DocumentaryVerificationDocument - a model defined in OpenAPI
 
         Args:
@@ -122,6 +131,7 @@ class DocumentaryVerificationDocument(ModelNormal):
             images (PhysicalDocumentImages):
             extracted_data (PhysicalDocumentExtractedData):
             analysis (DocumentAnalysis):
+            redacted_at (datetime, none_type): An ISO8601 formatted timestamp.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,6 +194,7 @@ class DocumentaryVerificationDocument(ModelNormal):
         self.images = images
         self.extracted_data = extracted_data
         self.analysis = analysis
+        self.redacted_at = redacted_at
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -105,31 +105,31 @@ class Transaction(ModelComposed):
         """
         lazy_import()
         return {
-            'pending_transaction_id': (str, none_type,),  # noqa: E501
-            'category_id': (str, none_type,),  # noqa: E501
-            'category': ([str], none_type,),  # noqa: E501
-            'location': (Location,),  # noqa: E501
-            'payment_meta': (PaymentMeta,),  # noqa: E501
-            'account_owner': (str, none_type,),  # noqa: E501
-            'name': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
             'amount': (float,),  # noqa: E501
             'iso_currency_code': (str, none_type,),  # noqa: E501
             'unofficial_currency_code': (str, none_type,),  # noqa: E501
+            'category': ([str], none_type,),  # noqa: E501
+            'category_id': (str, none_type,),  # noqa: E501
             'date': (date,),  # noqa: E501
+            'location': (Location,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'payment_meta': (PaymentMeta,),  # noqa: E501
             'pending': (bool,),  # noqa: E501
+            'pending_transaction_id': (str, none_type,),  # noqa: E501
+            'account_owner': (str, none_type,),  # noqa: E501
             'transaction_id': (str,),  # noqa: E501
-            'payment_channel': (str,),  # noqa: E501
             'authorized_date': (date, none_type,),  # noqa: E501
             'authorized_datetime': (datetime, none_type,),  # noqa: E501
             'datetime': (datetime, none_type,),  # noqa: E501
+            'payment_channel': (str,),  # noqa: E501
             'transaction_code': (TransactionCode,),  # noqa: E501
-            'transaction_type': (str,),  # noqa: E501
-            'original_description': (str, none_type,),  # noqa: E501
+            'check_number': (str, none_type,),  # noqa: E501
             'merchant_name': (str, none_type,),  # noqa: E501
+            'original_description': (str, none_type,),  # noqa: E501
+            'transaction_type': (str,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
             'website': (str, none_type,),  # noqa: E501
-            'check_number': (str, none_type,),  # noqa: E501
             'personal_finance_category': (PersonalFinanceCategory,),  # noqa: E501
             'personal_finance_category_icon_url': (str,),  # noqa: E501
             'counterparties': ([TransactionCounterparty],),  # noqa: E501
@@ -141,31 +141,31 @@ class Transaction(ModelComposed):
 
 
     attribute_map = {
-        'pending_transaction_id': 'pending_transaction_id',  # noqa: E501
-        'category_id': 'category_id',  # noqa: E501
-        'category': 'category',  # noqa: E501
-        'location': 'location',  # noqa: E501
-        'payment_meta': 'payment_meta',  # noqa: E501
-        'account_owner': 'account_owner',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'unofficial_currency_code': 'unofficial_currency_code',  # noqa: E501
+        'category': 'category',  # noqa: E501
+        'category_id': 'category_id',  # noqa: E501
         'date': 'date',  # noqa: E501
+        'location': 'location',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'payment_meta': 'payment_meta',  # noqa: E501
         'pending': 'pending',  # noqa: E501
+        'pending_transaction_id': 'pending_transaction_id',  # noqa: E501
+        'account_owner': 'account_owner',  # noqa: E501
         'transaction_id': 'transaction_id',  # noqa: E501
-        'payment_channel': 'payment_channel',  # noqa: E501
         'authorized_date': 'authorized_date',  # noqa: E501
         'authorized_datetime': 'authorized_datetime',  # noqa: E501
         'datetime': 'datetime',  # noqa: E501
+        'payment_channel': 'payment_channel',  # noqa: E501
         'transaction_code': 'transaction_code',  # noqa: E501
-        'transaction_type': 'transaction_type',  # noqa: E501
-        'original_description': 'original_description',  # noqa: E501
+        'check_number': 'check_number',  # noqa: E501
         'merchant_name': 'merchant_name',  # noqa: E501
+        'original_description': 'original_description',  # noqa: E501
+        'transaction_type': 'transaction_type',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
         'website': 'website',  # noqa: E501
-        'check_number': 'check_number',  # noqa: E501
         'personal_finance_category': 'personal_finance_category',  # noqa: E501
         'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
         'counterparties': 'counterparties',  # noqa: E501
@@ -184,28 +184,28 @@ class Transaction(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, pending_transaction_id, category_id, category, location, payment_meta, account_owner, name, account_id, amount, iso_currency_code, unofficial_currency_code, date, pending, transaction_id, payment_channel, authorized_date, authorized_datetime, datetime, transaction_code, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, amount, iso_currency_code, unofficial_currency_code, category, category_id, date, location, name, payment_meta, pending, pending_transaction_id, account_owner, transaction_id, authorized_date, authorized_datetime, datetime, payment_channel, transaction_code, *args, **kwargs):  # noqa: E501
         """Transaction - a model defined in OpenAPI
 
         Args:
-            pending_transaction_id (str, none_type): The ID of a posted transaction's associated pending transaction, where applicable.
-            category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.
-            category ([str], none_type): A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.
-            location (Location):
-            payment_meta (PaymentMeta):
-            account_owner (str, none_type): The name of the account owner. This field is not typically populated and only relevant when dealing with sub-accounts.
-            name (str): The merchant name or transaction description.  If the `transactions` object was returned by a Transactions endpoint such as `/transactions/get`, this field will always appear. If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.
             account_id (str): The ID of the account in which this transaction occurred.
             amount (float): The settled value of the transaction, denominated in the transactions's currency, as stated in `iso_currency_code` or `unofficial_currency_code`. Positive values when money moves out of the account; negative values when money moves in. For example, debit card purchases are positive; credit card payments, direct deposits, and refunds are negative.
             iso_currency_code (str, none_type): The ISO-4217 currency code of the transaction. Always `null` if `unofficial_currency_code` is non-null.
             unofficial_currency_code (str, none_type): The unofficial currency code associated with the transaction. Always `null` if `iso_currency_code` is non-`null`. Unofficial currency codes are used for currencies that do not have official ISO currency codes, such as cryptocurrencies and the currencies of certain countries.  See the [currency code schema](https://plaid.com/docs/api/accounts#currency-code-schema) for a full listing of supported `iso_currency_code`s.
+            category ([str], none_type): A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.
+            category_id (str, none_type): The ID of the category to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.
             date (date): For pending transactions, the date that the transaction occurred; for posted transactions, the date that the transaction posted. Both dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
+            location (Location):
+            name (str): The merchant name or transaction description.  If the `transactions` object was returned by a Transactions endpoint such as `/transactions/get`, this field will always appear. If the `transactions` object was returned by an Assets endpoint such as `/asset_report/get/` or `/asset_report/pdf/get`, this field will only appear in an Asset Report with Insights.
+            payment_meta (PaymentMeta):
             pending (bool): When `true`, identifies the transaction as pending or unsettled. Pending transaction details (name, type, amount, category ID) may change before they are settled.
+            pending_transaction_id (str, none_type): The ID of a posted transaction's associated pending transaction, where applicable.
+            account_owner (str, none_type): The name of the account owner. This field is not typically populated and only relevant when dealing with sub-accounts.
             transaction_id (str): The unique ID of the transaction. Like all Plaid identifiers, the `transaction_id` is case sensitive.
-            payment_channel (str): The channel used to make a payment. `online:` transactions that took place online.  `in store:` transactions that were made at a physical location.  `other:` transactions that relate to banks, e.g. fees or deposits.  This field replaces the `transaction_type` field. 
             authorized_date (date, none_type): The date that the transaction was authorized. Dates are returned in an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DD` ).
             authorized_datetime (datetime, none_type): Date and time when a transaction was authorized in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is returned for select financial institutions and comes as provided by the institution. It may contain default time values (such as 00:00:00).
             datetime (datetime, none_type): Date and time when a transaction was posted in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ).  This field is returned for select financial institutions and comes as provided by the institution. It may contain default time values (such as 00:00:00).
+            payment_channel (str): The channel used to make a payment. `online:` transactions that took place online.  `in store:` transactions that were made at a physical location.  `other:` transactions that relate to banks, e.g. fees or deposits.  This field replaces the `transaction_type` field. 
             transaction_code (TransactionCode):
 
         Keyword Args:
@@ -239,12 +239,12 @@ class Transaction(ModelComposed):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            transaction_type (str): Please use the `payment_channel` field, `transaction_type` will be deprecated in the future.  `digital:` transactions that took place online.  `place:` transactions that were made at a physical location.  `special:` transactions that relate to banks, e.g. fees or deposits.  `unresolved:` transactions that do not fit into the other three types. . [optional]  # noqa: E501
+            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
+            merchant_name (str, none_type): The merchant name, as enriched by Plaid from the `name` field. This is typically a more human-readable version of the merchant counterparty in the transaction. For some bank transactions (such as checks or account transfers) where there is no meaningful merchant name, this value will be `null`.. [optional]  # noqa: E501
             original_description (str, none_type): The string returned by the financial institution to describe the transaction. For transactions returned by `/transactions/get`, this field is in beta and will be omitted unless the client is both enrolled in the closed beta program and has set `options.include_original_description` to `true`.. [optional]  # noqa: E501
-            merchant_name (str, none_type): The merchant name, as extracted by Plaid from the `name` field.. [optional]  # noqa: E501
+            transaction_type (str): Please use the `payment_channel` field, `transaction_type` will be deprecated in the future.  `digital:` transactions that took place online.  `place:` transactions that were made at a physical location.  `special:` transactions that relate to banks, e.g. fees or deposits.  `unresolved:` transactions that do not fit into the other three types. . [optional]  # noqa: E501
             logo_url (str, none_type): The logo associated with the merchant, if available. Formatted as a 100x100 pixels PNG file path.. [optional]  # noqa: E501
             website (str, none_type): The website associated with the merchant, if available.. [optional]  # noqa: E501
-            check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
             personal_finance_category (PersonalFinanceCategory): [optional]  # noqa: E501
             personal_finance_category_icon_url (str): A link to the icon associated with the primary personal finance category. The logo will always be 100x100 pixels.. [optional]  # noqa: E501
             counterparties ([TransactionCounterparty]): The counterparties present in the transaction. Counterparties, such as the financial institutions, are extracted by Plaid from the raw description.. [optional]  # noqa: E501
@@ -281,24 +281,24 @@ class Transaction(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'pending_transaction_id': pending_transaction_id,
-            'category_id': category_id,
-            'category': category,
-            'location': location,
-            'payment_meta': payment_meta,
-            'account_owner': account_owner,
-            'name': name,
             'account_id': account_id,
             'amount': amount,
             'iso_currency_code': iso_currency_code,
             'unofficial_currency_code': unofficial_currency_code,
+            'category': category,
+            'category_id': category_id,
             'date': date,
+            'location': location,
+            'name': name,
+            'payment_meta': payment_meta,
             'pending': pending,
+            'pending_transaction_id': pending_transaction_id,
+            'account_owner': account_owner,
             'transaction_id': transaction_id,
-            'payment_channel': payment_channel,
             'authorized_date': authorized_date,
             'authorized_datetime': authorized_datetime,
             'datetime': datetime,
+            'payment_channel': payment_channel,
             'transaction_code': transaction_code,
         }
         model_args = {}

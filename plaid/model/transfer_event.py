@@ -93,6 +93,7 @@ class TransferEvent(ModelNormal):
             'timestamp': (datetime,),  # noqa: E501
             'event_type': (TransferEventType,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
+            'funding_account_id': (str,),  # noqa: E501
             'transfer_id': (str,),  # noqa: E501
             'origination_account_id': (str, none_type,),  # noqa: E501
             'transfer_type': (TransferType,),  # noqa: E501
@@ -114,6 +115,7 @@ class TransferEvent(ModelNormal):
         'timestamp': 'timestamp',  # noqa: E501
         'event_type': 'event_type',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'transfer_id': 'transfer_id',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'transfer_type': 'transfer_type',  # noqa: E501
@@ -137,7 +139,7 @@ class TransferEvent(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, event_id, timestamp, event_type, account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, sweep_id, sweep_amount, refund_id, originator_client_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, event_id, timestamp, event_type, account_id, funding_account_id, transfer_id, origination_account_id, transfer_type, transfer_amount, failure_reason, sweep_id, sweep_amount, refund_id, originator_client_id, *args, **kwargs):  # noqa: E501
         """TransferEvent - a model defined in OpenAPI
 
         Args:
@@ -145,6 +147,7 @@ class TransferEvent(ModelNormal):
             timestamp (datetime): The datetime when this event occurred. This will be of the form `2006-01-02T15:04:05Z`.
             event_type (TransferEventType):
             account_id (str): The account ID associated with the transfer.
+            funding_account_id (str): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited.
             transfer_id (str): Plaid’s unique identifier for a transfer.
             origination_account_id (str, none_type): The ID of the origination account that this balance belongs to.
             transfer_type (TransferType):
@@ -215,6 +218,7 @@ class TransferEvent(ModelNormal):
         self.timestamp = timestamp
         self.event_type = event_type
         self.account_id = account_id
+        self.funding_account_id = funding_account_id
         self.transfer_id = transfer_id
         self.origination_account_id = origination_account_id
         self.transfer_type = transfer_type

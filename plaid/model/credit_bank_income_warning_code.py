@@ -51,6 +51,7 @@ class CreditBankIncomeWarningCode(ModelSimple):
             'TRANSACTIONS_UNAVAILABLE': "TRANSACTIONS_UNAVAILABLE",
             'ITEM_UNAPPROVED': "ITEM_UNAPPROVED",
             'REPORT_DELETED': "REPORT_DELETED",
+            'DATA_UNAVAILABLE': "DATA_UNAVAILABLE",
         },
     }
 
@@ -100,10 +101,10 @@ class CreditBankIncomeWarningCode(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The warning code identifies a specific kind of warning. `IDENTITY_UNAVAILABLE`: Unable to extract identity for the Item `TRANSACTIONS_UNAVAILABLE`: Unable to extract transactions for the Item `ITEM_UNAPPROVED`: User did not grant permission to share income data for the Item `REPORT_DELETED`: Report deleted due to customer or consumer request., must be one of ["IDENTITY_UNAVAILABLE", "TRANSACTIONS_UNAVAILABLE", "ITEM_UNAPPROVED", "REPORT_DELETED", ]  # noqa: E501
+            args[0] (str): The warning code identifies a specific kind of warning. `IDENTITY_UNAVAILABLE`: Unable to extract identity for the Item `TRANSACTIONS_UNAVAILABLE`: Unable to extract transactions for the Item `ITEM_UNAPPROVED`: User did not grant permission to share data for the Item `REPORT_DELETED`: Report deleted due to customer or consumer request `DATA_UNAVAILABLE`: No relevant data was found for the Item., must be one of ["IDENTITY_UNAVAILABLE", "TRANSACTIONS_UNAVAILABLE", "ITEM_UNAPPROVED", "REPORT_DELETED", "DATA_UNAVAILABLE", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The warning code identifies a specific kind of warning. `IDENTITY_UNAVAILABLE`: Unable to extract identity for the Item `TRANSACTIONS_UNAVAILABLE`: Unable to extract transactions for the Item `ITEM_UNAPPROVED`: User did not grant permission to share income data for the Item `REPORT_DELETED`: Report deleted due to customer or consumer request., must be one of ["IDENTITY_UNAVAILABLE", "TRANSACTIONS_UNAVAILABLE", "ITEM_UNAPPROVED", "REPORT_DELETED", ]  # noqa: E501
+            value (str): The warning code identifies a specific kind of warning. `IDENTITY_UNAVAILABLE`: Unable to extract identity for the Item `TRANSACTIONS_UNAVAILABLE`: Unable to extract transactions for the Item `ITEM_UNAPPROVED`: User did not grant permission to share data for the Item `REPORT_DELETED`: Report deleted due to customer or consumer request `DATA_UNAVAILABLE`: No relevant data was found for the Item., must be one of ["IDENTITY_UNAVAILABLE", "TRANSACTIONS_UNAVAILABLE", "ITEM_UNAPPROVED", "REPORT_DELETED", "DATA_UNAVAILABLE", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

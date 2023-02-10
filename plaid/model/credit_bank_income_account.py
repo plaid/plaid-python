@@ -115,8 +115,17 @@ class CreditBankIncomeAccount(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, account_id, mask, name, official_name, subtype, type, owners, *args, **kwargs):  # noqa: E501
         """CreditBankIncomeAccount - a model defined in OpenAPI
+
+        Args:
+            account_id (str): Plaid's unique identifier for the account.
+            mask (str, none_type): The last 2-4 alphanumeric characters of an account's official account number. Note that the mask may be non-unique between an Item's accounts, and it may also not match the mask that the bank displays to the user.
+            name (str): The name of the bank account.
+            official_name (str, none_type): The official name of the bank account.
+            subtype (DepositoryAccountSubtype):
+            type (CreditBankIncomeAccountType):
+            owners ([Owner]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,13 +158,6 @@ class CreditBankIncomeAccount(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            account_id (str): Plaid's unique identifier for the account.. [optional]  # noqa: E501
-            mask (str, none_type): The last 2-4 alphanumeric characters of an account's official account number. Note that the mask may be non-unique between an Item's accounts, and it may also not match the mask that the bank displays to the user.. [optional]  # noqa: E501
-            name (str): The name of the bank account.. [optional]  # noqa: E501
-            official_name (str, none_type): The official name of the bank account.. [optional]  # noqa: E501
-            subtype (DepositoryAccountSubtype): [optional]  # noqa: E501
-            type (CreditBankIncomeAccountType): [optional]  # noqa: E501
-            owners ([Owner]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,6 +183,13 @@ class CreditBankIncomeAccount(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.account_id = account_id
+        self.mask = mask
+        self.name = name
+        self.official_name = official_name
+        self.subtype = subtype
+        self.type = type
+        self.owners = owners
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

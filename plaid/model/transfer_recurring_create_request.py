@@ -100,6 +100,7 @@ class TransferRecurringCreateRequest(ModelNormal):
             'device': (TransferDevice,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'funding_account_id': (str, none_type,),  # noqa: E501
             'ach_class': (ACHClass,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'test_clock_id': (str, none_type,),  # noqa: E501
@@ -124,6 +125,7 @@ class TransferRecurringCreateRequest(ModelNormal):
         'device': 'device',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'ach_class': 'ach_class',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'test_clock_id': 'test_clock_id',  # noqa: E501
@@ -147,7 +149,7 @@ class TransferRecurringCreateRequest(ModelNormal):
         Args:
             access_token (str): The Plaid `access_token` for the account that will be debited or credited. Required if not using `payment_profile_token`.
             idempotency_key (TransferRecurringIdempotencyKey):
-            account_id (str): The Plaid `account_id` for the account that will be debited or credited. Required if not using `payment_profile_token`.
+            account_id (str): The Plaid `account_id` corresponding to the end-user account that will be debited or credited. Returned only if `account_id` was set on intent creation.
             type (TransferType):
             network (TransferNetwork):
             amount (str): The amount of the transfer (decimal string with two digits of precision e.g. \"10.00\").
@@ -190,6 +192,7 @@ class TransferRecurringCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            funding_account_id (str, none_type): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited. Defaults to the account configured during onboarding.. [optional]  # noqa: E501
             ach_class (ACHClass): [optional]  # noqa: E501
             iso_currency_code (str): The currency of the transfer amount. The default value is \"USD\".. [optional]  # noqa: E501
             test_clock_id (str, none_type): Plaid’s unique identifier for a test clock.. [optional]  # noqa: E501

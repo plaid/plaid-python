@@ -61,9 +61,6 @@ class PaymentInitiationPaymentCreateRequest(ModelNormal):
     }
 
     validations = {
-        ('recipient_id',): {
-            'min_length': 1,
-        },
         ('reference',): {
             'max_length': 18,
             'min_length': 1,

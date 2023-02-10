@@ -103,6 +103,7 @@ class RecurringTransferNullable(ModelComposed):
             'network': (TransferNetwork,),  # noqa: E501
             'origination_account_id': (str,),  # noqa: E501
             'account_id': (str,),  # noqa: E501
+            'funding_account_id': (str,),  # noqa: E501
             'iso_currency_code': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'transfer_ids': ([str],),  # noqa: E501
@@ -127,6 +128,7 @@ class RecurringTransferNullable(ModelComposed):
         'network': 'network',  # noqa: E501
         'origination_account_id': 'origination_account_id',  # noqa: E501
         'account_id': 'account_id',  # noqa: E501
+        'funding_account_id': 'funding_account_id',  # noqa: E501
         'iso_currency_code': 'iso_currency_code',  # noqa: E501
         'description': 'description',  # noqa: E501
         'transfer_ids': 'transfer_ids',  # noqa: E501
@@ -149,7 +151,7 @@ class RecurringTransferNullable(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recurring_transfer_id, created, next_origination_date, type, amount, status, network, origination_account_id, account_id, iso_currency_code, description, transfer_ids, user, schedule, *args, **kwargs):  # noqa: E501
+    def __init__(self, recurring_transfer_id, created, next_origination_date, type, amount, status, network, origination_account_id, account_id, funding_account_id, iso_currency_code, description, transfer_ids, user, schedule, *args, **kwargs):  # noqa: E501
         """RecurringTransferNullable - a model defined in OpenAPI
 
         Args:
@@ -161,7 +163,8 @@ class RecurringTransferNullable(ModelComposed):
             status (TransferRecurringStatus):
             network (TransferNetwork):
             origination_account_id (str): Plaid’s unique identifier for the origination account that was used for this transfer.
-            account_id (str): The account ID that should be credited/debited for this transfer.
+            account_id (str): The Plaid `account_id` corresponding to the end-user account that will be debited or credited.
+            funding_account_id (str): The id of the funding account to use, available in the Plaid Dashboard. This determines which of your business checking accounts will be credited or debited.
             iso_currency_code (str): The currency of the transfer amount, e.g. \"USD\"
             description (str): The description of the recurring transfer.
             transfer_ids ([str]):
@@ -243,6 +246,7 @@ class RecurringTransferNullable(ModelComposed):
             'network': network,
             'origination_account_id': origination_account_id,
             'account_id': account_id,
+            'funding_account_id': funding_account_id,
             'iso_currency_code': iso_currency_code,
             'description': description,
             'transfer_ids': transfer_ids,
