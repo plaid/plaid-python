@@ -57,9 +57,6 @@ class ExternalPaymentInitiationConsentOptions(ModelNormal):
     }
 
     validations = {
-        ('wallet_id',): {
-            'min_length': 1,
-        },
         ('iban',): {
             'max_length': 34,
             'min_length': 15,
@@ -89,7 +86,6 @@ class ExternalPaymentInitiationConsentOptions(ModelNormal):
         """
         lazy_import()
         return {
-            'wallet_id': (str, none_type,),  # noqa: E501
             'request_refund_details': (bool, none_type,),  # noqa: E501
             'iban': (str, none_type,),  # noqa: E501
             'bacs': (PaymentInitiationOptionalRestrictionBacs,),  # noqa: E501
@@ -101,7 +97,6 @@ class ExternalPaymentInitiationConsentOptions(ModelNormal):
 
 
     attribute_map = {
-        'wallet_id': 'wallet_id',  # noqa: E501
         'request_refund_details': 'request_refund_details',  # noqa: E501
         'iban': 'iban',  # noqa: E501
         'bacs': 'bacs',  # noqa: E501
@@ -153,7 +148,6 @@ class ExternalPaymentInitiationConsentOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            wallet_id (str, none_type): The EMI (E-Money Institution) wallet that this payment consent is associated with, if any. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
             request_refund_details (bool, none_type): When `true`, Plaid will attempt to request refund details from the payee's financial institution.  Support varies between financial institutions and will not always be available.  If refund details could be retrieved, they will be available in the `/payment_initiation/payment/get` response.. [optional]  # noqa: E501
             iban (str, none_type): The International Bank Account Number (IBAN) for the payer's account. If provided, the end user will be able to set up payment consent using only the specified bank account.. [optional]  # noqa: E501
             bacs (PaymentInitiationOptionalRestrictionBacs): [optional]  # noqa: E501

@@ -227,6 +227,12 @@ from plaid.model.processor_bank_transfer_create_request import ProcessorBankTran
 from plaid.model.processor_bank_transfer_create_response import ProcessorBankTransferCreateResponse
 from plaid.model.processor_identity_get_request import ProcessorIdentityGetRequest
 from plaid.model.processor_identity_get_response import ProcessorIdentityGetResponse
+from plaid.model.processor_signal_decision_report_request import ProcessorSignalDecisionReportRequest
+from plaid.model.processor_signal_decision_report_response import ProcessorSignalDecisionReportResponse
+from plaid.model.processor_signal_evaluate_request import ProcessorSignalEvaluateRequest
+from plaid.model.processor_signal_evaluate_response import ProcessorSignalEvaluateResponse
+from plaid.model.processor_signal_return_report_request import ProcessorSignalReturnReportRequest
+from plaid.model.processor_signal_return_report_response import ProcessorSignalReturnReportResponse
 from plaid.model.processor_stripe_bank_account_token_create_request import ProcessorStripeBankAccountTokenCreateRequest
 from plaid.model.processor_stripe_bank_account_token_create_response import ProcessorStripeBankAccountTokenCreateResponse
 from plaid.model.processor_token_create_request import ProcessorTokenCreateRequest
@@ -359,7 +365,6 @@ from plaid.model.wallet_transaction_get_request import WalletTransactionGetReque
 from plaid.model.wallet_transaction_get_response import WalletTransactionGetResponse
 from plaid.model.wallet_transaction_list_request import WalletTransactionListRequest
 from plaid.model.wallet_transaction_list_response import WalletTransactionListResponse
-from plaid.model.wallet_transactions_list_request import WalletTransactionsListRequest
 from plaid.model.watchlist_screening_entity_create_request import WatchlistScreeningEntityCreateRequest
 from plaid.model.watchlist_screening_entity_create_response import WatchlistScreeningEntityCreateResponse
 from plaid.model.watchlist_screening_entity_get_request import WatchlistScreeningEntityGetRequest
@@ -10055,7 +10060,7 @@ class PlaidApi(object):
             link_delivery_create_request,
             **kwargs
         ):
-            """Create link delivery session  # noqa: E501
+            """Create Link Delivery session  # noqa: E501
 
             Use the `/link_delivery/create` endpoint to create a Link Delivery session.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -10177,7 +10182,7 @@ class PlaidApi(object):
             link_delivery_get_request,
             **kwargs
         ):
-            """Get link delivery session  # noqa: E501
+            """Get Link Delivery session  # noqa: E501
 
             Use the `/link_delivery/get` endpoint to get the status of a Link Delivery session.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -13588,6 +13593,372 @@ class PlaidApi(object):
             callable=__processor_identity_get
         )
 
+        def __processor_signal_decision_report(
+            self,
+            processor_signal_decision_report_request,
+            **kwargs
+        ):
+            """Report whether you initiated an ACH transaction  # noqa: E501
+
+            After calling `/processor/signal/evaluate`, call `/processor/signal/decision/report` to report whether the transaction was initiated. This endpoint will return an [`INVALID_FIELD`](/docs/errors/invalid-request/#invalid_field) error if called a second time with a different value for `initiated`.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.processor_signal_decision_report(processor_signal_decision_report_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                processor_signal_decision_report_request (ProcessorSignalDecisionReportRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProcessorSignalDecisionReportResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['processor_signal_decision_report_request'] = \
+                processor_signal_decision_report_request
+            return self.call_with_http_info(**kwargs)
+
+        self.processor_signal_decision_report = _Endpoint(
+            settings={
+                'response_type': (ProcessorSignalDecisionReportResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/processor/signal/decision/report',
+                'operation_id': 'processor_signal_decision_report',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'processor_signal_decision_report_request',
+                ],
+                'required': [
+                    'processor_signal_decision_report_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'processor_signal_decision_report_request':
+                        (ProcessorSignalDecisionReportRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'processor_signal_decision_report_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__processor_signal_decision_report
+        )
+
+        def __processor_signal_evaluate(
+            self,
+            processor_signal_evaluate_request,
+            **kwargs
+        ):
+            """Evaluate a planned ACH transaction  # noqa: E501
+
+            Use `/processor/signal/evaluate` to evaluate a planned ACH transaction as a processor to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause. If `/processor/signal/evaluate` is called on the same transaction multiple times within a 24-hour period, cached results may be returned. For more information please refer to our error documentation on [item errors](/docs/errors/item/) and [Link in Update Mode](/docs/link/update-mode/).  Note: This request may take some time to complete if Signal is being added to an existing Item. This is because Plaid must communicate directly with the institution when retrieving the data for the first time.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.processor_signal_evaluate(processor_signal_evaluate_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                processor_signal_evaluate_request (ProcessorSignalEvaluateRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProcessorSignalEvaluateResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['processor_signal_evaluate_request'] = \
+                processor_signal_evaluate_request
+            return self.call_with_http_info(**kwargs)
+
+        self.processor_signal_evaluate = _Endpoint(
+            settings={
+                'response_type': (ProcessorSignalEvaluateResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/processor/signal/evaluate',
+                'operation_id': 'processor_signal_evaluate',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'processor_signal_evaluate_request',
+                ],
+                'required': [
+                    'processor_signal_evaluate_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'processor_signal_evaluate_request':
+                        (ProcessorSignalEvaluateRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'processor_signal_evaluate_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__processor_signal_evaluate
+        )
+
+        def __processor_signal_return_report(
+            self,
+            processor_signal_return_report_request,
+            **kwargs
+        ):
+            """Report a return for an ACH transaction  # noqa: E501
+
+            Call the `/processor/signal/return/report` endpoint to report a returned transaction that was previously sent to the `/processor/signal/evaluate` endpoint. Your feedback will be used by the model to incorporate the latest risk trend in your portfolio.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.processor_signal_return_report(processor_signal_return_report_request, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                processor_signal_return_report_request (ProcessorSignalReturnReportRequest):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProcessorSignalReturnReportResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['processor_signal_return_report_request'] = \
+                processor_signal_return_report_request
+            return self.call_with_http_info(**kwargs)
+
+        self.processor_signal_return_report = _Endpoint(
+            settings={
+                'response_type': (ProcessorSignalReturnReportResponse,),
+                'auth': [
+                    'clientId',
+                    'plaidVersion',
+                    'secret'
+                ],
+                'endpoint_path': '/processor/signal/return/report',
+                'operation_id': 'processor_signal_return_report',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'processor_signal_return_report_request',
+                ],
+                'required': [
+                    'processor_signal_return_report_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'processor_signal_return_report_request':
+                        (ProcessorSignalReturnReportRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'processor_signal_return_report_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__processor_signal_return_report
+        )
+
         def __processor_stripe_bank_account_token_create(
             self,
             processor_stripe_bank_account_token_create_request,
@@ -16157,7 +16528,7 @@ class PlaidApi(object):
         ):
             """Evaluate a planned ACH transaction  # noqa: E501
 
-            Use `/signal/evaluate` to evaluate a planned ACH transaction to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause. If `/signal/evaluate` is called on the same transaction multiple times within a 24-hour period, cached results may be returned. For more information please refer to our error documentation on [item errors](/docs/errors/item/) and [Link in Update Mode](/docs/link/update-mode/).  Note: This request may take some time to complete if Signal is being added to an existing Item. This is because Plaid must communicate directly with the institution when retrieving the data for the first time.  # noqa: E501
+            Use `/signal/evaluate` to evaluate a planned ACH transaction to get a return risk assessment (such as a risk score and risk tier) and additional risk signals.  In order to obtain a valid score for an ACH transaction, Plaid must have an access token for the account, and the Item must be healthy (receiving product updates) or have recently been in a healthy state. If the transaction does not meet eligibility requirements, an error will be returned corresponding to the underlying cause. If `/signal/evaluate` is called on the same transaction multiple times within a 24-hour period, cached results may be returned. For more information please refer to the error documentation on [Item errors](/docs/errors/item/) and [Link in Update Mode](/docs/link/update-mode/).  Note: This request may take some time to complete if Signal is being added to an existing Item. This is because Plaid must communicate directly with the institution when retrieving the data for the first time.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -21639,128 +22010,6 @@ class PlaidApi(object):
             },
             api_client=api_client,
             callable=__wallet_transaction_list
-        )
-
-        def __wallet_transactions_list(
-            self,
-            wallet_transactions_list_request,
-            **kwargs
-        ):
-            """List e-wallet transactions  # noqa: E501
-
-            This endpoint lists the latest transactions of the specified e-wallet. Transactions are returned in descending order by the `created_at` time.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.wallet_transactions_list(wallet_transactions_list_request, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                wallet_transactions_list_request (WalletTransactionsListRequest):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                WalletTransactionListResponse
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['wallet_transactions_list_request'] = \
-                wallet_transactions_list_request
-            return self.call_with_http_info(**kwargs)
-
-        self.wallet_transactions_list = _Endpoint(
-            settings={
-                'response_type': (WalletTransactionListResponse,),
-                'auth': [
-                    'clientId',
-                    'plaidVersion',
-                    'secret'
-                ],
-                'endpoint_path': '/wallet/transactions/list',
-                'operation_id': 'wallet_transactions_list',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'wallet_transactions_list_request',
-                ],
-                'required': [
-                    'wallet_transactions_list_request',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'wallet_transactions_list_request':
-                        (WalletTransactionsListRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'wallet_transactions_list_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__wallet_transactions_list
         )
 
         def __watchlist_screening_entity_create(

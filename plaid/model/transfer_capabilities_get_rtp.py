@@ -134,7 +134,7 @@ class TransferCapabilitiesGetRTP(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            credit (bool): When `true`, meaning the linked item's institution supports RTP credit transfer. [optional] if omitted the server will use the default value of False  # noqa: E501
+            credit (bool): When `true`, the linked Item's institution supports RTP credit transfer.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

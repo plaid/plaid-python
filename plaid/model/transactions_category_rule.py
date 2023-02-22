@@ -142,7 +142,7 @@ class TransactionsCategoryRule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): A unique identifier of the rule created. [optional]  # noqa: E501
-            item_id (str): A unique identifier of the item the rule was created for. [optional]  # noqa: E501
+            item_id (str): A unique identifier of the Item the rule was created for.. [optional]  # noqa: E501
             created_at (datetime): Date and time when a rule was created in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format ( `YYYY-MM-DDTHH:mm:ssZ` ). . [optional]  # noqa: E501
             personal_finance_category (str): Personal finance category unique identifier.  In the personal finance category taxonomy, this field is represented by the detailed category field. . [optional]  # noqa: E501
             rule_details (TransactionsRuleDetails): [optional]  # noqa: E501

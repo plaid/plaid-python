@@ -109,8 +109,8 @@ class LinkDeliveryCreateRequest(ModelNormal):
         """LinkDeliveryCreateRequest - a model defined in OpenAPI
 
         Args:
-            link_token (str): A `link_token` from a previous invocation of `/link/token/create` with Link Delivery enabled
-            communication_methods ([LinkDeliveryCommunicationMethod]): The list of communication methods to send the link delivery URL to.
+            link_token (str): A `link_token` from a previous invocation of `/link/token/create` with Link Delivery enabled.
+            communication_methods ([LinkDeliveryCommunicationMethod]): The list of communication methods to send the Link Delivery URL to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

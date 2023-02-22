@@ -133,7 +133,7 @@ class LinkTokenCreateRequestIncomeVerificationBankIncome(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            enable_multiple_items (bool, none_type): Whether to enable multiple items to be added in the link session. [optional] if omitted the server will use the default value of False  # noqa: E501
+            enable_multiple_items (bool, none_type): Whether to enable multiple Items to be added in the Link session. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

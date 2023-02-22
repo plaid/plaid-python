@@ -109,7 +109,7 @@ class LinkDeliveryCreateResponse(ModelNormal):
 
         Args:
             link_delivery_url (str): The URL to the Link Delivery session, which will be delivered by the specified delivery method.
-            link_delivery_session_id (str): The ID for the link delivery session. Same as the link token string excluding the \"link-{env}-\" prefix
+            link_delivery_session_id (str): The ID for the Link Delivery session. Same as the `link_token` string excluding the \"link-{env}-\" prefix.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:

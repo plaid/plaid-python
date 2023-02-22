@@ -147,7 +147,7 @@ class DocumentMetadata(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             name (str): The name of the document.. [optional]  # noqa: E501
-            status (str, none_type): The processing status of the document.  `PROCESSING_COMPLETE`: The document was successfully processed.  `DOCUMENT_ERROR`: The document could not be processed. Possible causes include: The document was an unacceptable document type such as an offer letter or bank statement, the document image was cropped or blurry, or the document was corrupted.  `UNKNOWN` or `null`: An internal error occured. If this happens repeatedly, contact support or your Plaid account manager.  . [optional]  # noqa: E501
+            status (str, none_type): The processing status of the document.  `PROCESSING_COMPLETE`: The document was successfully processed.  `DOCUMENT_ERROR`: The document could not be processed. Possible causes include: The document was an unacceptable document type such as an offer letter or bank statement, the document image was cropped or blurry, or the document was corrupted.  `UNKNOWN` or `null`: An internal error occured. If this happens repeatedly, contact support or your Plaid account manager.. [optional]  # noqa: E501
             doc_id (str): An identifier of the document that is also present in the paystub response.. [optional]  # noqa: E501
             doc_type (DocType): [optional]  # noqa: E501
         """
