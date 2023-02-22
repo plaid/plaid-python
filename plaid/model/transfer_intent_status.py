@@ -99,10 +99,10 @@ class TransferIntentStatus(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The status of the transfer intent.  - `PENDING` – The transfer intent is pending. - `SUCCEEDED` – The transfer intent was successfully created. - `FAILED` – The transfer intent was unable to be created.., must be one of ["PENDING", "SUCCEEDED", "FAILED", ]  # noqa: E501
+            args[0] (str): The status of the transfer intent.  `PENDING`: The transfer intent is pending. `SUCCEEDED`: The transfer intent was successfully created. `FAILED`: The transfer intent was unable to be created.., must be one of ["PENDING", "SUCCEEDED", "FAILED", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The status of the transfer intent.  - `PENDING` – The transfer intent is pending. - `SUCCEEDED` – The transfer intent was successfully created. - `FAILED` – The transfer intent was unable to be created.., must be one of ["PENDING", "SUCCEEDED", "FAILED", ]  # noqa: E501
+            value (str): The status of the transfer intent.  `PENDING`: The transfer intent is pending. `SUCCEEDED`: The transfer intent was successfully created. `FAILED`: The transfer intent was unable to be created.., must be one of ["PENDING", "SUCCEEDED", "FAILED", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

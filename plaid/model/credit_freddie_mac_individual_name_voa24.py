@@ -104,12 +104,13 @@ class CreditFreddieMacIndividualNameVOA24(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, first_name, last_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, first_name, last_name, middle_name, *args, **kwargs):  # noqa: E501
         """CreditFreddieMacIndividualNameVOA24 - a model defined in OpenAPI
 
         Args:
             first_name (str): The first name of the individual represented by the parent object.
             last_name (str): The last name of the individual represented by the parent object.
+            middle_name (str): The middle name of the individual represented by the parent object.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,7 +143,6 @@ class CreditFreddieMacIndividualNameVOA24(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            middle_name (str): The middle name of the individual represented by the parent object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -170,6 +170,7 @@ class CreditFreddieMacIndividualNameVOA24(ModelNormal):
 
         self.first_name = first_name
         self.last_name = last_name
+        self.middle_name = middle_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

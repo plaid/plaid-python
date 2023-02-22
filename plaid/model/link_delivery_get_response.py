@@ -121,7 +121,7 @@ class LinkDeliveryGetResponse(ModelNormal):
 
         Args:
             status (LinkDeliverySessionStatus):
-            created_at (datetime): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Link Delivery Session was created at
+            created_at (datetime): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Link Delivery Session was created at.
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -155,9 +155,9 @@ class LinkDeliveryGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            completed_at (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Link Delivery Session was completed at. [optional]  # noqa: E501
-            access_tokens ([str], none_type): An array of access tokens associated with the link delivery session. [optional]  # noqa: E501
-            item_ids ([str], none_type): An array of item ids associated with the link delivery session. [optional]  # noqa: E501
+            completed_at (datetime, none_type): Timestamp in [ISO 8601](https://wikipedia.org/wiki/ISO_8601) format (`YYYY-MM-DDTHH:mm:ssZ`) indicating the time the given Link Delivery Session was completed at.. [optional]  # noqa: E501
+            access_tokens ([str], none_type): An array of access tokens associated with the Link Delivery session.. [optional]  # noqa: E501
+            item_ids ([str], none_type): An array of `item_id`s associated with the Link Delivery session.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

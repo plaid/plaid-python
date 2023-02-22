@@ -97,6 +97,7 @@ class Enrichments(ModelNormal):
             'personal_finance_category_icon_url': (str,),  # noqa: E501
             'website': (str, none_type,),  # noqa: E501
             'check_number': (str, none_type,),  # noqa: E501
+            'entity_id': (str, none_type,),  # noqa: E501
             'legacy_category_id': (str, none_type,),  # noqa: E501
             'legacy_category': ([str],),  # noqa: E501
         }
@@ -116,6 +117,7 @@ class Enrichments(ModelNormal):
         'personal_finance_category_icon_url': 'personal_finance_category_icon_url',  # noqa: E501
         'website': 'website',  # noqa: E501
         'check_number': 'check_number',  # noqa: E501
+        'entity_id': 'entity_id',  # noqa: E501
         'legacy_category_id': 'legacy_category_id',  # noqa: E501
         'legacy_category': 'legacy_category',  # noqa: E501
     }
@@ -177,6 +179,7 @@ class Enrichments(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             check_number (str, none_type): The check number of the transaction. This field is only populated for check transactions.. [optional]  # noqa: E501
+            entity_id (str, none_type): A unique, stable, Plaid-generated id that maps to the primary counterparty.. [optional]  # noqa: E501
             legacy_category_id (str, none_type): The ID of the legacy category to which this transaction belongs. For a full list of legacy categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  We recommend using the `personal_finance_category` for transaction categorization to obtain the best results.. [optional]  # noqa: E501
             legacy_category ([str]): A hierarchical array of the legacy categories to which this transaction belongs. For a full list of legacy categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget).  We recommend using the `personal_finance_category` for transaction categorization to obtain the best results.. [optional]  # noqa: E501
         """

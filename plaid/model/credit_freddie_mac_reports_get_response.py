@@ -85,8 +85,8 @@ class CreditFreddieMacReportsGetResponse(ModelNormal):
         lazy_import()
         return {
             'voa': (CreditFreddieMacVerificationOfAssetsVOA24,),  # noqa: E501
-            'voe': (CreditFreddieVerificationOfEmploymentVOE25,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
+            'voe': (CreditFreddieVerificationOfEmploymentVOE25,),  # noqa: E501
         }
 
     @cached_property
@@ -96,8 +96,8 @@ class CreditFreddieMacReportsGetResponse(ModelNormal):
 
     attribute_map = {
         'voa': 'VOA',  # noqa: E501
-        'voe': 'VOE',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
+        'voe': 'VOE',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,12 +112,11 @@ class CreditFreddieMacReportsGetResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, voa, voe, request_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, voa, request_id, *args, **kwargs):  # noqa: E501
         """CreditFreddieMacReportsGetResponse - a model defined in OpenAPI
 
         Args:
             voa (CreditFreddieMacVerificationOfAssetsVOA24):
-            voe (CreditFreddieVerificationOfEmploymentVOE25):
             request_id (str): A unique identifier for the request, which can be used for troubleshooting. This identifier, like all Plaid identifiers, is case sensitive.
 
         Keyword Args:
@@ -151,6 +150,7 @@ class CreditFreddieMacReportsGetResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            voe (CreditFreddieVerificationOfEmploymentVOE25): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -177,7 +177,6 @@ class CreditFreddieMacReportsGetResponse(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.voa = voa
-        self.voe = voe
         self.request_id = request_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

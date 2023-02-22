@@ -243,7 +243,7 @@ class LinkTokenCreateRequest(ModelNormal):
             transfer (LinkTokenCreateRequestTransfer): [optional]  # noqa: E501
             update (LinkTokenCreateRequestUpdate): [optional]  # noqa: E501
             identity_verification (LinkTokenCreateRequestIdentityVerification): [optional]  # noqa: E501
-            user_token (str): A user token generated using `/user/create`. Any item created during the link session will be associated with the user.. [optional]  # noqa: E501
+            user_token (str): A user token generated using `/user/create`. Any Item created during the Link session will be associated with the user.. [optional]  # noqa: E501
             investments (LinkTokenInvestments): [optional]  # noqa: E501
         """
 

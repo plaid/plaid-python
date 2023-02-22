@@ -145,7 +145,7 @@ class CreditSessionResults(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            item_add_results ([CreditSessionItemAddResult]): The set of item adds for the Link session.. [optional]  # noqa: E501
+            item_add_results ([CreditSessionItemAddResult]): The set of Item adds for the Link session.. [optional]  # noqa: E501
             bank_income_results ([CreditSessionBankIncomeResult]): The set of bank income verifications for the Link session.. [optional]  # noqa: E501
             payroll_income_results ([CreditSessionPayrollIncomeResult]): The set of payroll income verifications for the Link session.. [optional]  # noqa: E501
             document_income_results (CreditSessionDocumentIncomeResult): [optional]  # noqa: E501

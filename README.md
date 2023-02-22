@@ -284,7 +284,7 @@ Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions for l
 [1]: https://plaid.com
 [2]: https://plaid.com/docs/api
 [3]: https://plaid.com/docs/api#errors
-[4]: https://github.com/plaid/link
+[4]: https://plaid.com/docs/link/
 [5]: https://github.com/plaid/plaid-python/issues/new
 [6]: https://github.com/plaid/plaid-python/blob/master/LICENSE
 [7]: https://plaid.github.io/plaid-python/contents.html

@@ -86,6 +86,7 @@ class Counterparty(ModelNormal):
             'type': (CounterpartyType,),  # noqa: E501
             'website': (str, none_type,),  # noqa: E501
             'logo_url': (str, none_type,),  # noqa: E501
+            'entity_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +99,7 @@ class Counterparty(ModelNormal):
         'type': 'type',  # noqa: E501
         'website': 'website',  # noqa: E501
         'logo_url': 'logo_url',  # noqa: E501
+        'entity_id': 'entity_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,6 +154,7 @@ class Counterparty(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            entity_id (str, none_type): A unique, stable, Plaid-generated id that maps to the counterparty.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

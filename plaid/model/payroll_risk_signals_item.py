@@ -113,7 +113,7 @@ class PayrollRiskSignalsItem(ModelNormal):
 
         Args:
             item_id (str): The `item_id` of the Item associated with this webhook, warning, or error
-            verification_risk_signals ([DocumentRiskSignalsObject]): Array of payroll income document authenticity data retrieved for each of the user's accounts
+            verification_risk_signals ([DocumentRiskSignalsObject]): Array of payroll income document authenticity data retrieved for each of the user's accounts.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
