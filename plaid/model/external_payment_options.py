@@ -153,7 +153,7 @@ class ExternalPaymentOptions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             request_refund_details (bool, none_type): When `true`, Plaid will attempt to request refund details from the payee's financial institution.  Support varies between financial institutions and will not always be available.  If refund details could be retrieved, they will be available in the `/payment_initiation/payment/get` response.. [optional]  # noqa: E501
-            iban (str, none_type): The International Bank Account Number (IBAN) for the payer's account. If provided, the end user will be able to send payments only from the specified bank account.. [optional]  # noqa: E501
+            iban (str, none_type): The International Bank Account Number (IBAN) for the payer's account. Where possible, the end user will be able to send payments only from the specified bank account if provided.. [optional]  # noqa: E501
             bacs (PaymentInitiationOptionalRestrictionBacs): [optional]  # noqa: E501
             scheme (PaymentScheme): [optional]  # noqa: E501
         """

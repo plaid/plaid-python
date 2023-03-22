@@ -91,6 +91,8 @@ class WalletTransactionStatusUpdateWebhook(ModelNormal):
             'old_status': (WalletTransactionStatus,),  # noqa: E501
             'timestamp': (datetime,),  # noqa: E501
             'environment': (WebhookEnvironmentValues,),  # noqa: E501
+            'payment_id': (str, none_type,),  # noqa: E501
+            'wallet_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +108,8 @@ class WalletTransactionStatusUpdateWebhook(ModelNormal):
         'old_status': 'old_status',  # noqa: E501
         'timestamp': 'timestamp',  # noqa: E501
         'environment': 'environment',  # noqa: E501
+        'payment_id': 'payment_id',  # noqa: E501
+        'wallet_id': 'wallet_id',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -163,6 +167,8 @@ class WalletTransactionStatusUpdateWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payment_id (str, none_type): The `payment_id` associated with the transaction. This will be present in case of `REFUND` and `PIS_PAY_IN`. [optional]  # noqa: E501
+            wallet_id (str): The EMI (E-Money Institution) wallet that this payment is associated with. This wallet is used as an intermediary account to enable Plaid to reconcile the settlement of funds for Payment Initiation requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

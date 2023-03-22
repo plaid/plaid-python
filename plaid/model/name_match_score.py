@@ -141,9 +141,9 @@ class NameMatchScore(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             score (int, none_type): Represents the match score for name. 100 is a perfect score, 85-99 means a strong match, 50-84 is a partial match, less than 50 is a weak match and 0 is a complete mismatch. If the name is missing from either the API or financial institution, this is empty.. [optional]  # noqa: E501
-            is_first_name_or_last_name_match (bool, none_type): first or last name completely matched. [optional]  # noqa: E501
+            is_first_name_or_last_name_match (bool, none_type): first or last name completely matched, likely a family member. [optional]  # noqa: E501
             is_nickname_match (bool, none_type): nickname matched, example Jennifer and Jenn.. [optional]  # noqa: E501
-            is_business_name_detected (bool, none_type): If the name on either of the names that was matched for the score was a business name, with corp, llc, ltd etc in the name. While this being true confirms business name, false means it was either not a business name or Plaid could not detect it as such, since a lot of business names match owner names and are hard to detect.. [optional]  # noqa: E501
+            is_business_name_detected (bool, none_type): Is `true` if the name on either of the names that was matched for the score contained strings indicative of a business name, such as \"CORP\", \"LLC\", \"INC\", or \"LTD\". A `true` result generally indicates the entity is a business. However, a `false` result does not mean the entity is not a business, as some businesses do not use these strings in the names used for their financial institution accounts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

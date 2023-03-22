@@ -58,7 +58,7 @@ class WalletTransactionAmount(ModelNormal):
 
     validations = {
         ('value',): {
-            'inclusive_minimum': 1,
+            'inclusive_minimum': 0.01,
         },
     }
 

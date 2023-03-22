@@ -99,6 +99,7 @@ class Institution(ModelNormal):
             'url': (str, none_type,),  # noqa: E501
             'primary_color': (str, none_type,),  # noqa: E501
             'logo': (str, none_type,),  # noqa: E501
+            'dtc_numbers': ([str],),  # noqa: E501
             'status': (InstitutionStatus,),  # noqa: E501
             'payment_initiation_metadata': (PaymentInitiationMetadata,),  # noqa: E501
             'auth_metadata': (AuthMetadata,),  # noqa: E501
@@ -119,6 +120,7 @@ class Institution(ModelNormal):
         'url': 'url',  # noqa: E501
         'primary_color': 'primary_color',  # noqa: E501
         'logo': 'logo',  # noqa: E501
+        'dtc_numbers': 'dtc_numbers',  # noqa: E501
         'status': 'status',  # noqa: E501
         'payment_initiation_metadata': 'payment_initiation_metadata',  # noqa: E501
         'auth_metadata': 'auth_metadata',  # noqa: E501
@@ -180,7 +182,8 @@ class Institution(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             url (str, none_type): The URL for the institution's website. [optional]  # noqa: E501
             primary_color (str, none_type): Hexadecimal representation of the primary color used by the institution. [optional]  # noqa: E501
-            logo (str, none_type): Base64 encoded representation of the institution's logo. [optional]  # noqa: E501
+            logo (str, none_type): Base64 encoded representation of the institution's logo, returned as a base64 encoded 152x152 PNG. Not all institutions' logos are available.. [optional]  # noqa: E501
+            dtc_numbers ([str]): A partial list of DTC numbers associated with the institution.. [optional]  # noqa: E501
             status (InstitutionStatus): [optional]  # noqa: E501
             payment_initiation_metadata (PaymentInitiationMetadata): [optional]  # noqa: E501
             auth_metadata (AuthMetadata): [optional]  # noqa: E501

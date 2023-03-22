@@ -51,6 +51,7 @@ class CreditBankIncomePayFrequency(ModelSimple):
             'BIWEEKLY': "BIWEEKLY",
             'SEMI_MONTHLY': "SEMI_MONTHLY",
             'MONTHLY': "MONTHLY",
+            'DAILY': "DAILY",
             'UNKNOWN': "UNKNOWN",
         },
     }
@@ -101,10 +102,10 @@ class CreditBankIncomePayFrequency(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): The income pay frequency.., must be one of ["WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", "UNKNOWN", ]  # noqa: E501
+            args[0] (str): The income pay frequency.., must be one of ["WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", "DAILY", "UNKNOWN", ]  # noqa: E501
 
         Keyword Args:
-            value (str): The income pay frequency.., must be one of ["WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", "UNKNOWN", ]  # noqa: E501
+            value (str): The income pay frequency.., must be one of ["WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", "DAILY", "UNKNOWN", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -79,6 +79,7 @@ class AssetsProductReadyWebhook(ModelNormal):
             'webhook_type': (str,),  # noqa: E501
             'webhook_code': (str,),  # noqa: E501
             'asset_report_id': (str,),  # noqa: E501
+            'report_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +91,7 @@ class AssetsProductReadyWebhook(ModelNormal):
         'webhook_type': 'webhook_type',  # noqa: E501
         'webhook_code': 'webhook_code',  # noqa: E501
         'asset_report_id': 'asset_report_id',  # noqa: E501
+        'report_type': 'report_type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +145,7 @@ class AssetsProductReadyWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            report_type (str): The report type specifying whether the asset report is a `full` or `fast` report.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

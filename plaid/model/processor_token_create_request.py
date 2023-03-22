@@ -84,6 +84,8 @@ class ProcessorTokenCreateRequest(ModelNormal):
             'I2C': "i2c",
             'WEPAY': "wepay",
             'RISKIFIED': "riskified",
+            'UTB': "utb",
+            'ADP_ROLL': "adp_roll",
         },
     }
 

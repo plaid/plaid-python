@@ -25,12 +25,12 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from plaid.model.identity_verification_response_user_name import IdentityVerificationResponseUserName
     from plaid.model.identity_verification_user_address import IdentityVerificationUserAddress
     from plaid.model.user_id_number import UserIDNumber
-    from plaid.model.user_name import UserName
+    globals()['IdentityVerificationResponseUserName'] = IdentityVerificationResponseUserName
     globals()['IdentityVerificationUserAddress'] = IdentityVerificationUserAddress
     globals()['UserIDNumber'] = UserIDNumber
-    globals()['UserName'] = UserName
 
 
 class IdentityVerificationUserData(ModelNormal):
@@ -63,7 +63,14 @@ class IdentityVerificationUserData(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -82,7 +89,7 @@ class IdentityVerificationUserData(ModelNormal):
             'date_of_birth': (date, none_type,),  # noqa: E501
             'ip_address': (str, none_type,),  # noqa: E501
             'email_address': (str, none_type,),  # noqa: E501
-            'name': (UserName,),  # noqa: E501
+            'name': (IdentityVerificationResponseUserName,),  # noqa: E501
             'address': (IdentityVerificationUserAddress,),  # noqa: E501
             'id_number': (UserIDNumber,),  # noqa: E501
             'phone_number': (str, none_type,),  # noqa: E501
@@ -122,7 +129,7 @@ class IdentityVerificationUserData(ModelNormal):
             date_of_birth (date, none_type): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).
             ip_address (str, none_type): An IPv4 or IPV6 address.
             email_address (str, none_type): A valid email address.
-            name (UserName):
+            name (IdentityVerificationResponseUserName):
             address (IdentityVerificationUserAddress):
             id_number (UserIDNumber):
 

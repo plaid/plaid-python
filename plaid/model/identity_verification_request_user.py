@@ -26,13 +26,13 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.client_user_id import ClientUserID
+    from plaid.model.identity_verification_request_user_name import IdentityVerificationRequestUserName
     from plaid.model.user_address import UserAddress
     from plaid.model.user_id_number import UserIDNumber
-    from plaid.model.user_name import UserName
     globals()['ClientUserID'] = ClientUserID
+    globals()['IdentityVerificationRequestUserName'] = IdentityVerificationRequestUserName
     globals()['UserAddress'] = UserAddress
     globals()['UserIDNumber'] = UserIDNumber
-    globals()['UserName'] = UserName
 
 
 class IdentityVerificationRequestUser(ModelNormal):
@@ -65,7 +65,14 @@ class IdentityVerificationRequestUser(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        lazy_import()
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -85,7 +92,7 @@ class IdentityVerificationRequestUser(ModelNormal):
             'email_address': (str,),  # noqa: E501
             'phone_number': (str, none_type,),  # noqa: E501
             'date_of_birth': (date,),  # noqa: E501
-            'name': (UserName,),  # noqa: E501
+            'name': (IdentityVerificationRequestUserName,),  # noqa: E501
             'address': (UserAddress,),  # noqa: E501
             'id_number': (UserIDNumber,),  # noqa: E501
         }
@@ -157,7 +164,7 @@ class IdentityVerificationRequestUser(ModelNormal):
             email_address (str): A valid email address.. [optional]  # noqa: E501
             phone_number (str, none_type): A phone number in E.164 format.. [optional]  # noqa: E501
             date_of_birth (date): A date in the format YYYY-MM-DD (RFC 3339 Section 5.6).. [optional]  # noqa: E501
-            name (UserName): [optional]  # noqa: E501
+            name (IdentityVerificationRequestUserName): [optional]  # noqa: E501
             address (UserAddress): [optional]  # noqa: E501
             id_number (UserIDNumber): [optional]  # noqa: E501
         """

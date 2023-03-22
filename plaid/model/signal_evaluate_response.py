@@ -27,8 +27,10 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.signal_evaluate_core_attributes import SignalEvaluateCoreAttributes
     from plaid.model.signal_scores import SignalScores
+    from plaid.model.signal_warning import SignalWarning
     globals()['SignalEvaluateCoreAttributes'] = SignalEvaluateCoreAttributes
     globals()['SignalScores'] = SignalScores
+    globals()['SignalWarning'] = SignalWarning
 
 
 class SignalEvaluateResponse(ModelNormal):
@@ -87,6 +89,7 @@ class SignalEvaluateResponse(ModelNormal):
             'request_id': (str,),  # noqa: E501
             'scores': (SignalScores,),  # noqa: E501
             'core_attributes': (SignalEvaluateCoreAttributes,),  # noqa: E501
+            'warnings': ([SignalWarning],),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +101,7 @@ class SignalEvaluateResponse(ModelNormal):
         'request_id': 'request_id',  # noqa: E501
         'scores': 'scores',  # noqa: E501
         'core_attributes': 'core_attributes',  # noqa: E501
+        'warnings': 'warnings',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,6 +155,7 @@ class SignalEvaluateResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             core_attributes (SignalEvaluateCoreAttributes): [optional]  # noqa: E501
+            warnings ([SignalWarning]): If bank information was not able to be used as features into the Signal model, this array contains warnings describing why we were missing bank data. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

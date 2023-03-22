@@ -136,7 +136,7 @@ class LinkDeliveryCommunicationMethod(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             method (LinkDeliveryDeliveryMethod): [optional]  # noqa: E501
-            address (str): The address to deliver the Link Delivery URL. [optional]  # noqa: E501
+            address (str): The phone number / email address that link delivery sessions are delivered to. Phone numbers must be in E.164 format.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

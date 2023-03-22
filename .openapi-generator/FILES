@@ -248,6 +248,7 @@ plaid/model/credit_payroll_income_get_response.py
 plaid/model/credit_payroll_income_precheck_request.py
 plaid/model/credit_payroll_income_precheck_response.py
 plaid/model/credit_payroll_income_refresh_request.py
+plaid/model/credit_payroll_income_refresh_request_options.py
 plaid/model/credit_payroll_income_refresh_response.py
 plaid/model/credit_payroll_income_risk_signals_get_request.py
 plaid/model/credit_payroll_income_risk_signals_get_response.py
@@ -260,6 +261,8 @@ plaid/model/credit_relay_refresh_response.py
 plaid/model/credit_relay_remove_request.py
 plaid/model/credit_relay_remove_response.py
 plaid/model/credit_session.py
+plaid/model/credit_session_bank_employment_result.py
+plaid/model/credit_session_bank_employment_status.py
 plaid/model/credit_session_bank_income_result.py
 plaid/model/credit_session_bank_income_status.py
 plaid/model/credit_session_document_income_result.py
@@ -411,6 +414,8 @@ plaid/model/identity_verification_get_response.py
 plaid/model/identity_verification_list_request.py
 plaid/model/identity_verification_list_response.py
 plaid/model/identity_verification_request_user.py
+plaid/model/identity_verification_request_user_name.py
+plaid/model/identity_verification_response_user_name.py
 plaid/model/identity_verification_retried_webhook.py
 plaid/model/identity_verification_retry_request.py
 plaid/model/identity_verification_retry_request_steps_object.py
@@ -505,6 +510,7 @@ plaid/model/item_import_request.py
 plaid/model/item_import_request_options.py
 plaid/model/item_import_request_user_auth.py
 plaid/model/item_import_response.py
+plaid/model/item_login_repaired_webhook.py
 plaid/model/item_product_ready_webhook.py
 plaid/model/item_public_token_create_request.py
 plaid/model/item_public_token_create_response.py
@@ -527,6 +533,7 @@ plaid/model/kyc_check_details.py
 plaid/model/kyc_check_id_number_summary.py
 plaid/model/kyc_check_name_summary.py
 plaid/model/kyc_check_phone_summary.py
+plaid/model/last_data_access_times.py
 plaid/model/liabilities_account_ids_with_updated_liabilities.py
 plaid/model/liabilities_default_update_webhook.py
 plaid/model/liabilities_get_request.py
@@ -545,10 +552,14 @@ plaid/model/link_delivery_get_request.py
 plaid/model/link_delivery_get_response.py
 plaid/model/link_delivery_institution.py
 plaid/model/link_delivery_metadata.py
+plaid/model/link_delivery_options.py
+plaid/model/link_delivery_recipient.py
 plaid/model/link_delivery_session_status.py
 plaid/model/link_delivery_verification_status.py
+plaid/model/link_delivery_webhook_callback_type.py
 plaid/model/link_delivery_webhook_communication_method.py
 plaid/model/link_delivery_webhook_delivery_status.py
+plaid/model/link_event_name.py
 plaid/model/link_o_auth_correlation_id_exchange_request.py
 plaid/model/link_o_auth_correlation_id_exchange_response.py
 plaid/model/link_token_account_filters.py
@@ -777,6 +788,7 @@ plaid/model/product_status_breakdown.py
 plaid/model/products.py
 plaid/model/program_name_sensitivity.py
 plaid/model/projected_income_summary_field_number.py
+plaid/model/proxy_type.py
 plaid/model/pslf_status.py
 plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
@@ -792,6 +804,20 @@ plaid/model/removed_transaction.py
 plaid/model/report_type.py
 plaid/model/reporting_information.py
 plaid/model/review_comment.py
+plaid/model/risk_check_behavior.py
+plaid/model/risk_check_behavior_bot_detected_label.py
+plaid/model/risk_check_behavior_fraud_ring_detected_label.py
+plaid/model/risk_check_behavior_user_interactions_label.py
+plaid/model/risk_check_details.py
+plaid/model/risk_check_device.py
+plaid/model/risk_check_email.py
+plaid/model/risk_check_email_domain_is_custom.py
+plaid/model/risk_check_email_domain_is_disposable.py
+plaid/model/risk_check_email_domain_is_free_provider.py
+plaid/model/risk_check_email_is_deliverable_status.py
+plaid/model/risk_check_email_top_level_domain_is_suspicious.py
+plaid/model/risk_check_linked_service.py
+plaid/model/risk_check_phone.py
 plaid/model/risk_signal_document_reference.py
 plaid/model/role.py
 plaid/model/role_detail.py
@@ -872,6 +898,7 @@ plaid/model/signal_return_report_response.py
 plaid/model/signal_score.py
 plaid/model/signal_scores.py
 plaid/model/signal_user.py
+plaid/model/signal_warning.py
 plaid/model/simulated_transfer_sweep.py
 plaid/model/single_document_risk_signal.py
 plaid/model/source.py
@@ -950,6 +977,8 @@ plaid/model/transfer_cancel_response.py
 plaid/model/transfer_capabilities_get_request.py
 plaid/model/transfer_capabilities_get_response.py
 plaid/model/transfer_capabilities_get_rtp.py
+plaid/model/transfer_configuration_get_request.py
+plaid/model/transfer_configuration_get_response.py
 plaid/model/transfer_create_idempotency_key.py
 plaid/model/transfer_create_request.py
 plaid/model/transfer_create_response.py
@@ -980,6 +1009,8 @@ plaid/model/transfer_intent_status.py
 plaid/model/transfer_list_request.py
 plaid/model/transfer_list_response.py
 plaid/model/transfer_metadata.py
+plaid/model/transfer_metrics_get_request.py
+plaid/model/transfer_metrics_get_response.py
 plaid/model/transfer_migrate_account_request.py
 plaid/model/transfer_migrate_account_response.py
 plaid/model/transfer_network.py
@@ -1039,7 +1070,6 @@ plaid/model/user_create_request.py
 plaid/model/user_create_response.py
 plaid/model/user_custom_password.py
 plaid/model/user_id_number.py
-plaid/model/user_name.py
 plaid/model/user_permission_revoked_webhook.py
 plaid/model/user_stated_income_source_category.py
 plaid/model/user_stated_income_source_frequency.py

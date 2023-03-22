@@ -96,6 +96,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
             'adjusted_start_date': (date, none_type,),  # noqa: E501
             'timestamp': (datetime,),  # noqa: E501
             'environment': (WebhookEnvironmentValues,),  # noqa: E501
+            'transaction_id': (str, none_type,),  # noqa: E501
             'adjusted_reference': (str, none_type,),  # noqa: E501
             'error': (PlaidError,),  # noqa: E501
         }
@@ -116,6 +117,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
         'adjusted_start_date': 'adjusted_start_date',  # noqa: E501
         'timestamp': 'timestamp',  # noqa: E501
         'environment': 'environment',  # noqa: E501
+        'transaction_id': 'transaction_id',  # noqa: E501
         'adjusted_reference': 'adjusted_reference',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
@@ -178,6 +180,7 @@ class PaymentStatusUpdateWebhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            transaction_id (str, none_type): The transaction ID that this payment is associated with, if any. This is present only when a payment was initiated using virtual accounts.. [optional]  # noqa: E501
             adjusted_reference (str, none_type): The value of the reference sent to the bank after adjustment to pass bank validation rules.. [optional]  # noqa: E501
             error (PlaidError): [optional]  # noqa: E501
         """

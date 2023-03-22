@@ -136,7 +136,7 @@ class AddressMatchScore(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            score (int, none_type): Match score for address. 100 is a perfect match and 0 is a no match. If the address is missing from either the API or financial institution, this is empty.. [optional]  # noqa: E501
+            score (int, none_type): Match score for address. The score can range from 0 to 100 where 100 is a perfect match and 0 is a no match. If the address is missing from either the API or financial institution, this is empty.. [optional]  # noqa: E501
             is_postal_code_match (bool, none_type): postal code was provided for both and was a match. [optional]  # noqa: E501
         """
 

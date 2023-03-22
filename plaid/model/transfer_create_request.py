@@ -141,7 +141,7 @@ class TransferCreateRequest(ModelNormal):
 
         Args:
             authorization_id (str): Plaid’s unique identifier for a transfer authorization. This parameter also serves the purpose of acting as an idempotency identifier.
-            description (str): The transfer description. Maximum of 10 characters.
+            description (str): The transfer description. Maximum of 10 characters. If reprocessing a returned transfer, please note that the `description` field must be `\"Retry\"` to indicate that it's a retry of a previously returned transfer. You may retry a transfer up to 2 times, within 180 days of creating the original transfer. Only transfers that were returned with code `R01` or `R09` may be retried. For a full listing of ACH return codes, see [Transfer errors](https://plaid.com/docs/errors/transfer/#ach-return-codes).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

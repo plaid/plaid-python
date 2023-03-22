@@ -27,8 +27,12 @@ from plaid.model_utils import (  # noqa: F401
 def lazy_import():
     from plaid.model.link_delivery_account import LinkDeliveryAccount
     from plaid.model.link_delivery_institution import LinkDeliveryInstitution
+    from plaid.model.link_delivery_webhook_callback_type import LinkDeliveryWebhookCallbackType
+    from plaid.model.link_event_name import LinkEventName
     globals()['LinkDeliveryAccount'] = LinkDeliveryAccount
     globals()['LinkDeliveryInstitution'] = LinkDeliveryInstitution
+    globals()['LinkDeliveryWebhookCallbackType'] = LinkDeliveryWebhookCallbackType
+    globals()['LinkEventName'] = LinkEventName
 
 
 class LinkCallbackMetadata(ModelNormal):
@@ -84,7 +88,8 @@ class LinkCallbackMetadata(ModelNormal):
         """
         lazy_import()
         return {
-            'event_name': (str,),  # noqa: E501
+            'callback_type': (LinkDeliveryWebhookCallbackType,),  # noqa: E501
+            'event_name': (LinkEventName,),  # noqa: E501
             'status': (str,),  # noqa: E501
             'link_session_id': (str,),  # noqa: E501
             'request_id': (str,),  # noqa: E501
@@ -98,6 +103,7 @@ class LinkCallbackMetadata(ModelNormal):
 
 
     attribute_map = {
+        'callback_type': 'callback_type',  # noqa: E501
         'event_name': 'event_name',  # noqa: E501
         'status': 'status',  # noqa: E501
         'link_session_id': 'link_session_id',  # noqa: E501
@@ -152,7 +158,8 @@ class LinkCallbackMetadata(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            event_name (str): Name of the Link callback e.g `onEvent`, `onExit`, `onSuccess`. [optional]  # noqa: E501
+            callback_type (LinkDeliveryWebhookCallbackType): [optional]  # noqa: E501
+            event_name (LinkEventName): [optional]  # noqa: E501
             status (str): Indicates where in the flow the Link user exited. [optional]  # noqa: E501
             link_session_id (str): A unique identifier associated with a user's actions and events through the Link flow. Include this identifier when opening a support ticket for faster turnaround.. [optional]  # noqa: E501
             request_id (str): The request ID for the last request made by Link. This can be shared with Plaid Support to expedite investigation.. [optional]  # noqa: E501

@@ -56,6 +56,8 @@ class Warning(ModelNormal):
     allowed_values = {
         ('warning_code',): {
             'OWNERS_UNAVAILABLE': "OWNERS_UNAVAILABLE",
+            'INVESTMENTS_UNAVAILABLE': "INVESTMENTS_UNAVAILABLE",
+            'TRANSACTIONS_UNAVAILABLE': "TRANSACTIONS_UNAVAILABLE",
         },
     }
 
@@ -113,15 +115,15 @@ class Warning(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, warning_type, cause, *args, **kwargs):  # noqa: E501
+    def __init__(self, warning_type, warning_code, cause, *args, **kwargs):  # noqa: E501
         """Warning - a model defined in OpenAPI
 
         Args:
             warning_type (str): The warning type, which will always be `ASSET_REPORT_WARNING`
+            warning_code (str): The warning code identifies a specific kind of warning. `OWNERS_UNAVAILABLE` indicates that account-owner information is not available.`INVESTMENTS_UNAVAILABLE` indicates that Investments specific information is not available. `TRANSACTIONS_UNAVAILABLE` indicates that transactions information associated with Credit and Depository accounts are unavailable.
             cause (Cause):
 
         Keyword Args:
-            warning_code (str): The warning code identifies a specific kind of warning. Currently, the only possible warning code is `OWNERS_UNAVAILABLE`, which indicates that account-owner information is not available.. defaults to "OWNERS_UNAVAILABLE", must be one of ["OWNERS_UNAVAILABLE", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -154,7 +156,6 @@ class Warning(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        warning_code = kwargs.get('warning_code', "OWNERS_UNAVAILABLE")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
