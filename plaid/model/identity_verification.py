@@ -32,6 +32,7 @@ def lazy_import():
     from plaid.model.identity_verification_template_reference import IdentityVerificationTemplateReference
     from plaid.model.identity_verification_user_data import IdentityVerificationUserData
     from plaid.model.kyc_check_details import KYCCheckDetails
+    from plaid.model.risk_check_details import RiskCheckDetails
     globals()['ClientUserID'] = ClientUserID
     globals()['DocumentaryVerification'] = DocumentaryVerification
     globals()['IdentityVerificationStatus'] = IdentityVerificationStatus
@@ -39,6 +40,7 @@ def lazy_import():
     globals()['IdentityVerificationTemplateReference'] = IdentityVerificationTemplateReference
     globals()['IdentityVerificationUserData'] = IdentityVerificationUserData
     globals()['KYCCheckDetails'] = KYCCheckDetails
+    globals()['RiskCheckDetails'] = RiskCheckDetails
 
 
 class IdentityVerification(ModelNormal):
@@ -106,6 +108,7 @@ class IdentityVerification(ModelNormal):
             'steps': (IdentityVerificationStepSummary,),  # noqa: E501
             'documentary_verification': (DocumentaryVerification,),  # noqa: E501
             'kyc_check': (KYCCheckDetails,),  # noqa: E501
+            'risk_check': (RiskCheckDetails,),  # noqa: E501
             'watchlist_screening_id': (str, none_type,),  # noqa: E501
             'redacted_at': (datetime, none_type,),  # noqa: E501
         }
@@ -128,6 +131,7 @@ class IdentityVerification(ModelNormal):
         'steps': 'steps',  # noqa: E501
         'documentary_verification': 'documentary_verification',  # noqa: E501
         'kyc_check': 'kyc_check',  # noqa: E501
+        'risk_check': 'risk_check',  # noqa: E501
         'watchlist_screening_id': 'watchlist_screening_id',  # noqa: E501
         'redacted_at': 'redacted_at',  # noqa: E501
     }
@@ -144,7 +148,7 @@ class IdentityVerification(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, client_user_id, created_at, completed_at, previous_attempt_id, shareable_url, template, user, status, steps, documentary_verification, kyc_check, watchlist_screening_id, redacted_at, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, client_user_id, created_at, completed_at, previous_attempt_id, shareable_url, template, user, status, steps, documentary_verification, kyc_check, risk_check, watchlist_screening_id, redacted_at, *args, **kwargs):  # noqa: E501
         """IdentityVerification - a model defined in OpenAPI
 
         Args:
@@ -160,6 +164,7 @@ class IdentityVerification(ModelNormal):
             steps (IdentityVerificationStepSummary):
             documentary_verification (DocumentaryVerification):
             kyc_check (KYCCheckDetails):
+            risk_check (RiskCheckDetails):
             watchlist_screening_id (str, none_type): ID of the associated screening.
             redacted_at (datetime, none_type): An ISO8601 formatted timestamp.
 
@@ -231,6 +236,7 @@ class IdentityVerification(ModelNormal):
         self.steps = steps
         self.documentary_verification = documentary_verification
         self.kyc_check = kyc_check
+        self.risk_check = risk_check
         self.watchlist_screening_id = watchlist_screening_id
         self.redacted_at = redacted_at
         for var_name, var_value in kwargs.items():

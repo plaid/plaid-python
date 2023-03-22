@@ -26,7 +26,9 @@ from plaid.model_utils import (  # noqa: F401
 
 def lazy_import():
     from plaid.model.activity import Activity
+    from plaid.model.last_data_access_times import LastDataAccessTimes
     globals()['Activity'] = Activity
+    globals()['LastDataAccessTimes'] = LastDataAccessTimes
 
 
 class ItemActivityListResponse(ModelNormal):
@@ -83,6 +85,7 @@ class ItemActivityListResponse(ModelNormal):
         lazy_import()
         return {
             'activities': ([Activity],),  # noqa: E501
+            'last_data_access_times': ([LastDataAccessTimes],),  # noqa: E501
             'request_id': (str,),  # noqa: E501
             'cursor': (str,),  # noqa: E501
         }
@@ -94,6 +97,7 @@ class ItemActivityListResponse(ModelNormal):
 
     attribute_map = {
         'activities': 'activities',  # noqa: E501
+        'last_data_access_times': 'last_data_access_times',  # noqa: E501
         'request_id': 'request_id',  # noqa: E501
         'cursor': 'cursor',  # noqa: E501
     }
@@ -110,11 +114,12 @@ class ItemActivityListResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, activities, *args, **kwargs):  # noqa: E501
+    def __init__(self, activities, last_data_access_times, *args, **kwargs):  # noqa: E501
         """ItemActivityListResponse - a model defined in OpenAPI
 
         Args:
             activities ([Activity]): A list of activities.
+            last_data_access_times ([LastDataAccessTimes]): An array of objects containing timestamps for the last time each data type was accessed per application.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,6 +180,7 @@ class ItemActivityListResponse(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.activities = activities
+        self.last_data_access_times = last_data_access_times
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

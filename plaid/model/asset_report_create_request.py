@@ -59,13 +59,13 @@ class AssetReportCreateRequest(ModelNormal):
     }
 
     validations = {
-        ('access_tokens',): {
-            'max_items': 99,
-            'min_items': 1,
-        },
         ('days_requested',): {
             'inclusive_maximum': 731,
             'inclusive_minimum': 0,
+        },
+        ('access_tokens',): {
+            'max_items': 99,
+            'min_items': 1,
         },
     }
 
@@ -85,10 +85,11 @@ class AssetReportCreateRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'access_tokens': ([str],),  # noqa: E501
             'days_requested': (int,),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'access_tokens': ([str],),  # noqa: E501
+            'user_token': (str,),  # noqa: E501
             'options': (AssetReportCreateRequestOptions,),  # noqa: E501
             'report_type': (FreddieReportType,),  # noqa: E501
         }
@@ -99,10 +100,11 @@ class AssetReportCreateRequest(ModelNormal):
 
 
     attribute_map = {
-        'access_tokens': 'access_tokens',  # noqa: E501
         'days_requested': 'days_requested',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'access_tokens': 'access_tokens',  # noqa: E501
+        'user_token': 'user_token',  # noqa: E501
         'options': 'options',  # noqa: E501
         'report_type': 'report_type',  # noqa: E501
     }
@@ -119,11 +121,10 @@ class AssetReportCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_tokens, days_requested, *args, **kwargs):  # noqa: E501
+    def __init__(self, days_requested, *args, **kwargs):  # noqa: E501
         """AssetReportCreateRequest - a model defined in OpenAPI
 
         Args:
-            access_tokens ([str]): An array of access tokens corresponding to the Items that will be included in the report. The `assets` product must have been initialized for the Items during link; the Assets product cannot be added after initialization.
             days_requested (int): The maximum integer number of days of history to include in the Asset Report. If using Fannie Mae Day 1 Certainty, `days_requested` must be at least 61 for new originations or at least 31 for refinancings.  An Asset Report requested with \"Additional History\" (that is, with more than 61 days of transaction history) will incur an Additional History fee.
 
         Keyword Args:
@@ -159,6 +160,8 @@ class AssetReportCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            access_tokens ([str]): An array of access tokens corresponding to the Items that will be included in the report. The `assets` product must have been initialized for the Items during link; the Assets product cannot be added after initialization.. [optional]  # noqa: E501
+            user_token (str): The user token associated with the User for which to create an asset report for. All items associated with the User will be included in the report.. [optional]  # noqa: E501
             options (AssetReportCreateRequestOptions): [optional]  # noqa: E501
             report_type (FreddieReportType): [optional]  # noqa: E501
         """
@@ -186,7 +189,6 @@ class AssetReportCreateRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.access_tokens = access_tokens
         self.days_requested = days_requested
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

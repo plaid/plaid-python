@@ -52,6 +52,7 @@ class RecurringTransactionFrequency(ModelSimple):
             'BIWEEKLY': "BIWEEKLY",
             'SEMI_MONTHLY': "SEMI_MONTHLY",
             'MONTHLY': "MONTHLY",
+            'ANNUALLY': "ANNUALLY",
         },
     }
 
@@ -101,10 +102,10 @@ class RecurringTransactionFrequency(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Describes the frequency of the transaction stream.  `WEEKLY`: Assigned to a transaction stream that occurs approximately every week.  `BIWEEKLY`: Assigned to a transaction stream that occurs approximately every 2 weeks.  `SEMI_MONTHLY`: Assigned to a transaction stream that occurs approximately twice per month. This frequency is typically seen for inflow transaction streams.  `MONTHLY`: Assigned to a transaction stream that occurs approximately every month.  `UNKNOWN`: Assigned to a transaction stream that does not fit any of the pre-defined frequencies.., must be one of ["UNKNOWN", "WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", ]  # noqa: E501
+            args[0] (str): Describes the frequency of the transaction stream.  `WEEKLY`: Assigned to a transaction stream that occurs approximately every week.  `BIWEEKLY`: Assigned to a transaction stream that occurs approximately every 2 weeks.  `SEMI_MONTHLY`: Assigned to a transaction stream that occurs approximately twice per month. This frequency is typically seen for inflow transaction streams.  `MONTHLY`: Assigned to a transaction stream that occurs approximately every month.  `ANNUALLY`: Assigned to a transaction stream that occurs approximately every year.  `UNKNOWN`: Assigned to a transaction stream that does not fit any of the pre-defined frequencies.., must be one of ["UNKNOWN", "WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", "ANNUALLY", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Describes the frequency of the transaction stream.  `WEEKLY`: Assigned to a transaction stream that occurs approximately every week.  `BIWEEKLY`: Assigned to a transaction stream that occurs approximately every 2 weeks.  `SEMI_MONTHLY`: Assigned to a transaction stream that occurs approximately twice per month. This frequency is typically seen for inflow transaction streams.  `MONTHLY`: Assigned to a transaction stream that occurs approximately every month.  `UNKNOWN`: Assigned to a transaction stream that does not fit any of the pre-defined frequencies.., must be one of ["UNKNOWN", "WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", ]  # noqa: E501
+            value (str): Describes the frequency of the transaction stream.  `WEEKLY`: Assigned to a transaction stream that occurs approximately every week.  `BIWEEKLY`: Assigned to a transaction stream that occurs approximately every 2 weeks.  `SEMI_MONTHLY`: Assigned to a transaction stream that occurs approximately twice per month. This frequency is typically seen for inflow transaction streams.  `MONTHLY`: Assigned to a transaction stream that occurs approximately every month.  `ANNUALLY`: Assigned to a transaction stream that occurs approximately every year.  `UNKNOWN`: Assigned to a transaction stream that does not fit any of the pre-defined frequencies.., must be one of ["UNKNOWN", "WEEKLY", "BIWEEKLY", "SEMI_MONTHLY", "MONTHLY", "ANNUALLY", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

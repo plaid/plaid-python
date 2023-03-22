@@ -25,8 +25,8 @@ from plaid.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from plaid.model.link_delivery_communication_method import LinkDeliveryCommunicationMethod
-    globals()['LinkDeliveryCommunicationMethod'] = LinkDeliveryCommunicationMethod
+    from plaid.model.link_delivery_options import LinkDeliveryOptions
+    globals()['LinkDeliveryOptions'] = LinkDeliveryOptions
 
 
 class LinkDeliveryCreateRequest(ModelNormal):
@@ -76,9 +76,9 @@ class LinkDeliveryCreateRequest(ModelNormal):
         lazy_import()
         return {
             'link_token': (str,),  # noqa: E501
-            'communication_methods': ([LinkDeliveryCommunicationMethod],),  # noqa: E501
             'client_id': (str,),  # noqa: E501
             'secret': (str,),  # noqa: E501
+            'options': (LinkDeliveryOptions,),  # noqa: E501
         }
 
     @cached_property
@@ -88,9 +88,9 @@ class LinkDeliveryCreateRequest(ModelNormal):
 
     attribute_map = {
         'link_token': 'link_token',  # noqa: E501
-        'communication_methods': 'communication_methods',  # noqa: E501
         'client_id': 'client_id',  # noqa: E501
         'secret': 'secret',  # noqa: E501
+        'options': 'options',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,12 +105,11 @@ class LinkDeliveryCreateRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, link_token, communication_methods, *args, **kwargs):  # noqa: E501
+    def __init__(self, link_token, *args, **kwargs):  # noqa: E501
         """LinkDeliveryCreateRequest - a model defined in OpenAPI
 
         Args:
             link_token (str): A `link_token` from a previous invocation of `/link/token/create` with Link Delivery enabled.
-            communication_methods ([LinkDeliveryCommunicationMethod]): The list of communication methods to send the Link Delivery URL to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -145,6 +144,7 @@ class LinkDeliveryCreateRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_id (str): Your Plaid API `client_id`. The `client_id` is required and may be provided either in the `PLAID-CLIENT-ID` header or as part of a request body.. [optional]  # noqa: E501
             secret (str): Your Plaid API `secret`. The `secret` is required and may be provided either in the `PLAID-SECRET` header or as part of a request body.. [optional]  # noqa: E501
+            options (LinkDeliveryOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -171,7 +171,6 @@ class LinkDeliveryCreateRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.link_token = link_token
-        self.communication_methods = communication_methods
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

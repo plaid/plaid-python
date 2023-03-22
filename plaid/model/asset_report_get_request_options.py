@@ -132,7 +132,7 @@ class AssetReportGetRequestOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            days_to_include (int, none_type): The maximum integer number of days of history to include in the Asset Report.. [optional]  # noqa: E501
+            days_to_include (int, none_type): The maximum number of days of history to include in the Asset Report.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

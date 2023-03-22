@@ -59,6 +59,9 @@ class PaymentAmountRefunded(ModelComposed):
     }
 
     validations = {
+        ('value',): {
+            'inclusive_minimum': 0.01,
+        },
     }
 
     @cached_property
@@ -116,7 +119,7 @@ class PaymentAmountRefunded(ModelComposed):
 
         Args:
             currency (PaymentAmountCurrency):
-            value (float): The amount of the payment. Must contain at most two digits of precision e.g. `1.23`. Minimum accepted value is `1`.
+            value (float): The amount of the payment. Must contain at most two digits of precision e.g. `1.23`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -149,7 +149,7 @@ class AssetReportCreateRequestOptions(ModelNormal):
             webhook (str, none_type): URL to which Plaid will send Assets webhooks, for example when the requested Asset Report is ready.. [optional]  # noqa: E501
             include_fast_report (bool, none_type): true to return balance and identity earlier as a fast report. Defaults to false if omitted.. [optional]  # noqa: E501
             products ([str]): Additional information that can be included in the asset report. Possible values: `\"investments\"`. [optional]  # noqa: E501
-            add_ons ([AssetReportAddOns]): Additional information that can be included in the asset report. Possible values: `\"investments\"`, `\"fast_assets\"`. [optional]  # noqa: E501
+            add_ons ([AssetReportAddOns]): Additional information that can be included in the asset report. Possible values: `\"fast_assets\"`. [optional]  # noqa: E501
             user (AssetReportUser): [optional]  # noqa: E501
         """
 
