@@ -389,7 +389,6 @@ from plaid.model.fdx_party_type import FDXPartyType
 from plaid.model.fallback_auth_microdeposit_auto_verified_webhook import FallbackAuthMicrodepositAutoVerifiedWebhook
 from plaid.model.fallback_auth_microdeposit_verification_expired_webhook import FallbackAuthMicrodepositVerificationExpiredWebhook
 from plaid.model.form1099_type import Form1099Type
-from plaid.model.freddie_report_type import FreddieReportType
 from plaid.model.generic_country_code import GenericCountryCode
 from plaid.model.generic_country_code_nullable import GenericCountryCodeNullable
 from plaid.model.generic_screening_hit_location_items import GenericScreeningHitLocationItems
@@ -585,6 +584,7 @@ from plaid.model.link_token_create_request_payment_initiation import LinkTokenCr
 from plaid.model.link_token_create_request_transfer import LinkTokenCreateRequestTransfer
 from plaid.model.link_token_create_request_update import LinkTokenCreateRequestUpdate
 from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
+from plaid.model.link_token_create_request_user_name import LinkTokenCreateRequestUserName
 from plaid.model.link_token_create_request_user_stated_income_source import LinkTokenCreateRequestUserStatedIncomeSource
 from plaid.model.link_token_create_response import LinkTokenCreateResponse
 from plaid.model.link_token_eu_config import LinkTokenEUConfig
@@ -796,6 +796,7 @@ from plaid.model.proxy_type import ProxyType
 from plaid.model.recaptcha_required_error import RecaptchaRequiredError
 from plaid.model.recipient_bacs import RecipientBACS
 from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
+from plaid.model.recurrence import Recurrence
 from plaid.model.recurring_cancelled_webhook import RecurringCancelledWebhook
 from plaid.model.recurring_new_transfer_webhook import RecurringNewTransferWebhook
 from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
@@ -995,6 +996,7 @@ from plaid.model.transfer_event_sync_request import TransferEventSyncRequest
 from plaid.model.transfer_event_sync_response import TransferEventSyncResponse
 from plaid.model.transfer_event_type import TransferEventType
 from plaid.model.transfer_events_update_webhook import TransferEventsUpdateWebhook
+from plaid.model.transfer_expected_settlement_schedule_item import TransferExpectedSettlementScheduleItem
 from plaid.model.transfer_failure import TransferFailure
 from plaid.model.transfer_get_request import TransferGetRequest
 from plaid.model.transfer_get_response import TransferGetResponse
