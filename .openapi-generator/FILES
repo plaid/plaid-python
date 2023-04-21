@@ -386,7 +386,6 @@ plaid/model/fdx_party_registry.py
 plaid/model/fdx_party_type.py
 plaid/model/fdxfi_attribute.py
 plaid/model/form1099_type.py
-plaid/model/freddie_report_type.py
 plaid/model/generic_country_code.py
 plaid/model/generic_country_code_nullable.py
 plaid/model/generic_screening_hit_location_items.py
@@ -582,6 +581,7 @@ plaid/model/link_token_create_request_payment_initiation.py
 plaid/model/link_token_create_request_transfer.py
 plaid/model/link_token_create_request_update.py
 plaid/model/link_token_create_request_user.py
+plaid/model/link_token_create_request_user_name.py
 plaid/model/link_token_create_request_user_stated_income_source.py
 plaid/model/link_token_create_response.py
 plaid/model/link_token_eu_config.py
@@ -793,6 +793,7 @@ plaid/model/pslf_status.py
 plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
+plaid/model/recurrence.py
 plaid/model/recurring_cancelled_webhook.py
 plaid/model/recurring_new_transfer_webhook.py
 plaid/model/recurring_transaction_frequency.py
@@ -992,6 +993,7 @@ plaid/model/transfer_event_sync_request.py
 plaid/model/transfer_event_sync_response.py
 plaid/model/transfer_event_type.py
 plaid/model/transfer_events_update_webhook.py
+plaid/model/transfer_expected_settlement_schedule_item.py
 plaid/model/transfer_failure.py
 plaid/model/transfer_get_request.py
 plaid/model/transfer_get_response.py
