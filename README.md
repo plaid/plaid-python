@@ -104,7 +104,7 @@ import json
 ...
 response = ... # type TransactionsSyncResponse
 # to_dict makes it first a python dictionary, and then we turn it into a string JSON.
-json_string = json.dumps(response.to_dict())
+json_string = json.dumps(response.to_dict(), default=str)
 ```
 ### Dates
 
