@@ -96,6 +96,9 @@ plaid/model/auth_get_response.py
 plaid/model/auth_metadata.py
 plaid/model/auth_supported_methods.py
 plaid/model/automatically_verified_webhook.py
+plaid/model/bank_income_refresh_complete_result.py
+plaid/model/bank_income_refresh_complete_webhook.py
+plaid/model/bank_income_refresh_update_webhook.py
 plaid/model/bank_initiated_return_risk.py
 plaid/model/bank_initiated_risk_tier.py
 plaid/model/bank_transfer.py
@@ -157,6 +160,7 @@ plaid/model/credit1099_payer.py
 plaid/model/credit1099_recipient.py
 plaid/model/credit_account_subtype.py
 plaid/model/credit_account_subtypes.py
+plaid/model/credit_ach_class.py
 plaid/model/credit_amount_with_currency.py
 plaid/model/credit_audit_copy_token_create_request.py
 plaid/model/credit_audit_copy_token_create_response.py
@@ -194,6 +198,16 @@ plaid/model/credit_bank_income_transaction.py
 plaid/model/credit_bank_income_warning.py
 plaid/model/credit_bank_income_warning_code.py
 plaid/model/credit_bank_income_warning_type.py
+plaid/model/credit_bank_income_webhook_update_request.py
+plaid/model/credit_bank_statement_upload_account_owner.py
+plaid/model/credit_bank_statement_upload_account_owner_address.py
+plaid/model/credit_bank_statement_upload_bank_account.py
+plaid/model/credit_bank_statement_upload_bank_account_period.py
+plaid/model/credit_bank_statement_upload_item.py
+plaid/model/credit_bank_statement_upload_object.py
+plaid/model/credit_bank_statement_upload_transaction.py
+plaid/model/credit_bank_statements_uploads_get_request.py
+plaid/model/credit_bank_statements_uploads_get_response.py
 plaid/model/credit_card_liability.py
 plaid/model/credit_category.py
 plaid/model/credit_document_metadata.py
@@ -405,6 +419,8 @@ plaid/model/identity_match_request.py
 plaid/model/identity_match_request_options.py
 plaid/model/identity_match_response.py
 plaid/model/identity_match_user.py
+plaid/model/identity_refresh_request.py
+plaid/model/identity_refresh_response.py
 plaid/model/identity_update_types.py
 plaid/model/identity_verification.py
 plaid/model/identity_verification_create_request.py
@@ -486,6 +502,11 @@ plaid/model/investment_holdings_get_request_options.py
 plaid/model/investment_transaction.py
 plaid/model/investment_transaction_subtype.py
 plaid/model/investment_transaction_type.py
+plaid/model/investments_auth_get_numbers.py
+plaid/model/investments_auth_get_request.py
+plaid/model/investments_auth_get_request_options.py
+plaid/model/investments_auth_get_response.py
+plaid/model/investments_auth_owner.py
 plaid/model/investments_default_update_webhook.py
 plaid/model/investments_holdings_get_request.py
 plaid/model/investments_holdings_get_response.py
@@ -598,6 +619,7 @@ plaid/model/link_token_get_metadata_response.py
 plaid/model/link_token_get_request.py
 plaid/model/link_token_get_response.py
 plaid/model/link_token_investments.py
+plaid/model/link_token_investments_auth.py
 plaid/model/link_user_delivery_status_webhook.py
 plaid/model/loan.py
 plaid/model/loan_account_subtype.py
@@ -620,6 +642,7 @@ plaid/model/name_match_score.py
 plaid/model/net_pay.py
 plaid/model/new_accounts_available_webhook.py
 plaid/model/numbers.py
+plaid/model/numbers_acats.py
 plaid/model/numbers_ach.py
 plaid/model/numbers_ach_nullable.py
 plaid/model/numbers_bacs.py
@@ -807,6 +830,8 @@ plaid/model/processor_transactions_refresh_response.py
 plaid/model/processor_transactions_sync_request.py
 plaid/model/processor_transactions_sync_response.py
 plaid/model/product_access.py
+plaid/model/product_permissions_required_auth_webhook.py
+plaid/model/product_permissions_required_identity_webhook.py
 plaid/model/product_status.py
 plaid/model/product_status_breakdown.py
 plaid/model/products.py
@@ -1138,6 +1163,7 @@ plaid/model/wallet_iso_currency_code.py
 plaid/model/wallet_list_request.py
 plaid/model/wallet_list_response.py
 plaid/model/wallet_numbers.py
+plaid/model/wallet_payment_scheme.py
 plaid/model/wallet_status.py
 plaid/model/wallet_transaction.py
 plaid/model/wallet_transaction_amount.py

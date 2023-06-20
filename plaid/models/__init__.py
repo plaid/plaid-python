@@ -99,6 +99,9 @@ from plaid.model.auth_get_response import AuthGetResponse
 from plaid.model.auth_metadata import AuthMetadata
 from plaid.model.auth_supported_methods import AuthSupportedMethods
 from plaid.model.automatically_verified_webhook import AutomaticallyVerifiedWebhook
+from plaid.model.bank_income_refresh_complete_result import BankIncomeRefreshCompleteResult
+from plaid.model.bank_income_refresh_complete_webhook import BankIncomeRefreshCompleteWebhook
+from plaid.model.bank_income_refresh_update_webhook import BankIncomeRefreshUpdateWebhook
 from plaid.model.bank_initiated_return_risk import BankInitiatedReturnRisk
 from plaid.model.bank_initiated_risk_tier import BankInitiatedRiskTier
 from plaid.model.bank_transfer import BankTransfer
@@ -158,6 +161,7 @@ from plaid.model.credit1099 import Credit1099
 from plaid.model.credit1099_filer import Credit1099Filer
 from plaid.model.credit1099_payer import Credit1099Payer
 from plaid.model.credit1099_recipient import Credit1099Recipient
+from plaid.model.credit_ach_class import CreditACHClass
 from plaid.model.credit_account_subtype import CreditAccountSubtype
 from plaid.model.credit_account_subtypes import CreditAccountSubtypes
 from plaid.model.credit_amount_with_currency import CreditAmountWithCurrency
@@ -197,6 +201,16 @@ from plaid.model.credit_bank_income_transaction import CreditBankIncomeTransacti
 from plaid.model.credit_bank_income_warning import CreditBankIncomeWarning
 from plaid.model.credit_bank_income_warning_code import CreditBankIncomeWarningCode
 from plaid.model.credit_bank_income_warning_type import CreditBankIncomeWarningType
+from plaid.model.credit_bank_income_webhook_update_request import CreditBankIncomeWebhookUpdateRequest
+from plaid.model.credit_bank_statement_upload_account_owner import CreditBankStatementUploadAccountOwner
+from plaid.model.credit_bank_statement_upload_account_owner_address import CreditBankStatementUploadAccountOwnerAddress
+from plaid.model.credit_bank_statement_upload_bank_account import CreditBankStatementUploadBankAccount
+from plaid.model.credit_bank_statement_upload_bank_account_period import CreditBankStatementUploadBankAccountPeriod
+from plaid.model.credit_bank_statement_upload_item import CreditBankStatementUploadItem
+from plaid.model.credit_bank_statement_upload_object import CreditBankStatementUploadObject
+from plaid.model.credit_bank_statement_upload_transaction import CreditBankStatementUploadTransaction
+from plaid.model.credit_bank_statements_uploads_get_request import CreditBankStatementsUploadsGetRequest
+from plaid.model.credit_bank_statements_uploads_get_response import CreditBankStatementsUploadsGetResponse
 from plaid.model.credit_card_liability import CreditCardLiability
 from plaid.model.credit_category import CreditCategory
 from plaid.model.credit_document_metadata import CreditDocumentMetadata
@@ -408,6 +422,8 @@ from plaid.model.identity_match_request import IdentityMatchRequest
 from plaid.model.identity_match_request_options import IdentityMatchRequestOptions
 from plaid.model.identity_match_response import IdentityMatchResponse
 from plaid.model.identity_match_user import IdentityMatchUser
+from plaid.model.identity_refresh_request import IdentityRefreshRequest
+from plaid.model.identity_refresh_response import IdentityRefreshResponse
 from plaid.model.identity_update_types import IdentityUpdateTypes
 from plaid.model.identity_verification import IdentityVerification
 from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
@@ -489,6 +505,11 @@ from plaid.model.investment_holdings_get_request_options import InvestmentHoldin
 from plaid.model.investment_transaction import InvestmentTransaction
 from plaid.model.investment_transaction_subtype import InvestmentTransactionSubtype
 from plaid.model.investment_transaction_type import InvestmentTransactionType
+from plaid.model.investments_auth_get_numbers import InvestmentsAuthGetNumbers
+from plaid.model.investments_auth_get_request import InvestmentsAuthGetRequest
+from plaid.model.investments_auth_get_request_options import InvestmentsAuthGetRequestOptions
+from plaid.model.investments_auth_get_response import InvestmentsAuthGetResponse
+from plaid.model.investments_auth_owner import InvestmentsAuthOwner
 from plaid.model.investments_default_update_webhook import InvestmentsDefaultUpdateWebhook
 from plaid.model.investments_holdings_get_request import InvestmentsHoldingsGetRequest
 from plaid.model.investments_holdings_get_response import InvestmentsHoldingsGetResponse
@@ -601,6 +622,7 @@ from plaid.model.link_token_get_metadata_response import LinkTokenGetMetadataRes
 from plaid.model.link_token_get_request import LinkTokenGetRequest
 from plaid.model.link_token_get_response import LinkTokenGetResponse
 from plaid.model.link_token_investments import LinkTokenInvestments
+from plaid.model.link_token_investments_auth import LinkTokenInvestmentsAuth
 from plaid.model.link_user_delivery_status_webhook import LinkUserDeliveryStatusWebhook
 from plaid.model.loan import Loan
 from plaid.model.loan_account_subtype import LoanAccountSubtype
@@ -623,6 +645,7 @@ from plaid.model.name_match_score import NameMatchScore
 from plaid.model.net_pay import NetPay
 from plaid.model.new_accounts_available_webhook import NewAccountsAvailableWebhook
 from plaid.model.numbers import Numbers
+from plaid.model.numbers_acats import NumbersACATS
 from plaid.model.numbers_ach import NumbersACH
 from plaid.model.numbers_ach_nullable import NumbersACHNullable
 from plaid.model.numbers_bacs import NumbersBACS
@@ -811,6 +834,8 @@ from plaid.model.processor_transactions_refresh_response import ProcessorTransac
 from plaid.model.processor_transactions_sync_request import ProcessorTransactionsSyncRequest
 from plaid.model.processor_transactions_sync_response import ProcessorTransactionsSyncResponse
 from plaid.model.product_access import ProductAccess
+from plaid.model.product_permissions_required_auth_webhook import ProductPermissionsRequiredAuthWebhook
+from plaid.model.product_permissions_required_identity_webhook import ProductPermissionsRequiredIdentityWebhook
 from plaid.model.product_status import ProductStatus
 from plaid.model.product_status_breakdown import ProductStatusBreakdown
 from plaid.model.products import Products
@@ -1141,6 +1166,7 @@ from plaid.model.wallet_iso_currency_code import WalletISOCurrencyCode
 from plaid.model.wallet_list_request import WalletListRequest
 from plaid.model.wallet_list_response import WalletListResponse
 from plaid.model.wallet_numbers import WalletNumbers
+from plaid.model.wallet_payment_scheme import WalletPaymentScheme
 from plaid.model.wallet_status import WalletStatus
 from plaid.model.wallet_transaction import WalletTransaction
 from plaid.model.wallet_transaction_amount import WalletTransactionAmount
