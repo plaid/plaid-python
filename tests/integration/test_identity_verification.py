@@ -2,6 +2,7 @@ import time
 
 from plaid.model.client_user_id import ClientUserID
 from plaid.model.identity_verification_status import IdentityVerificationStatus
+from plaid.model.identity_verification_create_request_user import IdentityVerificationCreateRequestUser
 from plaid.model.identity_verification_request_user import IdentityVerificationRequestUser
 from plaid.model.strategy import Strategy
 
@@ -14,17 +15,18 @@ from tests.integration.util import create_client
 
 TEMPLATE_ID = "flwtmp_aWogUuKsL6NEHU"
 CLIENT_USER_ID = ClientUserID("idv-user-" + str(time.time()))
+EMAIL = "idv-user-" + str(time.time()) + "@example.com"
 
 def test_identity_verification_create_and_retry():
     client = create_client()
 
     create_request = IdentityVerificationCreateRequest(
+        client_user_id=CLIENT_USER_ID,
         is_shareable=True,
         template_id=TEMPLATE_ID,
         gave_consent=True,
-        user=IdentityVerificationRequestUser(
-            client_user_id=CLIENT_USER_ID,
-            email_address="idv-user-" + str(time.time()) + "@example.com",
+        user=IdentityVerificationCreateRequestUser(
+            email_address=EMAIL,
         )
     )
     # create IDV request
@@ -37,7 +39,10 @@ def test_identity_verification_create_and_retry():
     retry_request = IdentityVerificationRetryRequest(
         template_id=TEMPLATE_ID,
         client_user_id=CLIENT_USER_ID,
-        strategy=Strategy('reset')
+        strategy=Strategy('reset'),
+        user=IdentityVerificationRequestUser(
+            email_address=EMAIL,
+        )
     )
     # retry IDV request
     retry_response = client.identity_verification_retry(retry_request)
