@@ -510,6 +510,7 @@ plaid/model/investments_auth_get_request_options.py
 plaid/model/investments_auth_get_response.py
 plaid/model/investments_auth_owner.py
 plaid/model/investments_default_update_webhook.py
+plaid/model/investments_historical_update_webhook.py
 plaid/model/investments_holdings_get_request.py
 plaid/model/investments_holdings_get_response.py
 plaid/model/investments_refresh_request.py
@@ -804,11 +805,15 @@ plaid/model/processor_balance_get_request_options.py
 plaid/model/processor_balance_get_response.py
 plaid/model/processor_bank_transfer_create_request.py
 plaid/model/processor_bank_transfer_create_response.py
+plaid/model/processor_default_update_webhook.py
+plaid/model/processor_historical_update_webhook.py
 plaid/model/processor_identity_get_request.py
 plaid/model/processor_identity_get_response.py
 plaid/model/processor_identity_match_request.py
 plaid/model/processor_identity_match_response.py
+plaid/model/processor_initial_update_webhook.py
 plaid/model/processor_number.py
+plaid/model/processor_recurring_transactions_update_webhook.py
 plaid/model/processor_signal_decision_report_request.py
 plaid/model/processor_signal_decision_report_response.py
 plaid/model/processor_signal_evaluate_request.py
@@ -817,6 +822,7 @@ plaid/model/processor_signal_return_report_request.py
 plaid/model/processor_signal_return_report_response.py
 plaid/model/processor_stripe_bank_account_token_create_request.py
 plaid/model/processor_stripe_bank_account_token_create_response.py
+plaid/model/processor_sync_updates_available_webhook.py
 plaid/model/processor_token_create_request.py
 plaid/model/processor_token_create_response.py
 plaid/model/processor_token_permissions_get_request.py
@@ -829,6 +835,7 @@ plaid/model/processor_transactions_recurring_get_request.py
 plaid/model/processor_transactions_recurring_get_response.py
 plaid/model/processor_transactions_refresh_request.py
 plaid/model/processor_transactions_refresh_response.py
+plaid/model/processor_transactions_removed_webhook.py
 plaid/model/processor_transactions_sync_request.py
 plaid/model/processor_transactions_sync_response.py
 plaid/model/product_access.py
@@ -980,6 +987,7 @@ plaid/model/student_loan.py
 plaid/model/student_loan_repayment_model.py
 plaid/model/student_loan_status.py
 plaid/model/student_repayment_plan.py
+plaid/model/sweep_status.py
 plaid/model/sync_updates_available_webhook.py
 plaid/model/taxform.py
 plaid/model/taxpayer_id.py
