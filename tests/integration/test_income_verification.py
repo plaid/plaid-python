@@ -102,12 +102,3 @@ def test_taxforms_get():
     assert(income_verification_taxforms_get_response is not None)
     assert(income_verification_taxforms_get_response['taxforms'] is not None)
     assert(income_verification_taxforms_get_response['document_metadata'] is not None)
-
-def test_documents_download():
-    client = create_client()
-    income_verification_documents_download_request = IncomeVerificationDocumentsDownloadRequest(
-        access_token=access_token
-    )
-    income_verification_documents_download_response = client.income_verification_documents_download(income_verification_documents_download_request)
-    assert(income_verification_documents_download_response is not None)
-
