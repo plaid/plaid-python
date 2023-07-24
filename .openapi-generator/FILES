@@ -427,6 +427,8 @@ plaid/model/identity_verification.py
 plaid/model/identity_verification_create_request.py
 plaid/model/identity_verification_create_request_user.py
 plaid/model/identity_verification_create_response.py
+plaid/model/identity_verification_document_address_response.py
+plaid/model/identity_verification_document_country_code.py
 plaid/model/identity_verification_get_request.py
 plaid/model/identity_verification_get_response.py
 plaid/model/identity_verification_list_request.py
@@ -457,6 +459,7 @@ plaid/model/income_summary_field_string.py
 plaid/model/income_verification_create_request.py
 plaid/model/income_verification_create_request_options.py
 plaid/model/income_verification_create_response.py
+plaid/model/income_verification_doc_parsing_config.py
 plaid/model/income_verification_documents_download_request.py
 plaid/model/income_verification_payroll_flow_type.py
 plaid/model/income_verification_paystubs_get_request.py
@@ -829,6 +832,9 @@ plaid/model/processor_token_permissions_get_request.py
 plaid/model/processor_token_permissions_get_response.py
 plaid/model/processor_token_permissions_set_request.py
 plaid/model/processor_token_permissions_set_response.py
+plaid/model/processor_token_webhook_update.py
+plaid/model/processor_token_webhook_update_request.py
+plaid/model/processor_token_webhook_update_response.py
 plaid/model/processor_transactions_get_request.py
 plaid/model/processor_transactions_get_response.py
 plaid/model/processor_transactions_recurring_get_request.py
@@ -980,6 +986,11 @@ plaid/model/source_uid.py
 plaid/model/standalone_account_type.py
 plaid/model/standalone_currency_code_list.py
 plaid/model/standalone_investment_transaction_type.py
+plaid/model/statements_account.py
+plaid/model/statements_download_request.py
+plaid/model/statements_list_request.py
+plaid/model/statements_list_response.py
+plaid/model/statements_statement.py
 plaid/model/status.py
 plaid/model/statuses.py
 plaid/model/strategy.py
