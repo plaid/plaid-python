@@ -98,6 +98,8 @@ plaid/model/auth_get_response.py
 plaid/model/auth_metadata.py
 plaid/model/auth_supported_methods.py
 plaid/model/automatically_verified_webhook.py
+plaid/model/bank_income_complete_result.py
+plaid/model/bank_income_complete_webhook.py
 plaid/model/bank_income_refresh_complete_result.py
 plaid/model/bank_income_refresh_complete_webhook.py
 plaid/model/bank_income_refresh_update_webhook.py
@@ -461,6 +463,7 @@ plaid/model/historical_update_webhook.py
 plaid/model/holding.py
 plaid/model/holdings_default_update_webhook.py
 plaid/model/holdings_override.py
+plaid/model/hosted_link_delivery_method.py
 plaid/model/id_number_type.py
 plaid/model/identity_default_update_webhook.py
 plaid/model/identity_get_request.py
@@ -646,9 +649,19 @@ plaid/model/link_event_name.py
 plaid/model/link_events_webhook.py
 plaid/model/link_o_auth_correlation_id_exchange_request.py
 plaid/model/link_o_auth_correlation_id_exchange_response.py
+plaid/model/link_session_exit.py
+plaid/model/link_session_exit_metadata.py
+plaid/model/link_session_exit_metadata_institution.py
+plaid/model/link_session_finished_webhook.py
+plaid/model/link_session_success.py
+plaid/model/link_session_success_metadata.py
+plaid/model/link_session_success_metadata_account.py
+plaid/model/link_session_success_metadata_institution.py
+plaid/model/link_session_success_metadata_transfer_status.py
 plaid/model/link_token_account_filters.py
 plaid/model/link_token_create_credit_filter.py
 plaid/model/link_token_create_depository_filter.py
+plaid/model/link_token_create_hosted_link.py
 plaid/model/link_token_create_institution_data.py
 plaid/model/link_token_create_investment_filter.py
 plaid/model/link_token_create_loan_filter.py
@@ -664,6 +677,7 @@ plaid/model/link_token_create_request_income_verification.py
 plaid/model/link_token_create_request_income_verification_bank_income.py
 plaid/model/link_token_create_request_income_verification_payroll_income.py
 plaid/model/link_token_create_request_payment_initiation.py
+plaid/model/link_token_create_request_statements.py
 plaid/model/link_token_create_request_transfer.py
 plaid/model/link_token_create_request_update.py
 plaid/model/link_token_create_request_user.py
@@ -676,6 +690,7 @@ plaid/model/link_token_eu_config.py
 plaid/model/link_token_get_metadata_response.py
 plaid/model/link_token_get_request.py
 plaid/model/link_token_get_response.py
+plaid/model/link_token_get_sessions_response.py
 plaid/model/link_token_investments.py
 plaid/model/link_token_investments_auth.py
 plaid/model/link_user_delivery_status_webhook.py
