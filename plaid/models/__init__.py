@@ -155,7 +155,6 @@ from plaid.model.base_report_item import BaseReportItem
 from plaid.model.base_report_longest_gap_insights import BaseReportLongestGapInsights
 from plaid.model.base_report_number_flow_insights import BaseReportNumberFlowInsights
 from plaid.model.base_report_transaction import BaseReportTransaction
-from plaid.model.base_report_transaction_type import BaseReportTransactionType
 from plaid.model.base_reports_error_webhook import BaseReportsErrorWebhook
 from plaid.model.base_reports_product_ready_webhook import BaseReportsProductReadyWebhook
 from plaid.model.beacon_audit_trail import BeaconAuditTrail
@@ -188,6 +187,7 @@ from plaid.model.client_user_id import ClientUserID
 from plaid.model.client_user_id_nullable import ClientUserIDNullable
 from plaid.model.connected_application import ConnectedApplication
 from plaid.model.consent_payment_idempotency_key import ConsentPaymentIdempotencyKey
+from plaid.model.consumer_report_permissible_purpose import ConsumerReportPermissiblePurpose
 from plaid.model.consumer_report_user_identity import ConsumerReportUserIdentity
 from plaid.model.counterparty import Counterparty
 from plaid.model.counterparty_type import CounterpartyType
@@ -930,6 +930,7 @@ from plaid.model.recipient_bacs import RecipientBACS
 from plaid.model.recipient_bacs_nullable import RecipientBACSNullable
 from plaid.model.recurrence import Recurrence
 from plaid.model.recurring_cancelled_webhook import RecurringCancelledWebhook
+from plaid.model.recurring_frequency import RecurringFrequency
 from plaid.model.recurring_new_transfer_webhook import RecurringNewTransferWebhook
 from plaid.model.recurring_transaction_frequency import RecurringTransactionFrequency
 from plaid.model.recurring_transactions_update_webhook import RecurringTransactionsUpdateWebhook

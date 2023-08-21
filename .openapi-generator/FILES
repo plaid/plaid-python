@@ -152,7 +152,6 @@ plaid/model/base_report_item.py
 plaid/model/base_report_longest_gap_insights.py
 plaid/model/base_report_number_flow_insights.py
 plaid/model/base_report_transaction.py
-plaid/model/base_report_transaction_type.py
 plaid/model/base_reports_error_webhook.py
 plaid/model/base_reports_product_ready_webhook.py
 plaid/model/beacon_audit_trail.py
@@ -185,6 +184,7 @@ plaid/model/client_user_id.py
 plaid/model/client_user_id_nullable.py
 plaid/model/connected_application.py
 plaid/model/consent_payment_idempotency_key.py
+plaid/model/consumer_report_permissible_purpose.py
 plaid/model/consumer_report_user_identity.py
 plaid/model/counterparty.py
 plaid/model/counterparty_type.py
@@ -927,6 +927,7 @@ plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
 plaid/model/recurrence.py
 plaid/model/recurring_cancelled_webhook.py
+plaid/model/recurring_frequency.py
 plaid/model/recurring_new_transfer_webhook.py
 plaid/model/recurring_transaction_frequency.py
 plaid/model/recurring_transactions_update_webhook.py
