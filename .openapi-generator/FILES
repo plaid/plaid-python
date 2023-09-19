@@ -70,6 +70,9 @@ plaid/model/asset_report_freddie_get_response.py
 plaid/model/asset_report_get_request.py
 plaid/model/asset_report_get_request_options.py
 plaid/model/asset_report_get_response.py
+plaid/model/asset_report_investment_holding.py
+plaid/model/asset_report_investment_security.py
+plaid/model/asset_report_investments.py
 plaid/model/asset_report_item.py
 plaid/model/asset_report_pdf_get_request.py
 plaid/model/asset_report_pdf_get_request_options.py
@@ -192,6 +195,8 @@ plaid/model/country_code.py
 plaid/model/cra_bank_income.py
 plaid/model/cra_bank_income_account.py
 plaid/model/cra_bank_income_cause.py
+plaid/model/cra_bank_income_complete_result.py
+plaid/model/cra_bank_income_complete_webhook.py
 plaid/model/cra_bank_income_employer.py
 plaid/model/cra_bank_income_get_request.py
 plaid/model/cra_bank_income_get_response.py
@@ -618,6 +623,8 @@ plaid/model/kyc_check_id_number_summary.py
 plaid/model/kyc_check_name_summary.py
 plaid/model/kyc_check_phone_summary.py
 plaid/model/last_data_access_times.py
+plaid/model/ledger_deposit_idempotency_key.py
+plaid/model/ledger_withdraw_idempotency_key.py
 plaid/model/liabilities_account_ids_with_updated_liabilities.py
 plaid/model/liabilities_default_update_webhook.py
 plaid/model/liabilities_get_request.py
@@ -728,6 +735,7 @@ plaid/model/numbers_iban_nullable.py
 plaid/model/numbers_international.py
 plaid/model/numbers_international_iban.py
 plaid/model/numbers_international_nullable.py
+plaid/model/omittable_transfer_type.py
 plaid/model/originator.py
 plaid/model/originator_expected_transfer_frequency.py
 plaid/model/override_account_type.py
@@ -868,6 +876,8 @@ plaid/model/plaid_error.py
 plaid/model/plaid_error_type.py
 plaid/model/platform_ids.py
 plaid/model/po_box_status.py
+plaid/model/processor_account_get_request.py
+plaid/model/processor_account_get_response.py
 plaid/model/processor_apex_processor_token_create_request.py
 plaid/model/processor_auth_get_request.py
 plaid/model/processor_auth_get_response.py
@@ -991,6 +1001,12 @@ plaid/model/sandbox_public_token_create_request_options_transactions.py
 plaid/model/sandbox_public_token_create_response.py
 plaid/model/sandbox_transfer_fire_webhook_request.py
 plaid/model/sandbox_transfer_fire_webhook_response.py
+plaid/model/sandbox_transfer_ledger_deposit_simulate_request.py
+plaid/model/sandbox_transfer_ledger_deposit_simulate_response.py
+plaid/model/sandbox_transfer_ledger_simulate_available_request.py
+plaid/model/sandbox_transfer_ledger_simulate_available_response.py
+plaid/model/sandbox_transfer_ledger_withdraw_simulate_request.py
+plaid/model/sandbox_transfer_ledger_withdraw_simulate_response.py
 plaid/model/sandbox_transfer_repayment_simulate_request.py
 plaid/model/sandbox_transfer_repayment_simulate_response.py
 plaid/model/sandbox_transfer_simulate_request.py
@@ -1068,7 +1084,9 @@ plaid/model/student_loan.py
 plaid/model/student_loan_repayment_model.py
 plaid/model/student_loan_status.py
 plaid/model/student_repayment_plan.py
+plaid/model/sweep_description.py
 plaid/model/sweep_status.py
+plaid/model/sweep_trigger.py
 plaid/model/sync_updates_available_webhook.py
 plaid/model/taxform.py
 plaid/model/taxpayer_id.py
@@ -1115,6 +1133,7 @@ plaid/model/transactions_sync_request.py
 plaid/model/transactions_sync_request_options.py
 plaid/model/transactions_sync_response.py
 plaid/model/transfer.py
+plaid/model/transfer_ach_network.py
 plaid/model/transfer_authorization.py
 plaid/model/transfer_authorization_create_request.py
 plaid/model/transfer_authorization_create_response.py
@@ -1162,6 +1181,7 @@ plaid/model/transfer_event_type.py
 plaid/model/transfer_events_update_webhook.py
 plaid/model/transfer_expected_sweep_settlement_schedule_item.py
 plaid/model/transfer_failure.py
+plaid/model/transfer_funding_account.py
 plaid/model/transfer_get_request.py
 plaid/model/transfer_get_response.py
 plaid/model/transfer_intent_authorization_decision.py
@@ -1175,6 +1195,14 @@ plaid/model/transfer_intent_get_failure_reason.py
 plaid/model/transfer_intent_get_request.py
 plaid/model/transfer_intent_get_response.py
 plaid/model/transfer_intent_status.py
+plaid/model/transfer_ledger_balance.py
+plaid/model/transfer_ledger_deposit_request.py
+plaid/model/transfer_ledger_deposit_response.py
+plaid/model/transfer_ledger_get_request.py
+plaid/model/transfer_ledger_get_response.py
+plaid/model/transfer_ledger_sweep_simulate_event_type.py
+plaid/model/transfer_ledger_withdraw_request.py
+plaid/model/transfer_ledger_withdraw_response.py
 plaid/model/transfer_list_request.py
 plaid/model/transfer_list_response.py
 plaid/model/transfer_metadata.py
@@ -1187,6 +1215,8 @@ plaid/model/transfer_originator_address.py
 plaid/model/transfer_originator_create_request.py
 plaid/model/transfer_originator_create_response.py
 plaid/model/transfer_originator_diligence.py
+plaid/model/transfer_originator_funding_account_update_request.py
+plaid/model/transfer_originator_funding_account_update_response.py
 plaid/model/transfer_originator_get_request.py
 plaid/model/transfer_originator_get_response.py
 plaid/model/transfer_originator_list_request.py
@@ -1246,6 +1276,8 @@ plaid/model/user_permission_revoked_webhook.py
 plaid/model/user_stated_income_source_category.py
 plaid/model/user_stated_income_source_frequency.py
 plaid/model/user_stated_income_source_pay_type.py
+plaid/model/user_update_request.py
+plaid/model/user_update_response.py
 plaid/model/validation_source.py
 plaid/model/validation_sources.py
 plaid/model/verification_expired_webhook.py
