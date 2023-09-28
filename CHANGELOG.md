@@ -1,5 +1,65 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 17.0.0
+- Updating to OAS 2020-09-14_1.446.0
+
+## Breaking changes
+ - `/transfer/capabilities/get` no longer accepts a payment profile token, and it now requires an `account_id` and `access_token`
+- `TransactionsEnrichGetRequest` and `TransactionsEnrichGetResponse` objects have been renamed to
+  `TransactionsEnrichRequest` and `TransactionsEnrichResponse`
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.446.0
+- Add `allow_manual_entry` field to `investments` object in `link/token/create`
+
+### 2020-09-14_1.445.0
+- Add new insights and counterparty fields for Transactions endpoints
+- Deprecate legacy category fields for Transactions endpoints
+
+### 2020-09-14_1.444.0
+- Add new webhook type `AUTHORIZATION_GRANTED` to `sandbox/item/fire_webhook`
+
+### 2020-09-14_1.443.0
+- Add `RETURN` as possible Virtual Account wallet transaction type
+
+### 2020-09-14_1.442.0
+- Add `facilitator_fee` field for the Transfers endpoints
+
+### 2020-09-14_1.441
+- [Breaking change for Go client library] Update `/transfer/capabilities/get` to no longer accept payment profile token and require an `account_id` and `access_token`
+- Update examples for ledger endpoints to be more realistic
+
+### 2020-09-14_1.440.0
+- Add `optional_products` parameter to `/link/token/create` request.
+
+### 2020-09-14_1.439.0
+- [Breaking] Renamed `TransactionsEnrichGetRequest` and `TransactionsEnrichGetResponse` objects to
+  `TransactionsEnrichRequest` and `TransactionsEnrichResponse`.
+
+### 2020-09-14_1.438.1
+- [Breaking change for Go client library] remove `device`, `user_present` from required request param list of `/transfer/recurring/create`
+
+### 2020-09-14_1.438.0
+- Add new `/beta/transactions/user_insights/v1/get` endpoint
+
+### 2020-09-14_1.437.0
+- Remove min/max restriction of `days_requested` in OpenAPI.
+
+### 2020-09-14_1.436.0
+- Update `days_requested` to be a required field in base reports in `link/token/create`
+
+### 2020-09-14_1.435.0
+- Update `/sandbox/transfer/sweep/simulate` to mark `swept` transfers as `swept_settled`.
+
+### 2020-09-14_1.434.0
+- Added a new type of webhook for dashboard alerts, `InstitutionStatusAlertWebhook`.
+
+### 2020-09-14_1.433.0
+- Update response of `/transfer/authorizarion/create`
+
+### 2020-09-14_1.432.0
+- Update `days_requested` in `base_report` in `link/token/create` to enforce a min/max of 1/731 days
+
 # 16.0.0
 - Updating to OAS 2020-09-14_1.431.7
 

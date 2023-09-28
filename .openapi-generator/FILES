@@ -176,6 +176,8 @@ plaid/model/beacon_user_request_data.py
 plaid/model/beacon_user_status.py
 plaid/model/categories_get_response.py
 plaid/model/category.py
+plaid/model/category_insight_details.py
+plaid/model/category_insights.py
 plaid/model/cause.py
 plaid/model/cause_all_of.py
 plaid/model/client_provided_enhanced_transaction.py
@@ -190,6 +192,7 @@ plaid/model/consent_payment_idempotency_key.py
 plaid/model/consumer_report_permissible_purpose.py
 plaid/model/consumer_report_user_identity.py
 plaid/model/counterparty.py
+plaid/model/counterparty_insights.py
 plaid/model/counterparty_type.py
 plaid/model/country_code.py
 plaid/model/cra_bank_income.py
@@ -373,6 +376,7 @@ plaid/model/depository_account_subtypes.py
 plaid/model/depository_filter.py
 plaid/model/deprecated_client_user_id.py
 plaid/model/detailed_originator.py
+plaid/model/detected_account.py
 plaid/model/distribution_breakdown.py
 plaid/model/doc_type.py
 plaid/model/document_analysis.py
@@ -456,6 +460,7 @@ plaid/model/fdx_party.py
 plaid/model/fdx_party_registry.py
 plaid/model/fdx_party_type.py
 plaid/model/fdxfi_attribute.py
+plaid/model/financial_institution_insights.py
 plaid/model/form1099_type.py
 plaid/model/fraud_amount.py
 plaid/model/fraud_amount_nullable.py
@@ -546,6 +551,7 @@ plaid/model/inflow_model.py
 plaid/model/initial_update_webhook.py
 plaid/model/institution.py
 plaid/model/institution_status.py
+plaid/model/institution_status_alert_webhook.py
 plaid/model/institution_supported_networks.py
 plaid/model/institutions_get_by_id_request.py
 plaid/model/institutions_get_by_id_request_options.py
@@ -712,6 +718,7 @@ plaid/model/loans.py
 plaid/model/location.py
 plaid/model/match_summary.py
 plaid/model/match_summary_code.py
+plaid/model/merchant_insights.py
 plaid/model/meta.py
 plaid/model/mfa.py
 plaid/model/mortgage_interest_rate.py
@@ -1054,7 +1061,6 @@ plaid/model/signal_device.py
 plaid/model/signal_evaluate_core_attributes.py
 plaid/model/signal_evaluate_request.py
 plaid/model/signal_evaluate_response.py
-plaid/model/signal_insights.py
 plaid/model/signal_payment_method.py
 plaid/model/signal_person_name.py
 plaid/model/signal_prepare_request.py
@@ -1108,9 +1114,9 @@ plaid/model/transaction_stream_status.py
 plaid/model/transactions_category_rule.py
 plaid/model/transactions_enhance_get_request.py
 plaid/model/transactions_enhance_get_response.py
-plaid/model/transactions_enrich_get_request.py
-plaid/model/transactions_enrich_get_response.py
+plaid/model/transactions_enrich_request.py
 plaid/model/transactions_enrich_request_options.py
+plaid/model/transactions_enrich_response.py
 plaid/model/transactions_get_request.py
 plaid/model/transactions_get_request_options.py
 plaid/model/transactions_get_response.py
@@ -1132,6 +1138,8 @@ plaid/model/transactions_rules_remove_response.py
 plaid/model/transactions_sync_request.py
 plaid/model/transactions_sync_request_options.py
 plaid/model/transactions_sync_response.py
+plaid/model/transactions_user_insights_get_request.py
+plaid/model/transactions_user_insights_get_response.py
 plaid/model/transfer.py
 plaid/model/transfer_ach_network.py
 plaid/model/transfer_authorization.py
@@ -1145,7 +1153,9 @@ plaid/model/transfer_authorization_guarantee_decision.py
 plaid/model/transfer_authorization_guarantee_decision_rationale.py
 plaid/model/transfer_authorization_guarantee_decision_rationale_code.py
 plaid/model/transfer_authorization_idempotency_key.py
+plaid/model/transfer_authorization_payment_risk.py
 plaid/model/transfer_authorization_proposed_transfer.py
+plaid/model/transfer_authorization_risk_level.py
 plaid/model/transfer_authorization_user_in_request.py
 plaid/model/transfer_balance.py
 plaid/model/transfer_balance_get_request.py
@@ -1271,6 +1281,7 @@ plaid/model/user_address.py
 plaid/model/user_create_request.py
 plaid/model/user_create_response.py
 plaid/model/user_custom_password.py
+plaid/model/user_data_overview.py
 plaid/model/user_id_number.py
 plaid/model/user_permission_revoked_webhook.py
 plaid/model/user_stated_income_source_category.py

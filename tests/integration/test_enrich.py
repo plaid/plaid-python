@@ -1,4 +1,4 @@
-from plaid.model.transactions_enrich_get_request import TransactionsEnrichGetRequest
+from plaid.model.transactions_enrich_request import TransactionsEnrichRequest
 from plaid.model.client_provided_transaction import ClientProvidedTransaction
 from plaid.model.enrich_transaction_direction import EnrichTransactionDirection
 from plaid.model.client_provided_transaction_location import ClientProvidedTransactionLocation
@@ -44,7 +44,7 @@ SAMPLE_TRANSACTIONS_TO_ENRICH = [
 def test_enrich_transactions_success():
     client = create_client()
 
-    enrich_req = TransactionsEnrichGetRequest(
+    enrich_req = TransactionsEnrichRequest(
         account_type="depository",
         transactions=SAMPLE_TRANSACTIONS_TO_ENRICH
     )

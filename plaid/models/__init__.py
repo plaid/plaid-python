@@ -179,6 +179,8 @@ from plaid.model.beacon_user_request_data import BeaconUserRequestData
 from plaid.model.beacon_user_status import BeaconUserStatus
 from plaid.model.categories_get_response import CategoriesGetResponse
 from plaid.model.category import Category
+from plaid.model.category_insight_details import CategoryInsightDetails
+from plaid.model.category_insights import CategoryInsights
 from plaid.model.cause import Cause
 from plaid.model.cause_all_of import CauseAllOf
 from plaid.model.client_provided_enhanced_transaction import ClientProvidedEnhancedTransaction
@@ -193,6 +195,7 @@ from plaid.model.consent_payment_idempotency_key import ConsentPaymentIdempotenc
 from plaid.model.consumer_report_permissible_purpose import ConsumerReportPermissiblePurpose
 from plaid.model.consumer_report_user_identity import ConsumerReportUserIdentity
 from plaid.model.counterparty import Counterparty
+from plaid.model.counterparty_insights import CounterpartyInsights
 from plaid.model.counterparty_type import CounterpartyType
 from plaid.model.country_code import CountryCode
 from plaid.model.cra_bank_income import CraBankIncome
@@ -376,6 +379,7 @@ from plaid.model.depository_account_subtypes import DepositoryAccountSubtypes
 from plaid.model.depository_filter import DepositoryFilter
 from plaid.model.deprecated_client_user_id import DeprecatedClientUserID
 from plaid.model.detailed_originator import DetailedOriginator
+from plaid.model.detected_account import DetectedAccount
 from plaid.model.distribution_breakdown import DistributionBreakdown
 from plaid.model.doc_type import DocType
 from plaid.model.document_analysis import DocumentAnalysis
@@ -459,6 +463,7 @@ from plaid.model.fdx_party_registry import FDXPartyRegistry
 from plaid.model.fdx_party_type import FDXPartyType
 from plaid.model.fallback_auth_microdeposit_auto_verified_webhook import FallbackAuthMicrodepositAutoVerifiedWebhook
 from plaid.model.fallback_auth_microdeposit_verification_expired_webhook import FallbackAuthMicrodepositVerificationExpiredWebhook
+from plaid.model.financial_institution_insights import FinancialInstitutionInsights
 from plaid.model.form1099_type import Form1099Type
 from plaid.model.fraud_amount import FraudAmount
 from plaid.model.fraud_amount_nullable import FraudAmountNullable
@@ -550,6 +555,7 @@ from plaid.model.inflow_model import InflowModel
 from plaid.model.initial_update_webhook import InitialUpdateWebhook
 from plaid.model.institution import Institution
 from plaid.model.institution_status import InstitutionStatus
+from plaid.model.institution_status_alert_webhook import InstitutionStatusAlertWebhook
 from plaid.model.institution_supported_networks import InstitutionSupportedNetworks
 from plaid.model.institutions_get_by_id_request import InstitutionsGetByIdRequest
 from plaid.model.institutions_get_by_id_request_options import InstitutionsGetByIdRequestOptions
@@ -716,6 +722,7 @@ from plaid.model.location import Location
 from plaid.model.mfa import MFA
 from plaid.model.match_summary import MatchSummary
 from plaid.model.match_summary_code import MatchSummaryCode
+from plaid.model.merchant_insights import MerchantInsights
 from plaid.model.meta import Meta
 from plaid.model.mortgage_interest_rate import MortgageInterestRate
 from plaid.model.mortgage_liability import MortgageLiability
@@ -1057,7 +1064,6 @@ from plaid.model.signal_device import SignalDevice
 from plaid.model.signal_evaluate_core_attributes import SignalEvaluateCoreAttributes
 from plaid.model.signal_evaluate_request import SignalEvaluateRequest
 from plaid.model.signal_evaluate_response import SignalEvaluateResponse
-from plaid.model.signal_insights import SignalInsights
 from plaid.model.signal_payment_method import SignalPaymentMethod
 from plaid.model.signal_person_name import SignalPersonName
 from plaid.model.signal_prepare_request import SignalPrepareRequest
@@ -1111,9 +1117,9 @@ from plaid.model.transaction_stream_status import TransactionStreamStatus
 from plaid.model.transactions_category_rule import TransactionsCategoryRule
 from plaid.model.transactions_enhance_get_request import TransactionsEnhanceGetRequest
 from plaid.model.transactions_enhance_get_response import TransactionsEnhanceGetResponse
-from plaid.model.transactions_enrich_get_request import TransactionsEnrichGetRequest
-from plaid.model.transactions_enrich_get_response import TransactionsEnrichGetResponse
+from plaid.model.transactions_enrich_request import TransactionsEnrichRequest
 from plaid.model.transactions_enrich_request_options import TransactionsEnrichRequestOptions
+from plaid.model.transactions_enrich_response import TransactionsEnrichResponse
 from plaid.model.transactions_get_request import TransactionsGetRequest
 from plaid.model.transactions_get_request_options import TransactionsGetRequestOptions
 from plaid.model.transactions_get_response import TransactionsGetResponse
@@ -1135,6 +1141,8 @@ from plaid.model.transactions_rules_remove_response import TransactionsRulesRemo
 from plaid.model.transactions_sync_request import TransactionsSyncRequest
 from plaid.model.transactions_sync_request_options import TransactionsSyncRequestOptions
 from plaid.model.transactions_sync_response import TransactionsSyncResponse
+from plaid.model.transactions_user_insights_get_request import TransactionsUserInsightsGetRequest
+from plaid.model.transactions_user_insights_get_response import TransactionsUserInsightsGetResponse
 from plaid.model.transfer import Transfer
 from plaid.model.transfer_ach_network import TransferACHNetwork
 from plaid.model.transfer_authorization import TransferAuthorization
@@ -1148,7 +1156,9 @@ from plaid.model.transfer_authorization_guarantee_decision import TransferAuthor
 from plaid.model.transfer_authorization_guarantee_decision_rationale import TransferAuthorizationGuaranteeDecisionRationale
 from plaid.model.transfer_authorization_guarantee_decision_rationale_code import TransferAuthorizationGuaranteeDecisionRationaleCode
 from plaid.model.transfer_authorization_idempotency_key import TransferAuthorizationIdempotencyKey
+from plaid.model.transfer_authorization_payment_risk import TransferAuthorizationPaymentRisk
 from plaid.model.transfer_authorization_proposed_transfer import TransferAuthorizationProposedTransfer
+from plaid.model.transfer_authorization_risk_level import TransferAuthorizationRiskLevel
 from plaid.model.transfer_authorization_user_in_request import TransferAuthorizationUserInRequest
 from plaid.model.transfer_balance import TransferBalance
 from plaid.model.transfer_balance_get_request import TransferBalanceGetRequest
@@ -1274,6 +1284,7 @@ from plaid.model.user_address import UserAddress
 from plaid.model.user_create_request import UserCreateRequest
 from plaid.model.user_create_response import UserCreateResponse
 from plaid.model.user_custom_password import UserCustomPassword
+from plaid.model.user_data_overview import UserDataOverview
 from plaid.model.user_id_number import UserIDNumber
 from plaid.model.user_permission_revoked_webhook import UserPermissionRevokedWebhook
 from plaid.model.user_stated_income_source_category import UserStatedIncomeSourceCategory
