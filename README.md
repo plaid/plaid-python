@@ -1,33 +1,39 @@
-plaid-python  [![Circle CI](https://circleci.com/gh/plaid/plaid-python.svg?style=svg&circle-token=02afb22cf19d78230650df63f9b62c1ba3aa0d93)](https://circleci.com/gh/plaid/plaid-python) [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
+plaid-python [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
 ============
 
-The official python client library for the [Plaid API][1], which is generated from our [OpenAPI spec](https://github.com/plaid/plaid-openapi). For the last non-generated version of our library, go [here](https://github.com/plaid/plaid-python/commit/26ca2baccc382209557ac87f034e747bc802c9aa).
+The official python client library for the [Plaid API][1], which is generated from our [OpenAPI spec](https://github.com/plaid/plaid-openapi).
 
 ## Table of Contents
 
-- [plaid-python](#plaid-python)
-  * [Install](#install)
-  * [Documentation](#documentation)
-  * [Getting Started](#getting-started)
+* [Installation](#installation)
+* [Versioning](#versioning)
+* [Getting Started](#getting-started)
     + [Calling Endpoints](#calling-endpoints)
     + [Errors](#errors)
-  * [Examples](#examples)
-  * [Contributing](#contributing)
-  * [Legacy API](#legacy-api)
-  * [License](#license)
+    + [Converting the response to a JSON](#converting-the-response-to-a-json)
+    + [Dates](#dates)
+* [Examples](#examples)
+* [Migration Guide](#migration-guide)
+* [Contributing](#contributing)
+* [License](#license)
 
-## Install
+## Installation
 
 This library only supports `python3`!
 
 ```console
 $ pip3 install plaid-python
 ```
+## Versioning
 
-## Documentation
+This release only supports the latest Plaid API version, `2020-09-14`.
 
-The module supports all Plaid API endpoints.  For complete information about
-the API, head to the [docs][2].
+For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
+
+The plaid-python client library is typically updated on a monthly basis. The canonical source for the latest version number is the [client library changelog](https://github.com/plaid/plaid-python/blob/master/CHANGELOG.md). New versions are published as [GitHub tags](https://github.com/plaid/plaid-python/tags), not as Releases. New versions are also published on [PyPi](https://pypi.org/project/plaid-python/). Plaid uses semantic versioning to version the client libraries, with potentially breaking changes being indicated by a major version bump.
+
+
+All users are strongly recommended to use a recent version of the library, as older versions do not contain support for new endpoints and fields. For more details, see the [Migration Guide](#migration-guide).
 
 ## Getting Started
 
@@ -58,14 +64,6 @@ client = plaid_api.PlaidApi(api_client)
 Each endpoint returns a dictionary which contains the parsed JSON from the
 HTTP response.
 
-### Versioning
-
-This release only supports the latest Plaid API version, `2020-09-14`.
-
-For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
-
-The plaid-python client library is typically updated on a monthly basis. The canonical source for the latest version number is the [client library changelog](https://github.com/plaid/plaid-python/blob/master/CHANGELOG.md).
-
 ### Errors
 
 All non-200 responses will throw a `plaid.ApiException`.
@@ -92,8 +90,6 @@ except plaid.ApiException as e:
 ```
 
 For more information on Plaid response codes, head to the [docs][3].
-
-## Data type differences from API and from previous versions
 
 ### Converting the response to a JSON
 
@@ -129,24 +125,9 @@ from datetime import datetime
 
 a = datetime(2022, 5, 5, 22, 35, 49, tzinfo=datetime.timezone.utc)
 ```
-
-### Enums
-
-While the API and previous library versions represent enums using strings, this current library uses Python classes with restricted values.
-
-Old:
-```
-'products': ['auth', 'transactions'],
-'country_codes': ['US'],
-```
-
-Current:
-```
-products=[Products('auth'), Products('transactions')],
-country_codes=[CountryCode('US')],
-```
-
 ## Examples
+
+For more examples, see the [test suites](https://github.com/plaid/plaid-python/tree/master/tests), [Quickstart](https://github.com/plaid/quickstart/tree/master/python), or [API Reference documentation](https://plaid.com/docs/api/).
 
 ### Create an Item using Link
 Exchange a `public_token` from [Plaid Link][4] for a Plaid access token:
@@ -160,30 +141,6 @@ exchange_request = ItemPublicTokenExchangeRequest(
 )
 exchange_response = client.item_public_token_exchange(exchange_request)
 access_token = exchange_response['access_token']
-```
-
-### Create a Stripe bank account token
-Exchange a Plaid Link `public_token` for an API `access_token`.  Then exchange
-that `access_token` and the Plaid Link `account_id` (received along with the
-`public_token`) for a Stripe `bank_account_token`:
-
-```python
-import plaid
-from plaid.model.item_public_token_exchange_request import ItemPublicTokenExchangeRequest
-from plaid.model.processor_stripe_bank_account_token_create_request import ProcessorStripeBankAccountTokenCreateRequest
-
-exchange_request = ItemPublicTokenExchangeRequest(
-    public_token=pt_response['public_token']
-)
-exchange_response = client.item_public_token_exchange(exchange_request)
-access_token = exchange_response['access_token']
-
-request = ProcessorStripeBankAccountTokenCreateRequest(
-    access_token=access_token,
-    account_id='[Account ID]',
-)
-stripe_response = client.processor_stripe_bank_account_token_create(request)
-bank_account_token = stripe_response['stripe_bank_account_token']
 ```
 
 ### Remove Item
@@ -262,17 +219,115 @@ FILE.write(pdf.read())
 FILE.close()
 ```
 
-### Authentication
+## Migration guide
 
-Public endpoints (category information) require no authentication and can be
-accessed as follows:
+### 8.0.0 or later to latest
 
+Migrating from version 8.0.0 or later of the library to a recent version should involve very minor integration changes. Many customers will not need to make changes to their integrations at all. To see a list of all potentially-breaking changes since your current version, see the [client library changelog](https://github.com/plaid/plaid-node/blob/master/CHANGELOG.md) and search for "Breaking changes in this version". Breaking changes are annotated at the top of each major version header.
+
+### Pre-8.0.0 to latest
+
+Version 8.0.0 of the client library was released in August 2021 and contains multiple interface changes, as described below.
+
+#### Client initialization
+From:
 ```python
-categories = client.categories_get({})
+from plaid import Client
+Client(
+    client_id=os.environ['CLIENT_ID'],
+    secret=os.environ['SECRET'],
+    environment='sandbox',
+    api_version="2020-09-14",
+    client_app="plaid-python-unit-tests"
+)
 ```
 
-Authenticated endpoints require a `(client_id, secret)` pair. You do not need to pass in authentication to individual endpoints once you have set it on the `plaid.Configuration` object.
+To:
+```python
+import plaid
+from plaid.api import plaid_api
+configuration = plaid.Configuration(
+    host=plaid.Environment.Sandbox,
+    api_key={
+        'clientId': client_id,
+        'secret': secret,
+        'plaidVersion': '2020-09-14'
+    }
+)
+api_client = plaid.ApiClient(configuration)
+client = plaid_api.PlaidApi(api_client)
+```
+#### Endpoints
+All endpoint requests now take a request model and the functions have been renamed to include `_`.
 
+From:
+```python
+response = client.Auth.get(access_token)
+```
+
+To:
+```python
+import plaid
+from plaid.model.auth_get_request import AuthGetRequest
+from plaid.model.auth_get_request_options import AuthGetRequestOptions
+
+ag_request = AuthGetRequest(
+    access_token=access_token
+)
+
+response = client.auth_get(ag_request)
+```
+
+#### Errors
+
+From:
+```python
+try:
+    client.Auth.get(access_token)
+except ItemError as e:
+    if e.code == 'ITEM_LOGIN_REQUIRED':
+    else:
+        ...
+except APIError as e:
+    if e.code == 'PLANNED_MAINTENANCE':
+        # inform user
+    else:
+        ...
+```
+
+To:
+```python
+try:
+    request = AssetReportGetRequest(
+        asset_report_token=asset_report_token,
+    )
+    return client.asset_report_get(request)
+except plaid.ApiException as e:
+    response = json.loads(e.body)
+    if response['error_code'] == 'ITEM_LOGIN_REQUIRED':
+    else:
+```
+
+
+#### Data type changes
+
+See the sections above on [Dates](#dates) and [Converting the response to a JSON](#converting-the-response-to-a-json).
+
+##### Enums
+
+While the API and previous library versions prior to 8.0.0 represent enums using strings, this current library uses Python classes with restricted values.
+
+From:
+```
+'products': ['auth', 'transactions'],
+'country_codes': ['US'],
+```
+
+To:
+```
+products=[Products('auth'), Products('transactions')],
+country_codes=[CountryCode('US')],
+```
 
 ## Contributing
 
