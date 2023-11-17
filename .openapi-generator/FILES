@@ -147,8 +147,11 @@ plaid/model/bank_transfers_events_update_webhook.py
 plaid/model/bank_transfers_events_update_webhook_for_auth.py
 plaid/model/base_report.py
 plaid/model/base_report_account.py
+plaid/model/base_report_account_balances.py
+plaid/model/base_report_account_balances_all_of.py
 plaid/model/base_report_account_insights.py
 plaid/model/base_report_average_flow_insights.py
+plaid/model/base_report_average_monthly_balances.py
 plaid/model/base_report_get_request.py
 plaid/model/base_report_get_response.py
 plaid/model/base_report_item.py
@@ -174,7 +177,6 @@ plaid/model/beacon_report_syndication_list_response.py
 plaid/model/beacon_report_syndication_original_report.py
 plaid/model/beacon_report_type.py
 plaid/model/beacon_user_address.py
-plaid/model/beacon_user_create_embedded_report.py
 plaid/model/beacon_user_create_request.py
 plaid/model/beacon_user_create_response.py
 plaid/model/beacon_user_data.py
@@ -184,7 +186,9 @@ plaid/model/beacon_user_id_number.py
 plaid/model/beacon_user_name.py
 plaid/model/beacon_user_request_address.py
 plaid/model/beacon_user_request_data.py
+plaid/model/beacon_user_review_request.py
 plaid/model/beacon_user_status.py
+plaid/model/beacon_user_status_updated_webhook.py
 plaid/model/categories_get_response.py
 plaid/model/category.py
 plaid/model/category_insight_details.py
@@ -535,6 +539,7 @@ plaid/model/income_verification_precheck_payroll_institution.py
 plaid/model/income_verification_precheck_request.py
 plaid/model/income_verification_precheck_response.py
 plaid/model/income_verification_precheck_user.py
+plaid/model/income_verification_refresh_reconnect_needed_webhook.py
 plaid/model/income_verification_risk_signals_status_webhook.py
 plaid/model/income_verification_source_type.py
 plaid/model/income_verification_status_webhook.py
@@ -597,6 +602,8 @@ plaid/model/item_application_list_response.py
 plaid/model/item_application_list_user_auth.py
 plaid/model/item_application_scopes_update_request.py
 plaid/model/item_application_scopes_update_response.py
+plaid/model/item_application_unlink_request.py
+plaid/model/item_application_unlink_response.py
 plaid/model/item_error_webhook.py
 plaid/model/item_get_request.py
 plaid/model/item_get_response.py
@@ -629,6 +636,7 @@ plaid/model/kyc_check_name_summary.py
 plaid/model/kyc_check_phone_summary.py
 plaid/model/last_data_access_times.py
 plaid/model/ledger_deposit_idempotency_key.py
+plaid/model/ledger_distribute_idempotency_key.py
 plaid/model/ledger_withdraw_idempotency_key.py
 plaid/model/liabilities_account_ids_with_updated_liabilities.py
 plaid/model/liabilities_default_update_webhook.py
@@ -744,6 +752,9 @@ plaid/model/numbers_international_nullable.py
 plaid/model/omittable_transfer_type.py
 plaid/model/originator.py
 plaid/model/originator_expected_transfer_frequency.py
+plaid/model/other_account_subtype.py
+plaid/model/other_account_subtypes.py
+plaid/model/other_filter.py
 plaid/model/override_account_type.py
 plaid/model/override_accounts.py
 plaid/model/owner.py
@@ -905,6 +916,8 @@ plaid/model/processor_signal_decision_report_request.py
 plaid/model/processor_signal_decision_report_response.py
 plaid/model/processor_signal_evaluate_request.py
 plaid/model/processor_signal_evaluate_response.py
+plaid/model/processor_signal_prepare_request.py
+plaid/model/processor_signal_prepare_response.py
 plaid/model/processor_signal_return_report_request.py
 plaid/model/processor_signal_return_report_response.py
 plaid/model/processor_stripe_bank_account_token_create_request.py
@@ -920,6 +933,7 @@ plaid/model/processor_token_webhook_update.py
 plaid/model/processor_token_webhook_update_request.py
 plaid/model/processor_token_webhook_update_response.py
 plaid/model/processor_transactions_get_request.py
+plaid/model/processor_transactions_get_request_options.py
 plaid/model/processor_transactions_get_response.py
 plaid/model/processor_transactions_recurring_get_request.py
 plaid/model/processor_transactions_recurring_get_response.py
@@ -944,8 +958,10 @@ plaid/model/recipient_bacs_nullable.py
 plaid/model/recurrence.py
 plaid/model/recurring_cancelled_webhook.py
 plaid/model/recurring_frequency.py
+plaid/model/recurring_insights_stream.py
 plaid/model/recurring_new_transfer_webhook.py
 plaid/model/recurring_transaction_frequency.py
+plaid/model/recurring_transactions.py
 plaid/model/recurring_transactions_update_webhook.py
 plaid/model/recurring_transfer.py
 plaid/model/recurring_transfer_nullable.py
@@ -986,6 +1002,7 @@ plaid/model/sandbox_bank_transfer_simulate_request.py
 plaid/model/sandbox_bank_transfer_simulate_response.py
 plaid/model/sandbox_income_fire_webhook_request.py
 plaid/model/sandbox_income_fire_webhook_response.py
+plaid/model/sandbox_income_webhook_fire_request_webhook_code.py
 plaid/model/sandbox_item_fire_webhook_request.py
 plaid/model/sandbox_item_fire_webhook_response.py
 plaid/model/sandbox_item_reset_login_request.py
@@ -1121,9 +1138,18 @@ plaid/model/transactions_enrich_response.py
 plaid/model/transactions_get_request.py
 plaid/model/transactions_get_request_options.py
 plaid/model/transactions_get_response.py
+plaid/model/transactions_recurring_create_input.py
+plaid/model/transactions_recurring_create_request.py
+plaid/model/transactions_recurring_create_response.py
 plaid/model/transactions_recurring_get_request.py
 plaid/model/transactions_recurring_get_request_options.py
 plaid/model/transactions_recurring_get_response.py
+plaid/model/transactions_recurring_merge_input.py
+plaid/model/transactions_recurring_merge_request.py
+plaid/model/transactions_recurring_merge_response.py
+plaid/model/transactions_recurring_update_input.py
+plaid/model/transactions_recurring_update_request.py
+plaid/model/transactions_recurring_update_response.py
 plaid/model/transactions_refresh_request.py
 plaid/model/transactions_refresh_response.py
 plaid/model/transactions_removed_webhook.py
@@ -1209,6 +1235,8 @@ plaid/model/transfer_intent_status.py
 plaid/model/transfer_ledger_balance.py
 plaid/model/transfer_ledger_deposit_request.py
 plaid/model/transfer_ledger_deposit_response.py
+plaid/model/transfer_ledger_distribute_request.py
+plaid/model/transfer_ledger_distribute_response.py
 plaid/model/transfer_ledger_get_request.py
 plaid/model/transfer_ledger_get_response.py
 plaid/model/transfer_ledger_sweep_simulate_event_type.py
