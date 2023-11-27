@@ -1,4 +1,26 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
+
+# 18.1.0
+- Updating to OAS 2020-09-14_1.474.0
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.474.0
+
+- Added `statements/refresh` endpoint
+
+### 2020-09-14_1.473.0
+
+- Add Beacon webhooks
+
+### 2020-09-14_1.472.0
+
+- Change client library visibility of `options.transactions.days_requested` field for `/link/token/create` and `/sandbox/public_token/create`
+- Add `options.days_requested` field to `/transactions/get` and `/transactions/sync`
+
+### 2020-09-14_1.471.0
+
+[Breaking change for Go client libraries] Make `products` field in `/institutions/search` request optional to fix https://github.com/plaid/plaid-ruby/issues/476
+
 # 18.0.0
 
 - Updating to OAS 2020-09-14_1.470.0
