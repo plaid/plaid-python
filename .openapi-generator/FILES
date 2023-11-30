@@ -170,6 +170,8 @@ plaid/model/beacon_report.py
 plaid/model/beacon_report_create_request.py
 plaid/model/beacon_report_create_response.py
 plaid/model/beacon_report_created_webhook.py
+plaid/model/beacon_report_get_request.py
+plaid/model/beacon_report_get_response.py
 plaid/model/beacon_report_list_request.py
 plaid/model/beacon_report_list_response.py
 plaid/model/beacon_report_syndication.py
@@ -481,6 +483,7 @@ plaid/model/holding.py
 plaid/model/holdings_default_update_webhook.py
 plaid/model/holdings_override.py
 plaid/model/hosted_link_delivery_method.py
+plaid/model/hosted_mmd_verification_webhook.py
 plaid/model/id_number_type.py
 plaid/model/identity_default_update_webhook.py
 plaid/model/identity_get_request.py
@@ -683,6 +686,7 @@ plaid/model/link_session_success_metadata_account.py
 plaid/model/link_session_success_metadata_institution.py
 plaid/model/link_session_success_metadata_transfer_status.py
 plaid/model/link_token_account_filters.py
+plaid/model/link_token_create_card_switch.py
 plaid/model/link_token_create_credit_filter.py
 plaid/model/link_token_create_depository_filter.py
 plaid/model/link_token_create_hosted_link.py
