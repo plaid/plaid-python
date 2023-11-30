@@ -173,6 +173,8 @@ from plaid.model.beacon_report import BeaconReport
 from plaid.model.beacon_report_create_request import BeaconReportCreateRequest
 from plaid.model.beacon_report_create_response import BeaconReportCreateResponse
 from plaid.model.beacon_report_created_webhook import BeaconReportCreatedWebhook
+from plaid.model.beacon_report_get_request import BeaconReportGetRequest
+from plaid.model.beacon_report_get_response import BeaconReportGetResponse
 from plaid.model.beacon_report_list_request import BeaconReportListRequest
 from plaid.model.beacon_report_list_response import BeaconReportListResponse
 from plaid.model.beacon_report_syndication import BeaconReportSyndication
@@ -484,6 +486,7 @@ from plaid.model.holding import Holding
 from plaid.model.holdings_default_update_webhook import HoldingsDefaultUpdateWebhook
 from plaid.model.holdings_override import HoldingsOverride
 from plaid.model.hosted_link_delivery_method import HostedLinkDeliveryMethod
+from plaid.model.hosted_mmd_verification_webhook import HostedMMDVerificationWebhook
 from plaid.model.id_number_type import IDNumberType
 from plaid.model.iso_currency_code import ISOCurrencyCode
 from plaid.model.identity_default_update_webhook import IdentityDefaultUpdateWebhook
@@ -686,6 +689,7 @@ from plaid.model.link_session_success_metadata_account import LinkSessionSuccess
 from plaid.model.link_session_success_metadata_institution import LinkSessionSuccessMetadataInstitution
 from plaid.model.link_session_success_metadata_transfer_status import LinkSessionSuccessMetadataTransferStatus
 from plaid.model.link_token_account_filters import LinkTokenAccountFilters
+from plaid.model.link_token_create_card_switch import LinkTokenCreateCardSwitch
 from plaid.model.link_token_create_credit_filter import LinkTokenCreateCreditFilter
 from plaid.model.link_token_create_depository_filter import LinkTokenCreateDepositoryFilter
 from plaid.model.link_token_create_hosted_link import LinkTokenCreateHostedLink
