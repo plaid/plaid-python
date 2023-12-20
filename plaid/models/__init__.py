@@ -32,6 +32,8 @@ from plaid.model.account_subtypes import AccountSubtypes
 from plaid.model.account_type import AccountType
 from plaid.model.accounts_balance_get_request import AccountsBalanceGetRequest
 from plaid.model.accounts_balance_get_request_options import AccountsBalanceGetRequestOptions
+from plaid.model.accounts_balance_get_request_payment_details import AccountsBalanceGetRequestPaymentDetails
+from plaid.model.accounts_balance_get_response_payment_risk_assessment import AccountsBalanceGetResponsePaymentRiskAssessment
 from plaid.model.accounts_get_request import AccountsGetRequest
 from plaid.model.accounts_get_request_options import AccountsGetRequestOptions
 from plaid.model.accounts_get_response import AccountsGetResponse
@@ -180,6 +182,8 @@ from plaid.model.beacon_report_list_response import BeaconReportListResponse
 from plaid.model.beacon_report_syndication import BeaconReportSyndication
 from plaid.model.beacon_report_syndication_analysis import BeaconReportSyndicationAnalysis
 from plaid.model.beacon_report_syndication_created_webhook import BeaconReportSyndicationCreatedWebhook
+from plaid.model.beacon_report_syndication_get_request import BeaconReportSyndicationGetRequest
+from plaid.model.beacon_report_syndication_get_response import BeaconReportSyndicationGetResponse
 from plaid.model.beacon_report_syndication_list_request import BeaconReportSyndicationListRequest
 from plaid.model.beacon_report_syndication_list_response import BeaconReportSyndicationListResponse
 from plaid.model.beacon_report_syndication_original_report import BeaconReportSyndicationOriginalReport
@@ -193,11 +197,16 @@ from plaid.model.beacon_user_get_request import BeaconUserGetRequest
 from plaid.model.beacon_user_get_response import BeaconUserGetResponse
 from plaid.model.beacon_user_id_number import BeaconUserIDNumber
 from plaid.model.beacon_user_name import BeaconUserName
+from plaid.model.beacon_user_name_nullable import BeaconUserNameNullable
 from plaid.model.beacon_user_request_address import BeaconUserRequestAddress
+from plaid.model.beacon_user_request_address_nullable import BeaconUserRequestAddressNullable
 from plaid.model.beacon_user_request_data import BeaconUserRequestData
 from plaid.model.beacon_user_review_request import BeaconUserReviewRequest
 from plaid.model.beacon_user_status import BeaconUserStatus
 from plaid.model.beacon_user_status_updated_webhook import BeaconUserStatusUpdatedWebhook
+from plaid.model.beacon_user_update_request import BeaconUserUpdateRequest
+from plaid.model.beacon_user_update_request_data import BeaconUserUpdateRequestData
+from plaid.model.beacon_user_update_response import BeaconUserUpdateResponse
 from plaid.model.categories_get_response import CategoriesGetResponse
 from plaid.model.category import Category
 from plaid.model.category_insight_details import CategoryInsightDetails
@@ -490,6 +499,8 @@ from plaid.model.hosted_mmd_verification_webhook import HostedMMDVerificationWeb
 from plaid.model.id_number_type import IDNumberType
 from plaid.model.iso_currency_code import ISOCurrencyCode
 from plaid.model.identity_default_update_webhook import IdentityDefaultUpdateWebhook
+from plaid.model.identity_document import IdentityDocument
+from plaid.model.identity_document_metadata import IdentityDocumentMetadata
 from plaid.model.identity_get_request import IdentityGetRequest
 from plaid.model.identity_get_request_options import IdentityGetRequestOptions
 from plaid.model.identity_get_response import IdentityGetResponse
@@ -762,6 +773,7 @@ from plaid.model.numbers_international import NumbersInternational
 from plaid.model.numbers_international_iban import NumbersInternationalIBAN
 from plaid.model.numbers_international_nullable import NumbersInternationalNullable
 from plaid.model.omittable_transfer_type import OmittableTransferType
+from plaid.model.option_contract import OptionContract
 from plaid.model.originator import Originator
 from plaid.model.originator_expected_transfer_frequency import OriginatorExpectedTransferFrequency
 from plaid.model.other_account_subtype import OtherAccountSubtype
@@ -1112,6 +1124,8 @@ from plaid.model.statements_account import StatementsAccount
 from plaid.model.statements_download_request import StatementsDownloadRequest
 from plaid.model.statements_list_request import StatementsListRequest
 from plaid.model.statements_list_response import StatementsListResponse
+from plaid.model.statements_refresh_complete_result import StatementsRefreshCompleteResult
+from plaid.model.statements_refresh_complete_webhook import StatementsRefreshCompleteWebhook
 from plaid.model.statements_refresh_request import StatementsRefreshRequest
 from plaid.model.statements_refresh_response import StatementsRefreshResponse
 from plaid.model.statements_statement import StatementsStatement
@@ -1320,6 +1334,7 @@ from plaid.model.transfer_user_in_request_deprecated import TransferUserInReques
 from plaid.model.transfer_user_in_response import TransferUserInResponse
 from plaid.model.update_entity_screening_request_search_terms import UpdateEntityScreeningRequestSearchTerms
 from plaid.model.update_individual_screening_request_search_terms import UpdateIndividualScreeningRequestSearchTerms
+from plaid.model.user_account_revoked_webhook import UserAccountRevokedWebhook
 from plaid.model.user_address import UserAddress
 from plaid.model.user_create_request import UserCreateRequest
 from plaid.model.user_create_response import UserCreateResponse
