@@ -27,6 +27,8 @@ plaid/model/account_subtypes.py
 plaid/model/account_type.py
 plaid/model/accounts_balance_get_request.py
 plaid/model/accounts_balance_get_request_options.py
+plaid/model/accounts_balance_get_request_payment_details.py
+plaid/model/accounts_balance_get_response_payment_risk_assessment.py
 plaid/model/accounts_get_request.py
 plaid/model/accounts_get_request_options.py
 plaid/model/accounts_get_response.py
@@ -177,6 +179,8 @@ plaid/model/beacon_report_list_response.py
 plaid/model/beacon_report_syndication.py
 plaid/model/beacon_report_syndication_analysis.py
 plaid/model/beacon_report_syndication_created_webhook.py
+plaid/model/beacon_report_syndication_get_request.py
+plaid/model/beacon_report_syndication_get_response.py
 plaid/model/beacon_report_syndication_list_request.py
 plaid/model/beacon_report_syndication_list_response.py
 plaid/model/beacon_report_syndication_original_report.py
@@ -190,11 +194,16 @@ plaid/model/beacon_user_get_request.py
 plaid/model/beacon_user_get_response.py
 plaid/model/beacon_user_id_number.py
 plaid/model/beacon_user_name.py
+plaid/model/beacon_user_name_nullable.py
 plaid/model/beacon_user_request_address.py
+plaid/model/beacon_user_request_address_nullable.py
 plaid/model/beacon_user_request_data.py
 plaid/model/beacon_user_review_request.py
 plaid/model/beacon_user_status.py
 plaid/model/beacon_user_status_updated_webhook.py
+plaid/model/beacon_user_update_request.py
+plaid/model/beacon_user_update_request_data.py
+plaid/model/beacon_user_update_response.py
 plaid/model/categories_get_response.py
 plaid/model/category.py
 plaid/model/category_insight_details.py
@@ -486,6 +495,8 @@ plaid/model/hosted_link_delivery_method.py
 plaid/model/hosted_mmd_verification_webhook.py
 plaid/model/id_number_type.py
 plaid/model/identity_default_update_webhook.py
+plaid/model/identity_document.py
+plaid/model/identity_document_metadata.py
 plaid/model/identity_get_request.py
 plaid/model/identity_get_request_options.py
 plaid/model/identity_get_response.py
@@ -759,6 +770,7 @@ plaid/model/numbers_international.py
 plaid/model/numbers_international_iban.py
 plaid/model/numbers_international_nullable.py
 plaid/model/omittable_transfer_type.py
+plaid/model/option_contract.py
 plaid/model/originator.py
 plaid/model/originator_expected_transfer_frequency.py
 plaid/model/other_account_subtype.py
@@ -1109,6 +1121,8 @@ plaid/model/statements_account.py
 plaid/model/statements_download_request.py
 plaid/model/statements_list_request.py
 plaid/model/statements_list_response.py
+plaid/model/statements_refresh_complete_result.py
+plaid/model/statements_refresh_complete_webhook.py
 plaid/model/statements_refresh_request.py
 plaid/model/statements_refresh_response.py
 plaid/model/statements_statement.py
@@ -1317,6 +1331,7 @@ plaid/model/transfer_user_in_request_deprecated.py
 plaid/model/transfer_user_in_response.py
 plaid/model/update_entity_screening_request_search_terms.py
 plaid/model/update_individual_screening_request_search_terms.py
+plaid/model/user_account_revoked_webhook.py
 plaid/model/user_address.py
 plaid/model/user_create_request.py
 plaid/model/user_create_response.py
