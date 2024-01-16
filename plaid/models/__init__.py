@@ -170,6 +170,9 @@ from plaid.model.base_reports_product_ready_webhook import BaseReportsProductRea
 from plaid.model.beacon_audit_trail import BeaconAuditTrail
 from plaid.model.beacon_audit_trail_source import BeaconAuditTrailSource
 from plaid.model.beacon_duplicate_detected_webhook import BeaconDuplicateDetectedWebhook
+from plaid.model.beacon_duplicate_get_request import BeaconDuplicateGetRequest
+from plaid.model.beacon_duplicate_get_response import BeaconDuplicateGetResponse
+from plaid.model.beacon_match_summary_analysis import BeaconMatchSummaryAnalysis
 from plaid.model.beacon_match_summary_code import BeaconMatchSummaryCode
 from plaid.model.beacon_report import BeaconReport
 from plaid.model.beacon_report_create_request import BeaconReportCreateRequest
@@ -202,6 +205,7 @@ from plaid.model.beacon_user_request_address import BeaconUserRequestAddress
 from plaid.model.beacon_user_request_address_nullable import BeaconUserRequestAddressNullable
 from plaid.model.beacon_user_request_data import BeaconUserRequestData
 from plaid.model.beacon_user_review_request import BeaconUserReviewRequest
+from plaid.model.beacon_user_revision import BeaconUserRevision
 from plaid.model.beacon_user_status import BeaconUserStatus
 from plaid.model.beacon_user_status_updated_webhook import BeaconUserStatusUpdatedWebhook
 from plaid.model.beacon_user_update_request import BeaconUserUpdateRequest
@@ -512,6 +516,11 @@ from plaid.model.identity_refresh_request import IdentityRefreshRequest
 from plaid.model.identity_refresh_response import IdentityRefreshResponse
 from plaid.model.identity_update_types import IdentityUpdateTypes
 from plaid.model.identity_verification import IdentityVerification
+from plaid.model.identity_verification_autofill_address import IdentityVerificationAutofillAddress
+from plaid.model.identity_verification_autofill_create_request import IdentityVerificationAutofillCreateRequest
+from plaid.model.identity_verification_autofill_create_response import IdentityVerificationAutofillCreateResponse
+from plaid.model.identity_verification_autofill_status import IdentityVerificationAutofillStatus
+from plaid.model.identity_verification_autofill_user_data import IdentityVerificationAutofillUserData
 from plaid.model.identity_verification_create_request import IdentityVerificationCreateRequest
 from plaid.model.identity_verification_create_request_user import IdentityVerificationCreateRequestUser
 from plaid.model.identity_verification_create_response import IdentityVerificationCreateResponse
@@ -821,6 +830,7 @@ from plaid.model.pay import Pay
 from plaid.model.pay_frequency import PayFrequency
 from plaid.model.pay_frequency_value import PayFrequencyValue
 from plaid.model.pay_period_details import PayPeriodDetails
+from plaid.model.pay_period_details_pay_frequency import PayPeriodDetailsPayFrequency
 from plaid.model.pay_stub_deductions_breakdown import PayStubDeductionsBreakdown
 from plaid.model.pay_stub_deductions_total import PayStubDeductionsTotal
 from plaid.model.pay_stub_distribution_breakdown import PayStubDistributionBreakdown
@@ -901,9 +911,11 @@ from plaid.model.paystub_deduction import PaystubDeduction
 from plaid.model.paystub_details import PaystubDetails
 from plaid.model.paystub_employer import PaystubEmployer
 from plaid.model.paystub_override import PaystubOverride
+from plaid.model.paystub_override_distribution_breakdown import PaystubOverrideDistributionBreakdown
 from plaid.model.paystub_override_employee import PaystubOverrideEmployee
 from plaid.model.paystub_override_employee_address import PaystubOverrideEmployeeAddress
 from plaid.model.paystub_override_employer import PaystubOverrideEmployer
+from plaid.model.paystub_override_pay_period_details import PaystubOverridePayPeriodDetails
 from plaid.model.paystub_pay_frequency import PaystubPayFrequency
 from plaid.model.paystub_ytd_details import PaystubYTDDetails
 from plaid.model.pending_expiration_webhook import PendingExpirationWebhook
@@ -935,6 +947,8 @@ from plaid.model.processor_identity_get_response import ProcessorIdentityGetResp
 from plaid.model.processor_identity_match_request import ProcessorIdentityMatchRequest
 from plaid.model.processor_identity_match_response import ProcessorIdentityMatchResponse
 from plaid.model.processor_initial_update_webhook import ProcessorInitialUpdateWebhook
+from plaid.model.processor_liabilities_get_request import ProcessorLiabilitiesGetRequest
+from plaid.model.processor_liabilities_get_response import ProcessorLiabilitiesGetResponse
 from plaid.model.processor_number import ProcessorNumber
 from plaid.model.processor_recurring_transactions_update_webhook import ProcessorRecurringTransactionsUpdateWebhook
 from plaid.model.processor_signal_decision_report_request import ProcessorSignalDecisionReportRequest
@@ -1011,6 +1025,7 @@ from plaid.model.risk_check_linked_service import RiskCheckLinkedService
 from plaid.model.risk_check_phone import RiskCheckPhone
 from plaid.model.risk_check_stolen_identity import RiskCheckStolenIdentity
 from plaid.model.risk_check_synthetic_identity import RiskCheckSyntheticIdentity
+from plaid.model.risk_profile import RiskProfile
 from plaid.model.risk_signal_document_reference import RiskSignalDocumentReference
 from plaid.model.risk_signal_document_status import RiskSignalDocumentStatus
 from plaid.model.role import Role
