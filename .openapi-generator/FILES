@@ -167,6 +167,9 @@ plaid/model/base_reports_product_ready_webhook.py
 plaid/model/beacon_audit_trail.py
 plaid/model/beacon_audit_trail_source.py
 plaid/model/beacon_duplicate_detected_webhook.py
+plaid/model/beacon_duplicate_get_request.py
+plaid/model/beacon_duplicate_get_response.py
+plaid/model/beacon_match_summary_analysis.py
 plaid/model/beacon_match_summary_code.py
 plaid/model/beacon_report.py
 plaid/model/beacon_report_create_request.py
@@ -199,6 +202,7 @@ plaid/model/beacon_user_request_address.py
 plaid/model/beacon_user_request_address_nullable.py
 plaid/model/beacon_user_request_data.py
 plaid/model/beacon_user_review_request.py
+plaid/model/beacon_user_revision.py
 plaid/model/beacon_user_status.py
 plaid/model/beacon_user_status_updated_webhook.py
 plaid/model/beacon_user_update_request.py
@@ -508,6 +512,11 @@ plaid/model/identity_refresh_request.py
 plaid/model/identity_refresh_response.py
 plaid/model/identity_update_types.py
 plaid/model/identity_verification.py
+plaid/model/identity_verification_autofill_address.py
+plaid/model/identity_verification_autofill_create_request.py
+plaid/model/identity_verification_autofill_create_response.py
+plaid/model/identity_verification_autofill_status.py
+plaid/model/identity_verification_autofill_user_data.py
 plaid/model/identity_verification_create_request.py
 plaid/model/identity_verification_create_request_user.py
 plaid/model/identity_verification_create_response.py
@@ -816,6 +825,7 @@ plaid/model/pay.py
 plaid/model/pay_frequency.py
 plaid/model/pay_frequency_value.py
 plaid/model/pay_period_details.py
+plaid/model/pay_period_details_pay_frequency.py
 plaid/model/pay_stub_deductions_breakdown.py
 plaid/model/pay_stub_deductions_total.py
 plaid/model/pay_stub_distribution_breakdown.py
@@ -896,9 +906,11 @@ plaid/model/paystub_deduction.py
 plaid/model/paystub_details.py
 plaid/model/paystub_employer.py
 plaid/model/paystub_override.py
+plaid/model/paystub_override_distribution_breakdown.py
 plaid/model/paystub_override_employee.py
 plaid/model/paystub_override_employee_address.py
 plaid/model/paystub_override_employer.py
+plaid/model/paystub_override_pay_period_details.py
 plaid/model/paystub_pay_frequency.py
 plaid/model/paystub_ytd_details.py
 plaid/model/pending_expiration_webhook.py
@@ -931,6 +943,8 @@ plaid/model/processor_identity_get_response.py
 plaid/model/processor_identity_match_request.py
 plaid/model/processor_identity_match_response.py
 plaid/model/processor_initial_update_webhook.py
+plaid/model/processor_liabilities_get_request.py
+plaid/model/processor_liabilities_get_response.py
 plaid/model/processor_number.py
 plaid/model/processor_recurring_transactions_update_webhook.py
 plaid/model/processor_signal_decision_report_request.py
@@ -1008,6 +1022,7 @@ plaid/model/risk_check_linked_service.py
 plaid/model/risk_check_phone.py
 plaid/model/risk_check_stolen_identity.py
 plaid/model/risk_check_synthetic_identity.py
+plaid/model/risk_profile.py
 plaid/model/risk_signal_document_reference.py
 plaid/model/risk_signal_document_status.py
 plaid/model/role.py
