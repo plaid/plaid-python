@@ -13,7 +13,6 @@ from plaid.model.ach_class import ACHClass
 from plaid.model.apr import APR
 from plaid.model.account_access import AccountAccess
 from plaid.model.account_assets import AccountAssets
-from plaid.model.account_assets_all_of import AccountAssetsAllOf
 from plaid.model.account_balance import AccountBalance
 from plaid.model.account_base import AccountBase
 from plaid.model.account_filter import AccountFilter
@@ -30,6 +29,10 @@ from plaid.model.account_selection_cardinality import AccountSelectionCardinalit
 from plaid.model.account_subtype import AccountSubtype
 from plaid.model.account_subtypes import AccountSubtypes
 from plaid.model.account_type import AccountType
+from plaid.model.account_verification_insights import AccountVerificationInsights
+from plaid.model.account_verification_insights_account_number_format import AccountVerificationInsightsAccountNumberFormat
+from plaid.model.account_verification_insights_network_status import AccountVerificationInsightsNetworkStatus
+from plaid.model.account_verification_insights_previous_returns import AccountVerificationInsightsPreviousReturns
 from plaid.model.accounts_balance_get_request import AccountsBalanceGetRequest
 from plaid.model.accounts_balance_get_request_options import AccountsBalanceGetRequestOptions
 from plaid.model.accounts_balance_get_request_payment_details import AccountsBalanceGetRequestPaymentDetails
@@ -58,6 +61,7 @@ from plaid.model.asset_holder_name import AssetHolderName
 from plaid.model.asset_owner import AssetOwner
 from plaid.model.asset_owners import AssetOwners
 from plaid.model.asset_report import AssetReport
+from plaid.model.asset_report_account_balance import AssetReportAccountBalance
 from plaid.model.asset_report_add_ons import AssetReportAddOns
 from plaid.model.asset_report_audit_copy_create_request import AssetReportAuditCopyCreateRequest
 from plaid.model.asset_report_audit_copy_create_response import AssetReportAuditCopyCreateResponse
@@ -106,6 +110,7 @@ from plaid.model.auth_get_response import AuthGetResponse
 from plaid.model.auth_metadata import AuthMetadata
 from plaid.model.auth_supported_methods import AuthSupportedMethods
 from plaid.model.automatically_verified_webhook import AutomaticallyVerifiedWebhook
+from plaid.model.balance_plus_attributes import BalancePlusAttributes
 from plaid.model.bank_income_complete_result import BankIncomeCompleteResult
 from plaid.model.bank_income_complete_webhook import BankIncomeCompleteWebhook
 from plaid.model.bank_income_refresh_complete_result import BankIncomeRefreshCompleteResult
@@ -247,6 +252,15 @@ from plaid.model.cra_bank_income_summary import CraBankIncomeSummary
 from plaid.model.cra_bank_income_transaction import CraBankIncomeTransaction
 from plaid.model.cra_bank_income_warning import CraBankIncomeWarning
 from plaid.model.cra_bank_income_warning_code import CraBankIncomeWarningCode
+from plaid.model.cra_partner_insights import CraPartnerInsights
+from plaid.model.cra_partner_insights_complete_result import CraPartnerInsightsCompleteResult
+from plaid.model.cra_partner_insights_complete_webhook import CraPartnerInsightsCompleteWebhook
+from plaid.model.cra_partner_insights_get_request import CraPartnerInsightsGetRequest
+from plaid.model.cra_partner_insights_get_response import CraPartnerInsightsGetResponse
+from plaid.model.cra_partner_insights_item import CraPartnerInsightsItem
+from plaid.model.cra_partner_insights_item_account import CraPartnerInsightsItemAccount
+from plaid.model.cra_partner_insights_prism import CraPartnerInsightsPrism
+from plaid.model.cra_prediction_interval import CraPredictionInterval
 from plaid.model.credit1099 import Credit1099
 from plaid.model.credit1099_filer import Credit1099Filer
 from plaid.model.credit1099_payer import Credit1099Payer
@@ -301,6 +315,7 @@ from plaid.model.credit_bank_statement_upload_item import CreditBankStatementUpl
 from plaid.model.credit_bank_statement_upload_object import CreditBankStatementUploadObject
 from plaid.model.credit_bank_statement_upload_transaction import CreditBankStatementUploadTransaction
 from plaid.model.credit_bank_statements_uploads_get_request import CreditBankStatementsUploadsGetRequest
+from plaid.model.credit_bank_statements_uploads_get_request_options import CreditBankStatementsUploadsGetRequestOptions
 from plaid.model.credit_bank_statements_uploads_get_response import CreditBankStatementsUploadsGetResponse
 from plaid.model.credit_card_liability import CreditCardLiability
 from plaid.model.credit_category import CreditCategory
@@ -339,6 +354,7 @@ from plaid.model.credit_pay_stub_employer import CreditPayStubEmployer
 from plaid.model.credit_pay_stub_net_pay import CreditPayStubNetPay
 from plaid.model.credit_pay_stub_pay_basis_type import CreditPayStubPayBasisType
 from plaid.model.credit_payroll_income_get_request import CreditPayrollIncomeGetRequest
+from plaid.model.credit_payroll_income_get_request_options import CreditPayrollIncomeGetRequestOptions
 from plaid.model.credit_payroll_income_get_response import CreditPayrollIncomeGetResponse
 from plaid.model.credit_payroll_income_parsing_config_update_request import CreditPayrollIncomeParsingConfigUpdateRequest
 from plaid.model.credit_payroll_income_parsing_config_update_response import CreditPayrollIncomeParsingConfigUpdateResponse
@@ -713,6 +729,7 @@ from plaid.model.link_token_create_card_switch import LinkTokenCreateCardSwitch
 from plaid.model.link_token_create_credit_filter import LinkTokenCreateCreditFilter
 from plaid.model.link_token_create_depository_filter import LinkTokenCreateDepositoryFilter
 from plaid.model.link_token_create_hosted_link import LinkTokenCreateHostedLink
+from plaid.model.link_token_create_identity import LinkTokenCreateIdentity
 from plaid.model.link_token_create_institution_data import LinkTokenCreateInstitutionData
 from plaid.model.link_token_create_investment_filter import LinkTokenCreateInvestmentFilter
 from plaid.model.link_token_create_loan_filter import LinkTokenCreateLoanFilter
@@ -720,6 +737,7 @@ from plaid.model.link_token_create_request import LinkTokenCreateRequest
 from plaid.model.link_token_create_request_account_subtypes import LinkTokenCreateRequestAccountSubtypes
 from plaid.model.link_token_create_request_auth import LinkTokenCreateRequestAuth
 from plaid.model.link_token_create_request_base_report import LinkTokenCreateRequestBaseReport
+from plaid.model.link_token_create_request_credit_partner_insights import LinkTokenCreateRequestCreditPartnerInsights
 from plaid.model.link_token_create_request_deposit_switch import LinkTokenCreateRequestDepositSwitch
 from plaid.model.link_token_create_request_employment import LinkTokenCreateRequestEmployment
 from plaid.model.link_token_create_request_employment_bank_income import LinkTokenCreateRequestEmploymentBankIncome
@@ -930,6 +948,11 @@ from plaid.model.physical_document_images import PhysicalDocumentImages
 from plaid.model.plaid_error import PlaidError
 from plaid.model.plaid_error_type import PlaidErrorType
 from plaid.model.platform_ids import PlatformIds
+from plaid.model.prism_cash_score import PrismCashScore
+from plaid.model.prism_cash_score_metadata import PrismCashScoreMetadata
+from plaid.model.prism_detect import PrismDetect
+from plaid.model.prism_insights import PrismInsights
+from plaid.model.prism_product import PrismProduct
 from plaid.model.processor_account_get_request import ProcessorAccountGetRequest
 from plaid.model.processor_account_get_response import ProcessorAccountGetResponse
 from plaid.model.processor_apex_processor_token_create_request import ProcessorApexProcessorTokenCreateRequest
@@ -987,6 +1010,12 @@ from plaid.model.product_permissions_required_identity_webhook import ProductPer
 from plaid.model.product_status import ProductStatus
 from plaid.model.product_status_breakdown import ProductStatusBreakdown
 from plaid.model.products import Products
+from plaid.model.profile_get_request import ProfileGetRequest
+from plaid.model.profile_get_response import ProfileGetResponse
+from plaid.model.profile_identity import ProfileIdentity
+from plaid.model.profile_identity_address import ProfileIdentityAddress
+from plaid.model.profile_identity_name import ProfileIdentityName
+from plaid.model.profile_item import ProfileItem
 from plaid.model.program_name_sensitivity import ProgramNameSensitivity
 from plaid.model.projected_income_summary_field_number import ProjectedIncomeSummaryFieldNumber
 from plaid.model.proxy_type import ProxyType
@@ -1026,6 +1055,7 @@ from plaid.model.risk_check_phone import RiskCheckPhone
 from plaid.model.risk_check_stolen_identity import RiskCheckStolenIdentity
 from plaid.model.risk_check_synthetic_identity import RiskCheckSyntheticIdentity
 from plaid.model.risk_profile import RiskProfile
+from plaid.model.risk_reason import RiskReason
 from plaid.model.risk_signal_document_reference import RiskSignalDocumentReference
 from plaid.model.risk_signal_document_status import RiskSignalDocumentStatus
 from plaid.model.role import Role
@@ -1347,6 +1377,7 @@ from plaid.model.transfer_user_address_in_response import TransferUserAddressInR
 from plaid.model.transfer_user_in_request import TransferUserInRequest
 from plaid.model.transfer_user_in_request_deprecated import TransferUserInRequestDeprecated
 from plaid.model.transfer_user_in_response import TransferUserInResponse
+from plaid.model.transfer_wire_details import TransferWireDetails
 from plaid.model.update_entity_screening_request_search_terms import UpdateEntityScreeningRequestSearchTerms
 from plaid.model.update_individual_screening_request_search_terms import UpdateIndividualScreeningRequestSearchTerms
 from plaid.model.user_account_revoked_webhook import UserAccountRevokedWebhook
