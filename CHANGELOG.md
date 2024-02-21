@@ -1,5 +1,93 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 19.0.0
+- Updating to OAS 2020-09-14_1.496.2
+
+## Breaking changes in this version
+
+- [Breaking] Introduce a new `AssetReportAccountBalance` object which duplicates the existing `AccountBalance` object with an additional `margin_loan_amount` field. Updated `AccountAssets.balances` to return the new `AssetReportAccountBalance` object instead of the existing `AccountBalance` object.
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.496.2
+- Adds prediction interval to `/cra/bank_income/get`
+
+### 2020-09-14_1.496.1
+- Update the descriptions for `risk_level` and `score` in `/accounts/balance/get`
+
+### 2020-09-14_1.496.0
+- Add `verification_insights` object to `Account` (closed beta feature - Database Insights)
+- Add `database_insights_pass`, `database_insights_pass_with_caution`, and `database_insights_fail` as new values for `verification_status` field (closed beta feature - Database Insights)
+
+### 2020-09-14_1.495.2
+- Add `pending idr` to student loan liability statuses
+
+### 2020-09-14_1.495.1
+- Add `processor_identity` product
+
+### 2020-09-14_1.494.1
+- Mark `wire_details` as nullable in the transfer object
+
+### 2020-09-14_1.494.0
+- Add `vested_quantity` and `vested_value` fields to the `Holding` object.
+
+### 2020-09-14_1.493.0
+- Add `POST /cra/partner_insights/get`
+
+### 2020-09-14_1.492.1
+- Added documentation for the `HOSTED_VERIFICATION` webhook.
+- Add `wire` to request and response of `/transfer/authorization/create`
+
+### 2020-09-14_1.492.0
+- Remove `page_count`, `name`, and `status` fields from Identity Document Upload's document metadata.
+
+### 2020-09-14_1.491.3
+- Increase max length of description field on `/transfer/intent/create` from 8 to 15
+
+### 2020-09-14_1.491.2
+- Added documentation for the `securities.type` field in `investments/holdings/get` and `investments/transactions/get` endpoints.
+
+### 2020-09-14_1.491.1
+- Add new `no_data` type to `name` and `date_of_birth` fields in `documentary_verification.documents[].analysis.extracted_data` in the response of all of the identity verification endpoints:
+  - `identity_verification/create`
+  - `identity_verification/get`
+  - `identity_verification/list`
+  - `identity_verification/retry`
+
+### 2020-09-14_1.491.0
+- Add `identity` object to `link/token/create` request body
+
+### 2020-09-14_1.490.0
+- Add `events` field to the `sessions` parameter in the `/link/token/get` response
+
+### 2020-09-14_1.489.1
+- Mark optional `scope` and `reference` fields in `/payment_initiation/consent/payment/execute` as nullable
+
+### 2020-09-14_1.489.0
+- Add optional `scope` and `reference` fields to `/payment_initiation/consent/payment/execute`
+
+### 2020-09-14_1.488.0
+- Add optional `item_ids` field to the request of `credit/payroll_income/get` and `credit/bank_statements/uploads/get`
+
+### 2020-09-14_1.487.2
+- Add `num_1099s_uploaded` to `document_income_results` object in `/credit/sessions/get` response
+
+### 2020-09-14_1.487.1
+- Correct the Document Income Verification `parsing_config` enum used by `/link/token/create` to contain `risk_signals` instead of `fraud_risk` to match the actual API implementation.
+- Dcumentation updates to reflect updates to Signal, including that new Items with Signal should now be created with `signal` in `/link/token/create` instead of using `/signal/prepare`.
+
+### 2020-09-14_1.487.0
+- [Breaking] Introduce a new `AssetReportAccountBalance` object which duplicates the existing `AccountBalance` object with an additional `margin_loan_amount` field. Updated `AccountAssets.balances` to return the new `AssetReportAccountBalance` object instead of the existing `AccountBalance` object.
+- Add `vested_quantity` and `vested_value` fields to the `AssetReportInvestments` object.
+
+### 2020-09-14_1.486.1
+- Update `bank_income_sources` in CRA Bank Income Get to be required in response since the empty array is being omitted.
+
+### 2020-09-14_1.486.0
+- Add `requires_real_time_balance_refresh`, `risk_reasons`, `attributes`, `balance_last_updated`, and `score` fields to `/accounts/balance/get` endpoint
+
+### 2020-09-14_1.485.1
+- Update `legal_name` description in `user` object in `/link/token.create` request
+
 # 18.4.0
 - Updating to OAS 2020-09-14_1.485.0
 
