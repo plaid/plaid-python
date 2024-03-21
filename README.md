@@ -329,6 +329,30 @@ products=[Products('auth'), Products('transactions')],
 country_codes=[CountryCode('US')],
 ```
 
+#### Configuration options
+
+Some configuration options, including request timeouts, have moved from global (client-level) to being specified a per-request level, and additional configuration options have been added.
+
+Global configuration options: [configuration.py](https://github.com/plaid/plaid-python/blob/master/plaid/configuration.py)
+Per-request configuration options: [api_client.py](https://github.com/plaid/plaid-python/blob/master/plaid/api_client.py#L117)
+
+From:
+```
+class PlaidClient(plaid.Client):
+   def __init__(
+       self,
+      ...
+       timeout=60
+   ):
+   ...
+```
+
+To:
+```
+response = client.accounts_balance_get(request, _request_timeout=60)
+```
+
+
 ## Contributing
 
 Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions for local development.
