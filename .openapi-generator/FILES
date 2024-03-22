@@ -159,6 +159,8 @@ plaid/model/base_report_account_balances_all_of.py
 plaid/model/base_report_account_insights.py
 plaid/model/base_report_average_flow_insights.py
 plaid/model/base_report_average_monthly_balances.py
+plaid/model/base_report_create_request.py
+plaid/model/base_report_create_response.py
 plaid/model/base_report_get_request.py
 plaid/model/base_report_get_response.py
 plaid/model/base_report_item.py
@@ -169,6 +171,12 @@ plaid/model/base_report_warning.py
 plaid/model/base_report_warning_code.py
 plaid/model/base_reports_error_webhook.py
 plaid/model/base_reports_product_ready_webhook.py
+plaid/model/beacon_account_risk_evaluate_account.py
+plaid/model/beacon_account_risk_evaluate_account_attributes.py
+plaid/model/beacon_account_risk_evaluate_evaluation_reason.py
+plaid/model/beacon_account_risk_evaluate_request.py
+plaid/model/beacon_account_risk_evaluate_request_options.py
+plaid/model/beacon_account_risk_evaluate_response.py
 plaid/model/beacon_audit_trail.py
 plaid/model/beacon_audit_trail_source.py
 plaid/model/beacon_duplicate_detected_webhook.py
@@ -194,12 +202,15 @@ plaid/model/beacon_report_syndication_list_response.py
 plaid/model/beacon_report_syndication_original_report.py
 plaid/model/beacon_report_type.py
 plaid/model/beacon_report_updated_webhook.py
+plaid/model/beacon_user.py
 plaid/model/beacon_user_address.py
 plaid/model/beacon_user_create_request.py
 plaid/model/beacon_user_create_response.py
 plaid/model/beacon_user_data.py
 plaid/model/beacon_user_get_request.py
 plaid/model/beacon_user_get_response.py
+plaid/model/beacon_user_history_list_request.py
+plaid/model/beacon_user_history_list_response.py
 plaid/model/beacon_user_id_number.py
 plaid/model/beacon_user_name.py
 plaid/model/beacon_user_name_nullable.py
@@ -239,7 +250,10 @@ plaid/model/cra_bank_income_account.py
 plaid/model/cra_bank_income_cause.py
 plaid/model/cra_bank_income_complete_result.py
 plaid/model/cra_bank_income_complete_webhook.py
+plaid/model/cra_bank_income_create_request.py
+plaid/model/cra_bank_income_create_response.py
 plaid/model/cra_bank_income_employer.py
+plaid/model/cra_bank_income_error_webhook.py
 plaid/model/cra_bank_income_get_request.py
 plaid/model/cra_bank_income_get_response.py
 plaid/model/cra_bank_income_historical_summary.py
@@ -250,8 +264,8 @@ plaid/model/cra_bank_income_transaction.py
 plaid/model/cra_bank_income_warning.py
 plaid/model/cra_bank_income_warning_code.py
 plaid/model/cra_partner_insights.py
-plaid/model/cra_partner_insights_complete_result.py
 plaid/model/cra_partner_insights_complete_webhook.py
+plaid/model/cra_partner_insights_error_webhook.py
 plaid/model/cra_partner_insights_get_request.py
 plaid/model/cra_partner_insights_get_response.py
 plaid/model/cra_partner_insights_item.py
@@ -712,6 +726,9 @@ plaid/model/link_event_name.py
 plaid/model/link_events_webhook.py
 plaid/model/link_o_auth_correlation_id_exchange_request.py
 plaid/model/link_o_auth_correlation_id_exchange_response.py
+plaid/model/link_profile_eligibility_check_request.py
+plaid/model/link_profile_eligibility_check_response.py
+plaid/model/link_profile_eligibility_check_user.py
 plaid/model/link_session_exit.py
 plaid/model/link_session_exit_metadata.py
 plaid/model/link_session_exit_metadata_institution.py
@@ -946,7 +963,7 @@ plaid/model/platform_ids.py
 plaid/model/po_box_status.py
 plaid/model/prism_cash_score.py
 plaid/model/prism_cash_score_metadata.py
-plaid/model/prism_detect.py
+plaid/model/prism_first_detect.py
 plaid/model/prism_insights.py
 plaid/model/prism_product.py
 plaid/model/processor_account_get_request.py
@@ -1235,6 +1252,7 @@ plaid/model/transactions_rules_remove_response.py
 plaid/model/transactions_sync_request.py
 plaid/model/transactions_sync_request_options.py
 plaid/model/transactions_sync_response.py
+plaid/model/transactions_update_status.py
 plaid/model/transactions_user_insights_get_request.py
 plaid/model/transactions_user_insights_get_response.py
 plaid/model/transfer.py
