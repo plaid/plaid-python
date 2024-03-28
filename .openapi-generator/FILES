@@ -247,6 +247,7 @@ plaid/model/counterparty_type.py
 plaid/model/country_code.py
 plaid/model/cra_bank_income.py
 plaid/model/cra_bank_income_account.py
+plaid/model/cra_bank_income_bonus_type.py
 plaid/model/cra_bank_income_cause.py
 plaid/model/cra_bank_income_complete_result.py
 plaid/model/cra_bank_income_complete_webhook.py

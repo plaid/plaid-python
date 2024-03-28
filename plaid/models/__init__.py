@@ -250,6 +250,7 @@ from plaid.model.counterparty_type import CounterpartyType
 from plaid.model.country_code import CountryCode
 from plaid.model.cra_bank_income import CraBankIncome
 from plaid.model.cra_bank_income_account import CraBankIncomeAccount
+from plaid.model.cra_bank_income_bonus_type import CraBankIncomeBonusType
 from plaid.model.cra_bank_income_cause import CraBankIncomeCause
 from plaid.model.cra_bank_income_complete_result import CraBankIncomeCompleteResult
 from plaid.model.cra_bank_income_complete_webhook import CraBankIncomeCompleteWebhook
