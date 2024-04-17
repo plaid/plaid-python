@@ -3,6 +3,8 @@ import json
 import plaid
 from plaid.model.products import Products
 from plaid.model.sandbox_public_token_create_request import SandboxPublicTokenCreateRequest
+from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
+from plaid.model.sandbox_public_token_create_request_options_statements import SandboxPublicTokenCreateRequestOptionsStatements
 from plaid.model.statements_list_request import StatementsListRequest
 from plaid.model.item_public_token_exchange_request import ItemPublicTokenExchangeRequest
 from plaid.model.item_remove_request import ItemRemoveRequest
@@ -18,16 +20,25 @@ from tests.integration.util import (
 
 access_token = None
 
-END_DATE = dt.strptime("2024-02-01", "%Y-%m-%d").date()
 START_DATE = dt.strptime("2023-12-01", "%Y-%m-%d").date()
+END_DATE = dt.strptime("2024-02-01", "%Y-%m-%d").date()
+REFRESH_START_DATE = dt.strptime("2023-12-01", "%Y-%m-%d").date()
+REFRESH_END_DATE = dt.strptime("2024-02-01", "%Y-%m-%d").date()
 MAX_RETRIES = 5
 RETRY_INTERVAL_SECONDS = 5
+
 
 def setup_module(module):
     client = create_client()
     pt_request = SandboxPublicTokenCreateRequest(
         institution_id=SANDBOX_INSTITUTION,
         initial_products=[Products('statements')],
+        options=SandboxPublicTokenCreateRequestOptions(
+            statements=SandboxPublicTokenCreateRequestOptionsStatements(
+                start_date=START_DATE,
+                end_date=END_DATE,
+            )
+        )
     )
     pt_response = client.sandbox_public_token_create(pt_request)
 
@@ -109,7 +120,7 @@ def test_full_flow():
             assert status_code == 200
             assert get_sha_256(data) == headers.get('plaid-content-hash')
 
-    refresh_request_id = refresh_statements(client, start_date=START_DATE, end_date=END_DATE)
+    refresh_request_id = refresh_statements(client, start_date=REFRESH_START_DATE, end_date=REFRESH_END_DATE)
     assert refresh_request_id is not None
 
     # when setting up your integration, it is better to use webhooks rather than poll Plaid's API
