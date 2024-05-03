@@ -1,5 +1,50 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 21.1.0
+- Updating to OAS 2020-09-14_1.514.1
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.514.1
+- Update `risk_profile_key`and `RiskProfile` description
+
+### 2020-09-14_1.514.0
+- Added `transfer/authorization/cancel` endpoint
+
+### 2020-09-14_1.513.0
+- Added `consumer_report/pdf/get` endpoint
+
+### 2020-09-14_1.512.0
+- Added support for address and date of birth in `/payment_initiation/payment/reverse` request.
+
+### 2020-09-14_1.511.0
+- Added `user_token` to `link/token/get` response metadata
+- Internal changes
+
+### 2020-09-14_1.510.2
+- Added `include_insights` to `/credit/relay/get` request
+-
+### 2020-09-14_1.510.1
+- Add `database_insights_pending` as a potential enum value to `LinkDeliveryVerificationStatus` and `LinkSessionSuccessMetadataAccount.VerificationStatus`.
+- Remove `database_insights_pass`, `database_insights_pass_with_caution` and `database_insights_fail` as potential values from `LinkDeliveryVerificationStatus` and `LinkSessionSuccessMetadataAccount.VerificationStatus`
+
+### 2020-09-14_1.510.0
+- Internal changes only
+
+### 2020-09-14_1.509.4
+- Internal changes only
+
+### 2020-09-14_1.509.3
+- Update description of transfer authorization decision code `MANUALLY_VERIFIED_ITEM`
+
+### 2020-09-14_1.509.2
+- Fixes to `RemovedTransaction` object definition: set `additionalProperties` explicitly to true and list `account_id` and `transaction_id` as `required`.
+
+### 2020-09-14_1.509.1
+- add `SMS_MICRODEPOSITS_VERIFICATION` to the `webhook_code` field of `/sandbox/item/fire_webhook`
+
+### 2020-09-14_1.509.0
+- Add `supports_payment_consents` to institution's `payment_initiation_metadata`.
+
 # 21.0.0
 - Updating to OAS 2020-09-14_1.508.0
 

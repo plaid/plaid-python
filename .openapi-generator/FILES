@@ -242,6 +242,7 @@ plaid/model/client_user_id.py
 plaid/model/client_user_id_nullable.py
 plaid/model/connected_application.py
 plaid/model/consent_payment_idempotency_key.py
+plaid/model/consumer_report_pdf_get_request.py
 plaid/model/consumer_report_permissible_purpose.py
 plaid/model/consumer_report_user_identity.py
 plaid/model/counterparty.py
@@ -741,10 +742,16 @@ plaid/model/link_o_auth_correlation_id_exchange_response.py
 plaid/model/link_profile_eligibility_check_request.py
 plaid/model/link_profile_eligibility_check_response.py
 plaid/model/link_profile_eligibility_check_user.py
+plaid/model/link_session_bank_employment_result.py
+plaid/model/link_session_bank_income_result.py
+plaid/model/link_session_cra_item_add_result.py
 plaid/model/link_session_exit.py
 plaid/model/link_session_exit_metadata.py
 plaid/model/link_session_exit_metadata_institution.py
 plaid/model/link_session_finished_webhook.py
+plaid/model/link_session_item_add_result.py
+plaid/model/link_session_payroll_income_result.py
+plaid/model/link_session_results.py
 plaid/model/link_session_success.py
 plaid/model/link_session_success_metadata.py
 plaid/model/link_session_success_metadata_account.py
@@ -1280,6 +1287,8 @@ plaid/model/transactions_user_insights_get_response.py
 plaid/model/transfer.py
 plaid/model/transfer_ach_network.py
 plaid/model/transfer_authorization.py
+plaid/model/transfer_authorization_cancel_request.py
+plaid/model/transfer_authorization_cancel_response.py
 plaid/model/transfer_authorization_create_request.py
 plaid/model/transfer_authorization_create_response.py
 plaid/model/transfer_authorization_decision.py
