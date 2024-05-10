@@ -1,5 +1,28 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 22.0.0
+- Updating to OAS 2020-09-14_1.517.0
+
+## Breaking changes in this version
+### 2020-09-14_1.517.0
+- [Breaking] Update `onExit` field type in `/link/token/get` response from `LinkSessionExit` to `LinkSessionExitDeprecated`
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.517.0
+- [Breaking] Update `/link/token/get` response structure
+
+### 2020-09-14_1.516.0
+- Internal changes only
+
+### 2020-09-14_1.515.0
+- Added `/cra/loans/applications/register`
+- Added `/cra/loans/register`
+- Added `/cra/loans/update`
+- Added `/cra/loans/unregister`
+
+### 2020-09-14_1.514.2
+- Added `days_since_first_observed transaction` as a field in the Account Risk Insights response.
+
 # 21.1.0
 - Updating to OAS 2020-09-14_1.514.1
 
