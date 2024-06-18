@@ -1,13 +1,7 @@
 import time
 import datetime
 
-from plaid.model.client_user_id import ClientUserID
-from plaid.model.generic_country_code import GenericCountryCode
-from plaid.model.generic_country_code_nullable import GenericCountryCodeNullable
 from plaid.model.watchlist_screening_status import WatchlistScreeningStatus
-from plaid.model.watchlist_screening_document_value import WatchlistScreeningDocumentValue
-from plaid.model.watchlist_screening_document_value_nullable import WatchlistScreeningDocumentValueNullable
-from plaid.model.watchlist_screening_individual_name import WatchlistScreeningIndividualName
 from plaid.model.watchlist_screening_request_search_terms import WatchlistScreeningRequestSearchTerms
 
 from plaid.model.watchlist_screening_individual_create_request import WatchlistScreeningIndividualCreateRequest
@@ -18,15 +12,15 @@ from plaid.model.watchlist_screening_individual_get_request import WatchlistScre
 from tests.integration.util import create_client
 
 WATCHLIST_PROGRAM_ID = "prg_egdF5fGjY8fWqk"
-CLIENT_USER_ID = ClientUserID("monitor-user-" + str(time.time()))
-LEGAL_NAME = WatchlistScreeningIndividualName("Domingo Huang")
+CLIENT_USER_ID = "monitor-user-" + str(time.time())
+LEGAL_NAME = "Domingo Huang"
 DOCUMENT_NUMBER = "123456789"
 
 def test_watchlist_screening_individual_all():
     client = create_client()
-    document_value = WatchlistScreeningDocumentValue(DOCUMENT_NUMBER)
+    document_value = DOCUMENT_NUMBER
     date_of_birth = datetime.date(1990, 1, 1)
-    country_code = GenericCountryCode("US")
+    country_code = "US"
     create_request = WatchlistScreeningIndividualCreateRequest(
         client_user_id=CLIENT_USER_ID,
         search_terms=WatchlistScreeningRequestSearchTerms(
@@ -43,9 +37,9 @@ def test_watchlist_screening_individual_all():
     # assert on response
     assert create_response["search_terms"]["legal_name"] == LEGAL_NAME
     # Response can be nullable
-    assert create_response["search_terms"]["document_number"] == WatchlistScreeningDocumentValueNullable(DOCUMENT_NUMBER)
+    assert create_response["search_terms"]["document_number"] == DOCUMENT_NUMBER
     assert create_response["search_terms"]["date_of_birth"] == date_of_birth
-    assert create_response["search_terms"]["country"] == GenericCountryCodeNullable("US")
+    assert create_response["search_terms"]["country"] == "US"
     assert create_response["status"] == WatchlistScreeningStatus("cleared")
 
     pending_review = WatchlistScreeningStatus("pending_review")

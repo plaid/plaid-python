@@ -1,6 +1,5 @@
 import time
 
-from plaid.model.client_user_id import ClientUserID
 from plaid.model.identity_verification_status import IdentityVerificationStatus
 from plaid.model.identity_verification_create_request_user import IdentityVerificationCreateRequestUser
 from plaid.model.identity_verification_request_user import IdentityVerificationRequestUser
@@ -14,7 +13,7 @@ from plaid.model.identity_verification_retry_request import IdentityVerification
 from tests.integration.util import create_client
 
 TEMPLATE_ID = "flwtmp_aWogUuKsL6NEHU"
-CLIENT_USER_ID = ClientUserID("idv-user-" + str(time.time()))
+CLIENT_USER_ID = "idv-user-" + str(time.time())
 EMAIL = "idv-user-" + str(time.time()) + "@example.com"
 
 def test_identity_verification_create_and_retry():
