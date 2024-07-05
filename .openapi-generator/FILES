@@ -189,6 +189,8 @@ plaid/model/beacon_account_risk_evaluate_request_options.py
 plaid/model/beacon_account_risk_evaluate_response.py
 plaid/model/beacon_audit_trail.py
 plaid/model/beacon_audit_trail_source.py
+plaid/model/beacon_bank_account_insights.py
+plaid/model/beacon_bank_accounts.py
 plaid/model/beacon_duplicate_detected_webhook.py
 plaid/model/beacon_duplicate_get_request.py
 plaid/model/beacon_duplicate_get_response.py
@@ -213,6 +215,8 @@ plaid/model/beacon_report_syndication_original_report.py
 plaid/model/beacon_report_type.py
 plaid/model/beacon_report_updated_webhook.py
 plaid/model/beacon_user.py
+plaid/model/beacon_user_account_insights_get_request.py
+plaid/model/beacon_user_account_insights_get_response.py
 plaid/model/beacon_user_address.py
 plaid/model/beacon_user_create_request.py
 plaid/model/beacon_user_create_response.py
@@ -280,10 +284,13 @@ plaid/model/cra_check_report_create_response.py
 plaid/model/cra_check_report_failed_webhook.py
 plaid/model/cra_check_report_income_insights_get_request.py
 plaid/model/cra_check_report_income_insights_get_response.py
+plaid/model/cra_check_report_network_attributes_get_request.py
+plaid/model/cra_check_report_network_attributes_get_response.py
 plaid/model/cra_check_report_partner_insights_get_options.py
 plaid/model/cra_check_report_partner_insights_get_request.py
 plaid/model/cra_check_report_partner_insights_get_response.py
 plaid/model/cra_check_report_pdf_get_request.py
+plaid/model/cra_check_report_product.py
 plaid/model/cra_check_report_ready_webhook.py
 plaid/model/cra_income_insights.py
 plaid/model/cra_loan_application.py
@@ -307,6 +314,8 @@ plaid/model/cra_loans_register_response.py
 plaid/model/cra_loans_unregister_request.py
 plaid/model/cra_loans_update_request.py
 plaid/model/cra_loans_update_response.py
+plaid/model/cra_network_attributes_item.py
+plaid/model/cra_network_attributes_report.py
 plaid/model/cra_partner_insights.py
 plaid/model/cra_partner_insights_complete_webhook.py
 plaid/model/cra_partner_insights_error_webhook.py
@@ -569,7 +578,6 @@ plaid/model/hosted_link_delivery_method.py
 plaid/model/hosted_mmd_verification_webhook.py
 plaid/model/id_number_type.py
 plaid/model/identity_default_update_webhook.py
-plaid/model/identity_document.py
 plaid/model/identity_document_metadata.py
 plaid/model/identity_document_upload.py
 plaid/model/identity_document_upload_metadata.py
@@ -1196,6 +1204,8 @@ plaid/model/sandbox_transfer_test_clock_get_request.py
 plaid/model/sandbox_transfer_test_clock_get_response.py
 plaid/model/sandbox_transfer_test_clock_list_request.py
 plaid/model/sandbox_transfer_test_clock_list_response.py
+plaid/model/sandbox_user_reset_login_request.py
+plaid/model/sandbox_user_reset_login_response.py
 plaid/model/scopes.py
 plaid/model/scopes_context.py
 plaid/model/scopes_nullable.py
@@ -1479,7 +1489,11 @@ plaid/model/user_create_response.py
 plaid/model/user_custom_password.py
 plaid/model/user_data_overview.py
 plaid/model/user_id_number.py
+plaid/model/user_items_get_request.py
+plaid/model/user_items_get_response.py
 plaid/model/user_permission_revoked_webhook.py
+plaid/model/user_remove_request.py
+plaid/model/user_remove_response.py
 plaid/model/user_stated_income_source_category.py
 plaid/model/user_stated_income_source_frequency.py
 plaid/model/user_stated_income_source_pay_type.py
