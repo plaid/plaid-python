@@ -1,21 +1,20 @@
-plaid-python [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
-============
+# plaid-python [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
 
 The official python client library for the [Plaid API][1], which is generated from our [OpenAPI spec](https://github.com/plaid/plaid-openapi).
 
 ## Table of Contents
 
-* [Installation](#installation)
-* [Versioning](#versioning)
-* [Getting Started](#getting-started)
-    + [Calling Endpoints](#calling-endpoints)
-    + [Errors](#errors)
-    + [Converting the response to a JSON](#converting-the-response-to-a-json)
-    + [Dates](#dates)
-* [Examples](#examples)
-* [Migration Guide](#migration-guide)
-* [Contributing](#contributing)
-* [License](#license)
+- [Installation](#installation)
+- [Versioning](#versioning)
+- [Getting Started](#getting-started)
+  - [Calling Endpoints](#calling-endpoints)
+  - [Errors](#errors)
+  - [Converting the response to a JSON](#converting-the-response-to-a-json)
+  - [Dates](#dates)
+- [Examples](#examples)
+- [Migration Guide](#migration-guide)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
@@ -24,6 +23,7 @@ This library only supports `python3`!
 ```console
 $ pip3 install plaid-python
 ```
+
 ## Versioning
 
 This release only supports the latest Plaid API version, `2020-09-14`.
@@ -31,7 +31,6 @@ This release only supports the latest Plaid API version, `2020-09-14`.
 For information about what has changed between versions and how to update your integration, head to the [API upgrade guide][api-upgrades].
 
 The plaid-python client library is typically updated on a monthly basis. The canonical source for the latest version number is the [client library changelog](https://github.com/plaid/plaid-python/blob/master/CHANGELOG.md). New versions are published as [GitHub tags](https://github.com/plaid/plaid-python/tags), not as Releases. New versions are also published on [PyPi](https://pypi.org/project/plaid-python/). Plaid uses semantic versioning to version the client libraries, with potentially breaking changes being indicated by a major version bump.
-
 
 All users are strongly recommended to use a recent version of the library, as older versions do not contain support for new endpoints and fields. For more details, see the [Migration Guide](#migration-guide).
 
@@ -47,7 +46,6 @@ from plaid.api import plaid_api
 
 # Available environments are
 # 'Production'
-# 'Development'
 # 'Sandbox'
 configuration = plaid.Configuration(
     host=plaid.Environment.Sandbox,
@@ -102,6 +100,7 @@ response = ... # type TransactionsSyncResponse
 # to_dict makes it first a python dictionary, and then we turn it into a string JSON.
 json_string = json.dumps(response.to_dict(), default=str)
 ```
+
 ### Dates
 
 Dates and datetimes in requests, which are represented as strings in the API and in previous client library versions, are represented in this version of the Python client library as Python `datetime.date` or `datetime.datetime` objects. If you need to convert between dates and strings, you can use the `datetime.strptime` method. For an example, see the Retrieve Transactions sample code later in this Readme. For more information on the Python's `datetime` module, see [Python's official documentation](https://docs.python.org/3/library/datetime.html).
@@ -119,18 +118,20 @@ b = date.fromisoformat('2022-05-05')
 
 If the API reference documentation for a field specifies `format: date-time`, the following is acceptable:
 
-
 ```py
 from datetime import datetime
 
 a = datetime(2022, 5, 5, 22, 35, 49, tzinfo=datetime.timezone.utc)
 ```
+
 ## Examples
 
 For more examples, see the [test suites](https://github.com/plaid/plaid-python/tree/master/tests), [Quickstart](https://github.com/plaid/quickstart/tree/master/python), or [API Reference documentation](https://plaid.com/docs/api/).
 
 ### Create an Item using Link
+
 Exchange a `public_token` from [Plaid Link][4] for a Plaid access token:
+
 ```python
 import plaid
 from plaid.model.item_public_token_exchange_request import ItemPublicTokenExchangeRequest
@@ -144,6 +145,7 @@ access_token = exchange_response['access_token']
 ```
 
 ### Remove Item
+
 ```python
 import plaid
 from plaid.model.item_remove_request import ItemRemoveRequest
@@ -156,6 +158,7 @@ response = client.item_remove(request)
 ```
 
 ### Retrieve Transactions (preferred method)
+
 ```python
 import plaid
 from plaid.model.transactions_sync_request import TransactionsSyncRequest
@@ -177,8 +180,8 @@ while (response['has_more']):
     transactions += response['added']
 ```
 
-
 ### Retrieve Transactions (older method)
+
 ```python
 import plaid
 from plaid.model.transactions_get_request_options import TransactionsGetRequestOptions
@@ -230,7 +233,9 @@ Migrating from version 8.0.0 or later of the library to a recent version should 
 Version 8.0.0 of the client library was released in August 2021 and contains multiple interface changes, as described below.
 
 #### Client initialization
+
 From:
+
 ```python
 from plaid import Client
 Client(
@@ -243,6 +248,7 @@ Client(
 ```
 
 To:
+
 ```python
 import plaid
 from plaid.api import plaid_api
@@ -257,15 +263,19 @@ configuration = plaid.Configuration(
 api_client = plaid.ApiClient(configuration)
 client = plaid_api.PlaidApi(api_client)
 ```
+
 #### Endpoints
+
 All endpoint requests now take a request model and the functions have been renamed to include `_`.
 
 From:
+
 ```python
 response = client.Auth.get(access_token)
 ```
 
 To:
+
 ```python
 import plaid
 from plaid.model.auth_get_request import AuthGetRequest
@@ -281,6 +291,7 @@ response = client.auth_get(ag_request)
 #### Errors
 
 From:
+
 ```python
 try:
     client.Auth.get(access_token)
@@ -296,6 +307,7 @@ except APIError as e:
 ```
 
 To:
+
 ```python
 try:
     request = AssetReportGetRequest(
@@ -308,7 +320,6 @@ except plaid.ApiException as e:
     else:
 ```
 
-
 #### Data type changes
 
 See the sections above on [Dates](#dates) and [Converting the response to a JSON](#converting-the-response-to-a-json).
@@ -318,12 +329,14 @@ See the sections above on [Dates](#dates) and [Converting the response to a JSON
 While the API and previous library versions prior to 8.0.0 represent enums using strings, this current library uses Python classes with restricted values.
 
 From:
+
 ```
 'products': ['auth', 'transactions'],
 'country_codes': ['US'],
 ```
 
 To:
+
 ```
 products=[Products('auth'), Products('transactions')],
 country_codes=[CountryCode('US')],
@@ -337,6 +350,7 @@ Global configuration options: [configuration.py](https://github.com/plaid/plaid-
 Per-request configuration options: [api_client.py](https://github.com/plaid/plaid-python/blob/master/plaid/api_client.py#L117)
 
 From:
+
 ```
 class PlaidClient(plaid.Client):
    def __init__(
@@ -348,16 +362,17 @@ class PlaidClient(plaid.Client):
 ```
 
 To:
+
 ```
 response = client.accounts_balance_get(request, _request_timeout=60)
 ```
-
 
 ## Contributing
 
 Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions for local development.
 
 ## License
+
 [MIT][6]
 
 [1]: https://plaid.com
