@@ -13,4 +13,3 @@ RUN pip install tox==3.15.0
 RUN pip install -r requirements.txt
 
 CMD ["make", "test"]
-
