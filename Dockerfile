@@ -1,5 +1,5 @@
 
-FROM python:3.7
+FROM 245200388354.dkr.ecr.us-east-1.amazonaws.com/docker-hub/library/python:3.7
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,4 +13,3 @@ RUN pip install tox==3.15.0
 RUN pip install -r requirements.txt
 
 CMD ["make", "test"]
-
