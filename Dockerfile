@@ -1,4 +1,4 @@
-
+# Note: This image is also built in CircleCI, so limit references to internal repositories.
 FROM python:3.7
 
 # Create app directory
