@@ -255,7 +255,14 @@ from plaid.model.client_provided_raw_transaction import ClientProvidedRawTransac
 from plaid.model.client_provided_transaction import ClientProvidedTransaction
 from plaid.model.client_provided_transaction_location import ClientProvidedTransactionLocation
 from plaid.model.connected_application import ConnectedApplication
+from plaid.model.consent_event import ConsentEvent
+from plaid.model.consent_event_code import ConsentEventCode
+from plaid.model.consent_event_initiator import ConsentEventInitiator
+from plaid.model.consent_event_type import ConsentEventType
+from plaid.model.consent_events_get_request import ConsentEventsGetRequest
+from plaid.model.consent_events_get_response import ConsentEventsGetResponse
 from plaid.model.consent_payment_idempotency_key import ConsentPaymentIdempotencyKey
+from plaid.model.consented_account import ConsentedAccount
 from plaid.model.consumer_dispute import ConsumerDispute
 from plaid.model.consumer_dispute_category import ConsumerDisputeCategory
 from plaid.model.consumer_report_pdf_get_request import ConsumerReportPDFGetRequest
@@ -479,6 +486,7 @@ from plaid.model.dashboard_user_get_response import DashboardUserGetResponse
 from plaid.model.dashboard_user_list_request import DashboardUserListRequest
 from plaid.model.dashboard_user_list_response import DashboardUserListResponse
 from plaid.model.dashboard_user_status import DashboardUserStatus
+from plaid.model.data_sources import DataSources
 from plaid.model.date_range import DateRange
 from plaid.model.deductions import Deductions
 from plaid.model.deductions_breakdown import DeductionsBreakdown
@@ -502,6 +510,7 @@ from plaid.model.depository_account_subtypes import DepositoryAccountSubtypes
 from plaid.model.depository_filter import DepositoryFilter
 from plaid.model.detailed_originator import DetailedOriginator
 from plaid.model.detected_account import DetectedAccount
+from plaid.model.device_id import DeviceId
 from plaid.model.distribution_breakdown import DistributionBreakdown
 from plaid.model.doc_type import DocType
 from plaid.model.document_analysis import DocumentAnalysis
@@ -716,6 +725,7 @@ from plaid.model.investment_holdings_get_request_options import InvestmentHoldin
 from plaid.model.investment_transaction import InvestmentTransaction
 from plaid.model.investment_transaction_subtype import InvestmentTransactionSubtype
 from plaid.model.investment_transaction_type import InvestmentTransactionType
+from plaid.model.investments_auth_data_sources import InvestmentsAuthDataSources
 from plaid.model.investments_auth_get_numbers import InvestmentsAuthGetNumbers
 from plaid.model.investments_auth_get_request import InvestmentsAuthGetRequest
 from plaid.model.investments_auth_get_request_options import InvestmentsAuthGetRequestOptions
@@ -731,7 +741,15 @@ from plaid.model.investments_transactions_get_request import InvestmentsTransact
 from plaid.model.investments_transactions_get_request_options import InvestmentsTransactionsGetRequestOptions
 from plaid.model.investments_transactions_get_response import InvestmentsTransactionsGetResponse
 from plaid.model.investments_transactions_override import InvestmentsTransactionsOverride
+from plaid.model.issue import Issue
 from plaid.model.issue_resolved_webhook import IssueResolvedWebhook
+from plaid.model.issues_get_request import IssuesGetRequest
+from plaid.model.issues_get_response import IssuesGetResponse
+from plaid.model.issues_search_request import IssuesSearchRequest
+from plaid.model.issues_search_response import IssuesSearchResponse
+from plaid.model.issues_status import IssuesStatus
+from plaid.model.issues_subscribe_request import IssuesSubscribeRequest
+from plaid.model.issues_subscribe_response import IssuesSubscribeResponse
 from plaid.model.issuing_country import IssuingCountry
 from plaid.model.item import Item
 from plaid.model.item_access_token_invalidate_request import ItemAccessTokenInvalidateRequest
@@ -746,6 +764,7 @@ from plaid.model.item_application_scopes_update_request import ItemApplicationSc
 from plaid.model.item_application_scopes_update_response import ItemApplicationScopesUpdateResponse
 from plaid.model.item_application_unlink_request import ItemApplicationUnlinkRequest
 from plaid.model.item_application_unlink_response import ItemApplicationUnlinkResponse
+from plaid.model.item_consented_data_scope import ItemConsentedDataScope
 from plaid.model.item_error_webhook import ItemErrorWebhook
 from plaid.model.item_get_request import ItemGetRequest
 from plaid.model.item_get_response import ItemGetResponse
@@ -1277,6 +1296,9 @@ from plaid.model.security import Security
 from plaid.model.security_override import SecurityOverride
 from plaid.model.selfie_analysis import SelfieAnalysis
 from plaid.model.selfie_analysis_document_comparison import SelfieAnalysisDocumentComparison
+from plaid.model.selfie_analysis_facial_analysis import SelfieAnalysisFacialAnalysis
+from plaid.model.selfie_analysis_facial_analysis_outcome import SelfieAnalysisFacialAnalysisOutcome
+from plaid.model.selfie_analysis_liveness_check import SelfieAnalysisLivenessCheck
 from plaid.model.selfie_capture import SelfieCapture
 from plaid.model.selfie_check import SelfieCheck
 from plaid.model.selfie_check_selfie import SelfieCheckSelfie
@@ -1490,6 +1512,9 @@ from plaid.model.transfer_originator_list_request import TransferOriginatorListR
 from plaid.model.transfer_originator_list_response import TransferOriginatorListResponse
 from plaid.model.transfer_platform_originator_create_request import TransferPlatformOriginatorCreateRequest
 from plaid.model.transfer_platform_originator_create_response import TransferPlatformOriginatorCreateResponse
+from plaid.model.transfer_platform_requirement_submission import TransferPlatformRequirementSubmission
+from plaid.model.transfer_platform_requirement_submit_request import TransferPlatformRequirementSubmitRequest
+from plaid.model.transfer_platform_requirement_submit_response import TransferPlatformRequirementSubmitResponse
 from plaid.model.transfer_platform_tos_acceptance_metadata import TransferPlatformTOSAcceptanceMetadata
 from plaid.model.transfer_questionnaire_create_request import TransferQuestionnaireCreateRequest
 from plaid.model.transfer_questionnaire_create_response import TransferQuestionnaireCreateResponse
@@ -1537,6 +1562,7 @@ from plaid.model.transfer_user_in_request import TransferUserInRequest
 from plaid.model.transfer_user_in_request_deprecated import TransferUserInRequestDeprecated
 from plaid.model.transfer_user_in_response import TransferUserInResponse
 from plaid.model.transfer_wire_details import TransferWireDetails
+from plaid.model.trusted_device_data import TrustedDeviceData
 from plaid.model.update_entity_screening_request_search_terms import UpdateEntityScreeningRequestSearchTerms
 from plaid.model.update_individual_screening_request_search_terms import UpdateIndividualScreeningRequestSearchTerms
 from plaid.model.user_account_identity import UserAccountIdentity

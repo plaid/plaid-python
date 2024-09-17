@@ -251,7 +251,14 @@ plaid/model/client_provided_raw_transaction.py
 plaid/model/client_provided_transaction.py
 plaid/model/client_provided_transaction_location.py
 plaid/model/connected_application.py
+plaid/model/consent_event.py
+plaid/model/consent_event_code.py
+plaid/model/consent_event_initiator.py
+plaid/model/consent_event_type.py
+plaid/model/consent_events_get_request.py
+plaid/model/consent_events_get_response.py
 plaid/model/consent_payment_idempotency_key.py
+plaid/model/consented_account.py
 plaid/model/consumer_dispute.py
 plaid/model/consumer_dispute_category.py
 plaid/model/consumer_report_pdf_get_request.py
@@ -476,6 +483,7 @@ plaid/model/dashboard_user_get_response.py
 plaid/model/dashboard_user_list_request.py
 plaid/model/dashboard_user_list_response.py
 plaid/model/dashboard_user_status.py
+plaid/model/data_sources.py
 plaid/model/date_range.py
 plaid/model/deductions.py
 plaid/model/deductions_breakdown.py
@@ -499,6 +507,7 @@ plaid/model/depository_account_subtypes.py
 plaid/model/depository_filter.py
 plaid/model/detailed_originator.py
 plaid/model/detected_account.py
+plaid/model/device_id.py
 plaid/model/distribution_breakdown.py
 plaid/model/doc_type.py
 plaid/model/document_analysis.py
@@ -712,6 +721,7 @@ plaid/model/investment_holdings_get_request_options.py
 plaid/model/investment_transaction.py
 plaid/model/investment_transaction_subtype.py
 plaid/model/investment_transaction_type.py
+plaid/model/investments_auth_data_sources.py
 plaid/model/investments_auth_get_numbers.py
 plaid/model/investments_auth_get_request.py
 plaid/model/investments_auth_get_request_options.py
@@ -728,7 +738,15 @@ plaid/model/investments_transactions_get_request_options.py
 plaid/model/investments_transactions_get_response.py
 plaid/model/investments_transactions_override.py
 plaid/model/iso_currency_code.py
+plaid/model/issue.py
 plaid/model/issue_resolved_webhook.py
+plaid/model/issues_get_request.py
+plaid/model/issues_get_response.py
+plaid/model/issues_search_request.py
+plaid/model/issues_search_response.py
+plaid/model/issues_status.py
+plaid/model/issues_subscribe_request.py
+plaid/model/issues_subscribe_response.py
 plaid/model/issuing_country.py
 plaid/model/item.py
 plaid/model/item_access_token_invalidate_request.py
@@ -743,6 +761,7 @@ plaid/model/item_application_scopes_update_request.py
 plaid/model/item_application_scopes_update_response.py
 plaid/model/item_application_unlink_request.py
 plaid/model/item_application_unlink_response.py
+plaid/model/item_consented_data_scope.py
 plaid/model/item_error_webhook.py
 plaid/model/item_get_request.py
 plaid/model/item_get_response.py
@@ -1274,6 +1293,9 @@ plaid/model/security.py
 plaid/model/security_override.py
 plaid/model/selfie_analysis.py
 plaid/model/selfie_analysis_document_comparison.py
+plaid/model/selfie_analysis_facial_analysis.py
+plaid/model/selfie_analysis_facial_analysis_outcome.py
+plaid/model/selfie_analysis_liveness_check.py
 plaid/model/selfie_capture.py
 plaid/model/selfie_check.py
 plaid/model/selfie_check_selfie.py
@@ -1487,6 +1509,9 @@ plaid/model/transfer_originator_list_request.py
 plaid/model/transfer_originator_list_response.py
 plaid/model/transfer_platform_originator_create_request.py
 plaid/model/transfer_platform_originator_create_response.py
+plaid/model/transfer_platform_requirement_submission.py
+plaid/model/transfer_platform_requirement_submit_request.py
+plaid/model/transfer_platform_requirement_submit_response.py
 plaid/model/transfer_platform_tos_acceptance_metadata.py
 plaid/model/transfer_questionnaire_create_request.py
 plaid/model/transfer_questionnaire_create_response.py
@@ -1534,6 +1559,7 @@ plaid/model/transfer_user_in_request.py
 plaid/model/transfer_user_in_request_deprecated.py
 plaid/model/transfer_user_in_response.py
 plaid/model/transfer_wire_details.py
+plaid/model/trusted_device_data.py
 plaid/model/update_entity_screening_request_search_terms.py
 plaid/model/update_individual_screening_request_search_terms.py
 plaid/model/user_account_identity.py
