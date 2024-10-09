@@ -22,6 +22,7 @@ from plaid.model.sandbox_item_fire_webhook_request import SandboxItemFireWebhook
 from plaid.model.item_access_token_invalidate_request import ItemAccessTokenInvalidateRequest
 from plaid.model.item_webhook_update_request import ItemWebhookUpdateRequest
 from plaid.model.sandbox_public_token_create_request_options import SandboxPublicTokenCreateRequestOptions
+from plaid.model.webhook_type import WebhookType
 
 
 from tests.integration.util import (
@@ -173,7 +174,8 @@ def test_sandbox_fire_webhook():
     # fire webhook
     fire_request = SandboxItemFireWebhookRequest(
         access_token=exchange_response['access_token'],
-        webhook_code='DEFAULT_UPDATE'
+        webhook_code='DEFAULT_UPDATE',
+        webhook_type=WebhookType(value='TRANSACTIONS'),
     )
 
     fire_webhook_response = client.sandbox_item_fire_webhook(fire_request)

@@ -164,6 +164,7 @@ plaid/model/base_report.py
 plaid/model/base_report_account.py
 plaid/model/base_report_account_balances.py
 plaid/model/base_report_account_insights.py
+plaid/model/base_report_attributes.py
 plaid/model/base_report_average_flow_insights.py
 plaid/model/base_report_average_monthly_balances.py
 plaid/model/base_report_historical_balance.py
@@ -306,7 +307,6 @@ plaid/model/cra_check_report_partner_insights_get_options.py
 plaid/model/cra_check_report_partner_insights_get_request.py
 plaid/model/cra_check_report_partner_insights_get_response.py
 plaid/model/cra_check_report_pdf_get_request.py
-plaid/model/cra_check_report_product.py
 plaid/model/cra_check_report_ready_webhook.py
 plaid/model/cra_income_insights.py
 plaid/model/cra_loan_application.py
@@ -602,6 +602,7 @@ plaid/model/get_recipient_response.py
 plaid/model/get_recipients_response.py
 plaid/model/health_incident.py
 plaid/model/hidden_match_summary_code.py
+plaid/model/historical_annual_income.py
 plaid/model/historical_balance.py
 plaid/model/historical_update_webhook.py
 plaid/model/holding.py
@@ -872,6 +873,7 @@ plaid/model/link_token_create_request_identity_verification.py
 plaid/model/link_token_create_request_income_verification.py
 plaid/model/link_token_create_request_income_verification_bank_income.py
 plaid/model/link_token_create_request_income_verification_payroll_income.py
+plaid/model/link_token_create_request_payment_configuration.py
 plaid/model/link_token_create_request_payment_initiation.py
 plaid/model/link_token_create_request_statements.py
 plaid/model/link_token_create_request_transfer.py
@@ -907,10 +909,12 @@ plaid/model/match_summary_code.py
 plaid/model/merchant_insights.py
 plaid/model/meta.py
 plaid/model/mfa.py
+plaid/model/monitoring_consumer_report_permissible_purpose.py
 plaid/model/monitoring_income_insights.py
 plaid/model/monitoring_income_source.py
 plaid/model/monitoring_insights.py
 plaid/model/monitoring_insights_item_status.py
+plaid/model/monitoring_insights_status.py
 plaid/model/monitoring_insights_webhook.py
 plaid/model/monitoring_item_status_code.py
 plaid/model/monitoring_loan_insights.py
@@ -1015,6 +1019,7 @@ plaid/model/payment_initiation_consent_get_request.py
 plaid/model/payment_initiation_consent_get_response.py
 plaid/model/payment_initiation_consent_payment_execute_request.py
 plaid/model/payment_initiation_consent_payment_execute_response.py
+plaid/model/payment_initiation_consent_processing_mode.py
 plaid/model/payment_initiation_consent_revoke_request.py
 plaid/model/payment_initiation_consent_revoke_response.py
 plaid/model/payment_initiation_consent_scope.py
@@ -1509,6 +1514,11 @@ plaid/model/transfer_originator_list_request.py
 plaid/model/transfer_originator_list_response.py
 plaid/model/transfer_platform_originator_create_request.py
 plaid/model/transfer_platform_originator_create_response.py
+plaid/model/transfer_platform_person_address.py
+plaid/model/transfer_platform_person_create_request.py
+plaid/model/transfer_platform_person_create_response.py
+plaid/model/transfer_platform_person_id_number.py
+plaid/model/transfer_platform_person_name.py
 plaid/model/transfer_platform_requirement_submission.py
 plaid/model/transfer_platform_requirement_submit_request.py
 plaid/model/transfer_platform_requirement_submit_response.py
@@ -1583,6 +1593,10 @@ plaid/model/user_remove_response.py
 plaid/model/user_stated_income_source_category.py
 plaid/model/user_stated_income_source_frequency.py
 plaid/model/user_stated_income_source_pay_type.py
+plaid/model/user_third_party_token_create_request.py
+plaid/model/user_third_party_token_create_response.py
+plaid/model/user_third_party_token_remove_request.py
+plaid/model/user_third_party_token_remove_response.py
 plaid/model/user_update_request.py
 plaid/model/user_update_response.py
 plaid/model/validation_source.py
