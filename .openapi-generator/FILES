@@ -164,6 +164,7 @@ plaid/model/base_report.py
 plaid/model/base_report_account.py
 plaid/model/base_report_account_balances.py
 plaid/model/base_report_account_insights.py
+plaid/model/base_report_account_metadata.py
 plaid/model/base_report_attributes.py
 plaid/model/base_report_average_flow_insights.py
 plaid/model/base_report_average_monthly_balances.py
@@ -271,6 +272,7 @@ plaid/model/counterparty_type.py
 plaid/model/country_code.py
 plaid/model/cra_bank_income.py
 plaid/model/cra_bank_income_account.py
+plaid/model/cra_bank_income_account_metadata.py
 plaid/model/cra_bank_income_bonus_type.py
 plaid/model/cra_bank_income_cause.py
 plaid/model/cra_bank_income_complete_result.py
@@ -346,6 +348,7 @@ plaid/model/cra_partner_insights_get_request.py
 plaid/model/cra_partner_insights_get_response.py
 plaid/model/cra_partner_insights_item.py
 plaid/model/cra_partner_insights_item_account.py
+plaid/model/cra_partner_insights_item_account_metadata.py
 plaid/model/cra_partner_insights_prism.py
 plaid/model/cra_pdf_add_ons.py
 plaid/model/cra_prediction_interval.py
@@ -763,6 +766,7 @@ plaid/model/item_application_scopes_update_response.py
 plaid/model/item_application_unlink_request.py
 plaid/model/item_application_unlink_response.py
 plaid/model/item_consented_data_scope.py
+plaid/model/item_create_authentication.py
 plaid/model/item_error_webhook.py
 plaid/model/item_get_request.py
 plaid/model/item_get_response.py
@@ -785,6 +789,8 @@ plaid/model/item_status_nullable.py
 plaid/model/item_status_transactions.py
 plaid/model/item_webhook_update_request.py
 plaid/model/item_webhook_update_response.py
+plaid/model/item_with_consent_fields.py
+plaid/model/item_with_consent_fields_all_of.py
 plaid/model/jwk_public_key.py
 plaid/model/jwt_header.py
 plaid/model/kyc_check_address_summary.py
@@ -1017,6 +1023,8 @@ plaid/model/payment_initiation_consent_create_request.py
 plaid/model/payment_initiation_consent_create_response.py
 plaid/model/payment_initiation_consent_get_request.py
 plaid/model/payment_initiation_consent_get_response.py
+plaid/model/payment_initiation_consent_payer_details.py
+plaid/model/payment_initiation_consent_payer_numbers.py
 plaid/model/payment_initiation_consent_payment_execute_request.py
 plaid/model/payment_initiation_consent_payment_execute_response.py
 plaid/model/payment_initiation_consent_processing_mode.py
@@ -1024,6 +1032,7 @@ plaid/model/payment_initiation_consent_revoke_request.py
 plaid/model/payment_initiation_consent_revoke_response.py
 plaid/model/payment_initiation_consent_scope.py
 plaid/model/payment_initiation_consent_status.py
+plaid/model/payment_initiation_consent_type.py
 plaid/model/payment_initiation_maximum_payment_amount.py
 plaid/model/payment_initiation_metadata.py
 plaid/model/payment_initiation_optional_restriction_bacs.py
@@ -1333,6 +1342,8 @@ plaid/model/signal_user.py
 plaid/model/signal_warning.py
 plaid/model/simulated_transfer_sweep.py
 plaid/model/single_document_risk_signal.py
+plaid/model/sms_verification.py
+plaid/model/sms_verification_status.py
 plaid/model/source.py
 plaid/model/standalone_account_type.py
 plaid/model/standalone_currency_code_list.py
@@ -1364,7 +1375,15 @@ plaid/model/taxpayer_identifier_type.py
 plaid/model/taxpayer_identifiers.py
 plaid/model/total.py
 plaid/model/total_canonical_description.py
+plaid/model/total_inflow_amount.py
+plaid/model/total_inflow_amount30d.py
+plaid/model/total_inflow_amount60d.py
+plaid/model/total_inflow_amount90d.py
 plaid/model/total_monthly_income_insights.py
+plaid/model/total_outflow_amount.py
+plaid/model/total_outflow_amount30d.py
+plaid/model/total_outflow_amount60d.py
+plaid/model/total_outflow_amount90d.py
 plaid/model/transaction.py
 plaid/model/transaction_all_of.py
 plaid/model/transaction_base.py
@@ -1519,6 +1538,7 @@ plaid/model/transfer_platform_person_create_request.py
 plaid/model/transfer_platform_person_create_response.py
 plaid/model/transfer_platform_person_id_number.py
 plaid/model/transfer_platform_person_name.py
+plaid/model/transfer_platform_requirement.py
 plaid/model/transfer_platform_requirement_submission.py
 plaid/model/transfer_platform_requirement_submit_request.py
 plaid/model/transfer_platform_requirement_submit_response.py
@@ -1606,6 +1626,8 @@ plaid/model/verification_of_asset.py
 plaid/model/verification_of_asset_response.py
 plaid/model/verification_refresh_status.py
 plaid/model/verification_status.py
+plaid/model/verify_sms_details.py
+plaid/model/verify_sms_details_status.py
 plaid/model/w2.py
 plaid/model/w2_box12.py
 plaid/model/w2_box12_override.py
