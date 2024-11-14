@@ -167,6 +167,7 @@ from plaid.model.base_report import BaseReport
 from plaid.model.base_report_account import BaseReportAccount
 from plaid.model.base_report_account_balances import BaseReportAccountBalances
 from plaid.model.base_report_account_insights import BaseReportAccountInsights
+from plaid.model.base_report_account_metadata import BaseReportAccountMetadata
 from plaid.model.base_report_attributes import BaseReportAttributes
 from plaid.model.base_report_average_flow_insights import BaseReportAverageFlowInsights
 from plaid.model.base_report_average_monthly_balances import BaseReportAverageMonthlyBalances
@@ -275,6 +276,7 @@ from plaid.model.counterparty_type import CounterpartyType
 from plaid.model.country_code import CountryCode
 from plaid.model.cra_bank_income import CraBankIncome
 from plaid.model.cra_bank_income_account import CraBankIncomeAccount
+from plaid.model.cra_bank_income_account_metadata import CraBankIncomeAccountMetadata
 from plaid.model.cra_bank_income_bonus_type import CraBankIncomeBonusType
 from plaid.model.cra_bank_income_cause import CraBankIncomeCause
 from plaid.model.cra_bank_income_complete_result import CraBankIncomeCompleteResult
@@ -350,6 +352,7 @@ from plaid.model.cra_partner_insights_get_request import CraPartnerInsightsGetRe
 from plaid.model.cra_partner_insights_get_response import CraPartnerInsightsGetResponse
 from plaid.model.cra_partner_insights_item import CraPartnerInsightsItem
 from plaid.model.cra_partner_insights_item_account import CraPartnerInsightsItemAccount
+from plaid.model.cra_partner_insights_item_account_metadata import CraPartnerInsightsItemAccountMetadata
 from plaid.model.cra_partner_insights_prism import CraPartnerInsightsPrism
 from plaid.model.cra_prediction_interval import CraPredictionInterval
 from plaid.model.credit1099 import Credit1099
@@ -766,6 +769,7 @@ from plaid.model.item_application_scopes_update_response import ItemApplicationS
 from plaid.model.item_application_unlink_request import ItemApplicationUnlinkRequest
 from plaid.model.item_application_unlink_response import ItemApplicationUnlinkResponse
 from plaid.model.item_consented_data_scope import ItemConsentedDataScope
+from plaid.model.item_create_authentication import ItemCreateAuthentication
 from plaid.model.item_error_webhook import ItemErrorWebhook
 from plaid.model.item_get_request import ItemGetRequest
 from plaid.model.item_get_response import ItemGetResponse
@@ -788,6 +792,8 @@ from plaid.model.item_status_nullable import ItemStatusNullable
 from plaid.model.item_status_transactions import ItemStatusTransactions
 from plaid.model.item_webhook_update_request import ItemWebhookUpdateRequest
 from plaid.model.item_webhook_update_response import ItemWebhookUpdateResponse
+from plaid.model.item_with_consent_fields import ItemWithConsentFields
+from plaid.model.item_with_consent_fields_all_of import ItemWithConsentFieldsAllOf
 from plaid.model.jwk_public_key import JWKPublicKey
 from plaid.model.jwt_header import JWTHeader
 from plaid.model.kyc_check_address_summary import KYCCheckAddressSummary
@@ -1022,6 +1028,8 @@ from plaid.model.payment_initiation_consent_create_request import PaymentInitiat
 from plaid.model.payment_initiation_consent_create_response import PaymentInitiationConsentCreateResponse
 from plaid.model.payment_initiation_consent_get_request import PaymentInitiationConsentGetRequest
 from plaid.model.payment_initiation_consent_get_response import PaymentInitiationConsentGetResponse
+from plaid.model.payment_initiation_consent_payer_details import PaymentInitiationConsentPayerDetails
+from plaid.model.payment_initiation_consent_payer_numbers import PaymentInitiationConsentPayerNumbers
 from plaid.model.payment_initiation_consent_payment_execute_request import PaymentInitiationConsentPaymentExecuteRequest
 from plaid.model.payment_initiation_consent_payment_execute_response import PaymentInitiationConsentPaymentExecuteResponse
 from plaid.model.payment_initiation_consent_processing_mode import PaymentInitiationConsentProcessingMode
@@ -1029,6 +1037,7 @@ from plaid.model.payment_initiation_consent_revoke_request import PaymentInitiat
 from plaid.model.payment_initiation_consent_revoke_response import PaymentInitiationConsentRevokeResponse
 from plaid.model.payment_initiation_consent_scope import PaymentInitiationConsentScope
 from plaid.model.payment_initiation_consent_status import PaymentInitiationConsentStatus
+from plaid.model.payment_initiation_consent_type import PaymentInitiationConsentType
 from plaid.model.payment_initiation_maximum_payment_amount import PaymentInitiationMaximumPaymentAmount
 from plaid.model.payment_initiation_metadata import PaymentInitiationMetadata
 from plaid.model.payment_initiation_optional_restriction_bacs import PaymentInitiationOptionalRestrictionBacs
@@ -1231,6 +1240,8 @@ from plaid.model.role import Role
 from plaid.model.role_detail import RoleDetail
 from plaid.model.roles import Roles
 from plaid.model.ruleset import Ruleset
+from plaid.model.sms_verification import SMSVerification
+from plaid.model.sms_verification_status import SMSVerificationStatus
 from plaid.model.sandbox_bank_income_fire_webhook_request import SandboxBankIncomeFireWebhookRequest
 from plaid.model.sandbox_bank_income_fire_webhook_response import SandboxBankIncomeFireWebhookResponse
 from plaid.model.sandbox_bank_income_webhook_fire_request_webhook_code import SandboxBankIncomeWebhookFireRequestWebhookCode
@@ -1367,7 +1378,15 @@ from plaid.model.taxpayer_identifier_type import TaxpayerIdentifierType
 from plaid.model.taxpayer_identifiers import TaxpayerIdentifiers
 from plaid.model.total import Total
 from plaid.model.total_canonical_description import TotalCanonicalDescription
+from plaid.model.total_inflow_amount import TotalInflowAmount
+from plaid.model.total_inflow_amount30d import TotalInflowAmount30d
+from plaid.model.total_inflow_amount60d import TotalInflowAmount60d
+from plaid.model.total_inflow_amount90d import TotalInflowAmount90d
 from plaid.model.total_monthly_income_insights import TotalMonthlyIncomeInsights
+from plaid.model.total_outflow_amount import TotalOutflowAmount
+from plaid.model.total_outflow_amount30d import TotalOutflowAmount30d
+from plaid.model.total_outflow_amount60d import TotalOutflowAmount60d
+from plaid.model.total_outflow_amount90d import TotalOutflowAmount90d
 from plaid.model.transaction import Transaction
 from plaid.model.transaction_all_of import TransactionAllOf
 from plaid.model.transaction_base import TransactionBase
@@ -1522,6 +1541,7 @@ from plaid.model.transfer_platform_person_create_request import TransferPlatform
 from plaid.model.transfer_platform_person_create_response import TransferPlatformPersonCreateResponse
 from plaid.model.transfer_platform_person_id_number import TransferPlatformPersonIDNumber
 from plaid.model.transfer_platform_person_name import TransferPlatformPersonName
+from plaid.model.transfer_platform_requirement import TransferPlatformRequirement
 from plaid.model.transfer_platform_requirement_submission import TransferPlatformRequirementSubmission
 from plaid.model.transfer_platform_requirement_submit_request import TransferPlatformRequirementSubmitRequest
 from plaid.model.transfer_platform_requirement_submit_response import TransferPlatformRequirementSubmitResponse
@@ -1609,6 +1629,8 @@ from plaid.model.verification_of_asset import VerificationOfAsset
 from plaid.model.verification_of_asset_response import VerificationOfAssetResponse
 from plaid.model.verification_refresh_status import VerificationRefreshStatus
 from plaid.model.verification_status import VerificationStatus
+from plaid.model.verify_sms_details import VerifySMSDetails
+from plaid.model.verify_sms_details_status import VerifySMSDetailsStatus
 from plaid.model.w2 import W2
 from plaid.model.w2_box12 import W2Box12
 from plaid.model.w2_box12_override import W2Box12Override
