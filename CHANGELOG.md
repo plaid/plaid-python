@@ -1,5 +1,42 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 29.0.0
+- Updating to OAS 2020-09-14_1.617.1
+
+## Breaking changes in this version
+- [Breaking] Removed the deprecated longest_gap_between_transactions, average_inflow_amount, and average_outflow_amount fields from the BaseReportAccountInsights object in the /cra/check_report/base_report/get response.
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.617.1
+- For Plaid Check: `date_of_birth` is now required within the `consumer_report_user_identity` object when creating or updating a user token.
+
+### 2020-09-14_1.617.0
+- [Breaking] Removed the deprecated longest_gap_between_transactions, average_inflow_amount, and average_outflow_amount fields from the BaseReportAccountInsights object in the /cra/check_report/base_report/get response.
+
+### 2020-09-14_1.616.0
+- Add `originating_fund_source` to `/wallet/transaction/execute` endpoint.
+
+### 2020-09-14_1.615.0
+- Add `account_details_401k` objects to `/investments/auth/get` endpoint.
+
+### 2020-09-14_1.614.1
+- Update `owners` field description for empty case
+
+### 2020-09-14_1.614.0
+- Add model for the new `retirement_401k` numbers object to the `InvestmentsAuthGetNumbers` schema.
+
+### 2020-09-14_1.613.0
+- Add `POST /signal/schedule` endpoint
+
+### 2025-01-27_1.611.0
+- Add `end_to_end_id` to `/payment_initiation/payment/get`
+
+### 2020-09-14_1.611.0
+- Add RfP to /transfer/capabilities/get
+
+### 2020-09-14_1.610.2
+- Update `cashflow_updates` docs to reflect proper cadence
+
 # 28.1.0
 - Updating to OAS 2020-09-14_1.610.1
 
@@ -63,7 +100,7 @@ endpoints.
 ### 2020-09-14_1.600.2
 - Update descriptions for `/network/status/get` request and response fields
 - Add `nullable: true` to mortgage `account_number` field in the `MortgageLiability` schema to reflect actual behavior.
-- Add `transactions_refresh` to `Products` array to reflect actual behavior; this field is not accepted as input to `/link/token/create` but can be part of supported products array in the `Institution` object. 
+- Add `transactions_refresh` to `Products` array to reflect actual behavior; this field is not accepted as input to `/link/token/create` but can be part of supported products array in the `Institution` object.
 
 ### 2020-09-14_1.600.1
 - `depository`+`cash management` Accounts are now eligible for Auth data for certain institutions
@@ -356,7 +393,7 @@ endpoints.
 - add `/issues/get`, `/issues/search`, and `/issues/subscribe` for Support API endpoints.
 
 ### 2020-09-14_1.563.0
-- Update fields on `item` object in `/item/get` response 
+- Update fields on `item` object in `/item/get` response
   - Add `consented_use_cases` field
   - Add `consented_data_scopes` field
   - Add `created_at` field
@@ -539,14 +576,14 @@ endpoints.
 
 ### 2020-09-14_1.535.2
 - Make some `CraBankIncomeSummary` fields visible.
-- 
+-
 ### 2020-09-14_1.535.1
 
 ### 2020-09-14_1.535.0
 - [Breaking for Go] Updated `consumer_report_user_identity` field in `/user/update` to be required to reflect actual API behavior.
 
 ### 2020-09-14_1.534.7
-- Add `stated_account_number_enabled` to `investments_auth` in `LinkTokenCreateRequest` 
+- Add `stated_account_number_enabled` to `investments_auth` in `LinkTokenCreateRequest`
 
 ### 2020-09-14_1.534.6
 - [Breaking] Updated base report endpoints and objects to include `cra` prefix
@@ -634,7 +671,7 @@ endpoints.
 ## Breaking changes in this version
 
 - [Breaking] Renamed `bank_income` to `report` in the `cra/check_report/income_insights/get` response
-- [Breaking] For Python only, updated certain fields (primarily ones used by Identity Verification and Monitor) to be represented as string types instead of classes. This is a side effect of a broader change to remove `minLength` verification to work around incorrect behavior in the Ruby client library when receiving `nil` for a type with a `minLength` set. Classes that have been replaced by strings in Python are: `ClientUserID`, `ClientUserIDNullable`, `DeprecatedClientUserID`, `EntityWatchlistScreeningName`, `EntityWatchlistScreeningProgramName`, `GenericCountryCode`, `GenericCountryCodeNullable`, `IdentityVerificationDocumentCountryCode`, `IndividualWatchlistScreeningProgramName`, `ReviewComment`, `SourceUID`, `WatchlistScreeningDocumentValue`, `WatchlistScreeningDocumentValueNullable`, and `WatchlistScreeningIndividualName`. 
+- [Breaking] For Python only, updated certain fields (primarily ones used by Identity Verification and Monitor) to be represented as string types instead of classes. This is a side effect of a broader change to remove `minLength` verification to work around incorrect behavior in the Ruby client library when receiving `nil` for a type with a `minLength` set. Classes that have been replaced by strings in Python are: `ClientUserID`, `ClientUserIDNullable`, `DeprecatedClientUserID`, `EntityWatchlistScreeningName`, `EntityWatchlistScreeningProgramName`, `GenericCountryCode`, `GenericCountryCodeNullable`, `IdentityVerificationDocumentCountryCode`, `IndividualWatchlistScreeningProgramName`, `ReviewComment`, `SourceUID`, `WatchlistScreeningDocumentValue`, `WatchlistScreeningDocumentValueNullable`, and `WatchlistScreeningIndividualName`.
 
 
 ### 2020-09-14_1.520.0
@@ -648,7 +685,7 @@ endpoints.
 
 ### 2020-09-14_1.524.1
 
-- [Breaking] For Python only, updated certain fields (primarily ones used by Identity Verification and Monitor) to be represented as string types instead of classes. This is a side effect of a broader change to remove `minLength` verification to work around incorrect behavior in the Ruby client library when receiving `nil` for a type with a `minLength` set. Classes that have been replaced by strings in Python are: `ClientUserID`, `ClientUserIDNullable`, `DeprecatedClientUserID`, `EntityWatchlistScreeningName`, `EntityWatchlistScreeningProgramName`, `GenericCountryCode`, `GenericCountryCodeNullable`, `IdentityVerificationDocumentCountryCode`, `IndividualWatchlistScreeningProgramName`, `ReviewComment`, `SourceUID`, `WatchlistScreeningDocumentValue`, `WatchlistScreeningDocumentValueNullable`, and `WatchlistScreeningIndividualName`. 
+- [Breaking] For Python only, updated certain fields (primarily ones used by Identity Verification and Monitor) to be represented as string types instead of classes. This is a side effect of a broader change to remove `minLength` verification to work around incorrect behavior in the Ruby client library when receiving `nil` for a type with a `minLength` set. Classes that have been replaced by strings in Python are: `ClientUserID`, `ClientUserIDNullable`, `DeprecatedClientUserID`, `EntityWatchlistScreeningName`, `EntityWatchlistScreeningProgramName`, `GenericCountryCode`, `GenericCountryCodeNullable`, `IdentityVerificationDocumentCountryCode`, `IndividualWatchlistScreeningProgramName`, `ReviewComment`, `SourceUID`, `WatchlistScreeningDocumentValue`, `WatchlistScreeningDocumentValueNullable`, and `WatchlistScreeningIndividualName`.
 
 ### 2020-09-14_1.524.0
 
@@ -1074,7 +1111,7 @@ endpoints.
 - Internal changes only
 
 ### 2020-09-14_1.483.0
-- Added net new fields to StatementsAccount object: `account_mask`, `account_subtype`, `account_official_name` 
+- Added net new fields to StatementsAccount object: `account_mask`, `account_subtype`, `account_official_name`
 
 # 18.3.0
 - Updating to OAS 2020-09-14_1.482.3

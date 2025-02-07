@@ -294,6 +294,9 @@ plaid/model/cra_cashflow_insights_report.py
 plaid/model/cra_check_report_base_report_get_request.py
 plaid/model/cra_check_report_base_report_get_response.py
 plaid/model/cra_check_report_cashflow_insights_get_options.py
+plaid/model/cra_check_report_cashflow_insights_get_request.py
+plaid/model/cra_check_report_cashflow_insights_get_response.py
+plaid/model/cra_check_report_create_base_report_options.py
 plaid/model/cra_check_report_create_request.py
 plaid/model/cra_check_report_create_response.py
 plaid/model/cra_check_report_failed_webhook.py
@@ -728,6 +731,9 @@ plaid/model/investment_holdings_get_request_options.py
 plaid/model/investment_transaction.py
 plaid/model/investment_transaction_subtype.py
 plaid/model/investment_transaction_type.py
+plaid/model/investments_auth401k_contribution_details.py
+plaid/model/investments_auth401k_fee_details.py
+plaid/model/investments_auth_account_details401k.py
 plaid/model/investments_auth_data_sources.py
 plaid/model/investments_auth_get_numbers.py
 plaid/model/investments_auth_get_request.py
@@ -857,6 +863,7 @@ plaid/model/link_session_success_metadata_account.py
 plaid/model/link_session_success_metadata_institution.py
 plaid/model/link_session_success_metadata_transfer_status.py
 plaid/model/link_token_account_filters.py
+plaid/model/link_token_cashflow_report.py
 plaid/model/link_token_create_card_switch.py
 plaid/model/link_token_create_credit_filter.py
 plaid/model/link_token_create_depository_filter.py
@@ -956,8 +963,10 @@ plaid/model/numbers_iban_nullable.py
 plaid/model/numbers_international.py
 plaid/model/numbers_international_iban.py
 plaid/model/numbers_international_nullable.py
+plaid/model/numbers_retirement401k.py
 plaid/model/omittable_transfer_type.py
 plaid/model/option_contract.py
+plaid/model/originating_fund_source.py
 plaid/model/originator.py
 plaid/model/originator_expected_transfer_frequency.py
 plaid/model/other_account_subtype.py
@@ -1200,6 +1209,7 @@ plaid/model/pslf_status.py
 plaid/model/recaptcha_required_error.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
+plaid/model/recommendation_string.py
 plaid/model/recurrence.py
 plaid/model/recurring_cancelled_webhook.py
 plaid/model/recurring_frequency.py
@@ -1348,6 +1358,10 @@ plaid/model/signal_prepare_request.py
 plaid/model/signal_prepare_response.py
 plaid/model/signal_return_report_request.py
 plaid/model/signal_return_report_response.py
+plaid/model/signal_schedule_default_payment_method.py
+plaid/model/signal_schedule_recommendation.py
+plaid/model/signal_schedule_request.py
+plaid/model/signal_schedule_response.py
 plaid/model/signal_score.py
 plaid/model/signal_scores.py
 plaid/model/signal_user.py
@@ -1474,6 +1488,7 @@ plaid/model/transfer_cancel_request.py
 plaid/model/transfer_cancel_response.py
 plaid/model/transfer_capabilities_get_request.py
 plaid/model/transfer_capabilities_get_response.py
+plaid/model/transfer_capabilities_get_rf_p.py
 plaid/model/transfer_capabilities_get_rtp.py
 plaid/model/transfer_configuration_get_request.py
 plaid/model/transfer_configuration_get_response.py
