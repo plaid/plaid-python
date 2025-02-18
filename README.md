@@ -3,7 +3,6 @@
 The official python client library for the [Plaid API][1], which is generated from our [OpenAPI spec](https://github.com/plaid/plaid-openapi).
 
 ## Table of Contents
-
 - [Installation](#installation)
 - [Versioning](#versioning)
 - [Getting Started](#getting-started)
