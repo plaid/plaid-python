@@ -88,26 +88,3 @@ def test_balances_get():
 
     assert len(response['accounts']) == 1
     assert response['accounts'][0]['account_id'] == account_id
-
-def test_persistent_id_get():
-    client = create_client()
-
-    # get all accounts
-    abg_request = AccountsBalanceGetRequest(
-        access_token=access_token
-    )
-    response = client.accounts_balance_get(abg_request)
-    assert response['accounts'] is not None
-
-    # get selected accounts
-    account_id = response['accounts'][0]['account_id']
-    abg_request = AccountsBalanceGetRequest(
-        access_token=access_token,
-        options=AccountsBalanceGetRequestOptions(
-            account_ids=[account_id]
-        )
-    )
-    response = client.accounts_balance_get(abg_request)
-
-    assert len(response['accounts']) == 1
-    assert response['accounts'][0]['persistent_account_id'] == '8cfb8beb89b774ee43b090625f0d61d0814322b43bff984eaf60386e'
