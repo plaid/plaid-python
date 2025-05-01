@@ -245,6 +245,8 @@ from plaid.model.beacon_user_status_updated_webhook import BeaconUserStatusUpdat
 from plaid.model.beacon_user_update_request import BeaconUserUpdateRequest
 from plaid.model.beacon_user_update_request_data import BeaconUserUpdateRequestData
 from plaid.model.beacon_user_update_response import BeaconUserUpdateResponse
+from plaid.model.business_account import BusinessAccount
+from plaid.model.business_account_all_of import BusinessAccountAllOf
 from plaid.model.business_finance_category import BusinessFinanceCategory
 from plaid.model.cra_loans_register_request import CRALoansRegisterRequest
 from plaid.model.cash_flow_updates_expected_deposit_missed_webhook import CashFlowUpdatesExpectedDepositMissedWebhook
@@ -988,6 +990,16 @@ from plaid.model.numbers_international import NumbersInternational
 from plaid.model.numbers_international_iban import NumbersInternationalIBAN
 from plaid.model.numbers_international_nullable import NumbersInternationalNullable
 from plaid.model.numbers_retirement401k import NumbersRetirement401k
+from plaid.model.o_auth_error_code import OAuthErrorCode
+from plaid.model.o_auth_error_response import OAuthErrorResponse
+from plaid.model.o_auth_grant_type import OAuthGrantType
+from plaid.model.o_auth_introspect_request import OAuthIntrospectRequest
+from plaid.model.o_auth_introspect_response import OAuthIntrospectResponse
+from plaid.model.o_auth_revoke_request import OAuthRevokeRequest
+from plaid.model.o_auth_revoke_response import OAuthRevokeResponse
+from plaid.model.o_auth_subject_token_type import OAuthSubjectTokenType
+from plaid.model.o_auth_token_request import OAuthTokenRequest
+from plaid.model.o_auth_token_response import OAuthTokenResponse
 from plaid.model.omittable_transfer_type import OmittableTransferType
 from plaid.model.option_contract import OptionContract
 from plaid.model.originating_fund_source import OriginatingFundSource
