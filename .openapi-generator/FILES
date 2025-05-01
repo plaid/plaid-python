@@ -242,6 +242,8 @@ plaid/model/beacon_user_status_updated_webhook.py
 plaid/model/beacon_user_update_request.py
 plaid/model/beacon_user_update_request_data.py
 plaid/model/beacon_user_update_response.py
+plaid/model/business_account.py
+plaid/model/business_account_all_of.py
 plaid/model/business_finance_category.py
 plaid/model/cash_flow_updates_expected_deposit_missed_webhook.py
 plaid/model/cash_flow_updates_insights_webhook.py
@@ -985,6 +987,16 @@ plaid/model/numbers_international.py
 plaid/model/numbers_international_iban.py
 plaid/model/numbers_international_nullable.py
 plaid/model/numbers_retirement401k.py
+plaid/model/o_auth_error_code.py
+plaid/model/o_auth_error_response.py
+plaid/model/o_auth_grant_type.py
+plaid/model/o_auth_introspect_request.py
+plaid/model/o_auth_introspect_response.py
+plaid/model/o_auth_revoke_request.py
+plaid/model/o_auth_revoke_response.py
+plaid/model/o_auth_subject_token_type.py
+plaid/model/o_auth_token_request.py
+plaid/model/o_auth_token_response.py
 plaid/model/omittable_transfer_type.py
 plaid/model/option_contract.py
 plaid/model/originating_fund_source.py
