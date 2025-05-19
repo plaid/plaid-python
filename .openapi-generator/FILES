@@ -254,9 +254,12 @@ plaid/model/cash_flow_updates_new_loan_payment_webhook.py
 plaid/model/cash_flow_updates_nsf_webhook.py
 plaid/model/cashflow_attributes_version.py
 plaid/model/cashflow_report_get_request.py
+plaid/model/cashflow_report_get_request_options.py
 plaid/model/cashflow_report_get_response.py
+plaid/model/cashflow_report_payment_meta.py
 plaid/model/cashflow_report_refresh_request.py
 plaid/model/cashflow_report_refresh_response.py
+plaid/model/cashflow_report_transaction.py
 plaid/model/categories_get_response.py
 plaid/model/category.py
 plaid/model/category_insight_details.py
