@@ -260,6 +260,9 @@ plaid/model/cashflow_report_payment_meta.py
 plaid/model/cashflow_report_refresh_request.py
 plaid/model/cashflow_report_refresh_response.py
 plaid/model/cashflow_report_transaction.py
+plaid/model/cashflow_report_transactions_get_request.py
+plaid/model/cashflow_report_transactions_get_request_options.py
+plaid/model/cashflow_report_transactions_get_response.py
 plaid/model/categories_get_response.py
 plaid/model/category.py
 plaid/model/category_insight_details.py
@@ -319,6 +322,7 @@ plaid/model/cra_check_report_failed_webhook.py
 plaid/model/cra_check_report_freddie_mac_get_request.py
 plaid/model/cra_check_report_freddie_mac_get_response.py
 plaid/model/cra_check_report_freddie_mac_verification_of_assets_deal.py
+plaid/model/cra_check_report_gse_options.py
 plaid/model/cra_check_report_income_insights_get_request.py
 plaid/model/cra_check_report_income_insights_get_response.py
 plaid/model/cra_check_report_network_insights_get_request.py
@@ -513,6 +517,7 @@ plaid/model/credit_session_results.py
 plaid/model/credit_sessions_get_request.py
 plaid/model/credit_sessions_get_response.py
 plaid/model/credit_w2.py
+plaid/model/custom_sandbox_transaction.py
 plaid/model/customer_initiated_return_risk.py
 plaid/model/customer_initiated_risk_tier.py
 plaid/model/dashboard_user.py
@@ -629,6 +634,7 @@ plaid/model/fraud_check_outcome_with_no_data.py
 plaid/model/generic_screening_hit_location_items.py
 plaid/model/get_recipient_response.py
 plaid/model/get_recipients_response.py
+plaid/model/gse_report_type.py
 plaid/model/health_incident.py
 plaid/model/hidden_match_summary_code.py
 plaid/model/historical_annual_income.py
@@ -881,6 +887,8 @@ plaid/model/link_session_exit_metadata_institution.py
 plaid/model/link_session_finished_webhook.py
 plaid/model/link_session_item_add_result.py
 plaid/model/link_session_payroll_income_result.py
+plaid/model/link_session_protect_result.py
+plaid/model/link_session_protect_result_fraud_attributes.py
 plaid/model/link_session_results.py
 plaid/model/link_session_success.py
 plaid/model/link_session_success_metadata.py
@@ -904,6 +912,7 @@ plaid/model/link_token_create_request_auth.py
 plaid/model/link_token_create_request_base_report.py
 plaid/model/link_token_create_request_cra_options.py
 plaid/model/link_token_create_request_cra_options_base_report.py
+plaid/model/link_token_create_request_cra_options_base_report_gse_options.py
 plaid/model/link_token_create_request_cra_options_cashflow_insights.py
 plaid/model/link_token_create_request_cra_options_partner_insights.py
 plaid/model/link_token_create_request_credit_partner_insights.py
@@ -1170,6 +1179,10 @@ plaid/model/po_box_status.py
 plaid/model/prism_cash_score.py
 plaid/model/prism_cash_score_metadata.py
 plaid/model/prism_cash_score_version.py
+plaid/model/prism_detect.py
+plaid/model/prism_detect_version.py
+plaid/model/prism_extend.py
+plaid/model/prism_extend_version.py
 plaid/model/prism_first_detect.py
 plaid/model/prism_first_detect_version.py
 plaid/model/prism_insights.py
@@ -1330,6 +1343,8 @@ plaid/model/sandbox_public_token_create_request_options_income_verification.py
 plaid/model/sandbox_public_token_create_request_options_statements.py
 plaid/model/sandbox_public_token_create_request_options_transactions.py
 plaid/model/sandbox_public_token_create_response.py
+plaid/model/sandbox_transactions_create_request.py
+plaid/model/sandbox_transactions_create_response.py
 plaid/model/sandbox_transfer_fire_webhook_request.py
 plaid/model/sandbox_transfer_fire_webhook_response.py
 plaid/model/sandbox_transfer_ledger_deposit_simulate_request.py
@@ -1675,6 +1690,9 @@ plaid/model/transfer_user_in_request.py
 plaid/model/transfer_user_in_request_deprecated.py
 plaid/model/transfer_user_in_response.py
 plaid/model/transfer_wire_details.py
+plaid/model/trust_index.py
+plaid/model/trust_index_subscore.py
+plaid/model/trust_index_subscores.py
 plaid/model/trusted_device_data.py
 plaid/model/update_entity_screening_request_search_terms.py
 plaid/model/update_individual_screening_request_search_terms.py
