@@ -17,7 +17,8 @@ package-clean:
 # Build a new package into the /dist directory
 .PHONY: package-build
 package-build:
-	python setup.py sdist
+	pip install build
+	python -m build
 
 # Test new package before publish
 .PHONY: package-check
