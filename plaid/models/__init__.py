@@ -9,6 +9,9 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from plaid.model.aamva_analysis import AAMVAAnalysis
+from plaid.model.aamva_detailed_match_result import AAMVADetailedMatchResult
+from plaid.model.aamva_match_result import AAMVAMatchResult
 from plaid.model.ach_class import ACHClass
 from plaid.model.apr import APR
 from plaid.model.account_access import AccountAccess
@@ -61,6 +64,9 @@ from plaid.model.asset import Asset
 from plaid.model.asset_detail import AssetDetail
 from plaid.model.asset_holder import AssetHolder
 from plaid.model.asset_holder_name import AssetHolderName
+from plaid.model.asset_holding import AssetHolding
+from plaid.model.asset_holdings import AssetHoldings
+from plaid.model.asset_investment_transaction_type import AssetInvestmentTransactionType
 from plaid.model.asset_owner import AssetOwner
 from plaid.model.asset_owners import AssetOwners
 from plaid.model.asset_report import AssetReport
@@ -116,6 +122,10 @@ from plaid.model.auth_get_response import AuthGetResponse
 from plaid.model.auth_metadata import AuthMetadata
 from plaid.model.auth_supported_methods import AuthSupportedMethods
 from plaid.model.auth_update_types import AuthUpdateTypes
+from plaid.model.auth_verify_numbers_ach import AuthVerifyNumbersACH
+from plaid.model.auth_verify_request import AuthVerifyRequest
+from plaid.model.auth_verify_request_numbers import AuthVerifyRequestNumbers
+from plaid.model.auth_verify_response import AuthVerifyResponse
 from plaid.model.automatically_verified_webhook import AutomaticallyVerifiedWebhook
 from plaid.model.bank_income_complete_result import BankIncomeCompleteResult
 from plaid.model.bank_income_complete_webhook import BankIncomeCompleteWebhook
@@ -287,6 +297,7 @@ from plaid.model.cause import Cause
 from plaid.model.cause_all_of import CauseAllOf
 from plaid.model.check_report_warning import CheckReportWarning
 from plaid.model.check_report_warning_code import CheckReportWarningCode
+from plaid.model.client_customization import ClientCustomization
 from plaid.model.client_provided_enhanced_transaction import ClientProvidedEnhancedTransaction
 from plaid.model.client_provided_enriched_transaction import ClientProvidedEnrichedTransaction
 from plaid.model.client_provided_raw_transaction import ClientProvidedRawTransaction
@@ -866,6 +877,7 @@ from plaid.model.latest_scored_event import LatestScoredEvent
 from plaid.model.layer_authentication_passed_webhook import LayerAuthenticationPassedWebhook
 from plaid.model.ledger_deposit_idempotency_key import LedgerDepositIdempotencyKey
 from plaid.model.ledger_distribute_idempotency_key import LedgerDistributeIdempotencyKey
+from plaid.model.ledger_event_source_type import LedgerEventSourceType
 from plaid.model.ledger_withdraw_idempotency_key import LedgerWithdrawIdempotencyKey
 from plaid.model.liabilities_account_ids_with_updated_liabilities import LiabilitiesAccountIdsWithUpdatedLiabilities
 from plaid.model.liabilities_default_update_webhook import LiabilitiesDefaultUpdateWebhook
@@ -1489,8 +1501,6 @@ from plaid.model.sweep_status import SweepStatus
 from plaid.model.sweep_trigger import SweepTrigger
 from plaid.model.sync_updates_available_webhook import SyncUpdatesAvailableWebhook
 from plaid.model.synthetic_fraud import SyntheticFraud
-from plaid.model.tch_notification import TCHNotification
-from plaid.model.tch_notification_response import TCHNotificationResponse
 from plaid.model.taxform import Taxform
 from plaid.model.taxpayer_id import TaxpayerID
 from plaid.model.taxpayer_identifier import TaxpayerIdentifier
@@ -1639,6 +1649,9 @@ from plaid.model.transfer_ledger_deposit_request import TransferLedgerDepositReq
 from plaid.model.transfer_ledger_deposit_response import TransferLedgerDepositResponse
 from plaid.model.transfer_ledger_distribute_request import TransferLedgerDistributeRequest
 from plaid.model.transfer_ledger_distribute_response import TransferLedgerDistributeResponse
+from plaid.model.transfer_ledger_event import TransferLedgerEvent
+from plaid.model.transfer_ledger_event_list_request import TransferLedgerEventListRequest
+from plaid.model.transfer_ledger_event_list_response import TransferLedgerEventListResponse
 from plaid.model.transfer_ledger_get_request import TransferLedgerGetRequest
 from plaid.model.transfer_ledger_get_response import TransferLedgerGetResponse
 from plaid.model.transfer_ledger_sweep_simulate_event_type import TransferLedgerSweepSimulateEventType
@@ -1749,6 +1762,8 @@ from plaid.model.user_financial_data_refresh_response import UserFinancialDataRe
 from plaid.model.user_id_number import UserIDNumber
 from plaid.model.user_items_get_request import UserItemsGetRequest
 from plaid.model.user_items_get_response import UserItemsGetResponse
+from plaid.model.user_items_list_request import UserItemsListRequest
+from plaid.model.user_items_list_response import UserItemsListResponse
 from plaid.model.user_permission_revoked_webhook import UserPermissionRevokedWebhook
 from plaid.model.user_remove_request import UserRemoveRequest
 from plaid.model.user_remove_response import UserRemoveResponse
