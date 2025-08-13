@@ -6,6 +6,9 @@ plaid/apis/__init__.py
 plaid/configuration.py
 plaid/exceptions.py
 plaid/model/__init__.py
+plaid/model/aamva_analysis.py
+plaid/model/aamva_detailed_match_result.py
+plaid/model/aamva_match_result.py
 plaid/model/account_access.py
 plaid/model/account_assets.py
 plaid/model/account_balance.py
@@ -58,6 +61,9 @@ plaid/model/asset.py
 plaid/model/asset_detail.py
 plaid/model/asset_holder.py
 plaid/model/asset_holder_name.py
+plaid/model/asset_holding.py
+plaid/model/asset_holdings.py
+plaid/model/asset_investment_transaction_type.py
 plaid/model/asset_owner.py
 plaid/model/asset_owners.py
 plaid/model/asset_report.py
@@ -113,6 +119,10 @@ plaid/model/auth_get_response.py
 plaid/model/auth_metadata.py
 plaid/model/auth_supported_methods.py
 plaid/model/auth_update_types.py
+plaid/model/auth_verify_numbers_ach.py
+plaid/model/auth_verify_request.py
+plaid/model/auth_verify_request_numbers.py
+plaid/model/auth_verify_response.py
 plaid/model/automatically_verified_webhook.py
 plaid/model/bank_income_complete_result.py
 plaid/model/bank_income_complete_webhook.py
@@ -283,6 +293,7 @@ plaid/model/cause.py
 plaid/model/cause_all_of.py
 plaid/model/check_report_warning.py
 plaid/model/check_report_warning_code.py
+plaid/model/client_customization.py
 plaid/model/client_provided_enhanced_transaction.py
 plaid/model/client_provided_enriched_transaction.py
 plaid/model/client_provided_raw_transaction.py
@@ -863,6 +874,7 @@ plaid/model/latest_scored_event.py
 plaid/model/layer_authentication_passed_webhook.py
 plaid/model/ledger_deposit_idempotency_key.py
 plaid/model/ledger_distribute_idempotency_key.py
+plaid/model/ledger_event_source_type.py
 plaid/model/ledger_withdraw_idempotency_key.py
 plaid/model/liabilities_account_ids_with_updated_liabilities.py
 plaid/model/liabilities_default_update_webhook.py
@@ -1491,8 +1503,6 @@ plaid/model/taxpayer_id.py
 plaid/model/taxpayer_identifier.py
 plaid/model/taxpayer_identifier_type.py
 plaid/model/taxpayer_identifiers.py
-plaid/model/tch_notification.py
-plaid/model/tch_notification_response.py
 plaid/model/total.py
 plaid/model/total_canonical_description.py
 plaid/model/total_inflow_amount.py
@@ -1636,6 +1646,9 @@ plaid/model/transfer_ledger_deposit_request.py
 plaid/model/transfer_ledger_deposit_response.py
 plaid/model/transfer_ledger_distribute_request.py
 plaid/model/transfer_ledger_distribute_response.py
+plaid/model/transfer_ledger_event.py
+plaid/model/transfer_ledger_event_list_request.py
+plaid/model/transfer_ledger_event_list_response.py
 plaid/model/transfer_ledger_get_request.py
 plaid/model/transfer_ledger_get_response.py
 plaid/model/transfer_ledger_sweep_simulate_event_type.py
@@ -1746,6 +1759,8 @@ plaid/model/user_financial_data_refresh_response.py
 plaid/model/user_id_number.py
 plaid/model/user_items_get_request.py
 plaid/model/user_items_get_response.py
+plaid/model/user_items_list_request.py
+plaid/model/user_items_list_response.py
 plaid/model/user_permission_revoked_webhook.py
 plaid/model/user_remove_request.py
 plaid/model/user_remove_response.py
