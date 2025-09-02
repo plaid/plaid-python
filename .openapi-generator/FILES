@@ -359,6 +359,9 @@ plaid/model/cra_check_report_partner_insights_get_partner_insights.py
 plaid/model/cra_check_report_partner_insights_get_request.py
 plaid/model/cra_check_report_partner_insights_get_response.py
 plaid/model/cra_check_report_pdf_get_request.py
+plaid/model/cra_check_report_plaid_credit_score_get_options.py
+plaid/model/cra_check_report_plaid_credit_score_get_request.py
+plaid/model/cra_check_report_plaid_credit_score_get_response.py
 plaid/model/cra_check_report_ready_webhook.py
 plaid/model/cra_check_report_verification_get_employment_refresh_options.py
 plaid/model/cra_check_report_verification_get_report_type.py
@@ -409,6 +412,7 @@ plaid/model/cra_partner_insights_item_account.py
 plaid/model/cra_partner_insights_item_account_metadata.py
 plaid/model/cra_partner_insights_prism.py
 plaid/model/cra_pdf_add_ons.py
+plaid/model/cra_plaid_credit_score_report.py
 plaid/model/cra_prediction_interval.py
 plaid/model/cra_upgrade_failed_webhook.py
 plaid/model/cra_verification_report.py
@@ -849,6 +853,7 @@ plaid/model/item_public_token_create_request.py
 plaid/model/item_public_token_create_response.py
 plaid/model/item_public_token_exchange_request.py
 plaid/model/item_public_token_exchange_response.py
+plaid/model/item_remove_reason_code.py
 plaid/model/item_remove_request.py
 plaid/model/item_remove_response.py
 plaid/model/item_status.py
@@ -946,6 +951,7 @@ plaid/model/link_token_create_request_cra_options_base_report.py
 plaid/model/link_token_create_request_cra_options_base_report_gse_options.py
 plaid/model/link_token_create_request_cra_options_cashflow_insights.py
 plaid/model/link_token_create_request_cra_options_partner_insights.py
+plaid/model/link_token_create_request_cra_options_plaid_credit_score.py
 plaid/model/link_token_create_request_credit_partner_insights.py
 plaid/model/link_token_create_request_deposit_switch.py
 plaid/model/link_token_create_request_employment.py
@@ -1202,6 +1208,7 @@ plaid/model/physical_document_extracted_data_analysis.py
 plaid/model/physical_document_images.py
 plaid/model/plaid_check_score.py
 plaid/model/plaid_check_score_version.py
+plaid/model/plaid_credit_score.py
 plaid/model/plaid_error.py
 plaid/model/plaid_error_type.py
 plaid/model/platform_ids.py
@@ -1757,6 +1764,8 @@ plaid/model/user_data_overview.py
 plaid/model/user_financial_data_refresh_request.py
 plaid/model/user_financial_data_refresh_response.py
 plaid/model/user_id_number.py
+plaid/model/user_items_associate_request.py
+plaid/model/user_items_associate_response.py
 plaid/model/user_items_get_request.py
 plaid/model/user_items_get_response.py
 plaid/model/user_items_list_request.py
