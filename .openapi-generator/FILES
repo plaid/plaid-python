@@ -26,6 +26,7 @@ plaid/model/account_identity_match_score.py
 plaid/model/account_identity_match_score_all_of.py
 plaid/model/account_ids_with_updated_auth.py
 plaid/model/account_ids_with_updated_identity.py
+plaid/model/account_insights.py
 plaid/model/account_product_access.py
 plaid/model/account_product_access_nullable.py
 plaid/model/account_selection_cardinality.py
@@ -53,6 +54,8 @@ plaid/model/address_data_nullable_no_required_fields.py
 plaid/model/address_match_score.py
 plaid/model/address_nullable.py
 plaid/model/address_purpose_label.py
+plaid/model/affordability_insights.py
+plaid/model/amount_with_currency.py
 plaid/model/application.py
 plaid/model/application_get_request.py
 plaid/model/application_get_response.py
@@ -72,6 +75,7 @@ plaid/model/asset_report_add_ons.py
 plaid/model/asset_report_audit_copy_create_request.py
 plaid/model/asset_report_audit_copy_create_response.py
 plaid/model/asset_report_audit_copy_get_request.py
+plaid/model/asset_report_audit_copy_pdf_get_request.py
 plaid/model/asset_report_audit_copy_remove_request.py
 plaid/model/asset_report_audit_copy_remove_response.py
 plaid/model/asset_report_create_request.py
@@ -131,6 +135,7 @@ plaid/model/bank_income_refresh_complete_webhook.py
 plaid/model/bank_income_refresh_update_webhook.py
 plaid/model/bank_initiated_return_risk.py
 plaid/model/bank_initiated_risk_tier.py
+plaid/model/bank_penalties_indicators.py
 plaid/model/bank_transfer.py
 plaid/model/bank_transfer_balance.py
 plaid/model/bank_transfer_balance_get_request.py
@@ -177,6 +182,10 @@ plaid/model/base_report_attributes.py
 plaid/model/base_report_average_flow_insights.py
 plaid/model/base_report_average_monthly_balances.py
 plaid/model/base_report_historical_balance.py
+plaid/model/base_report_investment_holding.py
+plaid/model/base_report_investment_security.py
+plaid/model/base_report_investment_transaction.py
+plaid/model/base_report_investments.py
 plaid/model/base_report_item.py
 plaid/model/base_report_longest_gap_insights.py
 plaid/model/base_report_number_flow_insights.py
@@ -248,6 +257,16 @@ plaid/model/beacon_user_status_updated_webhook.py
 plaid/model/beacon_user_update_request.py
 plaid/model/beacon_user_update_request_data.py
 plaid/model/beacon_user_update_response.py
+plaid/model/beta_partner_customer_v1_create_request.py
+plaid/model/beta_partner_customer_v1_create_response.py
+plaid/model/beta_partner_customer_v1_enable_request.py
+plaid/model/beta_partner_customer_v1_enable_response.py
+plaid/model/beta_partner_customer_v1_get_request.py
+plaid/model/beta_partner_customer_v1_get_response.py
+plaid/model/beta_partner_customer_v1_update_request.py
+plaid/model/beta_partner_customer_v1_update_response.py
+plaid/model/beta_partner_end_customer.py
+plaid/model/beta_partner_end_customer_with_secrets.py
 plaid/model/business_account.py
 plaid/model/business_account_all_of.py
 plaid/model/business_finance_category.py
@@ -287,6 +306,7 @@ plaid/model/cashflow_report_transactions_get_request_options.py
 plaid/model/cashflow_report_transactions_get_response.py
 plaid/model/categories_get_response.py
 plaid/model/category.py
+plaid/model/category_expenses.py
 plaid/model/category_insight_details.py
 plaid/model/category_insights.py
 plaid/model/cause.py
@@ -360,6 +380,7 @@ plaid/model/cra_check_report_income_insights_get_response.py
 plaid/model/cra_check_report_lend_score_get_options.py
 plaid/model/cra_check_report_lend_score_get_request.py
 plaid/model/cra_check_report_lend_score_get_response.py
+plaid/model/cra_check_report_network_insights_get_options.py
 plaid/model/cra_check_report_network_insights_get_request.py
 plaid/model/cra_check_report_network_insights_get_response.py
 plaid/model/cra_check_report_partner_insights_get_options.py
@@ -372,6 +393,8 @@ plaid/model/cra_check_report_verification_get_employment_refresh_options.py
 plaid/model/cra_check_report_verification_get_report_type.py
 plaid/model/cra_check_report_verification_get_request.py
 plaid/model/cra_check_report_verification_get_response.py
+plaid/model/cra_check_report_verification_pdf_get_request.py
+plaid/model/cra_check_report_verification_pdf_report_type.py
 plaid/model/cra_employment_refresh_report.py
 plaid/model/cra_employment_refresh_report_account.py
 plaid/model/cra_employment_refresh_report_item.py
@@ -632,6 +655,8 @@ plaid/model/entity_watchlist_screening_hit.py
 plaid/model/entity_watchlist_screening_review.py
 plaid/model/entity_watchlist_screening_search_terms.py
 plaid/model/entity_watchlist_search_terms.py
+plaid/model/expenditure_insights.py
+plaid/model/expenditure_summary.py
 plaid/model/expiration_date.py
 plaid/model/extended_recipient_metadata.py
 plaid/model/extended_recipient_metadata_all_of.py
@@ -669,6 +694,7 @@ plaid/model/fraud_analysis_details.py
 plaid/model/fraud_attributes.py
 plaid/model/fraud_check_outcome.py
 plaid/model/fraud_check_outcome_with_no_data.py
+plaid/model/gambling_indicators.py
 plaid/model/generic_screening_hit_location_items.py
 plaid/model/get_recipient_response.py
 plaid/model/get_recipients_response.py
@@ -744,6 +770,7 @@ plaid/model/image_quality_outcome.py
 plaid/model/incident_update.py
 plaid/model/income_breakdown.py
 plaid/model/income_breakdown_type.py
+plaid/model/income_insights.py
 plaid/model/income_override.py
 plaid/model/income_sources_counts.py
 plaid/model/income_summary.py
@@ -960,6 +987,7 @@ plaid/model/link_token_create_request_cra_options_base_report.py
 plaid/model/link_token_create_request_cra_options_base_report_gse_options.py
 plaid/model/link_token_create_request_cra_options_cashflow_insights.py
 plaid/model/link_token_create_request_cra_options_lend_score.py
+plaid/model/link_token_create_request_cra_options_network_insights.py
 plaid/model/link_token_create_request_cra_options_partner_insights.py
 plaid/model/link_token_create_request_credit_partner_insights.py
 plaid/model/link_token_create_request_deposit_switch.py
@@ -992,11 +1020,13 @@ plaid/model/link_user_delivery_status_webhook.py
 plaid/model/loan.py
 plaid/model/loan_account_subtype.py
 plaid/model/loan_account_subtypes.py
+plaid/model/loan_disbursements_indicators.py
 plaid/model/loan_filter.py
 plaid/model/loan_identifier.py
 plaid/model/loan_identifier_type.py
 plaid/model/loan_identifiers.py
 plaid/model/loan_payments_counts.py
+plaid/model/loan_payments_indicators.py
 plaid/model/loan_payments_merchant_counts.py
 plaid/model/loans.py
 plaid/model/location.py
@@ -1013,16 +1043,21 @@ plaid/model/monitoring_insights_item_status.py
 plaid/model/monitoring_insights_status.py
 plaid/model/monitoring_item_status_code.py
 plaid/model/monitoring_loan_insights.py
+plaid/model/monthly_average.py
+plaid/model/monthly_summary.py
 plaid/model/mortgage_interest_rate.py
 plaid/model/mortgage_liability.py
 plaid/model/mortgage_property_address.py
 plaid/model/multi_document_risk_signal.py
 plaid/model/name_match_score.py
+plaid/model/negative_balance_insights.py
+plaid/model/negative_balance_occurrence.py
 plaid/model/net_pay.py
 plaid/model/network_insights_item.py
 plaid/model/network_insights_report.py
 plaid/model/network_insights_report_get_request.py
 plaid/model/network_insights_report_get_response.py
+plaid/model/network_insights_version.py
 plaid/model/network_status_get_request.py
 plaid/model/network_status_get_response.py
 plaid/model/network_status_get_response_layer.py
@@ -1062,6 +1097,7 @@ plaid/model/originator_expected_transfer_frequency.py
 plaid/model/other_account_subtype.py
 plaid/model/other_account_subtypes.py
 plaid/model/other_filter.py
+plaid/model/outlier_transactions_insights.py
 plaid/model/override_account_type.py
 plaid/model/override_accounts.py
 plaid/model/owner.py
@@ -1081,7 +1117,12 @@ plaid/model/partner_customer_remove_response.py
 plaid/model/partner_end_customer.py
 plaid/model/partner_end_customer_address.py
 plaid/model/partner_end_customer_assets_under_management.py
+plaid/model/partner_end_customer_bank_addendum_acceptance.py
 plaid/model/partner_end_customer_billing_contact.py
+plaid/model/partner_end_customer_cra_purposes.py
+plaid/model/partner_end_customer_cra_questionnaire.py
+plaid/model/partner_end_customer_cra_use_case.py
+plaid/model/partner_end_customer_cra_use_cases.py
 plaid/model/partner_end_customer_customer_support_info.py
 plaid/model/partner_end_customer_flowdown_status.py
 plaid/model/partner_end_customer_o_auth_institution.py
@@ -1089,7 +1130,11 @@ plaid/model/partner_end_customer_o_auth_institution_application_status.py
 plaid/model/partner_end_customer_o_auth_institution_environments.py
 plaid/model/partner_end_customer_o_auth_status_updated_values.py
 plaid/model/partner_end_customer_o_auth_status_updated_webhook.py
+plaid/model/partner_end_customer_product_statuses.py
 plaid/model/partner_end_customer_questionnaire_status.py
+plaid/model/partner_end_customer_questionnaires.py
+plaid/model/partner_end_customer_requirement_due.py
+plaid/model/partner_end_customer_requirements_due.py
 plaid/model/partner_end_customer_secrets.py
 plaid/model/partner_end_customer_status.py
 plaid/model/partner_end_customer_technical_contact.py
@@ -1219,6 +1264,7 @@ plaid/model/plaid_check_score.py
 plaid/model/plaid_check_score_version.py
 plaid/model/plaid_error.py
 plaid/model/plaid_error_type.py
+plaid/model/plaid_lend_score_version.py
 plaid/model/platform_ids.py
 plaid/model/po_box_status.py
 plaid/model/prism_cash_score.py
@@ -1310,6 +1356,8 @@ plaid/model/protect_event_send_response.py
 plaid/model/protect_incident_amount.py
 plaid/model/protect_incident_event.py
 plaid/model/protect_report_confidence.py
+plaid/model/protect_report_create_request.py
+plaid/model/protect_report_create_response.py
 plaid/model/protect_report_source.py
 plaid/model/protect_report_type.py
 plaid/model/protect_user_event_webhook.py
@@ -1358,6 +1406,7 @@ plaid/model/risk_check_network.py
 plaid/model/risk_check_phone.py
 plaid/model/risk_check_stolen_identity.py
 plaid/model/risk_check_synthetic_identity.py
+plaid/model/risk_indicators.py
 plaid/model/risk_level.py
 plaid/model/risk_level_with_no_data.py
 plaid/model/risk_profile.py
