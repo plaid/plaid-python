@@ -1,5 +1,5 @@
 # Note: This image is also built in CircleCI, so limit references to internal repositories.
-FROM python:3.7
+FROM 345594567237.dkr.ecr.us-east-1.amazonaws.com/docker-hub/library/python:3.7
 
 # Create app directory
 WORKDIR /usr/src/app
