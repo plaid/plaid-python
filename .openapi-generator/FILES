@@ -56,6 +56,7 @@ plaid/model/address_nullable.py
 plaid/model/address_purpose_label.py
 plaid/model/affordability_insights.py
 plaid/model/amount_with_currency.py
+plaid/model/amount_with_currency_with_monthly_average.py
 plaid/model/application.py
 plaid/model/application_get_request.py
 plaid/model/application_get_response.py
@@ -257,6 +258,8 @@ plaid/model/beacon_user_status_updated_webhook.py
 plaid/model/beacon_user_update_request.py
 plaid/model/beacon_user_update_request_data.py
 plaid/model/beacon_user_update_response.py
+plaid/model/beta_ewa_report_v1_get_request.py
+plaid/model/beta_ewa_report_v1_get_response.py
 plaid/model/beta_partner_customer_v1_create_request.py
 plaid/model/beta_partner_customer_v1_create_response.py
 plaid/model/beta_partner_customer_v1_enable_request.py
@@ -269,9 +272,28 @@ plaid/model/beta_partner_end_customer.py
 plaid/model/beta_partner_end_customer_with_secrets.py
 plaid/model/business_account.py
 plaid/model/business_account_all_of.py
+plaid/model/business_email_address.py
+plaid/model/business_entity_type.py
+plaid/model/business_field_match_summary.py
 plaid/model/business_finance_category.py
+plaid/model/business_kyb_check.py
+plaid/model/business_kyb_match_details.py
+plaid/model/business_phone_number.py
+plaid/model/business_risk_check.py
+plaid/model/business_search_terms.py
+plaid/model/business_verification_create_request.py
+plaid/model/business_verification_create_request_business.py
+plaid/model/business_verification_create_response.py
+plaid/model/business_verification_get_request.py
+plaid/model/business_verification_get_response.py
+plaid/model/business_verification_status_kyb_check.py
+plaid/model/business_verification_status_overall.py
+plaid/model/business_verification_status_risk_check.py
+plaid/model/business_website.py
+plaid/model/cash_flow_insight.py
 plaid/model/cash_flow_updates_event_webhook_codes.py
 plaid/model/cash_flow_updates_expected_deposit_missed_webhook.py
+plaid/model/cash_flow_updates_insights_v2_webhook.py
 plaid/model/cash_flow_updates_insights_webhook.py
 plaid/model/cash_flow_updates_large_deposit_webhook.py
 plaid/model/cash_flow_updates_low_balance_webhook.py
@@ -354,8 +376,10 @@ plaid/model/cra_bank_income_complete_webhook.py
 plaid/model/cra_bank_income_employer.py
 plaid/model/cra_bank_income_error_webhook.py
 plaid/model/cra_bank_income_historical_summary.py
+plaid/model/cra_bank_income_income_provider.py
 plaid/model/cra_bank_income_item.py
 plaid/model/cra_bank_income_source.py
+plaid/model/cra_bank_income_status.py
 plaid/model/cra_bank_income_summary.py
 plaid/model/cra_bank_income_transaction.py
 plaid/model/cra_bank_income_warning.py
@@ -443,6 +467,8 @@ plaid/model/cra_partner_insights_prism.py
 plaid/model/cra_pdf_add_ons.py
 plaid/model/cra_prediction_interval.py
 plaid/model/cra_upgrade_failed_webhook.py
+plaid/model/cra_user_check_report_failed_webhook.py
+plaid/model/cra_user_check_report_ready_webhook.py
 plaid/model/cra_verification_report.py
 plaid/model/cra_voa_report.py
 plaid/model/cra_voa_report_account.py
@@ -655,7 +681,9 @@ plaid/model/entity_watchlist_screening_hit.py
 plaid/model/entity_watchlist_screening_review.py
 plaid/model/entity_watchlist_screening_search_terms.py
 plaid/model/entity_watchlist_search_terms.py
+plaid/model/ewa_score.py
 plaid/model/expenditure_insights.py
+plaid/model/expenditure_insights_cash_flow.py
 plaid/model/expenditure_summary.py
 plaid/model/expiration_date.py
 plaid/model/extended_recipient_metadata.py
@@ -669,9 +697,11 @@ plaid/model/external_payment_schedule_request.py
 plaid/model/fallback_auth_microdeposit_auto_verified_webhook.py
 plaid/model/fallback_auth_microdeposit_verification_expired_webhook.py
 plaid/model/fdx_content_types.py
+plaid/model/fdx_event_status.py
 plaid/model/fdx_hateoas_link.py
 plaid/model/fdx_hateoas_link_action.py
 plaid/model/fdx_initiator_fi_attribute.py
+plaid/model/fdx_lifecycle_event.py
 plaid/model/fdx_notification.py
 plaid/model/fdx_notification_category.py
 plaid/model/fdx_notification_payload.py
@@ -683,6 +713,7 @@ plaid/model/fdx_party.py
 plaid/model/fdx_party_registry.py
 plaid/model/fdx_party_type.py
 plaid/model/fdx_recipient_metadata.py
+plaid/model/fdx_update_reason.py
 plaid/model/fdxfi_attribute.py
 plaid/model/financial_institution_insights.py
 plaid/model/fixed_income.py
@@ -712,8 +743,6 @@ plaid/model/hosted_mmd_verification_webhook.py
 plaid/model/human_review.py
 plaid/model/human_review_status.py
 plaid/model/id_number_type.py
-plaid/model/identity_creation_result.py
-plaid/model/identity_creation_result_type.py
 plaid/model/identity_default_update_webhook.py
 plaid/model/identity_document_metadata.py
 plaid/model/identity_document_upload.py
@@ -764,6 +793,7 @@ plaid/model/identity_verification_step_updated_webhook.py
 plaid/model/identity_verification_template_reference.py
 plaid/model/identity_verification_user_address.py
 plaid/model/identity_verification_user_data.py
+plaid/model/idv_protect_event.py
 plaid/model/image_quality.py
 plaid/model/image_quality_details.py
 plaid/model/image_quality_outcome.py
@@ -771,6 +801,9 @@ plaid/model/incident_update.py
 plaid/model/income_breakdown.py
 plaid/model/income_breakdown_type.py
 plaid/model/income_insights.py
+plaid/model/income_insights_income_excluding_transfers.py
+plaid/model/income_insights_total_income.py
+plaid/model/income_insights_transfers_in.py
 plaid/model/income_override.py
 plaid/model/income_sources_counts.py
 plaid/model/income_summary.py
@@ -1253,6 +1286,7 @@ plaid/model/pending_disconnect_webhook.py
 plaid/model/pending_disconnect_webhook_reason.py
 plaid/model/pending_expiration_webhook.py
 plaid/model/personal_finance_category.py
+plaid/model/personal_finance_category_version.py
 plaid/model/phone_number.py
 plaid/model/phone_number_match_score.py
 plaid/model/phone_type.py
@@ -1355,6 +1389,8 @@ plaid/model/protect_event_send_request.py
 plaid/model/protect_event_send_response.py
 plaid/model/protect_incident_amount.py
 plaid/model/protect_incident_event.py
+plaid/model/protect_incident_event_response.py
+plaid/model/protect_report.py
 plaid/model/protect_report_confidence.py
 plaid/model/protect_report_create_request.py
 plaid/model/protect_report_create_response.py
@@ -1365,6 +1401,7 @@ plaid/model/protect_user_insights_get_request.py
 plaid/model/protect_user_insights_get_response.py
 plaid/model/protect_user_sign_in_event.py
 plaid/model/protect_user_sign_up_event.py
+plaid/model/provider_business_address.py
 plaid/model/proxy_type.py
 plaid/model/pslf_status.py
 plaid/model/reason_code.py
@@ -1387,6 +1424,8 @@ plaid/model/refresh_result.py
 plaid/model/removed_transaction.py
 plaid/model/report_type.py
 plaid/model/reporting_information.py
+plaid/model/request_business_address.py
+plaid/model/response_business_address.py
 plaid/model/risk_check_behavior.py
 plaid/model/risk_check_behavior_bot_detected_label.py
 plaid/model/risk_check_behavior_fraud_ring_detected_label.py
@@ -1399,6 +1438,7 @@ plaid/model/risk_check_email_domain_is_disposable.py
 plaid/model/risk_check_email_domain_is_free_provider.py
 plaid/model/risk_check_email_is_deliverable_status.py
 plaid/model/risk_check_email_top_level_domain_is_suspicious.py
+plaid/model/risk_check_facial_duplicate.py
 plaid/model/risk_check_factors.py
 plaid/model/risk_check_identity_abuse_signals.py
 plaid/model/risk_check_linked_service.py
@@ -1820,6 +1860,7 @@ plaid/model/user_account_revoked_webhook.py
 plaid/model/user_account_session_get_request.py
 plaid/model/user_account_session_get_response.py
 plaid/model/user_address.py
+plaid/model/user_based_products.py
 plaid/model/user_create_request.py
 plaid/model/user_create_response.py
 plaid/model/user_custom_password.py
@@ -1833,9 +1874,9 @@ plaid/model/user_items_associate_request.py
 plaid/model/user_items_associate_response.py
 plaid/model/user_items_get_request.py
 plaid/model/user_items_get_response.py
-plaid/model/user_items_list_request.py
-plaid/model/user_items_list_response.py
 plaid/model/user_permission_revoked_webhook.py
+plaid/model/user_products_terminate_request.py
+plaid/model/user_products_terminate_response.py
 plaid/model/user_remove_request.py
 plaid/model/user_remove_response.py
 plaid/model/user_stated_income_source_category.py
