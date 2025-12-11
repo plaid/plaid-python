@@ -1,5 +1,124 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 38.0.0
+- Updating to OAS 2020-09-14_1.680.0
+## Breaking changes in this version
+- [Breaking] make user_token not required for `cra/monitoring_insights/get`, `cra/check_report/create` and `cra/monitoring_insights/subscribe`
+- [BREAKING] Make Personal Financial Category version fields enums.
+- [Breaking] Remove `/user/items/list` endpoint (not used by or exposed to any customers)
+
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.680.0
+- Add Facial Duplicate data to IDV APIs.
+
+### 2020-09-14_1.679.1
+- Fix description and summary field for `/user/get`
+
+### 2020-09-14_1.679.0
+- Fix invalid OpenAPI syntax in `IdentityVerificationListRequest` schema object
+- Extensive documentation changes (including field re-ordering) to support new `user_id` and new user APIs
+
+### 2020-09-14_1.678.3
+- [Breaking] Remove `/user/items/list` endpoint (not used by or exposed to any customers)
+
+### 2020-09-14_1.678.2
+- Add `required_account_subtypes` and `provided_account_subtypes` to `Error` response object for NO_ACCOUNTS errors (currently only populated when `investments_auth` present in `enabled_products`)
+
+### 2020-09-14_1.678.1
+- Internal changes only
+
+### 2020-09-14_1.678.0
+- Add `request_guarantee` to `/transfer/authorization/create`
+- Mark `with_guarantee` deprecated in `/transfer/authorization/create`
+
+### 2020-09-14_1.677.3
+- Add user_id to `/link/token/get` response.
+- Remove beta from NewUserID description.
+
+### 2020-09-14_1.677.2
+- Add user_id to `/sandbox/public_token/create` request object
+
+### 2020-09-14_1.677.1
+- [BREAKING for Go] Add user_id to `/user/items/get` request object and make user_token optional.
+
+### 2020-09-14_1.677.0
+- [BREAKING for Go] (beta) Add user_id to `/sandbox/user/reset_login` request object and make user_token optional.
+
+### 2020-09-14_1.676.0
+- [BREAKING] Make Personal Financial Category version fields enums.
+
+### 2020-09-14_1.675.0
+- [Breaking for Go] make user_token not required for `sandbox/cra/cashflow_updates/update`
+
+### 2020-09-14_1.674.1
+- (beta) Add `/user/products/terminate` endpoint
+
+### 2020-09-14_1.674.0
+- [Breaking] make user_token not required for `cra/monitoring_insights/get`, `cra/check_report/create` and `cra/monitoring_insights/subscribe`
+
+### 2020-09-14_1.673.4
+- (beta) Remove unused IDENTITY_ERROR error type
+
+### 2020-09-14_1.673.3
+- Fix validation errors in OpenAPI spec
+
+### 2020-09-14_1.673.2
+- Add `network_insights` to `cra_options`
+
+### 2020-09-14_1.673.1
+- Add `income_provider` field to `bank_income_sources` objects returned by `/cra/check_report/income_insights/get`
+
+### 2020-09-14_1.673.0
+- Add `status` field to `/cra/check_report/income_insights/get`'s `bank_income_source` object
+
+### 2020-09-14_1.672.5
+- Add CRA User webhooks
+
+### 2020-09-14_1.672.5
+- (beta) Remove references to the `PLAID-NEW-USER-API-ENABLED` header in favor of the `with_upgraded_user` request field
+
+### 2020-09-14_1.672.4
+- Make `latest_scored_protect_event` visible on `/identity_verification/get`, `/identity_verification/create` and `/identity_verification/retry` response
+- Make `user_id` visible on `/link/token/create` response
+
+### 2020-09-14_1.672.3
+- (beta) removed `IdentityCreationResult` from `/user/create` and `/user/update`
+
+### 2020-09-14_1.672.2
+- (beta) Add new error type USER_ERROR
+- (beta) Add new error type IDENTITY_ERROR
+
+### 2020-09-14_1.672.1
+- Make `IncomeProvider` nullable in `/cra/check_report/income_insights/get`
+
+### 2020-09-14_1.672.0
+- Add sub-fields to new Account Insights (Europe only) object: `minimum_balance`, `transfers_in`, `total_income`, and `income_excluding_transfers`.
+- Fix `category_details` missing a `type` definition (`type: array`) within the `LoanDisbursementsIndicators` object.
+- Add document `issue_date` to Identity Verification endpoints
+
+### 2020-09-14_1.671.6
+- Add CFU V2 webhook object
+
+### 2020-09-14_1.671.5
+
+### 2020-09-14_1.671.4
+
+### 2020-09-14_1.671.4
+- (beta) Rename `require_upgraded_user` boolean field in `/user/create` to `with_upgraded_user`
+
+### 2020-09-14_1.671.3
+- Add `IncomeProvider` to `/cra/check_report/income_insights/get`
+
+### 2020-09-14_1.671.2
+- (beta) Add `require_upgraded_user` boolean field to the `/user/create` request
+
+### 2020-09-14_1.671.1
+- Remove PlaidError schema from irrelevant endpoints
+
+### 2020-09-14_1.671.0
+- Add missing PlaidError schema to all endpoints
+
 # 37.1.0
 - Updating to OAS 2020-09-14_1.670.0
 
