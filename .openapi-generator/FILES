@@ -1857,6 +1857,9 @@ plaid/model/user_account_identity_address.py
 plaid/model/user_account_identity_name.py
 plaid/model/user_account_item.py
 plaid/model/user_account_revoked_webhook.py
+plaid/model/user_account_session_event.py
+plaid/model/user_account_session_event_send_request.py
+plaid/model/user_account_session_event_send_response.py
 plaid/model/user_account_session_get_request.py
 plaid/model/user_account_session_get_response.py
 plaid/model/user_address.py
@@ -1870,10 +1873,14 @@ plaid/model/user_financial_data_refresh_response.py
 plaid/model/user_get_request.py
 plaid/model/user_get_response.py
 plaid/model/user_id_number.py
+plaid/model/user_identity_remove_request.py
+plaid/model/user_identity_remove_response.py
 plaid/model/user_items_associate_request.py
 plaid/model/user_items_associate_response.py
 plaid/model/user_items_get_request.py
 plaid/model/user_items_get_response.py
+plaid/model/user_items_remove_request.py
+plaid/model/user_items_remove_response.py
 plaid/model/user_permission_revoked_webhook.py
 plaid/model/user_products_terminate_request.py
 plaid/model/user_products_terminate_response.py
