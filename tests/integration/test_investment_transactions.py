@@ -19,8 +19,10 @@ from tests.integration.util import (
 
 access_token = None
 
-START_DATE = dt.date(2020, 1, 1)
-END_DATE = dt.date(2021, 1, 1)
+# NOTE: Data is only generated over the past 2 years.  Ensure that the date
+# range used for investments/transactions/get is within 2 years old
+END_DATE = dt.date.today()
+START_DATE = (END_DATE - dt.timedelta(days=(365*2)))
 
 
 def setup_module(module):

@@ -1860,6 +1860,9 @@ from plaid.model.user_account_identity_address import UserAccountIdentityAddress
 from plaid.model.user_account_identity_name import UserAccountIdentityName
 from plaid.model.user_account_item import UserAccountItem
 from plaid.model.user_account_revoked_webhook import UserAccountRevokedWebhook
+from plaid.model.user_account_session_event import UserAccountSessionEvent
+from plaid.model.user_account_session_event_send_request import UserAccountSessionEventSendRequest
+from plaid.model.user_account_session_event_send_response import UserAccountSessionEventSendResponse
 from plaid.model.user_account_session_get_request import UserAccountSessionGetRequest
 from plaid.model.user_account_session_get_response import UserAccountSessionGetResponse
 from plaid.model.user_address import UserAddress
@@ -1873,10 +1876,14 @@ from plaid.model.user_financial_data_refresh_response import UserFinancialDataRe
 from plaid.model.user_get_request import UserGetRequest
 from plaid.model.user_get_response import UserGetResponse
 from plaid.model.user_id_number import UserIDNumber
+from plaid.model.user_identity_remove_request import UserIdentityRemoveRequest
+from plaid.model.user_identity_remove_response import UserIdentityRemoveResponse
 from plaid.model.user_items_associate_request import UserItemsAssociateRequest
 from plaid.model.user_items_associate_response import UserItemsAssociateResponse
 from plaid.model.user_items_get_request import UserItemsGetRequest
 from plaid.model.user_items_get_response import UserItemsGetResponse
+from plaid.model.user_items_remove_request import UserItemsRemoveRequest
+from plaid.model.user_items_remove_response import UserItemsRemoveResponse
 from plaid.model.user_permission_revoked_webhook import UserPermissionRevokedWebhook
 from plaid.model.user_products_terminate_request import UserProductsTerminateRequest
 from plaid.model.user_products_terminate_response import UserProductsTerminateResponse
