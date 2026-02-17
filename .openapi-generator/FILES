@@ -1382,6 +1382,8 @@ plaid/model/program_name_sensitivity.py
 plaid/model/projected_income_summary_field_number.py
 plaid/model/protect_app_visit_event.py
 plaid/model/protect_bank_account.py
+plaid/model/protect_compute_request.py
+plaid/model/protect_compute_response.py
 plaid/model/protect_event.py
 plaid/model/protect_event_get_request.py
 plaid/model/protect_event_get_response.py
@@ -1390,12 +1392,15 @@ plaid/model/protect_event_send_response.py
 plaid/model/protect_incident_amount.py
 plaid/model/protect_incident_event.py
 plaid/model/protect_incident_event_response.py
+plaid/model/protect_link_model_inputs.py
+plaid/model/protect_model_inputs.py
 plaid/model/protect_report.py
 plaid/model/protect_report_confidence.py
 plaid/model/protect_report_create_request.py
 plaid/model/protect_report_create_response.py
 plaid/model/protect_report_source.py
 plaid/model/protect_report_type.py
+plaid/model/protect_user.py
 plaid/model/protect_user_event_webhook.py
 plaid/model/protect_user_insights_get_request.py
 plaid/model/protect_user_insights_get_response.py
@@ -1510,6 +1515,9 @@ plaid/model/sandbox_transfer_refund_simulate_request.py
 plaid/model/sandbox_transfer_refund_simulate_response.py
 plaid/model/sandbox_transfer_repayment_simulate_request.py
 plaid/model/sandbox_transfer_repayment_simulate_response.py
+plaid/model/sandbox_transfer_rfp_simulate_action.py
+plaid/model/sandbox_transfer_rfp_simulate_request.py
+plaid/model/sandbox_transfer_rfp_simulate_response.py
 plaid/model/sandbox_transfer_simulate_request.py
 plaid/model/sandbox_transfer_simulate_response.py
 plaid/model/sandbox_transfer_sweep_simulate_request.py
@@ -1854,7 +1862,10 @@ plaid/model/update_entity_screening_request_search_terms.py
 plaid/model/update_individual_screening_request_search_terms.py
 plaid/model/user_account_identity.py
 plaid/model/user_account_identity_address.py
+plaid/model/user_account_identity_edit_counts.py
+plaid/model/user_account_identity_edit_history.py
 plaid/model/user_account_identity_name.py
+plaid/model/user_account_identity_official_document.py
 plaid/model/user_account_item.py
 plaid/model/user_account_revoked_webhook.py
 plaid/model/user_account_session_event.py
@@ -1939,6 +1950,7 @@ plaid/model/wallet_transaction_idempotency_key.py
 plaid/model/wallet_transaction_list_request.py
 plaid/model/wallet_transaction_list_request_options.py
 plaid/model/wallet_transaction_list_response.py
+plaid/model/wallet_transaction_payee_verification_status.py
 plaid/model/wallet_transaction_relation.py
 plaid/model/wallet_transaction_status.py
 plaid/model/wallet_transaction_status_update_webhook.py
