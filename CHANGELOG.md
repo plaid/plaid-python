@@ -1,5 +1,12 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 38.3.0
+- Updating to OAS 2020-09-14_1.681.5
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.681.5
+- Add `ELIGIBILITY_FOR_GOVT_BENEFITS` permissible purpose to `ConsumerReportPermissiblePurpose` schema
+
 # 38.2.0
 - Updating to OAS 2020-09-14_1.681.4
 
