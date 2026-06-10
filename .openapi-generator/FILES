@@ -514,6 +514,22 @@ plaid/model/cra_upgrade_failed_webhook.py
 plaid/model/cra_user_check_report_failed_webhook.py
 plaid/model/cra_user_check_report_ready_webhook.py
 plaid/model/cra_user_tier.py
+plaid/model/cra_verification_income_account.py
+plaid/model/cra_verification_income_category.py
+plaid/model/cra_verification_income_item.py
+plaid/model/cra_verification_income_metrics.py
+plaid/model/cra_verification_income_next_payment.py
+plaid/model/cra_verification_income_pay_frequency.py
+plaid/model/cra_verification_income_provider.py
+plaid/model/cra_verification_income_report.py
+plaid/model/cra_verification_income_status.py
+plaid/model/cra_verification_income_stream.py
+plaid/model/cra_verification_income_stream_insights.py
+plaid/model/cra_verification_income_transaction.py
+plaid/model/cra_verification_income_transaction_outlier.py
+plaid/model/cra_verification_income_user_summary.py
+plaid/model/cra_verification_income_values.py
+plaid/model/cra_verification_modeled_income.py
 plaid/model/cra_verification_report.py
 plaid/model/cra_voa_report.py
 plaid/model/cra_voa_report_account.py
@@ -742,7 +758,12 @@ plaid/model/external_payment_schedule_get.py
 plaid/model/external_payment_schedule_request.py
 plaid/model/fallback_auth_microdeposit_auto_verified_webhook.py
 plaid/model/fallback_auth_microdeposit_verification_expired_webhook.py
+plaid/model/fdx_consent_grant.py
+plaid/model/fdx_consent_grant_resource.py
+plaid/model/fdx_consent_grant_status.py
+plaid/model/fdx_consent_resource_type.py
 plaid/model/fdx_content_types.py
+plaid/model/fdx_data_cluster.py
 plaid/model/fdx_event_status.py
 plaid/model/fdx_hateoas_link.py
 plaid/model/fdx_hateoas_link_action.py
@@ -782,6 +803,8 @@ plaid/model/historical_annual_income.py
 plaid/model/historical_balance.py
 plaid/model/historical_update_webhook.py
 plaid/model/holding.py
+plaid/model/holding_tax_lot.py
+plaid/model/holding_tax_lot_position_type.py
 plaid/model/holdings_default_update_webhook.py
 plaid/model/holdings_override.py
 plaid/model/hosted_link_delivery_method.py
@@ -962,8 +985,6 @@ plaid/model/item_create_authentication.py
 plaid/model/item_error_webhook.py
 plaid/model/item_get_request.py
 plaid/model/item_get_response.py
-plaid/model/item_handle_fraud_report_request.py
-plaid/model/item_handle_fraud_report_response.py
 plaid/model/item_import_request.py
 plaid/model/item_import_request_options.py
 plaid/model/item_import_request_user_auth.py
@@ -1051,8 +1072,6 @@ plaid/model/link_session_exit_metadata_institution.py
 plaid/model/link_session_finished_webhook.py
 plaid/model/link_session_item_add_result.py
 plaid/model/link_session_payroll_income_result.py
-plaid/model/link_session_protect_result.py
-plaid/model/link_session_protect_result_fraud_attributes.py
 plaid/model/link_session_results.py
 plaid/model/link_session_success.py
 plaid/model/link_session_success_metadata.py
@@ -1146,10 +1165,6 @@ plaid/model/name_match_score.py
 plaid/model/negative_balance_insights.py
 plaid/model/negative_balance_occurrence.py
 plaid/model/net_pay.py
-plaid/model/network_insights_item.py
-plaid/model/network_insights_report.py
-plaid/model/network_insights_report_get_request.py
-plaid/model/network_insights_report_get_response.py
 plaid/model/network_insights_version.py
 plaid/model/network_status_get_request.py
 plaid/model/network_status_get_response.py
@@ -1435,6 +1450,7 @@ plaid/model/product_permissions_required_identity_webhook.py
 plaid/model/product_status.py
 plaid/model/product_status_breakdown.py
 plaid/model/products.py
+plaid/model/products_terminate_reason_code.py
 plaid/model/profile_network_status_get_request.py
 plaid/model/profile_network_status_get_response.py
 plaid/model/program_name_sensitivity.py
@@ -1443,6 +1459,7 @@ plaid/model/protect_app_visit_event.py
 plaid/model/protect_bank_account.py
 plaid/model/protect_compute_request.py
 plaid/model/protect_compute_response.py
+plaid/model/protect_compute_subscores.py
 plaid/model/protect_event.py
 plaid/model/protect_event_get_request.py
 plaid/model/protect_event_get_response.py
@@ -1500,7 +1517,9 @@ plaid/model/risk_check_email.py
 plaid/model/risk_check_email_domain_is_custom.py
 plaid/model/risk_check_email_domain_is_disposable.py
 plaid/model/risk_check_email_domain_is_free_provider.py
+plaid/model/risk_check_email_includes_date_of_birth.py
 plaid/model/risk_check_email_is_deliverable_status.py
+plaid/model/risk_check_email_is_edu.py
 plaid/model/risk_check_email_top_level_domain_is_suspicious.py
 plaid/model/risk_check_facial_duplicate.py
 plaid/model/risk_check_factors.py
@@ -1757,6 +1776,7 @@ plaid/model/transfer_authorization_cancel_request.py
 plaid/model/transfer_authorization_cancel_response.py
 plaid/model/transfer_authorization_create_request.py
 plaid/model/transfer_authorization_create_response.py
+plaid/model/transfer_authorization_custom_attributes.py
 plaid/model/transfer_authorization_decision.py
 plaid/model/transfer_authorization_decision_rationale.py
 plaid/model/transfer_authorization_decision_rationale_code.py
@@ -1954,6 +1974,7 @@ plaid/model/user_items_get_response.py
 plaid/model/user_items_remove_request.py
 plaid/model/user_items_remove_response.py
 plaid/model/user_permission_revoked_webhook.py
+plaid/model/user_products_terminate_reason_code.py
 plaid/model/user_products_terminate_request.py
 plaid/model/user_products_terminate_response.py
 plaid/model/user_remove_request.py
