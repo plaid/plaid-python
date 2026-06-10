@@ -517,6 +517,22 @@ from plaid.model.cra_upgrade_failed_webhook import CraUpgradeFailedWebhook
 from plaid.model.cra_user_check_report_failed_webhook import CraUserCheckReportFailedWebhook
 from plaid.model.cra_user_check_report_ready_webhook import CraUserCheckReportReadyWebhook
 from plaid.model.cra_user_tier import CraUserTier
+from plaid.model.cra_verification_income_account import CraVerificationIncomeAccount
+from plaid.model.cra_verification_income_category import CraVerificationIncomeCategory
+from plaid.model.cra_verification_income_item import CraVerificationIncomeItem
+from plaid.model.cra_verification_income_metrics import CraVerificationIncomeMetrics
+from plaid.model.cra_verification_income_next_payment import CraVerificationIncomeNextPayment
+from plaid.model.cra_verification_income_pay_frequency import CraVerificationIncomePayFrequency
+from plaid.model.cra_verification_income_provider import CraVerificationIncomeProvider
+from plaid.model.cra_verification_income_report import CraVerificationIncomeReport
+from plaid.model.cra_verification_income_status import CraVerificationIncomeStatus
+from plaid.model.cra_verification_income_stream import CraVerificationIncomeStream
+from plaid.model.cra_verification_income_stream_insights import CraVerificationIncomeStreamInsights
+from plaid.model.cra_verification_income_transaction import CraVerificationIncomeTransaction
+from plaid.model.cra_verification_income_transaction_outlier import CraVerificationIncomeTransactionOutlier
+from plaid.model.cra_verification_income_user_summary import CraVerificationIncomeUserSummary
+from plaid.model.cra_verification_income_values import CraVerificationIncomeValues
+from plaid.model.cra_verification_modeled_income import CraVerificationModeledIncome
 from plaid.model.cra_verification_report import CraVerificationReport
 from plaid.model.cra_voa_report import CraVoaReport
 from plaid.model.cra_voa_report_account import CraVoaReportAccount
@@ -743,7 +759,12 @@ from plaid.model.external_payment_refund_details import ExternalPaymentRefundDet
 from plaid.model.external_payment_schedule_base import ExternalPaymentScheduleBase
 from plaid.model.external_payment_schedule_get import ExternalPaymentScheduleGet
 from plaid.model.external_payment_schedule_request import ExternalPaymentScheduleRequest
+from plaid.model.fdx_consent_grant import FDXConsentGrant
+from plaid.model.fdx_consent_grant_resource import FDXConsentGrantResource
+from plaid.model.fdx_consent_grant_status import FDXConsentGrantStatus
+from plaid.model.fdx_consent_resource_type import FDXConsentResourceType
 from plaid.model.fdx_content_types import FDXContentTypes
+from plaid.model.fdx_data_cluster import FDXDataCluster
 from plaid.model.fdx_event_status import FDXEventStatus
 from plaid.model.fdxfi_attribute import FDXFiAttribute
 from plaid.model.fdx_hateoas_link import FDXHateoasLink
@@ -785,6 +806,8 @@ from plaid.model.historical_annual_income import HistoricalAnnualIncome
 from plaid.model.historical_balance import HistoricalBalance
 from plaid.model.historical_update_webhook import HistoricalUpdateWebhook
 from plaid.model.holding import Holding
+from plaid.model.holding_tax_lot import HoldingTaxLot
+from plaid.model.holding_tax_lot_position_type import HoldingTaxLotPositionType
 from plaid.model.holdings_default_update_webhook import HoldingsDefaultUpdateWebhook
 from plaid.model.holdings_override import HoldingsOverride
 from plaid.model.hosted_link_delivery_method import HostedLinkDeliveryMethod
@@ -965,8 +988,6 @@ from plaid.model.item_create_authentication import ItemCreateAuthentication
 from plaid.model.item_error_webhook import ItemErrorWebhook
 from plaid.model.item_get_request import ItemGetRequest
 from plaid.model.item_get_response import ItemGetResponse
-from plaid.model.item_handle_fraud_report_request import ItemHandleFraudReportRequest
-from plaid.model.item_handle_fraud_report_response import ItemHandleFraudReportResponse
 from plaid.model.item_import_request import ItemImportRequest
 from plaid.model.item_import_request_options import ItemImportRequestOptions
 from plaid.model.item_import_request_user_auth import ItemImportRequestUserAuth
@@ -1054,8 +1075,6 @@ from plaid.model.link_session_exit_metadata_institution import LinkSessionExitMe
 from plaid.model.link_session_finished_webhook import LinkSessionFinishedWebhook
 from plaid.model.link_session_item_add_result import LinkSessionItemAddResult
 from plaid.model.link_session_payroll_income_result import LinkSessionPayrollIncomeResult
-from plaid.model.link_session_protect_result import LinkSessionProtectResult
-from plaid.model.link_session_protect_result_fraud_attributes import LinkSessionProtectResultFraudAttributes
 from plaid.model.link_session_results import LinkSessionResults
 from plaid.model.link_session_success import LinkSessionSuccess
 from plaid.model.link_session_success_metadata import LinkSessionSuccessMetadata
@@ -1149,10 +1168,6 @@ from plaid.model.name_match_score import NameMatchScore
 from plaid.model.negative_balance_insights import NegativeBalanceInsights
 from plaid.model.negative_balance_occurrence import NegativeBalanceOccurrence
 from plaid.model.net_pay import NetPay
-from plaid.model.network_insights_item import NetworkInsightsItem
-from plaid.model.network_insights_report import NetworkInsightsReport
-from plaid.model.network_insights_report_get_request import NetworkInsightsReportGetRequest
-from plaid.model.network_insights_report_get_response import NetworkInsightsReportGetResponse
 from plaid.model.network_insights_version import NetworkInsightsVersion
 from plaid.model.network_status_get_request import NetworkStatusGetRequest
 from plaid.model.network_status_get_response import NetworkStatusGetResponse
@@ -1439,6 +1454,7 @@ from plaid.model.product_permissions_required_identity_webhook import ProductPer
 from plaid.model.product_status import ProductStatus
 from plaid.model.product_status_breakdown import ProductStatusBreakdown
 from plaid.model.products import Products
+from plaid.model.products_terminate_reason_code import ProductsTerminateReasonCode
 from plaid.model.profile_network_status_get_request import ProfileNetworkStatusGetRequest
 from plaid.model.profile_network_status_get_response import ProfileNetworkStatusGetResponse
 from plaid.model.program_name_sensitivity import ProgramNameSensitivity
@@ -1447,6 +1463,7 @@ from plaid.model.protect_app_visit_event import ProtectAppVisitEvent
 from plaid.model.protect_bank_account import ProtectBankAccount
 from plaid.model.protect_compute_request import ProtectComputeRequest
 from plaid.model.protect_compute_response import ProtectComputeResponse
+from plaid.model.protect_compute_subscores import ProtectComputeSubscores
 from plaid.model.protect_event import ProtectEvent
 from plaid.model.protect_event_get_request import ProtectEventGetRequest
 from plaid.model.protect_event_get_response import ProtectEventGetResponse
@@ -1503,7 +1520,9 @@ from plaid.model.risk_check_email import RiskCheckEmail
 from plaid.model.risk_check_email_domain_is_custom import RiskCheckEmailDomainIsCustom
 from plaid.model.risk_check_email_domain_is_disposable import RiskCheckEmailDomainIsDisposable
 from plaid.model.risk_check_email_domain_is_free_provider import RiskCheckEmailDomainIsFreeProvider
+from plaid.model.risk_check_email_includes_date_of_birth import RiskCheckEmailIncludesDateOfBirth
 from plaid.model.risk_check_email_is_deliverable_status import RiskCheckEmailIsDeliverableStatus
+from plaid.model.risk_check_email_is_edu import RiskCheckEmailIsEdu
 from plaid.model.risk_check_email_top_level_domain_is_suspicious import RiskCheckEmailTopLevelDomainIsSuspicious
 from plaid.model.risk_check_facial_duplicate import RiskCheckFacialDuplicate
 from plaid.model.risk_check_factors import RiskCheckFactors
@@ -1760,6 +1779,7 @@ from plaid.model.transfer_authorization_cancel_request import TransferAuthorizat
 from plaid.model.transfer_authorization_cancel_response import TransferAuthorizationCancelResponse
 from plaid.model.transfer_authorization_create_request import TransferAuthorizationCreateRequest
 from plaid.model.transfer_authorization_create_response import TransferAuthorizationCreateResponse
+from plaid.model.transfer_authorization_custom_attributes import TransferAuthorizationCustomAttributes
 from plaid.model.transfer_authorization_decision import TransferAuthorizationDecision
 from plaid.model.transfer_authorization_decision_rationale import TransferAuthorizationDecisionRationale
 from plaid.model.transfer_authorization_decision_rationale_code import TransferAuthorizationDecisionRationaleCode
@@ -1957,6 +1977,7 @@ from plaid.model.user_items_get_response import UserItemsGetResponse
 from plaid.model.user_items_remove_request import UserItemsRemoveRequest
 from plaid.model.user_items_remove_response import UserItemsRemoveResponse
 from plaid.model.user_permission_revoked_webhook import UserPermissionRevokedWebhook
+from plaid.model.user_products_terminate_reason_code import UserProductsTerminateReasonCode
 from plaid.model.user_products_terminate_request import UserProductsTerminateRequest
 from plaid.model.user_products_terminate_response import UserProductsTerminateResponse
 from plaid.model.user_remove_request import UserRemoveRequest

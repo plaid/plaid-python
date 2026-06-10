@@ -1,5 +1,111 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 40.0.0
+- Updating to OAS 2020-09-14_1.697.4
+
+## Breaking changes in this version
+- [BREAKING] Remove `protect_results` from `LinkSessionResults` in `/link/token/get` responses. The API no longer populates this field. (OAS 2020-09-14_1.697.0)
+- [BREAKING] `Recaptcha_RequiredError`: change `http_code` from `string` to `integer`. The API already returns an integer; only the spec was wrong. (OAS 2020-09-14_1.695.0)
+- [BREAKING] Replace `report_requested` field with `reports_requested` array field in `/cra/check_report/verification/pdf/get`. (OAS 2020-09-14_1.691.0)
+- [BREAKING] Remove `/item/handle_fraud_report` endpoint and its `ItemHandleFraudReportRequest` and `ItemHandleFraudReportResponse` schemas. The endpoint was never wired up for any customer. (OAS 2020-09-14_1.688.9)
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.697.4
+- Update `Holding.tax_lots` description: remove stale "Absent from the response when the tax lots feature is not yet enabled" clause.
+
+### 2020-09-14_1.697.3
+- Add `atomicfi` value to the `processor` enum on `/processor/token/create`.
+
+### 2020-09-14_1.697.2
+- Add `payment` and `refund` values to the `transaction_code` enum, and update the field description to note that `transaction_code` is now populated for certain US institutions, in addition to European institutions.
+
+### 2020-09-14_1.697.1
+- Add `sub_programs` (`array<string>`) to `WatchlistScreeningHit` and `EntityWatchlistScreeningHit`. Surfaces the sub-program designations published by the issuing authority (for example OFAC SDN program codes like `SDGT`, `SDNTK`, `IRAN`, `RUSSIA-EO14024`).
+
+### 2020-09-14_1.697.0
+- [Breaking] Remove `protect_results` from `LinkSessionResults` in `/link/token/get` responses. The API no longer populates this field.
+
+### 2020-09-14_1.696.1
+- Add `tax_lots` array field to `Holding` and introduce `HoldingTaxLot` schema with 7 fields: `institution_lot_id`, `original_purchase_datetime`, `quantity`, `purchase_price`, `cost_basis`, `current_value`, and `position_type`. Introduce `HoldingTaxLotPositionType` enum (`LONG`, `SHORT`).
+
+### 2020-09-14_1.696.0
+- Add `ACCOUNT_FUNDING` and `AUTO_REFUND` values to the `WalletTransaction.type` enum. These transaction types are already returned for virtual-account unexpected-payment handling and were documented but missing from the spec.
+
+### 2020-09-14_1.695.0
+- [Breaking] `Recaptcha_RequiredError`: change `http_code` from `string` to `integer`. The API already returns an integer; only the spec was wrong.
+- Add `BASE_REPORT_ERROR` to the `error_type` enum (`PlaidErrorType`).
+- `IncomeVerificationRiskSignalsStatusWebhook`: fix the `required` list to reference `risk_signals_status` instead of a non-existent `status` field.
+- `Recaptcha_RequiredError`: mark `display_message` nullable and remove `link_user_experience`, `common_causes`, and `troubleshooting_steps` from `required`. This schema object is used for documentation only; describing these fields as required is misleading.
+- Remove `database_insights_pending` from the `verification_status` description on product-endpoint account schemas — it is only returned in the Link `onSuccess` metadata, not by these endpoints.
+- Add `STARTED` and `INTERNAL_ERROR` to the `CreditSessionBankIncomeStatus` enum.
+- Add `STARTED` and `INTERNAL_ERROR` to the `CreditSessionBankEmploymentStatus` enum.
+- Fix various webhook and error response examples to conform to their schemas.
+
+### 2020-09-14_1.694.0
+- Add `custom_attributes` field to `TransferAuthorizationCreateRequest`.
+
+### 2020-09-14_1.693.0
+- Add `reason_codes` array to `CraPartnerInsightsBaseFicoScore` and `negative_reason_codes` / `positive_reason_codes` arrays to `CraPartnerInsightsUltraFicoScore`. The corresponding individual `reason_code_1` through `reason_code_4` and `positive_reason_code_1` through `positive_reason_code_4` fields are now deprecated.
+
+### 2020-09-14_1.692.7
+- Add `model_version` string field to `PrismInsights` and deprecate the integer `version` field. Required to surface Prism Insights v4.1 and any future non-integeter model versions.
+
+### 2020-09-14_1.692.6
+- Add private-visibility scaffolding for `POST /fraud_insights/connection_event/send` (501 stub; customer-facing entry follows when `x-private-visibility` flips).
+
+### 2020-09-14_1.692.5
+- Add `interchecks` value to the `processor` enum on `/processor/token/create`.
+
+### 2020-09-14_1.692.4
+- Redeclare `name`, `official_name`, `mask`, and `verification_name` on the second `allOf` piece of `InvestmentAccount`, `BusinessAccount`, `AccountIdentity`, and `AccountIdentityMatchScore`. The fields are already declared on `AccountBase`; the redeclaration prevents the `plaid-python` SDK (>= 39.0.0) from routing them through its `additional_properties_type` handler, which upconverts date-shaped string values (e.g. an account literally named `"June - 529"`) into `datetime.date` objects in `to_dict()`. No change to the API response shape.
+
+### 2020-09-14_1.692.3
+- Add private-visibility scaffolding for `POST /fraud_insights/connection_risk_score/get` (501 stub; customer-facing entry follows when `x-private-visibility` flips).
+
+### 2020-09-14_1.692.2
+- Update `CraUserCheckReportFailedWebhook` (`USER_CHECK_REPORT_FAILED`) description to document that customers can call `/user/items/get` and inspect non-null `error` objects on the associated Items to retrieve error details, matching the existing guidance on `CraCheckReportFailedWebhook` (`CHECK_REPORT_FAILED`).
+
+### 2020-09-14_1.692.1
+- Correct the `/statements/download` success response content type from `application/json` to `application/pdf` to match the binary PDF body the endpoint actually returns.
+
+### 2020-09-14_1.692.0
+- `/cra/check_report/income_insights/get`: `income_streams` is now marked as required on `CraIncomeInsights` and is always present on the response. When there are no income streams for the report, it is returned as an empty array (`[]`) instead of being omitted.
+
+### 2020-09-14_1.691.2
+- Update `/user/products/terminate` description to clarify which subscription bundles are terminated, the billing impact, and the CRA Monitoring carve-out.
+- Restore the `/user/items/remove` description paragraph that points users to `/user/products/terminate` for stopping billing and to the Consumer Service Center for user-initiated data deletion.
+
+### 2020-09-14_1.691.1
+- Add `frame` value to the `processor` enum on `/processor/token/create`.
+
+### 2020-09-14_1.691.0
+- [Breaking] Replace `report_requested` field with `reports_requested` array field in `/cra/check_report/verification/pdf/get`.
+- Add `income` value to `CraCheckReportVerificationPdfReportType`.
+
+### 2020-09-14_1.690.1
+- Expose `/user/products/terminate` in the public OpenAPI spec (previously hidden from client libraries).
+
+### 2020-09-14_1.690.0
+- Add an optional `subscores` object to the `/protect/compute` response and a new `ProtectComputeSubscores` schema. For cash-advance models, exposes per-bucket subscores (`cash_advance_bucket_0_25` through `cash_advance_bucket_400_500`) where each scored bucket is a 0-100 trust index score (higher = lower fraud risk). Both the wrapper `subscores` field and each individual bucket key are omitted from the response when not scored: models that do not produce subscores will not include the `subscores` key in the response at all, and partially-scored responses include only the bucket keys that were scored.
+
+### 2020-09-14_1.689.0
+- Add optional `user_id` field to `CraCreditProfileReportGetResponse`.
+
+### 2020-09-14_1.688.10
+- Add `reason_code` enum values to `/item/products/terminate` and `/user/products/terminate`
+
+### 2020-09-14_1.688.9
+- [Breaking] Remove `/item/handle_fraud_report` endpoint and its `ItemHandleFraudReportRequest` and `ItemHandleFraudReportResponse` schemas. The endpoint was never wired up for any customer.
+
+### 2020-09-14_1.688.8
+- Expose the `limited_purpose_types` filter on `LinkTokenCreateDepositoryFilter` and `DepositoryFilter`, and the `LimitedPurposeTypes` and `LimitedPurposeType` schemas, in the public OpenAPI spec (previously hidden from client libraries). Used in conjunction with the `limited purpose checking` depository subtype to restrict which kinds of limited purpose checking accounts may be connected in Link.
+
+### 2020-09-14_1.688.7
+- Add income schema types (`CraVerificationIncome*`) to CRA Home Lending Verification Report
+- Add `income` field to `CraVerificationReport`
+- Add `INCOME` to `CraCheckReportVerificationGetReportType` enum
+- Document that `/sandbox/transactions/create` only applies custom transactions to the depository account on `user_transactions_dynamic` Items
+
 # 39.2.0
 - Updating to OAS 2020-09-14_1.688.6
 
