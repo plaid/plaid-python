@@ -128,6 +128,8 @@ plaid/model/auth_verify_numbers_ach.py
 plaid/model/auth_verify_request.py
 plaid/model/auth_verify_request_numbers.py
 plaid/model/auth_verify_response.py
+plaid/model/authorization_guarantee_details.py
+plaid/model/authorization_guarantee_schedule_item.py
 plaid/model/automatically_verified_webhook.py
 plaid/model/bank_income_complete_result.py
 plaid/model/bank_income_complete_webhook.py
@@ -762,6 +764,9 @@ plaid/model/fdx_consent_grant.py
 plaid/model/fdx_consent_grant_resource.py
 plaid/model/fdx_consent_grant_status.py
 plaid/model/fdx_consent_resource_type.py
+plaid/model/fdx_consent_revocation.py
+plaid/model/fdx_consent_revocation_record.py
+plaid/model/fdx_consent_revocations.py
 plaid/model/fdx_content_types.py
 plaid/model/fdx_data_cluster.py
 plaid/model/fdx_event_status.py
@@ -1520,6 +1525,7 @@ plaid/model/risk_check_email_domain_is_free_provider.py
 plaid/model/risk_check_email_includes_date_of_birth.py
 plaid/model/risk_check_email_is_deliverable_status.py
 plaid/model/risk_check_email_is_edu.py
+plaid/model/risk_check_email_name.py
 plaid/model/risk_check_email_top_level_domain_is_suspicious.py
 plaid/model/risk_check_facial_duplicate.py
 plaid/model/risk_check_factors.py
@@ -1623,6 +1629,8 @@ plaid/model/screening_hit_names_items.py
 plaid/model/screening_status_updated_webhook.py
 plaid/model/security.py
 plaid/model/security_override.py
+plaid/model/selfie_age_check.py
+plaid/model/selfie_age_check_status.py
 plaid/model/selfie_analysis.py
 plaid/model/selfie_analysis_document_comparison.py
 plaid/model/selfie_analysis_facial_analysis.py
@@ -1829,6 +1837,10 @@ plaid/model/transfer_funding_account_with_display_name.py
 plaid/model/transfer_funding_account_with_display_name_all_of.py
 plaid/model/transfer_get_request.py
 plaid/model/transfer_get_response.py
+plaid/model/transfer_guarantee_details.py
+plaid/model/transfer_guarantee_outcome.py
+plaid/model/transfer_guarantee_schedule_item.py
+plaid/model/transfer_guarantee_schedule_item_all_of.py
 plaid/model/transfer_intent_authorization_decision.py
 plaid/model/transfer_intent_create.py
 plaid/model/transfer_intent_create_mode.py

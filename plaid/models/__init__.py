@@ -131,6 +131,8 @@ from plaid.model.auth_verify_numbers_ach import AuthVerifyNumbersACH
 from plaid.model.auth_verify_request import AuthVerifyRequest
 from plaid.model.auth_verify_request_numbers import AuthVerifyRequestNumbers
 from plaid.model.auth_verify_response import AuthVerifyResponse
+from plaid.model.authorization_guarantee_details import AuthorizationGuaranteeDetails
+from plaid.model.authorization_guarantee_schedule_item import AuthorizationGuaranteeScheduleItem
 from plaid.model.automatically_verified_webhook import AutomaticallyVerifiedWebhook
 from plaid.model.bank_income_complete_result import BankIncomeCompleteResult
 from plaid.model.bank_income_complete_webhook import BankIncomeCompleteWebhook
@@ -763,6 +765,9 @@ from plaid.model.fdx_consent_grant import FDXConsentGrant
 from plaid.model.fdx_consent_grant_resource import FDXConsentGrantResource
 from plaid.model.fdx_consent_grant_status import FDXConsentGrantStatus
 from plaid.model.fdx_consent_resource_type import FDXConsentResourceType
+from plaid.model.fdx_consent_revocation import FDXConsentRevocation
+from plaid.model.fdx_consent_revocation_record import FDXConsentRevocationRecord
+from plaid.model.fdx_consent_revocations import FDXConsentRevocations
 from plaid.model.fdx_content_types import FDXContentTypes
 from plaid.model.fdx_data_cluster import FDXDataCluster
 from plaid.model.fdx_event_status import FDXEventStatus
@@ -1523,6 +1528,7 @@ from plaid.model.risk_check_email_domain_is_free_provider import RiskCheckEmailD
 from plaid.model.risk_check_email_includes_date_of_birth import RiskCheckEmailIncludesDateOfBirth
 from plaid.model.risk_check_email_is_deliverable_status import RiskCheckEmailIsDeliverableStatus
 from plaid.model.risk_check_email_is_edu import RiskCheckEmailIsEdu
+from plaid.model.risk_check_email_name import RiskCheckEmailName
 from plaid.model.risk_check_email_top_level_domain_is_suspicious import RiskCheckEmailTopLevelDomainIsSuspicious
 from plaid.model.risk_check_facial_duplicate import RiskCheckFacialDuplicate
 from plaid.model.risk_check_factors import RiskCheckFactors
@@ -1628,6 +1634,8 @@ from plaid.model.screening_hit_names_items import ScreeningHitNamesItems
 from plaid.model.screening_status_updated_webhook import ScreeningStatusUpdatedWebhook
 from plaid.model.security import Security
 from plaid.model.security_override import SecurityOverride
+from plaid.model.selfie_age_check import SelfieAgeCheck
+from plaid.model.selfie_age_check_status import SelfieAgeCheckStatus
 from plaid.model.selfie_analysis import SelfieAnalysis
 from plaid.model.selfie_analysis_document_comparison import SelfieAnalysisDocumentComparison
 from plaid.model.selfie_analysis_facial_analysis import SelfieAnalysisFacialAnalysis
@@ -1832,6 +1840,10 @@ from plaid.model.transfer_funding_account_with_display_name import TransferFundi
 from plaid.model.transfer_funding_account_with_display_name_all_of import TransferFundingAccountWithDisplayNameAllOf
 from plaid.model.transfer_get_request import TransferGetRequest
 from plaid.model.transfer_get_response import TransferGetResponse
+from plaid.model.transfer_guarantee_details import TransferGuaranteeDetails
+from plaid.model.transfer_guarantee_outcome import TransferGuaranteeOutcome
+from plaid.model.transfer_guarantee_schedule_item import TransferGuaranteeScheduleItem
+from plaid.model.transfer_guarantee_schedule_item_all_of import TransferGuaranteeScheduleItemAllOf
 from plaid.model.transfer_intent_authorization_decision import TransferIntentAuthorizationDecision
 from plaid.model.transfer_intent_create import TransferIntentCreate
 from plaid.model.transfer_intent_create_mode import TransferIntentCreateMode

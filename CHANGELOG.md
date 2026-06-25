@@ -1,5 +1,41 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 40.1.0
+- Updating to OAS 2020-09-14_1.698.7
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.698.7
+- Add `kanmon` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Kanmon integration.
+
+### 2020-09-14_1.698.6
+- Add `natural` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Natural integration.
+
+### 2020-09-14_1.698.5
+- Add `pay` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Pay.com integration.
+
+### 2020-09-14_1.698.4
+- Remove the 1024-character `maxLength` constraint from `notes` on `/protect/report/create`.
+
+### 2020-09-14_1.698.3
+- Add `FRAUD_TRANSACTION` to the `reason_code` enum (`ProductsTerminateReasonCode`) accepted by `/item/products/terminate` and `/user/products/terminate`, for terminating an Item due to transaction-level fraud (e.g. unauthorized transactions, card testing, chargebacks, ACH returns, or disputes).
+- Add `/cra/report/get` endpoint with CRA report schemas (CraReportGetRequest, CraReportGetResponse, CraReportGetReport, CraReportGetResponseProduct, CraReportGetProductAttributes, CraReportGetProductMetadata).
+
+### 2020-09-14_1.698.2
+- Correct stylization, acronym expansions, and factual errors in schema descriptions: "Bacs" (was "BACS"), "International Bank Account Number", "Business Identifier Code", "Government-Sponsored Enterprise" (was "Government Sponsored Entity"), "Registered Disability Savings Plan (RDSP)" (was "RSDP"), "FATCA" filing requirement (description only; was "FACTA"), "E.164" phone format (was "E. 164"), and "Social Security". Also clarified that `balances.available` and `balances.current` may both be `null` for limited-purpose checking accounts, and corrected an endpoint reference in a description (`/processor/stripe/bank_account_token/create`), and normalized two endpoint summaries to refer to the product as a singular "Consumer Report", and normalized "realtime" to the hyphenated "real-time" in balance descriptions. No changes to API behavior.
+
+### 2020-09-14_1.698.1
+- Clarify that `/protect/report/create` requires either `user_id` or at least one supported `incident_event` identifier, and that contextual fields alone do not satisfy this requirement.
+
+### 2020-09-14_1.698.0
+- Add `guarantee_details` (optional) to `Transfer` and `TransferAuthorization` schemas to surface adaptive guarantee settlement information. Introduces `TransferGuaranteeOutcome` enum, `AuthorizationGuaranteeScheduleItem` and `TransferGuaranteeScheduleItem` objects, `AuthorizationGuaranteeDetails` (outcome + schedule), and `TransferGuaranteeDetails` (guaranteed_amount + schedule). The authorization schedule omits `observation_window_expiration_time`, which is only meaningful on a created transfer. `guarantee_details` is `null` when no guarantee was attempted. The existing `guarantee_decision` and `guarantee_decision_rationale` fields are deprecated in favor of `guarantee_details`.
+- Add `requested_amount` to the `proposed_transfer` object on the `/transfer/authorization/create` response. Surfaces the amount the client originally requested, which can differ from the proposed `amount` when only a partial amount is offered for an adaptive guarantee.
+
+### 2020-09-14_1.697.5
+- Document support for UltraFICO® scores through the CRA Partner Insights product.
+
+### 2020-09-14_1.697.4
+- Correct spec to reflect two missing enum values: add missing `in_epic` enum value to `IDNumberType` and add missing `IDEMPOTENCY_ERROR` enum value to `ErrorType` schema. No changes to actual API behavior.
+
 # 40.0.0
 - Updating to OAS 2020-09-14_1.697.4
 
