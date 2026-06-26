@@ -24,6 +24,9 @@ This library only supports `python3`!
 $ pip3 install plaid-python
 ```
 
+
+
+
 ## Versioning
 
 This release only supports the latest Plaid API version, `2020-09-14`.
