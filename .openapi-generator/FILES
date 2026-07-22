@@ -345,6 +345,7 @@ plaid/model/category_insight_details.py
 plaid/model/category_insights.py
 plaid/model/cause.py
 plaid/model/cause_all_of.py
+plaid/model/check_report_repairable_item.py
 plaid/model/check_report_warning.py
 plaid/model/check_report_warning_code.py
 plaid/model/client_customization.py
@@ -404,10 +405,16 @@ plaid/model/cra_check_report_cashflow_insights_get_options.py
 plaid/model/cra_check_report_cashflow_insights_get_request.py
 plaid/model/cra_check_report_cashflow_insights_get_response.py
 plaid/model/cra_check_report_create_base_report_options.py
+plaid/model/cra_check_report_create_cashflow_insights_options.py
+plaid/model/cra_check_report_create_employment_refresh_options.py
+plaid/model/cra_check_report_create_income_insights_options.py
+plaid/model/cra_check_report_create_lend_score_options.py
+plaid/model/cra_check_report_create_network_insights_options.py
 plaid/model/cra_check_report_create_partner_insights_options.py
 plaid/model/cra_check_report_create_request.py
 plaid/model/cra_check_report_create_response.py
 plaid/model/cra_check_report_failed_webhook.py
+plaid/model/cra_check_report_failed_webhook_error.py
 plaid/model/cra_check_report_freddie_mac_get_request.py
 plaid/model/cra_check_report_freddie_mac_get_response.py
 plaid/model/cra_check_report_freddie_mac_verification_of_assets_deal.py
@@ -427,6 +434,7 @@ plaid/model/cra_check_report_partner_insights_get_partner_insights.py
 plaid/model/cra_check_report_partner_insights_get_request.py
 plaid/model/cra_check_report_partner_insights_get_response.py
 plaid/model/cra_check_report_pdf_get_request.py
+plaid/model/cra_check_report_permissible_purpose.py
 plaid/model/cra_check_report_ready_webhook.py
 plaid/model/cra_check_report_verification_get_employment_refresh_options.py
 plaid/model/cra_check_report_verification_get_report_type.py
@@ -512,6 +520,15 @@ plaid/model/cra_partner_insights_ultra_fico_score_version.py
 plaid/model/cra_pdf_add_ons.py
 plaid/model/cra_prediction_interval.py
 plaid/model/cra_projected_modeled_income.py
+plaid/model/cra_report_decision_stage.py
+plaid/model/cra_report_get_product_attributes.py
+plaid/model/cra_report_get_product_metadata.py
+plaid/model/cra_report_get_report.py
+plaid/model/cra_report_get_request.py
+plaid/model/cra_report_get_request_product.py
+plaid/model/cra_report_get_response.py
+plaid/model/cra_report_get_response_product.py
+plaid/model/cra_report_scope.py
 plaid/model/cra_upgrade_failed_webhook.py
 plaid/model/cra_user_check_report_failed_webhook.py
 plaid/model/cra_user_check_report_ready_webhook.py
@@ -624,6 +641,8 @@ plaid/model/credit_freddie_mac_services.py
 plaid/model/credit_freddie_mac_verification_of_asset.py
 plaid/model/credit_freddie_mac_verification_of_asset_response.py
 plaid/model/credit_freddie_mac_verification_of_assets_deal.py
+plaid/model/credit_i20.py
+plaid/model/credit_i20_student.py
 plaid/model/credit_pay_stub.py
 plaid/model/credit_pay_stub_address.py
 plaid/model/credit_pay_stub_deductions.py
@@ -799,6 +818,7 @@ plaid/model/fraud_check_outcome.py
 plaid/model/fraud_check_outcome_with_no_data.py
 plaid/model/gambling_indicators.py
 plaid/model/generic_screening_hit_location_items.py
+plaid/model/get_consents_response.py
 plaid/model/get_recipient_response.py
 plaid/model/get_recipients_response.py
 plaid/model/gse_report_type.py
@@ -996,7 +1016,6 @@ plaid/model/item_import_request_user_auth.py
 plaid/model/item_import_response.py
 plaid/model/item_login_repaired_webhook.py
 plaid/model/item_product_ready_webhook.py
-plaid/model/item_products_terminate_reason_code.py
 plaid/model/item_products_terminate_request.py
 plaid/model/item_products_terminate_response.py
 plaid/model/item_public_token_create_request.py
@@ -1494,6 +1513,7 @@ plaid/model/proxy_type.py
 plaid/model/pslf_status.py
 plaid/model/reason_code.py
 plaid/model/recaptcha_required_error.py
+plaid/model/receiver_details.py
 plaid/model/recipient_bacs.py
 plaid/model/recipient_bacs_nullable.py
 plaid/model/recommendation_string.py
@@ -1560,6 +1580,8 @@ plaid/model/sandbox_bank_transfer_simulate_request.py
 plaid/model/sandbox_bank_transfer_simulate_response.py
 plaid/model/sandbox_cra_cashflow_updates_update_request.py
 plaid/model/sandbox_cra_cashflow_updates_update_response.py
+plaid/model/sandbox_fdx_consent_seed_request.py
+plaid/model/sandbox_fdx_consent_seed_response.py
 plaid/model/sandbox_income_fire_webhook_request.py
 plaid/model/sandbox_income_fire_webhook_response.py
 plaid/model/sandbox_income_webhook_fire_request_webhook_code.py
@@ -1931,6 +1953,9 @@ plaid/model/transfer_repayment_list_response.py
 plaid/model/transfer_repayment_return.py
 plaid/model/transfer_repayment_return_list_request.py
 plaid/model/transfer_repayment_return_list_response.py
+plaid/model/transfer_return_recover_idempotency_key.py
+plaid/model/transfer_return_recover_request.py
+plaid/model/transfer_return_recover_response.py
 plaid/model/transfer_schedule_interval_unit.py
 plaid/model/transfer_status.py
 plaid/model/transfer_sweep.py
@@ -1986,7 +2011,6 @@ plaid/model/user_items_get_response.py
 plaid/model/user_items_remove_request.py
 plaid/model/user_items_remove_response.py
 plaid/model/user_permission_revoked_webhook.py
-plaid/model/user_products_terminate_reason_code.py
 plaid/model/user_products_terminate_request.py
 plaid/model/user_products_terminate_response.py
 plaid/model/user_remove_request.py

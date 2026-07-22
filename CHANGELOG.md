@@ -1,5 +1,121 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 41.0.0
+- Updating to OAS 2020-09-14_1.706.1
+
+## Breaking changes in this version
+- [BREAKING] For `/cra/check_report/create`, replace `CraCheckReportCashflowInsightsGetOptions`, `CraCheckReportIncomeInsightsGetOptions`, `CraCheckReportLendScoreGetOptions`, `CraCheckReportNetworkInsightsGetOptions`, and `CraCheckReportVerificationGetEmploymentRefreshOptions` with the corresponding `CraCheckReportCreate*Options` classes. The old classes remain available for the deprecated `/get` options, and request JSON is unchanged. (OAS 2020-09-14_1.700.0)
+- [BREAKING] Replace imports of `ItemProductsTerminateReasonCode` and `UserProductsTerminateReasonCode` with `ProductsTerminateReasonCode`. Both termination requests now use the shared type; accepted JSON values are unchanged. (OAS 2020-09-14_1.701.1)
+- [BREAKING] Direct construction of `BankTransferEvent`, `CreditSessionDocumentIncomeResult`, `LinkEventsWebhook`, `PayrollIncomeObject`, or `Security` must now supply the newly modeled `receiver_details`, `num_i20s_uploaded`, `environment`, `i20s`, or `figi` field, respectively. Ordinary API response consumption is unchanged. (OAS 2020-09-14_1.699.0, 1.699.5, 1.701.0, 1.701.1, and 1.703.0)
+- [BREAKING] `FDXInitiatorFiAttribute.value` is now a `str` instead of `FDXPartyType`. This schema is not referenced by an endpoint. (OAS 2020-09-14_1.703.0)
+- [BREAKING] Use the serialized value `"interest only"` instead of `"interest-only"` for `StudentRepaymentPlan.type`, matching the value returned by the API. (OAS 2020-09-14_1.699.1)
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.706.1
+- Make product `metadata` and `attributes` nullable when unavailable in `/cra/report/get` responses.
+
+### 2020-09-14_1.706.0
+- Add the `/transfer/return/recover` endpoint, which lets clients report that they have recovered some or all of the loss on a returned guaranteed transfer.
+- Add the `guarantee_reimbursed`, `client_return_recovered`, and `plaid_return_recovered` transfer event types, and add a nullable signed `event_amount` field to the transfer event object.
+
+### 2020-09-14_1.705.4
+- Mark superseded products, endpoints, and fields as `deprecated`: the Beacon product (`/beacon/*` endpoints and webhooks, plus the `beacon_user_id` field on Identity Verification responses); Bank Transfer (except the `/bank_transfer/event/*` endpoints, still used for Auth micro-deposits); `/employers/search`; the legacy Cash Flow Updates webhooks superseded by `CASH_FLOW_INSIGHTS_UPDATED`; and the `PaymentInitiationConsentScope`, `TransferCreditFundsSource`, and `RiskReason` schemas.
+- Quote `type: string` certain enum values (Prism version number strings, Freddie Mac "yes/no" API string responses) that YAML parsers were coercing to numbers or booleans.
+- Expose `/cra/report/get` and its request/response schemas in generated client libraries. The endpoint remains hidden from public documentation.
+
+### 2020-09-14_1.705.3
+- Document the `ip_address` field on the `/identity_verification/create` `user` object: accepted only here (not via `/link/token/create`) and captured automatically by the Link SDK, for backend-only integrations that need IP-based risk checks.
+
+### 2020-09-14_1.705.2
+- Clarified the `/oauth/token` response `token_type` description (it is `Bearer` for OAuth access tokens); dropped the inaccurate "always Bearer" wording.
+
+### 2020-09-14_1.705.1
+- internal changes only
+
+### 2020-09-14_1.705.0
+- Type the `product` field of the `CraReportUpdatedWebhook` (`CRA_REPORT`/`CRA_REPORT_UPDATED`) `successful_products`/`failed_products` entries against the `Products` enum instead of a free-form string, matching the sibling `/cra/report/get` product schemas.
+
+### 2020-09-14_1.704.2
+- internal changes only
+
+### 2020-09-14_1.704.1
+- internal changes only
+
+### 2020-09-14_1.704.0
+- internal changes only
+
+### 2020-09-14_1.703.0
+- Add the `environment` field to the `LinkEventsWebhook` (`LINK`/`EVENTS`) schema, matching actual behavior.
+- Change `FDXInitiatorFiAttribute.value` from the `FDXPartyType` enum to a string, matching the sibling `FDXFiAttribute` (this schema is not referenced by any endpoint).
+- Fixed a `TransactionsRuleDetails.query` description that referenced a nonexistent `NAME` field (the enum value is `MERCHANT_NAME`), and a `/cra/encompass/get_reports` example whose `report_status` was not a valid value and whose `generated_at` key should be `created_at`.
+- Fixed additional example/consistency issues: `/transactions/get` and `/processor/transactions/get` examples now report the correct `total_transactions`; the Identity Verification `Strategy` note references the `watchlist_screening` step; the `US_SDN` watchlist code label is consistent; `SelfieCapture` examples reflect that only one of `image_url`/`video_url` is populated; the `/institutions/get_by_id` example nests `liabilities` correctly; the `/oauth/token` scope description calls `urn:plaid:params:oauth:user-token` a subject token type; and a `/cra/encompass/load/existing` example was corrected to match its schema.
+
+### 2020-09-14_1.702.4
+- Add `hide_gse_details` to `/cra/check_report/verification/pdf/get`. When `true`, the GSE identifiers (the Report ID and `gse_reference_id`) are omitted from the returned Home Lending Report PDF. Defaults to `false`. These identifiers are always present in the `/cra/check_report/verification/get` JSON response regardless of this field.
+
+### 2020-09-14_1.702.3
+- Add the `error`, `repairable_items`, and `failed_products` fields to the `CHECK_REPORT_FAILED` and `USER_CHECK_REPORT_FAILED` webhooks.
+
+### 2020-09-14_1.702.2
+- Add `tax_lots` to the `/investments/holdings/get` sample response, showing both a holding with per-lot detail and a holding with an empty `tax_lots` array.
+
+### 2020-09-14_1.702.1
+- Update descriptions for the CRA `/get` endpoints.
+
+### 2020-09-14_1.702.0
+- Add `timestamp` to `/protect/compute` responses to indicate when the Trust Index score and fraud attributes were computed.
+
+### 2020-09-14_1.701.4
+- Add `ip_address` (optional, nullable) to the `user` object (`IdentityVerificationCreateRequestUser`) on `/identity_verification/create`. Lets backend-only integrations supply the end user's IP address for IP-based risk checks without launching the Link SDK.
+
+### 2020-09-14_1.701.3
+- Add `exclusion_code` to the `CraPartnerInsightsUltraFicoScoreResult` object, exposing the FICO exclusion code that explains why an UltraFICO® score could not be computed due to consumer-data conditions (e.g. insufficient account history).
+
+### 2020-09-14_1.701.2
+- Add private-visibility `error`, `repairable_items`, and `failed_products` to the `CHECK_REPORT_FAILED` and `USER_CHECK_REPORT_FAILED` webhooks.
+
+### 2020-09-14_1.701.1
+- Add the nullable `receiver_details` field to the `BankTransferEvent` schema returned by `/bank_transfer/event/list` and `/bank_transfer/event/sync`, matching what the API already emits. Currently always `null`.
+- [Breaking] Change the generated `reason_code` type for `/item/products/terminate` and `/user/products/terminate` from the unusable `ItemProductsTerminateReasonCode` and `UserProductsTerminateReasonCode` wrapper types to `ProductsTerminateReasonCode`. The accepted JSON values are unchanged.
+- Make `home_lending_report_options` visible in the docs for `/cra/check_report/create` and `/link/token/create`.
+
+### 2020-09-14_1.701.0
+- Add `figi` to the `Security` schema: the 12-character OpenFIGI identifier, which stays stable across most corporate actions (ticker/CUSIP/name changes) and is the preferred identifier for tracking a security across its lifecycle. Null until Plaid has enriched the security with FIGI data.
+
+### 2020-09-14_1.700.1
+- Add the `/sandbox/fdx/consent/seed` endpoint for seeding a test FDX consent grant on Sandbox data partner accounts. Takes `customer_id` and `application_id` (and an optional `consent_id`) and returns the seeded `consent_id`.
+
+### 2020-09-14_1.700.0
+- [Breaking] Rename the `/cra/check_report/create` request options schemas for `cashflow_insights`, `lend_score`, `network_insights`, `income_insights`, and the Home Lending Report's `employment_refresh_options` to `CraCheckReportCreate*Options`. The JSON request is unchanged.
+- Deprecate the request-time generation config on the CRA `/get` endpoints (`options`, `partner_insights`, `employment_refresh_options`); no longer accepted for new clients (created on or after 2026-07-01).
+
+### 2020-09-14_1.699.6
+- Add `cash advance`, `late fee`, `membership fee`, `returned item fee` to the `transaction_code` enum.
+
+### 2020-09-14_1.699.5
+- Add `num_i20s_uploaded` to the `document_income_results` object in the `/credit/sessions/get` and `/link/token/get` responses
+
+### 2020-09-14_1.699.4
+- Add private-visibility scaffolding for the `CRA_REPORT_UPDATED` webhook (`CRA_REPORT` type), fired when a subscribed CRA report is updated; lists the `successful_products` and `failed_products` for the update. Hidden from the public spec/docs until launch (customer-facing entry follows when `x-private-visibility` flips).
+
+### 2020-09-14_1.699.3
+- Add `kick` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Kick integration.
+
+### 2020-09-14_1.699.2
+- Adds `DOCUMENT_TYPE_US_STUDENT_I20` enum value (Form I-20 student document) for document metadata
+- Add `/fdx/consents`, `/fdx/consents/{consentId}`, and `/fdx/consents/{consentId}/revocation` for managing FDX consent grants. These endpoints remain hidden from public documentation.
+
+### 2020-09-14_1.699.1
+- Additions and corrections of enum values returned by API but not mentioned in OpenAPI spec. No actual changes to API behavior.
+- `PlaidErrorType`: add 13 error types (`ASSETS_ERROR`, `ENRICH_ERROR`, `STATEMENTS_ERROR`, `RECURRING_TRANSACTIONS_ERROR`, `CRA_MONITORING_ERROR`, `CREDIT_PROFILE_REPORT_ERROR`, `ENCOMPASS_ERROR`, `FRAUD_INSIGHTS_ERROR`, `FREDDIE_MAC_ERROR`, `LINK_DELIVERY_ERROR`, `PROFILE_ERROR`, `TRANSFER_RECURRING_ERROR`, `TRANSFER_REFUND_ERROR`
+- Asset Report `warning_code`: add the 5 `BANK_INCOME_INSIGHTS_*` codes
+- watchlist `source`: add `retro` enum value
+- `TransferNetwork`: add `rfp` enum value (request for payment; closed beta, debit-only)
+- `StudentRepaymentPlan.type`: `interest-only` → `interest only` (match the emitted value)
+
+### 2020-09-14_1.699.0
+- Add support for the Form I-20 US immigration student document on `/credit/payroll_income/get`. This form now returns an `i20` array which extraction data on uploaded I-20 documents.
+
 # 40.1.0
 - Updating to OAS 2020-09-14_1.698.7
 
