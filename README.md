@@ -119,9 +119,9 @@ b = date.fromisoformat('2022-05-05')
 If the API reference documentation for a field specifies `format: date-time`, the following is acceptable:
 
 ```py
-from datetime import datetime
+from datetime import datetime, timezone
 
-a = datetime(2022, 5, 5, 22, 35, 49, tzinfo=datetime.timezone.utc)
+a = datetime(2022, 5, 5, 22, 35, 49, tzinfo=timezone.utc)
 ```
 
 ## Examples
@@ -385,4 +385,4 @@ Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions for l
 [8]: https://cloud.google.com/appengine/docs/python/issue-requests
 [9]: https://blog.plaid.com/improving-our-api/
 [10]: https://github.com/plaid/plaid-python-legacy
-[api-upgrades]: https://plaid.com/docs/api-upgrades/
+[api-upgrades]: https://plaid.com/docs/api/versioning/
