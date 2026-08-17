@@ -1,5 +1,201 @@
 See full changelog for the OpenAPI Schema (OAS) [here](https://github.com/plaid/plaid-openapi/blob/master/CHANGELOG.md).
 
+# 43.0.0
+- Updating to OAS 2020-09-14_1.729.1
+
+## OpenAPI Schema Changes
+### 2020-09-14_1.729.1
+
+- Clarified the description of `merchant_category_code` on the Transaction object. The field is not populated for every transaction.
+
+### 2020-09-14_1.729.0
+
+- Add the private `session_group_id` field to `SESSION_FINISHED` webhook payloads for related Layer sessions.
+
+### 2020-09-14_1.728.2
+
+- Give `cra_income_insights` a typed attributes/metadata schema on `/cra/report/get`, matching `cra_home_lending`. Extract the fields common to every product's metadata into a shared schema, and make `generated_time` and the transaction/income-stream date fields nullable instead of defaulting to the Unix epoch when unset.
+- Demote a non-ISO `iso_currency_code` to `unofficial_currency_code` on `cra_home_lending`'s `/cra/report/get` response too, matching the validation already applied to `cra_income_insights`.
+
+### 2020-09-14_1.728.1
+
+- Document that `investment_transactions[].transaction_datetime` defaults its time component to `T00:00:00Z` when the institution provides only a date, and that this does not mean the order was initiated at midnight UTC.
+
+### 2020-09-14_1.728.0
+
+- [Breaking] Remove the `access_token` field from the `/protect/cash_advance/decision/create` and `/protect/cash_advance/repayment/create` request bodies.
+
+- Add `issue_error_type` and `issue_error_code` to beta issue objects so each issue can identify the API error customers may encounter.
+
+### 2020-09-14_1.727.4
+
+- Add `apy` to the account override object on `/sandbox/public_token/create` and `/sandbox/item/reset_login`, allowing a custom Sandbox account to report a specific annual percentage yield.
+
+### 2020-09-14_1.727.3
+
+- Expose the CRA servicing subscription endpoints (`/cra/servicing/subscription/create`, `/cra/servicing/subscription/delete`, `/cra/servicing/subscription/get`, `/cra/servicing/subscription/list`, `/cra/servicing/subscription/update`) and `/sandbox/cra/servicing/simulate` in public documentation, along with their request and response schemas. The `x-private-visibility` and `x-hidden-from-docs` flags set when these endpoints were added pre-GA are removed; their request/response shapes are unchanged.
+
+### 2020-09-14_1.727.2
+
+### 2020-09-14_1.727.1
+
+### 2020-09-14_1.727.0
+
+- Add `loan` and `line_of_credit` liability objects to `/liabilities/get`.
+- Add the `installment`, `charge card`, `home equity loan`, and `commercial line of credit` account subtypes.
+- Add `penalty_apr` as a credit APR type.
+
+### 2020-09-14_1.726.0
+
+- [Breaking] Remove the `CraProductConfig` union and replace it with `CraSubscriptionProductConfig`, which is discriminated on `product` over the same per-product models. The CRA servicing subscription endpoints that use it remain hidden from public documentation.
+
+### 2020-09-14_1.725.0
+
+- Add per-product CRA product models in two forms: `Cra<Product>ProductConfig`, which carries the product, its version, and the options it is configured with, and `Cra<Product>Product`, which names the product and version alone. Both are collected into the `CraProductConfig` and `CraProduct` unions, discriminated on `product`. No endpoint references them yet.
+
+### 2020-09-14_1.724.0
+
+- Add the hidden `session_group_id` field to Link success metadata for related Layer sessions.
+
+### 2020-09-14_1.723.0
+
+- Add the hidden beta `/beta/issues/v1/list`, `/beta/issues/v1/match`, `/beta/issues/v1/subscribe`, and `/beta/issues/v1/unsubscribe` endpoints for discovering institution issues and managing resolution webhook subscriptions.
+
+### 2020-09-14_1.721.1
+
+- Add `apy` to Account objects when the financial institution provides the annual percentage yield on an interest-bearing deposit account.
+
+### 2020-09-14_1.721.0
+
+- Add `/protect/cash_advance/decision/create` and `/protect/cash_advance/repayment/create` for reporting Cash Advance Index decision and repayment feedback.
+
+### 2020-09-14_1.720.0
+
+- Add `/identity/match/list` to return a paginated history of Link-originated Identity Match attempts with `PASS`, `FAIL`, and `UNKNOWN` outcomes.
+
+### 2020-09-14_1.719.1
+
+- Added `TRANSFER_OUT` to the list of possible Virtual Account transaction types.
+
+### 2020-09-14_1.719.0
+
+- `/item/import` no longer requires `products` or `user_auth.auth_token`. Neither was ever checked for callers who authenticate with `user_auth.user_id`. `user_auth.auth_token` and `options` are now deprecated, and `institution_id` documents when it needs to be sent. Existing integrations that send any of these fields continue to work.
+
+### 2020-09-14_1.718.1
+
+- Add `webull` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Webull integration.
+
+### 2020-09-14_1.718.0
+
+- Add `USER_INCOME_VERIFICATION` and `USER_INCOME_VERIFICATION_RISK_SIGNALS` to `/sandbox/income/fire_webhook` so New User API integrations can trigger test webhooks with a public `user_id`.
+
+### 2020-09-14_1.717.0
+
+- [Breaking for Go] Allow `user_id` in place of `user_token` on `/credit/payroll_income/refresh` and `/credit/employment/get`. Existing integrations can continue to use `user_token`.
+
+### 2020-09-14_1.716.3
+
+- Added `prediction market` as an investment account subtype.
+
+### 2020-09-14_1.716.2
+
+- Document `/user/items/associate` in the public API reference, for associating Items with a `user_id`. Items already associated with a different `user_id` are reassociated with the target User, and a single request can associate up to 100 Items.
+
+### 2020-09-14_1.716.1
+
+- Add `user_id` field to the `/payment_initiation/payment/create`, `/payment_initiation/consent/create` and `/wallet/transaction/execute` endpoints.
+
+### 2020-09-14_1.716.0
+
+- [Breaking] Rename the `/beta/issues/v1/get` impact fields from `affected_new_connection_count` and `affected_existing_connection_count` to `affected_new_item_count` and `affected_existing_item_count`.
+
+### 2020-09-14_1.715.6
+
+- internal changes only
+
+### 2020-09-14_1.715.5
+
+- Add `merchant_category_code` to the Transaction object on `/transactions/get` and `/transactions/sync`. This is the merchant category code reported by the financial institution, normalized to four digits. It is populated only where the institution sends one, typically card purchases.
+
+### 2020-09-14_1.715.4
+
+- Correct Investments sample responses so `cost_basis` represents total acquisition cost and vested assets are associated only with equities.
+
+### 2020-09-14_1.715.3
+
+- Document the `USER_INCOME_VERIFICATION`, `USER_INCOME_VERIFICATION_RISK_SIGNALS`, and `USER_INCOME_VERIFICATION_REFRESH_RECONNECT_NEEDED` webhooks in the public OpenAPI schema for Income integrations using the User API.
+- Add `bizcap` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the BizCap integration.
+
+### 2020-09-14_1.715.2
+
+- Remove the obsolete `/protect/event/get` instruction from the `PROTECT_USER_EVENT` webhook description.
+
+### 2020-09-14_1.715.1
+
+- internal changes only
+
+### 2020-09-14_1.715.0
+
+- Add `/sandbox/user/fire_webhook` for firing test webhooks associated with a user rather than an Item. Identify the user with a `user_id` (or a `user_token`, for integrations that predate the [New User APIs](https://plaid.com/docs/api/users/user-apis)) and pass the destination URL as `webhook`. Supported `webhook_code` values are `USER_CHECK_REPORT_READY`, `USER_CHECK_REPORT_FAILED`, `CHECK_REPORT_READY`, and `CHECK_REPORT_FAILED`.
+
+### 2020-09-14_1.714.0
+
+- [Breaking] Allow `user_id` in place of `user_token` on `/credit/sessions/get`, `/credit/bank_income/get`, `/credit/bank_income/pdf/get`, `/credit/bank_statements/uploads/get`, `/credit/payroll_income/get`, `/credit/payroll_income/risk_signals/get`, and `/credit/payroll_income/parsing_config/update`. Existing integrations can continue to use `user_token`.
+
+### 2020-09-14_1.713.2
+
+- Restore the legacy nested `subscores` field on Protect `TrustIndex` and private Cognito responses.
+- Add `cybrid` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Cybrid integration.
+
+### 2020-09-14_1.713.1
+
+- Add `airwallex` to the `processor` enum on `/processor/token/create`, for creating processor tokens for the Airwallex integration.
+
+### 2020-09-14_1.713.0
+
+- [Breaking] Remove the legacy nested `subscores` field from Protect `TrustIndex` responses. Per-amount-bucket subscores on `/protect/compute` are unchanged.
+
+### 2020-09-14_1.712.0
+
+- [Breaking] Correct Identity Match score objects to be non-null, with nullable inner fields when matching data is unavailable.
+
+### 2020-09-14_1.711.0
+
+- Add the hidden beta `/beta/issues/v1/get` endpoint for retrieving public institution issue details by issue ID.
+
+### 2020-09-14_1.710.0
+
+- internal changes only
+
+### 2020-09-14_1.709.4
+- Add `tax_lots` to investment holdings in `/cra/check_report/verification/get` responses, returning per-lot acquisition data when provided by the institution.
+
+### 2020-09-14_1.709.3
+- Add `tax_lots` to investment holdings in `/asset_report/get` responses, returning per-lot acquisition data when provided by the institution.
+
+### 2020-09-14_1.709.2
+
+- Expose `/fdx/recipients` and `/fdx/recipient/{recipientId}` in public documentation, and clarify their descriptions and example values. The `x-hidden-from-docs` flag set when these endpoints were added pre-GA is removed; their request/response shapes are unchanged.
+
+### 2020-09-14_1.709.1
+
+- Clarify that `notes` are optional for `OTHER` Protect reports.
+
+### 2020-09-14_1.709.0
+
+- internal changes only
+
+### 2020-09-14_1.708.3
+- Add `cra_home_lending` to the `Products` enum.
+
+### 2020-09-14_1.708.2
+
+- internal changes only
+
+### 2020-09-14_1.708.1
+
+- Add `USER_INCOME_VERIFICATION`, `USER_INCOME_VERIFICATION_RISK_SIGNALS`, and `USER_INCOME_VERIFICATION_REFRESH_RECONNECT_NEEDED` webhooks for Income customers integrated with the new User APIs.
+
 # 42.0.0
 - Updating to OAS 2020-09-14_1.708.0
 
