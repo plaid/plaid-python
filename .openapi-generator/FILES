@@ -327,13 +327,14 @@ plaid/model/business_website_build_status.py
 plaid/model/business_website_ssl.py
 plaid/model/business_whois_record.py
 plaid/model/cash_advance_decision_outcome.py
-plaid/model/cash_advance_details.py
-plaid/model/cash_advance_details_amount_approved.py
-plaid/model/cash_advance_details_amount_due.py
+plaid/model/cash_advance_info.py
+plaid/model/cash_advance_info_amount_approved.py
+plaid/model/cash_advance_info_amount_due.py
 plaid/model/cash_advance_repayment.py
 plaid/model/cash_advance_repayment_amount_due.py
 plaid/model/cash_advance_repayment_amount_paid.py
 plaid/model/cash_advance_repayment_status.py
+plaid/model/cash_advance_type.py
 plaid/model/cash_flow_insight.py
 plaid/model/cash_flow_updates_event_webhook_codes.py
 plaid/model/cash_flow_updates_expected_deposit_missed_webhook.py
@@ -581,6 +582,7 @@ plaid/model/cra_report_get_request_product.py
 plaid/model/cra_report_get_response.py
 plaid/model/cra_report_get_response_product.py
 plaid/model/cra_report_scope.py
+plaid/model/cra_report_updated_webhook.py
 plaid/model/cra_servicing_subscription.py
 plaid/model/cra_servicing_subscription_create_request.py
 plaid/model/cra_servicing_subscription_create_response.py
@@ -731,6 +733,7 @@ plaid/model/credit_payroll_income_refresh_response.py
 plaid/model/credit_payroll_income_risk_signals_get_request.py
 plaid/model/credit_payroll_income_risk_signals_get_response.py
 plaid/model/credit_platform_ids.py
+plaid/model/credit_product.py
 plaid/model/credit_relay_create_request.py
 plaid/model/credit_relay_create_response.py
 plaid/model/credit_relay_get_request.py
@@ -1567,6 +1570,7 @@ plaid/model/protect_cash_advance_repayment_create_response.py
 plaid/model/protect_compute_request.py
 plaid/model/protect_compute_response.py
 plaid/model/protect_compute_subscores.py
+plaid/model/protect_device_model_inputs.py
 plaid/model/protect_event.py
 plaid/model/protect_event_get_request.py
 plaid/model/protect_event_get_response.py
@@ -1583,7 +1587,6 @@ plaid/model/protect_report_create_request.py
 plaid/model/protect_report_create_response.py
 plaid/model/protect_report_source.py
 plaid/model/protect_report_type.py
-plaid/model/protect_sdk_model_inputs.py
 plaid/model/protect_user.py
 plaid/model/protect_user_event_webhook.py
 plaid/model/protect_user_insights_get_request.py
@@ -2151,6 +2154,7 @@ plaid/model/wallet_transaction.py
 plaid/model/wallet_transaction_amount.py
 plaid/model/wallet_transaction_counterparty.py
 plaid/model/wallet_transaction_counterparty_bacs.py
+plaid/model/wallet_transaction_counterparty_holder_category.py
 plaid/model/wallet_transaction_counterparty_international.py
 plaid/model/wallet_transaction_counterparty_numbers.py
 plaid/model/wallet_transaction_execute_request.py
