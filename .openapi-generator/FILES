@@ -327,6 +327,7 @@ plaid/model/business_website_build_status.py
 plaid/model/business_website_ssl.py
 plaid/model/business_whois_record.py
 plaid/model/cash_advance_decision_outcome.py
+plaid/model/cash_advance_feedback_type.py
 plaid/model/cash_advance_info.py
 plaid/model/cash_advance_info_amount_approved.py
 plaid/model/cash_advance_info_amount_due.py
@@ -431,7 +432,9 @@ plaid/model/cra_bank_income_summary.py
 plaid/model/cra_bank_income_transaction.py
 plaid/model/cra_bank_income_warning.py
 plaid/model/cra_bank_income_warning_code.py
+plaid/model/cra_base_report_product.py
 plaid/model/cra_base_report_product_config.py
+plaid/model/cra_cashflow_insights_product.py
 plaid/model/cra_cashflow_insights_report.py
 plaid/model/cra_check_report_base_report_get_request.py
 plaid/model/cra_check_report_base_report_get_response.py
@@ -503,6 +506,7 @@ plaid/model/cra_income_stream.py
 plaid/model/cra_income_stream_insights.py
 plaid/model/cra_income_transaction.py
 plaid/model/cra_income_transaction_outlier.py
+plaid/model/cra_lend_score_product.py
 plaid/model/cra_lend_score_report.py
 plaid/model/cra_loan_application.py
 plaid/model/cra_loan_application_decision.py
@@ -534,6 +538,7 @@ plaid/model/cra_monitoring_insights_unsubscribe_request.py
 plaid/model/cra_monitoring_insights_unsubscribe_response.py
 plaid/model/cra_monthly_income_values.py
 plaid/model/cra_network_insights_item.py
+plaid/model/cra_network_insights_product.py
 plaid/model/cra_network_insights_report.py
 plaid/model/cra_partner_insights.py
 plaid/model/cra_partner_insights_base_fico_score.py
@@ -559,7 +564,22 @@ plaid/model/cra_prediction_interval.py
 plaid/model/cra_projected_modeled_income.py
 plaid/model/cra_qualify_product.py
 plaid/model/cra_qualify_product_config.py
+plaid/model/cra_report_create_base_report_options.py
+plaid/model/cra_report_create_base_report_product_config.py
+plaid/model/cra_report_create_cashflow_insights_product_config.py
+plaid/model/cra_report_create_employment_refresh_options.py
+plaid/model/cra_report_create_home_lending_options.py
+plaid/model/cra_report_create_home_lending_product_config.py
+plaid/model/cra_report_create_home_lending_report_type.py
+plaid/model/cra_report_create_income_insights_options.py
+plaid/model/cra_report_create_income_insights_product_config.py
+plaid/model/cra_report_create_lend_score_product_config.py
+plaid/model/cra_report_create_network_insights_product_config.py
+plaid/model/cra_report_create_qualify_product_config.py
+plaid/model/cra_report_create_request.py
+plaid/model/cra_report_create_response.py
 plaid/model/cra_report_decision_stage.py
+plaid/model/cra_report_error_code.py
 plaid/model/cra_report_get_home_lending_attributes.py
 plaid/model/cra_report_get_home_lending_category_income.py
 plaid/model/cra_report_get_home_lending_income_by_categories.py
@@ -581,6 +601,8 @@ plaid/model/cra_report_get_request.py
 plaid/model/cra_report_get_request_product.py
 plaid/model/cra_report_get_response.py
 plaid/model/cra_report_get_response_product.py
+plaid/model/cra_report_product.py
+plaid/model/cra_report_ready_webhook.py
 plaid/model/cra_report_scope.py
 plaid/model/cra_report_updated_webhook.py
 plaid/model/cra_servicing_subscription.py
@@ -947,6 +969,7 @@ plaid/model/identity_verification_document_address_response.py
 plaid/model/identity_verification_document_name_response.py
 plaid/model/identity_verification_get_request.py
 plaid/model/identity_verification_get_response.py
+plaid/model/identity_verification_language.py
 plaid/model/identity_verification_list_request.py
 plaid/model/identity_verification_list_response.py
 plaid/model/identity_verification_request_user.py
@@ -1013,6 +1036,7 @@ plaid/model/individual_watchlist_program.py
 plaid/model/inflow_model.py
 plaid/model/initial_update_webhook.py
 plaid/model/institution.py
+plaid/model/institution_connection_availability.py
 plaid/model/institution_status.py
 plaid/model/institution_status_alert_webhook.py
 plaid/model/institution_supported_networks.py
@@ -1140,17 +1164,8 @@ plaid/model/line_of_credit_liability.py
 plaid/model/link_callback_metadata.py
 plaid/model/link_delivery_account.py
 plaid/model/link_delivery_callback_webhook.py
-plaid/model/link_delivery_communication_method.py
-plaid/model/link_delivery_create_request.py
-plaid/model/link_delivery_create_response.py
-plaid/model/link_delivery_delivery_method.py
-plaid/model/link_delivery_get_request.py
-plaid/model/link_delivery_get_response.py
 plaid/model/link_delivery_institution.py
 plaid/model/link_delivery_metadata.py
-plaid/model/link_delivery_options.py
-plaid/model/link_delivery_recipient.py
-plaid/model/link_delivery_session_status.py
 plaid/model/link_delivery_verification_status.py
 plaid/model/link_delivery_webhook_callback_type.py
 plaid/model/link_delivery_webhook_communication_method.py
@@ -1202,6 +1217,7 @@ plaid/model/link_token_create_request_cra_options_income_insights.py
 plaid/model/link_token_create_request_cra_options_lend_score.py
 plaid/model/link_token_create_request_cra_options_network_insights.py
 plaid/model/link_token_create_request_cra_options_partner_insights.py
+plaid/model/link_token_create_request_cra_report_parameter.py
 plaid/model/link_token_create_request_credit_partner_insights.py
 plaid/model/link_token_create_request_deposit_switch.py
 plaid/model/link_token_create_request_employment.py
@@ -1565,6 +1581,8 @@ plaid/model/protect_app_visit_event.py
 plaid/model/protect_bank_account.py
 plaid/model/protect_cash_advance_decision_create_request.py
 plaid/model/protect_cash_advance_decision_create_response.py
+plaid/model/protect_cash_advance_feedback_upload_request.py
+plaid/model/protect_cash_advance_feedback_upload_response.py
 plaid/model/protect_cash_advance_repayment_create_request.py
 plaid/model/protect_cash_advance_repayment_create_response.py
 plaid/model/protect_compute_request.py
@@ -1678,6 +1696,7 @@ plaid/model/sandbox_income_webhook_fire_request_webhook_code.py
 plaid/model/sandbox_item_application_seed_request.py
 plaid/model/sandbox_item_application_seed_response.py
 plaid/model/sandbox_item_fire_webhook_request.py
+plaid/model/sandbox_item_fire_webhook_request_options.py
 plaid/model/sandbox_item_fire_webhook_response.py
 plaid/model/sandbox_item_reset_login_request.py
 plaid/model/sandbox_item_reset_login_response.py
@@ -1899,6 +1918,7 @@ plaid/model/transfer_authorization.py
 plaid/model/transfer_authorization_cancel_request.py
 plaid/model/transfer_authorization_cancel_response.py
 plaid/model/transfer_authorization_create_request.py
+plaid/model/transfer_authorization_create_request_user_attributes.py
 plaid/model/transfer_authorization_create_response.py
 plaid/model/transfer_authorization_custom_attributes.py
 plaid/model/transfer_authorization_decision.py
@@ -1912,6 +1932,7 @@ plaid/model/transfer_authorization_idempotency_key.py
 plaid/model/transfer_authorization_payment_risk.py
 plaid/model/transfer_authorization_proposed_transfer.py
 plaid/model/transfer_authorization_risk_level.py
+plaid/model/transfer_authorization_user_attributes.py
 plaid/model/transfer_authorization_user_in_request.py
 plaid/model/transfer_balance.py
 plaid/model/transfer_balance_get_request.py

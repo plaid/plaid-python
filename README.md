@@ -1,5 +1,9 @@
 # plaid-python [![PyPI version](https://badge.fury.io/py/plaid-python.svg)](https://badge.fury.io/py/plaid-python)
 
+> **Help shape Plaid’s next-generation SDKs**
+>
+> We’re modernizing Plaid’s SDKs and looking for developers to try early releases and share feedback. [Register your interest](https://docs.google.com/forms/d/e/1FAIpQLScuhIBKCGcxrDQXLZA0nyTdJEW83J-VEr8E08KMKkT0EjmxBQ/viewform) and we’ll follow up when an early release is available for your language. No migration is required today.
+
 The official python client library for the [Plaid API][1], which is generated from our [OpenAPI spec](https://github.com/plaid/plaid-openapi).
 
 ## Table of Contents
