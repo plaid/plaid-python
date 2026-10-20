@@ -1635,6 +1635,17 @@ def model_to_dict(model_instance, serialize=True):
     """
     result = {}
 
+    def extract_simple_value(value):
+        if isinstance(value, ModelSimple):
+            return extract_simple_value(value.value)
+        if isinstance(value, list):
+            return [extract_simple_value(item) for item in value]
+        if isinstance(value, dict):
+            return {key: extract_simple_value(item) for key, item in value.items()}
+        if hasattr(value, '_data_store'):
+            return model_to_dict(value, serialize=serialize)
+        return value
+
     def extract_item(item): return (
         item[0], model_to_dict(
             item[1], serialize=serialize)) if hasattr(
@@ -1667,7 +1678,7 @@ def model_to_dict(model_instance, serialize=True):
                         if isinstance(v, PRIMITIVE_TYPES) or v is None:
                             res.append(v)
                         elif isinstance(v, ModelSimple):
-                            res.append(v.value)
+                            res.append(extract_simple_value(v))
                         elif isinstance(v, dict):
                             res.append(dict(map(
                                 extract_item,
@@ -1682,7 +1693,7 @@ def model_to_dict(model_instance, serialize=True):
                     value.items()
                 ))
             elif isinstance(value, ModelSimple):
-                result[attr] = value.value
+                result[attr] = extract_simple_value(value)
             elif hasattr(value, '_data_store'):
                 result[attr] = model_to_dict(value, serialize=serialize)
             else:
