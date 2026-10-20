@@ -102,7 +102,9 @@ class ApiException(OpenApiException):
             self.status = http_resp.status
             self.reason = http_resp.reason
             self.body = http_resp.data
-            self.headers = http_resp.getheaders()
+            self.headers = getattr(http_resp, "headers", None)
+            if self.headers is None:
+                self.headers = http_resp.getheaders()
         else:
             self.status = status
             self.reason = reason
