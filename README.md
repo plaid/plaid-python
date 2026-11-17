@@ -63,8 +63,7 @@ api_client = plaid.ApiClient(configuration)
 client = plaid_api.PlaidApi(api_client)
 ```
 
-Each endpoint returns a dictionary which contains the parsed JSON from the
-HTTP response.
+Each endpoint returns a response model, such as `TransactionsSyncResponse`. Access fields with `response['field']`, or convert the model with `to_dict()`.
 
 ### Errors
 
@@ -86,7 +85,7 @@ except plaid.ApiException as e:
         # the users' login information has changed, generate a public_token
         # for the user and initialize Link in update mode to
         # restore access to this user's data
-        # see https://plaid.com/docs/api/#updating-items-via-link
+        # see https://plaid.com/docs/link/update-mode/
     else:
         ...
 ```
@@ -381,7 +380,7 @@ Please see [Contributing](CONTRIBUTING.md) for guidelines and instructions for l
 
 [1]: https://plaid.com
 [2]: https://plaid.com/docs/api
-[3]: https://plaid.com/docs/api#errors
+[3]: https://plaid.com/docs/errors/
 [4]: https://plaid.com/docs/link/
 [5]: https://github.com/plaid/plaid-python/issues/new
 [6]: https://github.com/plaid/plaid-python/blob/master/LICENSE
