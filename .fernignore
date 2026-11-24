@@ -1,0 +1,7 @@
+# Specify files that shouldn't be modified by Fern
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes
+
+# Release and repository workflows are maintained here, not generated.
+.github/
