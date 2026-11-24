@@ -1,0 +1,247 @@
+name: Publish to PyPI
+
+# Publishes with PyPI trusted publishing (OIDC): no PyPI API token is stored in this repo.
+# The build job tests, builds and checks the sdist and wheel without any publish rights. The
+# publish job, which alone can request an OIDC token, waits for approval in the pypi-publish
+# environment and uploads exactly the files the build job checked.
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+
+permissions: {}
+
+# One group per tag: a shared group keeps only one pending run and cancels the rest, which would
+# drop a release tagged while another waits for approval.
+concurrency:
+  group: pypi-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      publish: ${{ steps.tree.outputs.publish }}
+      sha256: ${{ steps.check.outputs.sha256 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Releases before the bundled SDK (setup.py, no pyproject.toml) are published by the
+      # previous process. Their tags end here without publishing anything.
+      - name: Check the tree is the bundled SDK
+        id: tree
+        run: |
+          if [[ ! -f pyproject.toml ]]; then
+            echo "No pyproject.toml at $GITHUB_REF_NAME; this workflow publishes only the bundled SDK"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+
+      # The last version listed is the default python. 3.10 is the package's floor.
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        if: steps.tree.outputs.publish == 'true'
+        with:
+          python-version: |
+            3.14
+            3.10
+
+      - name: Install Poetry
+        if: steps.tree.outputs.publish == 'true'
+        run: python -m pip install poetry==2.5.1
+
+      # A stable release must come from reviewed code on master. A prerelease such as 48.0.0rc1,
+      # which pip installs only when asked for by exact version or with --pre, may be tagged on a
+      # branch to test a release.
+      - name: Check the tag matches the package version
+        if: steps.tree.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="$(poetry version --short)"
+          if [[ "$GITHUB_REF_NAME" != "$version" ]]; then
+            echo "Tag $GITHUB_REF_NAME does not match the package version $version" >&2
+            exit 1
+          fi
+          if [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+(a|b|rc)[0-9]+$ ]]; then
+            echo "$version is a prerelease; skipping the master check"
+            exit 0
+          fi
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "$version is neither a release nor an a, b or rc prerelease" >&2
+            exit 1
+          fi
+          status="$(gh api "repos/$GITHUB_REPOSITORY/compare/master...$GITHUB_SHA" --jq .status)"
+          if [[ "$status" != "identical" && "$status" != "behind" ]]; then
+            echo "$GITHUB_SHA is not on master (compare status: $status)" >&2
+            exit 1
+          fi
+
+      - name: Install dependencies
+        if: steps.tree.outputs.publish == 'true'
+        run: poetry install
+
+      - name: Type-check
+        if: steps.tree.outputs.publish == 'true'
+        run: poetry run mypy .
+
+      # Unit and wire tests; the wire tests start WireMock with docker compose. The previous
+      # client's tests (tests/legacy/*_integration.py) call the Sandbox API with credentials this
+      # job doesn't have, and pytest doesn't collect them.
+      - name: Unit and wire tests
+        if: steps.tree.outputs.publish == 'true'
+        run: poetry run pytest -rP -n auto .
+
+      - name: Build
+        if: steps.tree.outputs.publish == 'true'
+        run: poetry build --output "$RUNNER_TEMP/dist"
+
+      # Check the files PyPI will receive: their metadata, that both clients are in them, and that
+      # the wheel installs with only its declared dependencies and loads every module on the
+      # floor and the newest Python. Both clients import lazily, so a missing file or an
+      # undeclared dependency would otherwise fail only when a caller first used it.
+      - name: Check the distributions
+        id: check
+        if: steps.tree.outputs.publish == 'true'
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          dist="$RUNNER_TEMP/dist"
+          ls -l "$dist"
+          python -m venv "$RUNNER_TEMP/twine"
+          "$RUNNER_TEMP/twine/bin/pip" install --quiet twine==6.2.0
+          "$RUNNER_TEMP/twine/bin/twine" check --strict "$dist"/*
+
+          python - "$dist" <<'PY'
+          import os, sys, tarfile, zipfile
+          from email.parser import Parser
+          from pathlib import Path
+
+          dist = Path(sys.argv[1])
+          version = os.environ["VERSION"]
+          wheels = list(dist.glob("*.whl"))
+          sdists = list(dist.glob("*.tar.gz"))
+          if len(wheels) != 1 or len(sdists) != 1 or len(list(dist.iterdir())) != 2:
+              sys.exit(f"Expected one wheel and one sdist, got {sorted(p.name for p in dist.iterdir())}")
+
+          with zipfile.ZipFile(wheels[0]) as wheel:
+              names = wheel.namelist()
+              metadata = Parser().parsestr(wheel.read(f"plaid_python-{version}.dist-info/METADATA").decode())
+          with tarfile.open(sdists[0]) as sdist:
+              sdist_names = sdist.getnames()
+
+          problems = []
+          for required in ("plaid/__init__.py", "plaid/py.typed", "plaid/legacy/__init__.py",
+                           "plaid/legacy/api/plaid_api.py"):
+              if required not in names:
+                  problems.append(f"wheel is missing {required}")
+          root = f"plaid_python-{version}/"
+          for required in ("src/plaid/legacy/__init__.py", "README.md", "pyproject.toml"):
+              if root + required not in sdist_names:
+                  problems.append(f"sdist is missing {required}")
+          for name in names + sdist_names:
+              parts = name.split("/")
+              if parts[0] in ("tests", "wiremock", ".fern") or (len(parts) > 1 and parts[1] in ("tests", "wiremock", ".fern")):
+                  problems.append(f"distribution includes {name}")
+                  break
+
+          if metadata["Name"] != "plaid-python" or metadata["Version"] != version:
+              problems.append(f"metadata names {metadata['Name']} {metadata['Version']}")
+          if not metadata.get("Requires-Python"):
+              problems.append("metadata has no Requires-Python")
+          if not metadata.get("Summary"):
+              problems.append("metadata has no Summary")
+          if "MIT" not in (metadata.get("License-Expression") or metadata.get("License") or ""):
+              problems.append("metadata doesn't declare the MIT license")
+          urls = metadata.get_all("Project-URL") or []
+          if not any(url.endswith("https://github.com/plaid/plaid-python") for url in urls):
+              problems.append(f"no project URL is https://github.com/plaid/plaid-python: {urls}")
+          if "fern-demo" in str(metadata):
+              problems.append("metadata refers to the staging repository")
+          requires = {r.split(";")[0].split("(")[0].split("<")[0].split(">")[0].split("=")[0].split("!")[0].strip().lower()
+                      for r in metadata.get_all("Requires-Dist") or []}
+          for dependency in ("urllib3", "python-dateutil", "nulltype", "httpx", "pydantic"):
+              if dependency not in requires:
+                  problems.append(f"metadata doesn't require {dependency}")
+
+          if problems:
+              sys.exit("\n".join(problems))
+          print(f"Checked {wheels[0].name} ({len(names)} files) and {sdists[0].name}")
+          PY
+
+          for python in python3.10 python3.14; do
+            venv="$RUNNER_TEMP/load-$python"
+            "$python" -m venv "$venv"
+            "$venv/bin/pip" install --quiet "$dist"/*.whl
+            (cd "$(mktemp -d)" && "$venv/bin/python" - <<'PY'
+          import importlib, importlib.metadata, os, pkgutil, sys
+
+          import plaid
+
+          installed = importlib.metadata.version("plaid-python")
+          if installed != os.environ["VERSION"]:
+              sys.exit(f"Installed plaid-python {installed}, expected {os.environ['VERSION']}")
+          if "plaid.legacy" in sys.modules:
+              sys.exit("import plaid loaded plaid.legacy")
+          for name in plaid.__all__:
+              getattr(plaid, name)
+          import plaid.legacy
+
+          modules = [m.name for m in pkgutil.walk_packages(plaid.__path__, "plaid.")]
+          for name in modules:
+              importlib.import_module(name)
+          legacy = sum(name.startswith("plaid.legacy.") for name in modules)
+          print(f"Python {sys.version.split()[0]}: loaded {len(modules)} modules, {legacy} of them in plaid.legacy")
+          PY
+            )
+          done
+
+          (cd "$dist" && sha256sum -- * > "$RUNNER_TEMP/SHA256SUMS")
+          cat "$RUNNER_TEMP/SHA256SUMS"
+          echo "sha256=$(sha256sum "$RUNNER_TEMP/SHA256SUMS" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      # Kept as long as the publish job can wait for environment approval (30 days).
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: steps.tree.outputs.publish == 'true'
+        with:
+          name: dist
+          path: |
+            ${{ runner.temp }}/dist/
+            ${{ runner.temp }}/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    needs: build
+    if: needs.build.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    environment: pypi-publish
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: artifact
+
+      - name: Verify the files are the ones the build job checked
+        env:
+          SHA256: ${{ needs.build.outputs.sha256 }}
+        run: |
+          echo "$SHA256  artifact/SHA256SUMS" | sha256sum --check
+          cd artifact/dist
+          sha256sum --check --strict ../SHA256SUMS
+          if [[ "$(ls | wc -l)" != "$(wc -l < ../SHA256SUMS)" ]]; then
+            echo "artifact/dist holds files the build job didn't check" >&2
+            exit 1
+          fi
+
+      # Exchanges this job's OIDC token for a short-lived PyPI upload token, uploads both files
+      # and attaches their attestations.
+      - uses: pypa/gh-action-pypi-publish@aef6c9b6e301dc803e1bc9133e9ce67ae9b0906b # v1.14.3
+        with:
+          packages-dir: artifact/dist/
