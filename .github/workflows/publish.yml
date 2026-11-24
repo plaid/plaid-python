@@ -160,8 +160,9 @@ jobs:
           urls = metadata.get_all("Project-URL") or []
           if not any(url.endswith("https://github.com/plaid/plaid-python") for url in urls):
               problems.append(f"no project URL is https://github.com/plaid/plaid-python: {urls}")
-          if "fern-demo" in str(metadata):
-              problems.append("metadata refers to the staging repository")
+          for url in urls:
+              if "github.com" in url and not url.endswith("https://github.com/plaid/plaid-python"):
+                  problems.append(f"project URL points at another repository: {url}")
           requires = {r.split(";")[0].split("(")[0].split("<")[0].split(">")[0].split("=")[0].split("!")[0].strip().lower()
                       for r in metadata.get_all("Requires-Dist") or []}
           for dependency in ("urllib3", "python-dateutil", "nulltype", "httpx", "pydantic"):
