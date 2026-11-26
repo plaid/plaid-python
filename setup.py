@@ -6,7 +6,6 @@ url = 'https://github.com/plaid/plaid-python'
 REQUIRES = [
   "urllib3 >= 1.25.3",
   "python-dateutil",
-  "nulltype",
 ]
 
 setup(
