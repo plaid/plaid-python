@@ -1,5 +1,6 @@
 # Note: This image is also built in CircleCI, so limit references to internal repositories.
-FROM python:3.7
+### Build stage
+FROM python:3.7 AS builder
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -17,5 +18,10 @@ RUN --mount=type=secret,id=pipconf,target=/etc/pip.conf \
     pip check
 
 ENV TOXENV=docker VIRTUALENV_NO_PERIODIC_UPDATE=1
+
+### Runtime stage
+FROM python:3.7
+COPY --from=builder /usr/src/app /usr/src/app
+WORKDIR /usr/src/app
 
 CMD ["make", "test"]
